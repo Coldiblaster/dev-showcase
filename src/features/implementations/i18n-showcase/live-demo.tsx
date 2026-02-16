@@ -1,10 +1,12 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { CardBlur } from "@/components/ui/card-blur";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { getDemoMessages } from "@/data/demo-messages";
@@ -240,14 +242,19 @@ export function LiveDemo() {
                     className="space-y-5"
                   >
                     {/* Greeting */}
-                    <div className="rounded-lg bg-secondary/50 p-4">
+                    <CardBlur
+                      radius="lg"
+                      padding="p-4"
+                      bg="bg-secondary/50"
+                      border="border-none"
+                    >
                       <p className="mb-1 text-xs text-muted-foreground">
                         {msgs.greeting}
                       </p>
                       <p className="text-lg font-semibold text-foreground">
                         {interpolate(msgs.greetingName, { name })}
                       </p>
-                    </div>
+                    </CardBlur>
 
                     {/* Welcome message */}
                     <p className="leading-relaxed text-foreground/80">
@@ -256,7 +263,12 @@ export function LiveDemo() {
 
                     {/* Formatting grid */}
                     <div className="grid gap-3 sm:grid-cols-2">
-                      <div className="rounded-lg border border-border p-3">
+                      <CardBlur
+                        radius="lg"
+                        padding="p-3"
+                        bg="bg-card"
+                        border="border-border"
+                      >
                         <div className="mb-1 flex items-center gap-1.5">
                           {/* Calendar icon placeholder */}
                           <span className="inline-block h-3.5 w-3.5 bg-primary rounded-full mr-1.5" />
@@ -267,8 +279,13 @@ export function LiveDemo() {
                         <p className="font-mono text-sm text-foreground">
                           {demoDate}
                         </p>
-                      </div>
-                      <div className="rounded-lg border border-border p-3">
+                      </CardBlur>
+                      <CardBlur
+                        radius="lg"
+                        padding="p-3"
+                        bg="bg-card"
+                        border="border-border"
+                      >
                         <div className="mb-1 flex items-center gap-1.5">
                           {/* Hash icon placeholder */}
                           <span className="inline-block h-3.5 w-3.5 bg-primary rounded-full mr-1.5" />
@@ -279,11 +296,16 @@ export function LiveDemo() {
                         <p className="font-mono text-sm text-foreground">
                           {demoNumber}
                         </p>
-                      </div>
+                      </CardBlur>
                     </div>
 
                     {/* Pluralization */}
-                    <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
+                    <CardBlur
+                      radius="lg"
+                      padding="p-4"
+                      bg="bg-primary/5"
+                      border="border-primary/20"
+                    >
                       <div className="mb-1 flex items-center gap-1.5">
                         {/* Users icon placeholder */}
                         <span className="inline-block h-3.5 w-3.5 bg-primary rounded-full mr-1.5" />
@@ -294,7 +316,7 @@ export function LiveDemo() {
                       <p className="text-lg font-semibold text-primary">
                         {pluralResult}
                       </p>
-                    </div>
+                    </CardBlur>
                   </motion.div>
                 </div>
               </div>

@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
 
+import { CardBlur } from "@/components/ui/card-blur";
 import { Separator } from "@/components/ui/separator";
 
 export function AboutSection() {
@@ -63,64 +64,65 @@ export function AboutSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="rounded-xl border border-border bg-card p-8"
           >
-            <div className="flex flex-col gap-6">
-              {stats.map((stat, i) => (
-                <div key={stat.label}>
-                  <div className="flex items-baseline justify-between">
-                    <motion.span
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{
-                        duration: 0.5,
-                        delay: 0.4 + i * 0.15,
-                        type: "spring",
-                        stiffness: 200,
-                      }}
-                      className="font-mono text-4xl font-bold text-primary"
-                    >
-                      {stat.value}
-                    </motion.span>
-                    <span className="text-sm text-muted-foreground">
-                      {stat.label}
-                    </span>
+            <CardBlur radius="xl" padding="p-8" bg="bg-card">
+              <div className="flex flex-col gap-6">
+                {stats.map((stat, i) => (
+                  <div key={stat.label}>
+                    <div className="flex items-baseline justify-between">
+                      <motion.span
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                        transition={{
+                          duration: 0.5,
+                          delay: 0.4 + i * 0.15,
+                          type: "spring",
+                          stiffness: 200,
+                        }}
+                        className="font-mono text-4xl font-bold text-primary"
+                      >
+                        {stat.value}
+                      </motion.span>
+                      <span className="text-sm text-muted-foreground">
+                        {stat.label}
+                      </span>
+                    </div>
+                    {i < stats.length - 1 && <Separator className="mt-6" />}
                   </div>
-                  {i < stats.length - 1 && <Separator className="mt-6" />}
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
 
-            {/* Tech stack pills */}
-            <Separator className="my-8" />
-            <div className="flex flex-wrap gap-2">
-              {[
-                "React 18+",
-                "Next.js 14+",
-                "React Native",
-                "TypeScript",
-                "Tailwind CSS",
-                "Material UI",
-                "Radix UI",
-                "GraphQL",
-                "React Query",
-                "Node.js",
-                "Jest / Vitest",
-                "Expo",
-                "Styled Components",
-                "CI/CD",
-              ].map((tech, i) => (
-                <motion.span
-                  key={tech}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.3, delay: 0.6 + i * 0.05 }}
-                  className="rounded-md border border-border bg-secondary px-3 py-1 font-mono text-xs text-secondary-foreground"
-                >
-                  {tech}
-                </motion.span>
-              ))}
-            </div>
+              {/* Tech stack pills */}
+              <Separator className="my-8" />
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "React 18+",
+                  "Next.js 14+",
+                  "React Native",
+                  "TypeScript",
+                  "Tailwind CSS",
+                  "Material UI",
+                  "Radix UI",
+                  "GraphQL",
+                  "React Query",
+                  "Node.js",
+                  "Jest / Vitest",
+                  "Expo",
+                  "Styled Components",
+                  "CI/CD",
+                ].map((tech, i) => (
+                  <motion.span
+                    key={tech}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.3, delay: 0.6 + i * 0.05 }}
+                    className="rounded-md border border-border bg-secondary px-3 py-1 font-mono text-xs text-secondary-foreground"
+                  >
+                    {tech}
+                  </motion.span>
+                ))}
+              </div>
+            </CardBlur>
           </motion.div>
         </div>
       </div>

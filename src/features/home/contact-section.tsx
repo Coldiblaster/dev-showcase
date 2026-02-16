@@ -16,6 +16,7 @@ import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { CardBlur } from "@/components/ui/card-blur";
 import { Input } from "@/components/ui/input";
 
 export function ContactSection() {
@@ -98,7 +99,7 @@ export function ContactSection() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="md:col-span-3"
           >
-            <div className="rounded-2xl border border-border bg-card/50 p-6 backdrop-blur-sm md:p-8">
+            <CardBlur className="md:p-8">
               <div className="mb-6 flex items-center gap-2">
                 <Mail className="h-5 w-5 text-primary" />
                 <h3 className="text-lg font-semibold text-foreground">
@@ -188,7 +189,7 @@ export function ContactSection() {
                   </Button>
                 </motion.div>
               </form>
-            </div>
+            </CardBlur>
           </motion.div>
 
           {/* Sidebar - takes 2 cols */}
@@ -199,7 +200,7 @@ export function ContactSection() {
             className="flex flex-col gap-5 md:col-span-2"
           >
             {/* WhatsApp CTA */}
-            <div className="rounded-2xl border border-border bg-card/50 p-6 backdrop-blur-sm">
+            <CardBlur>
               <div className="mb-4 flex items-center gap-2">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#25D366]/10">
                   <MessageCircle className="h-5 w-5 text-[#25D366]" />
@@ -231,10 +232,10 @@ export function ContactSection() {
                   </a>
                 </Button>
               </motion.div>
-            </div>
+            </CardBlur>
 
             {/* Email direto */}
-            <div className="rounded-2xl border border-border bg-card/50 p-6 backdrop-blur-sm">
+            <CardBlur>
               <div className="mb-3 flex items-center gap-2">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
                   <Mail className="h-5 w-5 text-primary" />
@@ -254,10 +255,10 @@ export function ContactSection() {
               >
                 vbastazin@gmail.com
               </a>
-            </div>
+            </CardBlur>
 
             {/* Social */}
-            <div className="rounded-2xl border border-border bg-card/50 p-6 backdrop-blur-sm">
+            <CardBlur>
               <p className="mb-4 text-sm font-medium text-foreground">
                 {t("social")}
               </p>
@@ -277,7 +278,7 @@ export function ContactSection() {
                   </motion.a>
                 ))}
               </div>
-            </div>
+            </CardBlur>
           </motion.div>
         </div>
       </div>

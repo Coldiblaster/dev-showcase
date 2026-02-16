@@ -20,7 +20,7 @@ import { CTASection } from "@/components/cta-section";
 import { PageHero } from "@/components/page-hero";
 import { ResourceLink } from "@/components/resource-link";
 import { SectionHeader } from "@/components/section-header";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardBlur } from "@/components/ui/card-blur";
 import { Separator } from "@/components/ui/separator";
 
 type SetupStep = (typeof tailwindTipsPage)["setup"]["steps"][number];
@@ -105,20 +105,18 @@ export function TailwindTips() {
           <div className="flex flex-col gap-10">
             {(t.raw("components.items") as ComponentItem[]).map((item, i) => (
               <AnimatedSection key={item.name} delay={0.1 + i * 0.08}>
-                <Card className="border-border bg-card/50 backdrop-blur-sm">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-lg text-foreground">
-                      <CheckCircle2 className="h-5 w-5 text-primary" />
-                      {item.name}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex flex-col gap-4">
+                <CardBlur radius="xl" padding="p-6" className="">
+                  <div className="flex items-center gap-2 text-lg text-foreground mb-2">
+                    <CheckCircle2 className="h-5 w-5 text-primary" />
+                    {item.name}
+                  </div>
+                  <div className="flex flex-col gap-4">
                     <p className="text-sm leading-relaxed text-muted-foreground">
                       {item.description}
                     </p>
                     <CodeBlock code={item.code} title={item.name} />
-                  </CardContent>
-                </Card>
+                  </div>
+                </CardBlur>
               </AnimatedSection>
             ))}
           </div>
@@ -142,7 +140,7 @@ export function TailwindTips() {
           <div className="flex flex-col gap-8">
             {(t.raw("patterns.items") as PatternItem[]).map((pattern, i) => (
               <AnimatedSection key={pattern.title} delay={0.1 + i * 0.05}>
-                <div className="rounded-xl border border-border bg-card/50 p-6 backdrop-blur-sm">
+                <CardBlur radius="xl" padding="p-6">
                   <h3 className="mb-2 text-base font-semibold text-foreground">
                     {pattern.title}
                   </h3>
@@ -150,7 +148,7 @@ export function TailwindTips() {
                     {pattern.description}
                   </p>
                   <CodeBlock code={pattern.code} title={pattern.title} />
-                </div>
+                </CardBlur>
               </AnimatedSection>
             ))}
           </div>
@@ -183,7 +181,7 @@ export function TailwindTips() {
           <div className="flex flex-col gap-6">
             {(t.raw("tips.items") as TipItem[]).map((item, i) => (
               <AnimatedSection key={item.title} delay={0.1 + i * 0.05}>
-                <div className="rounded-xl border border-border bg-card/50 p-6 backdrop-blur-sm">
+                <CardBlur radius="xl" padding="p-6">
                   <h3 className="mb-4 text-base font-semibold text-foreground">
                     {item.title}
                   </h3>
@@ -204,7 +202,7 @@ export function TailwindTips() {
                   <p className="text-sm leading-relaxed text-muted-foreground">
                     {item.explanation}
                   </p>
-                </div>
+                </CardBlur>
               </AnimatedSection>
             ))}
           </div>

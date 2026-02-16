@@ -25,6 +25,7 @@ import { PageHero } from "@/components/page-hero";
 import { PromptCard } from "@/components/prompt-card";
 import { SectionHeader } from "@/components/section-header";
 import { TipItem } from "@/components/tip-item";
+import { CardBlur } from "@/components/ui/card-blur";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -52,7 +53,11 @@ export function AITips() {
       <section className="px-6 py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
-            <SectionHeader icon={Zap} title={t("v0.title")} subtitle={t("v0.subtitle")} />
+            <SectionHeader
+              icon={Zap}
+              title={t("v0.title")}
+              subtitle={t("v0.subtitle")}
+            />
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
@@ -64,7 +69,10 @@ export function AITips() {
           <div className="mb-10 grid gap-4 md:grid-cols-2">
             {(t.raw("v0.features") as V0Feature[]).map((feature, i) => (
               <AnimatedSection key={feature.title} delay={0.1 + i * 0.05}>
-                <FeatureCard title={feature.title} description={feature.description} />
+                <FeatureCard
+                  title={feature.title}
+                  description={feature.description}
+                />
               </AnimatedSection>
             ))}
           </div>
@@ -91,7 +99,11 @@ export function AITips() {
       <section className="px-6 py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
-            <SectionHeader icon={Code2} title={t("copilot.title")} subtitle={t("copilot.subtitle")} />
+            <SectionHeader
+              icon={Code2}
+              title={t("copilot.title")}
+              subtitle={t("copilot.subtitle")}
+            />
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
@@ -101,11 +113,16 @@ export function AITips() {
           </AnimatedSection>
 
           <div className="mb-10 grid gap-4 md:grid-cols-2">
-            {(t.raw("copilot.features") as CopilotFeature[]).map((feature, i) => (
-              <AnimatedSection key={feature.title} delay={0.1 + i * 0.05}>
-                <FeatureCard title={feature.title} description={feature.description} />
-              </AnimatedSection>
-            ))}
+            {(t.raw("copilot.features") as CopilotFeature[]).map(
+              (feature, i) => (
+                <AnimatedSection key={feature.title} delay={0.1 + i * 0.05}>
+                  <FeatureCard
+                    title={feature.title}
+                    description={feature.description}
+                  />
+                </AnimatedSection>
+              ),
+            )}
           </div>
 
           <AnimatedSection delay={0.3}>
@@ -117,7 +134,11 @@ export function AITips() {
             </div>
             <div className="flex flex-col gap-3">
               {(t.raw("copilot.prompts") as CopilotPrompt[]).map((item, i) => (
-                <PromptCard key={i} prompt={item.prompt} description={item.description} />
+                <PromptCard
+                  key={i}
+                  prompt={item.prompt}
+                  description={item.description}
+                />
               ))}
             </div>
           </AnimatedSection>
@@ -131,7 +152,11 @@ export function AITips() {
       <section className="px-6 py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
-            <SectionHeader icon={Lightbulb} title={t("prompts.title")} subtitle={t("prompts.subtitle")} />
+            <SectionHeader
+              icon={Lightbulb}
+              title={t("prompts.title")}
+              subtitle={t("prompts.subtitle")}
+            />
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
@@ -160,17 +185,22 @@ export function AITips() {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: j * 0.05 }}
-                          className="group rounded-xl border border-border bg-card/50 p-5 backdrop-blur-sm transition-colors hover:border-primary/20"
                         >
-                          <div className="mb-3 flex items-start gap-3">
-                            <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                            <p className="font-mono text-sm leading-relaxed text-foreground">
-                              {item.prompt}
+                          <CardBlur
+                            radius="xl"
+                            padding="p-5"
+                            className="group transition-colors hover:border-primary/20"
+                          >
+                            <div className="mb-3 flex items-start gap-3">
+                              <ChevronRight className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                              <p className="font-mono text-sm leading-relaxed text-foreground">
+                                {item.prompt}
+                              </p>
+                            </div>
+                            <p className="pl-7 text-xs leading-relaxed text-muted-foreground">
+                              {item.description}
                             </p>
-                          </div>
-                          <p className="pl-7 text-xs leading-relaxed text-muted-foreground">
-                            {item.description}
-                          </p>
+                          </CardBlur>
                         </motion.div>
                       ))}
                     </div>
@@ -189,7 +219,11 @@ export function AITips() {
       <section className="px-6 py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
-            <SectionHeader icon={Wrench} title={t("tools.title")} subtitle={t("tools.subtitle")} />
+            <SectionHeader
+              icon={Wrench}
+              title={t("tools.title")}
+              subtitle={t("tools.subtitle")}
+            />
           </AnimatedSection>
 
           <div className="flex flex-col gap-10">
@@ -206,18 +240,20 @@ export function AITips() {
                         href={tool.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex flex-col gap-2 rounded-xl border border-border bg-card/50 p-5 backdrop-blur-sm transition-colors hover:border-primary/30"
+                        className="group flex flex-col gap-2 transition-colors hover:border-primary/30"
                         whileHover={{ y: -3 }}
                       >
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm font-semibold text-foreground">
-                            {tool.name}
-                          </span>
-                          <ExternalLink className="h-3.5 w-3.5 text-muted-foreground/50 transition-colors group-hover:text-primary" />
-                        </div>
-                        <p className="text-xs leading-relaxed text-muted-foreground">
-                          {tool.description}
-                        </p>
+                        <CardBlur radius="xl" padding="p-5">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-semibold text-foreground">
+                              {tool.name}
+                            </span>
+                            <ExternalLink className="h-3.5 w-3.5 text-muted-foreground/50 transition-colors group-hover:text-primary" />
+                          </div>
+                          <p className="text-xs leading-relaxed text-muted-foreground">
+                            {tool.description}
+                          </p>
+                        </CardBlur>
                       </motion.a>
                     ))}
                   </div>
@@ -251,11 +287,17 @@ export function AITips() {
           </AnimatedSection>
 
           <div className="flex flex-col gap-4">
-            {(t.raw("mindset.principles") as MindsetPrinciple[]).map((principle, i) => (
-              <AnimatedSection key={principle.title} delay={0.1 + i * 0.05}>
-                <TipItem index={i + 1} title={principle.title} description={principle.description} />
-              </AnimatedSection>
-            ))}
+            {(t.raw("mindset.principles") as MindsetPrinciple[]).map(
+              (principle, i) => (
+                <AnimatedSection key={principle.title} delay={0.1 + i * 0.05}>
+                  <TipItem
+                    index={i + 1}
+                    title={principle.title}
+                    description={principle.description}
+                  />
+                </AnimatedSection>
+              ),
+            )}
           </div>
         </div>
       </section>

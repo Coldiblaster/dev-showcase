@@ -6,6 +6,7 @@ import { useRef } from "react";
 
 import type experience from "@/../messages/pt-BR/experience.json";
 import { Badge } from "@/components/ui/badge";
+import { CardBlur } from "@/components/ui/card-blur";
 
 type ExperienceItem = (typeof experience)["items"][number];
 
@@ -57,7 +58,12 @@ export function ExperienceSection() {
                   />
                 </div>
 
-                <div className="rounded-xl border border-border bg-card p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
+                <CardBlur
+                  radius="xl"
+                  padding="p-6"
+                  bg="bg-card"
+                  className="transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5"
+                >
                   <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                       <h3 className="text-lg font-semibold text-foreground">
@@ -87,7 +93,7 @@ export function ExperienceSection() {
                       </Badge>
                     ))}
                   </div>
-                </div>
+                </CardBlur>
               </motion.div>
             ))}
           </div>
