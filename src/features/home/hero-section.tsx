@@ -10,25 +10,8 @@ import { Button } from "@/components/ui/button";
 export function HomeHeroSection() {
   const t = useTranslations("hero");
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 pt-20">
-      {/* Animated grid background */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-size-[60px_60px]" />
-        <motion.div
-          className="absolute left-1/2 top-1/3 h-125 w-125 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </div>
-      <div className="relative z-10 mx-auto w-full max-w-4xl text-center">
-        <HeroSection
+    <>
+      <HeroSection
           badge={t("greeting")}
           badgeIcon={User}
           title={t("name")}
@@ -159,23 +142,22 @@ export function HomeHeroSection() {
             </motion.div>
           }
         />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          className="mt-16"
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.6 }}
+        className="mt-16"
+      >
+        <motion.a
+          href="#about"
+          className="inline-flex text-muted-foreground hover:text-primary"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          aria-label="Scroll down"
         >
-          <motion.a
-            href="#about"
-            className="inline-flex text-muted-foreground hover:text-primary"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            aria-label="Scroll down"
-          >
-            <ArrowDown className="h-5 w-5" />
-          </motion.a>
-        </motion.div>
-      </div>
-    </div>
+          <ArrowDown className="h-5 w-5" />
+        </motion.a>
+      </motion.div>
+    </>
   );
 }

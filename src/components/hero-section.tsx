@@ -45,67 +45,80 @@ export function HeroSection({
 }) {
   const t = useTranslations("global.pageHero");
   return (
-    <section className="relative overflow-hidden px-6 py-24 md:py-32">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.08),transparent_50%)]" />
-      <div className="relative mx-auto max-w-4xl text-center">
-        {showBackLink && (
-          <AnimatedSection>
-            <Link
-              href={backHref}
-              className="mb-8 inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <ArrowLeft className="h-3.5 w-3.5" />
-              {t("back")}
-            </Link>
+    <>
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "url(\"data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='none' stroke='%23fff' stroke-width='.5'/%3E%3C/svg%3E\")",
+        }}
+      />
+      <section className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6 py-24 md:py-32">
+        {/* Animated grid background */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:60px_60px]" />
+          <div className="absolute left-1/2 top-1/3 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/5 blur-[120px]" />
+        </div>
+        <div className="relative mx-auto max-w-4xl text-center">
+          {showBackLink && (
+            <AnimatedSection>
+              <Link
+                href={backHref}
+                className="mb-8 inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <ArrowLeft className="h-3.5 w-3.5" />
+                {t("back")}
+              </Link>
+            </AnimatedSection>
+          )}
+          <AnimatedSection delay={0.1}>
+            {badgeSlot ?? (
+              <Badge
+                variant="outline"
+                className="mb-6 gap-1.5 border-primary/30 px-3 py-1 text-primary"
+              >
+                <BadgeIcon className="h-3 w-3" />
+                {badge}
+              </Badge>
+            )}
           </AnimatedSection>
-        )}
-        <AnimatedSection delay={0.1}>
-          {badgeSlot ?? (
-            <Badge
-              variant="outline"
-              className="mb-6 gap-1.5 border-primary/30 px-3 py-1 text-primary"
-            >
-              <BadgeIcon className="h-3 w-3" />
-              {badge}
-            </Badge>
-          )}
-        </AnimatedSection>
-        <AnimatedSection delay={0.15}>
-          {titleSlot ?? (
-            <h1 className="mb-4 text-balance text-4xl font-bold tracking-tight text-foreground md:text-6xl">
-              {title}
-            </h1>
-          )}
-        </AnimatedSection>
-        <AnimatedSection delay={0.2}>
-          {subtitle && (
-            <p className="mb-4 font-mono text-sm text-primary md:text-base">
-              {subtitle}
-            </p>
-          )}
-          {descriptionSlot ?? (
-            <p className="mx-auto mb-8 max-w-2xl text-pretty leading-relaxed text-muted-foreground">
-              {description}
-            </p>
-          )}
-        </AnimatedSection>
-        {ctaSlot}
-        {statsSlot}
-        {socialSlot}
-        {children}
-        {warning && (
-          <AnimatedSection delay={0.25}>
-            <div className="mx-auto max-w-2xl rounded-xl border border-amber-500/20 bg-amber-500/5 px-5 py-4">
-              <div className="flex items-start gap-3">
-                <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
-                <p className="text-left text-sm leading-relaxed text-amber-200/80">
-                  {warning}
-                </p>
+          <AnimatedSection delay={0.15}>
+            {titleSlot ?? (
+              <h1 className="mb-4 text-balance text-4xl font-bold tracking-tight text-foreground md:text-6xl">
+                {title}
+              </h1>
+            )}
+          </AnimatedSection>
+          <AnimatedSection delay={0.2}>
+            {subtitle && (
+              <p className="mb-4 font-mono text-sm text-primary md:text-base">
+                {subtitle}
+              </p>
+            )}
+            {descriptionSlot ?? (
+              <p className="mx-auto mb-8 max-w-2xl text-pretty leading-relaxed text-muted-foreground">
+                {description}
+              </p>
+            )}
+          </AnimatedSection>
+          {ctaSlot}
+          {statsSlot}
+          {socialSlot}
+          {children}
+          {warning && (
+            <AnimatedSection delay={0.25}>
+              <div className="mx-auto max-w-2xl rounded-xl border border-amber-500/20 bg-amber-500/5 px-5 py-4">
+                <div className="flex items-start gap-3">
+                  <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
+                  <p className="text-left text-sm leading-relaxed text-amber-200/80">
+                    {warning}
+                  </p>
+                </div>
               </div>
-            </div>
-          </AnimatedSection>
-        )}
-      </div>
-    </section>
+            </AnimatedSection>
+          )}
+        </div>
+      </section>
+    </>
   );
 }

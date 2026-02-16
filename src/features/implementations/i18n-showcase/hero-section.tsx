@@ -22,13 +22,6 @@ export function I18nHero({ onScrollToDemo }: { onScrollToDemo: () => void }) {
       ref={ref}
       className="relative flex min-h-[70vh] items-center overflow-hidden px-6 pt-28 pb-16"
     >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='none' stroke='%23fff' stroke-width='.5'/%3E%3C/svg%3E\")",
-        }}
-      />
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
