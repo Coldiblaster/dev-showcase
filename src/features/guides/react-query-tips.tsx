@@ -6,7 +6,7 @@ import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { CTASection } from "@/components/cta-section";
 import { FeatureCard } from "@/components/feature-card";
-import { PageHero } from "@/components/page-hero";
+import { HeroSection } from "@/components/hero-section";
 import { ResourceLink } from "@/components/resource-link";
 import { SectionHeader } from "@/components/section-header";
 import { TipItem } from "@/components/tip-item";
@@ -15,7 +15,7 @@ import { Separator } from "@/components/ui/separator";
 export function ReactQueryTips() {
   return (
     <div className="min-h-screen pt-20">
-      <PageHero
+      <HeroSection
         badge="Data Fetching"
         badgeIcon={Database}
         title="React Query Essencial"
@@ -118,7 +118,10 @@ export default function RootLayout({ children }) {
               },
             ].map((feature, i) => (
               <AnimatedSection key={feature.title} delay={0.1 + i * 0.05}>
-                <FeatureCard title={feature.title} description={feature.description} />
+                <FeatureCard
+                  title={feature.title}
+                  description={feature.description}
+                />
               </AnimatedSection>
             ))}
           </div>

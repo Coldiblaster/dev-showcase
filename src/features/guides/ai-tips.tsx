@@ -21,7 +21,7 @@ import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { CTASection } from "@/components/cta-section";
 import { FeatureCard } from "@/components/feature-card";
-import { PageHero } from "@/components/page-hero";
+import { HeroSection } from "@/components/hero-section";
 import { PromptCard } from "@/components/prompt-card";
 import { SectionHeader } from "@/components/section-header";
 import { TipItem } from "@/components/tip-item";
@@ -41,7 +41,7 @@ export function AITips() {
 
   return (
     <div className="min-h-screen pt-20">
-      <PageHero
+      <HeroSection
         badge={t("hero.badge")}
         badgeIcon={Sparkles}
         title={t("hero.title")}

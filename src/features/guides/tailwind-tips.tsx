@@ -17,7 +17,7 @@ import type tailwindTipsPage from "@/../messages/pt-BR/tailwindTipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { CTASection } from "@/components/cta-section";
-import { PageHero } from "@/components/page-hero";
+import { HeroSection } from "@/components/hero-section";
 import { ResourceLink } from "@/components/resource-link";
 import { SectionHeader } from "@/components/section-header";
 import { CardBlur } from "@/components/ui/card-blur";
@@ -34,7 +34,7 @@ export function TailwindTips() {
 
   return (
     <div className="min-h-screen pt-20">
-      <PageHero
+      <HeroSection
         badge={t("hero.badge")}
         badgeIcon={Palette}
         title={t("hero.title")}
