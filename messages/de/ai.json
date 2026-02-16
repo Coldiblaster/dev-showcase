@@ -1,0 +1,23 @@
+{
+  "title": "KI in der Entwicklung",
+  "subtitle": "Wie ich KI im Alltag nutze",
+  "description": "KI ist kein Hype mehr, sondern ein unverzichtbares Werkzeug in meinem Arbeitsablauf. Ich nutze es täglich, um die Entwicklung zu beschleunigen, besseren Code zu schreiben und komplexe Probleme schneller zu lösen.",
+  "features": [
+    {
+      "title": "v0 von Vercel",
+      "description": "Ich erstelle vollständige React/Next.js-Komponenten mit beschreibenden Eingabeaufforderungen. So spare ich Stunden an Boilerplate-Arbeit und kann mich auf die Geschäftslogik konzentrieren, anstatt HTML/CSS von Grund auf neu zu schreiben."
+    },
+    {
+      "title": "GitHub Copilot",
+      "description": "Intelligente Autovervollständigung, die ganze Funktionen, Tests und Dokumentation schreibt. Lernt meine Muster und schlägt Lösungen vor, die den Projektkonventionen entsprechen."
+    },
+    {
+      "title": "Vercel AI SDK",
+      "description": "Ich integriere Chatbots, Streaming-Antworten und Textgenerierung in Next.js-Apps. Ich verwende sie in Funktionen wie automatischer Übersetzung, Inhaltsvorschlägen und kontextbezogenen Assistenten."
+    },
+    {
+      "title": "Prompt-Engineering",
+      "description": "Ich weiß, wie man effiziente Eingabeaufforderungen strukturiert: klarer Kontext, Beispiele, Einschränkungen und Ausgabeformat. Dies gewährleistet konsistente Antworten und reduziert Iterationen."
+    }
+  ]
+}

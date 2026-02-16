@@ -1,0 +1,13 @@
+{
+  "title": "About Me",
+  "subtitle": "Who is behind the code",
+  "description": "I started in 2016 and since then I've worked in insurance, fintech, marketplaces, and SaaS. I work closely with design, backend, and product because I believe that good frontend understands the whole system. I don't just write beautiful code—I'm involved in architecture, design systems, testing, accessibility, and performance. Basically, everything that makes the difference between \"it works on my machine\" and \"it has been working in production for two years without any critical bugs.\"",
+  "stats": {
+    "years": "9+",
+    "yearsLabel": "Years of experience",
+    "projects": "Thousands",
+    "projectsLabel": "Affected users",
+    "languages": "Mentoring",
+    "languagesLabel": "Code reviews e pair programming"
+  }
+}

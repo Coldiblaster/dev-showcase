@@ -1,0 +1,85 @@
+{
+  "title": "Experience",
+  "subtitle": "My professional career",
+  "items": [
+    {
+      "role": "Senior Frontend Developer PJ / Technical Leader",
+      "company": "Ti Safer",
+      "period": "-",
+      "description": "I joined as technical lead on a project from scratch, setting up the frontend architecture from day one. On a daily basis, I work closely with the UI/UX, backend, PO, and DevOps teams—daily alignments, structuring demands in pre-planning, and code reviews with the three developers I lead. I defined the SSR standards, caching with React Query, and built the design system in partnership with the design team.",
+      "techs": [
+        "React 18",
+        "Next.js 14+",
+        "TypeScript",
+        "Tailwind CSS",
+        "React Query"
+      ]
+    },
+    {
+      "role": "Full Systems Analyst / Frontend Technical Leader",
+      "company": "CI&T",
+      "period": "January 2025 - July 2025",
+      "description": "I worked as a frontend technical reference within a consulting firm that serves large companies. My role went beyond coding: I participated in architecture definitions, performed detailed code reviews focusing on performance and security, and closely monitored the evolution of more junior developers with recurring mentoring. Constant collaboration with multidisciplinary squads.",
+      "techs": [
+        "React",
+        "Next.js 14+",
+        "TypeScript",
+        "GraphQL",
+        "Tailwind CSS",
+        "It is"
+      ]
+    },
+    {
+      "role": "Senior React Developer (Web and Mobile)",
+      "company": "Silicon Village",
+      "period": "Jul/2023 - Nov/2024",
+      "description": "I worked at a fintech company that served over 100,000 users, developing both the mobile app and the web platform. One of the projects I am most proud of was creating a shared design system between Web and Mobile, which brought visual consistency and accelerated delivery. I also made optimizations that improved the Lighthouse score by about 40%.",
+      "techs": [
+        "React",
+        "React Native",
+        "Term 2x0",
+        "Expo",
+        "TypeScript",
+        "Styled Components"
+      ]
+    },
+    {
+      "role": "Full Frontend Developer",
+      "company": "Pixter",
+      "period": "Nov/2021 - Jun/2023",
+      "description": "This is where I matured significantly as a developer. I built complex features always with scalability and user experience in mind. I implemented WCAG accessibility in the most critical components of the product and led a major refactoring of the legacy codebase, improving maintainability and reducing recurring bugs.",
+      "techs": [
+        "React",
+        "Term 2x0",
+        "TypeScript",
+        "Styled Components",
+        "It is"
+      ]
+    },
+    {
+      "role": "Full Stack Developer",
+      "company": "ConsulTi",
+      "period": "December 2020 - November 2021",
+      "description": "My first comprehensive experience working with front-end and back-end. I developed REST APIs, microservices, and web interfaces with React and Next.js. It was here that I began to truly understand how the front-end connects with all the engineering behind it.",
+      "techs": [
+        "React",
+        "Term 2x0",
+        "TypeScript",
+        "Node.js",
+        "Styled Components"
+      ]
+    },
+    {
+      "role": "Full Stack Developer / Technical Support",
+      "company": "Oeste Saude",
+      "period": "May 2019 - November 2020",
+      "description": "I started in technical support and gradually moved into development on my own, studying TERM3x0 and TERM4x0 in my spare time. I ended up taking on the maintenance and development of the company's web system in the healthcare area. That's where it all started and where I built a solid foundation.",
+      "techs": [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "HTML/CSS"
+      ]
+    }
+  ]
+}

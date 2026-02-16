@@ -1,0 +1,23 @@
+{
+  "title": "IA no Desenvolvimento",
+  "subtitle": "Como uso IA no dia a dia",
+  "description": "IA deixou de ser hype e virou ferramenta essencial no meu workflow. Uso diariamente pra acelerar desenvolvimento, escrever codigo melhor e resolver problemas complexos mais rapido.",
+  "features": [
+    {
+      "title": "v0 by Vercel",
+      "description": "Gero componentes React/Next.js completos com prompts descritivos. Economizo horas de boilerplate e foco em logica de negocio ao inves de escrever HTML/CSS do zero."
+    },
+    {
+      "title": "GitHub Copilot",
+      "description": "Autocomplete inteligente que escreve funcoes inteiras, testes e documentacao. Aprende meus padroes e sugere solucoes que seguem as convencoes do projeto."
+    },
+    {
+      "title": "Vercel AI SDK",
+      "description": "Integro chatbots, streaming de respostas e geracao de texto em apps Next.js. Uso em features como traducao automatica, sugestoes de conteudo e assistentes contextuais."
+    },
+    {
+      "title": "Prompt Engineering",
+      "description": "Sei estruturar prompts eficientes: contexto claro, exemplos, restricoes e formato de saida. Isso garante respostas consistentes e reduz iteracoes."
+    }
+  ]
+}

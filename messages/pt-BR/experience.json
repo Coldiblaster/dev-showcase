@@ -1,0 +1,48 @@
+{
+  "title": "Experiencia",
+  "subtitle": "Minha trajetoria profissional",
+  "items": [
+    {
+      "role": "Desenvolvedor Frontend Senior PJ / Lider Tecnico",
+      "company": "Ti Safer",
+      "period": "-",
+      "description": "Entrei como lider tecnico de um projeto do zero, montando a arquitetura frontend desde o dia um. No dia a dia, trabalho junto com o time de UI/UX, backend, PO e DevOps -- alinhamentos diarios, estruturacao de demandas na pre-planning e code reviews com os 3 devs que lidero. Defini os padroes de SSR, cache com React Query e construi o design system em parceria com o time de design.",
+      "techs": ["React 18", "Next.js 14+", "TypeScript", "Tailwind CSS", "React Query"]
+    },
+    {
+      "role": "Analista de Sistemas Pleno / Lider Tecnico Frontend",
+      "company": "CI&T",
+      "period": "Jan/2025 - Jul/2025",
+      "description": "Atuei como referencia tecnica do frontend dentro de uma consultoria que atende grandes empresas. Meu papel ia alem de codar: participava das definicoes de arquitetura, fazia code reviews detalhados focando em performance e seguranca, e acompanhava de perto a evolucao dos devs mais junior com mentorias recorrentes. Colaboracao constante com squads multidisciplinares.",
+      "techs": ["React", "Next.js 14+", "TypeScript", "GraphQL", "Tailwind CSS", "Jest"]
+    },
+    {
+      "role": "Desenvolvedor React Senior (Web e Mobile)",
+      "company": "Silicon Village",
+      "period": "Jul/2023 - Nov/2024",
+      "description": "Trabalhei numa fintech que atendia mais de 100 mil usuarios, desenvolvendo tanto o app mobile quanto a plataforma web. Um dos trabalhos que mais me orgulho foi criar um design system compartilhado entre Web e Mobile, que trouxe consistencia visual e acelerou o delivery. Tambem fiz otimizacoes que melhoraram em cerca de 40% a nota no Lighthouse.",
+      "techs": ["React", "React Native", "Next.js", "Expo", "TypeScript", "Styled Components"]
+    },
+    {
+      "role": "Desenvolvedor Frontend Pleno",
+      "company": "Pixter",
+      "period": "Nov/2021 - Jun/2023",
+      "description": "Aqui foi onde amadureci bastante como dev. Construi features complexas sempre pensando em escalabilidade e experiencia do usuario. Implementei acessibilidade WCAG nos componentes mais criticos do produto e liderei uma grande refatoracao de codebase legado, melhorando a manutenibilidade e reduzindo bugs recorrentes.",
+      "techs": ["React", "Next.js", "TypeScript", "Styled Components", "Jest"]
+    },
+    {
+      "role": "Desenvolvedor Full Stack",
+      "company": "ConsulTi",
+      "period": "Dez/2020 - Nov/2021",
+      "description": "Minha primeira experiencia mais completa trabalhando com front e back. Desenvolvi APIs REST, microsservicos e interfaces web com React e Next.js. Foi aqui que comecei a entender de verdade como o frontend se conecta com toda a engenharia por tras.",
+      "techs": ["React", "Next.js", "TypeScript", "Node.js", "Styled Components"]
+    },
+    {
+      "role": "Desenvolvedor Full Stack / Suporte Tecnico",
+      "company": "Oeste Saude",
+      "period": "Mai/2019 - Nov/2020",
+      "description": "Comecei na area de suporte tecnico e fui migrando para desenvolvimento por conta propria, estudando React e TypeScript nos horarios livres. Acabei assumindo a manutencao e evolucao do sistema web da empresa na area da saude. Foi onde tudo comecou e onde construi uma base solida.",
+      "techs": ["React", "TypeScript", "JavaScript", "HTML/CSS"]
+    }
+  ]
+}

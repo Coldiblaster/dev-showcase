@@ -1,0 +1,17 @@
+{
+  "greeting": "✨ Plot Twist: Dies ist nicht nur ein weiteres generisches Portfolio.",
+  "name": "Vinicius Bastazin",
+  "role": "Senior Frontend-Entwickler | React, Next.js, React Native",
+  "description": {
+    "intro": "Ja, ich habe meine Arbeit der letzten 8 Jahre mit React und Next.js.",
+    "value": "Aber es gibt auch echte Implementierungen, Code, den Sie verwenden können, und Tipps, die Ihnen Stunden des Grübelns ersparen: „Warum funktioniert das nicht?!“.",
+    "mission": "Weil es cooler ist, Wissen zu teilen, als es geheim zu halten."
+  },
+  "cta": "Implementierungen erkunden",
+  "secondary": "Lassen Sie uns reden",
+  "stats": {
+    "impact": "Über 8 Jahre Erfahrung",
+    "implementations": "Echte Projekte, keine Tutorials",
+    "opensource": "Der Geldgott"
+  }
+}

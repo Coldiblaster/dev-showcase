@@ -1,0 +1,34 @@
+{
+  "useTranslations": {
+    "title": "useTranslations()",
+    "badge": "Client hook",
+    "description": "Use `useTranslations` in Client Components to get the `t()` function from a namespace — with autocomplete and type checking by TypeScript — making interpolation, pluralization, and rendering on the client easy."
+  },
+  "getTranslations": {
+    "title": "getTranslations()",
+    "badge": "Server",
+    "description": "Use `getTranslations` in Server Components or Server Actions to load namespaces on the server (useful in SSR and server actions). Returns an asynchronous version of `t()` ready for use in server-side rendering and actions."
+  },
+  "namespaces": {
+    "title": "Namespaces",
+    "badge": "Organization",
+    "description": "Organize messages into namespaces (e.g., `global`, `admin.userManagement`) for modularity and reuse. Combine namespaces in the component when necessary to compose context-specific translations."
+  },
+  "pluralization": {
+    "title": "Pluralization",
+    "badge": "Formatting",
+    "description": "Use ICU rules to handle plurals and numerical variations (e.g., =0 {nenhum}, one {1}, other {#}), ensuring that grammatical forms are correct according to quantity."
+  },
+  "interpolation": {
+    "title": "Interpolation",
+    "badge": "Variables",
+    "description": "Insert placeholders (e.g., `{name}`) into messages and pass values to `t()` to interpolate dynamic content in a typed and secure manner."
+  },
+  "dateFormatting": {
+    "title": "Date/Number Formatting",
+    "badge": "Intl API",
+    "description": "Format dates and numbers using `Intl.DateTimeFormat` and `Intl.NumberFormat`, respecting the active locale and regional conventions."
+  },
+  "title": "Translation Methods",
+  "description": "Examples and best practices for internationalization with next-intl: typing, automation, and quality validation."
+}

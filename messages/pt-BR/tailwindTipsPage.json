@@ -1,0 +1,131 @@
+{
+  "hero": {
+    "badge": "Guia Pratico",
+    "title": "Tailwind CSS + shadcn/ui",
+    "subtitle": "Setup, componentes e boas praticas em projetos Next.js / React",
+    "description": "Um guia direto ao ponto de como configuro e uso Tailwind CSS com shadcn/ui nos meus projetos. Sem enrolacao -- so o que realmente funciona no dia a dia.",
+    "warning": "Aviso: Este conteudo reflete como eu uso essas ferramentas no dia a dia e pode estar desatualizado em relacao as versoes mais recentes. Sempre consulte a documentacao oficial para informacoes atualizadas."
+  },
+  "resources": {
+    "title": "Links Uteis",
+    "subtitle": "Documentacao oficial e referencias",
+    "items": [
+      { "name": "Tailwind CSS Docs", "description": "Documentacao oficial do Tailwind CSS com exemplos, referencias de classes e guias de configuracao.", "url": "https://tailwindcss.com/docs" },
+      { "name": "shadcn/ui", "description": "Biblioteca de componentes reutilizaveis construidos com Radix UI e Tailwind CSS. Codigo aberto e customizavel.", "url": "https://ui.shadcn.com" },
+      { "name": "Next.js Docs", "description": "Documentacao oficial do Next.js com App Router, Server Components e muito mais.", "url": "https://nextjs.org/docs" },
+      { "name": "Radix UI", "description": "Primitivos de UI acessiveis e sem estilo que formam a base dos componentes do shadcn/ui.", "url": "https://www.radix-ui.com" },
+      { "name": "Tailwind CSS IntelliSense", "description": "Extensao do VS Code com autocomplete, linting e preview de classes Tailwind.", "url": "https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss" },
+      { "name": "clsx + tailwind-merge", "description": "Combinacao que uso no helper cn() para merge seguro de classes Tailwind sem conflitos.", "url": "https://github.com/dcastil/tailwind-merge" }
+    ]
+  },
+  "setup": {
+    "title": "Setup Inicial",
+    "subtitle": "Como configuro do zero",
+    "description": "O passo a passo que sigo pra iniciar qualquer projeto Next.js com Tailwind + shadcn/ui ja configurado e pronto pra produzir.",
+    "steps": [
+      {
+        "title": "Criar o projeto com Next.js",
+        "description": "Uso o create-next-app com TypeScript, Tailwind e App Router ja habilitados de fabrica.",
+        "code": "npx create-next-app@latest meu-projeto --typescript --tailwind --eslint --app --src-dir"
+      },
+      {
+        "title": "Inicializar o shadcn/ui",
+        "description": "O CLI do shadcn configura tudo automaticamente: paths, tokens, CSS variables e a pasta components/ui.",
+        "code": "npx shadcn@latest init"
+      },
+      {
+        "title": "Adicionar componentes conforme a necessidade",
+        "description": "Nunca instalo tudo de uma vez. Vou adicionando so o que o projeto precisa.",
+        "code": "npx shadcn@latest add button card input dialog\nnpx shadcn@latest add table form select textarea"
+      },
+      {
+        "title": "Configurar o tema no globals.css",
+        "description": "Customizo as CSS variables do tema (cores, radius, fontes) direto no globals.css. Isso garante consistencia em todo o projeto.",
+        "code": "@layer base {\n  :root {\n    --background: 0 0% 100%;\n    --foreground: 240 10% 3.9%;\n    --primary: 240 5.9% 10%;\n    --primary-foreground: 0 0% 98%;\n    --radius: 0.5rem;\n  }\n}"
+      }
+    ]
+  },
+  "components": {
+    "title": "Componentes na Pratica",
+    "subtitle": "Exemplos reais do dia a dia",
+    "description": "Esses sao padroes que uso em praticamente todo projeto. Componentes do shadcn compostos com Tailwind de forma limpa e reutilizavel.",
+    "items": [
+      {
+        "name": "Card com hover e badge",
+        "description": "Card reutilizavel com efeito hover sutil, badge de status e layout flexbox. Uso muito em listagens de projetos e dashboards.",
+        "code": "<Card className=\"group border-border bg-card/50 transition-colors hover:border-primary/20\">\n  <CardHeader className=\"pb-2\">\n    <div className=\"flex items-center justify-between\">\n      <CardTitle className=\"text-base\">Titulo</CardTitle>\n      <Badge variant=\"secondary\">Ativo</Badge>\n    </div>\n  </CardHeader>\n  <CardContent>\n    <p className=\"text-sm text-muted-foreground\">Descricao aqui</p>\n  </CardContent>\n</Card>"
+      },
+      {
+        "name": "Botoes com variantes",
+        "description": "O sistema de variantes do shadcn e muito poderoso. Combino com classes utilitarias pra criar botoes consistentes.",
+        "code": "<div className=\"flex gap-3\">\n  <Button>Primario</Button>\n  <Button variant=\"secondary\">Secundario</Button>\n  <Button variant=\"outline\" className=\"gap-1.5\">\n    <Github className=\"h-4 w-4\" />\n    GitHub\n  </Button>\n  <Button variant=\"ghost\" size=\"icon\">\n    <Sun className=\"h-4 w-4\" />\n  </Button>\n</div>"
+      },
+      {
+        "name": "Form com validacao (React Hook Form + Zod)",
+        "description": "Essa e a stack que mais uso pra formularios: shadcn Form + React Hook Form + Zod. Type-safe, validacao automatica e UX consistente.",
+        "code": "const formSchema = z.object({\n  email: z.string().email(\"Email invalido\"),\n  name: z.string().min(2, \"Minimo 2 caracteres\"),\n})\n\n<Form {...form}>\n  <FormField name=\"email\" render={({ field }) => (\n    <FormItem>\n      <FormLabel>Email</FormLabel>\n      <FormControl>\n        <Input placeholder=\"seu@email.com\" {...field} />\n      </FormControl>\n      <FormMessage />\n    </FormItem>\n  )} />\n</Form>"
+      }
+    ]
+  },
+  "patterns": {
+    "title": "Padroes que Sigo",
+    "subtitle": "Convencoes que mantem o codigo limpo",
+    "items": [
+      {
+        "title": "Composicao ao inves de props gigantes",
+        "description": "Prefiro compor componentes menores do que criar um com 20 props. Mais legivel, testavel e facil de manter.",
+        "code": "// Ruim: <Card title=\"...\" subtitle=\"...\" icon=\"...\" badge=\"...\" />\n\n// Bom:\n<Card>\n  <CardHeader>\n    <CardTitle>Titulo</CardTitle>\n    <CardDescription>Subtitulo</CardDescription>\n  </CardHeader>\n  <CardContent>...</CardContent>\n</Card>"
+      },
+      {
+        "title": "cn() pra classes condicionais",
+        "description": "Uso o helper cn() (clsx + twMerge) pra combinar classes de forma segura, sem conflito entre Tailwind classes.",
+        "code": "import { cn } from \"@/lib/utils\"\n\n<div className={cn(\n  \"rounded-lg border p-4 transition-colors\",\n  isActive && \"border-primary bg-primary/5\",\n  isDisabled && \"opacity-50 pointer-events-none\"\n)} />"
+      },
+      {
+        "title": "Tokens semanticos ao inves de cores hardcoded",
+        "description": "Nunca uso bg-white ou text-gray-500 direto. Sempre uso os tokens semanticos (bg-background, text-muted-foreground) pra garantir que dark mode funcione.",
+        "code": "// Ruim:\n<div className=\"bg-white text-gray-900 border-gray-200\">\n\n// Bom:\n<div className=\"bg-background text-foreground border-border\">"
+      },
+      {
+        "title": "Responsivo mobile-first",
+        "description": "Sempre comeco pelo mobile e vou subindo. O Tailwind facilita muito isso com os prefixos md: e lg:.",
+        "code": "<div className=\"grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3\">\n  <Card>...</Card>\n  <Card>...</Card>\n  <Card>...</Card>\n</div>"
+      }
+    ]
+  },
+  "tips": {
+    "title": "Do vs Don't",
+    "subtitle": "Erros comuns que vejo em projetos",
+    "items": [
+      {
+        "title": "Espacamento",
+        "bad": "p-[16px] mx-[8px] mt-[24px]",
+        "good": "p-4 mx-2 mt-6",
+        "explanation": "Use a escala do Tailwind. Valores arbitrarios sujam o codigo e quebram a consistencia do spacing."
+      },
+      {
+        "title": "Cores",
+        "bad": "bg-white text-black dark:bg-gray-900",
+        "good": "bg-background text-foreground",
+        "explanation": "Tokens semanticos adaptam automaticamente ao tema. Nunca hardcode cores."
+      },
+      {
+        "title": "Layout",
+        "bad": "float-left position: absolute (pra layout)",
+        "good": "flex items-center justify-between gap-4",
+        "explanation": "Flexbox resolve 90% dos layouts. Reserve absolute/fixed pra overlays e tooltips."
+      },
+      {
+        "title": "Spacing entre filhos",
+        "bad": "space-y-4 (pode dar conflito)",
+        "good": "flex flex-col gap-4",
+        "explanation": "Gap e mais previsivel e nao conflita com margin de componentes filhos."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Curtiu as dicas?",
+    "description": "Se quiser trocar uma ideia sobre Tailwind, shadcn/ui ou qualquer coisa de frontend, me chama!",
+    "button": "Voltar ao Portfolio"
+  }
+}

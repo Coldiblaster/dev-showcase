@@ -1,0 +1,289 @@
+{
+  "troubleshooting": {
+    "title": "Troubleshooting (Quick Solutions)",
+    "description": "Main i18n errors and how to solve them quickly.",
+    "typo": {
+      "title": "Typo in key",
+      "error": "Translation does not appear (typo in key)",
+      "solution": "Use TypeScript autocomplete to avoid mistakes.",
+      "codeError": "const t = useTranslations(\"auth\");\nt(\"login.tittle\"); // typo: 'tittle' instead of 'title'",
+      "codeSolution": "const t = useTranslations(\"auth\");\nt(\"login.title\"); // TypeScript warns if wrong"
+    },
+    "namespace": {
+      "title": "Wrong namespace",
+      "error": "Key not found (wrong namespace)",
+      "solution": "Use the correct namespace for each message group.",
+      "codeError": "const t = useTranslations(\"admin\");\nt(\"actions.save\"); // 'actions' is in 'global'!",
+      "codeSolution": "const tGlobal = useTranslations(\"global\");\ntGlobal(\"actions.save\");"
+    },
+    "ptLeak": {
+      "title": "Portuguese leaking in other languages",
+      "error": "Portuguese text appears in en/es",
+      "solution": "Re-translate with force and validate with scripts.",
+      "codeError": "# messages/en/global.json: \"back\": \"Voltar\"",
+      "codeSolution": "pnpm run translate:force\npnpm run check:pt-leaks"
+    },
+    "tsAutocomplete": {
+      "title": "TypeScript autocomplete not working",
+      "error": "TypeScript does not suggest keys or shows false errors",
+      "solution": "Restart TS Server or reload VS Code.",
+      "codeError": "// Possible cause: TypeScript did not update",
+      "codeSolution": "// Ctrl+Shift+P → 'TypeScript: Restart TS Server'\n// If not resolved: Reload Window",
+      "extraTip": "Extra tip: If autocomplete/typing does not work for the new block, add the namespace in messages/pt-BR/index.ts, src/i18n/types.d.ts and src/lib/i18n/load-messages.ts as described in the docs."
+    },
+    "missingFile": {
+      "title": "Translation file not found",
+      "error": "Cannot find module '../../messages/pt-BR/...'",
+      "solution": "Save all files and restart TS Server.",
+      "codeError": "# Possible cause: New file was not saved",
+      "codeSolution": "# Ctrl+K S (VS Code) and restart TS Server"
+    }
+  },
+  "newVsLegacy": {
+    "title": "New Project vs Legacy Project",
+    "description": "How to approach internationalization (i18n) in different project contexts? See practical tips for each scenario:",
+    "new": {
+      "title": "New Project (Greenfield)",
+      "items": [
+        "Plan namespaces and message structure from the start.",
+        "Implement i18n before creating many components.",
+        "Use Quick Start examples to speed up setup.",
+        "Automate scripts and validations from day one.",
+        "Standardize keys and conventions for the team."
+      ]
+    },
+    "legacy": {
+      "title": "Legacy Project (Ongoing)",
+      "items": [
+        "Map hardcoded texts and prioritize the most used.",
+        "Migrate components gradually to i18n.",
+        "Use validation scripts to avoid regressions.",
+        "Centralize global texts before modularizing.",
+        "Document standards and create migration examples."
+      ]
+    },
+    "tipLabel": "Tip:",
+    "tip": "For migration, create a visual checklist and involve the team in i18n-focused PR reviews."
+  },
+  "hero": {
+    "badge": "next-intl v4+",
+    "title": "Internationalization System",
+    "subtitle": "Complete architecture for multilingual applications",
+    "description": "Interactive demonstration of the i18n system implemented with next-intl, supporting PT-BR, EN, and ES with full type safety, automatic translation via DeepL/Google Cloud, and quality validation.",
+    "ctaDemo": "Watch Live Demo",
+    "ctaDocs": "Documentation"
+  },
+  "liveDemo": {
+    "title": "Interactive Demo",
+    "subtitle": "See the translation happening in real time",
+    "currentLocale": "Current language",
+    "selectLanguage": "Select language",
+    "preview": "Preview",
+    "greeting": "Greetings",
+    "greetingName": "Hello, {name}!",
+    "welcomeMessage": "Welcome to our internationalization system. This text changes dynamically according to the selected language.",
+    "itemCount": "Item count",
+    "dateLabel": "Formatted date",
+    "numberLabel": "Formatted number",
+    "pluralLabel": "Pluralization",
+    "items": "{count, plural, =0 {No items} one {1 item} other {# items}}"
+  },
+  "architecture": {
+    "title": "Architecture",
+    "subtitle": "How the system was built",
+    "sourceOfTruth": {
+      "title": "pt-BR as a Source of Truth",
+      "description": "All translations are based on Portuguese. The en/ and es/ files are generated automatically via scripts, ensuring consistency and eliminating manual duplication."
+    },
+    "autoTranslation": {
+      "title": "Automatic Translation",
+      "description": "Intelligent scripts detect new keys in pt-BR and automatically translate them using the DeepL API (preferred) or Google Cloud Translation with rate limiting."
+    },
+    "typeSafety": {
+      "title": "Complete Type Safety",
+      "description": "TypeScript with autocomplete for all namespaces and keys. The compiler warns if a translation key is wrong or missing parameters."
+    },
+    "qualityControl": {
+      "title": "Quality Control",
+      "description": "Validation scripts detect Portuguese leaks in en/es, verify key synchronization between languages, and can be integrated into CI/CD."
+    }
+  },
+  "translationEngine": {
+    "title": "Automatic Translation",
+    "subtitle": "DeepL API - 500k characters/month free",
+    "quality": {
+      "title": "Superior Quality",
+      "description": "DeepL offers more natural translations than Google Translate"
+    },
+    "buildTime": {
+      "title": "Build-Time Only",
+      "description": "Translation happens before the build, zero impact on runtime"
+    },
+    "free": {
+      "title": "500k Free/Month",
+      "description": "Free plan sufficient for most projects"
+    },
+    "setup": "How to Configure",
+    "tip": "The free plan from DeepL offers 500,000 characters per month, enough for ~50 pages of content. Perfect for startups and personal projects.",
+    "getKey": "Get your free key at:"
+  },
+  "performance": {
+    "title": "Zero Impact on Performance",
+    "subtitle": "Translations loaded at build time, not at runtime",
+    "buildTime": {
+      "title": "Build-Time",
+      "description": "All translations are processed during the build. The final bundle only contains the necessary language."
+    },
+    "bundle": {
+      "title": "Optimized Bundle",
+      "description": "Each locale has its own bundle. Users only download the language they are using."
+    },
+    "typeSafe": {
+      "title": "Type-Safe",
+      "description": "TypeScript validates all keys during development. It is impossible to use a non-existent key."
+    },
+    "overhead": "overhead during runtime"
+  },
+  "github": {
+    "title": "Use Este Template",
+    "description": "Complete repository with the entire i18n structure, automation scripts, and documentation. Ready for use in production.",
+    "viewGithub": "See not GitHub",
+    "giveStar": "Give a Star"
+  },
+  "methods": {
+    "title": "Translation methods",
+    "subtitle": "Different approaches for each context",
+    "useTranslations": {
+      "title": "useTranslations()",
+      "description": "Main hook for Client Components. Receives the namespace and returns the t() function with complete autocomplete.",
+      "badge": "Client Component"
+    },
+    "getTranslations": {
+      "title": "getTranslations()",
+      "description": "Async function for Server Components and Server Actions. Ideal for SSR pages and server actions.",
+      "badge": "Server Component"
+    },
+    "namespaces": {
+      "title": "Namespaces Modular",
+      "description": "Hierarchical organization: global.actions.save, admin.userManagement.form. Combines specific namespaces with global ones for reuse.",
+      "badge": "Organization"
+    },
+    "pluralization": {
+      "title": "Pluralization ICU",
+      "description": "Support for ICU Message Format for intelligent pluralization: =0 {nenhum}, =1 {1 item}, other {# itens}.",
+      "badge": "ICU Format"
+    },
+    "interpolation": {
+      "title": "Interpolation of Variables",
+      "description": "Dynamic variables with {placeholder}. Supports multiple parameters: \"{user} created {count} plants.\"",
+      "badge": "Dynamic"
+    },
+    "dateFormatting": {
+      "title": "Date/Number Formatting",
+      "description": "Uses the browser's native Intl.DateTimeFormat and Intl.NumberFormat, respecting the selected locale for date, currency, and number formatting.",
+      "badge": "Intl API"
+    }
+  },
+  "workflow": {
+    "title": "Development Workflow",
+    "subtitle": "Step-by-step process for adding translations",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Edit pt-BR",
+        "description": "Add or edit the translation keys in the corresponding JSON file in messages/en-US/.",
+        "command": "vim messages/pt-BR/global.json"
+      },
+      {
+        "step": "02",
+        "title": "Generate Translations",
+        "description": "Run the script that detects new keys and automatically translates them into EN and ES.",
+        "command": "pnpm run translate"
+      },
+      {
+        "step": "03",
+        "title": "Validate Quality",
+        "description": "Check that there are no Portuguese leaks in the translations and that all languages are synchronized.",
+        "command": "pnpm run check:pt-leaks"
+      },
+      {
+        "step": "04",
+        "title": "Validate Synchronization",
+        "description": "Confirm that all locations have the same keys to avoid errors in production.",
+        "command": "pnpm run validate:i18n"
+      },
+      {
+        "step": "05",
+        "title": "Use no code",
+        "description": "Import the useTranslations hook with the correct namespace and use t() to access translations with autocomplete."
+      }
+    ]
+  },
+  "scripts": {
+    "title": "Available Scripts",
+    "subtitle": "i18n system automation tools",
+    "items": [
+      {
+        "command": "pnpm run translate",
+        "description": "Translate only new keys from pt-BR to en/es. Preserve existing translations.",
+        "badge": "one to three minutes"
+      },
+      {
+        "command": "pnpm run translate:force",
+        "description": "Re-translate ALL keys from scratch. Use when you encounter poor translations.",
+        "badge": "5-10 minutes"
+      },
+      {
+        "command": "pnpm run validate:i18n",
+        "description": "Validates whether all locations have the same synchronized keys.",
+        "badge": "~5 themselves"
+      },
+      {
+        "command": "pnpm run check:pt-leaks",
+        "description": "Detects Portuguese words leaking into en/es files.",
+        "badge": "~5 themselves"
+      },
+      {
+        "command": "pnpm run add-locale -- {code}",
+        "description": "Creates a complete structure for a new language (e.g., de, fr, it).",
+        "badge": "~10 themselves"
+      }
+    ]
+  },
+  "bestPractices": {
+    "title": "Best Practices",
+    "subtitle": "Project conventions to maintain quality",
+    "do": {
+      "title": "Faca",
+      "items": [
+        "ALWAYS edit pt-BR first (true source)",
+        "Use namespaces descritivos: auth, global, admin.userManagement",
+        "Reuse global texts for common actions (save, cancel)",
+        "Rode translate + validate antes de commitar",
+        "Use placeholders {variavel} para conteudo dinamico",
+        "Combine specific + global namespaces in the same component"
+      ]
+    },
+    "dont": {
+      "title": "Avoid",
+      "items": [
+        "NEVER edit en/es manually (they will be overwritten).",
+        "Do not leave hardcoded text in JSX",
+        "Avoid duplicating texts that already exist globally.",
+        "Do not concatenate translated strings (grammar break)",
+        "Do not use excessively long keys.",
+        "Do not create generic namespaces such as 'page1' or 'form'."
+      ]
+    }
+  },
+  "structure": {
+    "title": "File Structure",
+    "subtitle": "Organization of the messaging system",
+    "description": "en-US and the source of truth. en/ and es/ are generated automatically. Each module has its own folder with its own index.ts."
+  },
+  "cta": {
+    "title": "Ready to implement?",
+    "description": "This i18n system demonstrates a production-ready architecture with type safety, automation, and quality. All built with next-intl v4+.",
+    "button": "Back to Portfolio"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "greeting": "✨ Plot twist: este não é só mais um portfolio genérico",
+  "name": "Vinicius Bastazin",
+  "role": "Desenvolvedor Frontend Senior | React, Next.js, React Native",
+  "description": {
+    "intro": "Sim, tem meu trabalho dos últimos 8 anos com React e Next.js.",
+    "value": "Mas também tem implementações reais, código que você pode usar e dicas que vão te poupar horas de 'por que isso não funciona?!'.",
+    "mission": "Porque compartilhar conhecimento é mais legal que guardar segredo."
+  },
+  "cta": "Explorar Implementações",
+  "secondary": "Vamos Conversar",
+  "stats": {
+    "impact": "8+ anos de experiência",
+    "implementations": "Projetos reais, não tutoriais",
+    "opensource": "De dev para devs"
+  }
+}

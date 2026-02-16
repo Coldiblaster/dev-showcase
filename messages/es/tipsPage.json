@@ -1,0 +1,216 @@
+{
+  "nav": "Consejos de IA para desarrolladores",
+  "hero": {
+    "badge": "Guía práctica",
+    "title": "IA en el desarrollo",
+    "subtitle": "Como usar inteligencia artificial de forma inteligente",
+    "description": "Herramientas, indicaciones y buenas prácticas para desarrolladores que desean ser más productivos con la IA, sin perder la esencia de saber programar.",
+    "warning": "Importante: La IA es una herramienta poderosa, pero el desarrollador siempre debe centrarse en aprender y resolver problemas por su cuenta antes de utilizarla. No dependas exclusivamente de ella."
+  },
+  "v0": {
+    "title": "v0 por Vercel",
+    "subtitle": "Prototipado e interfaz de usuario con IA",
+    "description": "El v0 es ideal para generar diseños, componentes y páginas completas con shadcn/ui y Tailwind. Perfecto para acelerar la creación de interfaces sin perder calidad.",
+    "features": [
+      {
+        "title": "Generación de UI",
+        "description": "Describe lo que quieres y recibe componentes React listos para usar con Tailwind y shadcn."
+      },
+      {
+        "title": "Iteración rápida",
+        "description": "Refina el resultado conversando: ajusta los colores, el diseño y la capacidad de respuesta en cuestión de segundos."
+      },
+      {
+        "title": "Código limpio",
+        "description": "La salida sigue las buenas prácticas de Next.js con App Router, Server Components y más."
+      },
+      {
+        "title": "Componentes reales",
+        "description": "Usa shadcn/ui de verdad, sin abstracciones mágicas. Tienes control total del código."
+      }
+    ],
+    "promptExample": "Ejemplo de prompt",
+    "promptTitle": "Página de destino para SaaS",
+    "promptContent": "Crea una página de aterrizaje moderna para una aplicación SaaS de gestión de proyectos. Utiliza un tema oscuro, un héroe con CTA, una sección de características en una cuadrícula de 3 columnas, testimonios y precios con 3 planes. Utiliza shadcn/ui y Framer Motion para las animaciones."
+  },
+  "copilot": {
+    "title": "GitHub Copiloto",
+    "subtitle": "Asistente de código en tiempo real",
+    "description": "Copilot funciona directamente en el editor, sugiriendo código mientras escribes. Es ideal para plantillas, pruebas y patrones repetitivos, pero debes saber validar lo que sugiere.",
+    "features": [
+      {
+        "title": "Autocomplete inteligente",
+        "description": "Sugiere funciones completas basadas en el contexto del archivo y del proyecto."
+      },
+      {
+        "title": "Generación de pruebas",
+        "description": "Escribe el nombre de la prueba y él la completará con escenarios reales basados en su función."
+      },
+      {
+        "title": "Documentacao inline",
+        "description": "Genera JSDoc, comentarios y explicaciones del código automáticamente."
+      },
+      {
+        "title": "Multilingüe",
+        "description": "Funciona con TypeScript, Python, Go, Rust y docenas de otros lenguajes."
+      }
+    ],
+    "promptTitle": "Indicaciones útiles para Copilot",
+    "prompts": [
+      {
+        "prompt": "// crear una función que valide el correo electrónico con regex",
+        "description": "Copilot genera la función completa con expresiones regulares seguras y tipado."
+      },
+      {
+        "prompt": "// Pruebas unitarias para la función calculateTotal",
+        "description": "Crea los escenarios de prueba basados en la firma de la función."
+      },
+      {
+        "prompt": "// convierte esta llamada de retorno para async/await",
+        "description": "Refactoriza el código heredado manteniendo la misma lógica."
+      }
+    ]
+  },
+  "prompts": {
+    "title": "Pistas para resolver problemas",
+    "subtitle": "Plantillas listas para usar en el día a día",
+    "categories": [
+      {
+        "title": "Depuración y corrección de errores",
+        "items": [
+          {
+            "prompt": "Estoy recibiendo el error [ERROR]. El contexto es [CONTEXTO]. Explíqueme la causa raíz y sugiera una corrección.",
+            "description": "Ideal para comprender errores complejos y no solo corregirlos."
+          },
+          {
+            "prompt": "Analiza este código e identifica posibles errores, condiciones de carrera o fugas de memoria: [CÓDIGO]",
+            "description": "Revisión automática del código centrada en problemas ocultos."
+          },
+          {
+            "prompt": "Esta prueba está fallando: [PRUEBA]. La función probada es: [FUNCIÓN]. ¿Qué puede estar mal?",
+            "description": "Depuración de pruebas con contexto completo."
+          }
+        ]
+      },
+      {
+        "title": "Arquitectura y refactorización",
+        "items": [
+          {
+            "prompt": "Refactoriza este componente para usar el patrón [PATRÓN]. Mantén la misma funcionalidad: [CÓDIGO]",
+            "description": "Refactorización guiada con patrón específico."
+          },
+          {
+            "prompt": "Sugiera una arquitectura para [CARACTERÍSTICA] teniendo en cuenta la escalabilidad, la capacidad de prueba y el mantenimiento.",
+            "description": "Decisiones arquitectónicas con claras ventajas e inconvenientes."
+          }
+        ]
+      },
+      {
+        "title": "Rendimiento y optimización",
+        "items": [
+          {
+            "prompt": "Analiza este código y sugiere optimizaciones de rendimiento. Explica el impacto de cada cambio: [CÓDIGO]",
+            "description": "Optimización con explicación de la ganancia real."
+          },
+          {
+            "prompt": "¿Cómo puedo implementar el almacenamiento en caché en este punto final? Tenga en cuenta la invalidación y los datos obsoletos: [ENDPOINT]",
+            "description": "Estrategia de cache contextualizada."
+          }
+        ]
+      }
+    ]
+  },
+  "tools": {
+    "title": "Herramientas de IA para desarrolladores",
+    "subtitle": "Las más utilizadas por categoría",
+    "categories": [
+      {
+        "category": "Interfaz de usuario y diseño",
+        "items": [
+          {
+            "name": "v0 por Vercel",
+            "description": "Genera interfaces completas con React, Tailwind y shadcn/ui a partir de texto.",
+            "url": "https://v0.dev"
+          },
+          {
+            "name": "Galileo IA",
+            "description": "Diseño de interfaces con IA para prototipado rápido.",
+            "url": "https://www.usegalileo.ai"
+          }
+        ]
+      },
+      {
+        "category": "Código y productividad",
+        "items": [
+          {
+            "name": "GitHub Copiloto",
+            "description": "Asistente de código directo en el editor con autocompletado inteligente.",
+            "url": "https://github.com/features/copilot"
+          },
+          {
+            "name": "Cursor",
+            "description": "Editor de código con IA nativa para editar, refactorizar y depurar.",
+            "url": "https://cursor.sh"
+          },
+          {
+            "name": "Codeína",
+            "description": "Alternativa gratuita a Copilot con autocompletado y chat.",
+            "url": "https://codeium.com"
+          }
+        ]
+      },
+      {
+        "category": "Chat & Raciocinio",
+        "items": [
+          {
+            "name": "ChatGPT",
+            "description": "El modelo más popular para el razonamiento, el análisis de código y la lluvia de ideas.",
+            "url": "https://chat.openai.com"
+          },
+          {
+            "name": "Claude",
+            "description": "Excelente para el análisis profundo de código y tareas largas con contexto extenso.",
+            "url": "https://claude.ai"
+          },
+          {
+            "name": "Géminis",
+            "description": "Modelo Google con capacidad multimodal y buena integración.",
+            "url": "https://gemini.google.com"
+          }
+        ]
+      }
+    ]
+  },
+  "mindset": {
+    "title": "La mentalidad adecuada",
+    "subtitle": "IA y herramienta, no muleta",
+    "description": "El mayor error de un desarrollador es depender de la IA sin comprender lo que se está generando. Utiliza la IA para acelerar, no para sustituir tus conocimientos.",
+    "principles": [
+      {
+        "title": "Aprende primero, automatiza después",
+        "description": "Antes de pedirle a la IA que lo resuelva, inténtelo usted mismo. Comprenda el problema, busque la solución y solo entonces utilice la IA para acelerar la implementación."
+      },
+      {
+        "title": "Revise siempre el resultado.",
+        "description": "El código generado por IA puede contener errores sutiles, vulnerabilidades de seguridad o patrones obsoletos. Revise cada línea como si lo hubiera escrito usted mismo."
+      },
+      {
+        "title": "Úsalo para aprender, no para copiar.",
+        "description": "Pide explicaciones junto con el código. Pregunta «¿por qué este enfoque?» en lugar de limitarte a copiar y pegar."
+      },
+      {
+        "title": "Contexto y todo",
+        "description": "Cuanto más contexto proporcione (pila, restricciones, patrones del proyecto), mejor será el resultado. Las indicaciones vagas generan código vago."
+      },
+      {
+        "title": "La IA no sustituye a la experiencia",
+        "description": "Saber qué preguntar, cuándo desconfiar del resultado y cómo integrarlo correctamente requiere experiencia real en desarrollo."
+      }
+    ]
+  },
+  "cta": {
+    "title": "¿Quieres intercambiar ideas?",
+    "description": "Si te han gustado estos consejos, hablemos sobre cómo aplicar la IA en tu flujo de desarrollo.",
+    "button": "Volver al portafolio"
+  }
+}

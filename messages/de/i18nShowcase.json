@@ -1,0 +1,34 @@
+{
+  "useTranslations": {
+    "title": "useTranslations()",
+    "badge": "Client-Hook",
+    "description": "Verwenden Sie „useTranslations“ in Client Components, um die Funktion „t()“ aus einem Namespace abzurufen – mit Autovervollständigung und Typprüfung durch TypeScript –, was die Interpolation, Pluralisierung und Rendering auf dem Client erleichtert."
+  },
+  "getTranslations": {
+    "title": "getTranslations()",
+    "badge": "Server",
+    "description": "Verwenden Sie „getTranslations” in Serverkomponenten oder Serveraktionen, um Namespaces auf den Server zu laden (nützlich bei SSR und Serveraktionen). Gibt eine asynchrone Version von „t()” zurück, die für die serverseitige Darstellung und Aktionen verwendet werden kann."
+  },
+  "namespaces": {
+    "title": "Namensräume",
+    "badge": "Organisation",
+    "description": "Organisieren Sie Nachrichten in Namespaces (z. B. „global“, „admin.userManagement“), um Modularität und Wiederverwendbarkeit zu gewährleisten. Kombinieren Sie Namespaces in der Komponente nach Bedarf, um kontextspezifische Übersetzungen zu erstellen."
+  },
+  "pluralization": {
+    "title": "Pluralisierung",
+    "badge": "Formatierung",
+    "description": "Verwenden Sie ICU-Regeln, um Pluralformen und numerische Variationen zu behandeln (z. B.: =0 {nenhum}, one {1}, other {#}), um sicherzustellen, dass die grammatikalischen Formen entsprechend der Menge korrekt sind."
+  },
+  "interpolation": {
+    "title": "Interpolation",
+    "badge": "Variablen",
+    "description": "Fügen Sie Platzhalter (z. B. `{name}`) in Nachrichten ein und übergeben Sie Werte an `t()`, um dynamische Inhalte auf typisierte und sichere Weise zu interpolieren."
+  },
+  "dateFormatting": {
+    "title": "Formatierung von Datum/Zahlen",
+    "badge": "Internationale API",
+    "description": "Formatieren Sie Datumsangaben und Zahlen mit `Intl.DateTimeFormat` und `Intl.NumberFormat` unter Berücksichtigung der aktiven `Locale` und der regionalen Konventionen."
+  },
+  "title": "Übersetzungsmethoden",
+  "description": "Beispiele und bewährte Verfahren für die Internationalisierung mit next-intl: Typisierung, Automatisierung und Qualitätsvalidierung."
+}

@@ -1,0 +1,16 @@
+
+{
+	"home": {
+		"title": "Bem-vindo ao Starter Next.js i18n!",
+		"editFile": "Para começar, edite o arquivo page.tsx.",
+		"description": "Procure um ponto de partida ou mais instruções? Acesse <templatesLink>Templates</templatesLink> ou o <learningCenterLink>Learning</learningCenterLink>.",
+		"deployNow": "Deploy agora",
+		"documentation": "Documentação"
+	},
+	"cta": {
+		"backToPortfolio": "Voltar ao Portfolio"
+	},
+	"pageHero": {
+		"back": "Portfolio"
+	}
+}

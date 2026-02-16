@@ -1,0 +1,83 @@
+{
+  "title": "Proyectos",
+  "subtitle": "Trabajos destacados",
+  "viewProject": "Ver Proyecto",
+  "viewCode": "Ver código",
+  "items": [
+    {
+      "title": "Horario mental",
+      "description": "Panel administrativo donde los profesionales registran negocios, configuran horarios, definen servicios y valores. Integra autenticación vía Clerk, sugerencias por IA y despliegue en Vercel.",
+      "tags": [
+        "Next.js 15",
+        "TypeScript",
+        "Viento de cola",
+        "Empleado",
+        "estado",
+        "Zod"
+      ],
+      "github": "https://github.com/Coldiblaster/mind-schedule",
+      "demo": "https://mind-schedule.vercel.app"
+    },
+    {
+      "title": "Generador dinámico de formularios",
+      "description": "Aplicación para la creación y respuesta de formularios dinámicos con preguntas condicionales, múltiples tipos de respuesta y panel de visualización. 100 % responsiva.",
+      "tags": [
+        "Next.js",
+        "TypeScript",
+        "React Forma de gancho",
+        "Viento de cola",
+        "shadcn/interfaz de usuario"
+      ],
+      "github": "https://github.com/Coldiblaster/dynamic-form-builder",
+      "demo": "https://dynamic-form-builder-fawn.vercel.app"
+    },
+    {
+      "title": "Finalizar compra Seleccionar",
+      "description": "Mini-checkout que simula el flujo real de compra de un curso digital. UX mobile-first, validaciones robustas, cálculo de tasas, pago a plazos inteligente y destaque para PIX.",
+      "tags": [
+        "Next.js 15",
+        "React 19",
+        "Zod",
+        "Viento de cola 4",
+        "shadcn/interfaz de usuario"
+      ],
+      "github": "https://github.com/Coldiblaster/teste-frontend-cakto-vinicius-bastazin",
+      "demo": "https://teste-frontend-cakto-bastazin.vercel.app/checkout"
+    },
+    {
+      "title": "Widget iFrame Bonifiq",
+      "description": "Widget incorporable mediante script externo que muestra datos de usuario y publicaciones a través de API. PostMessage entre parent e iframe, skeleton loaders y pruebas con Vitest.",
+      "tags": [
+        "React 19",
+        "TypeScript",
+        "Rápido",
+        "Vitest",
+        "Viento de cola 4",
+        "shadcn/interfaz de usuario"
+      ],
+      "github": "https://github.com/Coldiblaster/prova-frontend-bonifiq"
+    },
+    {
+      "title": "Ir a la peluquería",
+      "description": "Plataforma completa de programación de citas para barberías con backend en Node.js (TDD, Clean Architecture, SOLID) y frontend React con Styled Components.",
+      "tags": [
+        "React",
+        "Node.js",
+        "TypeScript",
+        "Componentes con estilo",
+        "Desarrollo basado en pruebas"
+      ],
+      "github": "https://github.com/Coldiblaster/go-barber-web"
+    },
+    {
+      "title": "GoRestaurant Mobile",
+      "description": "Aplicación de reparto en React Native para pedidos de comida. Interfaz intuitiva, integración con API y navegación fluida entre categorías y artículos.",
+      "tags": [
+        "React Nativo",
+        "TypeScript",
+        "Componentes con estilo"
+      ],
+      "github": "https://github.com/Coldiblaster/desafio-delivery-react-native"
+    }
+  ]
+}

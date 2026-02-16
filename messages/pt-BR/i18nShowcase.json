@@ -1,0 +1,34 @@
+{
+  "useTranslations": {
+    "title": "useTranslations()",
+    "badge": "Hook de cliente",
+    "description": "Use `useTranslations` em Client Components para obter a função `t()` de um namespace — com autocomplete e verificação de tipos pelo TypeScript — facilitando interpolação, pluralização e renderização no cliente."
+  },
+  "getTranslations": {
+    "title": "getTranslations()",
+    "badge": "Servidor",
+    "description": "Use `getTranslations` em Server Components ou Server Actions para carregar namespaces no servidor (útil em SSR e server actions). Retorna uma versão assíncrona de `t()` pronta para uso em renderização server-side e actions."
+  },
+  "namespaces": {
+    "title": "Namespaces",
+    "badge": "Organização",
+    "description": "Organize mensagens em namespaces (ex.: `global`, `admin.userManagement`) para modularidade e reutilização. Combine namespaces no componente quando necessário para compor traduções específicas de contexto."
+  },
+  "pluralization": {
+    "title": "Pluralização",
+    "badge": "Formatação",
+    "description": "Use regras ICU para tratar plurais e variações numéricas (por exemplo: =0 {nenhum}, one {1}, other {#}), garantindo que as formas gramaticais fiquem corretas conforme a quantidade."
+  },
+  "interpolation": {
+    "title": "Interpolação",
+    "badge": "Variáveis",
+    "description": "Insira placeholders (ex.: `{name}`) nas mensagens e passe valores para `t()` para interpolar conteúdo dinâmico de forma tipada e segura."
+  },
+  "dateFormatting": {
+    "title": "Formatação de Data/Número",
+    "badge": "Intl API",
+    "description": "Formate datas e números usando `Intl.DateTimeFormat` e `Intl.NumberFormat`, respeitando o `locale` ativo e as convenções regionais."
+  },
+  "title": "Métodos de Tradução",
+  "description": "Exemplos e boas práticas de internacionalização com next-intl: tipagem, automação e validação de qualidade."
+}

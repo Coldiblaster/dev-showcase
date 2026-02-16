@@ -1,0 +1,85 @@
+{
+  "title": "Experiencia",
+  "subtitle": "Mi trayectoria profesional",
+  "items": [
+    {
+      "role": "Desarrollador Frontend Senior PJ / Líder Técnico",
+      "company": "Ti Safer",
+      "period": "-",
+      "description": "Entré como líder técnico de un proyecto desde cero, montando la arquitectura frontend desde el primer día. En el día a día, trabajo junto con el equipo de UI/UX, backend, PO y DevOps: alineaciones diarias, estructuración de demandas en la preplanificación y revisiones de código con los tres desarrolladores que dirijo. Definí los estándares de SSR, caché con React Query y construí el sistema de diseño en colaboración con el equipo de diseño.",
+      "techs": [
+        "React 18",
+        "Next.js 14+",
+        "TypeScript",
+        "Tailwind CSS",
+        "React Consulta"
+      ]
+    },
+    {
+      "role": "Analista de Sistemas Pleno / Lider Tecnico Frontend",
+      "company": "CI&T",
+      "period": "Enero de 2025 - Julio de 2025",
+      "description": "Actué como referencia técnica del frontend dentro de una consultoría que atiende a grandes empresas. Mi papel iba más allá de la programación: participaba en las definiciones de arquitectura, realizaba revisiones detalladas del código centrándome en el rendimiento y la seguridad, y seguía de cerca la evolución de los desarrolladores más jóvenes con tutorías recurrentes. Colaboración constante con equipos multidisciplinares.",
+      "techs": [
+        "React",
+        "Next.js 14+",
+        "TypeScript",
+        "GraphQL",
+        "Tailwind CSS",
+        "Es"
+      ]
+    },
+    {
+      "role": "Desarrollador sénior React (web y móvil)",
+      "company": "Silicon Village",
+      "period": "Jul/2023 - Nov/2024",
+      "description": "Trabajé en una empresa fintech que atendía a más de 100 000 usuarios, desarrollando tanto la aplicación móvil como la plataforma web. Uno de los trabajos de los que me siento más orgulloso fue crear un sistema de diseño compartido entre la web y el móvil, que aportó consistencia visual y aceleró la entrega. También realicé optimizaciones que mejoraron en aproximadamente un 40 % la puntuación en Lighthouse.",
+      "techs": [
+        "React",
+        "React Nativo",
+        "Next.js",
+        "Exposición",
+        "TypeScript",
+        "Componentes con estilo"
+      ]
+    },
+    {
+      "role": "Desarrollador Frontend Pleno",
+      "company": "Pixter",
+      "period": "Nuevo/2021 - Jun/2023",
+      "description": "Aquí fue donde maduré mucho como desarrollador. Creé funciones complejas pensando siempre en la escalabilidad y la experiencia del usuario. Implementé la accesibilidad WCAG en los componentes más críticos del producto y lideré una gran refactorización del código base heredado, mejorando la mantenibilidad y reduciendo los errores recurrentes.",
+      "techs": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Componentes con estilo",
+        "Es"
+      ]
+    },
+    {
+      "role": "Desarrollador Full Stack",
+      "company": "ConsulTi",
+      "period": "Diciembre de 2020 - Noviembre de 2021",
+      "description": "Mi primera experiencia más completa trabajando con front y back. Desarrollé API REST, microservicios e interfaces web con React y Next.js. Fue aquí donde empecé a comprender realmente cómo el frontend se conecta con toda la ingeniería que hay detrás.",
+      "techs": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Componentes con estilo"
+      ]
+    },
+    {
+      "role": "Desarrollador Full Stack / Soporte Técnico",
+      "company": "Oeste Saude",
+      "period": "Mayo/2019 - Noviembre/2020",
+      "description": "Empecé en el área de soporte técnico y fui migrando al desarrollo por mi cuenta, estudiando React y TypeScript en mi tiempo libre. Acabé asumiendo el mantenimiento y la evolución del sistema web de la empresa en el área de la salud. Ahí fue donde todo comenzó y donde construí una base sólida.",
+      "techs": [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "HTML/CSS"
+      ]
+    }
+  ]
+}

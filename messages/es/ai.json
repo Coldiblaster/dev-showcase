@@ -1,0 +1,23 @@
+{
+  "title": "IA en el desarrollo",
+  "subtitle": "Cómo utilizo la IA en mi día a día",
+  "description": "La IA dejó de ser una moda y se convirtió en una herramienta esencial en mi flujo de trabajo. La uso a diario para acelerar el desarrollo, escribir mejor código y resolver problemas complejos más rápidamente.",
+  "features": [
+    {
+      "title": "v0 por Vercel",
+      "description": "Genero componentes React/Next.js completos con indicaciones descriptivas. Ahorro horas de trabajo repetitivo y me centro en la lógica del negocio en lugar de escribir HTML/CSS desde cero."
+    },
+    {
+      "title": "GitHub Copiloto",
+      "description": "Autocompletado inteligente que escribe funciones completas, pruebas y documentación. Aprende mis patrones y sugiere soluciones que siguen las convenciones del proyecto."
+    },
+    {
+      "title": "Vercel AI SDK",
+      "description": "Integro chatbots, streaming de respuestas y generación de texto en aplicaciones Next.js. Lo utilizo en funciones como traducción automática, sugerencias de contenido y asistentes contextuales."
+    },
+    {
+      "title": "Ingeniería rápida",
+      "description": "Sé estructurar prompts eficientes: contexto claro, ejemplos, restricciones y formato de salida. Esto garantiza respuestas consistentes y reduce las iteraciones."
+    }
+  ]
+}

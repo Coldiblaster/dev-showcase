@@ -1,0 +1,289 @@
+{
+  "troubleshooting": {
+    "title": "Häufige Probleme (Schnelllösung)",
+    "description": "Die häufigsten i18n-Fehler und wie man sie schnell behebt.",
+    "typo": {
+      "title": "Tippfehler im Schlüssel",
+      "error": "Übersetzung wird nicht angezeigt (Tippfehler im Schlüssel)",
+      "solution": "Verwenden Sie die Autovervollständigung von TypeScript, um Fehler zu vermeiden.",
+      "codeError": "const t = useTranslations(\"auth\"); t(\"login.tittle\"); // Tippfehler: „tittle” statt „title”",
+      "codeSolution": "const t = useTranslations(\"auth\"); t(\"login.title\"); // TypeScript meldet Fehler"
+    },
+    "namespace": {
+      "title": "Falscher Namespace",
+      "error": "Schlüssel nicht gefunden (falscher Namespace)",
+      "solution": "Verwenden Sie für jede Nachrichtengruppe den richtigen Namespace.",
+      "codeError": "const t = useTranslations(\"admin\"); t(\"actions.save\"); // 'actions' befindet sich in 'global'!",
+      "codeSolution": "const tGlobal = useTranslations(\"global\"); tGlobal(\"actions.save\");"
+    },
+    "ptLeak": {
+      "title": "Portugiesisch in anderen Sprachen",
+      "error": "Text auf Portugiesisch erscheint auf en/es",
+      "solution": "Übersetzen Sie erneut mit Nachdruck und validieren Sie mit Skripten.",
+      "codeError": "# messages/en/global.json: „back“: „Zurück“",
+      "codeSolution": "pnpm run translate:force pnpm run check:pt-leaks"
+    },
+    "tsAutocomplete": {
+      "title": "Die Autovervollständigung von TypeScript funktioniert nicht.",
+      "error": "TypeScript schlägt keine Schlüssel vor oder meldet einen falschen Fehler.",
+      "solution": "Starten Sie den TS Server neu oder laden Sie VS Code neu.",
+      "codeError": "// Mögliche Ursache: TypeScript wurde nicht aktualisiert.",
+      "codeSolution": "// Strg+Umschalt+P → „TypeScript: TS-Server neu starten“ // Wenn das Problem weiterhin besteht: Fenster neu laden",
+      "extraTip": "Extra-Tipp: Wenn die Autovervollständigung/Typisierung für den neuen Block nicht funktioniert, fügen Sie den Namespace in messages/pt-BR/index.ts, src/i18n/types.d.ts und src/lib/i18n/load-messages.ts gemäß der Dokumentation hinzu."
+    },
+    "missingFile": {
+      "title": "Übersetzungsdatei nicht gefunden",
+      "error": "Modul „../../messages/pt-BR/...“ nicht gefunden",
+      "solution": "Speichern Sie alle Dateien und starten Sie den TS-Server neu.",
+      "codeError": "# Mögliche Ursache: Neue Datei wurde nicht gespeichert",
+      "codeSolution": "# Strg+K S (VS Code) und TS Server neu starten"
+    }
+  },
+  "newVsLegacy": {
+    "title": "Neues Projekt vs. Altes Projekt",
+    "description": "Wie geht man mit Internationalisierung (i18n) in verschiedenen Projektkontexten um? Hier finden Sie praktische Tipps für jedes Szenario:",
+    "new": {
+      "title": "Neues Projekt (Greenfield)",
+      "items": [
+        "Planen Sie Namespaces und die Struktur der Nachrichten von Anfang an.",
+        "Implementieren Sie i18n, bevor Sie viele Komponenten erstellen.",
+        "Verwenden Sie Beispiele aus dem Quick Start, um die Einrichtung zu beschleunigen.",
+        "Automatisieren Sie Skripte und Validierungen von Anfang an.",
+        "Standardisieren Sie Schlüssel und Konventionen für das Team."
+      ]
+    },
+    "legacy": {
+      "title": "Projekt Legado (in Arbeit)",
+      "items": [
+        "Hardcodierte Texte zuordnen und die am häufigsten verwendeten priorisieren.",
+        "Migrieren Sie Komponenten schrittweise zu i18n.",
+        "Verwenden Sie Validierungsskripte, um Regressionen zu vermeiden.",
+        "Zentralisieren Sie globale Texte vor der Modularisierung.",
+        "Dokumentieren Sie Standards und erstellen Sie Migrationsbeispiele."
+      ]
+    },
+    "tipLabel": "Bis:",
+    "tip": "Erstellen Sie für die Migration eine visuelle Checkliste und beziehen Sie das Team in PR-Überprüfungen mit Schwerpunkt auf i18n ein."
+  },
+  "hero": {
+    "badge": "next-intl v4+",
+    "title": "Internationalisierungssystem",
+    "subtitle": "Komplette Architektur für mehrsprachige Anwendungen",
+    "description": "Interaktive Demonstration des mit next-intl implementierten i18n-Systems, das PT-BR, EN und ES mit vollständiger Typsicherheit, automatischer Übersetzung über DeepL/Google Cloud und Qualitätsvalidierung unterstützt.",
+    "ctaDemo": "Live-Demo ansehen",
+    "ctaDocs": "Dokumentation"
+  },
+  "liveDemo": {
+    "title": "Interaktive Demo",
+    "subtitle": "Sehen Sie die Übersetzung in Echtzeit",
+    "currentLocale": "Aktuelle Sprache",
+    "selectLanguage": "Wählen Sie die Sprache aus",
+    "preview": "Vorschau",
+    "greeting": "Begrüßung",
+    "greetingName": "Hallo, {name}!",
+    "welcomeMessage": "Willkommen bei unserem Internationalisierungssystem. Dieser Text ändert sich dynamisch entsprechend der ausgewählten Sprache.",
+    "itemCount": "Zählung von Artikeln",
+    "dateLabel": "Formatiertes Datum",
+    "numberLabel": "Formatierte Zahl",
+    "pluralLabel": "Pluralisierung",
+    "items": "{count, plural, =0 {Kein Eintrag} one {1 Eintrag} other {# Einträge}}"
+  },
+  "architecture": {
+    "title": "Architektur",
+    "subtitle": "Wie das System aufgebaut wurde",
+    "sourceOfTruth": {
+      "title": "pt-BR als Quelle der Wahrheit",
+      "description": "Alle Übersetzungen basieren auf Portugiesisch. Die Dateien en/ und es/ werden automatisch über Skripte generiert, wodurch Konsistenz gewährleistet und manuelle Duplikate vermieden werden."
+    },
+    "autoTranslation": {
+      "title": "Automatische Übersetzung",
+      "description": "Intelligente Skripte erkennen neue Schlüssel in pt-BR und übersetzen diese automatisch mithilfe der DeepL API (bevorzugt) oder Google Cloud Translation mit Ratenbegrenzung."
+    },
+    "typeSafety": {
+      "title": "Vollständige Typsicherheit",
+      "description": "TypeScript mit Autovervollständigung für alle Namespaces und Schlüssel. Der Compiler warnt, wenn ein Übersetzungsschlüssel falsch ist oder Parameter fehlen."
+    },
+    "qualityControl": {
+      "title": "Qualitätskontrolle",
+      "description": "Validierungsskripte erkennen portugiesische Ausdrücke in en/es, überprüfen die Synchronisierung von Schlüsselwörtern zwischen Sprachen und können in CI/CD integriert werden."
+    }
+  },
+  "translationEngine": {
+    "title": "Automatische Übersetzung",
+    "subtitle": "DeepL API – 500.000 Zeichen/Monat kostenlos",
+    "quality": {
+      "title": "Höchste Qualität",
+      "description": "DeepL bietet natürlichere Übersetzungen als Google Translate."
+    },
+    "buildTime": {
+      "title": "Nur Bauzeit",
+      "description": "Die Übersetzung erfolgt vor dem Build, ohne Auswirkungen auf die Laufzeit."
+    },
+    "free": {
+      "title": "500.000 kostenlos pro Monat",
+      "description": "Kostenloser Tarif ausreichend für die meisten Projekte"
+    },
+    "setup": "Einrichten",
+    "tip": "Der kostenlose Tarif von DeepL bietet 500.000 Zeichen pro Monat, was für etwa 50 Seiten Inhalt ausreicht. Perfekt für Start-ups und persönliche Projekte.",
+    "getKey": "Holen Sie sich Ihren kostenlosen Schlüssel unter:"
+  },
+  "performance": {
+    "title": "Keine Auswirkungen auf die Leistung",
+    "subtitle": "Übersetzungen werden zur Erstellungszeit geladen, nicht zur Laufzeit",
+    "buildTime": {
+      "title": "Bauzeit",
+      "description": "Alle Übersetzungen werden während des Builds verarbeitet. Das endgültige Bundle enthält nur die erforderliche Sprache."
+    },
+    "bundle": {
+      "title": "Optimiertes Bundle",
+      "description": "Jede Sprache hat ihr eigenes Bundle. Der Benutzer lädt nur die Sprache herunter, die er verwendet."
+    },
+    "typeSafe": {
+      "title": "Typsicher",
+      "description": "TypeScript validiert alle Schlüssel während der Entwicklungszeit. Es ist unmöglich, einen nicht vorhandenen Schlüssel zu verwenden."
+    },
+    "overhead": "Overhead während der Laufzeit"
+  },
+  "github": {
+    "title": "Verwenden Sie diese Vorlage",
+    "description": "Komplettes Repository mit der gesamten i18n-Struktur, Automatisierungsskripten und Dokumentation. Bereit für den Einsatz in der Produktion.",
+    "viewGithub": "Siehe nicht GitHub",
+    "giveStar": "Einen Stern vergeben"
+  },
+  "methods": {
+    "title": "Übersetzungsmethoden",
+    "subtitle": "Unterschiedliche Ansätze für jeden Kontext",
+    "useTranslations": {
+      "title": "useTranslations()",
+      "description": "Haupt-Hook für Client-Komponenten. Empfängt den Namespace und gibt die Funktion t() mit vollständiger Autovervollständigung zurück.",
+      "badge": "Client-Komponente"
+    },
+    "getTranslations": {
+      "title": "getTranslations()",
+      "description": "Async-Funktion für Serverkomponenten und Serveraktionen. Ideal für SSR-Seiten und Aktionen auf dem Server.",
+      "badge": "Serverkomponente"
+    },
+    "namespaces": {
+      "title": "Namespaces Modulares",
+      "description": "Hierarchische Organisation: global.actions.save, admin.userManagement.form. Kombiniert spezifische Namespaces mit globalen Namespaces zur Wiederverwendung.",
+      "badge": "Organisation"
+    },
+    "pluralization": {
+      "title": "Pluralisierung ICU",
+      "description": "Unterstützung des ICU-Nachrichtenformats für intelligente Pluralisierung: =0 {nenhum}, =1 {1 item}, andere {# itens}.",
+      "badge": "ICU-Format"
+    },
+    "interpolation": {
+      "title": "Interpolation von Variablen",
+      "description": "Dynamische Variablen mit {placeholder}. Unterstützt mehrere Parameter: „{user} hat {count} Pflanzen erstellt”.",
+      "badge": "Dynamisch"
+    },
+    "dateFormatting": {
+      "title": "Formatierung von Datum/Zahlen",
+      "description": "Verwendet die browser-eigenen Funktionen Intl.DateTimeFormat und Intl.NumberFormat unter Berücksichtigung der ausgewählten Ländereinstellung für Datums-, Währungs- und Zahlenformate.",
+      "badge": "Internationale API"
+    }
+  },
+  "workflow": {
+    "title": "Entwicklungs-Workflow",
+    "subtitle": "Schrittweise Anleitung zum Hinzufügen von Übersetzungen",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Bearbeiten pt-BR",
+        "description": "Fügen Sie die Übersetzungsschlüssel in der entsprechenden JSON-Datei unter messages/pt-BR/ hinzu oder bearbeiten Sie sie.",
+        "command": "vim-Meldungen/pt-BR/global.json"
+      },
+      {
+        "step": "02",
+        "title": "Übersetzungen erstellen",
+        "description": "Führen Sie das Skript aus, das neue Schlüssel erkennt und automatisch ins Englische und Spanische übersetzt.",
+        "command": "pnpm run translate"
+      },
+      {
+        "step": "03",
+        "title": "Qualität validieren",
+        "description": "Überprüfen Sie, ob die Übersetzungen keine Fehler enthalten und alle Sprachen synchronisiert sind.",
+        "command": "pnpm run check:pt-leaks"
+      },
+      {
+        "step": "04",
+        "title": "Synchronisierung validieren",
+        "description": "Stellen Sie sicher, dass alle Standorte über die gleichen Schlüssel verfügen, um Fehler in der Produktion zu vermeiden.",
+        "command": "pnpm run validate:i18n"
+      },
+      {
+        "step": "05",
+        "title": "Nicht verwenden Code",
+        "description": "Importieren Sie den Hook useTranslations mit dem richtigen Namespace und verwenden Sie t(), um mit Autocomplete auf die Übersetzungen zuzugreifen."
+      }
+    ]
+  },
+  "scripts": {
+    "title": "Verfügbare Skripte",
+    "subtitle": "Automatisierungstools für das i18n-System",
+    "items": [
+      {
+        "command": "pnpm ausführen übersetzen",
+        "description": "Übersetzt nur neue Schlüssel von pt-BR nach en/es. Behält bestehende Übersetzungen bei.",
+        "badge": "ein bis drei Minuten"
+      },
+      {
+        "command": "pnpm run translate:force",
+        "description": "Übersetzt ALLE Schlüssel von Grund auf neu. Verwenden Sie diese Option, wenn Sie schlechte Übersetzungen finden.",
+        "badge": "Fünf bis zehn Minuten"
+      },
+      {
+        "command": "pnpm run validate:i18n",
+        "description": "Überprüft, ob alle Standorte über dieselben synchronisierten Schlüssel verfügen.",
+        "badge": "~5 sich"
+      },
+      {
+        "command": "pnpm run check:pt-leaks",
+        "description": "Erkennt Wörter in Portugiesisch, die in en/es-Dateien durchgesickert sind.",
+        "badge": "~5 sich"
+      },
+      {
+        "command": "pnpm run add-locale -- {code}",
+        "description": "Erstellt eine vollständige Struktur für eine neue Sprache (z. B. de, fr, it).",
+        "badge": "~10 sich"
+      }
+    ]
+  },
+  "bestPractices": {
+    "title": "Bewährte Praktiken",
+    "subtitle": "Projektvereinbarungen zur Aufrechterhaltung der Qualität",
+    "do": {
+      "title": "Faca",
+      "items": [
+        "IMMER zuerst pt-BR bearbeiten (echte Quelle)",
+        "Verwenden Sie beschreibende Namespaces: auth, global, admin.userManagement",
+        "Verwenden Sie globale Texte für allgemeine Aktionen (speichern, löschen) wieder.",
+        "Übersetzen und validieren vor dem Commit",
+        "Verwenden Sie Platzhalter {variavel} für dynamische Inhalte.",
+        "Kombinieren Sie spezifische + globale Namespaces in derselben Komponente."
+      ]
+    },
+    "dont": {
+      "title": "Vermeiden",
+      "items": [
+        "Bearbeiten Sie en/es NIEMALS manuell (sie werden überschrieben).",
+        "Lassen Sie keine Hardcode-Texte in JSX stehen.",
+        "Vermeiden Sie es, bereits vorhandene Texte zu duplizieren.",
+        "Übersetzte Zeichenfolgen nicht verketten (grammatikalischer Fehler)",
+        "Verwenden Sie keine übermäßig langen Schlüssel.",
+        "Erstellen Sie keine generischen Namespaces wie „page1” oder „form”."
+      ]
+    }
+  },
+  "structure": {
+    "title": "Dateistruktur",
+    "subtitle": "Organisation des Nachrichtensystems",
+    "description": "pt-BR und die Quelle der Wahrheit. en/ und es/ werden automatisch generiert. Jedes Modul hat seinen eigenen Ordner mit index.ts."
+  },
+  "cta": {
+    "title": "Bereit zur Umsetzung?",
+    "description": "Dieses i18n-System demonstriert eine produktionsreife Architektur mit Typsicherheit, Automatisierung und Qualität. Alles wurde mit next-intl v4+ erstellt.",
+    "button": "Zurück zum Portfolio"
+  }
+}

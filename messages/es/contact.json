@@ -1,0 +1,19 @@
+{
+  "title": "¿Hablamos?",
+  "subtitle": "Contáctenos",
+  "description": "Siempre estoy abierto a discutir nuevos proyectos, ideas creativas u oportunidades para formar parte de su visión.",
+  "formTitle": "Enviar un mensaje",
+  "nameLabel": "Nombre",
+  "namePlaceholder": "Su nombre completo",
+  "emailFieldLabel": "Correo electrónico",
+  "emailPlaceholder": "seu@email.com",
+  "messageLabel": "Mensaje",
+  "messagePlaceholder": "Describe tu proyecto o idea...",
+  "sendButton": "Enviar mensaje",
+  "sent": "¡Mensaje enviado!",
+  "whatsappButton": "Chatear en WhatsApp",
+  "whatsappHint": "Respuesta rápida",
+  "directEmail": "Correo electrónico directo",
+  "directEmailHint": "Respondo en un plazo máximo de 24 horas.",
+  "social": "Redes sociales"
+}

@@ -1,0 +1,216 @@
+{
+  "nav": "AI Tips for Developers",
+  "hero": {
+    "badge": "Practical Guide",
+    "title": "AI in Development",
+    "subtitle": "How to use artificial intelligence wisely",
+    "description": "Tools, prompts, and best practices for developers who want to be more productive with AI—without losing the essence of knowing how to program.",
+    "warning": "Important: AI is a powerful tool, but developers should always focus on learning and solving problems on their own before using AI. Do not rely exclusively on it."
+  },
+  "v0": {
+    "title": "v0 by Vercel",
+    "subtitle": "Prototyping and UI with AI",
+    "description": "v0 is ideal for generating layouts, components, and entire pages with shadcn/ui and Tailwind. Perfect for speeding up interface creation without compromising quality.",
+    "features": [
+      {
+        "title": "UI generation",
+        "description": "Describe what you want and receive ready-made React components with Tailwind and shadcn."
+      },
+      {
+        "title": "Quick iteration",
+        "description": "Refine the result by chatting -- adjust colors, layout, responsiveness in seconds."
+      },
+      {
+        "title": "Clean code",
+        "description": "The output follows best practices for Next.js with App Router, Server Components, and more."
+      },
+      {
+        "title": "Real components",
+        "description": "Use real shadcn/ui, without magical abstractions. You have complete control over the code."
+      }
+    ],
+    "promptExample": "Prompt example",
+    "promptTitle": "Landing page para SaaS",
+    "promptContent": "Create a modern landing page for a SaaS project management app. Use a dark theme, hero with CTA, 3-column grid feature section, testimonials, and pricing with 3 plans. Use shadcn/ui and Framer Motion for animations."
+  },
+  "copilot": {
+    "title": "GitHub Co-pilot",
+    "subtitle": "Real-time code assistant",
+    "description": "Copilot works directly in the editor, suggesting code as you type. It's great for boilerplate, tests, and repetitive patterns—but you need to know how to validate what it suggests.",
+    "features": [
+      {
+        "title": "Smart autocomplete",
+        "description": "Suggests entire functions based on the context of the file and project."
+      },
+      {
+        "title": "Test generation",
+        "description": "Write the name of the test and it completes with real scenarios based on its function."
+      },
+      {
+        "title": "Inline documentation",
+        "description": "Generates JSDoc, comments, and code explanations automatically."
+      },
+      {
+        "title": "Multi-language",
+        "description": "Works with TypeScript, Python, Go, Rust, and dozens of other languages."
+      }
+    ],
+    "promptTitle": "Useful prompts for Copilot",
+    "prompts": [
+      {
+        "prompt": "// create a function that validates email with regex",
+        "description": "Copilot generates the complete function with secure regex and typing."
+      },
+      {
+        "prompt": "// unit tests for the calculateTotal function",
+        "description": "It creates test scenarios based on the function signature."
+      },
+      {
+        "prompt": "// converta este callback para async/await",
+        "description": "Refactor legacy code while maintaining the same logic."
+      }
+    ]
+  },
+  "prompts": {
+    "title": "Prompts for Solving Problems",
+    "subtitle": "Templates ready for everyday use",
+    "categories": [
+      {
+        "title": "Debugging and Bug Fixing",
+        "items": [
+          {
+            "prompt": "I am receiving the error [ERROR]. The context is [CONTEXT]. Please explain the root cause and suggest a fix.",
+            "description": "Ideal for understanding complex errors, not just correcting them."
+          },
+          {
+            "prompt": "Analyze this code and identify possible bugs, race conditions, or memory leaks: [CODE]",
+            "description": "Automatic code review focused on hidden problems."
+          },
+          {
+            "prompt": "This test is failing: [TEST]. The function being tested is: [FUNCTION]. What could be wrong?",
+            "description": "Debug tests with full context."
+          }
+        ]
+      },
+      {
+        "title": "Architecture and Refactoring",
+        "items": [
+          {
+            "prompt": "Refactor this component to use the [PATTERN] pattern. Maintain the same functionality: [CODE]",
+            "description": "Guided refactoring with specific patterns."
+          },
+          {
+            "prompt": "Suggest an architecture for [FEATURE] considering scalability, testability, and maintainability.",
+            "description": "Architectural decisions with clear tradeoffs."
+          }
+        ]
+      },
+      {
+        "title": "Performance and Optimization",
+        "items": [
+          {
+            "prompt": "Analyze this code and suggest performance optimizations. Explain the impact of each change: [CODE]",
+            "description": "Optimization with explanation of actual gains."
+          },
+          {
+            "prompt": "How can I implement caching on this endpoint? Consider invalidation and stale data: [ENDPOINT]",
+            "description": "Contextualized cache strategy."
+          }
+        ]
+      }
+    ]
+  },
+  "tools": {
+    "title": "AI Tools for Developers",
+    "subtitle": "Most used by category",
+    "categories": [
+      {
+        "category": "User Interface & Layout",
+        "items": [
+          {
+            "name": "v0 by Vercel",
+            "description": "Generates complete interfaces with React, Tailwind, and shadcn/ui from text.",
+            "url": "https://v0.dev"
+          },
+          {
+            "name": "Galileo AI",
+            "description": "Designing interfaces with AI for rapid prototyping.",
+            "url": "https://www.usegalileo.ai"
+          }
+        ]
+      },
+      {
+        "category": "Code & Productivity",
+        "items": [
+          {
+            "name": "GitHub Co-pilot",
+            "description": "Direct code assistant in the editor with intelligent autocomplete.",
+            "url": "https://github.com/features/copilot"
+          },
+          {
+            "name": "Cursor",
+            "description": "Code editor with native AI for editing, refactoring, and debugging.",
+            "url": "https://cursor.sh"
+          },
+          {
+            "name": "Codeine",
+            "description": "Free alternative to Copilot with autocomplete and chat.",
+            "url": "https://codeium.com"
+          }
+        ]
+      },
+      {
+        "category": "Chat & Reasoning",
+        "items": [
+          {
+            "name": "ChatGPT",
+            "description": "The most popular model for reasoning, code analysis, and brainstorming.",
+            "url": "https://chat.openai.com"
+          },
+          {
+            "name": "Claude",
+            "description": "Excellent for in-depth code analysis and long tasks with extensive context.",
+            "url": "https://claude.ai"
+          },
+          {
+            "name": "Gemini",
+            "description": "Google model with multimodal capability and good integration.",
+            "url": "https://gemini.google.com"
+          }
+        ]
+      }
+    ]
+  },
+  "mindset": {
+    "title": "Right Mindset",
+    "subtitle": "AI and tools, not crutches",
+    "description": "The biggest mistake a developer can make is to rely on AI without understanding what is being generated. Use AI to accelerate, not to replace your knowledge.",
+    "principles": [
+      {
+        "title": "Learn first, automate later",
+        "description": "Before asking AI to solve it, try it yourself. Understand the problem, research the solution, and only then use AI to speed up implementation."
+      },
+      {
+        "title": "Always review the output",
+        "description": "AI-generated code may contain subtle bugs, security vulnerabilities, or outdated patterns. Review each line as if you had written it yourself."
+      },
+      {
+        "title": "Use it to learn, not to copy",
+        "description": "Ask for explanations along with the code. Ask \"why this approach?\" instead of just copying and pasting."
+      },
+      {
+        "title": "Context and everything",
+        "description": "The more context you provide (stack, constraints, project patterns), the better the result will be. Vague prompts generate vague code."
+      },
+      {
+        "title": "AI does not replace experience",
+        "description": "Knowing what to ask, when to be suspicious of the output, and how to integrate correctly requires real development experience."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Would you like to exchange ideas?",
+    "description": "If you enjoyed these tips, let's talk about how to apply AI to your development workflow.",
+    "button": "Back to Portfolio"
+  }
+}

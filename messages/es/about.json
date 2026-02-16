@@ -1,0 +1,13 @@
+{
+  "title": "Acerca de mí",
+  "subtitle": "Quién está detrás del código",
+  "description": "Empecé en 2016 y desde entonces he trabajado en seguros, fintechs, marketplaces y SaaS. Trabajo estrechamente con el diseño, el backend y el producto porque creo que un buen frontend entiende todo el sistema. No solo escribo código bonito, sino que también me involucro en la arquitectura, los sistemas de diseño, las pruebas, la accesibilidad y el rendimiento. Básicamente, todo lo que marca la diferencia entre «funciona en mi máquina» y «funciona en producción desde hace dos años sin errores críticos».",
+  "stats": {
+    "years": "9+",
+    "yearsLabel": "Años de experiencia",
+    "projects": "Miles",
+    "projectsLabel": "Usuarios afectados",
+    "languages": "Mentoría",
+    "languagesLabel": "Revisiones de código y programación en pareja"
+  }
+}

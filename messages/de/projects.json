@@ -1,0 +1,83 @@
+{
+  "title": "Projekte",
+  "subtitle": "Ausgewählte Arbeiten",
+  "viewProject": "Projekt anzeigen",
+  "viewCode": "Code anzeigen",
+  "items": [
+    {
+      "title": "Gedankenplan",
+      "description": "Verwaltungsbereich, in dem Fachleute Unternehmen registrieren, Zeitpläne konfigurieren, Dienstleistungen und Preise festlegen. Integriert Authentifizierung über Clerk, Vorschläge durch KI und Bereitstellung in Vercel.",
+      "tags": [
+        "Next.js 15",
+        "TypeScript",
+        "Rückenwind",
+        "Sachbearbeiter",
+        "Zustand",
+        "Zod"
+      ],
+      "github": "https://github.com/Coldiblaster/mind-schedule",
+      "demo": "https://mind-schedule.vercel.app"
+    },
+    {
+      "title": "Dynamischer Formular-Generator",
+      "description": "Anwendung zur Erstellung und Beantwortung dynamischer Formulare mit bedingten Fragen, mehreren Antworttypen und einem Anzeigefeld. 100 % responsiv.",
+      "tags": [
+        "Next.js",
+        "TypeScript",
+        "React Hakenform",
+        "Rückenwind",
+        "shadcn/ui"
+      ],
+      "github": "https://github.com/Coldiblaster/dynamic-form-builder",
+      "demo": "https://dynamic-form-builder-fawn.vercel.app"
+    },
+    {
+      "title": "Zur Kasse gehen",
+      "description": "Mini-Checkout, der den tatsächlichen Kaufablauf eines digitalen Kurses simuliert. Mobile-First-UX, robuste Validierungen, Gebührenberechnung, intelligente Ratenzahlung und Hervorhebung von PIX.",
+      "tags": [
+        "Next.js 15",
+        "React 19",
+        "Zod",
+        "Rückenwind 4",
+        "shadcn/ui"
+      ],
+      "github": "https://github.com/Coldiblaster/teste-frontend-cakto-vinicius-bastazin",
+      "demo": "https://teste-frontend-cakto-bastazin.vercel.app/checkout"
+    },
+    {
+      "title": "iFrame-Widget Bonifiq",
+      "description": "Über ein externes Skript eingebettetes Widget, das Benutzerdaten und Beiträge über die API anzeigt. PostMessage zwischen Parent und Iframe, Skeleton Loaders und Tests mit Vitest.",
+      "tags": [
+        "React 19",
+        "TypeScript",
+        "Schnell",
+        "Vitest",
+        "Rückenwind 4",
+        "shadcn/ui"
+      ],
+      "github": "https://github.com/Coldiblaster/prova-frontend-bonifiq"
+    },
+    {
+      "title": "GoBarber",
+      "description": "Komplette Terminplanungsplattform für Friseursalons mit Backend in Node.js (TDD, Clean Architecture, SOLID) und Frontend React mit Styled Components.",
+      "tags": [
+        "React",
+        "Node.js",
+        "TypeScript",
+        "Gestaltete Komponenten",
+        "Testgetriebene Entwicklung"
+      ],
+      "github": "https://github.com/Coldiblaster/go-barber-web"
+    },
+    {
+      "title": "GoRestaurant Mobile",
+      "description": "Native Liefer-App für Essensbestellungen. Intuitive Benutzeroberfläche, API-Integration und flüssige Navigation zwischen Kategorien und Artikeln.",
+      "tags": [
+        "React Muttersprache",
+        "TypeScript",
+        "Gestaltete Komponenten"
+      ],
+      "github": "https://github.com/Coldiblaster/desafio-delivery-react-native"
+    }
+  ]
+}

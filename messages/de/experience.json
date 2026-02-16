@@ -1,0 +1,85 @@
+{
+  "title": "Erfahrung",
+  "subtitle": "Mein beruflicher Werdegang",
+  "items": [
+    {
+      "role": "Senior Frontend-Entwickler PJ / Technischer Leiter",
+      "company": "Ti Safer",
+      "period": "-",
+      "description": "Ich bin als technischer Leiter eines Projekts von Grund auf eingestiegen und habe vom ersten Tag an die Frontend-Architektur aufgebaut. Im Alltag arbeite ich mit dem UI/UX-, Backend-, PO- und DevOps-Team zusammen – tägliche Abstimmungen, Strukturierung der Anforderungen in der Vorplanung und Code-Reviews mit den drei Entwicklern, die ich leite. Ich habe die SSR-Standards definiert, den Cache mit React Query eingerichtet und das Designsystem in Zusammenarbeit mit dem Designteam aufgebaut.",
+      "techs": [
+        "React 18",
+        "Next.js 14+",
+        "TypeScript",
+        "Tailwind CSS",
+        "React Abfrage"
+      ]
+    },
+    {
+      "role": "Vollwertiger Systemanalytiker / Technischer Leiter Frontend",
+      "company": "CI&T",
+      "period": "Januar 2025 – Juli 2025",
+      "description": "Ich war als technischer Referent für Frontend in einer Beratungsfirma tätig, die große Unternehmen betreut. Meine Aufgabe ging über das Codieren hinaus: Ich war an der Festlegung der Architektur beteiligt, führte detaillierte Code-Reviews mit Schwerpunkt auf Leistung und Sicherheit durch und begleitete die Entwicklung der jüngeren Entwickler durch regelmäßige Mentoring-Gespräche. Ständige Zusammenarbeit mit multidisziplinären Teams.",
+      "techs": [
+        "React",
+        "Next.js 14+",
+        "TypeScript",
+        "GraphQL",
+        "Tailwind CSS",
+        "Es ist"
+      ]
+    },
+    {
+      "role": "Senior-Entwickler React (Web und Mobile)",
+      "company": "Silicon Village",
+      "period": "Juli 2023 – November 2024",
+      "description": "Ich habe bei einem Fintech-Unternehmen gearbeitet, das mehr als 100.000 Nutzer bediente, und sowohl die mobile App als auch die Webplattform entwickelt. Eine meiner stolzesten Leistungen war die Erstellung eines gemeinsamen Designsystems für Web und Mobile, das für visuelle Konsistenz sorgte und die Bereitstellung beschleunigte. Außerdem habe ich Optimierungen vorgenommen, die die Bewertung bei Lighthouse um etwa 40 % verbessert haben.",
+      "techs": [
+        "React",
+        "React Muttersprache",
+        "Next.js",
+        "Expo",
+        "TypeScript",
+        "Gestaltete Komponenten"
+      ]
+    },
+    {
+      "role": "Full-Stack-Frontend-Entwickler",
+      "company": "Pixter",
+      "period": "Neu/2021 – Juni/2023",
+      "description": "Hier bin ich als Entwickler sehr gereift. Ich habe komplexe Funktionen entwickelt und dabei stets auf Skalierbarkeit und Benutzererfahrung geachtet. Ich habe WCAG-Barrierefreiheit in den kritischsten Komponenten des Produkts implementiert und eine umfassende Überarbeitung des Legacy-Codebases geleitet, wodurch die Wartbarkeit verbessert und wiederkehrende Fehler reduziert wurden.",
+      "techs": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Gestaltete Komponenten",
+        "Es ist"
+      ]
+    },
+    {
+      "role": "Full-Stack-Entwickler",
+      "company": "ConsulTi",
+      "period": "Dezember 2020 – November 2021",
+      "description": "Meine erste umfassende Erfahrung mit Frontend- und Backend-Entwicklung. Ich habe REST-APIs, Microservices und Webschnittstellen mit React und Next.js entwickelt. Hier habe ich wirklich verstanden, wie das Frontend mit der gesamten dahinterstehenden Technik zusammenhängt.",
+      "techs": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Gestaltete Komponenten"
+      ]
+    },
+    {
+      "role": "Full Stack Entwickler / Technischer Support",
+      "company": "Oeste Saude",
+      "period": "Mai 2019 – November 2020",
+      "description": "Ich habe im technischen Support angefangen und bin dann auf eigene Faust in die Entwicklung gewechselt, wobei ich in meiner Freizeit React und TypeScript gelernt habe. Schließlich habe ich die Wartung und Weiterentwicklung des Websystems des Unternehmens im Gesundheitsbereich übernommen. Dort hat alles angefangen und dort habe ich mir eine solide Grundlage aufgebaut.",
+      "techs": [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "HTML/CSS"
+      ]
+    }
+  ]
+}

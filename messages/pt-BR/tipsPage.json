@@ -1,0 +1,115 @@
+{
+  "nav": "Dicas de IA para Devs",
+  "hero": {
+    "badge": "Guia Pratico",
+    "title": "IA no Desenvolvimento",
+    "subtitle": "Como usar inteligencia artificial de forma inteligente",
+    "description": "Ferramentas, prompts e boas praticas para devs que querem ser mais produtivos com IA -- sem perder a essencia de saber programar.",
+    "warning": "Importante: IA e uma ferramenta poderosa, mas o dev deve sempre focar em aprender e resolver problemas por conta propria antes de usar IA. Nao dependa exclusivamente dela."
+  },
+  "v0": {
+    "title": "v0 by Vercel",
+    "subtitle": "Prototipacao e UI com IA",
+    "description": "O v0 e ideal para gerar layouts, componentes e paginas inteiras com shadcn/ui e Tailwind. Perfeito para acelerar a criacao de interfaces sem perder qualidade.",
+    "features": [
+      { "title": "Geracao de UI", "description": "Descreva o que voce quer e receba componentes React prontos com Tailwind e shadcn." },
+      { "title": "Iteracao rapida", "description": "Refine o resultado conversando -- ajuste cores, layout, responsividade em segundos." },
+      { "title": "Codigo limpo", "description": "O output segue boas praticas de Next.js com App Router, Server Components e mais." },
+      { "title": "Componentes reais", "description": "Usa shadcn/ui de verdade, sem abstracoes magicas. Voce tem controle total do codigo." }
+    ],
+    "promptExample": "Exemplo de prompt",
+    "promptTitle": "Landing page para SaaS",
+    "promptContent": "Crie uma landing page moderna para um app SaaS de gestao de projetos. Use tema escuro, hero com CTA, secao de features em grid 3 colunas, depoimentos e pricing com 3 planos. Use shadcn/ui e Framer Motion para animacoes."
+  },
+  "copilot": {
+    "title": "GitHub Copilot",
+    "subtitle": "Assistente de codigo em tempo real",
+    "description": "O Copilot funciona direto no editor, sugerindo codigo enquanto voce digita. E otimo para boilerplate, testes e padroes repetitivos -- mas voce precisa saber validar o que ele sugere.",
+    "features": [
+      { "title": "Autocomplete inteligente", "description": "Sugere funcoes inteiras baseado no contexto do arquivo e do projeto." },
+      { "title": "Geracao de testes", "description": "Escreva o nome do teste e ele completa com cenarios reais baseados na sua funcao." },
+      { "title": "Documentacao inline", "description": "Gera JSDoc, comentarios e explicacoes do codigo automaticamente." },
+      { "title": "Multi-linguagem", "description": "Funciona com TypeScript, Python, Go, Rust e dezenas de outras linguagens." }
+    ],
+    "promptTitle": "Prompts uteis para o Copilot",
+    "prompts": [
+      { "prompt": "// crie uma funcao que valida email com regex", "description": "Copilot gera a funcao completa com regex seguro e tipagem." },
+      { "prompt": "// teste unitario para a funcao calculateTotal", "description": "Ele cria os cenarios de teste baseado na assinatura da funcao." },
+      { "prompt": "// converta este callback para async/await", "description": "Refatora codigo legacy mantendo a mesma logica." }
+    ]
+  },
+  "prompts": {
+    "title": "Prompts para Resolver Problemas",
+    "subtitle": "Templates prontos para usar no dia a dia",
+    "categories": [
+      {
+        "title": "Debug e Correcao de Bugs",
+        "items": [
+          { "prompt": "Estou recebendo o erro [ERRO]. O contexto e [CONTEXTO]. Me explique a causa raiz e sugira uma correcao.", "description": "Ideal para entender erros complexos e nao apenas corrigi-los." },
+          { "prompt": "Analise este codigo e identifique possiveis bugs, race conditions ou memory leaks: [CODIGO]", "description": "Review automatico de codigo com foco em problemas ocultos." },
+          { "prompt": "Este teste esta falhando: [TESTE]. A funcao testada e: [FUNCAO]. O que pode estar errado?", "description": "Debug de testes com contexto completo." }
+        ]
+      },
+      {
+        "title": "Arquitetura e Refatoracao",
+        "items": [
+          { "prompt": "Refatore este componente para usar o padrao [PADRAO]. Mantenha a mesma funcionalidade: [CODIGO]", "description": "Refatoracao guiada com padrao especifico." },
+          { "prompt": "Sugira uma arquitetura para [FEATURE] considerando escalabilidade, testabilidade e manutencao.", "description": "Decisoes arquiteturais com tradeoffs claros." }
+        ]
+      },
+      {
+        "title": "Performance e Otimizacao",
+        "items": [
+          { "prompt": "Analise este codigo e sugira otimizacoes de performance. Explique o impacto de cada mudanca: [CODIGO]", "description": "Otimizacao com explicacao do ganho real." },
+          { "prompt": "Como posso implementar caching neste endpoint? Considere invalidacao e stale data: [ENDPOINT]", "description": "Estrategia de cache contextualizada." }
+        ]
+      }
+    ]
+  },
+  "tools": {
+    "title": "Ferramentas de IA para Devs",
+    "subtitle": "As mais utilizadas por categoria",
+    "categories": [
+      {
+        "category": "UI & Layout",
+        "items": [
+          { "name": "v0 by Vercel", "description": "Gera interfaces completas com React, Tailwind e shadcn/ui a partir de texto.", "url": "https://v0.dev" },
+          { "name": "Galileo AI", "description": "Design de interfaces com IA para prototipacao rapida.", "url": "https://www.usegalileo.ai" }
+        ]
+      },
+      {
+        "category": "Codigo & Produtividade",
+        "items": [
+          { "name": "GitHub Copilot", "description": "Assistente de codigo direto no editor com autocomplete inteligente.", "url": "https://github.com/features/copilot" },
+          { "name": "Cursor", "description": "Editor de codigo com IA nativa para editar, refatorar e debugar.", "url": "https://cursor.sh" },
+          { "name": "Codeium", "description": "Alternativa gratuita ao Copilot com autocomplete e chat.", "url": "https://codeium.com" }
+        ]
+      },
+      {
+        "category": "Chat & Raciocinio",
+        "items": [
+          { "name": "ChatGPT", "description": "O modelo mais popular para raciocinio, analise de codigo e brainstorming.", "url": "https://chat.openai.com" },
+          { "name": "Claude", "description": "Excelente para analise profunda de codigo e tarefas longas com contexto extenso.", "url": "https://claude.ai" },
+          { "name": "Gemini", "description": "Modelo do Google com capacidade multimodal e boa integracao.", "url": "https://gemini.google.com" }
+        ]
+      }
+    ]
+  },
+  "mindset": {
+    "title": "Mentalidade Certa",
+    "subtitle": "IA e ferramenta, nao muleta",
+    "description": "O maior erro de um dev e depender da IA sem entender o que esta sendo gerado. Use IA para acelerar, nao para substituir seu conhecimento.",
+    "principles": [
+      { "title": "Aprenda primeiro, automatize depois", "description": "Antes de pedir pra IA resolver, tente voce. Entenda o problema, pesquise a solucao, e so depois use IA pra acelerar a implementacao." },
+      { "title": "Sempre revise o output", "description": "Codigo gerado por IA pode ter bugs sutis, vulnerabilidades de seguranca ou padroes desatualizados. Revise cada linha como se voce tivesse escrito." },
+      { "title": "Use para aprender, nao para copiar", "description": "Peca explicacoes junto com o codigo. Pergunte 'por que essa abordagem?' em vez de apenas copiar e colar." },
+      { "title": "Contexto e tudo", "description": "Quanto mais contexto voce der (stack, restricoes, padroes do projeto), melhor sera o resultado. Prompts vagos geram codigo vago." },
+      { "title": "IA nao substitui experiencia", "description": "Saber o que perguntar, quando desconfiar do output e como integrar corretamente exige experiencia real de desenvolvimento." }
+    ]
+  },
+  "cta": {
+    "title": "Quer trocar uma ideia?",
+    "description": "Se voce curtiu essas dicas, vamos conversar sobre como aplicar IA no seu fluxo de desenvolvimento.",
+    "button": "Voltar ao Portfolio"
+  }
+}

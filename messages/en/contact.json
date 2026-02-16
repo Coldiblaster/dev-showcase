@@ -1,0 +1,19 @@
+{
+  "title": "Shall we talk?",
+  "subtitle": "Get in touch",
+  "description": "I am always open to discussing new projects, creative ideas, or opportunities to be part of your vision.",
+  "formTitle": "Send a message",
+  "nameLabel": "Name",
+  "namePlaceholder": "Your full name",
+  "emailFieldLabel": "Email",
+  "emailPlaceholder": "seu@email.com",
+  "messageLabel": "Message",
+  "messagePlaceholder": "Describe your project or idea...",
+  "sendButton": "Send message",
+  "sent": "Message sent!",
+  "whatsappButton": "Chat on WhatsApp",
+  "whatsappHint": "Quick response",
+  "directEmail": "Direct email",
+  "directEmailHint": "I will respond within 24 hours.",
+  "social": "Social networks"
+}

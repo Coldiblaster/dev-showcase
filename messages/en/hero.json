@@ -1,0 +1,17 @@
+{
+  "greeting": "✨ Plot twist: this isn't just another generic portfolio",
+  "name": "Vinicius Bastazin",
+  "role": "Senior Frontend Developer | React, Next.js, React Native",
+  "description": {
+    "intro": "Yes, it contains my work from the last 8 years with TERM3x0 and TERM2x0.",
+    "value": "But it also has real implementations, code you can use, and tips that will save you hours of \"why isn't this working?!\"",
+    "mission": "Because sharing knowledge is cooler than keeping secrets."
+  },
+  "cta": "Explore Implementations",
+  "secondary": "Let's Talk",
+  "stats": {
+    "impact": "8+ years of experience",
+    "implementations": "Real projects, not tutorials",
+    "opensource": "The giant money giants"
+  }
+}

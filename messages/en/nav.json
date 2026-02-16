@@ -1,0 +1,20 @@
+{
+  "about": "About",
+  "projects": "Projects",
+  "experience": "Experience",
+  "aiInnovation": "AI & Innovation",
+  "contact": "Contact",
+  "i18nShowcase": "i18n Showcase",
+  "i18nShowcaseDesc": "Internationalization with next-intl and DeepL",
+  "aiTips": "AI Tips",
+  "aiTipsDesc": "v0, Copilot, Prompts, and AI tools",
+  "tailwindTips": "Tailwind + shadcn/ui",
+  "tailwindTipsDesc": "Setup, components, and best practices",
+  "reactQueryTips": "React Query",
+  "reactQueryTipsDesc": "Cache, mutations, and optimization",
+  "portfolio": "Portfolio",
+  "implementations": "Implementations",
+  "implementationsDesc": "Technical features I built",
+  "tips": "Tips & Guides",
+  "tipsDesc": "Educational content for developers"
+}

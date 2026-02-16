@@ -1,0 +1,216 @@
+{
+  "nav": "KI-Tipps für Entwickler",
+  "hero": {
+    "badge": "Praktischer Leitfaden",
+    "title": "KI in der Entwicklung",
+    "subtitle": "Wie man künstliche Intelligenz intelligent einsetzt",
+    "description": "Tools, Tipps und bewährte Methoden für Entwickler, die mit KI produktiver arbeiten möchten – ohne dabei die Grundlagen des Programmierens aus den Augen zu verlieren.",
+    "warning": "Wichtig: KI ist ein leistungsstarkes Werkzeug, aber Entwickler sollten sich immer darauf konzentrieren, selbst zu lernen und Probleme zu lösen, bevor sie KI einsetzen. Verlassen Sie sich nicht ausschließlich darauf."
+  },
+  "v0": {
+    "title": "v0 von Vercel",
+    "subtitle": "Prototyping und UI mit KI",
+    "description": "v0 e ist ideal für die Erstellung von Layouts, Komponenten und ganzen Seiten mit shadcn/ui und Tailwind. Perfekt, um die Erstellung von Schnittstellen zu beschleunigen, ohne an Qualität einzubüßen.",
+    "features": [
+      {
+        "title": "UI-Generierung",
+        "description": "Beschreiben Sie, was Sie möchten, und erhalten Sie fertige React-Komponenten mit Tailwind und shadcn."
+      },
+      {
+        "title": "Schnelle Iteration",
+        "description": "Verfeinern Sie das Ergebnis durch Interaktion – passen Sie Farben, Layout und Reaktionsfähigkeit in Sekundenschnelle an."
+      },
+      {
+        "title": "Sauberer Code",
+        "description": "Die Ausgabe folgt den Best Practices von Next.js mit App Router, Server Components und mehr."
+      },
+      {
+        "title": "Reale Komponenten",
+        "description": "Verwenden Sie echtes shadcn/ui, ohne magische Abstraktionen. Sie haben die vollständige Kontrolle über den Code."
+      }
+    ],
+    "promptExample": "Beispiel für eine Eingabeaufforderung",
+    "promptTitle": "Landingpage für SaaS",
+    "promptContent": "Erstellen Sie eine moderne Landing Page für eine SaaS-Projektmanagement-App. Verwenden Sie ein dunkles Thema, einen Hero mit CTA, einen Abschnitt mit Funktionen in einem 3-Spalten-Raster, Erfahrungsberichte und Preise mit 3 Tarifen. Verwenden Sie shadcn/ui und Framer Motion für Animationen."
+  },
+  "copilot": {
+    "title": "GitHub Copilot",
+    "subtitle": "Echtzeit-Code-Assistent",
+    "description": "Copilot funktioniert direkt im Editor und schlägt Ihnen während der Eingabe Code vor. Es eignet sich hervorragend für Boilerplate, Tests und sich wiederholende Muster – Sie müssen jedoch wissen, wie Sie die Vorschläge validieren können.",
+    "features": [
+      {
+        "title": "Intelligente Autovervollständigung",
+        "description": "Schlägt ganze Funktionen basierend auf dem Kontext der Datei und des Projekts vor."
+      },
+      {
+        "title": "Erstellung von Tests",
+        "description": "Geben Sie den Namen des Tests ein und er wird mit realen Szenarien ergänzt, die auf seiner Funktion basieren."
+      },
+      {
+        "title": "Inline-Dokumentation",
+        "description": "Generiert automatisch JSDoc, Kommentare und Erläuterungen zum Code."
+      },
+      {
+        "title": "Mehrsprachig",
+        "description": "Funktioniert mit TypeScript, Python, Go, Rust und Dutzenden anderer Sprachen."
+      }
+    ],
+    "promptTitle": "Nützliche Eingabeaufforderungen für Copilot",
+    "prompts": [
+      {
+        "prompt": "// Erstellen Sie eine Funktion, die E-Mails mit Regex validiert.",
+        "description": "Copilot generiert die vollständige Funktion mit sicherer Regex und Typisierung."
+      },
+      {
+        "prompt": "// Unit-Tests für die Funktion calculateTotal",
+        "description": "Er erstellt die Testszenarien basierend auf der Signatur der Funktion."
+      },
+      {
+        "prompt": "// Konvertieren Sie diesen Callback in async/await.",
+        "description": "Refactoring von Legacy-Code unter Beibehaltung derselben Logik."
+      }
+    ]
+  },
+  "prompts": {
+    "title": "Aufforderungen zur Problemlösung",
+    "subtitle": "Vorlagen, die Sie täglich verwenden können",
+    "categories": [
+      {
+        "title": "Debugging und Fehlerbehebung",
+        "items": [
+          {
+            "prompt": "Ich erhalte die Fehlermeldung [FEHLER]. Der Kontext lautet [KONTEXT]. Bitte erklären Sie mir die Ursache und schlagen Sie eine Korrektur vor.",
+            "description": "Ideal, um komplexe Fehler zu verstehen und nicht nur zu beheben."
+          },
+          {
+            "prompt": "Analysieren Sie diesen Code und identifizieren Sie mögliche Fehler, Race Conditions oder Speicherlecks: [CODE]",
+            "description": "Automatische Codeüberprüfung mit Fokus auf versteckte Probleme."
+          },
+          {
+            "prompt": "Dieser Test schlägt fehl: [TEST]. Die getestete Funktion ist: [FUNKTION]. Was könnte falsch sein?",
+            "description": "Debugging von Tests mit vollständigem Kontext."
+          }
+        ]
+      },
+      {
+        "title": "Architektur und Refaktorisierung",
+        "items": [
+          {
+            "prompt": "Überarbeiten Sie diese Komponente, um das Muster [PATTERN] zu verwenden. Behalten Sie die gleiche Funktionalität bei: [CODE]",
+            "description": "Geführte Refaktorisierung mit spezifischem Muster."
+          },
+          {
+            "prompt": "Schlagen Sie eine Architektur für [FEATURE] vor, die Skalierbarkeit, Testbarkeit und Wartbarkeit berücksichtigt.",
+            "description": "Architektonische Entscheidungen mit klaren Kompromissen."
+          }
+        ]
+      },
+      {
+        "title": "Leistung und Optimierung",
+        "items": [
+          {
+            "prompt": "Analysieren Sie diesen Code und schlagen Sie Leistungsoptimierungen vor. Erläutern Sie die Auswirkungen jeder Änderung: [CODE]",
+            "description": "Optimierung mit Erklärung des tatsächlichen Gewinns."
+          },
+          {
+            "prompt": "Wie kann ich Caching an diesem Endpunkt implementieren? Berücksichtigen Sie dabei Ungültigkeitserklärung und veraltete Daten: [ENDPOINT]",
+            "description": "Kontextbezogene Cache-Strategie."
+          }
+        ]
+      }
+    ]
+  },
+  "tools": {
+    "title": "KI-Tools für Entwickler",
+    "subtitle": "Die meistgenutzten nach Kategorie",
+    "categories": [
+      {
+        "category": "Benutzeroberfläche und Layout",
+        "items": [
+          {
+            "name": "v0 von Vercel",
+            "description": "Erzeugt vollständige Schnittstellen mit React, Tailwind und shadcn/ui aus Text.",
+            "url": "https://v0.dev"
+          },
+          {
+            "name": "Galileo KI",
+            "description": "Entwurf von Schnittstellen mit KI für schnelles Prototyping.",
+            "url": "https://www.usegalileo.ai"
+          }
+        ]
+      },
+      {
+        "category": "Code & Produktivität",
+        "items": [
+          {
+            "name": "GitHub Copilot",
+            "description": "Direkter Code-Assistent im Editor mit intelligenter Autovervollständigung.",
+            "url": "https://github.com/features/copilot"
+          },
+          {
+            "name": "Cursor",
+            "description": "Code-Editor mit nativer KI zum Bearbeiten, Refactoring und Debuggen.",
+            "url": "https://cursor.sh"
+          },
+          {
+            "name": "Codein",
+            "description": "Kostenlose Alternative zu Copilot mit Autovervollständigung und Chat.",
+            "url": "https://codeium.com"
+          }
+        ]
+      },
+      {
+        "category": "Chat & Argumentation",
+        "items": [
+          {
+            "name": "ChatGPT",
+            "description": "Das beliebteste Modell für logisches Denken, Code-Analyse und Brainstorming.",
+            "url": "https://chat.openai.com"
+          },
+          {
+            "name": "Claude",
+            "description": "Hervorragend geeignet für tiefgehende Code-Analysen und langwierige Aufgaben mit umfangreichem Kontext.",
+            "url": "https://claude.ai"
+          },
+          {
+            "name": "Zwillinge",
+            "description": "Modell Google mit multimodaler Kapazität und guter Integration.",
+            "url": "https://gemini.google.com"
+          }
+        ]
+      }
+    ]
+  },
+  "mindset": {
+    "title": "Die richtige Mentalität",
+    "subtitle": "KI und Werkzeug, keine Krücke",
+    "description": "Der größte Fehler eines Entwicklers ist es, sich auf KI zu verlassen, ohne zu verstehen, was damit erzeugt wird. Nutzen Sie KI, um Ihre Arbeit zu beschleunigen, nicht um Ihr Wissen zu ersetzen.",
+    "principles": [
+      {
+        "title": "Erst lernen, dann automatisieren",
+        "description": "Bevor Sie die KI um eine Lösung bitten, versuchen Sie es selbst. Verstehen Sie das Problem, suchen Sie nach einer Lösung und nutzen Sie erst dann die KI, um die Umsetzung zu beschleunigen."
+      },
+      {
+        "title": "Überprüfen Sie immer die Ausgabe",
+        "description": "Von KI generierter Code kann subtile Fehler, Sicherheitslücken oder veraltete Muster enthalten. Überprüfen Sie jede Zeile so, als hätten Sie sie selbst geschrieben."
+      },
+      {
+        "title": "Verwenden Sie es zum Lernen, nicht zum Kopieren.",
+        "description": "Bitten Sie um Erklärungen zusammen mit dem Code. Fragen Sie „Warum dieser Ansatz?“, anstatt einfach nur zu kopieren und einzufügen."
+      },
+      {
+        "title": "Kontext und alles",
+        "description": "Je mehr Kontext Sie bereitstellen (Stack, Einschränkungen, Projektstandards), desto besser wird das Ergebnis sein. Vage Eingabeaufforderungen führen zu vagem Code."
+      },
+      {
+        "title": "KI ersetzt keine Erfahrung",
+        "description": "Zu wissen, was man fragen muss, wann man dem Output misstrauen sollte und wie man ihn richtig integriert, erfordert echte Entwicklungserfahrung."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Möchten Sie sich austauschen?",
+    "description": "Wenn Ihnen diese Tipps gefallen haben, lassen Sie uns darüber sprechen, wie Sie KI in Ihrem Entwicklungsprozess einsetzen können.",
+    "button": "Zurück zum Portfolio"
+  }
+}

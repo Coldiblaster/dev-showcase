@@ -1,0 +1,19 @@
+{
+  "title": "Wollen wir uns unterhalten?",
+  "subtitle": "Kontaktieren Sie uns",
+  "description": "Ich bin immer offen für neue Projekte, kreative Ideen oder Möglichkeiten, Teil Ihrer Vision zu werden.",
+  "formTitle": "Senden Sie eine Nachricht",
+  "nameLabel": "Name",
+  "namePlaceholder": "Ihr vollständiger Name",
+  "emailFieldLabel": "E-Mail",
+  "emailPlaceholder": "seu@email.com",
+  "messageLabel": "Nachricht",
+  "messagePlaceholder": "Beschreiben Sie Ihr Projekt oder Ihre Idee...",
+  "sendButton": "Nachricht senden",
+  "sent": "Nachricht gesendet!",
+  "whatsappButton": "Auf WhatsApp chatten",
+  "whatsappHint": "Schnelle Antwort",
+  "directEmail": "Direkte E-Mail",
+  "directEmailHint": "Ich antworte innerhalb von 24 Stunden.",
+  "social": "Soziale Netzwerke"
+}

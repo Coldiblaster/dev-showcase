@@ -1,0 +1,155 @@
+{
+  "hero": {
+    "badge": "Guía práctica",
+    "title": "Tailwind CSS + shadcn/ui",
+    "subtitle": "Configuración, componentes y buenas prácticas en proyectos Next.js / React",
+    "description": "Una guía directa y concisa sobre cómo configurar y utilizar Tailwind CSS con shadcn/ui en mis proyectos. Sin rodeos, solo lo que realmente funciona en el día a día.",
+    "warning": "Aviso: Este contenido refleja cómo utilizo estas herramientas en mi día a día y puede estar desactualizado en relación con las versiones más recientes. Consulte siempre la documentación oficial para obtener información actualizada."
+  },
+  "resources": {
+    "title": "Enlaces útiles",
+    "subtitle": "Documentacao oficial e referencias",
+    "items": [
+      {
+        "name": "Documentación de Tailwind CSS",
+        "description": "Documentación oficial de Tailwind CSS con ejemplos, referencias de clases y guías de configuración.",
+        "url": "https://tailwindcss.com/docs"
+      },
+      {
+        "name": "shadcn/interfaz de usuario",
+        "description": "Biblioteca de componentes reutilizables creados con Radix UI y Tailwind CSS. Código abierto y personalizable.",
+        "url": "https://ui.shadcn.com"
+      },
+      {
+        "name": "Next.js Documentos",
+        "description": "Documentación oficial de Next.js con App Router, Server Components y mucho más.",
+        "url": "https://nextjs.org/docs"
+      },
+      {
+        "name": "Raíz de la interfaz de usuario",
+        "description": "Primitivas de interfaz de usuario accesibles y sin estilo que forman la base de los componentes de shadcn/ui.",
+        "url": "https://www.radix-ui.com"
+      },
+      {
+        "name": "IntelliSense de Tailwind CSS",
+        "description": "Extensión de VS Code con autocompletado, linting y vista previa de clases Tailwind.",
+        "url": "https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss"
+      },
+      {
+        "name": "clsx + tailwind-merge",
+        "description": "Combinación que utilizo en el helper cn() para fusionar clases Tailwind de forma segura y sin conflictos.",
+        "url": "https://github.com/dcastil/tailwind-merge"
+      }
+    ]
+  },
+  "setup": {
+    "title": "Configuración inicial",
+    "subtitle": "¿Cómo lo configuro desde cero?",
+    "description": "Los pasos que sigo para iniciar cualquier proyecto Next.js con Tailwind + shadcn/ui ya configurado y listo para producir.",
+    "steps": [
+      {
+        "title": "Crear el proyecto con Next.js",
+        "description": "Utilizo create-next-app con TypeScript, Tailwind y App Router ya habilitados de fábrica.",
+        "code": "npx create-next-app@latest meu-projeto --typescript --tailwind --eslint --app --src-dir"
+      },
+      {
+        "title": "Iniciar shadcn/ui",
+        "description": "El CLI de shadcn configura todo automáticamente: rutas, tokens, variables CSS y la carpeta components/ui.",
+        "code": "npx shadcn@latest init"
+      },
+      {
+        "title": "Añadir componentes según sea necesario.",
+        "description": "Nunca instalo todo de una vez. Voy añadiendo solo lo que el proyecto necesita.",
+        "code": "npx shadcn@latest añadir botón tarjeta cuadro de diálogo de entrada npx shadcn@latest añadir tabla formulario seleccionar área de texto"
+      },
+      {
+        "title": "Configurar o tema no globals.css",
+        "description": "Personalizo las variables CSS del tema (colores, radios, fuentes) directamente en globals.css. Esto garantiza la coherencia en todo el proyecto.",
+        "code": "@capa base {\n  :root {\n    --background: 0 0% 100%;\n    --foreground: 240 10% 3.9%;\n    --primary: 240 5.9% 10%;\n    --primary-foreground: 0 0% 98%;\n    --radius: 0.5rem;\n  } }"
+      }
+    ]
+  },
+  "components": {
+    "title": "Componentes en la práctica",
+    "subtitle": "Ejemplos reales del día a día",
+    "description": "Estos son los patrones que utilizo en prácticamente todos los proyectos. Componentes de shadcn compuestos con Tailwind de forma limpia y reutilizable.",
+    "items": [
+      {
+        "name": "Tarjeta con pasador y distintivo",
+        "description": "Tarjeta reutilizable con un sutil efecto hover, insignia de estado y diseño flexbox. La utilizo mucho en listados de proyectos y paneles de control.",
+        "code": "<Card className=\"group border-border bg-card/50 transition-colors hover:border-primary/20\"> <CardHeader className=\"pb-2\"> <div className=\"flex items-center justify-between\"> <CardTitle className=\"text-base\">Título</CardTitle>\n      <Insignia variante=\"secundaria\">Activo</Insignia> </div> </Cabecera de tarjeta> <Contenido de tarjeta> <p clase=\"texto-pequeño texto-atenuado-primer plano\">Descripción aquí</p> </Contenido de tarjeta> </Tarjeta>"
+      },
+      {
+        "name": "Botones con variantes",
+        "description": "El sistema de variantes de shadcn es muy potente. Lo combino con clases utilitarias para crear botones consistentes.",
+        "code": "<div className=\"flex gap-3\"> <Button>Primario</Button> <Button variant=\"secondary\">Secundario</Button> <Button variant=\"outline\" className=\"gap-1.5\"> <Github className=\"h-4 w-4\" /> GitHub </Button>\n  <Button variant=\"ghost\" size=\"icon\"> <Sun className=\"h-4 w-4\" /> </Button> </div>"
+      },
+      {
+        "name": "Formulario de validación (Formulario Hook React + Zod)",
+        "description": "Esta es la pila que más utilizo para formularios: shadcn Form + React Hook Form + Zod. Tipo seguro, validación automática y UX consistente.",
+        "code": "const formSchema = z.object({\n  email: z.string().email(\"Email invalido\"),\n  name: z.string().min(2, \"Minimo 2 caracteres\"),\n}) <Form {...form}>\n  <FormField name=\"email\" render={({ field }) => ( <FormItem> <FormLabel>Correo electrónico</FormLabel> <FormControl> <Input placeholder=\"seu@email.com\" {...field} /> </FormControl> <FormMessage /> </FormItem> )} /> </Form>"
+      }
+    ]
+  },
+  "patterns": {
+    "title": "Patrones que sigo",
+    "subtitle": "Convenciones que mantienen el código limpio",
+    "items": [
+      {
+        "title": "Composición en lugar de accesorios gigantes",
+        "description": "Prefiero componer componentes más pequeños que crear uno con 20 propiedades. Es más legible, fácil de probar y fácil de mantener.",
+        "code": "// Ruim: <Card title=\"...\" subtitle=\"...\" icon=\"...\" badge=\"...\" /> // Bom: <Card> <CardHeader> <CardTitle>Título</CardTitle> <CardDescription>Subtítulo</CardDescription> </CardHeader> <CardContent>...</CardContent>\n</Card>"
+      },
+      {
+        "title": "cn() para clases condicionales",
+        "description": "Utilizo el helper cn() (clsx + twMerge) para combinar clases de forma segura, sin conflictos entre las clases Tailwind.",
+        "code": "import { cn } desde «@/lib/utils» <div className={cn(\n  \"rounded-lg border p-4 transition-colors\",\n  isActive && \"border-primary bg-primary/5\",\n  isDisabled && \"opacity-50 pointer-events-none\"\n)} />"
+      },
+      {
+        "title": "Tokens semánticos en lugar de colores hardcoded",
+        "description": "Nunca uso bg-white o text-gray-500 directamente. Siempre uso los tokens semánticos (bg-background, text-muted-foreground) para garantizar que el modo oscuro funcione.",
+        "code": "// Espacio: <div className=\"bg-white text-gray-900 border-gray-200\"> // Bom: <div className=\"bg-background text-foreground border-border\">"
+      },
+      {
+        "title": "Responsivo móvil primero",
+        "description": "Siempre empiezo por el móvil y voy subiendo. Tailwind lo facilita mucho con los prefijos md: y lg:.",
+        "code": "<div className=\"grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3\"> <Card>...</Card> <Card>...</Card> <Card>...</Card> </div>"
+      }
+    ]
+  },
+  "tips": {
+    "title": "Hacer vs No hacer",
+    "subtitle": "Errores comunes que veo en los proyectos",
+    "items": [
+      {
+        "title": "Espaciado",
+        "bad": "p-[16px] mx-[8px] mt-[24px]",
+        "good": "p-4 mx-2 mt-6",
+        "explanation": "Use a escala do Tailwind. Valores arbitrarios sujam o codigo e quebram a consistencia do spacing."
+      },
+      {
+        "title": "Colores",
+        "bad": "bg-blanco texto-negro oscuro:bg-gris-900",
+        "good": "bg-fondo texto-primer plano",
+        "explanation": "Los tokens semánticos se adaptan automáticamente al tema. Nunca codifiques colores de forma rígida."
+      },
+      {
+        "title": "Diseño",
+        "bad": "posición float-left: absoluta (diseño pra)",
+        "good": "flex items-center justify-between gap-4",
+        "explanation": "Flexbox resuelve el 90 % de los diseños. Reserva absoluto/fijo para superposiciones y descripciones emergentes."
+      },
+      {
+        "title": "Espaciado entre hijos",
+        "bad": "space-y-4 (puede dar lugar a conflictos)",
+        "good": "flex flex-col gap-4",
+        "explanation": "Gap es más predecible y no entra en conflicto con el margen de los componentes secundarios."
+      }
+    ]
+  },
+  "cta": {
+    "title": "¿Te han gustado los consejos?",
+    "description": "Si quieres intercambiar ideas sobre Tailwind, shadcn/ui o cualquier tema relacionado con el frontend, ¡ponte en contacto conmigo!",
+    "button": "Volver al portafolio"
+  }
+}

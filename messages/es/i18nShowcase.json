@@ -1,0 +1,34 @@
+{
+  "useTranslations": {
+    "title": "useTranslations()",
+    "badge": "Hook de cliente",
+    "description": "Utiliza `useTranslations` en los componentes del cliente para obtener la función `t()` de un espacio de nombres, con autocompletado y verificación de tipos mediante TypeScript, lo que facilita la interpolación, la pluralización y la representación en el cliente."
+  },
+  "getTranslations": {
+    "title": "getTranslations()",
+    "badge": "Servidor",
+    "description": "Utiliza `getTranslations` en los componentes del servidor o en las acciones del servidor para cargar espacios de nombres en el servidor (útil en SSR y acciones del servidor). Devuelve una versión asíncrona de `t()` lista para su uso en el renderizado del lado del servidor y en las acciones."
+  },
+  "namespaces": {
+    "title": "Espacios de nombres",
+    "badge": "Organización",
+    "description": "Organice los mensajes en espacios de nombres (por ejemplo, `global`, `admin.userManagement`) para facilitar la modularidad y la reutilización. Combine espacios de nombres en el componente cuando sea necesario para componer traducciones específicas del contexto."
+  },
+  "pluralization": {
+    "title": "Pluralización",
+    "badge": "Formato",
+    "description": "Utilice reglas ICU para tratar plurales y variaciones numéricas (por ejemplo: =0 {nenhum}, one {1}, other {#}), asegurándose de que las formas gramaticales sean correctas según la cantidad."
+  },
+  "interpolation": {
+    "title": "Interpolación",
+    "badge": "Variables",
+    "description": "Inserta marcadores de posición (por ejemplo, `{name}`) en los mensajes y pasa valores a `t()` para interpolar contenido dinámico de forma segura y tipada."
+  },
+  "dateFormatting": {
+    "title": "Formato de fecha/número",
+    "badge": "API internacional",
+    "description": "Formatea fechas y números utilizando `Intl.DateTimeFormat` e `Intl.NumberFormat`, respetando la `configuración regional` activa y las convenciones regionales."
+  },
+  "title": "Métodos de traducción",
+  "description": "Ejemplos y buenas prácticas de internacionalización con next-intl: tipografía, automatización y validación de calidad."
+}

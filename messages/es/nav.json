@@ -1,0 +1,20 @@
+{
+  "about": "Acerca de",
+  "projects": "Proyectos",
+  "experience": "Experiencia",
+  "aiInnovation": "IA e innovación",
+  "contact": "Contacto",
+  "i18nShowcase": "Muestra de i18n",
+  "i18nShowcaseDesc": "Internacionalización con next-intl y DeepL",
+  "aiTips": "Consejos de IA",
+  "aiTipsDesc": "v0, Copilot, Prompts y herramientas de IA",
+  "tailwindTips": "Viento a favor + shadcn/ui",
+  "tailwindTipsDesc": "Configuración, componentes y buenas prácticas",
+  "reactQueryTips": "React Consulta",
+  "reactQueryTipsDesc": "Caché, mutaciones y optimización",
+  "portfolio": "Cartera",
+  "implementations": "Implementaciones",
+  "implementationsDesc": "Características técnicas que he creado",
+  "tips": "Consejos y guías",
+  "tipsDesc": "Contenido educativo para desarrolladores"
+}
