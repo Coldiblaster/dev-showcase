@@ -38,7 +38,10 @@ export const localeDisplayName: Record<Locale, string> = Object.fromEntries(
  * Short country/code sigla for each locale (e.g., 'br', 'us')
  */
 export const localeCode: Record<Locale, string> = Object.fromEntries(
-  Object.entries(LOCALES_CONFIG).map(([k, v]) => [k, (v as any).code]),
+  Object.entries(LOCALES_CONFIG).map(([k, v]) => [
+    k,
+    (v as { code: string }).code,
+  ]),
 ) as Record<Locale, string>;
 
 /**

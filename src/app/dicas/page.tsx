@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getContentByCategory } from "@/data/content";
 
-const iconMap: Record<string, React.ComponentType<any>> = {
+const iconMap: Record<string, React.ComponentType<unknown>> = {
   "ai-tips": Sparkles,
   "tailwind-tips": Palette,
 };

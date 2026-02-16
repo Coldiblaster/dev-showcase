@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { getDemoMessages } from "@/data/demo-messages";
+import { useQueryParams } from "@/hooks/use-query-params";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import type { Locale } from "@/lib/i18n";
 import { localeDisplayName, locales } from "@/lib/i18n";
+import { getPluralMessage, interpolate } from "@/lib/i18n/utils";
 
 export function LiveDemo() {
   const t = useTranslations("i18nPage");
@@ -25,34 +27,26 @@ export function LiveDemo() {
   // Use real translations from messages/*/i18nPage.json for the preview
   const msgs = getDemoMessages(demoLocale);
 
-  // Read initial state from query params (locale, count, name)
-  useEffect(() => {
-    try {
-      const params = new URLSearchParams(window.location.search);
-      const qLocale = params.get("locale");
-      const qCount = params.get("count");
-      const qName = params.get("name");
+  // useQueryParams para ler e atualizar query params
+  const [getParams, setParam] = useQueryParams();
 
-      if (qLocale && locales.includes(qLocale as Locale)) {
-        setDemoLocale(qLocale as Locale);
-      }
-      if (qCount && !Number.isNaN(Number(qCount))) {
-        setItemCount(Math.max(0, Number(qCount)));
-      }
-      if (qName) setName(qName);
-    } catch {
-      // ignore
+  // Inicializa estado a partir dos query params
+  useEffect(() => {
+    const params = getParams();
+    if (params.locale && locales.includes(params.locale as Locale)) {
+      setDemoLocale(params.locale as Locale);
     }
+    if (params.count && !Number.isNaN(Number(params.count))) {
+      setItemCount(Math.max(0, Number(params.count)));
+    }
+    if (params.name) setName(params.name);
   }, []);
 
-  // Sync state to URL so it's shareable
+  // Sincroniza estado com a URL
   useEffect(() => {
-    const params = new URLSearchParams();
-    if (demoLocale) params.set("locale", demoLocale);
-    if (typeof itemCount === "number") params.set("count", String(itemCount));
-    if (name) params.set("name", name);
-    const newUrl = `${window.location.pathname}?${params.toString()}`;
-    window.history.replaceState({}, "", newUrl);
+    setParam("locale", demoLocale);
+    setParam("count", String(itemCount));
+    setParam("name", name);
   }, [demoLocale, itemCount, name]);
 
   const demoDate = useMemo(() => {
@@ -81,133 +75,23 @@ export function LiveDemo() {
       es: "EUR",
       de: "EUR",
     };
-
-    // Base amount defined in BRL for demo purposes
     const baseAmountBRL = 1234567.89;
-
-    // Static demo conversion rates (BRL -> target). These are approximations
-    // and only for UI demonstration — replace with real API for production.
     const conversionFromBRL: Record<Locale, number> = {
-      "pt-BR": 1, // BRL
-      en: 0.2, // ~ 1 BRL = 0.20 USD
-      es: 0.18, // ~ 1 BRL = 0.18 EUR
+      "pt-BR": 1,
+      en: 0.2,
+      es: 0.18,
       de: 0.18,
     };
-
     const amount = baseAmountBRL * (conversionFromBRL[demoLocale] ?? 1);
-
     return new Intl.NumberFormat(localeForNumber[demoLocale], {
       style: "currency",
       currency: currencyForLocale[demoLocale] ?? "BRL",
     }).format(amount);
   }, [demoLocale]);
 
-  function formatNumberForLocale(n: number, locale: Locale) {
-    const localeMap: Record<Locale, string> = {
-      "pt-BR": "pt-BR",
-      en: "en-US",
-      es: "es-ES",
-      de: "de-DE",
-    };
-    return new Intl.NumberFormat(localeMap[locale]).format(n);
-  }
-
-  function interpolate(str: string, vars: Record<string, string | number>) {
-    return Object.keys(vars).reduce((acc, key) => {
-      const re = new RegExp(`\\{${key}\\}`, "g");
-      return acc.replace(re, String(vars[key]));
-    }, str);
-  }
-
-  function getPluralMessage(
-    msgs: { items: string },
-    count: number,
-    locale: Locale,
-  ) {
-    // msgs.items expected in ICU-like: {count, plural, =0 {...} one {...} other {...}}
-    const pattern = msgs.items || "{count, plural, other {{count}}}";
-
-    // Extract the inner content after "{count, plural," and parse balanced-brace variants.
-    const start = pattern.indexOf("{count");
-    const openIndex = pattern.indexOf("plural", start);
-    const variants: Record<string, string> = {};
-
-    if (openIndex >= 0) {
-      // Start parsing right after the 'plural' token, skipping spaces and commas.
-      let i = openIndex + "plural".length;
-      const n = pattern.length;
-      while (i < n) {
-        // skip whitespace and commas
-        while (i < n && /[\s,]/.test(pattern[i])) i++;
-        if (i >= n) break;
-
-        // read variant key (e.g., =0, one, other)
-        const keyMatch = pattern
-          .slice(i)
-          .match(/^(=\d+|zero|one|two|few|many|other)\b/);
-        if (!keyMatch) break;
-        const key = keyMatch[1];
-        i += key.length;
-
-        // skip whitespace and commas to opening brace
-        while (i < n && /[\s,]/.test(pattern[i])) i++;
-        // ensure we are at a '{' that starts the variant body
-        while (i < n && pattern[i] !== "{") i++;
-        if (i >= n || pattern[i] !== "{") break;
-
-        // collect balanced brace content
-        i++; // skip '{'
-        let depth = 1;
-        let buf = "";
-        while (i < n && depth > 0) {
-          const ch = pattern[i];
-          if (ch === "{") {
-            depth++;
-            buf += ch;
-            i++;
-            continue;
-          }
-          if (ch === "}") {
-            depth--;
-            if (depth === 0) {
-              i++; // consume closing brace and stop
-              break;
-            }
-            buf += ch;
-            i++;
-            continue;
-          }
-          buf += ch;
-          i++;
-        }
-
-        variants[key] = buf.trim();
-      }
-    }
-
-    const localeMap: Record<Locale, string> = {
-      "pt-BR": "pt-BR",
-      en: "en-US",
-      es: "es-ES",
-      de: "de-DE",
-    };
-
-    const pr = new Intl.PluralRules(localeMap[locale]);
-    const category = pr.select(count);
-
-    let template =
-      variants[`=${count}`] ??
-      variants[category] ??
-      variants.other ??
-      "{count}";
-    const formattedCount = formatNumberForLocale(count, locale);
-    // replace ICU # or {count}
-    template = template.replace(/#|\{count\}/g, String(formattedCount));
-    return template;
-  }
-
+  // Pluralização usando utilitário
   const pluralResult = getPluralMessage(
-    { items: msgs.items },
+    msgs.items || "{count, plural, other {{count}}}",
     itemCount,
     demoLocale,
   );

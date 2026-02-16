@@ -1,21 +1,21 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { AITips } from "@/features/guides/ai-tips";
-import { ReactQueryTips } from "@/features/guides/react-query-tips";
-import { TailwindTips } from "@/features/guides/tailwind-tips";
-import { I18nShowcase } from "@/features/implementations/i18n-showcase";
 import {
   CONTENT_ITEMS,
   type ContentItem,
   getContentBySlug,
 } from "@/data/content";
+import { AITips } from "@/features/guides/ai-tips";
+import { ReactQueryTips } from "@/features/guides/react-query-tips";
+import { TailwindTips } from "@/features/guides/tailwind-tips";
+import { I18nShowcase } from "@/features/implementations/i18n-showcase";
 
 /**
  * Mapeamento de componentes disponíveis para renderização dinâmica.
  * Adicione novos componentes aqui conforme necessário.
  */
-const COMPONENT_MAP: Record<string, React.ComponentType<any>> = {
+const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
   I18nShowcase,
   AITips,
   TailwindTips,

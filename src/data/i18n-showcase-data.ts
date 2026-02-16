@@ -30,7 +30,10 @@ export function useI18nShowcaseData(): I18nShowcaseItem[] {
         const short = key.replace(/^i18nShowcase\./, "");
 
         // 1) try to read raw message (avoids formatting runtime)
-        const rawGetter = (tShow as any).raw;
+        const rawGetter =
+          typeof tShow === "function" && "raw" in tShow
+            ? (tShow as { raw: (key: string) => string }).raw
+            : undefined;
         if (typeof rawGetter === "function") {
           const raw = rawGetter(short);
           if (typeof raw === "string" && raw && raw !== short) return raw;
@@ -38,7 +41,7 @@ export function useI18nShowcaseData(): I18nShowcaseItem[] {
 
         // 2) fallback: try to call translator but guard against missing params
         try {
-          const res = (tShow as any)(short);
+          const res = typeof tShow === "function" ? tShow(short) : undefined;
           if (typeof res === "string" && res && res !== short) return res;
         } catch (err) {
           // translator may throw if placeholders are missing; fallthrough to fallback
@@ -49,14 +52,17 @@ export function useI18nShowcaseData(): I18nShowcaseItem[] {
       }
 
       // non-showcase keys (i18nPage)
-      const rawGetterPage = (tPage as any).raw;
+      const rawGetterPage =
+        typeof tPage === "function" && "raw" in tPage
+          ? (tPage as { raw: (key: string) => string }).raw
+          : undefined;
       if (typeof rawGetterPage === "function") {
         const raw = rawGetterPage(key);
         if (typeof raw === "string" && raw && raw !== key) return raw;
       }
 
       try {
-        const res = (tPage as any)(key);
+        const res = typeof tPage === "function" ? tPage(key) : undefined;
         if (typeof res === "string" && res && res !== key) return res;
       } catch (err) {
         console.debug(
