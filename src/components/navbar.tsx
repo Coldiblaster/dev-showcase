@@ -20,6 +20,7 @@ import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
+import { GlobalSearch } from "./global-search";
 import { LanguageSwitcher } from "./language-switcher";
 
 function NavSubmenu({
@@ -269,13 +270,20 @@ export function Navbar() {
               href="/dicas/react-query-tips"
               isActive={pathname === "/dicas/react-query-tips"}
             />
+            <SubmenuItem
+              icon={Wrench}
+              label={t("devResources")}
+              sublabel={t("devResourcesDesc")}
+              href="/dicas/dev-resources"
+              isActive={pathname === "/dicas/dev-resources"}
+            />
           </NavSubmenu>
         </div>
 
         {/* Right side */}
         <div className="flex items-center gap-3">
+          <GlobalSearch />
           <LanguageSwitcher />
-
           {/* Mobile toggle */}
           <motion.button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
@@ -427,6 +435,24 @@ export function Navbar() {
                     <span className="font-medium">{t("reactQueryTips")}</span>
                     <p className="text-xs text-muted-foreground/70">
                       {t("reactQueryTipsDesc")}
+                    </p>
+                  </div>
+                </button>
+              </Link>
+              <Link href="/dicas/dev-resources">
+                <button
+                  onClick={() => setIsMobileOpen(false)}
+                  className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm ${
+                    pathname === "/dicas/dev-resources"
+                      ? "bg-primary/10 text-primary"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  <Wrench className="h-4 w-4" />
+                  <div>
+                    <span className="font-medium">{t("devResources")}</span>
+                    <p className="text-xs text-muted-foreground/70">
+                      {t("devResourcesDesc")}
                     </p>
                   </div>
                 </button>

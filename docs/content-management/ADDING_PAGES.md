@@ -110,6 +110,23 @@ const COMPONENT_MAP: Record<string, React.ComponentType<any>> = {
   "reactQueryTipsDesc": "Cache, mutations e otimização"
 }
 ```
+## Como adicionar uma nova página (feature)
+
+1. Crie uma pasta em `src/features/<nome-da-feature>`
+2. Separe os componentes, dados e testes:
+  - `dev-resources-page.tsx` (container)
+  - `live-components-section.tsx`, `code-snippets-section.tsx`, etc.
+  - `data/` (dados mocks ou reais)
+  - `__tests__/` (testes unitários)
+3. Crie a rota em `src/app/<nome-da-feature>/page.tsx` importando o container
+4. Prepare textos para i18n em `messages/`
+5. Documente e teste
+
+Exemplo:
+- `src/app/dev-resources/page.tsx`
+- `src/features/dev-resources/`
+- `src/features/dev-resources/data/`
+- `src/features/dev-resources/__tests__/`
 
 **Arquivo:** `src/components/navbar.tsx`
 

@@ -16,5 +16,7 @@
   "implementations": "Implementações",
   "implementationsDesc": "Features técnicas que construí",
   "tips": "Dicas & Guias",
-  "tipsDesc": "Conteúdo educativo para devs"
+  "tipsDesc": "Conteúdo educativo para devs",
+  "devResources": "Recursos Dev",
+  "devResourcesDesc": "Componentes, snippets, refatoração e playground"
 }

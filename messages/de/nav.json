@@ -16,5 +16,7 @@
   "implementations": "Implementierungen",
   "implementationsDesc": "Technische Funktionen, die ich entwickelt habe",
   "tips": "Tipps & Anleitungen",
-  "tipsDesc": "Bildungsinhalte für Entwickler"
+  "tipsDesc": "Bildungsinhalte für Entwickler",
+  "devResources": "Dev-Ressourcen",
+  "devResourcesDesc": "Komponenten, Snippets, Refactoring und Playground"
 }

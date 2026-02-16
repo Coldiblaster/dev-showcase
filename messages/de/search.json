@@ -1,0 +1,41 @@
+{
+  "open": "Suche öffnen",
+  "placeholder": "Suchen...",
+  "title": "Website durchsuchen",
+  "inputPlaceholder": "Projekte, Implementierungen und Anleitungen suchen...",
+  "clear": "Suche löschen",
+  "startTyping": "Beginnen Sie mit der Eingabe, um zu suchen",
+  "hint": "Projekte, Implementierungen und Anleitungen",
+  "noResults": "Keine Ergebnisse gefunden",
+  "tryOtherTerms": "Versuchen Sie andere Suchbegriffe",
+  "navigate": "Navigieren",
+  "select": "Auswählen",
+  "close": "Schließen",
+  "project": "Projekt",
+  "implementation": "Implementierung",
+  "guide": "Anleitung",
+  "portfolio": {
+    "title": "Portfolio mit i18n",
+    "description": "Mehrsprachiges Portfolio mit Next.js 16, TypeScript und Tailwind CSS"
+  },
+  "authSystem": {
+    "title": "Authentifizierungssystem",
+    "description": "Vollständige Authentifizierung mit Supabase, Routenschutz und Sitzungsverwaltung"
+  },
+  "i18nCustom": {
+    "title": "i18n ohne Bibliotheken",
+    "description": "Maßgeschneidertes Internationalisierungssystem unter Verwendung der Context API"
+  },
+  "framerMotion": {
+    "title": "Animationen mit Framer Motion",
+    "description": "Scroll-Animationen, Seitenübergänge und Mikrointeraktionen"
+  },
+  "aiTips": {
+    "title": "KI-Tipps",
+    "description": "Wie ich GitHub Copilot, v0 und Vercel AI SDK täglich nutze"
+  },
+  "tailwindTips": {
+    "title": "Tailwind CSS + shadcn/ui",
+    "description": "Einrichtung, Komponenten und bewährte Verfahren in Projekten Next.js"
+  }
+}

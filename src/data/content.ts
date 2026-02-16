@@ -35,6 +35,14 @@ export const CONTENT_ITEMS: ContentItem[] = [
     component: "ReactQueryTips",
     category: "guide",
   },
+  {
+    slug: "dev-resources",
+    title: "Recursos para Desenvolvedores",
+    description:
+      "Componentes ao vivo, snippets, refatoração e playground interativo.",
+    component: "DevResourcesPage",
+    category: "guide",
+  },
 ];
 
 export function getContentBySlug(slug: string) {

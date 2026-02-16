@@ -16,6 +16,7 @@ const NAMESPACES = [
   "footer",
   "i18nPage",
   "tailwindTipsPage",
+  "search",
 ] as const;
 
 /**

@@ -7,6 +7,7 @@ import {
   getContentBySlug,
 } from "@/data/content";
 import { AITips } from "@/features/guides/ai-tips";
+import { DevResourcesPage } from "@/features/guides/dev-resources";
 import { ReactQueryTips } from "@/features/guides/react-query-tips";
 import { TailwindTips } from "@/features/guides/tailwind-tips";
 import { I18nShowcase } from "@/features/implementations/i18n-showcase";
@@ -20,6 +21,7 @@ const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
   AITips,
   TailwindTips,
   ReactQueryTips,
+  DevResourcesPage,
 };
 
 /**
