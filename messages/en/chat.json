@@ -3,13 +3,14 @@
   "subtitle": "Ask about Vinicius",
   "open": "Open chat",
   "close": "Close chat",
-  "welcome": "Hi! I'm Vinicius' assistant. Ask me anything about him — experience, skills, projects...",
+  "welcome": "Hi! I'm Vinicius' assistant. Ask about his experience, skills, projects or even about this platform!",
   "placeholder": "Ask something...",
   "error": "Sorry, something went wrong. Please try again.",
   "limitReached": "Message limit reached. Use the contact form for more details.",
   "suggestions": [
-    "What technologies does Vinicius work with?",
-    "Does he have leadership experience?",
-    "What projects has he built?"
+    "Why should we hire Vinicius?",
+    "How does he lead and mentor teams?",
+    "What is this platform?",
+    "What's his stack and experience?"
   ]
 }

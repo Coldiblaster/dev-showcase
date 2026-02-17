@@ -3,13 +3,14 @@
   "subtitle": "Pergunte sobre o Vinicius",
   "open": "Abrir chat",
   "close": "Fechar chat",
-  "welcome": "Ola! Sou o assistente do Vinicius. Pergunte qualquer coisa sobre ele — experiencia, skills, projetos...",
+  "welcome": "Olá! Sou o assistente do Vinicius. Pergunte sobre experiência, skills, projetos ou até sobre essa plataforma!",
   "placeholder": "Pergunte algo...",
   "error": "Desculpe, algo deu errado. Tente novamente.",
-  "limitReached": "Limite de mensagens atingido. Use o formulario de contato para mais detalhes.",
+  "limitReached": "Limite de mensagens atingido. Use o formulário de contato para mais detalhes.",
   "suggestions": [
-    "Quais tecnologias o Vinicius domina?",
-    "Ele tem experiencia com lideranca?",
-    "Quais projetos ele ja fez?"
+    "Por que contratar o Vinicius?",
+    "Como ele lidera e mentora o time?",
+    "O que é essa plataforma?",
+    "Qual a stack e experiência dele?"
   ]
 }

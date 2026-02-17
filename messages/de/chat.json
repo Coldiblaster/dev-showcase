@@ -1,15 +1,16 @@
 {
   "title": "VB Assistent",
   "subtitle": "Fragen Sie nach Vinicius",
-  "open": "Chat offnen",
-  "close": "Chat schliessen",
-  "welcome": "Hallo! Ich bin der Assistent von Vinicius. Fragen Sie mich alles uber ihn — Erfahrung, Skills, Projekte...",
+  "open": "Chat öffnen",
+  "close": "Chat schließen",
+  "welcome": "Hallo! Ich bin der Assistent von Vinicius. Fragen Sie nach Erfahrung, Skills, Projekten oder auch über diese Plattform!",
   "placeholder": "Fragen Sie etwas...",
   "error": "Entschuldigung, etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
-  "limitReached": "Nachrichtenlimit erreicht. Nutzen Sie das Kontaktformular fur weitere Details.",
+  "limitReached": "Nachrichtenlimit erreicht. Nutzen Sie das Kontaktformular für weitere Details.",
   "suggestions": [
-    "Welche Technologien beherrscht Vinicius?",
-    "Hat er Fuhrungserfahrung?",
-    "Welche Projekte hat er entwickelt?"
+    "Warum sollte man Vinicius einstellen?",
+    "Wie führt und mentort er Teams?",
+    "Was ist diese Plattform?",
+    "Was ist sein Stack und seine Erfahrung?"
   ]
 }
