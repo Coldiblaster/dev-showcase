@@ -1,29 +1,25 @@
 {
   "title": "Projetos",
   "subtitle": "Trabalhos em destaque",
-  "viewProject": "Ver Projeto",
   "viewCode": "Ver Codigo",
   "items": [
     {
       "title": "Mind Schedule",
       "description": "Painel administrativo onde profissionais cadastram negocios, configuram horarios, definem servicos e valores. Integra autenticacao via Clerk, sugestoes por IA e deploy na Vercel.",
       "tags": ["Next.js 15", "TypeScript", "Tailwind", "Clerk", "Zustand", "Zod"],
-      "github": "https://github.com/Coldiblaster/mind-schedule",
-      "demo": "https://mind-schedule.vercel.app"
+      "github": "https://github.com/Coldiblaster/mind-schedule"
     },
     {
       "title": "Dynamic Form Builder",
       "description": "Aplicacao para criacao e resposta de formularios dinamicos com perguntas condicionais, multiplos tipos de resposta e painel de visualizacao. 100% responsiva.",
       "tags": ["Next.js", "TypeScript", "React Hook Form", "Tailwind", "shadcn/ui"],
-      "github": "https://github.com/Coldiblaster/dynamic-form-builder",
-      "demo": "https://dynamic-form-builder-fawn.vercel.app"
+      "github": "https://github.com/Coldiblaster/dynamic-form-builder"
     },
     {
       "title": "Checkout Cakto",
       "description": "Mini-checkout simulando fluxo real de compra de curso digital. UX mobile-first, validacoes robustas, calculo de taxas, parcelamento inteligente e destaque para PIX.",
       "tags": ["Next.js 15", "React 19", "Zod", "Tailwind 4", "shadcn/ui"],
-      "github": "https://github.com/Coldiblaster/teste-frontend-cakto-vinicius-bastazin",
-      "demo": "https://teste-frontend-cakto-bastazin.vercel.app/checkout"
+      "github": "https://github.com/Coldiblaster/teste-frontend-cakto-vinicius-bastazin"
     },
     {
       "title": "Widget iFrame Bonifiq",
@@ -32,16 +28,22 @@
       "github": "https://github.com/Coldiblaster/prova-frontend-bonifiq"
     },
     {
+      "title": "My Portfolio",
+      "description": "Portfolio pessoal responsivo com design moderno, animacoes suaves e foco em acessibilidade. Vitrine tecnica e visual para recrutadores e networking.",
+      "tags": ["Next.js 15", "TypeScript", "Tailwind", "shadcn/ui"],
+      "github": "https://github.com/Coldiblaster/my-portfolio"
+    },
+    {
+      "title": "Football League Tables",
+      "description": "Pagina para selecionar campeonatos de futebol do mundo todo e visualizar rodadas de todos os times ou individualmente, consumindo a API do football-data.org.",
+      "tags": ["Next.js 14", "TypeScript", "Tailwind", "React Query"],
+      "github": "https://github.com/Coldiblaster/football-league-tables"
+    },
+    {
       "title": "GoBarber",
       "description": "Plataforma completa de agendamento para barbearias com backend em Node.js (TDD, Clean Architecture, SOLID) e frontend React com Styled Components.",
       "tags": ["React", "Node.js", "TypeScript", "Styled Components", "TDD"],
       "github": "https://github.com/Coldiblaster/go-barber-web"
-    },
-    {
-      "title": "GoRestaurant Mobile",
-      "description": "App de delivery em React Native para pedidos de comida. Interface intuitiva, integracao com API e navegacao fluida entre categorias e itens.",
-      "tags": ["React Native", "TypeScript", "Styled Components"],
-      "github": "https://github.com/Coldiblaster/desafio-delivery-react-native"
     }
   ]
 }

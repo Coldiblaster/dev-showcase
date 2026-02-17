@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { ArrowUpRight, Code, Github } from "lucide-react";
+import { Code, Github } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
 
@@ -20,7 +20,6 @@ export function ProjectsSection() {
 
   return (
     <section id="projects" className="relative px-6 py-32" ref={ref}>
-      {/* Background accent */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.03),transparent_70%)]" />
 
       <div className="relative mx-auto max-w-6xl">
@@ -52,52 +51,11 @@ export function ProjectsSection() {
               transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
             >
               <Card className="group h-full border-border bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
-                {/* Project visual */}
-                <div className="relative overflow-hidden border-b border-border">
+                <div className="border-b border-border">
                   <div className="flex h-48 items-center justify-center bg-secondary/50">
-                    <motion.div
-                      className="flex items-center gap-2 font-mono text-sm text-muted-foreground"
-                      whileHover={{ scale: 1.05 }}
-                    >
+                    <div className="flex items-center gap-2 font-mono text-sm text-muted-foreground">
                       <Code className="h-5 w-5 text-primary" />
                       <span>{project.title}</span>
-                    </motion.div>
-                  </div>
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-primary/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <div className="flex gap-3">
-                      {project.demo && (
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Button
-                            size="sm"
-                            variant="secondary"
-                            className="gap-1.5"
-                          >
-                            <ArrowUpRight className="h-3.5 w-3.5" />
-                            {t("viewProject")}
-                          </Button>
-                        </a>
-                      )}
-                      {project.github && (
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            className="gap-1.5"
-                          >
-                            <Github className="h-3.5 w-3.5" />
-                            {t("viewCode")}
-                          </Button>
-                        </a>
-                      )}
                     </div>
                   </div>
                 </div>
@@ -123,13 +81,12 @@ export function ProjectsSection() {
                       </Badge>
                     ))}
                   </div>
-                  <div className="flex gap-2 pt-2">
+                  <div className="pt-2">
                     {project.github && (
                       <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1"
                       >
                         <Button
                           size="sm"
@@ -138,19 +95,6 @@ export function ProjectsSection() {
                         >
                           <Github className="h-3.5 w-3.5" />
                           {t("viewCode")}
-                        </Button>
-                      </a>
-                    )}
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1"
-                      >
-                        <Button size="sm" className="w-full gap-1.5 text-xs">
-                          <ArrowUpRight className="h-3.5 w-3.5" />
-                          {t("viewProject")}
                         </Button>
                       </a>
                     )}

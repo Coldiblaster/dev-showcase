@@ -1,83 +1,49 @@
 {
   "title": "Proyectos",
   "subtitle": "Trabajos destacados",
-  "viewProject": "Ver Proyecto",
   "viewCode": "Ver código",
   "items": [
     {
-      "title": "Horario mental",
+      "title": "Mind Schedule",
       "description": "Panel administrativo donde los profesionales registran negocios, configuran horarios, definen servicios y valores. Integra autenticación vía Clerk, sugerencias por IA y despliegue en Vercel.",
-      "tags": [
-        "Next.js 15",
-        "TypeScript",
-        "Viento de cola",
-        "Empleado",
-        "estado",
-        "Zod"
-      ],
-      "github": "https://github.com/Coldiblaster/mind-schedule",
-      "demo": "https://mind-schedule.vercel.app"
+      "tags": ["Next.js 15", "TypeScript", "Tailwind", "Clerk", "Zustand", "Zod"],
+      "github": "https://github.com/Coldiblaster/mind-schedule"
     },
     {
-      "title": "Generador dinámico de formularios",
-      "description": "Aplicación para la creación y respuesta de formularios dinámicos con preguntas condicionales, múltiples tipos de respuesta y panel de visualización. 100 % responsiva.",
-      "tags": [
-        "Next.js",
-        "TypeScript",
-        "React Forma de gancho",
-        "Viento de cola",
-        "shadcn/interfaz de usuario"
-      ],
-      "github": "https://github.com/Coldiblaster/dynamic-form-builder",
-      "demo": "https://dynamic-form-builder-fawn.vercel.app"
+      "title": "Dynamic Form Builder",
+      "description": "Aplicación para la creación y respuesta de formularios dinámicos con preguntas condicionales, múltiples tipos de respuesta y panel de visualización. 100% responsiva.",
+      "tags": ["Next.js", "TypeScript", "React Hook Form", "Tailwind", "shadcn/ui"],
+      "github": "https://github.com/Coldiblaster/dynamic-form-builder"
     },
     {
-      "title": "Finalizar compra Seleccionar",
+      "title": "Checkout Cakto",
       "description": "Mini-checkout que simula el flujo real de compra de un curso digital. UX mobile-first, validaciones robustas, cálculo de tasas, pago a plazos inteligente y destaque para PIX.",
-      "tags": [
-        "Next.js 15",
-        "React 19",
-        "Zod",
-        "Viento de cola 4",
-        "shadcn/interfaz de usuario"
-      ],
-      "github": "https://github.com/Coldiblaster/teste-frontend-cakto-vinicius-bastazin",
-      "demo": "https://teste-frontend-cakto-bastazin.vercel.app/checkout"
+      "tags": ["Next.js 15", "React 19", "Zod", "Tailwind 4", "shadcn/ui"],
+      "github": "https://github.com/Coldiblaster/teste-frontend-cakto-vinicius-bastazin"
     },
     {
       "title": "Widget iFrame Bonifiq",
       "description": "Widget incorporable mediante script externo que muestra datos de usuario y publicaciones a través de API. PostMessage entre parent e iframe, skeleton loaders y pruebas con Vitest.",
-      "tags": [
-        "React 19",
-        "TypeScript",
-        "Rápido",
-        "Vitest",
-        "Viento de cola 4",
-        "shadcn/interfaz de usuario"
-      ],
+      "tags": ["React 19", "TypeScript", "Vite", "Vitest", "Tailwind 4", "shadcn/ui"],
       "github": "https://github.com/Coldiblaster/prova-frontend-bonifiq"
     },
     {
-      "title": "Ir a la peluquería",
-      "description": "Plataforma completa de programación de citas para barberías con backend en Node.js (TDD, Clean Architecture, SOLID) y frontend React con Styled Components.",
-      "tags": [
-        "React",
-        "Node.js",
-        "TypeScript",
-        "Componentes con estilo",
-        "Desarrollo basado en pruebas"
-      ],
-      "github": "https://github.com/Coldiblaster/go-barber-web"
+      "title": "My Portfolio",
+      "description": "Portfolio personal responsivo con diseño moderno, animaciones suaves y enfoque en accesibilidad. Vitrina técnica y visual para reclutadores y networking.",
+      "tags": ["Next.js 15", "TypeScript", "Tailwind", "shadcn/ui"],
+      "github": "https://github.com/Coldiblaster/my-portfolio"
     },
     {
-      "title": "GoRestaurant Mobile",
-      "description": "Aplicación de reparto en React Native para pedidos de comida. Interfaz intuitiva, integración con API y navegación fluida entre categorías y artículos.",
-      "tags": [
-        "React Nativo",
-        "TypeScript",
-        "Componentes con estilo"
-      ],
-      "github": "https://github.com/Coldiblaster/desafio-delivery-react-native"
+      "title": "Football League Tables",
+      "description": "Página para seleccionar campeonatos de fútbol de todo el mundo y visualizar las rondas de todos los equipos o individualmente, consumiendo la API de football-data.org.",
+      "tags": ["Next.js 14", "TypeScript", "Tailwind", "React Query"],
+      "github": "https://github.com/Coldiblaster/football-league-tables"
+    },
+    {
+      "title": "GoBarber",
+      "description": "Plataforma completa de programación de citas para barberías con backend en Node.js (TDD, Clean Architecture, SOLID) y frontend React con Styled Components.",
+      "tags": ["React", "Node.js", "TypeScript", "Styled Components", "TDD"],
+      "github": "https://github.com/Coldiblaster/go-barber-web"
     }
   ]
 }
