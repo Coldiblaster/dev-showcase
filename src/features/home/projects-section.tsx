@@ -51,10 +51,10 @@ export function ProjectsSection() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
             >
-              <Card className="group h-full border-border bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
+              <Card className="group h-full overflow-hidden border-border bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
                 <div className="border-b border-border">
                   {project.image ? (
-                    <div className="relative h-48 overflow-hidden">
+                    <div className="relative h-48">
                       <Image
                         src={project.image}
                         alt={project.title}

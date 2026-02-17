@@ -5,66 +5,73 @@
   "viewSite": "Ver Site",
   "items": [
     {
+      "title": "Dev Showcase",
+      "description": "Plataforma de portfolio e conteudo tecnico com i18n (4 idiomas), SEO avancado, chatbot IA, busca global e implementacoes reais. O site que voce esta acessando agora.",
+      "tags": ["Next.js 16", "React 19", "TypeScript", "Tailwind 4", "shadcn/ui", "OpenAI"],
+      "image": "/portfolio/dev-showcase.webp",
+      "github": "https://github.com/Coldiblaster/dev-showcase"
+    },
+    {
       "title": "Azul Seguros",
       "description": "Azul Seguro Auto por Assinatura e o seguro para o seu carro por assinatura mensal. Plataforma completa com fluxo de contratacao.",
       "tags": ["React", "Next.js", "TypeScript", "Styled Components", "Framer Motion", "Storybook"],
-      "image": "/portfolio/azul-seguros-1.png",
+      "image": "/portfolio/azul-seguros-1.webp",
       "link": "https://assinatura.azulseguros.com.br/"
     },
     {
       "title": "Auto Facil Itau",
       "description": "Seguro Auto Facil e um produto da Azul Seguros em parceria com o Itau. Seguro para carro por assinatura mensal com UX simplificada.",
       "tags": ["Next.js", "TypeScript", "Styled Components", "Framer Motion", "Storybook"],
-      "image": "/portfolio/auto-facil-itau.png",
+      "image": "/portfolio/auto-facil-itau.webp",
       "link": "https://autofacilitau.azulseguros.com.br/"
     },
     {
       "title": "Rio Card Mais",
       "description": "Sistema de busca de pontos de atendimentos mais proximos do usuario com mapa interativo e filtros avancados.",
       "tags": ["Next.js", "TypeScript", "Tailwind", "shadcn/ui", "React Query", "Zustand", "Leaflet"],
-      "image": "/portfolio/rio-card-mais.png",
+      "image": "/portfolio/rio-card-mais.webp",
       "link": "https://ondeestamos.riocardmais.com.br/"
     },
     {
       "title": "Mind Schedule",
       "description": "Painel administrativo onde profissionais cadastram negocios, configuram horarios, definem servicos e valores. Integra autenticacao via Clerk, sugestoes por IA e deploy na Vercel.",
       "tags": ["Next.js 15", "TypeScript", "Tailwind", "Clerk", "Zustand", "Zod"],
-      "image": "/portfolio/mind-schedule.png",
+      "image": "/portfolio/mind-schedule.webp",
       "github": "https://github.com/Coldiblaster/mind-schedule"
     },
     {
       "title": "Safira Energia",
       "description": "Landing page criada para disponibilizar os servicos prestados pela Safira Energia, com design moderno e integracoes.",
       "tags": ["Next.js", "TypeScript", "Tailwind", "Framer Motion", "Firebase"],
-      "image": "/portfolio/safira-energia.png",
+      "image": "/portfolio/safira-energia.webp",
       "link": "https://safiraenergia.com.br/"
     },
     {
       "title": "UChallenger",
       "description": "Plataforma inovadora que otimiza o tempo dos jogadores, permitindo que obtenham lucratividade a qualquer momento em competicoes online.",
       "tags": ["Next.js", "TypeScript", "Tailwind", "shadcn/ui", "React Query", "Zod", "Zustand"],
-      "image": "/portfolio/uchallenger.png",
+      "image": "/portfolio/uchallenger.webp",
       "link": "https://uchallenger.com/"
     },
     {
       "title": "Stellantis Financiamentos APP",
       "description": "Portal do Cliente Stellantis Financiamentos: plataforma para gerenciamento completo de financiamentos, pagamentos seguros e consulta de parcelas.",
       "tags": ["TypeScript", "React Native", "Native Base"],
-      "image": "/portfolio/stellantis-financiamentos-app.png",
+      "image": "/portfolio/stellantis-financiamentos-app.webp",
       "link": "https://play.google.com/store/apps/details?id=com.app.plataforma.digital&hl=pt_BR"
     },
     {
       "title": "Stellantis Financial",
       "description": "Solucoes completas para consumidor final e concessionarias de financiamentos, seguros e consorcios.",
       "tags": ["Next.js", "TypeScript", "Tailwind", "Radix UI", "Prisma", "Storybook"],
-      "image": "/portfolio/stellantis-financial.png",
+      "image": "/portfolio/stellantis-financial.webp",
       "link": "https://www.stellantis-sf.com.br/"
     },
     {
       "title": "Stellantis Seguros",
       "description": "Produto focado em cotacoes de seguros de automoveis com fluxo intuitivo e design limpo.",
       "tags": ["Next.js", "TypeScript", "Tailwind", "Radix UI", "Storybook"],
-      "image": "/portfolio/stellantis-seguros.png",
+      "image": "/portfolio/stellantis-seguros.webp",
       "link": "https://www.stellantisseguros.com.br/"
     },
     {

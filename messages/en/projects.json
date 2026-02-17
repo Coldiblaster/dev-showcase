@@ -5,66 +5,73 @@
   "viewSite": "View Site",
   "items": [
     {
+      "title": "Dev Showcase",
+      "description": "Portfolio and technical content platform with i18n (4 languages), advanced SEO, AI chatbot, global search and real implementations. The site you are browsing right now.",
+      "tags": ["Next.js 16", "React 19", "TypeScript", "Tailwind 4", "shadcn/ui", "OpenAI"],
+      "image": "/portfolio/dev-showcase.webp",
+      "github": "https://github.com/Coldiblaster/dev-showcase"
+    },
+    {
       "title": "Azul Seguros",
       "description": "Azul Auto Insurance by Subscription is a monthly car insurance plan. Complete platform with subscription flow.",
       "tags": ["React", "Next.js", "TypeScript", "Styled Components", "Framer Motion", "Storybook"],
-      "image": "/portfolio/azul-seguros-1.png",
+      "image": "/portfolio/azul-seguros-1.webp",
       "link": "https://assinatura.azulseguros.com.br/"
     },
     {
       "title": "Auto Facil Itau",
       "description": "Auto Facil is a product by Azul Seguros in partnership with Itau. Monthly car insurance with simplified UX.",
       "tags": ["Next.js", "TypeScript", "Styled Components", "Framer Motion", "Storybook"],
-      "image": "/portfolio/auto-facil-itau.png",
+      "image": "/portfolio/auto-facil-itau.webp",
       "link": "https://autofacilitau.azulseguros.com.br/"
     },
     {
       "title": "Rio Card Mais",
       "description": "Search system for nearby service points with interactive map and advanced filters.",
       "tags": ["Next.js", "TypeScript", "Tailwind", "shadcn/ui", "React Query", "Zustand", "Leaflet"],
-      "image": "/portfolio/rio-card-mais.png",
+      "image": "/portfolio/rio-card-mais.webp",
       "link": "https://ondeestamos.riocardmais.com.br/"
     },
     {
       "title": "Mind Schedule",
       "description": "Admin panel where professionals register businesses, configure schedules, define services and prices. Integrates Clerk authentication, AI suggestions and Vercel deployment.",
       "tags": ["Next.js 15", "TypeScript", "Tailwind", "Clerk", "Zustand", "Zod"],
-      "image": "/portfolio/mind-schedule.png",
+      "image": "/portfolio/mind-schedule.webp",
       "github": "https://github.com/Coldiblaster/mind-schedule"
     },
     {
       "title": "Safira Energia",
       "description": "Landing page created to showcase services provided by Safira Energia, with modern design and integrations.",
       "tags": ["Next.js", "TypeScript", "Tailwind", "Framer Motion", "Firebase"],
-      "image": "/portfolio/safira-energia.png",
+      "image": "/portfolio/safira-energia.webp",
       "link": "https://safiraenergia.com.br/"
     },
     {
       "title": "UChallenger",
       "description": "Innovative platform that optimizes player time, enabling them to earn profits anytime in online competitions.",
       "tags": ["Next.js", "TypeScript", "Tailwind", "shadcn/ui", "React Query", "Zod", "Zustand"],
-      "image": "/portfolio/uchallenger.png",
+      "image": "/portfolio/uchallenger.webp",
       "link": "https://uchallenger.com/"
     },
     {
       "title": "Stellantis Financiamentos APP",
       "description": "Stellantis Financing Customer Portal: platform for complete financing management, secure payments and installment tracking.",
       "tags": ["TypeScript", "React Native", "Native Base"],
-      "image": "/portfolio/stellantis-financiamentos-app.png",
+      "image": "/portfolio/stellantis-financiamentos-app.webp",
       "link": "https://play.google.com/store/apps/details?id=com.app.plataforma.digital&hl=pt_BR"
     },
     {
       "title": "Stellantis Financial",
       "description": "Complete solutions for consumers and dealerships including financing, insurance, and consortia.",
       "tags": ["Next.js", "TypeScript", "Tailwind", "Radix UI", "Prisma", "Storybook"],
-      "image": "/portfolio/stellantis-financial.png",
+      "image": "/portfolio/stellantis-financial.webp",
       "link": "https://www.stellantis-sf.com.br/"
     },
     {
       "title": "Stellantis Seguros",
       "description": "Product focused on car insurance quotes with intuitive flow and clean design.",
       "tags": ["Next.js", "TypeScript", "Tailwind", "Radix UI", "Storybook"],
-      "image": "/portfolio/stellantis-seguros.png",
+      "image": "/portfolio/stellantis-seguros.webp",
       "link": "https://www.stellantisseguros.com.br/"
     },
     {
