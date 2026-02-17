@@ -1,0 +1,15 @@
+{
+  "title": "VB Assistent",
+  "subtitle": "Fragen Sie nach Vinicius",
+  "open": "Chat offnen",
+  "close": "Chat schliessen",
+  "welcome": "Hallo! Ich bin der Assistent von Vinicius. Fragen Sie mich alles uber ihn — Erfahrung, Skills, Projekte...",
+  "placeholder": "Fragen Sie etwas...",
+  "error": "Entschuldigung, etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+  "limitReached": "Nachrichtenlimit erreicht. Nutzen Sie das Kontaktformular fur weitere Details.",
+  "suggestions": [
+    "Welche Technologien beherrscht Vinicius?",
+    "Hat er Fuhrungserfahrung?",
+    "Welche Projekte hat er entwickelt?"
+  ]
+}

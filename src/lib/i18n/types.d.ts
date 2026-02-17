@@ -3,6 +3,7 @@
 // Central type for all namespaces (auto-imported by Next.js)
 import type about from "../../../messages/pt-BR/about.json";
 import type ai from "../../../messages/pt-BR/ai.json";
+import type chat from "../../../messages/pt-BR/chat.json";
 import type aiInnovation from "../../../messages/pt-BR/aiInnovation.json";
 import type contact from "../../../messages/pt-BR/contact.json";
 import type devResourcesPage from "../../../messages/pt-BR/devResourcesPage.json";
@@ -28,6 +29,7 @@ export type Messages = {
   about: typeof about;
   nav: typeof nav;
   ai: typeof ai;
+  chat: typeof chat;
   aiInnovation: typeof aiInnovation;
   contact: typeof contact;
   devResourcesPage: typeof devResourcesPage;

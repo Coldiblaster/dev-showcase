@@ -1,5 +1,6 @@
 import about from "./about.json";
 import ai from "./ai.json";
+import chat from "./chat.json";
 import aiInnovation from "./aiInnovation.json";
 import contact from "./contact.json";
 import devResourcesPage from "./devResourcesPage.json";
@@ -25,6 +26,7 @@ export default {
   about,
   nav,
   ai,
+  chat,
   aiInnovation,
   contact,
   devResourcesPage,

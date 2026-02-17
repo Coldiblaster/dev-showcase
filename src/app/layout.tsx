@@ -7,6 +7,7 @@ import { getMessages } from "next-intl/server";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+import { ChatWidget } from "@/components/chat/chat-widget";
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
 import { Navbar } from "@/components/navbar";
@@ -86,6 +87,7 @@ export default async function RootLayout({
           <Navbar />
           {children}
           <ScrollTopButton />
+          <ChatWidget />
           <Footer />
         </NextIntlClientProvider>
         <SpeedInsights />
