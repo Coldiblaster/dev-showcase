@@ -2,27 +2,43 @@
   "hero": {
     "badge": "Guide",
     "title": "Developer Resources",
-    "subtitle": "Explore tools, tips, and practical examples to speed up your learning.",
-    "description": "Live components, useful snippets, code comparisons, and interactive playground. Everything you need to learn and grow as a developer. Here you'll find resources for different stacks, frameworks, and topics, with real-world examples and productivity tips."
+    "subtitle": "Hooks, utilities, and patterns you'll actually use.",
+    "description": "Production-ready copy-paste snippets and real code refactorings. No basic tutorials — just practical code that solves everyday problems."
   },
-  "liveComponents": {
-    "badge": "Live Components",
-    "title": "See, Test and Learn",
-    "description": "Real components you can test, view the code, and understand how they work",
-    "tabs": {
-      "preview": "Preview",
-      "code": "Code",
-      "explanation": "Explanation"
+  "levelSelector": {
+    "title": "What's your dev level?",
+    "subtitle": "Choose to personalize the content below",
+    "junior": "Junior",
+    "juniorDescription": "Essential fundamentals and patterns to build a solid foundation",
+    "pleno": "Mid-Level",
+    "plenoDescription": "Advanced hooks and best practices that elevate code quality",
+    "senior": "Senior",
+    "seniorDescription": "Architecture, deep TypeScript and scalable patterns",
+    "greeting": {
+      "none": "Select your level to see personalized content",
+      "junior": "We've prepared the fundamentals every dev needs to master",
+      "pleno": "Here are patterns that will take your code to the next level",
+      "senior": "Straight to the point — architecture and advanced TypeScript"
     },
-    "copy": "Copy",
-    "copied": "Copied!"
+    "showAll": "View all resources",
+    "resourceCount": "{count, plural, one {# resource} other {# resources}}",
+    "levels": {
+      "junior": "Junior",
+      "pleno": "Mid-Level",
+      "senior": "Senior"
+    }
   },
   "snippets": {
     "badge": "Code Snippets",
     "title": "Snippets Library",
-    "description": "Useful and reusable code. Copy, paste, and adapt to your projects",
+    "description": "Production-ready hooks and utilities. Copy, paste, and adapt to your projects",
     "searchPlaceholder": "Search snippets...",
     "resultCount": "{count, plural, =0 {No snippets found} one {# snippet found} other {# snippets found}}",
+    "tabs": {
+      "code": "Code",
+      "usage": "Usage",
+      "explanation": "Explanation"
+    },
     "copy": "Copy",
     "copied": "Copied",
     "emptyState": "No snippets found. Try a different search term."
@@ -30,7 +46,7 @@
   "beforeAfter": {
     "badge": "Code Refactoring",
     "title": "Before & After",
-    "description": "See how bad code transforms into clean and professional code",
+    "description": "Real refactoring patterns — the kind of improvement that makes a difference in code review",
     "tabs": {
       "comparison": "Comparison",
       "before": "Before",
@@ -38,10 +54,23 @@
     },
     "beforeProblems": "Before - Issues",
     "afterImprovements": "After - Improvements",
-    "metrics": {
-      "performance": "Performance",
-      "readability": "Readability",
-      "maintainability": "Maintainability"
+    "nav": {
+      "prev": "Previous",
+      "next": "Next"
     }
+  },
+  "quickTips": {
+    "badge": "Quick Tips",
+    "title": "Quick Tips",
+    "description": "Practical, straight-to-the-point tips that save hours of debugging and code review"
+  },
+  "patternFinder": {
+    "badge": "Pattern Finder",
+    "title": "Which pattern should I use?",
+    "description": "Pick the problem and discover the recommended pattern with ready-to-use code",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "whenToUse": "When to use",
+    "whenToAvoid": "When to avoid"
   }
 }

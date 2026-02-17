@@ -1,7 +1,10 @@
+import type { DevLevel } from "./types";
+
 export interface CodeSnippet {
   id: string;
   title: string;
   description: string;
+  level: DevLevel;
   code: string;
   usage: string;
   explanation: string;
@@ -10,10 +13,13 @@ export interface CodeSnippet {
 }
 
 export const snippets: CodeSnippet[] = [
+  // ── Junior ────────────────────────────────────────────────
   {
     id: "debounce",
-    title: "Debounce Hook",
-    description: "Hook customizado para debounce de valores (ideal para busca)",
+    title: "useDebounce Hook",
+    description:
+      "Atrasa a atualização de um valor até o usuário parar de digitar",
+    level: "junior",
     code: `import { useEffect, useState } from 'react'
 
 export function useDebounce<T>(value: T, delay: number): T {
@@ -61,236 +67,16 @@ function SearchComponent() {
 • Campos de busca (evita requisição a cada tecla)
 • Filtros dinâmicos
 • Auto-save de formulários
-• Qualquer input que dispara operações caras
 
 **Performance:** Reduz chamadas de API de ~10/s para ~2/s em digitação normal.`,
     tags: ["React", "Hooks", "Performance"],
     language: "typescript",
   },
   {
-    id: "intersection-observer",
-    title: "useIntersection Hook",
-    description:
-      "Detecta quando elemento entra na viewport (lazy loading, animações)",
-    code: `import { useEffect, useState, RefObject } from 'react'
-
-export function useIntersection(
-  ref: RefObject<Element>,
-  options?: IntersectionObserverInit
-) {
-  const [isIntersecting, setIntersecting] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIntersecting(entry.isIntersecting),
-      options
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [ref, options])
-
-  return isIntersecting
-}`,
-    usage: `import { useIntersection } from '@/hooks/use-intersection'
-
-function LazyImage({ src, alt }: { src: string; alt: string }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isVisible = useIntersection(ref, {
-    threshold: 0.1,
-    rootMargin: '100px'
-  })
-
-  return (
-    <div ref={ref}>
-      {isVisible ? (
-        <img src={src} alt={alt} className="fade-in" />
-      ) : (
-        <div className="h-64 bg-muted animate-pulse" />
-      )}
-    </div>
-  )
-}`,
-    explanation: `**useIntersection** detecta quando um elemento fica visível na viewport do usuário.
-
-**Como funciona:**
-• Cria um IntersectionObserver nativo do browser
-• Observa o elemento via ref
-• Atualiza o state quando o elemento entra/sai da viewport
-• Faz cleanup automático no unmount
-
-**Quando usar:**
-• Lazy loading de imagens e componentes pesados
-• Animações de entrada (fade-in on scroll)
-• Infinite scroll / paginação
-• Analytics de visibilidade (impressions)
-
-**Dica:** Use rootMargin para carregar antes do elemento ficar visível (preload).`,
-    tags: ["React", "Hooks", "Performance", "Animation"],
-    language: "typescript",
-  },
-  {
-    id: "fetch-wrapper",
-    title: "API Fetch Wrapper",
-    description: "Wrapper type-safe para fetch com error handling",
-    code: `type FetchOptions = RequestInit & {
-  params?: Record<string, string>
-}
-
-export async function fetchAPI<T>(
-  url: string,
-  options: FetchOptions = {}
-): Promise<T> {
-  const { params, ...fetchOptions } = options
-
-  const queryString = params
-    ? '?' + new URLSearchParams(params).toString()
-    : ''
-
-  const response = await fetch(\`\${url}\${queryString}\`, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...fetchOptions.headers,
-    },
-    ...fetchOptions,
-  })
-
-  if (!response.ok) {
-    throw new Error(\`HTTP error! status: \${response.status}\`)
-  }
-
-  return response.json()
-}`,
-    usage: `import { fetchAPI } from '@/lib/fetch-api'
-
-interface User {
-  id: string
-  name: string
-  email: string
-}
-
-// GET com tipo seguro
-const user = await fetchAPI<User>('/api/users/1')
-console.log(user.name) // autocomplete funciona!
-
-// GET com query params
-const users = await fetchAPI<User[]>('/api/users', {
-  params: { role: 'admin', page: '1' }
-})
-
-// POST com body
-const newUser = await fetchAPI<User>('/api/users', {
-  method: 'POST',
-  body: JSON.stringify({ name: 'João', email: 'j@email.com' })
-})`,
-    explanation: `**fetchAPI** é um wrapper type-safe sobre o fetch nativo com conveniências embutidas.
-
-**O que resolve:**
-• Tipagem genérica — retorna T em vez de any
-• Query params automáticos — passa objeto, gera URL
-• Headers padrão — Content-Type já configurado
-• Error handling — throw em status não-ok
-
-**Benefícios vs fetch puro:**
-• Autocomplete no retorno (TypeScript infere o tipo)
-• Menos boilerplate repetitivo
-• Erros HTTP viram exceptions (catch unificado)
-• Fácil de estender (auth headers, interceptors)
-
-**Dica:** Combine com React Query/SWR para cache e revalidação.`,
-    tags: ["TypeScript", "API", "Utilities"],
-    language: "typescript",
-  },
-  {
-    id: "local-storage",
-    title: "useLocalStorage Hook",
-    description: "Hook para gerenciar localStorage com TypeScript",
-    code: `import { useState } from 'react'
-
-export function useLocalStorage<T>(
-  key: string,
-  initialValue: T
-): [T, (value: T) => void] {
-  const [storedValue, setStoredValue] = useState<T>(() => {
-    if (typeof window === 'undefined') return initialValue
-
-    try {
-      const item = window.localStorage.getItem(key)
-      return item ? JSON.parse(item) : initialValue
-    } catch (error) {
-      console.error(error)
-      return initialValue
-    }
-  })
-
-  const setValue = (value: T) => {
-    try {
-      setStoredValue(value)
-      if (typeof window !== 'undefined') {
-        window.localStorage.setItem(key, JSON.stringify(value))
-      }
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  return [storedValue, setValue]
-}`,
-    usage: `import { useLocalStorage } from '@/hooks/use-local-storage'
-
-function ThemeToggle() {
-  const [theme, setTheme] = useLocalStorage<'light' | 'dark'>(
-    'app-theme',
-    'light'
-  )
-
-  return (
-    <button onClick={() =>
-      setTheme(theme === 'light' ? 'dark' : 'light')
-    }>
-      Tema atual: {theme}
-    </button>
-  )
-}
-
-// Também funciona com objetos complexos
-function UserPrefs() {
-  const [prefs, setPrefs] = useLocalStorage('prefs', {
-    notifications: true,
-    language: 'pt-BR',
-    fontSize: 16
-  })
-
-  return <span>Idioma: {prefs.language}</span>
-}`,
-    explanation: `**useLocalStorage** sincroniza estado React com o localStorage do navegador.
-
-**Como funciona:**
-• Inicializa lendo o localStorage (com lazy initializer)
-• Verifica SSR com typeof window (Next.js safe)
-• Serializa/deserializa com JSON automaticamente
-• Atualiza state e localStorage simultaneamente
-
-**Quando usar:**
-• Preferências do usuário (tema, idioma, layout)
-• Cache de formulários em progresso
-• Estado que deve persistir entre sessões
-• Feature flags locais
-
-**Cuidados:**
-• localStorage é síncrono — não use para dados grandes
-• Não funciona em SSR (fallback para initialValue)
-• Dados são string — objetos são JSON.parse/stringify`,
-    tags: ["React", "Hooks", "Storage"],
-    language: "typescript",
-  },
-  {
     id: "format-date",
-    title: "Formatador de Data",
-    description: "Formata datas usando Intl API nativa do browser",
+    title: "Formatador de Data (Intl API)",
+    description: "Formata datas sem dependências usando a Intl API nativa",
+    level: "junior",
     code: `export function formatDate(
   date: Date | string,
   locale = 'pt-BR'
@@ -301,21 +87,6 @@ function UserPrefs() {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric'
-  }).format(d)
-}
-
-export function formatDateTime(
-  date: Date | string,
-  locale = 'pt-BR'
-): string {
-  const d = typeof date === 'string' ? new Date(date) : date
-
-  return new Intl.DateTimeFormat(locale, {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
   }).format(d)
 }
 
@@ -333,27 +104,23 @@ export function formatRelative(date: Date | string): string {
   if (days < 7) return \`\${days}d atrás\`
   return formatDate(d)
 }`,
-    usage: `import { formatDate, formatDateTime, formatRelative } from '@/lib/format-date'
+    usage: `import { formatDate, formatRelative } from '@/lib/format-date'
 
 // Formata data simples
 formatDate(new Date())           // "16/02/2026"
 formatDate('2026-01-15')         // "15/01/2026"
 formatDate(new Date(), 'en-US')  // "02/16/2026"
 
-// Formata com hora
-formatDateTime(new Date())       // "16/02/2026, 14:30"
-
 // Formato relativo (ideal para feeds)
-formatRelative(new Date())                          // "agora"
-formatRelative(new Date(Date.now() - 300000))       // "5min atrás"
-formatRelative(new Date(Date.now() - 7200000))      // "2h atrás"
-formatRelative(new Date(Date.now() - 172800000))    // "2d atrás"`,
+formatRelative(new Date())                       // "agora"
+formatRelative(new Date(Date.now() - 300000))    // "5min atrás"
+formatRelative(new Date(Date.now() - 7200000))   // "2h atrás"
+formatRelative(new Date(Date.now() - 172800000)) // "2d atrás"`,
     explanation: `**Formatadores de data** usando a Intl API nativa — sem dependências externas.
 
 **Vantagens da Intl API:**
 • Nativa do browser — zero bundle size
 • Suporte a qualquer locale automaticamente
-• Formata números, moedas e datas
 • Funciona em Node.js e browsers modernos
 
 **formatDate vs moment/date-fns:**
@@ -362,9 +129,7 @@ formatRelative(new Date(Date.now() - 172800000))    // "2d atrás"`,
 • Intl API: 0KB — já está no browser!
 
 **formatRelative — quando usar:**
-• Feeds de atividade
-• Comentários e posts
-• Notificações
+• Feeds de atividade, comentários, notificações
 • Qualquer timestamp que precisa ser "humano"
 
 **Dica:** Passe o locale como parâmetro para suportar i18n.`,
@@ -372,216 +137,598 @@ formatRelative(new Date(Date.now() - 172800000))    // "2d atrás"`,
     language: "typescript",
   },
   {
-    id: "cn-helper",
-    title: "Class Names Helper",
-    description: "Utilitário para concatenar classes condicionalmente",
-    code: `import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+    id: "use-toggle",
+    title: "useToggle Hook",
+    description: "Hook para booleanos com actions nomeadas — mais legível que useState(false)",
+    level: "junior",
+    code: `import { useCallback, useState } from 'react'
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+export function useToggle(initialValue = false) {
+  const [value, setValue] = useState(initialValue)
+
+  const toggle = useCallback(() => setValue(v => !v), [])
+  const setTrue = useCallback(() => setValue(true), [])
+  const setFalse = useCallback(() => setValue(false), [])
+
+  return { value, toggle, setTrue, setFalse } as const
 }`,
-    usage: `import { cn } from '@/lib/utils'
+    usage: `import { useToggle } from '@/hooks/use-toggle'
 
-// Concatenação simples
-cn("text-base", "font-bold")
-// → "text-base font-bold"
-
-// Classes condicionais
-cn("rounded-lg p-4", isActive && "bg-primary")
-// → "rounded-lg p-4 bg-primary" (se isActive)
-
-// Ternário
-cn("btn", isDisabled ? "opacity-50" : "hover:scale-105")
-
-// Resolve conflitos do Tailwind
-cn("px-4 py-2", "px-6")
-// → "py-2 px-6" (px-6 vence px-4!)
-
-// Em componentes
-function Button({ className, ...props }) {
-  return (
-    <button
-      className={cn(
-        "rounded-lg px-4 py-2 font-medium",
-        "bg-primary text-primary-foreground",
-        "hover:bg-primary/90 transition-colors",
-        className // permite override externo
-      )}
-      {...props}
-    />
-  )
-}`,
-    explanation: `**cn()** combina clsx + tailwind-merge — o utilitário mais usado em projetos Tailwind.
-
-**clsx** — concatena classes condicionalmente:
-• Aceita strings, objetos, arrays
-• Ignora valores falsy (false, null, undefined)
-• Muito mais limpo que template literals manuais
-
-**tailwind-merge** — resolve conflitos:
-• "px-4 px-6" → "px-6" (última vence)
-• "text-red-500 text-blue-500" → "text-blue-500"
-• Sem twMerge, ambas classes ficam e causam bugs visuais
-
-**Por que é essencial:**
-• Padrão em shadcn/ui e Radix UI
-• Permite componentes customizáveis (className prop)
-• Evita !important e especificidade CSS
-• Zero overhead em runtime (~0.5ms)
-
-**Deps:** \`pnpm add clsx tailwind-merge\``,
-    tags: ["Tailwind", "Utilities", "Styling"],
-    language: "typescript",
-  },
-  {
-    id: "copy-clipboard",
-    title: "Copy to Clipboard",
-    description: "Função para copiar texto com fallback para browsers antigos",
-    code: `export async function copyToClipboard(
-  text: string
-): Promise<boolean> {
-  try {
-    if (navigator.clipboard) {
-      await navigator.clipboard.writeText(text)
-      return true
-    }
-
-    // Fallback para browsers antigos
-    const textarea = document.createElement('textarea')
-    textarea.value = text
-    textarea.style.position = 'fixed'
-    textarea.style.opacity = '0'
-    document.body.appendChild(textarea)
-    textarea.select()
-    const success = document.execCommand('copy')
-    document.body.removeChild(textarea)
-    return success
-  } catch (error) {
-    console.error('Failed to copy:', error)
-    return false
-  }
-}`,
-    usage: `import { copyToClipboard } from '@/lib/copy-clipboard'
-
-// Uso básico
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopy = async () => {
-    const success = await copyToClipboard(text)
-    if (success) {
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    }
-  }
+// Modal com ações semânticas
+function ProductCard({ product }: { product: Product }) {
+  const modal = useToggle()
+  const favorite = useToggle()
 
   return (
-    <button onClick={handleCopy}>
-      {copied ? '✓ Copiado!' : 'Copiar'}
-    </button>
+    <div>
+      <h3>{product.name}</h3>
+
+      <button onClick={favorite.toggle}>
+        {favorite.value ? '♥ Favoritado' : '♡ Favoritar'}
+      </button>
+
+      <button onClick={modal.setTrue}>
+        Ver detalhes
+      </button>
+
+      <Dialog open={modal.value} onOpenChange={modal.setFalse}>
+        <ProductDetails product={product} />
+      </Dialog>
+    </div>
   )
 }
 
-// Como hook reutilizável
-function useCopyToClipboard() {
-  const [copied, setCopied] = useState(false)
+// Comparação com useState:
+// const [isOpen, setIsOpen] = useState(false)
+// setIsOpen(true)  vs  modal.setTrue
+// setIsOpen(false) vs  modal.setFalse
+// setIsOpen(v => !v) vs modal.toggle`,
+    explanation: `**useToggle** substitui useState(false) com uma API mais expressiva e legível.
 
-  const copy = async (text: string) => {
-    const ok = await copyToClipboard(text)
-    setCopied(ok)
-    if (ok) setTimeout(() => setCopied(false), 2000)
-    return ok
-  }
-
-  return { copied, copy }
-}`,
-    explanation: `**copyToClipboard** copia texto para a área de transferência com fallback robusto.
-
-**Clipboard API (moderna):**
-• navigator.clipboard.writeText() — async, segura
-• Requer HTTPS ou localhost
-• Suportada em 96%+ dos browsers
-
-**Fallback (browsers antigos):**
-• Cria textarea invisível fora da tela
-• Seleciona o texto e usa execCommand('copy')
-• Remove o elemento após copiar
-• Funciona em IE11+ e HTTP
-
-**Padrão de uso com feedback:**
-1. Chamar a função e aguardar Promise
-2. Mostrar "Copiado!" por 2s
-3. Voltar ao estado original
-
-**Cuidado:** Em mobile, alguns browsers bloqueiam clipboard fora de eventos de click.`,
-    tags: ["Utilities", "Browser API"],
-    language: "typescript",
-  },
-  {
-    id: "slugify",
-    title: "Slugify String",
-    description: "Converte texto em URL-friendly slug",
-    code: `export function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^\w\s-]/g, '')
-    .trim()
-    .replace(/[\s_-]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-}`,
-    usage: `import { slugify } from '@/lib/slugify'
-
-// Conversões básicas
-slugify("Hello World")
-// → "hello-world"
-
-slugify("Título com Acentuação!")
-// → "titulo-com-acentuacao"
-
-slugify("  Espaços   extras  ")
-// → "espacos-extras"
-
-slugify("React & TypeScript: Guia Completo")
-// → "react-typescript-guia-completo"
-
-// Uso real: gerar URLs de posts
-function createPost(title: string) {
-  const slug = slugify(title)
-  return {
-    slug,
-    url: \`/blog/\${slug}\`,
-    title
-  }
-}
-
-createPost("Como Usar Next.js 16")
-// { slug: "como-usar-nextjs-16", url: "/blog/como-usar-nextjs-16", ... }`,
-    explanation: `**slugify** transforma qualquer texto em um slug URL-safe.
-
-**Pipeline de transformação:**
-1. \`toLowerCase()\` — normaliza casing
-2. \`normalize('NFD')\` — decompõe acentos em caracteres base + diacríticos
-3. Remove diacríticos com regex Unicode
-4. Remove caracteres especiais (!@#$%...)
-5. Trim espaços e colapsa múltiplos separadores em um "-"
-6. Remove hífens nas pontas
+**Por que é melhor que useState puro:**
+• \`modal.setTrue\` é mais claro que \`setIsOpen(true)\`
+• \`favorite.toggle\` é mais claro que \`setFav(v => !v)\`
+• Ações são useCallback — safe para passar como props
+• Destructuring nomeado: \`const modal = useToggle()\`
 
 **Quando usar:**
-• URLs de blog posts e artigos
-• IDs legíveis para anchors (#secao-sobre)
-• Nomes de arquivos seguros
-• Chaves de cache baseadas em texto
+• Modais (open/close)
+• Dropdowns e menus
+• Favoritos (toggle)
+• Dark mode toggle
+• Qualquer estado boolean
 
-**normalize('NFD') — a mágica dos acentos:**
-• "é" → "e" + "´" (dois chars)
-• Remove o diacrítico, mantém a letra base
-• Funciona com qualquer idioma latino
+**Pattern:** Retornar objeto em vez de array permite nomes semânticos sem desestruturação posicional.`,
+    tags: ["React", "Hooks", "Utilities"],
+    language: "typescript",
+  },
 
-**Dica:** Para URLs, combine com um id numérico: \`/post/123-meu-titulo\``,
-    tags: ["Utilities", "String", "SEO"],
+  // ── Pleno ─────────────────────────────────────────────────
+  {
+    id: "safe-context",
+    title: "createSafeContext",
+    description:
+      "Cria context + hook type-safe sem precisar checar undefined",
+    level: "pleno",
+    code: `import {
+  createContext,
+  useContext,
+  type ReactNode
+} from 'react'
+
+export function createSafeContext<T>(displayName: string) {
+  const Context = createContext<T | null>(null)
+  Context.displayName = displayName
+
+  function useContextValue(): T {
+    const value = useContext(Context)
+    if (value === null) {
+      throw new Error(
+        \`use\${displayName} must be used within \${displayName}Provider\`
+      )
+    }
+    return value
+  }
+
+  function Provider({
+    value,
+    children,
+  }: {
+    value: T
+    children: ReactNode
+  }) {
+    return (
+      <Context.Provider value={value}>
+        {children}
+      </Context.Provider>
+    )
+  }
+
+  return [Provider, useContextValue] as const
+}`,
+    usage: `import { createSafeContext } from '@/lib/create-safe-context'
+
+// 1. Defina o tipo do contexto
+type AuthContext = {
+  user: User | null
+  login: (credentials: Credentials) => Promise<void>
+  logout: () => void
+}
+
+// 2. Crie provider + hook em 1 linha
+const [AuthProvider, useAuth] = createSafeContext<AuthContext>('Auth')
+
+// 3. Use no provider (app layout)
+function AuthLayout({ children }: { children: ReactNode }) {
+  const auth = useAuthLogic() // seu hook de lógica
+  return <AuthProvider value={auth}>{children}</AuthProvider>
+}
+
+// 4. Consuma — sem checks de null!
+function UserMenu() {
+  const { user, logout } = useAuth()
+  //      ^-- tipo seguro, nunca null
+  return <button onClick={logout}>{user?.name}</button>
+}`,
+    explanation: `**createSafeContext** elimina o padrão repetitivo de criar context + provider + hook com check de null.
+
+**Problema que resolve:**
+• Todo createContext<T | undefined>(undefined) exige if (!ctx) throw...
+• Repetir isso em 10+ contexts = boilerplate massivo
+• Fácil esquecer o check e ter runtime error
+
+**Como funciona:**
+• Cria o context com null como default
+• O hook useContextValue faz o null check uma vez
+• Retorna [Provider, Hook] como tupla
+
+**Por que é melhor que o padrão manual:**
+• 0 boilerplate — 1 linha cria Provider + Hook tipado
+• Erro descritivo automático ("useAuth must be used within AuthProvider")
+• displayName aparece no React DevTools
+
+**Pattern usado em:** Radix UI, shadcn/ui internals, Chakra UI.`,
+    tags: ["React", "Context", "TypeScript"],
+    language: "typescript",
+  },
+  {
+    id: "media-query",
+    title: "useMediaQuery (SSR-safe)",
+    description: "Hook responsivo que funciona com SSR/Next.js sem hydration mismatch",
+    level: "pleno",
+    code: `import { useEffect, useState } from 'react'
+
+export function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(false)
+
+  useEffect(() => {
+    const media = window.matchMedia(query)
+
+    // Sync imediato (client-only)
+    setMatches(media.matches)
+
+    function handleChange(e: MediaQueryListEvent) {
+      setMatches(e.matches)
+    }
+
+    media.addEventListener('change', handleChange)
+    return () => media.removeEventListener('change', handleChange)
+  }, [query])
+
+  return matches
+}
+
+// Presets prontos
+export const breakpoints = {
+  sm: '(min-width: 640px)',
+  md: '(min-width: 768px)',
+  lg: '(min-width: 1024px)',
+  xl: '(min-width: 1280px)',
+  dark: '(prefers-color-scheme: dark)',
+  reducedMotion: '(prefers-reduced-motion: reduce)',
+} as const`,
+    usage: `import { useMediaQuery, breakpoints } from '@/hooks/use-media-query'
+
+function ResponsiveLayout() {
+  const isMobile = !useMediaQuery(breakpoints.md)
+  const prefersReducedMotion = useMediaQuery(breakpoints.reducedMotion)
+
+  return (
+    <div>
+      {isMobile ? <MobileNav /> : <DesktopNav />}
+
+      <motion.div
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: prefersReducedMotion ? 0 : 0.3
+        }}
+      >
+        {/* conteúdo */}
+      </motion.div>
+    </div>
+  )
+}
+
+// Uso com query custom
+function DashboardLayout() {
+  const isWide = useMediaQuery('(min-width: 1400px)')
+  return isWide ? <ThreeColumnLayout /> : <TwoColumnLayout />
+}`,
+    explanation: `**useMediaQuery** detecta media queries CSS no JavaScript — SSR-safe.
+
+**O truque do SSR:**
+• useState(false) como default — server e client começam iguais
+• useEffect sincroniza com o valor real no client
+• Evita hydration mismatch (o erro mais chato do Next.js)
+
+**Por que não usar CSS @media direto?**
+• Quando a lógica depende do breakpoint (mudar componente, não só estilo)
+• Quando precisa do valor em JavaScript (analytics, feature flags)
+• Acessibilidade: prefers-reduced-motion para desligar animações
+
+**Presets incluídos:**
+• Breakpoints do Tailwind (sm, md, lg, xl)
+• Dark mode e reduced motion
+• Extensível — passe qualquer media query string
+
+**Cuidado:** Não use para esconder conteúdo visualmente — prefira CSS para isso (melhor para SEO/accessibility).`,
+    tags: ["React", "Hooks", "Responsive", "SSR"],
+    language: "typescript",
+  },
+  {
+    id: "event-callback",
+    title: "useEventCallback",
+    description:
+      "Referência estável de função sem stale closures — resolve o bug mais comum de hooks",
+    level: "pleno",
+    code: `import { useCallback, useRef } from 'react'
+
+export function useEventCallback<
+  Args extends unknown[],
+  Return
+>(fn: (...args: Args) => Return): (...args: Args) => Return {
+  const ref = useRef(fn)
+  ref.current = fn
+
+  return useCallback(
+    (...args: Args) => ref.current(...args),
+    []
+  )
+}`,
+    usage: `import { useEventCallback } from '@/hooks/use-event-callback'
+
+function ChatRoom({ roomId }: { roomId: string }) {
+  const [messages, setMessages] = useState<Message[]>([])
+
+  // SEM useEventCallback — stale closure!
+  // const onMessage = useCallback((msg) => {
+  //   setMessages([...messages, msg]) // 'messages' fica stale!
+  // }, [messages]) // re-cria a cada mensagem = re-subscribe
+
+  // COM useEventCallback — sempre atualizado, ref estável
+  const onMessage = useEventCallback((msg: Message) => {
+    setMessages(prev => [...prev, msg]) // usa updater
+  })
+
+  useEffect(() => {
+    const ws = connectToRoom(roomId)
+    ws.on('message', onMessage)
+    return () => ws.disconnect()
+  }, [roomId, onMessage]) // onMessage nunca muda!
+
+  return <MessageList messages={messages} />
+}`,
+    explanation: `**useEventCallback** retorna uma função com referência estável que sempre acessa o state mais recente.
+
+**O problema que resolve:**
+• useCallback com deps = re-cria função = re-subscribe em effects
+• useCallback sem deps = stale closure = lê state antigo
+• Dilema clássico que gera bugs sutis em WebSockets, timers, event listeners
+
+**Como funciona:**
+• useRef armazena a versão mais recente da função
+• ref.current é atualizado a cada render (sync)
+• useCallback([], ...) retorna wrapper estável que chama ref.current
+• Resultado: referência estável + closure sempre fresca
+
+**Quando usar:**
+• Event handlers passados para useEffect
+• Callbacks de WebSocket/SSE
+• Timers de longa duração (setInterval)
+• Qualquer lugar onde estabilidade + freshness importam
+
+**Equivalente no React 19:** useEffectEvent (experimental).`,
+    tags: ["React", "Hooks", "Performance"],
+    language: "typescript",
+  },
+
+  // ── Senior ────────────────────────────────────────────────
+  {
+    id: "typed-fetch-zod",
+    title: "Typed Fetch + Zod Validation",
+    description:
+      "Fetch type-safe com validação runtime — single source of truth",
+    level: "senior",
+    code: `import { z, type ZodType } from 'zod'
+
+type FetchOptions = RequestInit & {
+  params?: Record<string, string>
+}
+
+export async function typedFetch<T>(
+  url: string,
+  schema: ZodType<T>,
+  options: FetchOptions = {}
+): Promise<T> {
+  const { params, ...fetchOptions } = options
+
+  const queryString = params
+    ? '?' + new URLSearchParams(params).toString()
+    : ''
+
+  const response = await fetch(\`\${url}\${queryString}\`, {
+    headers: {
+      'Content-Type': 'application/json',
+      ...fetchOptions.headers,
+    },
+    ...fetchOptions,
+  })
+
+  if (!response.ok) {
+    throw new Error(\`HTTP \${response.status}: \${response.statusText}\`)
+  }
+
+  const data = await response.json()
+  const parsed = schema.safeParse(data)
+
+  if (!parsed.success) {
+    console.error('API validation failed:', parsed.error.issues)
+    throw new Error(
+      \`Invalid API response: \${parsed.error.issues.map(i => i.message).join(', ')}\`
+    )
+  }
+
+  return parsed.data
+}`,
+    usage: `import { typedFetch } from '@/lib/typed-fetch'
+import { z } from 'zod'
+
+// Schema = validação + tipo em um só lugar
+const UserSchema = z.object({
+  id: z.string().uuid(),
+  name: z.string().min(1),
+  email: z.string().email(),
+  role: z.enum(['admin', 'user']),
+  createdAt: z.string().datetime(),
+})
+
+type User = z.infer<typeof UserSchema> // tipo inferido!
+
+// Uso — seguro em compile time E runtime
+const user = await typedFetch('/api/users/1', UserSchema)
+//    ^-- tipo User garantido
+
+// Com query params
+const UserListSchema = z.array(UserSchema)
+
+const users = await typedFetch('/api/users', UserListSchema, {
+  params: { role: 'admin', limit: '10' }
+})
+
+// Se o backend mudar o formato, o erro é claro:
+// "Invalid API response: Expected string, received number at 'role'"`,
+    explanation: `**typedFetch** combina fetch + Zod para validação em compile time E runtime.
+
+**Por que interfaces TypeScript não bastam:**
+• Interface só existe em compile time — desaparece no JavaScript
+• Se o backend mudar um campo, o TypeScript não protege
+• O crash aparece longe da causa real (no render, não no fetch)
+
+**O que Zod adiciona:**
+• Validação runtime — erro no ponto exato do fetch
+• Tipo inferido do schema (z.infer) — single source of truth
+• Mensagem descritiva: campo, valor esperado vs recebido
+• safeParse não crasha — você decide como tratar
+
+**Quando usar:**
+• Qualquer fetch de API externa que você não controla
+• APIs internas que mudam frequentemente
+• Dados críticos (pagamento, auth, configuração)
+• Integração com terceiros (webhooks, APIs públicas)
+
+**Bundle:** Zod ~13KB gzipped — vale cada byte em produção.`,
+    tags: ["TypeScript", "API", "Zod", "Validation"],
+    language: "typescript",
+  },
+  {
+    id: "discriminated-props",
+    title: "Discriminated Union Props",
+    description:
+      "Pattern TypeScript que torna props impossíveis de usar errado",
+    level: "senior",
+    code: `// Problema: props opcionais permitem combinações inválidas
+// <Button variant="link" loading /> ← faz sentido link + loading?
+// <Button href="/about" onClick={fn} /> ← href E onClick?
+
+// Solução: Discriminated Union — cada variante define suas props
+type ButtonProps = {
+  children: React.ReactNode
+  className?: string
+} & (
+  | {
+      variant: 'solid' | 'outline' | 'ghost'
+      onClick: () => void
+      loading?: boolean
+      disabled?: boolean
+      href?: never // bloqueia href nessas variantes
+    }
+  | {
+      variant: 'link'
+      href: string
+      onClick?: never   // bloqueia onClick em link
+      loading?: never   // bloqueia loading em link
+      disabled?: never  // bloqueia disabled em link
+    }
+)
+
+export function Button(props: ButtonProps) {
+  if (props.variant === 'link') {
+    // TypeScript sabe: props.href existe, onClick não
+    return (
+      <a href={props.href} className={props.className}>
+        {props.children}
+      </a>
+    )
+  }
+
+  // TypeScript sabe: props.onClick existe, href não
+  return (
+    <button
+      onClick={props.onClick}
+      disabled={props.disabled || props.loading}
+      className={props.className}
+    >
+      {props.loading ? <Spinner /> : props.children}
+    </button>
+  )
+}`,
+    usage: `// ✅ Válido — solid com onClick e loading
+<Button variant="solid" onClick={handleSave} loading={isPending}>
+  Salvar
+</Button>
+
+// ✅ Válido — link com href
+<Button variant="link" href="/about">
+  Sobre
+</Button>
+
+// ❌ Erro TypeScript — link não aceita onClick
+<Button variant="link" href="/about" onClick={fn}>
+  Sobre
+</Button>
+// Type error: 'onClick' is incompatible with type 'never'
+
+// ❌ Erro TypeScript — solid precisa de onClick
+<Button variant="solid">
+  Salvar
+</Button>
+// Type error: Property 'onClick' is missing
+
+// ❌ Erro TypeScript — solid não aceita href
+<Button variant="solid" onClick={fn} href="/about">
+  Salvar
+</Button>
+// Type error: 'href' is incompatible with type 'never'`,
+    explanation: `**Discriminated Union Props** usa o sistema de tipos do TypeScript para tornar combinações inválidas impossíveis.
+
+**O problema com props opcionais:**
+• variant="link" com loading={true}? Faz sentido?
+• href e onClick juntos? Qual vence?
+• Props opcionais permitem QUALQUER combinação — bugs silenciosos
+
+**Como funciona:**
+• Uma propriedade "discriminante" (variant) determina quais props existem
+• \`never\` bloqueia props que não fazem sentido naquela variante
+• TypeScript narra (type narrowing) dentro do if/switch
+
+**Quando usar:**
+• Componentes com múltiplas variantes (Button, Input, Modal)
+• Props mutuamente exclusivas (href vs onClick, mode vs config)
+• APIs de componentes que serão usadas por outros devs
+
+**Resultado:** Erros aparecem no editor, não em produção. O autocomplete só mostra props válidas para a variante escolhida.`,
+    tags: ["TypeScript", "React", "Component API"],
+    language: "typescript",
+  },
+  {
+    id: "type-safe-exhaustive",
+    title: "Exhaustive Switch Pattern",
+    description:
+      "Pattern que garante em compile time que todos os cases de uma union foram tratados",
+    level: "senior",
+    code: `// Utility — força TypeScript a reclamar se faltar case
+function assertNever(value: never): never {
+  throw new Error(\`Unhandled value: \${value}\`)
+}
+
+// Exemplo: status de pagamento
+type PaymentStatus =
+  | 'pending'
+  | 'processing'
+  | 'completed'
+  | 'failed'
+  | 'refunded'
+
+function getStatusConfig(status: PaymentStatus) {
+  switch (status) {
+    case 'pending':
+      return { label: 'Pendente', color: 'yellow', icon: Clock }
+    case 'processing':
+      return { label: 'Processando', color: 'blue', icon: Loader }
+    case 'completed':
+      return { label: 'Concluído', color: 'green', icon: Check }
+    case 'failed':
+      return { label: 'Falhou', color: 'red', icon: X }
+    case 'refunded':
+      return { label: 'Reembolsado', color: 'gray', icon: Undo }
+    default:
+      return assertNever(status)
+  }
+}
+
+// Se alguém adicionar 'cancelled' no type PaymentStatus,
+// o TypeScript IMEDIATAMENTE reclama:
+// Argument of type 'cancelled' is not assignable
+// to parameter of type 'never'
+// → Impossível esquecer de tratar um novo case!`,
+    usage: `import { assertNever } from '@/lib/assert-never'
+
+// Funciona com qualquer union type
+type Theme = 'light' | 'dark' | 'system'
+
+function getThemeIcon(theme: Theme) {
+  switch (theme) {
+    case 'light': return <Sun />
+    case 'dark': return <Moon />
+    case 'system': return <Monitor />
+    default: return assertNever(theme)
+  }
+}
+
+// Funciona com discriminated unions também
+type Action =
+  | { type: 'increment'; amount: number }
+  | { type: 'decrement'; amount: number }
+  | { type: 'reset' }
+
+function reducer(state: number, action: Action): number {
+  switch (action.type) {
+    case 'increment': return state + action.amount
+    case 'decrement': return state - action.amount
+    case 'reset': return 0
+    default: return assertNever(action)
+  }
+}`,
+    explanation: `**assertNever** é o pattern que garante cobertura completa de union types em compile time.
+
+**O problema sem ele:**
+• Adiciona um novo status/variant/action no type
+• Esquece de tratar em 3 dos 5 switches do codebase
+• Bug aparece só em runtime — meses depois
+
+**Como funciona:**
+• O parâmetro é do tipo \`never\`
+• Se todos os cases estão cobertos, o default é unreachable = tipo \`never\` = OK
+• Se faltar um case, o tipo não é \`never\` = erro em compile time
+
+**Onde usar:**
+• Reducers (useReducer, Redux)
+• Status machines (pagamento, pedido, auth)
+• Componentes com múltiplas variantes
+• Qualquer switch sobre union types
+
+**Pattern adotado por:** Effect-TS, fp-ts, Prisma, tRPC.`,
+    tags: ["TypeScript", "Patterns", "Type Safety"],
     language: "typescript",
   },
 ];

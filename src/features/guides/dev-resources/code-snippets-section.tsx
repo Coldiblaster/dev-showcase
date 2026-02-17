@@ -1,8 +1,9 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { BookOpen, Check, Code, Copy, Play, Search } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { AnimatedSection } from "@/components/animated-section";
 import { Badge } from "@/components/ui/badge";
@@ -17,12 +18,23 @@ import {
 } from "@/components/ui/tabs";
 
 import { snippets } from "./data/code-snippets";
+import { levelColors, type DevLevelFilter } from "./data/types";
 
-export function CodeSnippetsSection() {
+interface CodeSnippetsSectionProps {
+  level: DevLevelFilter;
+}
+
+export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
   const t = useTranslations("devResourcesPage.snippets");
+  const tLevel = useTranslations("devResourcesPage.levelSelector.levels");
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  useEffect(() => {
+    setSearchQuery("");
+    setSelectedTags([]);
+  }, [level]);
 
   const handleCopy = useCallback(async (code: string, id: string) => {
     await navigator.clipboard.writeText(code);
@@ -30,13 +42,21 @@ export function CodeSnippetsSection() {
     setTimeout(() => setCopiedId(null), 2000);
   }, []);
 
+  const levelSnippets = useMemo(
+    () =>
+      level === "all"
+        ? snippets
+        : snippets.filter((s) => s.level === level),
+    [level],
+  );
+
   const allTags = useMemo(
-    () => Array.from(new Set(snippets.flatMap((s) => s.tags))).sort(),
-    [],
+    () => Array.from(new Set(levelSnippets.flatMap((s) => s.tags))).sort(),
+    [levelSnippets],
   );
 
   const filteredSnippets = useMemo(() => {
-    return snippets.filter((snippet) => {
+    return levelSnippets.filter((snippet) => {
       const query = searchQuery.toLowerCase();
       const matchesSearch =
         !query ||
@@ -50,7 +70,7 @@ export function CodeSnippetsSection() {
 
       return matchesSearch && matchesTags;
     });
-  }, [searchQuery, selectedTags]);
+  }, [levelSnippets, searchQuery, selectedTags]);
 
   const toggleTag = useCallback((tag: string) => {
     setSelectedTags((prev) =>
@@ -109,19 +129,35 @@ export function CodeSnippetsSection() {
         </AnimatedSection>
 
         {/* Snippets Grid */}
-        <div className="grid gap-8 md:grid-cols-2">
-          {filteredSnippets.map((snippet, index) => (
-            <AnimatedSection key={snippet.id} delay={0.2 + index * 0.05}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={level}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="grid gap-8 md:grid-cols-2"
+          >
+            {filteredSnippets.map((snippet, index) => (
+              <AnimatedSection key={snippet.id} delay={0.1 + index * 0.05}>
               <Card className="h-full overflow-hidden border-border bg-card">
                 <Tabs defaultValue="code" className="w-full">
                   {/* Card header */}
                   <div className="border-b px-6 pt-6">
                     <div className="mb-4 flex items-start justify-between gap-4">
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-foreground">
-                          {snippet.title}
-                        </h3>
-                        <p className="mt-1 text-sm text-muted-foreground">
+                        <div className="mb-2 flex items-center gap-2">
+                          <h3 className="text-lg font-semibold text-foreground">
+                            {snippet.title}
+                          </h3>
+                          <Badge
+                            variant="outline"
+                            className={`text-[10px] ${levelColors[snippet.level]}`}
+                          >
+                            {tLevel(snippet.level)}
+                          </Badge>
+                        </div>
+                        <p className="text-sm text-muted-foreground">
                           {snippet.description}
                         </p>
                         <div className="mt-2 flex flex-wrap gap-1.5">
@@ -228,7 +264,8 @@ export function CodeSnippetsSection() {
               </Card>
             </AnimatedSection>
           ))}
-        </div>
+          </motion.div>
+        </AnimatePresence>
 
         {/* Empty State */}
         {filteredSnippets.length === 0 && (

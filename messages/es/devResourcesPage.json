@@ -2,27 +2,43 @@
   "hero": {
     "badge": "Guía",
     "title": "Recursos para Desarrolladores",
-    "subtitle": "Explora herramientas, consejos y ejemplos prácticos para acelerar tu aprendizaje.",
-    "description": "Componentes en vivo, snippets útiles, comparaciones de código y playground interactivo. Todo lo que necesitas para aprender y evolucionar como dev. Aquí encontrarás recursos para diferentes stacks, frameworks y temas, con ejemplos reales y consejos de productividad."
+    "subtitle": "Hooks, utilidades y patterns que realmente vas a usar.",
+    "description": "Snippets copy-paste listos para producción y refactorizaciones reales de código. Sin tutoriales básicos — solo código práctico que resuelve problemas del día a día."
   },
-  "liveComponents": {
-    "badge": "Componentes en Vivo",
-    "title": "Ve, Prueba y Aprende",
-    "description": "Componentes reales que puedes probar, ver el código y entender cómo funcionan",
-    "tabs": {
-      "preview": "Vista previa",
-      "code": "Código",
-      "explanation": "Explicación"
+  "levelSelector": {
+    "title": "Cuál es tu nivel como dev?",
+    "subtitle": "Elige para personalizar el contenido",
+    "junior": "Junior",
+    "juniorDescription": "Fundamentos y patterns esenciales para construir una base sólida",
+    "pleno": "Semi-Senior",
+    "plenoDescription": "Hooks avanzados y buenas prácticas que elevan la calidad del código",
+    "senior": "Senior",
+    "seniorDescription": "Arquitectura, TypeScript profundo y patterns de escala",
+    "greeting": {
+      "none": "Selecciona tu nivel para ver contenido personalizado",
+      "junior": "Preparamos los fundamentos que todo dev necesita dominar",
+      "pleno": "Aquí están los patterns que llevarán tu código al siguiente nivel",
+      "senior": "Directo al punto — arquitectura y TypeScript avanzado"
     },
-    "copy": "Copiar",
-    "copied": "¡Copiado!"
+    "showAll": "Ver todos los recursos",
+    "resourceCount": "{count, plural, one {# recurso} other {# recursos}}",
+    "levels": {
+      "junior": "Junior",
+      "pleno": "Semi-Senior",
+      "senior": "Senior"
+    }
   },
   "snippets": {
     "badge": "Code Snippets",
     "title": "Biblioteca de Snippets",
-    "description": "Códigos útiles y reutilizables. Copia, pega y adapta a tus proyectos",
+    "description": "Hooks y utilidades listos para producción. Copia, pega y adapta a tus proyectos",
     "searchPlaceholder": "Buscar snippets...",
     "resultCount": "{count, plural, =0 {Ningún snippet encontrado} one {# snippet encontrado} other {# snippets encontrados}}",
+    "tabs": {
+      "code": "Código",
+      "usage": "Uso",
+      "explanation": "Explicación"
+    },
     "copy": "Copiar",
     "copied": "Copiado",
     "emptyState": "Ningún snippet encontrado. Intenta con otro término de búsqueda."
@@ -30,7 +46,7 @@
   "beforeAfter": {
     "badge": "Code Refactoring",
     "title": "Antes y Después",
-    "description": "Mira cómo el código malo se transforma en código limpio y profesional",
+    "description": "Patterns reales de refactorización — el tipo de mejora que marca la diferencia en code review",
     "tabs": {
       "comparison": "Comparación",
       "before": "Antes",
@@ -38,10 +54,23 @@
     },
     "beforeProblems": "Antes - Problemas",
     "afterImprovements": "Después - Mejoras",
-    "metrics": {
-      "performance": "Rendimiento",
-      "readability": "Legibilidad",
-      "maintainability": "Mantenibilidad"
+    "nav": {
+      "prev": "Anterior",
+      "next": "Siguiente"
     }
+  },
+  "quickTips": {
+    "badge": "Quick Tips",
+    "title": "Consejos Rápidos",
+    "description": "Consejos prácticos y directos que ahorran horas de debug y code review"
+  },
+  "patternFinder": {
+    "badge": "Pattern Finder",
+    "title": "Qué pattern usar?",
+    "description": "Elige el problema y descubre el pattern recomendado con código listo",
+    "copy": "Copiar",
+    "copied": "Copiado!",
+    "whenToUse": "Cuándo usar",
+    "whenToAvoid": "Cuándo evitar"
   }
 }

@@ -2,15 +2,48 @@
 
 import { BookOpen } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useCallback, useMemo, useState } from "react";
 
 import { HeroSection } from "@/components/hero-section";
 
 import { BeforeAfterSection } from "./before-after-section";
 import { CodeSnippetsSection } from "./code-snippets-section";
-import { LiveComponentsSection } from "./live-components-section";
+import { snippets } from "./data/code-snippets";
+import { comparisons } from "./data/comparisons";
+import { patternScenarios } from "./data/pattern-finder";
+import { quickTips } from "./data/quick-tips";
+import type { DevLevel, DevLevelFilter } from "./data/types";
+import { LevelSelector } from "./level-selector";
+import { PatternFinderSection } from "./pattern-finder-section";
+import { QuickTipsSection } from "./quick-tips-section";
+
+function countByLevel(
+  items: { level: DevLevel }[],
+): Record<DevLevel, number> {
+  return {
+    junior: items.filter((i) => i.level === "junior").length,
+    pleno: items.filter((i) => i.level === "pleno").length,
+    senior: items.filter((i) => i.level === "senior").length,
+  };
+}
 
 export function DevResourcesPage() {
   const t = useTranslations("devResourcesPage");
+  const [level, setLevel] = useState<DevLevelFilter>("all");
+
+  const handleLevelChange = useCallback((newLevel: DevLevelFilter) => {
+    setLevel(newLevel);
+  }, []);
+
+  const counts = useMemo(() => {
+    const allItems = [
+      ...snippets.map((s) => ({ level: s.level })),
+      ...comparisons.map((c) => ({ level: c.level })),
+      ...quickTips.map((t) => ({ level: t.level })),
+      ...patternScenarios.map((p) => ({ level: p.level })),
+    ];
+    return countByLevel(allItems);
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -22,9 +55,16 @@ export function DevResourcesPage() {
         description={t("hero.description")}
       />
 
-      <LiveComponentsSection />
-      <CodeSnippetsSection />
-      <BeforeAfterSection />
+      <LevelSelector
+        level={level}
+        onLevelChange={handleLevelChange}
+        counts={counts}
+      />
+
+      <QuickTipsSection level={level} />
+      <CodeSnippetsSection level={level} />
+      <PatternFinderSection level={level} />
+      <BeforeAfterSection level={level} />
     </div>
   );
 }
