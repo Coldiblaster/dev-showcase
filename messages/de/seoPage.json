@@ -11,9 +11,9 @@
     "title": "Was implementiert wurde",
     "description": "Vollständige SEO-Infrastruktur mit Beispielen für Next.js (native APIs) und React + Vite (Community-Bibliotheken).",
     "items": [
-      { "title": "Metadata API", "description": "Title-Template, Description, Authors, Robots und kanonische URL im Root-Layout mit automatischer Vererbung.", "icon": "FileText" },
+      { "title": "Metadata API", "description": "Title-Template, Description, Keywords, Authors, Robots und kanonische URL im Root-Layout mit automatischer Vererbung.", "icon": "FileText" },
       { "title": "Open Graph & Twitter Cards", "description": "1200x630 Bild dynamisch generiert via ImageResponse mit Avatar, Name, Skills und Branding.", "icon": "Share2" },
-      { "title": "JSON-LD Structured Data", "description": "Person- und WebSite-Schemas im Head injiziert für Google Rich Snippets.", "icon": "Code" },
+      { "title": "JSON-LD Structured Data", "description": "Person-, WebSite-, ProfilePage- und BreadcrumbList-Schemas mit @id-Querverweisen — Google Rich Snippets mit Name, Beruf, Skills und Navigation.", "icon": "Code" },
       { "title": "Dynamische Sitemap", "description": "Automatisch generiert aus den in content.ts registrierten Routen.", "icon": "Map" },
       { "title": "Robots.txt", "description": "Crawling-Konfiguration mit vollständiger Indexierung und Verweis auf sitemap.xml.", "icon": "Bot" },
       { "title": "PWA Manifest", "description": "Web App Manifest mit Name, Theme-Farben, Icons und Standalone-Konfiguration.", "icon": "Smartphone" }
@@ -21,7 +21,7 @@
   },
   "metadata": { "title": "Metadata API", "description": "Das Root-Layout definiert globale Metadaten mit Title-Template. Unterseiten erben und können via buildPageMetadata() überschreiben.", "codeTitle": "src/app/layout.tsx", "helperTitle": "src/lib/seo.ts" },
   "ogImage": { "title": "Open Graph Bild", "description": "Bild wird zur Build-Zeit via next/og ImageResponse generiert. Erscheint beim Teilen auf LinkedIn, Twitter, WhatsApp oder Slack.", "codeTitle": "src/app/opengraph-image.tsx", "preview": "OG-Bild Vorschau", "inspect": "/opengraph-image öffnen" },
-  "jsonLd": { "title": "JSON-LD Structured Data", "description": "Schema.org Person und WebSite werden als Script im Head injiziert. Google versteht den Autor, Skills und soziale Links.", "codeTitle": "src/components/json-ld.tsx", "testLabel": "Bei Google Rich Results testen", "testUrl": "https://search.google.com/test/rich-results" },
+  "jsonLd": { "title": "JSON-LD Structured Data", "description": "Schema.org @graph mit Person, WebSite, ProfilePage und BreadcrumbList — alle verknüpft via @id. Google versteht den Autor, die Seitennavigation und zeigt Rich Snippets an.", "codeTitle": "src/components/json-ld.tsx", "testLabel": "Bei Google Rich Results testen", "testUrl": "https://search.google.com/test/rich-results" },
   "sitemap": { "title": "Sitemap & Robots", "description": "Die Sitemap wird dynamisch aus dem CONTENT_ITEMS-Array generiert. Neue Seiten erscheinen automatisch.", "sitemapTitle": "src/app/sitemap.ts", "robotsTitle": "src/app/robots.ts", "inspectSitemap": "/sitemap.xml öffnen", "inspectRobots": "/robots.txt öffnen" },
   "icons": { "title": "Icons & PWA", "description": "Favicon (32x32) und Apple Touch Icon (180x180) generiert via ImageResponse mit VB-Initialen.", "faviconTitle": "src/app/icon.tsx", "appleTitle": "src/app/apple-icon.tsx", "manifestTitle": "src/app/manifest.ts" },
   "comparison": {
@@ -43,17 +43,61 @@
     "items": [
       { "label": "Title-Template mit Vererbung", "done": true },
       { "label": "Meta-Description auf allen Seiten", "done": true },
+      { "label": "Strategische Keywords im Layout", "done": true },
       { "label": "Kanonische URL pro Seite", "done": true },
       { "label": "Open Graph Bild 1200x630", "done": true },
-      { "label": "Twitter Card (summary_large_image)", "done": true },
-      { "label": "JSON-LD Person + WebSite", "done": true },
+      { "label": "Twitter Card pro Seite (summary_large_image)", "done": true },
+      { "label": "JSON-LD Person + WebSite + ProfilePage", "done": true },
+      { "label": "JSON-LD BreadcrumbList", "done": true },
+      { "label": "JSON-LD @id-Querverweise", "done": true },
       { "label": "Dynamische sitemap.xml", "done": true },
       { "label": "Robots.txt", "done": true },
       { "label": "Favicon + Apple Touch Icon", "done": true },
       { "label": "PWA Manifest", "done": true },
       { "label": "Google Search Console verifiziert", "done": true },
-      { "label": "Optimierter Viewport (barrierefreier Zoom)", "done": true }
+      { "label": "Optimierter Viewport (barrierefreier Zoom)", "done": true },
+      { "label": "Mehrsprachig mit alternateLocale", "done": true }
     ]
+  },
+  "webVitals": {
+    "title": "Core Web Vitals",
+    "description": "Performance-Metriken, die Google als Ranking-Faktor verwendet. In diesem Portfolio via Vercel Speed Insights überwacht.",
+    "items": [
+      {
+        "metric": "LCP",
+        "name": "Largest Contentful Paint",
+        "description": "Zeit bis das größte sichtbare Element geladen ist. Ideal: < 2.5s.",
+        "tip": "Bilder mit next/image optimieren, Schriften mit display: swap verwenden und Above-the-Fold-Inhalte priorisieren."
+      },
+      {
+        "metric": "INP",
+        "name": "Interaction to Next Paint",
+        "description": "Reaktionszeit auf Benutzerinteraktionen. Ideal: < 200ms.",
+        "tip": "Lange Main-Thread-Aufgaben vermeiden, React.memo, useCallback und Code Splitting mit Dynamic Imports nutzen."
+      },
+      {
+        "metric": "CLS",
+        "name": "Cumulative Layout Shift",
+        "description": "Wie stark das Layout unerwartet springt. Ideal: < 0.1.",
+        "tip": "Width/Height bei Bildern setzen, font-display: swap verwenden und Platz für dynamischen Inhalt reservieren."
+      },
+      {
+        "metric": "FCP",
+        "name": "First Contentful Paint",
+        "description": "Zeit bis der erste Inhalt auf dem Bildschirm erscheint. Ideal: < 1.8s.",
+        "tip": "SSR/SSG verwenden, kritisches CSS minimieren, Render-Blocking durch Scripts vermeiden und Critical CSS inlinen."
+      },
+      {
+        "metric": "TTFB",
+        "name": "Time to First Byte",
+        "description": "Zeit bis der Server antwortet. Ideal: < 800ms.",
+        "tip": "CDN (Vercel Edge) nutzen, statische Seiten cachen, Server-Queries optimieren und ISR wenn möglich verwenden."
+      }
+    ],
+    "good": "Gut",
+    "needsImprovement": "Verbesserungsbedarf",
+    "poor": "Schlecht",
+    "monitorTip": "Tipp: Vercel Speed Insights oder Google PageSpeed Insights nutzen, um in Produktion zu überwachen."
   },
   "cta": { "title": "Möchten Sie es auf Ihr Projekt anwenden?", "description": "Der gesamte SEO-Code dieses Portfolios ist Open Source. Klonen, anpassen und verwenden.", "github": "Auf GitHub ansehen", "back": "Zurück zum Portfolio" }
 }

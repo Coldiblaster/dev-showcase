@@ -4,15 +4,45 @@ import { z } from "zod";
 
 import { PERSONAL } from "@/lib/constants";
 import { ContactEmailTemplate } from "@/lib/email/contact-template";
+import { getClientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
 const contactSchema = z.object({
   name: z.string().min(2).max(100),
   email: z.string().email(),
   message: z.string().min(10).max(2000),
+  recaptchaToken: z.string().nullable().optional(),
 });
+
+const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET_KEY;
+const RECAPTCHA_THRESHOLD = 0.5;
+
+async function verifyRecaptcha(token: string): Promise<boolean> {
+  if (!RECAPTCHA_SECRET) return true;
+
+  try {
+    const res = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({
+        secret: RECAPTCHA_SECRET,
+        response: token,
+      }),
+    });
+
+    const data = await res.json();
+    return data.success && (data.score ?? 0) >= RECAPTCHA_THRESHOLD;
+  } catch (err) {
+    console.error("[Contact API] reCAPTCHA verification failed:", err);
+    return false;
+  }
+}
 
 export async function POST(request: Request) {
   try {
+    const ip = getClientIp(request);
+    const rl = rateLimit(ip, { prefix: "contact", limit: 5, windowSeconds: 300 });
+    if (!rl.success) return rateLimitResponse(rl);
+
     const apiKey = process.env.RESEND_API_KEY;
 
     if (!apiKey) {
@@ -33,7 +63,17 @@ export async function POST(request: Request) {
       );
     }
 
-    const { name, email, message } = parsed.data;
+    const { name, email, message, recaptchaToken } = parsed.data;
+
+    if (RECAPTCHA_SECRET && recaptchaToken) {
+      const isHuman = await verifyRecaptcha(recaptchaToken);
+      if (!isHuman) {
+        return NextResponse.json(
+          { error: "Verificação reCAPTCHA falhou" },
+          { status: 403 },
+        );
+      }
+    }
     const resend = new Resend(apiKey);
 
     const fromAddress =

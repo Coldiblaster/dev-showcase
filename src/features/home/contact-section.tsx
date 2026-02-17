@@ -17,6 +17,7 @@ import {
 import { useTranslations } from "next-intl";
 import { useCallback, useRef, useState } from "react";
 
+import { useRecaptcha } from "@/components/recaptcha-provider";
 import { Button } from "@/components/ui/button";
 import { CardBlur } from "@/components/ui/card-blur";
 import { Input } from "@/components/ui/input";
@@ -34,6 +35,8 @@ export function ContactSection() {
   const t = useTranslations("contact");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const { executeRecaptcha } = useRecaptcha();
 
   const [formState, setFormState] = useState({
     name: "",
@@ -74,10 +77,15 @@ export function ContactSection() {
     setErrors({});
 
     try {
+      const recaptchaToken = await executeRecaptcha("contact");
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formState),
+        body: JSON.stringify({
+          ...formState,
+          recaptchaToken,
+        }),
       });
 
       if (!res.ok) throw new Error("Failed to send");
@@ -291,6 +299,28 @@ export function ContactSection() {
                     </p>
                   )}
                 </div>
+
+                <p className="text-[11px] leading-relaxed text-muted-foreground/60">
+                  Protegido por reCAPTCHA.{" "}
+                  <a
+                    href="https://policies.google.com/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-muted-foreground"
+                  >
+                    Privacidade
+                  </a>
+                  {" e "}
+                  <a
+                    href="https://policies.google.com/terms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline hover:text-muted-foreground"
+                  >
+                    Termos
+                  </a>
+                  {" do Google."}
+                </p>
 
                 <motion.div whileTap={isSending ? {} : { scale: 0.98 }}>
                   <Button

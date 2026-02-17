@@ -13,6 +13,7 @@ import { CopyFeedbackProvider } from "@/components/copy-feedback";
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
 import { Navbar } from "@/components/navbar";
+import { RecaptchaProvider } from "@/components/recaptcha-provider";
 import { ScrollTopButton } from "@/components/scroll-top";
 import { PERSONAL } from "@/lib/constants";
 import { resolveLocale } from "@/lib/i18n/request";
@@ -54,6 +55,21 @@ export const metadata: Metadata = {
     title: `${SITE_NAME} — ${PERSONAL.role}`,
     description: `Portfolio de ${PERSONAL.name}. +8 anos com React, Next.js e React Native. Implementações reais e guias para devs.`,
   },
+  keywords: [
+    "Vinicius Bastazin",
+    "portfolio frontend",
+    "desenvolvedor React",
+    "Next.js developer",
+    "React Native",
+    "TypeScript",
+    "frontend senior",
+    "design systems",
+    "arquitetura frontend",
+    "Tailwind CSS",
+    "i18n",
+    "SEO Next.js",
+    "chatbot IA",
+  ],
   verification: {
     google: PERSONAL.googleVerification,
   },
@@ -84,13 +100,15 @@ export default async function RootLayout({
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <CopyFeedbackProvider>
-            <Navbar />
-            {children}
-            <ScrollTopButton />
-            <ChatWidget />
-            <Footer />
-          </CopyFeedbackProvider>
+          <RecaptchaProvider>
+            <CopyFeedbackProvider>
+              <Navbar />
+              {children}
+              <ScrollTopButton />
+              <ChatWidget />
+              <Footer />
+            </CopyFeedbackProvider>
+          </RecaptchaProvider>
         </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />

@@ -101,3 +101,8 @@
 body[data-mobile-menu-open] .fab-floating {
   display: none !important;
 }
+
+/* Hide reCAPTCHA v3 floating badge — attribution is in the contact form */
+.grecaptcha-badge {
+  visibility: hidden !important;
+}

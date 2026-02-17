@@ -2,6 +2,7 @@ import OpenAI from "openai";
 import { z } from "zod";
 
 import { SYSTEM_PROMPT } from "@/lib/chat/system-prompt";
+import { getClientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
 const MAX_MESSAGES = 10;
 
@@ -18,11 +19,15 @@ const assistantMessageSchema = z.object({
 const messageSchema = z.union([userMessageSchema, assistantMessageSchema]);
 
 const bodySchema = z.object({
-  messages: z.array(messageSchema),
+  messages: z.array(messageSchema).max(MAX_MESSAGES),
 });
 
 export async function POST(request: Request) {
   try {
+    const ip = getClientIp(request);
+    const rl = rateLimit(ip, { prefix: "chat", limit: 30, windowSeconds: 60 });
+    if (!rl.success) return rateLimitResponse(rl);
+
     const apiKey = process.env.OPENAI_API_KEY;
 
     if (!apiKey) {

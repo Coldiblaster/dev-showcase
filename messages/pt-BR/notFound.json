@@ -1,0 +1,26 @@
+{
+  "title": "404",
+  "subtitle": "Página não encontrada",
+  "description": "Parece que essa rota fez um `git checkout` pra outra dimensão.",
+  "terminal": [
+    "$ cd /pagina-que-voce-queria",
+    "bash: cd: /pagina-que-voce-queria: No such file or directory",
+    "$ git log --oneline -1",
+    "e404bad fix: remover página que ninguém usava",
+    "$ echo $?",
+    "404"
+  ],
+  "tips": [
+    "Verifique se a URL está correta (typos acontecem até com seniors)",
+    "A página pode ter sido movida ou excluída",
+    "Ou talvez nunca tenha existido... como aquele bug que só acontece na sexta"
+  ],
+  "tipsTitle": "Possíveis causas:",
+  "backHome": "Voltar ao início",
+  "explore": "Explorar conteúdo",
+  "funFacts": [
+    "Fun fact: O status 404 veio do CERN — sala 404 era onde ficava o servidor original da web.",
+    "Curiosidade: Este portfolio tem mais linhas de código do que páginas 404.",
+    "Dica: Ctrl+Z não funciona em URLs. Já tentamos."
+  ]
+}

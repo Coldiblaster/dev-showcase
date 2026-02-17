@@ -9,51 +9,57 @@ export type ContentItem = {
 export const CONTENT_ITEMS: ContentItem[] = [
   {
     slug: "i18n",
-    title: "i18n Showcase",
-    description: "Internacionalização com next-intl e DeepL",
+    title: "i18n Showcase — Internacionalização com Next.js",
+    description:
+      "Implementação real de internacionalização (i18n) com next-intl e DeepL. Demo ao vivo com 4 idiomas, traduções tipadas, formatação de datas e moedas.",
     component: "I18nShowcase",
     category: "implementation",
   },
   {
     slug: "seo",
-    title: "SEO Showcase",
-    description: "Meta tags, Open Graph, JSON-LD, Sitemap e mais",
+    title: "SEO Showcase — Otimização para Next.js",
+    description:
+      "Guia completo de SEO com Next.js: Meta tags, Open Graph dinâmico, JSON-LD estruturado, Sitemap, Robots e comparativo Next.js vs React+Vite.",
     component: "SeoShowcase",
     category: "implementation",
   },
   {
     slug: "ai-chatbot",
-    title: "AI Chatbot com OpenAI",
-    description: "Chatbot IA com streaming, system prompt e Next.js App Router",
+    title: "AI Chatbot com OpenAI e Vercel AI SDK",
+    description:
+      "Como criar um chatbot IA com streaming usando OpenAI, Vercel AI SDK e Next.js App Router. System prompt, pricing e arquitetura completa.",
     component: "AiChatbotShowcase",
     category: "implementation",
   },
   {
     slug: "ai-tips",
-    title: "Dicas de IA",
-    description: "v0, Copilot, Prompts e ferramentas de IA",
+    title: "Dicas de IA para Desenvolvedores",
+    description:
+      "Guia prático de ferramentas IA: v0 by Vercel, GitHub Copilot, prompt engineering e ferramentas essenciais para produtividade dev.",
     component: "AITips",
     category: "guide",
   },
   {
     slug: "tailwind-tips",
-    title: "Tailwind + shadcn/ui",
-    description: "Setup, componentes e boas práticas",
+    title: "Tailwind CSS + shadcn/ui — Guia Prático",
+    description:
+      "Setup completo, componentes reutilizáveis, padrões de código e boas práticas com Tailwind CSS e shadcn/ui para projetos React e Next.js.",
     component: "TailwindTips",
     category: "guide",
   },
   {
     slug: "react-query-tips",
-    title: "React Query Essencial",
-    description: "Cache, mutations, otimização e boas práticas",
+    title: "React Query Essencial — Cache e Mutations",
+    description:
+      "Guia completo de TanStack Query (React Query): cache inteligente, mutations, invalidação, otimistic updates e boas práticas para apps React.",
     component: "ReactQueryTips",
     category: "guide",
   },
   {
     slug: "dev-resources",
-    title: "Recursos para Desenvolvedores",
+    title: "Recursos para Desenvolvedores — Jr, Pleno e Senior",
     description:
-      "Componentes ao vivo, snippets, refatoração e playground interativo.",
+      "Snippets, comparações before/after, padrões de código e playground interativo filtrado por nível: junior, pleno e senior.",
     component: "DevResourcesPage",
     category: "guide",
   },

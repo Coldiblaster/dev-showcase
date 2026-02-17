@@ -11,9 +11,9 @@
     "title": "Lo que se implementó",
     "description": "Infraestructura completa de SEO con ejemplos para Next.js (APIs nativas) y React + Vite (bibliotecas de la comunidad).",
     "items": [
-      { "title": "Metadata API", "description": "Title template, description, authors, robots y canonical URL configurados en el layout raíz con herencia automática.", "icon": "FileText" },
+      { "title": "Metadata API", "description": "Title template, description, keywords, authors, robots y canonical URL configurados en el layout raíz con herencia automática.", "icon": "FileText" },
       { "title": "Open Graph & Twitter Cards", "description": "Imagen de 1200x630 generada dinámicamente vía ImageResponse con avatar, nombre, skills y branding.", "icon": "Share2" },
-      { "title": "JSON-LD Structured Data", "description": "Schemas Person y WebSite inyectados en el head para rich snippets en Google.", "icon": "Code" },
+      { "title": "JSON-LD Structured Data", "description": "Schemas Person, WebSite, ProfilePage y BreadcrumbList con @id para referencia cruzada — rich snippets en Google con nombre, cargo, skills y navegación.", "icon": "Code" },
       { "title": "Sitemap Dinámico", "description": "Generado automáticamente a partir de las rutas registradas en content.ts.", "icon": "Map" },
       { "title": "Robots.txt", "description": "Configuración de crawling permitiendo indexación total y apuntando al sitemap.xml.", "icon": "Bot" },
       { "title": "PWA Manifest", "description": "Web App Manifest con nombre, colores del tema, íconos y configuración standalone.", "icon": "Smartphone" }
@@ -21,7 +21,7 @@
   },
   "metadata": { "title": "Metadata API", "description": "El layout raíz define metadata global con title template. Páginas hijas heredan y pueden sobrescribir vía buildPageMetadata().", "codeTitle": "src/app/layout.tsx", "helperTitle": "src/lib/seo.ts" },
   "ogImage": { "title": "Open Graph Image", "description": "Imagen generada en build time vía next/og ImageResponse. Aparece al compartir el link en LinkedIn, Twitter, WhatsApp o Slack.", "codeTitle": "src/app/opengraph-image.tsx", "preview": "Preview de la imagen OG", "inspect": "Abrir /opengraph-image" },
-  "jsonLd": { "title": "JSON-LD Structured Data", "description": "Schema.org Person y WebSite inyectados como script en el head. Google entiende quién es el autor, sus skills y links sociales.", "codeTitle": "src/components/json-ld.tsx", "testLabel": "Probar en Google Rich Results", "testUrl": "https://search.google.com/test/rich-results" },
+  "jsonLd": { "title": "JSON-LD Structured Data", "description": "Schema.org con @graph conteniendo Person, WebSite, ProfilePage y BreadcrumbList — todos enlazados via @id. Google entiende al autor, navegación del sitio y muestra rich snippets.", "codeTitle": "src/components/json-ld.tsx", "testLabel": "Probar en Google Rich Results", "testUrl": "https://search.google.com/test/rich-results" },
   "sitemap": { "title": "Sitemap & Robots", "description": "El sitemap se genera dinámicamente del array CONTENT_ITEMS. Nuevas páginas entran automáticamente.", "sitemapTitle": "src/app/sitemap.ts", "robotsTitle": "src/app/robots.ts", "inspectSitemap": "Abrir /sitemap.xml", "inspectRobots": "Abrir /robots.txt" },
   "icons": { "title": "Íconos & PWA", "description": "Favicon (32x32) y Apple Touch Icon (180x180) generados vía ImageResponse con las iniciales VB.", "faviconTitle": "src/app/icon.tsx", "appleTitle": "src/app/apple-icon.tsx", "manifestTitle": "src/app/manifest.ts" },
   "comparison": {
@@ -43,17 +43,61 @@
     "items": [
       { "label": "Title template con herencia", "done": true },
       { "label": "Meta description en todas las páginas", "done": true },
+      { "label": "Keywords estratégicas en el layout", "done": true },
       { "label": "Canonical URL por página", "done": true },
       { "label": "Open Graph image 1200x630", "done": true },
-      { "label": "Twitter Card (summary_large_image)", "done": true },
-      { "label": "JSON-LD Person + WebSite", "done": true },
+      { "label": "Twitter Card por página (summary_large_image)", "done": true },
+      { "label": "JSON-LD Person + WebSite + ProfilePage", "done": true },
+      { "label": "JSON-LD BreadcrumbList", "done": true },
+      { "label": "JSON-LD @id para referencia cruzada", "done": true },
       { "label": "Sitemap.xml dinámico", "done": true },
       { "label": "Robots.txt", "done": true },
       { "label": "Favicon + Apple Touch Icon", "done": true },
       { "label": "PWA Manifest", "done": true },
       { "label": "Google Search Console verificado", "done": true },
-      { "label": "Viewport optimizado (zoom accesible)", "done": true }
+      { "label": "Viewport optimizado (zoom accesible)", "done": true },
+      { "label": "Multi-idioma con alternateLocale", "done": true }
     ]
+  },
+  "webVitals": {
+    "title": "Core Web Vitals",
+    "description": "Métricas de rendimiento que Google usa como factor de ranking. Monitoreadas en este portfolio via Vercel Speed Insights.",
+    "items": [
+      {
+        "metric": "LCP",
+        "name": "Largest Contentful Paint",
+        "description": "Tiempo hasta que el elemento visible más grande carga. Ideal: < 2.5s.",
+        "tip": "Optimiza imágenes con next/image, usa fuentes con display: swap y prioriza el contenido above-the-fold."
+      },
+      {
+        "metric": "INP",
+        "name": "Interaction to Next Paint",
+        "description": "Tiempo de respuesta a interacciones del usuario. Ideal: < 200ms.",
+        "tip": "Evita tareas largas en el main thread, usa React.memo, useCallback y code splitting con dynamic imports."
+      },
+      {
+        "metric": "CLS",
+        "name": "Cumulative Layout Shift",
+        "description": "Cuánto se mueve el layout inesperadamente. Ideal: < 0.1.",
+        "tip": "Define width/height en imágenes, usa font-display: swap y reserva espacio para contenido dinámico."
+      },
+      {
+        "metric": "FCP",
+        "name": "First Contentful Paint",
+        "description": "Tiempo hasta que el primer contenido aparece en pantalla. Ideal: < 1.8s.",
+        "tip": "Usa SSR/SSG, minimiza CSS crítico, evita bloqueo de renderización con scripts e inline critical CSS."
+      },
+      {
+        "metric": "TTFB",
+        "name": "Time to First Byte",
+        "description": "Tiempo hasta que el servidor responde. Ideal: < 800ms.",
+        "tip": "Usa CDN (Vercel Edge), cache de páginas estáticas, optimiza queries del servidor y usa ISR cuando sea posible."
+      }
+    ],
+    "good": "Bueno",
+    "needsImprovement": "Necesita mejorar",
+    "poor": "Malo",
+    "monitorTip": "Consejo: usa Vercel Speed Insights o Google PageSpeed Insights para monitorear en producción."
   },
   "cta": { "title": "¿Quieres aplicarlo en tu proyecto?", "description": "Todo el código SEO de este portfolio es open source. Clona, adapta y usa.", "github": "Ver en GitHub", "back": "Volver al Portfolio" }
 }

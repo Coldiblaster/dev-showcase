@@ -9,12 +9,13 @@ import { MetadataSection } from "./metadata-section";
 import { OgImageSection } from "./og-image-section";
 import { OverviewSection } from "./overview-section";
 import { SitemapSection } from "./sitemap-section";
+import { WebVitalsSection } from "./web-vitals-section";
 
 /**
  * Showcase completo de SEO.
  *
  * Demonstração da infraestrutura de SEO implementada neste portfolio:
- * Metadata API, Open Graph, JSON-LD, Sitemap, Robots e PWA.
+ * Metadata API, Open Graph, JSON-LD, Sitemap, Robots, PWA e Core Web Vitals.
  * Inclui comparação Next.js vs React + Vite para cada técnica.
  */
 export function SeoShowcase() {
@@ -26,6 +27,7 @@ export function SeoShowcase() {
       <OgImageSection />
       <JsonLdSection />
       <SitemapSection />
+      <WebVitalsSection />
       <ComparisonSection />
       <ChecklistSection />
       <SeoCta />

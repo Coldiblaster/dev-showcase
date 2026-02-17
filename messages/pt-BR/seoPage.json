@@ -13,7 +13,7 @@
     "items": [
       {
         "title": "Metadata API",
-        "description": "Title template, description, authors, robots e canonical URL configurados no layout raiz com herança automática para todas as páginas.",
+        "description": "Title template, description, keywords, authors, robots e canonical URL configurados no layout raiz com herança automática para todas as páginas.",
         "icon": "FileText"
       },
       {
@@ -23,7 +23,7 @@
       },
       {
         "title": "JSON-LD Structured Data",
-        "description": "Schemas Person e WebSite injetados no head para rich snippets no Google — nome, cargo, skills, links sociais.",
+        "description": "Schemas Person, WebSite, ProfilePage e BreadcrumbList com @id para referência cruzada — rich snippets no Google com nome, cargo, skills e navegação.",
         "icon": "Code"
       },
       {
@@ -58,7 +58,7 @@
   },
   "jsonLd": {
     "title": "JSON-LD Structured Data",
-    "description": "Schema.org Person e WebSite são injetados como script no head. Isso permite que o Google entenda quem é o autor, suas skills, links sociais e informações do site.",
+    "description": "Schema.org com @graph contendo Person, WebSite, ProfilePage e BreadcrumbList — todos linkados via @id. Isso permite que o Google entenda o autor, navegação do site e exiba rich snippets.",
     "codeTitle": "src/components/json-ld.tsx",
     "testLabel": "Testar no Google Rich Results",
     "testUrl": "https://search.google.com/test/rich-results"
@@ -127,17 +127,61 @@
     "items": [
       { "label": "Title template com herança", "done": true },
       { "label": "Meta description em todas as páginas", "done": true },
+      { "label": "Keywords estratégicas no layout", "done": true },
       { "label": "Canonical URL por página", "done": true },
       { "label": "Open Graph image 1200x630", "done": true },
-      { "label": "Twitter Card (summary_large_image)", "done": true },
-      { "label": "JSON-LD Person + WebSite", "done": true },
+      { "label": "Twitter Card por página (summary_large_image)", "done": true },
+      { "label": "JSON-LD Person + WebSite + ProfilePage", "done": true },
+      { "label": "JSON-LD BreadcrumbList", "done": true },
+      { "label": "JSON-LD @id para referência cruzada", "done": true },
       { "label": "Sitemap.xml dinâmico", "done": true },
       { "label": "Robots.txt", "done": true },
       { "label": "Favicon + Apple Touch Icon", "done": true },
       { "label": "PWA Manifest", "done": true },
       { "label": "Google Search Console verificado", "done": true },
-      { "label": "Viewport otimizado (zoom acessível)", "done": true }
+      { "label": "Viewport otimizado (zoom acessível)", "done": true },
+      { "label": "Multi-idioma com alternateLocale", "done": true }
     ]
+  },
+  "webVitals": {
+    "title": "Core Web Vitals",
+    "description": "Métricas de performance que o Google usa como fator de ranking. Monitoradas neste portfolio via Vercel Speed Insights.",
+    "items": [
+      {
+        "metric": "LCP",
+        "name": "Largest Contentful Paint",
+        "description": "Tempo até o maior elemento visível carregar. Ideal: < 2.5s.",
+        "tip": "Otimize imagens com next/image, use fontes com display: swap e priorize o conteúdo above-the-fold."
+      },
+      {
+        "metric": "INP",
+        "name": "Interaction to Next Paint",
+        "description": "Tempo de resposta a interações do usuário. Ideal: < 200ms.",
+        "tip": "Evite tarefas longas no main thread, use React.memo, useCallback e code splitting com dynamic imports."
+      },
+      {
+        "metric": "CLS",
+        "name": "Cumulative Layout Shift",
+        "description": "Quanto o layout se move inesperadamente. Ideal: < 0.1.",
+        "tip": "Defina width/height em imagens, use font-display: swap e reserve espaço para conteúdo dinâmico."
+      },
+      {
+        "metric": "FCP",
+        "name": "First Contentful Paint",
+        "description": "Tempo até o primeiro conteúdo aparecer na tela. Ideal: < 1.8s.",
+        "tip": "Use SSR/SSG, minimize CSS crítico, evite bloqueio de renderização com scripts e inline critical CSS."
+      },
+      {
+        "metric": "TTFB",
+        "name": "Time to First Byte",
+        "description": "Tempo até o servidor responder. Ideal: < 800ms.",
+        "tip": "Use CDN (Vercel Edge), cache de páginas estáticas, otimize queries do servidor e use ISR quando possível."
+      }
+    ],
+    "good": "Bom",
+    "needsImprovement": "Precisa melhorar",
+    "poor": "Ruim",
+    "monitorTip": "Dica: use Vercel Speed Insights ou Google PageSpeed Insights para monitorar em produção."
   },
   "cta": {
     "title": "Quer aplicar no seu projeto?",

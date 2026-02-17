@@ -29,5 +29,10 @@ export function buildPageMetadata(page: {
       type: "website",
       locale: "pt_BR",
     },
+    twitter: {
+      card: "summary_large_image",
+      title: page.title,
+      description: page.description,
+    },
   };
 }

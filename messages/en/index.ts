@@ -15,6 +15,7 @@ import i18nPage from "./i18nPage.json";
 import i18nShowcase from "./i18nShowcase.json";
 import implementations from "./implementations.json";
 import nav from "./nav.json";
+import notFound from "./notFound.json";
 import portfolio from "./portfolio.json";
 import projects from "./projects.json";
 import search from "./search.json";
@@ -42,6 +43,7 @@ export default {
   i18nPage,
   i18nShowcase,
   implementations,
+  notFound,
   portfolio,
   projects,
   tailwindTips,

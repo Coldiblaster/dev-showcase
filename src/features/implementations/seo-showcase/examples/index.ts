@@ -1,25 +1,57 @@
 export const JSON_LD_CODE = `const personSchema = {
   "@type": "Person",
-  name: "Vinicius Bastazin Araujo",
+  "@id": \`\${SITE_URL}/#person\`,
+  name: SITE_AUTHOR,
   url: SITE_URL,
-  jobTitle: "Desenvolvedor Frontend Senior",
-  sameAs: [
-    "https://github.com/Coldiblaster",
-    "https://www.linkedin.com/in/vbastazin/",
-  ],
+  jobTitle: PERSONAL.role,
+  sameAs: [PERSONAL.github, PERSONAL.linkedin],
   knowsAbout: [
     "React", "Next.js", "TypeScript",
     "React Native", "Tailwind CSS", "Node.js",
   ],
-  image: \`\${SITE_URL}/avatar-desk.png\`,
+  image: \`\${SITE_URL}\${PERSONAL.avatar}\`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Presidente Prudente",
+    addressRegion: "SP",
+    addressCountry: "BR",
+  },
 };
 
 const websiteSchema = {
   "@type": "WebSite",
+  "@id": \`\${SITE_URL}/#website\`,
   name: SITE_NAME,
   url: SITE_URL,
-  author: { "@type": "Person", name: SITE_AUTHOR },
+  author: { "@id": \`\${SITE_URL}/#person\` },
+  publisher: { "@id": \`\${SITE_URL}/#person\` },
   inLanguage: ["pt-BR", "en", "es", "de"],
+  potentialAction: {
+    "@type": "SearchAction",
+    target: \`\${SITE_URL}/?q={search_term_string}\`,
+  },
+};
+
+const profilePageSchema = {
+  "@type": "ProfilePage",
+  "@id": \`\${SITE_URL}/#profilepage\`,
+  url: SITE_URL,
+  mainEntity: { "@id": \`\${SITE_URL}/#person\` },
+  isPartOf: { "@id": \`\${SITE_URL}/#website\` },
+};
+
+const breadcrumbSchema = {
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1,
+      name: "Home", item: SITE_URL },
+    { "@type": "ListItem", position: 2,
+      name: "Implementações",
+      item: \`\${SITE_URL}/implementacoes\` },
+    { "@type": "ListItem", position: 3,
+      name: "Dicas & Guias",
+      item: \`\${SITE_URL}/dicas\` },
+  ],
 };
 
 // Injetado no <head> via layout.tsx
@@ -28,7 +60,10 @@ const websiteSchema = {
   dangerouslySetInnerHTML={{
     __html: JSON.stringify({
       "@context": "https://schema.org",
-      "@graph": [personSchema, websiteSchema],
+      "@graph": [
+        personSchema, websiteSchema,
+        profilePageSchema, breadcrumbSchema,
+      ],
     }),
   }}
 />`;
@@ -61,15 +96,19 @@ export const ROBOTS_CODE = `export default function robots(): MetadataRoute.Robo
 export const LAYOUT_CODE = `export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: \`\${SITE_NAME} | Desenvolvedor Frontend Senior\`,
+    default: \`\${SITE_NAME} | \${PERSONAL.role}\`,
     template: \`%s | \${SITE_NAME}\`,
   },
-  description: "Portfolio de Vinicius Bastazin Araujo...",
+  description: \`Portfolio de \${PERSONAL.fullName}...\`,
+  keywords: [
+    "portfolio frontend", "React", "Next.js",
+    "TypeScript", "React Native", "Tailwind CSS",
+  ],
   authors: [{ name: SITE_AUTHOR, url: SITE_URL }],
   robots: { index: true, follow: true },
   alternates: { canonical: SITE_URL },
   openGraph: {
-    title: \`\${SITE_NAME} — Desenvolvedor Frontend\`,
+    title: \`\${SITE_NAME} — \${PERSONAL.role}\`,
     url: SITE_URL,
     siteName: SITE_NAME,
     type: "website",
@@ -77,7 +116,7 @@ export const LAYOUT_CODE = `export const metadata: Metadata = {
     alternateLocale: ["en_US", "es_ES", "de_DE"],
   },
   twitter: { card: "summary_large_image" },
-  verification: { google: "OAX_26lbl..." },
+  verification: { google: PERSONAL.googleVerification },
 };`;
 
 export const HELPER_CODE = `export function buildPageMetadata(page: {
@@ -98,6 +137,11 @@ export const HELPER_CODE = `export function buildPageMetadata(page: {
       siteName: SITE_NAME,
       type: "website",
       locale: "pt_BR",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: page.title,
+      description: page.description,
     },
   };
 }`;
