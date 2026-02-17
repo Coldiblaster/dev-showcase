@@ -88,25 +88,25 @@ export default function I18nTroubleshootingSection() {
         >
           {problems.map((problem, i) => (
             <motion.div key={i} variants={fadeUp}>
-              <Card className="h-full overflow-hidden border-border/50 bg-card">
+              <Card className="h-full border-border/50 bg-card">
                 <CardHeader className="flex flex-row items-start gap-2 pb-4">
                   <IconBadge icon={problem.icon} />
                   <CardTitle className="min-w-0 text-base font-semibold leading-snug md:text-lg">
                     {problem.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="min-w-0">
-                  <p className="mb-2 wrap-break-word text-sm font-medium text-destructive">
+                <CardContent className="overflow-hidden">
+                  <p className="mb-2 text-sm font-medium text-destructive">
                     {problem.error}
                   </p>
-                  <pre className="mb-2 overflow-x-auto rounded bg-muted px-3 py-2 text-xs">
+                  <pre className="mb-2 overflow-x-auto whitespace-pre-wrap break-all rounded bg-muted px-3 py-2 text-xs">
                     {problem.codeError}
                   </pre>
                   <div className="mb-2 flex items-start gap-1 text-sm font-medium text-success">
                     <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-success" />
-                    <span className="wrap-break-word">{problem.solution}</span>
+                    <span className="min-w-0">{problem.solution}</span>
                   </div>
-                  <pre className="overflow-x-auto rounded bg-muted px-3 py-2 text-xs">
+                  <pre className="overflow-x-auto whitespace-pre-wrap break-all rounded bg-muted px-3 py-2 text-xs">
                     {problem.codeSolution}
                   </pre>
                   {problem.extraTip}
