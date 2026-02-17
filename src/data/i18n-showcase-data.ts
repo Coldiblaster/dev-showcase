@@ -30,10 +30,7 @@ export function useI18nShowcaseData(): I18nShowcaseItem[] {
     // choose namespace
     try {
       if (key.startsWith("i18nShowcase.")) {
-        const short = key.replace(
-          /^i18nShowcase\./,
-          "",
-        ) as ShowcaseKey;
+        const short = key.replace(/^i18nShowcase\./, "") as ShowcaseKey;
 
         // 1) try to read raw message (avoids formatting runtime)
         const rawGetter =
@@ -69,9 +66,7 @@ export function useI18nShowcaseData(): I18nShowcaseItem[] {
 
       try {
         const res =
-          typeof tPage === "function"
-            ? tPage(key as PageKey)
-            : undefined;
+          typeof tPage === "function" ? tPage(key as PageKey) : undefined;
         if (typeof res === "string" && res && res !== key) return res;
       } catch (err) {
         console.debug(

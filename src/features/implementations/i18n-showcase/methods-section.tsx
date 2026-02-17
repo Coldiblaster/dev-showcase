@@ -12,7 +12,7 @@ import { fadeUp, stagger } from "@/lib/animation-variants";
 
 /**
  * Seção de métodos do next-intl.
- * 
+ *
  * Showcase dos principais métodos com exemplos de código.
  */
 export function Methods() {
@@ -35,7 +35,10 @@ export function Methods() {
           >
             {t("methods.title")}
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-sm md:text-base text-muted-foreground">
+          <motion.p
+            variants={fadeUp}
+            className="text-sm md:text-base text-muted-foreground"
+          >
             {t("methods.subtitle")}
           </motion.p>
         </motion.div>

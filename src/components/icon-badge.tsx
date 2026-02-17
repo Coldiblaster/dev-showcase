@@ -5,14 +5,14 @@ import { LucideIcon } from "lucide-react";
 
 /**
  * Badge com ícone e animação hover.
- * 
+ *
  * Badge circular com ícone centralizado e efeito de escala/rotação ao hover.
  * Usado para destacar features ou seções com ícones.
- * 
+ *
  * @param icon - Ícone do lucide-react
  * @param bgColor - Cor de fundo (padrão: bg-primary/10)
  * @param iconColor - Cor do ícone (padrão: text-primary)
- * 
+ *
  * @example
  * ```tsx
  * <IconBadge icon={Zap} />

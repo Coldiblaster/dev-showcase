@@ -9,28 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { fadeUp, stagger } from "@/lib/animation-variants";
 
-const ogCode = `import { ImageResponse } from "next/og";
-import { readFile } from "node:fs/promises";
-
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
-
-export default async function OGImage() {
-  const avatar = await readFile(
-    join(process.cwd(), "public", "avatar-desk.png"),
-  );
-  const src = \`data:image/png;base64,\${avatar.toString("base64")}\`;
-
-  return new ImageResponse(
-    <div style={{ /* dark bg, avatar, name, skills */ }}>
-      <img src={src} width={280} height={280} />
-      <h1>Vinicius Bastazin</h1>
-      <p>Desenvolvedor Frontend Senior</p>
-      {skills.map(s => <span>{s}</span>)}
-    </div>,
-    { ...size },
-  );
-}`;
+import { OG_CODE } from "./examples";
 
 export function OgImageSection() {
   const t = useTranslations("seoPage");
@@ -55,7 +34,7 @@ export function OgImageSection() {
 
           <div className="grid gap-4 md:gap-6 lg:grid-cols-2">
             <motion.div variants={fadeUp}>
-              <CodeBlock title={t("ogImage.codeTitle")} code={ogCode} />
+              <CodeBlock title={t("ogImage.codeTitle")} code={OG_CODE} />
             </motion.div>
             <motion.div variants={fadeUp} className="flex flex-col gap-4">
               <div className="overflow-hidden rounded-xl border border-border">

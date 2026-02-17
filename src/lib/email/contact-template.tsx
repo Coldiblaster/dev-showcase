@@ -31,7 +31,11 @@ export function ContactEmailTemplate({
           borderBottom: "2px solid #4cceac",
         }}
       >
-        <table cellPadding={0} cellSpacing={0} style={{ borderCollapse: "collapse" }}>
+        <table
+          cellPadding={0}
+          cellSpacing={0}
+          style={{ borderCollapse: "collapse" }}
+        >
           <tbody>
             <tr>
               <td style={{ verticalAlign: "middle", paddingRight: 14 }}>
@@ -55,7 +59,8 @@ export function ContactEmailTemplate({
                           fontWeight: 800,
                           color: "#0a0f1a",
                           lineHeight: 1,
-                          fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                          fontFamily:
+                            '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
                         }}
                       >
                         VB
@@ -91,7 +96,11 @@ export function ContactEmailTemplate({
             marginBottom: 28,
           }}
         >
-          <table cellPadding={0} cellSpacing={0} style={{ width: "100%", borderCollapse: "collapse" }}>
+          <table
+            cellPadding={0}
+            cellSpacing={0}
+            style={{ width: "100%", borderCollapse: "collapse" }}
+          >
             <tbody>
               <tr>
                 <td
@@ -175,7 +184,11 @@ export function ContactEmailTemplate({
         </div>
 
         {/* Reply CTA */}
-        <table cellPadding={0} cellSpacing={0} style={{ borderCollapse: "collapse" }}>
+        <table
+          cellPadding={0}
+          cellSpacing={0}
+          style={{ borderCollapse: "collapse" }}
+        >
           <tbody>
             <tr>
               <td

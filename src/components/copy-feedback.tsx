@@ -3,7 +3,13 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Check } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { createContext, useCallback, useContext, useRef, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useRef,
+  useState,
+} from "react";
 
 interface CopyFeedbackContextValue {
   showFeedback: () => void;

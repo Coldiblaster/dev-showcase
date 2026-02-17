@@ -12,6 +12,13 @@ import { SectionHeader } from "@/components/section-header";
 import { TipItem } from "@/components/tip-item";
 import { Separator } from "@/components/ui/separator";
 
+import {
+  INSTALL_CODE,
+  LAYOUT_SETUP_CODE,
+  USE_MUTATION_CODE,
+  USE_QUERY_CODE,
+} from "./examples/react-query-examples";
+
 export function ReactQueryTips() {
   return (
     <div className="min-h-screen">
@@ -43,42 +50,12 @@ export function ReactQueryTips() {
 
           <AnimatedSection delay={0.2}>
             <div className="mb-6">
-              <CodeBlock
-                title="terminal"
-                code={`npm install @tanstack/react-query
-# ou
-pnpm add @tanstack/react-query`}
-              />
+              <CodeBlock title="terminal" code={INSTALL_CODE} />
             </div>
           </AnimatedSection>
 
           <AnimatedSection delay={0.3}>
-            <CodeBlock
-              title="app/layout.tsx"
-              code={`'use client';
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { useState } from 'react';
-
-export default function RootLayout({ children }) {
-  const [queryClient] = useState(() => new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 60 * 1000, // 1 minuto
-        retry: 1,
-      },
-    },
-  }));
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      {children}
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-  );
-}`}
-            />
+            <CodeBlock title="app/layout.tsx" code={LAYOUT_SETUP_CODE} />
           </AnimatedSection>
         </div>
       </section>
@@ -129,30 +106,7 @@ export default function RootLayout({ children }) {
           <AnimatedSection delay={0.3}>
             <CodeBlock
               title="components/user-profile.tsx"
-              code={`import { useQuery } from '@tanstack/react-query';
-
-async function fetchUser(id: string) {
-  const res = await fetch(\`/api/users/\${id}\`);
-  if (!res.ok) throw new Error('Failed to fetch');
-  return res.json();
-}
-
-export function UserProfile({ userId }: { userId: string }) {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['user', userId],
-    queryFn: () => fetchUser(userId),
-  });
-
-  if (isLoading) return <div>Carregando...</div>;
-  if (error) return <div>Erro: {error.message}</div>;
-
-  return (
-    <div>
-      <h1>{data.name}</h1>
-      <p>{data.email}</p>
-    </div>
-  );
-}`}
+              code={USE_QUERY_CODE}
             />
           </AnimatedSection>
         </div>
@@ -182,48 +136,7 @@ export function UserProfile({ userId }: { userId: string }) {
           <AnimatedSection delay={0.2}>
             <CodeBlock
               title="components/create-user-form.tsx"
-              code={`import { useMutation, useQueryClient } from '@tanstack/react-query';
-
-async function createUser(data: { name: string; email: string }) {
-  const res = await fetch('/api/users', {
-    method: 'POST',
-    body: JSON.stringify(data),
-  });
-  if (!res.ok) throw new Error('Failed to create');
-  return res.json();
-}
-
-export function CreateUserForm() {
-  const queryClient = useQueryClient();
-
-  const mutation = useMutation({
-    mutationFn: createUser,
-    onSuccess: () => {
-      // Invalida e refetch da lista de usuários
-      queryClient.invalidateQueries({ queryKey: ['users'] });
-    },
-  });
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    mutation.mutate({
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-    });
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <input name="name" required />
-      <input name="email" type="email" required />
-      <button disabled={mutation.isPending}>
-        {mutation.isPending ? 'Criando...' : 'Criar'}
-      </button>
-      {mutation.isError && <p>Erro: {mutation.error.message}</p>}
-    </form>
-  );
-}`}
+              code={USE_MUTATION_CODE}
             />
           </AnimatedSection>
         </div>

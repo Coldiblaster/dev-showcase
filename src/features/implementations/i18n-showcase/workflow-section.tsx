@@ -13,7 +13,7 @@ type WorkflowStep = Messages["i18nPage"]["workflow"]["steps"][number];
 
 /**
  * Seção de workflow do i18n.
- * 
+ *
  * Timeline com os passos do fluxo de trabalho.
  */
 export function Workflow() {
@@ -36,7 +36,10 @@ export function Workflow() {
           >
             {t("workflow.title")}
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-sm md:text-base text-muted-foreground">
+          <motion.p
+            variants={fadeUp}
+            className="text-sm md:text-base text-muted-foreground"
+          >
             {t("workflow.subtitle")}
           </motion.p>
         </motion.div>

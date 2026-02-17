@@ -11,7 +11,7 @@ import { fadeUp } from "@/lib/animation-variants";
 
 /**
  * Seção com link para repositório GitHub.
- * 
+ *
  * Convida usuários a usar o template.
  */
 export function GitHubRepo() {
@@ -33,7 +33,8 @@ export function GitHubRepo() {
                   initial={{ scale: 0 }}
                   animate={isInView ? { scale: 1 } : {}}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
+                  className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10"
+                >
                   <Github className="h-8 w-8 text-primary" />
                 </motion.div>
 
@@ -93,12 +94,14 @@ export function GitHubRepo() {
                   transition={{ delay: 0.6 }}
                   className="mt-8 flex flex-wrap gap-4 justify-center text-sm text-muted-foreground"
                 >
-                  {["TypeScript", "Next.js 14+", "next-intl", "DeepL API"].map((tech) => (
-                    <div key={tech} className="flex items-center gap-1.5">
-                      <span className="h-2 w-2 rounded-full bg-primary" />
-                      {tech}
-                    </div>
-                  ))}
+                  {["TypeScript", "Next.js 14+", "next-intl", "DeepL API"].map(
+                    (tech) => (
+                      <div key={tech} className="flex items-center gap-1.5">
+                        <span className="h-2 w-2 rounded-full bg-primary" />
+                        {tech}
+                      </div>
+                    ),
+                  )}
                 </motion.div>
               </div>
             </CardContent>

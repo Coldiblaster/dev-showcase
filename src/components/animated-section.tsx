@@ -5,13 +5,13 @@ import { useRef } from "react";
 
 /**
  * Seção com animação de entrada ao entrar no viewport.
- * 
+ *
  * Anima opacidade e posição Y quando o elemento entra na tela.
  * Usa Intersection Observer via framer-motion para performance.
- * 
+ *
  * @param children - Conteúdo a ser animado
  * @param delay - Atraso da animação em segundos (padrão: 0)
- * 
+ *
  * @example
  * ```tsx
  * <AnimatedSection delay={0.2}>

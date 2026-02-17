@@ -48,7 +48,10 @@ export default function I18nNewVsLegacySection() {
           >
             {sectionTitle}
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-sm md:text-base text-muted-foreground">
+          <motion.p
+            variants={fadeUp}
+            className="text-sm md:text-base text-muted-foreground"
+          >
             {sectionDesc}
           </motion.p>
         </motion.div>

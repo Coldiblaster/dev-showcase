@@ -15,7 +15,7 @@ type BestPracticeDont = I18nPage["bestPractices"]["dont"]["items"][number];
 
 /**
  * Seção de boas práticas do i18n.
- * 
+ *
  * Exibe listas de do's e don'ts para i18n.
  */
 export function BestPractices() {
@@ -39,7 +39,10 @@ export function BestPractices() {
           >
             {t("bestPractices.title")}
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-sm md:text-base text-muted-foreground">
+          <motion.p
+            variants={fadeUp}
+            className="text-sm md:text-base text-muted-foreground"
+          >
             {t("bestPractices.subtitle")}
           </motion.p>
         </motion.div>

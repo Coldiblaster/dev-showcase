@@ -6,40 +6,16 @@ import { useTranslations } from "next-intl";
 import { CodeBlock } from "@/components/code-block";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 
+import { FILE_STRUCTURE_TREE } from "./examples";
+
 /**
  * Seção de estrutura de arquivos.
- * 
+ *
  * Exibe a árvore de diretórios do projeto i18n.
  */
 export function FileStructure() {
   const t = useTranslations("i18nPage");
   const { ref, isInView } = useSectionInView();
-
-  const tree = `messages/
-├── pt-BR/              # Fonte de verdade
-│   ├── index.ts        # Barrel export
-│   ├── auth.json       # Autenticacao
-│   ├── global.json     # Acoes, status, navegacao
-│   ├── components.json # UI compartilhados
-│   ├── errors.json     # Mensagens de erro
-│   ├── admin/
-│   │   ├── index.ts
-│   │   └── user-management.json
-│   ├── consultor/
-│   │   ├── index.ts
-│   │   └── business-unit.json
-│   └── cockpit/
-│       ├── index.ts
-│       └── dashboard.json
-├── en/                 # Gerado automaticamente
-└── es/                 # Gerado automaticamente
-
-src/i18n/
-├── config.ts           # Locales suportados
-├── routing.ts          # Config next-intl
-├── request.ts          # Resolver locale (cookie)
-├── load-messages.ts    # Carregar JSONs
-└── types.d.ts          # TypeScript autocomplete`;
 
   return (
     <section ref={ref} className="px-4 py-12 md:px-6 md:py-24">
@@ -53,7 +29,9 @@ src/i18n/
           <h2 className="mb-2 text-2xl font-bold text-foreground md:text-4xl">
             {t("structure.title")}
           </h2>
-          <p className="text-sm md:text-base text-muted-foreground">{t("structure.subtitle")}</p>
+          <p className="text-sm md:text-base text-muted-foreground">
+            {t("structure.subtitle")}
+          </p>
         </motion.div>
 
         <motion.div
@@ -65,7 +43,7 @@ src/i18n/
           <p className="mb-6 text-center leading-relaxed text-muted-foreground">
             {t("structure.description")}
           </p>
-          <CodeBlock code={tree} title="Estrutura do projeto" />
+          <CodeBlock code={FILE_STRUCTURE_TREE} title="Estrutura do projeto" />
         </motion.div>
       </div>
     </section>

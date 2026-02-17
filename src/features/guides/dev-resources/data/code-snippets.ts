@@ -136,7 +136,8 @@ formatRelative(new Date(Date.now() - 172800000)) // "2d atrás"`,
   {
     id: "use-toggle",
     title: "useToggle Hook",
-    description: "Hook para booleanos com actions nomeadas — mais legível que useState(false)",
+    description:
+      "Hook para booleanos com actions nomeadas — mais legível que useState(false)",
     level: "junior",
     code: `import { useCallback, useState } from 'react'
 
@@ -203,8 +204,7 @@ function ProductCard({ product }: { product: Product }) {
   {
     id: "safe-context",
     title: "createSafeContext",
-    description:
-      "Cria context + hook type-safe sem precisar checar undefined",
+    description: "Cria context + hook type-safe sem precisar checar undefined",
     level: "pleno",
     code: `import {
   createContext,
@@ -289,7 +289,8 @@ function UserMenu() {
   {
     id: "media-query",
     title: "useMediaQuery (SSR-safe)",
-    description: "Hook responsivo que funciona com SSR/Next.js sem hydration mismatch",
+    description:
+      "Hook responsivo que funciona com SSR/Next.js sem hydration mismatch",
     level: "pleno",
     code: `import { useEffect, useState } from 'react'
 

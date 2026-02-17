@@ -76,7 +76,10 @@ export default function I18nTroubleshootingSection() {
           >
             {t("title")}
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-sm md:text-base text-muted-foreground">
+          <motion.p
+            variants={fadeUp}
+            className="text-sm md:text-base text-muted-foreground"
+          >
             {t("description")}
           </motion.p>
         </motion.div>

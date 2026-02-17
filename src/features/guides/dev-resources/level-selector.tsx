@@ -98,7 +98,9 @@ export function LevelSelector({
                   </div>
 
                   <div className="relative z-10">
-                    <p className="text-base font-semibold md:text-lg">{t(item.id)}</p>
+                    <p className="text-base font-semibold md:text-lg">
+                      {t(item.id)}
+                    </p>
                     <p className="mt-1 text-sm text-muted-foreground">
                       {t(`${item.id}Description`)}
                     </p>

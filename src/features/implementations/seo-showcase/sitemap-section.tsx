@@ -9,30 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { fadeUp, stagger } from "@/lib/animation-variants";
 
-const sitemapCode = `import { CONTENT_ITEMS } from "@/data/content";
-import { SITE_URL } from "@/lib/seo";
-
-export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = [
-    { url: SITE_URL, priority: 1 },
-    { url: \`\${SITE_URL}/implementacoes\`, priority: 0.8 },
-    { url: \`\${SITE_URL}/dicas\`, priority: 0.8 },
-  ];
-
-  const dynamicPages = CONTENT_ITEMS.map((item) => ({
-    url: \`\${SITE_URL}/\${prefix}/\${item.slug}\`,
-    priority: 0.7,
-  }));
-
-  return [...staticPages, ...dynamicPages];
-}`;
-
-const robotsCode = `export default function robots(): MetadataRoute.Robots {
-  return {
-    rules: { userAgent: "*", allow: "/" },
-    sitemap: \`\${SITE_URL}/sitemap.xml\`,
-  };
-}`;
+import { ROBOTS_CODE, SITEMAP_CODE } from "./examples";
 
 export function SitemapSection() {
   const t = useTranslations("seoPage");
@@ -59,14 +36,11 @@ export function SitemapSection() {
             <motion.div variants={fadeUp}>
               <CodeBlock
                 title={t("sitemap.sitemapTitle")}
-                code={sitemapCode}
+                code={SITEMAP_CODE}
               />
             </motion.div>
             <motion.div variants={fadeUp}>
-              <CodeBlock
-                title={t("sitemap.robotsTitle")}
-                code={robotsCode}
-              />
+              <CodeBlock title={t("sitemap.robotsTitle")} code={ROBOTS_CODE} />
             </motion.div>
           </div>
 

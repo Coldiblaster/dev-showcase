@@ -8,27 +8,7 @@ import { CodeBlock } from "@/components/code-block";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { fadeUp, stagger } from "@/lib/animation-variants";
 
-const promptExample = `export const SYSTEM_PROMPT = \`
-Você é o assistente virtual do portfolio de [Seu Nome].
-
-REGRAS:
-- Fale sempre em TERCEIRA PESSOA sobre o desenvolvedor
-- Seja profissional mas descontraído
-- Use analogias de código quando fizer sentido
-- Redirecione perguntas fora do escopo educadamente
-- Respostas curtas e objetivas (max 3 parágrafos)
-
-DADOS DO DESENVOLVEDOR:
-- Nome: [Seu Nome]
-- Cargo: Desenvolvedor Frontend Senior
-- Experiência: +8 anos com React, Next.js, TypeScript
-- Skills: React, Next.js, React Native, Tailwind, Node.js
-- Projetos: [Liste seus projetos principais]
-
-ESCOPO:
-- Responde sobre: habilidades, projetos, experiência, stack
-- NÃO responde sobre: vida pessoal, política, assuntos genéricos
-\`;`;
+import { SYSTEM_PROMPT_EXAMPLE } from "./examples";
 
 export function SystemPromptSection() {
   const t = useTranslations("aiChatbotPage");
@@ -56,7 +36,7 @@ export function SystemPromptSection() {
             <motion.div variants={fadeUp}>
               <CodeBlock
                 title={t("systemPrompt.codeTitle")}
-                code={promptExample}
+                code={SYSTEM_PROMPT_EXAMPLE}
               />
             </motion.div>
 

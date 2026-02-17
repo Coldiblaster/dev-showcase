@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import {
-  type LucideIcon,
   Brain,
   Globe,
   Lock,
+  type LucideIcon,
   Shield,
   Smartphone,
   Zap,

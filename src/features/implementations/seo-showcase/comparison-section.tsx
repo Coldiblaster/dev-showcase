@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 import { CodeBlock } from "@/components/code-block";
 import { Badge } from "@/components/ui/badge";
@@ -43,10 +43,7 @@ export function ComparisonSection() {
           </motion.div>
 
           {/* Feature tabs */}
-          <motion.div
-            variants={fadeUp}
-            className="mb-8 flex flex-wrap gap-2"
-          >
+          <motion.div variants={fadeUp} className="mb-8 flex flex-wrap gap-2">
             {items.map((item, idx) => (
               <button
                 key={item.feature}

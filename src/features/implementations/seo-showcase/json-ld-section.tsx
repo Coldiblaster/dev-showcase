@@ -9,47 +9,17 @@ import { Button } from "@/components/ui/button";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { fadeUp, stagger } from "@/lib/animation-variants";
 
-const jsonLdCode = `const personSchema = {
-  "@type": "Person",
-  name: "Vinicius Bastazin Araujo",
-  url: SITE_URL,
-  jobTitle: "Desenvolvedor Frontend Senior",
-  sameAs: [
-    "https://github.com/Coldiblaster",
-    "https://www.linkedin.com/in/vbastazin/",
-  ],
-  knowsAbout: [
-    "React", "Next.js", "TypeScript",
-    "React Native", "Tailwind CSS", "Node.js",
-  ],
-  image: \`\${SITE_URL}/avatar-desk.png\`,
-};
-
-const websiteSchema = {
-  "@type": "WebSite",
-  name: SITE_NAME,
-  url: SITE_URL,
-  author: { "@type": "Person", name: SITE_AUTHOR },
-  inLanguage: ["pt-BR", "en", "es", "de"],
-};
-
-// Injetado no <head> via layout.tsx
-<script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@graph": [personSchema, websiteSchema],
-    }),
-  }}
-/>`;
+import { JSON_LD_CODE } from "./examples";
 
 export function JsonLdSection() {
   const t = useTranslations("seoPage");
   const { ref, isInView } = useSectionInView();
 
   return (
-    <section ref={ref} className="bg-muted/30 px-4 py-12 md:px-6 md:py-24 bg-secondary/20">
+    <section
+      ref={ref}
+      className="bg-muted/30 px-4 py-12 md:px-6 md:py-24 bg-secondary/20"
+    >
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
@@ -66,7 +36,7 @@ export function JsonLdSection() {
           </motion.div>
 
           <motion.div variants={fadeUp} className="mb-6">
-            <CodeBlock title={t("jsonLd.codeTitle")} code={jsonLdCode} />
+            <CodeBlock title={t("jsonLd.codeTitle")} code={JSON_LD_CODE} />
           </motion.div>
 
           <motion.div variants={fadeUp}>

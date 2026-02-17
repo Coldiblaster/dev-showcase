@@ -10,7 +10,7 @@ import { fadeUp, stagger } from "@/lib/animation-variants";
 
 /**
  * Seção sobre performance e build-time.
- * 
+ *
  * Explica que traduções não impactam runtime.
  */
 export function Performance() {
@@ -32,7 +32,10 @@ export function Performance() {
           >
             {t("title")}
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-sm md:text-base text-muted-foreground">
+          <motion.p
+            variants={fadeUp}
+            className="text-sm md:text-base text-muted-foreground"
+          >
             {t("subtitle")}
           </motion.p>
         </motion.div>
@@ -43,11 +46,13 @@ export function Performance() {
           variants={stagger}
           className="grid gap-4 md:gap-6 md:grid-cols-3"
         >
-          {([
-            { icon: Rocket, key: "buildTime" },
-            { icon: Gauge, key: "bundle" },
-            { icon: Shield, key: "typeSafe" },
-          ] as const).map((item) => (
+          {(
+            [
+              { icon: Rocket, key: "buildTime" },
+              { icon: Gauge, key: "bundle" },
+              { icon: Shield, key: "typeSafe" },
+            ] as const
+          ).map((item) => (
             <motion.div key={item.key} variants={fadeUp}>
               <Card className="h-full border-border/50 bg-card">
                 <CardContent className="p-4 md:p-6">

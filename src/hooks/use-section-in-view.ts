@@ -3,12 +3,12 @@ import { useRef } from "react";
 
 /**
  * Hook para detectar quando uma seção entra no viewport.
- * 
+ *
  * Usa Intersection Observer via framer-motion para detectar visibilidade.
  * Retorna ref para anexar ao elemento e estado isInView.
- * 
+ *
  * @returns Objeto com ref e isInView
- * 
+ *
  * @example
  * ```tsx
  * const { ref, isInView } = useSectionInView();

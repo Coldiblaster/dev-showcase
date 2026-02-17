@@ -8,48 +8,7 @@ import { CodeBlock } from "@/components/code-block";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { fadeUp, stagger } from "@/lib/animation-variants";
 
-const apiCode = `import OpenAI from "openai";
-import { z } from "zod";
-import { SYSTEM_PROMPT } from "@/lib/chat/system-prompt";
-
-const bodySchema = z.object({
-  messages: z.array(z.union([
-    z.object({ role: z.literal("user"), content: z.string().max(500) }),
-    z.object({ role: z.literal("assistant"), content: z.string().max(2000) }),
-  ])),
-});
-
-export async function POST(request: Request) {
-  const body = await request.json();
-  const parsed = bodySchema.safeParse(body);
-  if (!parsed.success) return Response.json({ error: "Invalid" }, { status: 400 });
-
-  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
-  const stream = await openai.chat.completions.create({
-    model: "gpt-4.1-nano",
-    max_tokens: 300,
-    stream: true,
-    messages: [
-      { role: "system", content: SYSTEM_PROMPT },
-      ...parsed.data.messages.slice(-6),
-    ],
-  });
-
-  const readable = new ReadableStream({
-    async start(controller) {
-      for await (const chunk of stream) {
-        const text = chunk.choices[0]?.delta?.content;
-        if (text) controller.enqueue(new TextEncoder().encode(text));
-      }
-      controller.close();
-    },
-  });
-
-  return new Response(readable, {
-    headers: { "Content-Type": "text/plain; charset=utf-8" },
-  });
-}`;
+import { API_ROUTE_CODE } from "./examples";
 
 export function ApiRouteSection() {
   const t = useTranslations("aiChatbotPage");
@@ -77,7 +36,7 @@ export function ApiRouteSection() {
             <motion.div variants={fadeUp}>
               <CodeBlock
                 title={t("apiRoute.codeTitle")}
-                code={apiCode}
+                code={API_ROUTE_CODE}
               />
             </motion.div>
 

@@ -44,7 +44,9 @@ export function PricingSection() {
               <motion.div key={model.name} variants={fadeUp}>
                 <Card
                   className={`relative h-full border-border/50 bg-card ${
-                    model.recommended ? "border-primary/40 shadow-lg shadow-primary/5" : ""
+                    model.recommended
+                      ? "border-primary/40 shadow-lg shadow-primary/5"
+                      : ""
                   }`}
                 >
                   {model.recommended && (
@@ -82,10 +84,7 @@ export function PricingSection() {
             ))}
           </div>
 
-          <motion.div
-            variants={fadeUp}
-            className="mt-8 text-center md:mt-10"
-          >
+          <motion.div variants={fadeUp} className="mt-8 text-center md:mt-10">
             <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-2 md:px-6 md:py-3">
               <Check className="h-4 w-4 text-primary" />
               <span className="text-xs font-medium text-foreground md:text-sm">

@@ -63,12 +63,15 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
     setExpandedId((prev) => (prev === id ? null : id));
   }, []);
 
-  const handleCopy = useCallback(async (code: string, id: string) => {
-    await navigator.clipboard.writeText(code);
-    setCopiedId(id);
-    showFeedback();
-    setTimeout(() => setCopiedId(null), 2000);
-  }, [showFeedback]);
+  const handleCopy = useCallback(
+    async (code: string, id: string) => {
+      await navigator.clipboard.writeText(code);
+      setCopiedId(id);
+      showFeedback();
+      setTimeout(() => setCopiedId(null), 2000);
+    },
+    [showFeedback],
+  );
 
   if (filteredScenarios.length === 0) return null;
 

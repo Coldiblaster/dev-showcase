@@ -9,9 +9,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { fadeUp, stagger } from "@/lib/animation-variants";
 
+import { ENV_EXAMPLE } from "./examples";
+
 /**
  * Seção sobre tradução automática com DeepL.
- * 
+ *
  * Explica como funciona a tradução automática e o plano gratuito.
  */
 export function TranslationEngine() {
@@ -33,7 +35,10 @@ export function TranslationEngine() {
           >
             {t("title")}
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-sm md:text-base text-muted-foreground">
+          <motion.p
+            variants={fadeUp}
+            className="text-sm md:text-base text-muted-foreground"
+          >
             {t("subtitle")}
           </motion.p>
         </motion.div>
@@ -44,11 +49,13 @@ export function TranslationEngine() {
           variants={stagger}
           className="grid gap-4 md:gap-6 md:grid-cols-3 mb-8 md:mb-10"
         >
-          {([
-            { icon: Sparkles, key: "quality" },
-            { icon: Zap, key: "buildTime" },
-            { icon: Globe, key: "free" },
-          ] as const).map((item) => (
+          {(
+            [
+              { icon: Sparkles, key: "quality" },
+              { icon: Zap, key: "buildTime" },
+              { icon: Globe, key: "free" },
+            ] as const
+          ).map((item) => (
             <motion.div key={item.key} variants={fadeUp}>
               <Card className="h-full border-border/50 bg-card">
                 <CardContent className="p-4 md:p-6">
@@ -75,14 +82,7 @@ export function TranslationEngine() {
           <h3 className="mb-4 text-base font-semibold text-foreground md:text-lg">
             {t("setup")}
           </h3>
-          <CodeBlock
-            title=".env.local"
-            code={`# ${t("getKey")} https://www.deepl.com/pt-BR/pro-api
-DEEPL_API_KEY=sua_chave_aqui
-
-# Alternativa: Google Cloud Translation
-# GOOGLE_CLOUD_API_KEY=sua_chave_aqui`}
-          />
+          <CodeBlock title=".env.local" code={ENV_EXAMPLE(t("getKey"))} />
 
           <div className="mt-6 rounded-lg border border-primary/20 bg-primary/5 p-4">
             <p className="text-sm text-muted-foreground">

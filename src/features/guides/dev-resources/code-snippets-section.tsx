@@ -33,12 +33,15 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
     setSelectedTags([]);
   }, [level]);
 
-  const handleCopy = useCallback(async (code: string, id: string) => {
-    await navigator.clipboard.writeText(code);
-    setCopiedId(id);
-    showFeedback();
-    setTimeout(() => setCopiedId(null), 2000);
-  }, [showFeedback]);
+  const handleCopy = useCallback(
+    async (code: string, id: string) => {
+      await navigator.clipboard.writeText(code);
+      setCopiedId(id);
+      showFeedback();
+      setTimeout(() => setCopiedId(null), 2000);
+    },
+    [showFeedback],
+  );
 
   const levelSnippets = useMemo(
     () =>
@@ -106,7 +109,11 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
               />
             </div>
 
-            <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por tag">
+            <div
+              className="flex flex-wrap gap-2"
+              role="group"
+              aria-label="Filtrar por tag"
+            >
               {allTags.map((tag) => (
                 <button
                   key={tag}

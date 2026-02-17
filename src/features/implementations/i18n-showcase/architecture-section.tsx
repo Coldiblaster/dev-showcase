@@ -11,7 +11,7 @@ import { fadeUp, stagger } from "@/lib/animation-variants";
 
 /**
  * Seção de arquitetura do i18n showcase.
- * 
+ *
  * Exibe cards com os pilares da arquitetura de i18n.
  */
 export function Architecture() {
@@ -56,7 +56,10 @@ export function Architecture() {
           >
             {t("architecture.title")}
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-sm md:text-base text-muted-foreground">
+          <motion.p
+            variants={fadeUp}
+            className="text-sm md:text-base text-muted-foreground"
+          >
             {t("architecture.subtitle")}
           </motion.p>
         </motion.div>

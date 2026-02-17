@@ -14,7 +14,7 @@ type ScriptItem = Messages["i18nPage"]["scripts"]["items"][number];
 
 /**
  * Seção de scripts de automação.
- * 
+ *
  * Lista de comandos disponíveis para gerenciar traduções.
  */
 export function Scripts() {
@@ -37,7 +37,10 @@ export function Scripts() {
           >
             {t("scripts.title")}
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-sm md:text-base text-muted-foreground">
+          <motion.p
+            variants={fadeUp}
+            className="text-sm md:text-base text-muted-foreground"
+          >
             {t("scripts.subtitle")}
           </motion.p>
         </motion.div>

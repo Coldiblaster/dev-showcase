@@ -20,9 +20,7 @@ interface UseCopyToClipboardReturn {
  * </button>
  * ```
  */
-export function useCopyToClipboard(
-  duration = 2000,
-): UseCopyToClipboardReturn {
+export function useCopyToClipboard(duration = 2000): UseCopyToClipboardReturn {
   const [copied, setCopied] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 

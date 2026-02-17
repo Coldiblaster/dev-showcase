@@ -1,6 +1,6 @@
 /**
  * Variantes de animação reutilizáveis para framer-motion.
- * 
+ *
  * Conjunto de animações padrão para uso em todo o projeto.
  */
 

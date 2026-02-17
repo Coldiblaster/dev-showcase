@@ -7,56 +7,17 @@ import { CodeBlock } from "@/components/code-block";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { fadeUp, stagger } from "@/lib/animation-variants";
 
-const layoutCode = `export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: \`\${SITE_NAME} | Desenvolvedor Frontend Senior\`,
-    template: \`%s | \${SITE_NAME}\`,
-  },
-  description: "Portfolio de Vinicius Bastazin Araujo...",
-  authors: [{ name: SITE_AUTHOR, url: SITE_URL }],
-  robots: { index: true, follow: true },
-  alternates: { canonical: SITE_URL },
-  openGraph: {
-    title: \`\${SITE_NAME} — Desenvolvedor Frontend\`,
-    url: SITE_URL,
-    siteName: SITE_NAME,
-    type: "website",
-    locale: "pt_BR",
-    alternateLocale: ["en_US", "es_ES", "de_DE"],
-  },
-  twitter: { card: "summary_large_image" },
-  verification: { google: "OAX_26lbl..." },
-};`;
-
-const helperCode = `export function buildPageMetadata(page: {
-  title: string;
-  description: string;
-  path?: string;
-}): Metadata {
-  const url = \`\${SITE_URL}\${page.path ?? ""}\`;
-
-  return {
-    title: page.title,
-    description: page.description,
-    alternates: { canonical: url },
-    openGraph: {
-      title: page.title,
-      description: page.description,
-      url,
-      siteName: SITE_NAME,
-      type: "website",
-      locale: "pt_BR",
-    },
-  };
-}`;
+import { HELPER_CODE, LAYOUT_CODE } from "./examples";
 
 export function MetadataSection() {
   const t = useTranslations("seoPage");
   const { ref, isInView } = useSectionInView();
 
   return (
-    <section ref={ref} className="bg-muted/30 px-4 py-12 md:px-6 md:py-24 bg-secondary/20">
+    <section
+      ref={ref}
+      className="bg-muted/30 px-4 py-12 md:px-6 md:py-24 bg-secondary/20"
+    >
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
@@ -74,10 +35,10 @@ export function MetadataSection() {
 
           <div className="grid gap-4 md:gap-6 lg:grid-cols-2">
             <motion.div variants={fadeUp}>
-              <CodeBlock title={t("metadata.codeTitle")} code={layoutCode} />
+              <CodeBlock title={t("metadata.codeTitle")} code={LAYOUT_CODE} />
             </motion.div>
             <motion.div variants={fadeUp}>
-              <CodeBlock title={t("metadata.helperTitle")} code={helperCode} />
+              <CodeBlock title={t("metadata.helperTitle")} code={HELPER_CODE} />
             </motion.div>
           </div>
         </motion.div>
