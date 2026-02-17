@@ -6,13 +6,15 @@ import { getTranslations } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getContentByCategory } from "@/data/content";
+import { buildPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("nav");
-  return {
+  return buildPageMetadata({
     title: t("implementations"),
     description: t("implementationsDesc"),
-  };
+    path: "/implementacoes",
+  });
 }
 
 export default async function ImplementacoesPage() {

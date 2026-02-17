@@ -1,0 +1,148 @@
+{
+  "hero": {
+    "badge": "SEO & Performance",
+    "title": "SEO Showcase",
+    "subtitle": "Meta tags, Open Graph, JSON-LD, Sitemap e mais",
+    "description": "Veja como este portfolio foi otimizado para mecanismos de busca usando as melhores práticas de SEO — com exemplos para Next.js e React puro (Vite). Cada técnica está rodando em produção.",
+    "ctaInspect": "Inspecionar ao vivo",
+    "ctaDocs": "Docs do Next.js"
+  },
+  "overview": {
+    "title": "O que foi implementado",
+    "description": "Infraestrutura completa de SEO com exemplos para Next.js (APIs nativas) e React + Vite (bibliotecas da comunidade).",
+    "items": [
+      {
+        "title": "Metadata API",
+        "description": "Title template, description, authors, robots e canonical URL configurados no layout raiz com herança automática para todas as páginas.",
+        "icon": "FileText"
+      },
+      {
+        "title": "Open Graph & Twitter Cards",
+        "description": "Imagem de 1200x630 gerada dinamicamente via ImageResponse com avatar, nome, skills e branding do site.",
+        "icon": "Share2"
+      },
+      {
+        "title": "JSON-LD Structured Data",
+        "description": "Schemas Person e WebSite injetados no head para rich snippets no Google — nome, cargo, skills, links sociais.",
+        "icon": "Code"
+      },
+      {
+        "title": "Sitemap Dinâmico",
+        "description": "Gerado automaticamente a partir das rotas registradas em content.ts. Novas páginas entram no sitemap sem configuração manual.",
+        "icon": "Map"
+      },
+      {
+        "title": "Robots.txt",
+        "description": "Configuração de crawling permitindo indexação total e apontando para o sitemap.xml.",
+        "icon": "Bot"
+      },
+      {
+        "title": "PWA Manifest",
+        "description": "Web App Manifest com nome, cores do tema, ícones e configuração standalone para instalação no mobile.",
+        "icon": "Smartphone"
+      }
+    ]
+  },
+  "metadata": {
+    "title": "Metadata API",
+    "description": "O layout raiz define metadata global com title template. Páginas filhas herdam e podem sobrescrever via buildPageMetadata().",
+    "codeTitle": "src/app/layout.tsx",
+    "helperTitle": "src/lib/seo.ts"
+  },
+  "ogImage": {
+    "title": "Open Graph Image",
+    "description": "Imagem gerada em tempo de build via next/og ImageResponse. Aparece quando o link é compartilhado no LinkedIn, Twitter, WhatsApp ou Slack.",
+    "codeTitle": "src/app/opengraph-image.tsx",
+    "preview": "Preview da imagem OG",
+    "inspect": "Abrir /opengraph-image"
+  },
+  "jsonLd": {
+    "title": "JSON-LD Structured Data",
+    "description": "Schema.org Person e WebSite são injetados como script no head. Isso permite que o Google entenda quem é o autor, suas skills, links sociais e informações do site.",
+    "codeTitle": "src/components/json-ld.tsx",
+    "testLabel": "Testar no Google Rich Results",
+    "testUrl": "https://search.google.com/test/rich-results"
+  },
+  "sitemap": {
+    "title": "Sitemap & Robots",
+    "description": "O sitemap é gerado dinamicamente a partir do array CONTENT_ITEMS. Quando uma nova página é adicionada ao content.ts, ela automaticamente aparece no sitemap.xml.",
+    "sitemapTitle": "src/app/sitemap.ts",
+    "robotsTitle": "src/app/robots.ts",
+    "inspectSitemap": "Abrir /sitemap.xml",
+    "inspectRobots": "Abrir /robots.txt"
+  },
+  "icons": {
+    "title": "Ícones & PWA",
+    "description": "Favicon (32x32) e Apple Touch Icon (180x180) gerados via ImageResponse com as iniciais VB. O manifest.webmanifest configura o app para instalação como PWA.",
+    "faviconTitle": "src/app/icon.tsx",
+    "appleTitle": "src/app/apple-icon.tsx",
+    "manifestTitle": "src/app/manifest.ts"
+  },
+  "comparison": {
+    "title": "Next.js vs React + Vite",
+    "description": "SEO funciona diferente em apps SSR/SSG (Next.js) e SPAs (React + Vite). Veja como resolver cada item nos dois cenários.",
+    "nextLabel": "Next.js (SSR/SSG)",
+    "viteLabel": "React + Vite (SPA)",
+    "items": [
+      {
+        "feature": "Meta tags dinâmicas",
+        "next": "Metadata API nativa — export const metadata no layout/page",
+        "vite": "react-helmet-async — <Helmet> em cada rota",
+        "nextCode": "export const metadata: Metadata = {\n  title: 'Meu Site',\n  description: '...',\n};",
+        "viteCode": "import { Helmet } from 'react-helmet-async';\n\n<Helmet>\n  <title>Meu Site</title>\n  <meta name=\"description\" content=\"...\" />\n</Helmet>"
+      },
+      {
+        "feature": "Open Graph Image",
+        "next": "next/og ImageResponse — gerada em build time como rota estática",
+        "vite": "Tag estática no index.html ou gerada no servidor (se houver)",
+        "nextCode": "// src/app/opengraph-image.tsx\nimport { ImageResponse } from 'next/og';\n\nexport default function OG() {\n  return new ImageResponse(<div>...</div>);\n}",
+        "viteCode": "<!-- index.html -->\n<meta property=\"og:image\"\n  content=\"https://meusite.com/og.png\" />\n<meta property=\"og:image:width\" content=\"1200\" />\n<meta property=\"og:image:height\" content=\"630\" />"
+      },
+      {
+        "feature": "Sitemap",
+        "next": "src/app/sitemap.ts — gerado automaticamente em build",
+        "vite": "vite-plugin-sitemap ou script manual no build",
+        "nextCode": "// src/app/sitemap.ts\nexport default function sitemap() {\n  return [\n    { url: 'https://meusite.com', priority: 1 },\n    { url: 'https://meusite.com/sobre', priority: 0.8 },\n  ];\n}",
+        "viteCode": "// vite.config.ts\nimport sitemap from 'vite-plugin-sitemap';\n\nexport default defineConfig({\n  plugins: [\n    sitemap({\n      hostname: 'https://meusite.com',\n      routes: ['/', '/sobre', '/projetos'],\n    }),\n  ],\n});"
+      },
+      {
+        "feature": "JSON-LD",
+        "next": "Componente server injetado no <head> via layout",
+        "vite": "react-helmet-async ou <script> manual no componente",
+        "nextCode": "// Componente server no layout.tsx\n<script\n  type=\"application/ld+json\"\n  dangerouslySetInnerHTML={{\n    __html: JSON.stringify(schema)\n  }}\n/>",
+        "viteCode": "<Helmet>\n  <script type=\"application/ld+json\">\n    {JSON.stringify({\n      '@context': 'https://schema.org',\n      '@type': 'Person',\n      name: 'Vinicius Bastazin',\n    })}\n  </script>\n</Helmet>"
+      },
+      {
+        "feature": "Pre-rendering (SEO em SPA)",
+        "next": "Nativo — SSR/SSG por padrão, crawlers recebem HTML completo",
+        "vite": "prerender-spa-plugin ou serviço como prerender.io para crawlers",
+        "nextCode": "// Não precisa de configuração extra\n// Next.js faz SSR/SSG por padrão\n// Google recebe HTML completo com meta tags",
+        "viteCode": "// vite.config.ts\nimport prerender from\n  '@prerenderer/rollup-plugin';\n\nexport default defineConfig({\n  plugins: [\n    prerender({\n      routes: ['/', '/sobre', '/projetos'],\n      renderer: '@prerenderer/renderer-puppeteer',\n    }),\n  ],\n});"
+      }
+    ]
+  },
+  "checklist": {
+    "title": "Checklist SEO",
+    "description": "Status de cada item de SEO implementado neste portfolio.",
+    "items": [
+      { "label": "Title template com herança", "done": true },
+      { "label": "Meta description em todas as páginas", "done": true },
+      { "label": "Canonical URL por página", "done": true },
+      { "label": "Open Graph image 1200x630", "done": true },
+      { "label": "Twitter Card (summary_large_image)", "done": true },
+      { "label": "JSON-LD Person + WebSite", "done": true },
+      { "label": "Sitemap.xml dinâmico", "done": true },
+      { "label": "Robots.txt", "done": true },
+      { "label": "Favicon + Apple Touch Icon", "done": true },
+      { "label": "PWA Manifest", "done": true },
+      { "label": "Google Search Console verificado", "done": true },
+      { "label": "Viewport otimizado (zoom acessível)", "done": true }
+    ]
+  },
+  "cta": {
+    "title": "Quer aplicar no seu projeto?",
+    "description": "Todo o código de SEO deste portfolio é open source. Clone, adapte e use.",
+    "github": "Ver no GitHub",
+    "back": "Voltar ao Portfolio"
+  }
+}

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { Fragment } from "react";
 
 import { navGroups } from "./nav-data";
 import { NavSubmenu } from "./nav-submenu";
@@ -43,7 +44,8 @@ export function DesktopNav() {
               group.descriptionKey ? t(group.descriptionKey) : undefined
             }
           >
-            {group.items.map((item) => (
+            {/* Flat items (portfolio) */}
+            {group.items?.map((item) => (
               <SubmenuItem
                 key={item.href}
                 icon={item.icon}
@@ -54,6 +56,30 @@ export function DesktopNav() {
                 href={item.href}
                 isActive={pathname === item.href}
               />
+            ))}
+
+            {/* Sectioned items (content) */}
+            {group.sections?.map((section, idx) => (
+              <Fragment key={section.labelKey}>
+                {idx > 0 && (
+                  <div className="mx-2 my-1.5 border-t border-border/50" />
+                )}
+                <p className="px-2.5 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60">
+                  {t(section.labelKey)}
+                </p>
+                {section.items.map((item) => (
+                  <SubmenuItem
+                    key={item.href}
+                    icon={item.icon}
+                    label={t(item.labelKey)}
+                    sublabel={
+                      item.sublabelKey ? t(item.sublabelKey) : undefined
+                    }
+                    href={item.href}
+                    isActive={pathname === item.href}
+                  />
+                ))}
+              </Fragment>
             ))}
           </NavSubmenu>
         );

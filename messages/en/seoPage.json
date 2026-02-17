@@ -1,0 +1,148 @@
+{
+  "hero": {
+    "badge": "SEO & Performance",
+    "title": "SEO Showcase",
+    "subtitle": "Meta tags, Open Graph, JSON-LD, Sitemap and more",
+    "description": "See how this portfolio was optimized for search engines — with examples for Next.js and pure React (Vite). Each technique is running in production.",
+    "ctaInspect": "Inspect live",
+    "ctaDocs": "Next.js Docs"
+  },
+  "overview": {
+    "title": "What was implemented",
+    "description": "Complete SEO infrastructure with examples for Next.js (native APIs) and React + Vite (community libraries).",
+    "items": [
+      {
+        "title": "Metadata API",
+        "description": "Title template, description, authors, robots and canonical URL configured in the root layout with automatic inheritance for all pages.",
+        "icon": "FileText"
+      },
+      {
+        "title": "Open Graph & Twitter Cards",
+        "description": "1200x630 image dynamically generated via ImageResponse with avatar, name, skills and site branding.",
+        "icon": "Share2"
+      },
+      {
+        "title": "JSON-LD Structured Data",
+        "description": "Person and WebSite schemas injected in the head for Google rich snippets — name, job title, skills, social links.",
+        "icon": "Code"
+      },
+      {
+        "title": "Dynamic Sitemap",
+        "description": "Automatically generated from routes registered in content.ts. New pages enter the sitemap without manual configuration.",
+        "icon": "Map"
+      },
+      {
+        "title": "Robots.txt",
+        "description": "Crawling configuration allowing full indexation and pointing to sitemap.xml.",
+        "icon": "Bot"
+      },
+      {
+        "title": "PWA Manifest",
+        "description": "Web App Manifest with name, theme colors, icons and standalone configuration for mobile installation.",
+        "icon": "Smartphone"
+      }
+    ]
+  },
+  "metadata": {
+    "title": "Metadata API",
+    "description": "The root layout defines global metadata with title template. Child pages inherit and can override via buildPageMetadata().",
+    "codeTitle": "src/app/layout.tsx",
+    "helperTitle": "src/lib/seo.ts"
+  },
+  "ogImage": {
+    "title": "Open Graph Image",
+    "description": "Image generated at build time via next/og ImageResponse. Appears when the link is shared on LinkedIn, Twitter, WhatsApp or Slack.",
+    "codeTitle": "src/app/opengraph-image.tsx",
+    "preview": "OG image preview",
+    "inspect": "Open /opengraph-image"
+  },
+  "jsonLd": {
+    "title": "JSON-LD Structured Data",
+    "description": "Schema.org Person and WebSite are injected as a script in the head. This allows Google to understand who the author is, their skills, social links and site information.",
+    "codeTitle": "src/components/json-ld.tsx",
+    "testLabel": "Test on Google Rich Results",
+    "testUrl": "https://search.google.com/test/rich-results"
+  },
+  "sitemap": {
+    "title": "Sitemap & Robots",
+    "description": "The sitemap is dynamically generated from the CONTENT_ITEMS array. When a new page is added to content.ts, it automatically appears in sitemap.xml.",
+    "sitemapTitle": "src/app/sitemap.ts",
+    "robotsTitle": "src/app/robots.ts",
+    "inspectSitemap": "Open /sitemap.xml",
+    "inspectRobots": "Open /robots.txt"
+  },
+  "icons": {
+    "title": "Icons & PWA",
+    "description": "Favicon (32x32) and Apple Touch Icon (180x180) generated via ImageResponse with VB initials. The manifest.webmanifest configures the app for PWA installation.",
+    "faviconTitle": "src/app/icon.tsx",
+    "appleTitle": "src/app/apple-icon.tsx",
+    "manifestTitle": "src/app/manifest.ts"
+  },
+  "comparison": {
+    "title": "Next.js vs React + Vite",
+    "description": "SEO works differently in SSR/SSG apps (Next.js) and SPAs (React + Vite). See how to handle each item in both scenarios.",
+    "nextLabel": "Next.js (SSR/SSG)",
+    "viteLabel": "React + Vite (SPA)",
+    "items": [
+      {
+        "feature": "Dynamic meta tags",
+        "next": "Native Metadata API — export const metadata in layout/page",
+        "vite": "react-helmet-async — <Helmet> in each route",
+        "nextCode": "export const metadata: Metadata = {\n  title: 'My Site',\n  description: '...',\n};",
+        "viteCode": "import { Helmet } from 'react-helmet-async';\n\n<Helmet>\n  <title>My Site</title>\n  <meta name=\"description\" content=\"...\" />\n</Helmet>"
+      },
+      {
+        "feature": "Open Graph Image",
+        "next": "next/og ImageResponse — generated at build time as static route",
+        "vite": "Static tag in index.html or server-generated (if available)",
+        "nextCode": "// src/app/opengraph-image.tsx\nimport { ImageResponse } from 'next/og';\n\nexport default function OG() {\n  return new ImageResponse(<div>...</div>);\n}",
+        "viteCode": "<!-- index.html -->\n<meta property=\"og:image\"\n  content=\"https://mysite.com/og.png\" />\n<meta property=\"og:image:width\" content=\"1200\" />\n<meta property=\"og:image:height\" content=\"630\" />"
+      },
+      {
+        "feature": "Sitemap",
+        "next": "src/app/sitemap.ts — automatically generated at build",
+        "vite": "vite-plugin-sitemap or manual build script",
+        "nextCode": "// src/app/sitemap.ts\nexport default function sitemap() {\n  return [\n    { url: 'https://mysite.com', priority: 1 },\n    { url: 'https://mysite.com/about', priority: 0.8 },\n  ];\n}",
+        "viteCode": "// vite.config.ts\nimport sitemap from 'vite-plugin-sitemap';\n\nexport default defineConfig({\n  plugins: [\n    sitemap({\n      hostname: 'https://mysite.com',\n      routes: ['/', '/about', '/projects'],\n    }),\n  ],\n});"
+      },
+      {
+        "feature": "JSON-LD",
+        "next": "Server component injected in <head> via layout",
+        "vite": "react-helmet-async or manual <script> in component",
+        "nextCode": "// Server component in layout.tsx\n<script\n  type=\"application/ld+json\"\n  dangerouslySetInnerHTML={{\n    __html: JSON.stringify(schema)\n  }}\n/>",
+        "viteCode": "<Helmet>\n  <script type=\"application/ld+json\">\n    {JSON.stringify({\n      '@context': 'https://schema.org',\n      '@type': 'Person',\n      name: 'Vinicius Bastazin',\n    })}\n  </script>\n</Helmet>"
+      },
+      {
+        "feature": "Pre-rendering (SEO in SPA)",
+        "next": "Native — SSR/SSG by default, crawlers receive full HTML",
+        "vite": "prerender-spa-plugin or service like prerender.io for crawlers",
+        "nextCode": "// No extra config needed\n// Next.js does SSR/SSG by default\n// Google receives full HTML with meta tags",
+        "viteCode": "// vite.config.ts\nimport prerender from\n  '@prerenderer/rollup-plugin';\n\nexport default defineConfig({\n  plugins: [\n    prerender({\n      routes: ['/', '/about', '/projects'],\n      renderer: '@prerenderer/renderer-puppeteer',\n    }),\n  ],\n});"
+      }
+    ]
+  },
+  "checklist": {
+    "title": "SEO Checklist",
+    "description": "Status of each SEO item implemented in this portfolio.",
+    "items": [
+      { "label": "Title template with inheritance", "done": true },
+      { "label": "Meta description on all pages", "done": true },
+      { "label": "Canonical URL per page", "done": true },
+      { "label": "Open Graph image 1200x630", "done": true },
+      { "label": "Twitter Card (summary_large_image)", "done": true },
+      { "label": "JSON-LD Person + WebSite", "done": true },
+      { "label": "Dynamic sitemap.xml", "done": true },
+      { "label": "Robots.txt", "done": true },
+      { "label": "Favicon + Apple Touch Icon", "done": true },
+      { "label": "PWA Manifest", "done": true },
+      { "label": "Google Search Console verified", "done": true },
+      { "label": "Optimized viewport (accessible zoom)", "done": true }
+    ]
+  },
+  "cta": {
+    "title": "Want to apply it to your project?",
+    "description": "All the SEO code in this portfolio is open source. Clone, adapt and use.",
+    "github": "View on GitHub",
+    "back": "Back to Portfolio"
+  }
+}

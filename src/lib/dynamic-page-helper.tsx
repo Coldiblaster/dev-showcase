@@ -11,6 +11,8 @@ import { DevResourcesPage } from "@/features/guides/dev-resources";
 import { ReactQueryTips } from "@/features/guides/react-query-tips";
 import { TailwindTips } from "@/features/guides/tailwind-tips";
 import { I18nShowcase } from "@/features/implementations/i18n-showcase";
+import { SeoShowcase } from "@/features/implementations/seo-showcase";
+import { buildPageMetadata } from "@/lib/seo";
 
 /**
  * Mapeamento de componentes disponíveis para renderização dinâmica.
@@ -18,6 +20,7 @@ import { I18nShowcase } from "@/features/implementations/i18n-showcase";
  */
 const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
   I18nShowcase,
+  SeoShowcase,
   AITips,
   TailwindTips,
   ReactQueryTips,
@@ -55,17 +58,11 @@ export function generateStaticParamsForCategory(
 }
 
 /**
- * Gera metadata para uma página dinâmica baseada no slug.
+ * Gera metadata completa para uma página dinâmica baseada no slug.
+ * Inclui título, descrição, Open Graph e canonical URL.
  *
  * @param params - Parâmetros da rota contendo o slug
- * @returns Metadata do Next.js com título e descrição
- *
- * @example
- * ```ts
- * export async function generateMetadata({ params }: Props) {
- *   return generateMetadataForSlug(params);
- * }
- * ```
+ * @returns Metadata do Next.js
  */
 export async function generateMetadataForSlug(
   params: Promise<{ slug: string }>,
@@ -75,10 +72,14 @@ export async function generateMetadataForSlug(
 
   if (!content) return { title: "Not Found" };
 
-  return {
+  const prefix =
+    content.category === "implementation" ? "implementacoes" : "dicas";
+
+  return buildPageMetadata({
     title: content.title,
     description: content.description,
-  };
+    path: `/${prefix}/${content.slug}`,
+  });
 }
 
 /**

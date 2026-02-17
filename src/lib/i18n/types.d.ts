@@ -17,6 +17,7 @@ import type nav from "../../../messages/pt-BR/nav.json";
 import type portfolio from "../../../messages/pt-BR/portfolio.json";
 import type projects from "../../../messages/pt-BR/projects.json";
 import type search from "../../../messages/pt-BR/search.json";
+import type seoPage from "../../../messages/pt-BR/seoPage.json";
 import type tailwindTips from "../../../messages/pt-BR/tailwindTips.json";
 import type tailwindTipsPage from "../../../messages/pt-BR/tailwindTipsPage.json";
 import type tips from "../../../messages/pt-BR/tips.json";
@@ -43,6 +44,7 @@ export type Messages = {
   tips: typeof tips;
   tipsPage: typeof tipsPage;
   search: typeof search;
+  seoPage: typeof seoPage;
 };
 
 // --- Utility Types ---

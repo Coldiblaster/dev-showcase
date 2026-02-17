@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { Fragment } from "react";
 
 import { MobileMenuItem } from "./mobile-menu-item";
 import { navGroups } from "./nav-data";
@@ -49,21 +50,52 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
               return (
                 <div key={group.id}>
-                  <p className="mt-3 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground/50">
-                    {t(group.labelKey)}
-                  </p>
-                  {group.items.map((item) => (
-                    <MobileMenuItem
-                      key={item.href}
-                      icon={item.icon}
-                      label={t(item.labelKey)}
-                      sublabel={
-                        item.sublabelKey ? t(item.sublabelKey) : undefined
-                      }
-                      href={item.href}
-                      isActive={pathname === item.href}
-                      onClick={onClose}
-                    />
+                  {/* Flat items (portfolio) */}
+                  {group.items && (
+                    <>
+                      <p className="mt-3 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground/50">
+                        {t(group.labelKey)}
+                      </p>
+                      {group.items.map((item) => (
+                        <MobileMenuItem
+                          key={item.href}
+                          icon={item.icon}
+                          label={t(item.labelKey)}
+                          sublabel={
+                            item.sublabelKey
+                              ? t(item.sublabelKey)
+                              : undefined
+                          }
+                          href={item.href}
+                          isActive={pathname === item.href}
+                          onClick={onClose}
+                        />
+                      ))}
+                    </>
+                  )}
+
+                  {/* Sectioned items (content) */}
+                  {group.sections?.map((section) => (
+                    <Fragment key={section.labelKey}>
+                      <p className="mt-3 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground/50">
+                        {t(section.labelKey)}
+                      </p>
+                      {section.items.map((item) => (
+                        <MobileMenuItem
+                          key={item.href}
+                          icon={item.icon}
+                          label={t(item.labelKey)}
+                          sublabel={
+                            item.sublabelKey
+                              ? t(item.sublabelKey)
+                              : undefined
+                          }
+                          href={item.href}
+                          isActive={pathname === item.href}
+                          onClick={onClose}
+                        />
+                      ))}
+                    </Fragment>
                   ))}
                 </div>
               );

@@ -14,6 +14,7 @@ import nav from "./nav.json";
 import portfolio from "./portfolio.json";
 import projects from "./projects.json";
 import search from "./search.json";
+import seoPage from "./seoPage.json";
 import tailwindTips from "./tailwindTips.json";
 import tailwindTipsPage from "./tailwindTipsPage.json";
 import tips from "./tips.json";
@@ -40,4 +41,5 @@ export default {
   tips,
   tipsPage,
   search,
+  seoPage,
 };

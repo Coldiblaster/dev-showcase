@@ -15,6 +15,13 @@ export const CONTENT_ITEMS: ContentItem[] = [
     category: "implementation",
   },
   {
+    slug: "seo",
+    title: "SEO Showcase",
+    description: "Meta tags, Open Graph, JSON-LD, Sitemap e mais",
+    component: "SeoShowcase",
+    category: "implementation",
+  },
+  {
     slug: "ai-tips",
     title: "Dicas de IA",
     description: "v0, Copilot, Prompts e ferramentas de IA",

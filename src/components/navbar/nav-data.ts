@@ -4,8 +4,10 @@ import {
   Database,
   FolderKanban,
   Globe,
+  Layers,
   Mail,
   Palette,
+  Search,
   Sparkles,
   User,
   Wrench,
@@ -31,6 +33,12 @@ type NavKey =
   | "implementationsDesc"
   | "tips"
   | "tipsDesc"
+  | "content"
+  | "contentDesc"
+  | "seoShowcase"
+  | "seoShowcaseDesc"
+  | "sectionImplementations"
+  | "sectionTips"
   | "devResources"
   | "devResourcesDesc"
   | "openMenu"
@@ -43,12 +51,18 @@ export interface NavItem {
   href: string;
 }
 
+export interface NavSection {
+  labelKey: NavKey;
+  items: NavItem[];
+}
+
 export interface NavGroup {
   id: string;
   labelKey: NavKey;
   descriptionKey?: NavKey;
   icon: LucideIcon;
-  items: NavItem[];
+  items?: NavItem[];
+  sections?: NavSection[];
   activeCheck: (pathname: string) => boolean;
   showOnlyOn?: "home";
 }
@@ -68,58 +82,61 @@ export const portfolioGroup: NavGroup = {
   ],
 };
 
-export const implementationsGroup: NavGroup = {
-  id: "implementations",
-  labelKey: "implementations",
-  descriptionKey: "implementationsDesc",
-  icon: Wrench,
-  activeCheck: (pathname) => pathname.startsWith("/implementacoes"),
-  items: [
+export const contentGroup: NavGroup = {
+  id: "content",
+  labelKey: "content",
+  descriptionKey: "contentDesc",
+  icon: Layers,
+  activeCheck: (pathname) =>
+    pathname.startsWith("/implementacoes") || pathname.startsWith("/dicas"),
+  sections: [
     {
-      icon: Globe,
-      labelKey: "i18nShowcase",
-      sublabelKey: "i18nShowcaseDesc",
-      href: "/implementacoes/i18n",
+      labelKey: "sectionImplementations",
+      items: [
+        {
+          icon: Globe,
+          labelKey: "i18nShowcase",
+          sublabelKey: "i18nShowcaseDesc",
+          href: "/implementacoes/i18n",
+        },
+        {
+          icon: Search,
+          labelKey: "seoShowcase",
+          sublabelKey: "seoShowcaseDesc",
+          href: "/implementacoes/seo",
+        },
+      ],
+    },
+    {
+      labelKey: "sectionTips",
+      items: [
+        {
+          icon: Sparkles,
+          labelKey: "aiTips",
+          sublabelKey: "aiTipsDesc",
+          href: "/dicas/ai-tips",
+        },
+        {
+          icon: Palette,
+          labelKey: "tailwindTips",
+          sublabelKey: "tailwindTipsDesc",
+          href: "/dicas/tailwind-tips",
+        },
+        {
+          icon: Database,
+          labelKey: "reactQueryTips",
+          sublabelKey: "reactQueryTipsDesc",
+          href: "/dicas/react-query-tips",
+        },
+        {
+          icon: Wrench,
+          labelKey: "devResources",
+          sublabelKey: "devResourcesDesc",
+          href: "/dicas/dev-resources",
+        },
+      ],
     },
   ],
 };
 
-export const tipsGroup: NavGroup = {
-  id: "tips",
-  labelKey: "tips",
-  descriptionKey: "tipsDesc",
-  icon: BookOpen,
-  activeCheck: (pathname) => pathname.startsWith("/dicas"),
-  items: [
-    {
-      icon: Sparkles,
-      labelKey: "aiTips",
-      sublabelKey: "aiTipsDesc",
-      href: "/dicas/ai-tips",
-    },
-    {
-      icon: Palette,
-      labelKey: "tailwindTips",
-      sublabelKey: "tailwindTipsDesc",
-      href: "/dicas/tailwind-tips",
-    },
-    {
-      icon: Database,
-      labelKey: "reactQueryTips",
-      sublabelKey: "reactQueryTipsDesc",
-      href: "/dicas/react-query-tips",
-    },
-    {
-      icon: Wrench,
-      labelKey: "devResources",
-      sublabelKey: "devResourcesDesc",
-      href: "/dicas/dev-resources",
-    },
-  ],
-};
-
-export const navGroups: NavGroup[] = [
-  portfolioGroup,
-  implementationsGroup,
-  tipsGroup,
-];
+export const navGroups: NavGroup[] = [portfolioGroup, contentGroup];

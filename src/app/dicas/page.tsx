@@ -7,6 +7,7 @@ import { getTranslations } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getContentByCategory } from "@/data/content";
+import { buildPageMetadata } from "@/lib/seo";
 
 const iconMap: Record<string, LucideIcon> = {
   "ai-tips": Sparkles,
@@ -15,10 +16,11 @@ const iconMap: Record<string, LucideIcon> = {
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("nav");
-  return {
+  return buildPageMetadata({
     title: t("tips"),
     description: t("tipsDesc"),
-  };
+    path: "/dicas",
+  });
 }
 
 export default async function DicasPage() {

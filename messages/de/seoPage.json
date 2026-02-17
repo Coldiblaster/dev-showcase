@@ -1,0 +1,59 @@
+{
+  "hero": {
+    "badge": "SEO & Performance",
+    "title": "SEO Showcase",
+    "subtitle": "Meta-Tags, Open Graph, JSON-LD, Sitemap und mehr",
+    "description": "Sehen Sie, wie dieses Portfolio für Suchmaschinen optimiert wurde — mit Beispielen für Next.js und reines React (Vite). Jede Technik läuft in Produktion.",
+    "ctaInspect": "Live inspizieren",
+    "ctaDocs": "Next.js Docs"
+  },
+  "overview": {
+    "title": "Was implementiert wurde",
+    "description": "Vollständige SEO-Infrastruktur mit Beispielen für Next.js (native APIs) und React + Vite (Community-Bibliotheken).",
+    "items": [
+      { "title": "Metadata API", "description": "Title-Template, Description, Authors, Robots und kanonische URL im Root-Layout mit automatischer Vererbung.", "icon": "FileText" },
+      { "title": "Open Graph & Twitter Cards", "description": "1200x630 Bild dynamisch generiert via ImageResponse mit Avatar, Name, Skills und Branding.", "icon": "Share2" },
+      { "title": "JSON-LD Structured Data", "description": "Person- und WebSite-Schemas im Head injiziert für Google Rich Snippets.", "icon": "Code" },
+      { "title": "Dynamische Sitemap", "description": "Automatisch generiert aus den in content.ts registrierten Routen.", "icon": "Map" },
+      { "title": "Robots.txt", "description": "Crawling-Konfiguration mit vollständiger Indexierung und Verweis auf sitemap.xml.", "icon": "Bot" },
+      { "title": "PWA Manifest", "description": "Web App Manifest mit Name, Theme-Farben, Icons und Standalone-Konfiguration.", "icon": "Smartphone" }
+    ]
+  },
+  "metadata": { "title": "Metadata API", "description": "Das Root-Layout definiert globale Metadaten mit Title-Template. Unterseiten erben und können via buildPageMetadata() überschreiben.", "codeTitle": "src/app/layout.tsx", "helperTitle": "src/lib/seo.ts" },
+  "ogImage": { "title": "Open Graph Bild", "description": "Bild wird zur Build-Zeit via next/og ImageResponse generiert. Erscheint beim Teilen auf LinkedIn, Twitter, WhatsApp oder Slack.", "codeTitle": "src/app/opengraph-image.tsx", "preview": "OG-Bild Vorschau", "inspect": "/opengraph-image öffnen" },
+  "jsonLd": { "title": "JSON-LD Structured Data", "description": "Schema.org Person und WebSite werden als Script im Head injiziert. Google versteht den Autor, Skills und soziale Links.", "codeTitle": "src/components/json-ld.tsx", "testLabel": "Bei Google Rich Results testen", "testUrl": "https://search.google.com/test/rich-results" },
+  "sitemap": { "title": "Sitemap & Robots", "description": "Die Sitemap wird dynamisch aus dem CONTENT_ITEMS-Array generiert. Neue Seiten erscheinen automatisch.", "sitemapTitle": "src/app/sitemap.ts", "robotsTitle": "src/app/robots.ts", "inspectSitemap": "/sitemap.xml öffnen", "inspectRobots": "/robots.txt öffnen" },
+  "icons": { "title": "Icons & PWA", "description": "Favicon (32x32) und Apple Touch Icon (180x180) generiert via ImageResponse mit VB-Initialen.", "faviconTitle": "src/app/icon.tsx", "appleTitle": "src/app/apple-icon.tsx", "manifestTitle": "src/app/manifest.ts" },
+  "comparison": {
+    "title": "Next.js vs React + Vite",
+    "description": "SEO funktioniert unterschiedlich in SSR/SSG-Apps (Next.js) und SPAs (React + Vite). So lösen Sie jedes Element in beiden Szenarien.",
+    "nextLabel": "Next.js (SSR/SSG)",
+    "viteLabel": "React + Vite (SPA)",
+    "items": [
+      { "feature": "Dynamische Meta-Tags", "next": "Native Metadata API — export const metadata", "vite": "react-helmet-async — <Helmet> in jeder Route", "nextCode": "export const metadata: Metadata = {\n  title: 'Meine Seite',\n  description: '...',\n};", "viteCode": "import { Helmet } from 'react-helmet-async';\n\n<Helmet>\n  <title>Meine Seite</title>\n  <meta name=\"description\" content=\"...\" />\n</Helmet>" },
+      { "feature": "Open Graph Bild", "next": "next/og ImageResponse — beim Build generiert", "vite": "Statisches Tag in index.html", "nextCode": "import { ImageResponse } from 'next/og';\nexport default function OG() {\n  return new ImageResponse(<div>...</div>);\n}", "viteCode": "<meta property=\"og:image\"\n  content=\"https://meineseite.de/og.png\" />" },
+      { "feature": "Sitemap", "next": "src/app/sitemap.ts — automatisch beim Build", "vite": "vite-plugin-sitemap oder manuelles Script", "nextCode": "export default function sitemap() {\n  return [{ url: '...', priority: 1 }];\n}", "viteCode": "import sitemap from 'vite-plugin-sitemap';\nplugins: [sitemap({ hostname: '...' })]" },
+      { "feature": "JSON-LD", "next": "Server-Komponente im <head>", "vite": "react-helmet-async oder manuelles <script>", "nextCode": "<script type=\"application/ld+json\"\n  dangerouslySetInnerHTML={{\n    __html: JSON.stringify(schema)\n  }} />", "viteCode": "<Helmet>\n  <script type=\"application/ld+json\">\n    {JSON.stringify(schema)}\n  </script>\n</Helmet>" },
+      { "feature": "Pre-rendering (SEO in SPA)", "next": "Nativ — SSR/SSG standardmäßig", "vite": "prerender-spa-plugin oder prerender.io", "nextCode": "// Keine zusätzliche Konfiguration\n// Next.js macht SSR/SSG standardmäßig", "viteCode": "import prerender from '@prerenderer/rollup-plugin';\nplugins: [prerender({ routes: ['/'] })]" }
+    ]
+  },
+  "checklist": {
+    "title": "SEO-Checkliste",
+    "description": "Status jedes implementierten SEO-Elements.",
+    "items": [
+      { "label": "Title-Template mit Vererbung", "done": true },
+      { "label": "Meta-Description auf allen Seiten", "done": true },
+      { "label": "Kanonische URL pro Seite", "done": true },
+      { "label": "Open Graph Bild 1200x630", "done": true },
+      { "label": "Twitter Card (summary_large_image)", "done": true },
+      { "label": "JSON-LD Person + WebSite", "done": true },
+      { "label": "Dynamische sitemap.xml", "done": true },
+      { "label": "Robots.txt", "done": true },
+      { "label": "Favicon + Apple Touch Icon", "done": true },
+      { "label": "PWA Manifest", "done": true },
+      { "label": "Google Search Console verifiziert", "done": true },
+      { "label": "Optimierter Viewport (barrierefreier Zoom)", "done": true }
+    ]
+  },
+  "cta": { "title": "Möchten Sie es auf Ihr Projekt anwenden?", "description": "Der gesamte SEO-Code dieses Portfolios ist Open Source. Klonen, anpassen und verwenden.", "github": "Auf GitHub ansehen", "back": "Zurück zum Portfolio" }
+}
