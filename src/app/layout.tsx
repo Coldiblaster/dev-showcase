@@ -31,16 +31,16 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Portfolio de Vinicius Bastazin Araujo. Desenvolvedor frontend com mais de 7 anos de experiência, especializado em React.js, Next.js, React Native, APIs escaláveis e otimização de performance.",
+    "Portfolio de Vinicius Bastazin Araujo. Desenvolvedor Frontend Senior com mais de 8 anos de experiência em React.js, Next.js e React Native. Especialista em arquitetura frontend, design systems, performance e acessibilidade.",
   authors: [{ name: SITE_AUTHOR, url: SITE_URL }],
   creator: SITE_AUTHOR,
   applicationName: SITE_NAME,
   robots: { index: true, follow: true },
   alternates: { canonical: SITE_URL },
   openGraph: {
-    title: `${SITE_NAME} — Desenvolvedor Frontend`,
+    title: `${SITE_NAME} — Desenvolvedor Frontend Senior`,
     description:
-      "Portfolio de Vinicius Bastazin, desenvolvedor especializado em React.js, Next.js, React Native e soluções web personalizadas.",
+      "Portfolio e plataforma de conteúdo de Vinicius Bastazin. +8 anos com React, Next.js e React Native. Implementações reais, guias e dicas para devs.",
     url: SITE_URL,
     siteName: SITE_NAME,
     type: "website",
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — Desenvolvedor Frontend`,
+    title: `${SITE_NAME} — Desenvolvedor Frontend Senior`,
     description:
-      "Portfolio de Vinicius Bastazin. React, Next.js, React Native e mais de 7 anos de experiência.",
+      "Portfolio de Vinicius Bastazin. +8 anos com React, Next.js e React Native. Implementações reais e guias para devs.",
   },
   verification: {
     google: "OAX_26lblD3l_QOWRAmX4ujfVAflNwXTxo2Yf0iH7io",

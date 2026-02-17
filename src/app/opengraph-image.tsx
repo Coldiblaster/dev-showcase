@@ -151,8 +151,8 @@ export default async function OGImage() {
               margin: 0,
             }}
           >
-            +7 anos de experiência em React, Next.js e React Native. Soluções
-            web performáticas e acessíveis.
+            +8 anos de experiência em React, Next.js e React Native. Arquitetura
+            frontend, design systems e liderança técnica.
           </p>
 
           {/* Skills */}

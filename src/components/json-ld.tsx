@@ -6,7 +6,7 @@ const personSchema = {
   url: SITE_URL,
   jobTitle: "Desenvolvedor Frontend Senior",
   description:
-    "Desenvolvedor frontend com mais de 7 anos de experiência, especializado em React.js, Next.js, React Native e soluções web performáticas.",
+    "Desenvolvedor Frontend Senior com mais de 8 anos de experiência em React.js, Next.js e React Native. Especialista em arquitetura frontend, design systems, performance, acessibilidade e liderança técnica.",
   sameAs: [
     "https://github.com/Coldiblaster",
     "https://www.linkedin.com/in/vbastazin/",
@@ -20,8 +20,15 @@ const personSchema = {
     "Node.js",
     "GraphQL",
     "RESTful APIs",
+    "Design Systems",
     "Clean Architecture",
     "TDD",
+    "Framer Motion",
+    "React Query",
+    "Zustand",
+    "Expo",
+    "Docker",
+    "CI/CD",
   ],
   image: `${SITE_URL}/avatar-desk.png`,
 };
@@ -31,7 +38,7 @@ const websiteSchema = {
   name: SITE_NAME,
   url: SITE_URL,
   description:
-    "Portfolio e guias técnicos de Vinicius Bastazin — React, Next.js, React Native e mais.",
+    "Portfolio, implementações reais e guias técnicos de Vinicius Bastazin — React, Next.js, React Native e mais.",
   author: { "@type": "Person", name: SITE_AUTHOR },
   inLanguage: ["pt-BR", "en", "es", "de"],
 };

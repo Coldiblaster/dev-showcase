@@ -2,46 +2,90 @@
 
 import { motion, useInView } from "framer-motion";
 import {
+  AlertCircle,
   AtSign,
   CheckCircle2,
   FileText,
   Github,
   Linkedin,
+  Loader2,
   Mail,
   MessageCircle,
   Send,
   User,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { CardBlur } from "@/components/ui/card-blur";
 import { Input } from "@/components/ui/input";
 
+type FormStatus = "idle" | "sending" | "sent" | "error";
+
+interface FormErrors {
+  name?: string;
+  email?: string;
+  message?: string;
+}
+
 export function ContactSection() {
   const t = useTranslations("contact");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   const [formState, setFormState] = useState({
     name: "",
     email: "",
     message: "",
   });
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [errors, setErrors] = useState<FormErrors>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validate = useCallback((): boolean => {
+    const newErrors: FormErrors = {};
+
+    if (formState.name.trim().length < 2) {
+      newErrors.name = t("validationName");
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formState.email)) {
+      newErrors.email = t("validationEmail");
+    }
+
+    if (formState.message.trim().length < 10) {
+      newErrors.message = t("validationMessage");
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  }, [formState, t]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Contato de ${formState.name}`);
-    const body = encodeURIComponent(
-      `Nome: ${formState.name}\nEmail: ${formState.email}\n\nMensagem:\n${formState.message}`,
-    );
-    window.open(
-      `mailto:vbastazin@gmail.com?subject=${subject}&body=${body}`,
-      "_blank",
-    );
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
+
+    if (!validate()) return;
+
+    setStatus("sending");
+    setErrors({});
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formState),
+      });
+
+      if (!res.ok) throw new Error("Failed to send");
+
+      setStatus("sent");
+      setFormState({ name: "", email: "", message: "" });
+      setTimeout(() => setStatus("idle"), 5000);
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+    }
   };
 
   const whatsappLink = `https://wa.me/5518988111220?text=${encodeURIComponent("Ola! Vi seu portfolio e gostaria de conversar.")}`;
@@ -54,6 +98,8 @@ export function ContactSection() {
       href: "https://www.linkedin.com/in/vbastazin/",
     },
   ];
+
+  const isSending = status === "sending";
 
   return (
     <section id="contact" className="relative px-6 py-32" ref={ref}>
@@ -107,6 +153,44 @@ export function ContactSection() {
                 </h3>
               </div>
 
+              {/* Success feedback */}
+              {status === "sent" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-5 flex items-start gap-3 rounded-xl border border-primary/20 bg-primary/5 p-4"
+                >
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                  <div>
+                    <p className="text-sm font-semibold text-primary">
+                      {t("sent")}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {t("sentDescription")}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Error feedback */}
+              {status === "error" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-5 flex items-start gap-3 rounded-xl border border-destructive/20 bg-destructive/5 p-4"
+                >
+                  <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-destructive" />
+                  <div>
+                    <p className="text-sm font-semibold text-destructive">
+                      {t("errorTitle")}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {t("errorDescription")}
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div className="flex flex-col gap-1.5">
                   <label
@@ -120,12 +204,17 @@ export function ContactSection() {
                     id="name"
                     type="text"
                     required
+                    disabled={isSending}
                     value={formState.name}
                     onChange={(e) =>
                       setFormState((s) => ({ ...s, name: e.target.value }))
                     }
                     placeholder={t("namePlaceholder")}
+                    className={errors.name ? "border-destructive" : ""}
                   />
+                  {errors.name && (
+                    <p className="text-xs text-destructive">{errors.name}</p>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-1.5">
@@ -140,12 +229,17 @@ export function ContactSection() {
                     id="email"
                     type="email"
                     required
+                    disabled={isSending}
                     value={formState.email}
                     onChange={(e) =>
                       setFormState((s) => ({ ...s, email: e.target.value }))
                     }
                     placeholder={t("emailPlaceholder")}
+                    className={errors.email ? "border-destructive" : ""}
                   />
+                  {errors.email && (
+                    <p className="text-xs text-destructive">{errors.email}</p>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-1.5">
@@ -159,23 +253,39 @@ export function ContactSection() {
                   <textarea
                     id="message"
                     required
+                    disabled={isSending}
                     rows={4}
                     value={formState.message}
                     onChange={(e) =>
                       setFormState((s) => ({ ...s, message: e.target.value }))
                     }
                     placeholder={t("messagePlaceholder")}
-                    className="resize-none rounded-xl border border-border bg-secondary/50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-primary/50 focus:ring-1 focus:ring-primary/20"
+                    className={`resize-none rounded-xl border bg-secondary/50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-primary/50 focus:ring-1 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50 ${
+                      errors.message
+                        ? "border-destructive"
+                        : "border-border"
+                    }`}
                   />
+                  {errors.message && (
+                    <p className="text-xs text-destructive">
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
 
-                <motion.div whileTap={{ scale: 0.98 }}>
+                <motion.div whileTap={isSending ? {} : { scale: 0.98 }}>
                   <Button
                     type="submit"
                     size="lg"
+                    disabled={isSending}
                     className="w-full gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
                   >
-                    {sent ? (
+                    {isSending ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        {t("sending")}
+                      </>
+                    ) : status === "sent" ? (
                       <>
                         <CheckCircle2 className="h-4 w-4" />
                         {t("sent")}
