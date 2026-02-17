@@ -18,5 +18,7 @@
   "tips": "Dicas & Guias",
   "tipsDesc": "Conteúdo educativo para devs",
   "devResources": "Recursos Dev",
-  "devResourcesDesc": "Dicas, snippets, patterns e refatoração por nível"
+  "devResourcesDesc": "Dicas, snippets, patterns e refatoração por nível",
+  "openMenu": "Abrir menu",
+  "closeMenu": "Fechar menu"
 }

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
 
+import { Button } from "@/components/ui/button";
 import {
   getCookieName,
   isSupportedLocale,
@@ -44,11 +45,10 @@ export function LanguageSwitcher() {
 
   return (
     <div className="relative">
-      <motion.button
+      <Button
+        variant="outline"
         onClick={() => setIsOpen((s) => !s)}
-        className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary/50 hover:text-primary"
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
+        className="gap-2 rounded-lg border-border bg-card hover:border-primary/50 hover:bg-card hover:text-primary"
         aria-label="Change language"
         aria-expanded={isOpen}
       >
@@ -57,7 +57,7 @@ export function LanguageSwitcher() {
           {localeCode[active]}
         </span>
         <span className="hidden sm:inline">{LOCALES_CONFIG[active].name}</span>
-      </motion.button>
+      </Button>
 
       <AnimatePresence>
         {isOpen && (

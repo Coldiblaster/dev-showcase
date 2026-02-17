@@ -18,5 +18,7 @@
   "tips": "Tipps & Anleitungen",
   "tipsDesc": "Bildungsinhalte für Entwickler",
   "devResources": "Dev-Ressourcen",
-  "devResourcesDesc": "Komponenten, Snippets, Refactoring und Playground"
+  "devResourcesDesc": "Komponenten, Snippets, Refactoring und Playground",
+  "openMenu": "Menü öffnen",
+  "closeMenu": "Menü schließen"
 }

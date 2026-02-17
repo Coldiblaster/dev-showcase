@@ -18,5 +18,7 @@
   "tips": "Consejos y guías",
   "tipsDesc": "Contenido educativo para desarrolladores",
   "devResources": "Recursos Dev",
-  "devResourcesDesc": "Componentes, fragmentos, refactorización y área de pruebas"
+  "devResourcesDesc": "Componentes, fragmentos, refactorización y área de pruebas",
+  "openMenu": "Abrir menú",
+  "closeMenu": "Cerrar menú"
 }

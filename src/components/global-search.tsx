@@ -177,28 +177,17 @@ export function GlobalSearch() {
     <>
       <Button
         variant="outline"
-        className="relative h-9 w-9 p-0 xl:h-10 xl:w-60 xl:justify-start xl:px-3 xl:py-2
-          transition-all duration-150
-          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
-          hover:bg-primary hover:text-primary-foreground
-          hover:shadow-lg hover:scale-[1.03]
-          active:scale-95
-          group"
         onClick={() => setOpen(true)}
+        className="gap-2 rounded-lg border-border bg-card hover:border-primary/50 hover:bg-card hover:text-primary xl:w-60 xl:justify-start"
         aria-label={t("open")}
         aria-haspopup="dialog"
         aria-expanded={open}
-        tabIndex={0}
       >
-        <Search className="h-4 w-4 xl:mr-2 group-hover:scale-110 group-focus-visible:scale-110 transition-transform duration-150" />
-        <span className="hidden xl:inline-flex">{t("placeholder")}</span>
-        <kbd
-          className="pointer-events-none ml-auto hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 xl:flex
-            transition-colors duration-150
-            group-hover:bg-primary group-hover:text-primary-foreground
-            group-focus-visible:bg-primary group-focus-visible:text-primary-foreground
-            group-active:bg-primary/80 group-active:text-primary-foreground"
-        >
+        <Search className="h-4 w-4" />
+        <span className="hidden xl:inline text-muted-foreground">
+          {t("placeholder")}
+        </span>
+        <kbd className="pointer-events-none ml-auto hidden h-5 select-none items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium xl:flex">
           {isMac ? (
             <>
               <span className="text-base">⌘</span>K
@@ -209,7 +198,6 @@ export function GlobalSearch() {
             </>
           )}
         </kbd>
-        <span className="sr-only">{t("open")}</span>
       </Button>
 
       <Dialog open={open} onOpenChange={setOpen}>

@@ -18,5 +18,7 @@
   "tips": "Tips & Guides",
   "tipsDesc": "Educational content for developers",
   "devResources": "Dev Resources",
-  "devResourcesDesc": "Tips, snippets, patterns and refactoring by level"
+  "devResourcesDesc": "Tips, snippets, patterns and refactoring by level",
+  "openMenu": "Open menu",
+  "closeMenu": "Close menu"
 }
