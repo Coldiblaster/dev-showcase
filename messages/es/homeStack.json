@@ -1,1 +1,109 @@
-{"badge":"Tech Stack","title":"Tecnologías que Domino","subtitle":"Herramientas y frameworks que uso a diario para construir productos de alta calidad","legend":{"expert":"Expert","advanced":"Avanzado","intermediate":"Intermedio"},"tabs":[{"id":"frontend","label":"Frontend","techs":[{"name":"React","icon":"⚛️","level":"expert","years":"8+"},{"name":"Next.js","icon":"▲","level":"expert","years":"6"},{"name":"TypeScript","icon":"TS","level":"expert","years":"8+"},{"name":"JavaScript","icon":"JS","level":"expert","years":"10"},{"name":"Zod","icon":"✅","level":"expert","years":"3"},{"name":"React Hook Form","icon":"📋","level":"expert","years":"4"}]},{"id":"styling","label":"Styling & UI","techs":[{"name":"Tailwind CSS","icon":"🎨","level":"expert","years":"4"},{"name":"shadcn/ui","icon":"🧩","level":"expert","years":"2"},{"name":"Radix UI","icon":"🔘","level":"expert","years":"3"},{"name":"Styled Components","icon":"💅","level":"expert","years":"5"},{"name":"Framer Motion","icon":"🎬","level":"advanced","years":"2"},{"name":"Material UI","icon":"Ⓜ️","level":"advanced","years":"3"},{"name":"Chakra UI","icon":"⚡","level":"advanced","years":"2"},{"name":"CSS Modules","icon":"🎯","level":"expert","years":"6"}]},{"id":"state","label":"Estado y Data","techs":[{"name":"React Query","icon":"🔄","level":"expert","years":"4"},{"name":"Zustand","icon":"🐻","level":"expert","years":"3"},{"name":"Redux","icon":"🔮","level":"advanced","years":"5"},{"name":"Context API","icon":"🔗","level":"expert","years":"6"},{"name":"GraphQL","icon":"◈","level":"advanced","years":"3"}]},{"id":"mobile","label":"Mobile","techs":[{"name":"React Native","icon":"📱","level":"intermediate","years":"4"},{"name":"Expo","icon":"🎯","level":"advanced","years":"3"}]},{"id":"backend","label":"Backend & DB","techs":[{"name":"Node.js","icon":"🟢","level":"advanced","years":"5"},{"name":"NestJS","icon":"🐱","level":"advanced","years":"2"},{"name":"PostgreSQL","icon":"🐘","level":"advanced","years":"4"},{"name":"MongoDB","icon":"🍃","level":"advanced","years":"3"},{"name":"Firebase","icon":"🔥","level":"advanced","years":"3"},{"name":"REST APIs","icon":"🌐","level":"expert","years":"8"}]},{"id":"quality","label":"Calidad","techs":[{"name":"Jest","icon":"🃏","level":"advanced","years":"4"},{"name":"Vitest","icon":"⚡","level":"advanced","years":"2"},{"name":"Testing Library","icon":"🧪","level":"advanced","years":"4"},{"name":"Storybook","icon":"📖","level":"advanced","years":"3"},{"name":"Design Systems","icon":"🏗️","level":"expert","years":"4"},{"name":"A11y (WCAG)","icon":"♿","level":"advanced","years":"3"}]},{"id":"devops","label":"DevOps & IA","techs":[{"name":"Git","icon":"🔀","level":"expert","years":"10"},{"name":"Vercel","icon":"▲","level":"expert","years":"4"},{"name":"Docker","icon":"🐳","level":"intermediate","years":"2"},{"name":"CI/CD","icon":"🔄","level":"advanced","years":"4"},{"name":"AWS","icon":"☁️","level":"intermediate","years":"2"},{"name":"GitHub Copilot","icon":"🤖","level":"expert","years":"2"},{"name":"Figma","icon":"🎨","level":"advanced","years":"4"}]}],"yearsLabel":"años"}
+{
+  "badge": "Tech Stack",
+  "title": "Tecnologías que Domino",
+  "subtitle": "Herramientas y frameworks que uso a diario para construir productos de alta calidad",
+  "legend": {
+    "expert": "Expert",
+    "advanced": "Avanzado",
+    "intermediate": "Intermedio"
+  },
+  "tabs": [
+    {
+      "id": "frontend",
+      "label": "Frontend",
+      "techs": [
+        { "name": "React", "icon": "⚛️", "level": "expert", "years": "8+" },
+        { "name": "Next.js", "icon": "▲", "level": "expert", "years": "6" },
+        { "name": "TypeScript", "icon": "TS", "level": "expert", "years": "8+" },
+        { "name": "JavaScript", "icon": "JS", "level": "expert", "years": "10" },
+        { "name": "Zod", "icon": "✅", "level": "expert", "years": "3" },
+        { "name": "React Hook Form", "icon": "📋", "level": "expert", "years": "4" }
+      ]
+    },
+    {
+      "id": "styling",
+      "label": "Styling & UI",
+      "techs": [
+        { "name": "Tailwind CSS", "icon": "🎨", "level": "expert", "years": "4" },
+        { "name": "shadcn/ui", "icon": "🧩", "level": "expert", "years": "2" },
+        { "name": "Radix UI", "icon": "🔘", "level": "expert", "years": "3" },
+        { "name": "Styled Components", "icon": "💅", "level": "expert", "years": "5" },
+        { "name": "Framer Motion", "icon": "🎬", "level": "advanced", "years": "2" },
+        { "name": "Material UI", "icon": "Ⓜ️", "level": "advanced", "years": "3" },
+        { "name": "Chakra UI", "icon": "⚡", "level": "advanced", "years": "2" },
+        { "name": "CSS Modules", "icon": "🎯", "level": "expert", "years": "6" }
+      ]
+    },
+    {
+      "id": "state",
+      "label": "Estado y Data",
+      "techs": [
+        { "name": "React Query", "icon": "🔄", "level": "expert", "years": "4" },
+        { "name": "Zustand", "icon": "🐻", "level": "expert", "years": "3" },
+        { "name": "Redux", "icon": "🔮", "level": "advanced", "years": "5" },
+        { "name": "Context API", "icon": "🔗", "level": "expert", "years": "6" },
+        { "name": "GraphQL", "icon": "◈", "level": "advanced", "years": "3" }
+      ]
+    },
+    {
+      "id": "mobile",
+      "label": "Mobile",
+      "techs": [
+        { "name": "React Native", "icon": "📱", "level": "intermediate", "years": "4" },
+        { "name": "Expo", "icon": "🎯", "level": "advanced", "years": "3" }
+      ]
+    },
+    {
+      "id": "backend",
+      "label": "Backend & DB",
+      "techs": [
+        { "name": "Node.js", "icon": "🟢", "level": "advanced", "years": "5" },
+        { "name": "NestJS", "icon": "🐱", "level": "advanced", "years": "2" },
+        { "name": "PostgreSQL", "icon": "🐘", "level": "advanced", "years": "4" },
+        { "name": "MongoDB", "icon": "🍃", "level": "advanced", "years": "3" },
+        { "name": "Firebase", "icon": "🔥", "level": "advanced", "years": "3" },
+        { "name": "REST APIs", "icon": "🌐", "level": "expert", "years": "8" }
+      ]
+    },
+    {
+      "id": "quality",
+      "label": "Calidad",
+      "techs": [
+        { "name": "Jest", "icon": "🃏", "level": "advanced", "years": "4" },
+        { "name": "Vitest", "icon": "⚡", "level": "advanced", "years": "2" },
+        { "name": "Testing Library", "icon": "🧪", "level": "advanced", "years": "4" },
+        { "name": "Storybook", "icon": "📖", "level": "advanced", "years": "3" },
+        { "name": "Design Systems", "icon": "🏗️", "level": "expert", "years": "4" },
+        { "name": "A11y (WCAG)", "icon": "♿", "level": "advanced", "years": "3" }
+      ]
+    },
+    {
+      "id": "devops",
+      "label": "DevOps & IA",
+      "techs": [
+        { "name": "Git", "icon": "🔀", "level": "expert", "years": "10" },
+        { "name": "Vercel", "icon": "▲", "level": "expert", "years": "4" },
+        { "name": "Docker", "icon": "🐳", "level": "intermediate", "years": "2" },
+        { "name": "CI/CD", "icon": "🔄", "level": "advanced", "years": "4" },
+        { "name": "AWS", "icon": "☁️", "level": "intermediate", "years": "2" },
+        { "name": "GitHub Copilot", "icon": "🤖", "level": "expert", "years": "2" },
+        { "name": "Figma", "icon": "🎨", "level": "advanced", "years": "4" }
+      ]
+    },
+    {
+      "id": "process",
+      "label": "Procesos",
+      "techs": [
+        { "name": "Scrum", "icon": "🔁", "level": "expert", "years": "6" },
+        { "name": "Kanban", "icon": "📌", "level": "expert", "years": "5" },
+        { "name": "Alineación PO/UX", "icon": "🤝", "level": "expert", "years": "6" },
+        { "name": "Code Review", "icon": "👀", "level": "expert", "years": "5" },
+        { "name": "Mentoría & Pairing", "icon": "👥", "level": "expert", "years": "4" },
+        { "name": "Clean Architecture", "icon": "🏛️", "level": "advanced", "years": "4" },
+        { "name": "SOLID", "icon": "💎", "level": "advanced", "years": "4" },
+        { "name": "Performance (Lighthouse)", "icon": "🚀", "level": "expert", "years": "5" }
+      ]
+    }
+  ],
+  "yearsLabel": "años"
+}
