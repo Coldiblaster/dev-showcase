@@ -102,8 +102,14 @@ export function useGlobalSearch() {
       }
     };
 
+    const onOpenSearch = () => setOpen(true);
+
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    window.addEventListener("open-search", onOpenSearch);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("open-search", onOpenSearch);
+    };
   }, []);
 
   useEffect(() => {

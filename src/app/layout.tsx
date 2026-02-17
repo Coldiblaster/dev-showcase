@@ -11,6 +11,7 @@ import { ChatWidget } from "@/components/chat/chat-widget";
 import { CopyFeedbackProvider } from "@/components/copy-feedback";
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
+import { MobileActionBar } from "@/components/mobile-action-bar";
 import { Navbar } from "@/components/navbar";
 import { RecaptchaProvider } from "@/components/recaptcha-provider";
 import { ScrollTopButton } from "@/components/scroll-top";
@@ -111,6 +112,7 @@ export default async function RootLayout({
               <ScrollTopButton />
               <ChatWidget />
               <Footer />
+              <MobileActionBar />
               <TerminalEasterEgg />
             </CopyFeedbackProvider>
           </RecaptchaProvider>

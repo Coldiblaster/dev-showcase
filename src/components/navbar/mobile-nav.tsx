@@ -4,9 +4,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useScrollLock } from "@/hooks/use-scroll-lock";
 
 import { MobileMenuItem } from "./mobile-menu-item";
 import { navGroups } from "./nav-data";
@@ -18,46 +19,12 @@ interface MobileNavProps {
   onClose: () => void;
 }
 
-/** Restaura o scroll do body após fechar o menu mobile. */
-function restoreScrollLock() {
-  const html = document.documentElement;
-  const body = document.body;
-  const top = body.style.top;
-  html.style.overflow = "";
-  body.style.overflow = "";
-  body.style.position = "";
-  body.style.top = "";
-  body.style.left = "";
-  body.style.right = "";
-  delete body.dataset.mobileMenuOpen;
-  if (top) {
-    window.scrollTo(0, parseInt(top, 10) * -1);
-  }
-}
-
 export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const isHome = pathname === "/";
 
-  useEffect(() => {
-    if (isOpen) {
-      const html = document.documentElement;
-      const body = document.body;
-      const scrollY = window.scrollY;
-      html.style.overflow = "hidden";
-      body.style.overflow = "hidden";
-      body.style.position = "fixed";
-      body.style.top = `-${scrollY}px`;
-      body.style.left = "0";
-      body.style.right = "0";
-      body.dataset.mobileMenuOpen = "true";
-    } else {
-      restoreScrollLock();
-    }
-
-    return () => restoreScrollLock();
-  }, [isOpen]);
+  useScrollLock(isOpen);
 
   return (
     <AnimatePresence>
@@ -67,7 +34,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           role="navigation"
           aria-label={t("mainMenu")}
           initial={{ height: 0, opacity: 0 }}
-          animate={{ height: `calc(100dvh - ${HEADER_HEIGHT})`, opacity: 1 }}
+          animate={{ height: `calc(100dvh - ${HEADER_HEIGHT} - 3.5rem)`, opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.2 }}
           className="overflow-hidden border-t border-border/50 md:hidden"

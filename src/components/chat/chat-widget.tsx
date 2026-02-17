@@ -5,14 +5,29 @@ import { MessageCircle, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { useScrollLock } from "@/hooks/use-scroll-lock";
+
 import { ChatHeader } from "./chat-header";
 import { ChatInput } from "./chat-input";
 import { ChatMessages } from "./chat-messages";
 import { type ChatMessage, MAX_MESSAGES } from "./types";
 
+const FULLSCREEN_QUERY = "(max-width: 420px)";
+
 export function ChatWidget() {
   const t = useTranslations("chat");
   const [open, setOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia(FULLSCREEN_QUERY);
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  useScrollLock(open && isMobile);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
@@ -119,7 +134,7 @@ export function ChatWidget() {
       {/* FAB button */}
       <motion.button
         onClick={() => setOpen((prev) => !prev)}
-        className={`fab-floating fixed bottom-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md transition-colors hover:bg-primary/90 hover:opacity-100 md:bottom-6 md:right-6 md:h-14 md:w-14 md:shadow-lg md:shadow-primary/25 ${open ? "opacity-100" : "opacity-70"}`}
+        className={`fab-floating fixed bottom-4 right-4 z-50 hidden h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md transition-colors hover:bg-primary/90 hover:opacity-100 md:bottom-6 md:right-6 md:flex md:h-14 md:w-14 md:shadow-lg md:shadow-primary/25 ${open ? "opacity-100" : "opacity-70"}`}
         whileHover={{ scale: 1.05, opacity: 1 }}
         whileTap={{ scale: 0.95 }}
         aria-label={open ? t("close") : t("open")}
@@ -157,7 +172,7 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed bottom-24 right-6 z-50 flex h-[500px] w-[380px] flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-2xl max-[420px]:inset-0 max-[420px]:bottom-0 max-[420px]:right-0 max-[420px]:h-full max-[420px]:w-full max-[420px]:rounded-none"
+            className="fixed bottom-24 right-6 z-60 flex h-[500px] w-[380px] flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-2xl max-[420px]:inset-0 max-[420px]:bottom-0 max-[420px]:right-0 max-[420px]:h-full max-[420px]:w-full max-[420px]:rounded-none"
           >
             <ChatHeader
               title={t("title")}

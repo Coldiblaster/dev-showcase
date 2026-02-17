@@ -3,6 +3,8 @@
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { useScrollLock } from "@/hooks/use-scroll-lock";
+
 import { CONTENT_ITEMS } from "@/data/content";
 
 import {
@@ -53,9 +55,24 @@ export function useTerminal() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, t]);
 
+  useScrollLock(isOpen);
+
   useEffect(() => {
     if (isOpen) setTimeout(() => inputRef.current?.focus(), 100);
   }, [isOpen]);
+
+  useEffect(() => {
+    const onOpenTerminal = () => {
+      setIsOpen(true);
+      setLines([
+        { type: "system", content: t("greeting") },
+        { type: "system", content: t("hint") },
+        { type: "system", content: "" },
+      ]);
+    };
+    window.addEventListener("open-terminal", onOpenTerminal);
+    return () => window.removeEventListener("open-terminal", onOpenTerminal);
+  }, [t]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({

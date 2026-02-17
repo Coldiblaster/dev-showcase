@@ -7,6 +7,7 @@
   "placeholder": "Ask something...",
   "error": "Sorry, something went wrong. Please try again.",
   "limitReached": "Message limit reached. Use the contact form for more details.",
+  "send": "Send",
   "goToContact": "Prefer sending a formal message? Go to contact",
   "suggestions": [
     "Why should we hire Vinicius?",

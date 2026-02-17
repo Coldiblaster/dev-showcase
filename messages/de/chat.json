@@ -7,6 +7,7 @@
   "placeholder": "Fragen Sie etwas...",
   "error": "Entschuldigung, etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
   "limitReached": "Nachrichtenlimit erreicht. Nutzen Sie das Kontaktformular für weitere Details.",
+  "send": "Senden",
   "goToContact": "Lieber eine formelle Nachricht senden? Zum Kontakt",
   "suggestions": [
     "Warum sollte man Vinicius einstellen?",

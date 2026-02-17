@@ -37,20 +37,20 @@ export function TerminalWindow({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-100 flex items-end justify-center backdrop-blur-sm md:items-center md:p-4"
       onClick={onClose}
     >
       <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 40 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
         onClick={(e) => e.stopPropagation()}
-        className={`w-full max-w-3xl overflow-hidden rounded-xl border ${colors.border} ${colors.bg} shadow-2xl`}
+        className={`flex h-[85dvh] w-full flex-col overflow-hidden border-t ${colors.border} ${colors.bg} shadow-2xl md:h-auto md:max-w-3xl md:rounded-xl md:border`}
       >
-        <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
+        <div className="flex shrink-0 items-center justify-between border-b border-white/10 px-4 py-2.5">
           <div className="flex items-center gap-2">
-            <div className="flex gap-1.5">
+            <div className="hidden gap-1.5 md:flex">
               <button
                 onClick={onClose}
                 className="h-3 w-3 rounded-full bg-red-500 transition-opacity hover:opacity-80"
@@ -59,7 +59,7 @@ export function TerminalWindow({
               <div className="h-3 w-3 rounded-full bg-green-500" />
             </div>
             <span
-              className={`ml-2 font-mono text-xs ${colors.text} opacity-60`}
+              className={`font-mono text-xs md:ml-2 ${colors.text} opacity-60`}
             >
               {prompt}:~
             </span>
@@ -74,7 +74,7 @@ export function TerminalWindow({
 
         <div
           ref={scrollRef}
-          className="h-[60vh] max-h-[500px] overflow-y-auto p-4 font-mono text-sm"
+          className="min-h-0 flex-1 overflow-y-auto p-4 pb-8 font-mono text-sm md:h-[60vh] md:max-h-[500px] md:pb-4"
           onClick={() => inputRef.current?.focus()}
         >
           {lines.map((line, i) => (

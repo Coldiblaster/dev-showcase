@@ -21,5 +21,11 @@
   "mainMenu": "Main menu",
   "terminalPress": "Press",
   "terminalFor": "for terminal",
-  "tip": "Tip:"
+  "tip": "Tip:",
+  "mobileSearch": "Search",
+  "mobileLanguage": "Language",
+  "mobileTop": "Top",
+  "mobileChat": "Chat",
+  "mobileTerminal": "Terminal",
+  "mobileActions": "Quick actions"
 }

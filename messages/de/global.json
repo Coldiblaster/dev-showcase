@@ -21,5 +21,11 @@
   "mainMenu": "Hauptmenü",
   "terminalPress": "Drücken Sie",
   "terminalFor": "für Terminal",
-  "tip": "Tipp:"
+  "tip": "Tipp:",
+  "mobileSearch": "Suche",
+  "mobileLanguage": "Sprache",
+  "mobileTop": "Oben",
+  "mobileChat": "Chat",
+  "mobileTerminal": "Terminal",
+  "mobileActions": "Schnellaktionen"
 }

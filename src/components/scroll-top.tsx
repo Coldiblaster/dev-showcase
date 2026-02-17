@@ -29,7 +29,7 @@ export function ScrollTopButton() {
       onClick={scrollToTop}
       variant="default"
       size="icon"
-      className={`fab-floating fixed bottom-[4.5rem] right-4 z-40 h-10 w-10 rounded-full shadow-md transition-all duration-300 bg-primary/80 text-primary-foreground hover:bg-primary hover:opacity-100 focus:outline-none md:bottom-24 md:right-6 md:h-14 md:w-14 md:bg-primary ${visible ? "opacity-70 md:opacity-100" : "opacity-0 pointer-events-none"}`}
+      className={`fab-floating fixed bottom-18 right-4 z-40 hidden h-10 w-10 rounded-full shadow-md transition-all duration-300 bg-primary/80 text-primary-foreground hover:bg-primary hover:opacity-100 focus:outline-none md:bottom-24 md:right-6 md:h-14 md:w-14 md:bg-primary ${visible ? "md:inline-flex md:opacity-100" : "opacity-0 pointer-events-none"}`}
     >
       <ArrowUp size={16} className="text-primary-foreground md:size-[22px]" />
     </Button>

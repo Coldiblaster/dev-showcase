@@ -16,8 +16,10 @@ export function NavActions({ isMobileOpen, onMobileToggle }: NavActionsProps) {
 
   return (
     <div className="flex items-center gap-3">
-      <GlobalSearch />
-      <LanguageSwitcher />
+      <div className="hidden md:flex md:items-center md:gap-3">
+        <GlobalSearch />
+        <LanguageSwitcher />
+      </div>
 
       <motion.button
         onClick={onMobileToggle}

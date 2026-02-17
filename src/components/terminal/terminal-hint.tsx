@@ -13,7 +13,7 @@ export function TerminalHint({ onOpen }: TerminalHintProps) {
   const t = useTranslations("global");
 
   return (
-    <div className="fixed bottom-4 left-4 z-40">
+    <div className="fixed bottom-4 left-4 z-40 hidden md:block">
       <motion.button
         type="button"
         onClick={onOpen}
