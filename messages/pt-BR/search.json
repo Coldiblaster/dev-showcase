@@ -2,40 +2,59 @@
   "open": "Abrir busca",
   "placeholder": "Buscar...",
   "title": "Buscar no site",
-  "inputPlaceholder": "Buscar projetos, implementações e guias...",
+  "inputPlaceholder": "Buscar seções, implementações e guias...",
   "clear": "Limpar busca",
   "startTyping": "Comece a digitar para buscar",
-  "hint": "Projetos, implementações e guias",
+  "hint": "Seções, implementações e guias",
   "noResults": "Nenhum resultado encontrado",
   "tryOtherTerms": "Tente usar outros termos de busca",
   "navigate": "Navegar",
   "select": "Selecionar",
   "close": "Fechar",
-  "project": "Projeto",
+  "page": "Página",
+  "section": "Seção",
   "implementation": "Implementação",
   "guide": "Guia",
-  "portfolio": {
-    "title": "Portfolio com i18n",
-    "description": "Portfolio multilíngue com Next.js 16, TypeScript e Tailwind CSS"
-  },
-  "authSystem": {
-    "title": "Sistema de Autenticação",
-    "description": "Auth completo com Supabase, proteção de rotas e gestão de sessão"
-  },
-  "i18nCustom": {
-    "title": "i18n sem bibliotecas",
-    "description": "Sistema de internacionalização customizado usando Context API"
-  },
-  "framerMotion": {
-    "title": "Animações com Framer Motion",
-    "description": "Scroll animations, page transitions e micro-interactions"
-  },
-  "aiTips": {
-    "title": "Dicas de IA",
-    "description": "Como uso GitHub Copilot, v0 e Vercel AI SDK no dia a dia"
-  },
-  "tailwindTips": {
-    "title": "Tailwind CSS + shadcn/ui",
-    "description": "Setup, componentes e boas práticas em projetos Next.js"
+  "items": {
+    "about": {
+      "title": "Sobre mim",
+      "description": "Conheça o Vinicius — Frontend Senior com +10 anos em tecnologia"
+    },
+    "projects": {
+      "title": "Projetos",
+      "description": "Projetos open source e profissionais no GitHub"
+    },
+    "experience": {
+      "title": "Experiência",
+      "description": "Timeline de carreira — de suporte técnico a líder técnico frontend"
+    },
+    "contact": {
+      "title": "Contato",
+      "description": "Envie uma mensagem via formulário ou WhatsApp"
+    },
+    "i18n": {
+      "title": "i18n Showcase",
+      "description": "Internacionalização completa com next-intl e DeepL em 4 idiomas"
+    },
+    "seo": {
+      "title": "SEO Showcase",
+      "description": "Meta tags, Open Graph, JSON-LD, Sitemap — Next.js vs React + Vite"
+    },
+    "ai-tips": {
+      "title": "Dicas de IA",
+      "description": "Prompts, workflows e ferramentas de IA para desenvolvedores"
+    },
+    "tailwind-tips": {
+      "title": "Tailwind CSS + shadcn/ui",
+      "description": "Setup, componentes e boas práticas em projetos Next.js"
+    },
+    "react-query-tips": {
+      "title": "React Query Essencial",
+      "description": "Cache, mutations, otimização e boas práticas com TanStack Query"
+    },
+    "dev-resources": {
+      "title": "Recursos para Devs",
+      "description": "Conteúdo filtrado por nível (Jr/Pl/Sr) com playground interativo"
+    }
   }
 }

@@ -2,40 +2,59 @@
   "open": "Open search",
   "placeholder": "Search...",
   "title": "Search the site",
-  "inputPlaceholder": "Search projects, implementations and guides...",
+  "inputPlaceholder": "Search sections, implementations and guides...",
   "clear": "Clear search",
   "startTyping": "Start typing to search",
-  "hint": "Projects, implementations and guides",
+  "hint": "Sections, implementations and guides",
   "noResults": "No results found",
   "tryOtherTerms": "Try other search terms",
   "navigate": "Navigate",
   "select": "Select",
   "close": "Close",
-  "project": "Project",
+  "page": "Page",
+  "section": "Section",
   "implementation": "Implementation",
   "guide": "Guide",
-  "portfolio": {
-    "title": "Portfolio com i18n",
-    "description": "Multilingual portfolio with Next.js 16, TypeScript, and Tailwind CSS"
-  },
-  "authSystem": {
-    "title": "Authentication System",
-    "description": "Full authentication with Supabase, route protection, and session management"
-  },
-  "i18nCustom": {
-    "title": "i18n without libraries",
-    "description": "Customized internationalization system using Context API"
-  },
-  "framerMotion": {
-    "title": "Animations with Framer Motion",
-    "description": "Scroll animations, page transitions e micro-interactions"
-  },
-  "aiTips": {
-    "title": "AI Tips",
-    "description": "How I use GitHub Copilot, v0, and Vercel AI SDK on a daily basis"
-  },
-  "tailwindTips": {
-    "title": "Tailwind CSS + shadcn/ui",
-    "description": "Setup, components, and best practices in Next.js projects"
+  "items": {
+    "about": {
+      "title": "About me",
+      "description": "Meet Vinicius — Senior Frontend Developer with 10+ years in tech"
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Open source and professional projects on GitHub"
+    },
+    "experience": {
+      "title": "Experience",
+      "description": "Career timeline — from tech support to frontend tech lead"
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Send a message via form or WhatsApp"
+    },
+    "i18n": {
+      "title": "i18n Showcase",
+      "description": "Full internationalization with next-intl and DeepL in 4 languages"
+    },
+    "seo": {
+      "title": "SEO Showcase",
+      "description": "Meta tags, Open Graph, JSON-LD, Sitemap — Next.js vs React + Vite"
+    },
+    "ai-tips": {
+      "title": "AI Tips",
+      "description": "Prompts, workflows and AI tools for developers"
+    },
+    "tailwind-tips": {
+      "title": "Tailwind CSS + shadcn/ui",
+      "description": "Setup, components and best practices in Next.js projects"
+    },
+    "react-query-tips": {
+      "title": "React Query Essentials",
+      "description": "Cache, mutations, optimization and best practices with TanStack Query"
+    },
+    "dev-resources": {
+      "title": "Developer Resources",
+      "description": "Content filtered by level (Jr/Mid/Sr) with interactive playground"
+    }
   }
 }
