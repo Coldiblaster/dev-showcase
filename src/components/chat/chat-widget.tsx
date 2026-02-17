@@ -128,7 +128,7 @@ export function ChatWidget() {
       {/* FAB button */}
       <motion.button
         onClick={() => setOpen((prev) => !prev)}
-        className="fixed bottom-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md transition-colors hover:bg-primary/90 hover:opacity-100 md:bottom-6 md:right-6 md:h-14 md:w-14 md:shadow-lg md:shadow-primary/25"
+        className="fab-floating fixed bottom-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md transition-colors hover:bg-primary/90 hover:opacity-100 md:bottom-6 md:right-6 md:h-14 md:w-14 md:shadow-lg md:shadow-primary/25"
         style={{ opacity: open ? 1 : 0.7 }}
         whileHover={{ scale: 1.05, opacity: 1 }}
         whileTap={{ scale: 0.95 }}

@@ -96,3 +96,8 @@
     text-wrap: balance;
   }
 }
+
+/* Hide floating buttons when mobile menu is open */
+body[data-mobile-menu-open] .fab-floating {
+  display: none !important;
+}

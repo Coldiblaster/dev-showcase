@@ -33,6 +33,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
       body.style.top = `-${scrollY}px`;
       body.style.left = "0";
       body.style.right = "0";
+      body.dataset.mobileMenuOpen = "true";
     } else {
       const top = body.style.top;
       html.style.overflow = "";
@@ -41,6 +42,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
       body.style.top = "";
       body.style.left = "";
       body.style.right = "";
+      delete body.dataset.mobileMenuOpen;
       if (top) {
         window.scrollTo(0, parseInt(top, 10) * -1);
       }
@@ -54,6 +56,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
       body.style.top = "";
       body.style.left = "";
       body.style.right = "";
+      delete body.dataset.mobileMenuOpen;
       if (top) {
         window.scrollTo(0, parseInt(top, 10) * -1);
       }
