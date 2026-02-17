@@ -1,15 +1,19 @@
 "use client";
 import { ArrowUp } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 
+const SCROLL_THRESHOLD = 200;
+
 export function ScrollTopButton() {
+  const t = useTranslations("global");
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
-      setVisible(window.scrollY > 200);
+      setVisible(window.scrollY > SCROLL_THRESHOLD);
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -21,7 +25,7 @@ export function ScrollTopButton() {
 
   return (
     <Button
-      aria-label="Scroll to top"
+      aria-label={t("scrollToTop")}
       onClick={scrollToTop}
       variant="default"
       size="icon"

@@ -1,7 +1,8 @@
+import type { LucideIcon } from "lucide-react";
 import {
-  BookOpen,
   Bot,
   Briefcase,
+  Code2,
   Database,
   FolderKanban,
   Globe,
@@ -9,11 +10,11 @@ import {
   Mail,
   Palette,
   Search,
+  Shield,
   Sparkles,
   User,
   Wrench,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 
 type NavKey =
   | "about"
@@ -34,6 +35,8 @@ type NavKey =
   | "implementationsDesc"
   | "tips"
   | "tipsDesc"
+  | "tools"
+  | "toolsDesc"
   | "content"
   | "contentDesc"
   | "seoShowcase"
@@ -42,8 +45,13 @@ type NavKey =
   | "aiChatbotDesc"
   | "sectionImplementations"
   | "sectionTips"
+  | "sectionTools"
   | "devResources"
   | "devResourcesDesc"
+  | "securityTips"
+  | "securityTipsDesc"
+  | "codeReview"
+  | "codeReviewDesc"
   | "openMenu"
   | "closeMenu";
 
@@ -91,7 +99,9 @@ export const contentGroup: NavGroup = {
   descriptionKey: "contentDesc",
   icon: Layers,
   activeCheck: (pathname) =>
-    pathname.startsWith("/implementacoes") || pathname.startsWith("/dicas"),
+    pathname.startsWith("/implementacoes") ||
+    pathname.startsWith("/dicas") ||
+    pathname.startsWith("/ferramentas"),
   sections: [
     {
       labelKey: "sectionImplementations",
@@ -113,6 +123,17 @@ export const contentGroup: NavGroup = {
           labelKey: "aiChatbot",
           sublabelKey: "aiChatbotDesc",
           href: "/implementacoes/ai-chatbot",
+        },
+      ],
+    },
+    {
+      labelKey: "sectionTools",
+      items: [
+        {
+          icon: Code2,
+          labelKey: "codeReview",
+          sublabelKey: "codeReviewDesc",
+          href: "/ferramentas/code-review",
         },
       ],
     },
@@ -142,6 +163,12 @@ export const contentGroup: NavGroup = {
           labelKey: "devResources",
           sublabelKey: "devResourcesDesc",
           href: "/dicas/dev-resources",
+        },
+        {
+          icon: Shield,
+          labelKey: "securityTips",
+          sublabelKey: "securityTipsDesc",
+          href: "/dicas/security-tips",
         },
       ],
     },

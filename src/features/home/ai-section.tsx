@@ -1,7 +1,13 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { Code2, Lightbulb, MessageCircle, MessageSquare, Sparkles } from "lucide-react";
+import {
+  Code2,
+  Lightbulb,
+  MessageCircle,
+  MessageSquare,
+  Sparkles,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCallback, useRef } from "react";
 
@@ -11,6 +17,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const icons = [Sparkles, Code2, MessageSquare, Lightbulb];
 
+/** Seção sobre uso de IA com chatbot interativo. */
 export function AISection() {
   const t = useTranslations("ai");
   const ref = useRef(null);
@@ -106,13 +113,13 @@ export function AISection() {
         >
           <div className="mb-6 text-center">
             <Badge variant="secondary" className="mb-3 font-mono text-xs">
-              Exemplo Real
+              {t("example.badge")}
             </Badge>
             <h3 className="text-xl font-semibold text-foreground">
-              Como uso Vercel AI SDK em projetos
+              {t("example.title")}
             </h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              Chatbot com streaming de respostas usando AI SDK + OpenAI
+              {t("example.description")}
             </p>
           </div>
 
@@ -142,7 +149,7 @@ export function AISection() {
                 <span className="text-foreground">{";"}</span>
                 {"\n\n"}
                 <span className="text-muted-foreground">
-                  {"// Route Handler para chat com streaming"}
+                  {t("example.codeComment")}
                 </span>
                 {"\n"}
                 <span className="text-primary">{"export async function"}</span>
@@ -171,7 +178,7 @@ export function AISection() {
                 {"\n"}
                 <span className="text-foreground">{"    system: "}</span>
                 <span className="text-muted-foreground">
-                  {'"Voce e um assistente que ajuda devs."'}
+                  {`"${t("example.codeSystemPrompt")}"`}
                 </span>
                 <span className="text-foreground">{","}</span>
                 {"\n"}
@@ -189,15 +196,8 @@ export function AISection() {
           </div>
 
           <div className="mt-6 flex justify-center">
-            <motion.div
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <Button
-                size="lg"
-                className="gap-2"
-                onClick={openChat}
-              >
+            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+              <Button size="lg" className="gap-2" onClick={openChat}>
                 <MessageCircle className="h-4 w-4" />
                 {t("tryChat")}
               </Button>

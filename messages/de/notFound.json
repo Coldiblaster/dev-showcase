@@ -22,5 +22,10 @@
     "Fun Fact: Der 404-Status kam vom CERN — Raum 404 beherbergte den originalen Webserver.",
     "Wissenswertes: Dieses Portfolio hat mehr Codezeilen als 404-Seiten.",
     "Pro-Tipp: Strg+Z funktioniert nicht bei URLs. Wir haben es versucht."
-  ]
+  ],
+  "meta": {
+    "title": "404 – Seite nicht gefunden",
+    "description": "Die gesuchte Seite existiert nicht oder wurde entfernt. Entdecken Sie das Portfolio, die Implementierungen und die verfügbaren Anleitungen.",
+    "ogDescription": "Hoppla! Diese Route hat einen Git-Checkout in eine andere Dimension durchgeführt. Kehren Sie zum Portfolio zurück und erkunden Sie den Inhalt."
+  }
 }

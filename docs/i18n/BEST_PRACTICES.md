@@ -1,231 +1,184 @@
-# ✨ Boas Práticas - Internacionalização
+# Boas Praticas — Internacionalizacao
 
-Convenções e padrões para manter a qualidade e consistência das traduções.
+Convencoes e padroes para manter a qualidade e consistencia das traducoes.
 
 ---
 
-## 🎯 Princípios Fundamentais
+## Principios Fundamentais
 
-### 1. pt-BR é a Fonte de Verdade
+### 1. pt-BR e a Fonte de Verdade
 
-✅ **SEMPRE** edite pt-BR primeiro
-❌ **NUNCA** edite en/es manualmente
+SEMPRE edite pt-BR primeiro. NUNCA edite en/es/de manualmente.
 
 ```bash
-# ✅ Correto
-vim messages/pt-BR/global.json
-pnpm run translate
+# Correto
+# Edite messages/pt-BR/hero.json
+pnpm translate
 
-# ❌ Errado
-vim messages/en/global.json  # Será sobrescrito!
+# Errado - sera sobrescrito pelo script!
+# Editar messages/en/hero.json diretamente
 ```
 
-**Por quê?**
+**Por que?**
 
-- Scripts geram en/es a partir de pt-BR
-- Edições manuais em en/es serão perdidas
-- Mantém único ponto de verdade
+- Scripts geram en/es/de a partir de pt-BR
+- Edicoes manuais nos outros locales serao perdidas
+- Mantem unico ponto de verdade
 
 ---
 
 ### 2. Execute Scripts Antes de Commitar
 
 ```bash
-# Workflow recomendado
-pnpm run translate        # Gera traduções
-pnpm run check:pt-leaks  # Valida qualidade
-pnpm run validate:i18n   # Valida sincronização
+pnpm translate        # Gera traducoes
+pnpm check:pt-leaks   # Valida qualidade
+pnpm validate:i18n    # Valida sincronizacao
 git add messages/
-git commit -m "feat: adiciona traduções"
-```
-
-**Configure pre-commit hook:**
-
-```bash
-# .husky/pre-commit
-pnpm run validate:i18n
-pnpm run check:pt-leaks
+git commit -m "feat: adiciona traducoes"
 ```
 
 ---
 
 ### 3. Use Namespaces Descritivos
 
-✅ **Bom**: `auth`, `global`, `admin.userManagement`
-❌ **Ruim**: `page1`, `tela2`, `form`
+Bom: `hero`, `contact`, `securityPage`, `reactQueryTipsPage`
+Ruim: `page1`, `tela2`, `form`
 
 ```tsx
-// ✅ Fica claro o que é
-const t = useTranslations("admin.userManagement");
-const tActions = useTranslations("global.actions");
+// Bom - fica claro o que e
+const t = useTranslations("securityPage");
+const tNav = useTranslations("nav");
 
-// ❌ Confuso
+// Ruim - confuso
 const t = useTranslations("form1");
 ```
 
 ---
 
-## 📁 Organização de Arquivos
+## Organizacao de Arquivos
 
-### Quando Criar Arquivo Global vs Módulo
+### Neste Projeto
 
-**Arquivo Global** (raiz de messages/pt-BR/):
-
-- Usado em múltiplos módulos
-- Componentes UI compartilhados
-- Ações e status comuns
-- Erros e validações genéricas
+Cada pagina/feature tem seu proprio JSON na raiz de `messages/pt-BR/`:
 
 ```
 messages/pt-BR/
-├── auth.json         # ✅ Login usado em todos os módulos
-├── global.json       # ✅ Ações comuns (salvar, cancelar)
-├── components.json   # ✅ Header, table, modal
-└── errors.json       # ✅ 404, 500, unauthorized
+├── hero.json               # Hero section da home
+├── nav.json                # Navbar
+├── contact.json            # Formulario de contato
+├── about.json              # Secao sobre
+├── projects.json           # Projetos
+├── experience.json         # Experiencia
+├── footer.json             # Rodape
+├── global.json             # Textos compartilhados (acoes, status)
+├── search.json             # Global search
+├── chat.json               # Widget de chat IA
+├── terminal.json           # Terminal easter egg
+├── securityPage.json       # Pagina Security Tips
+├── reactQueryTipsPage.json # Pagina React Query Tips
+├── aiChatbotPage.json      # Pagina AI Chatbot Showcase
+├── codeReviewPage.json     # Pagina Code Review
+├── seoPage.json            # Pagina SEO Showcase
+├── i18nPage.json           # Pagina i18n Showcase
+├── ...                     # Outros namespaces
+└── index.ts                # Barrel export
 ```
 
-**Módulo** (pasta):
+### Convencao de Nomes
 
-- Específico de um perfil/funcionalidade
-- Tem lógica de negócio própria
-- Páginas e fluxos independentes
-
-```
-messages/pt-BR/
-├── admin/            # ✅ Gestão de usuários
-│   └── user-management.json
-├── consultor/        # ✅ Unidades de negócio
-│   └── business-unit.json
-└── cockpit/          # ✅ Dashboards
-    └── dashboard.json
-```
-
-### Exemplo Prático
-
-```tsx
-// ❌ Ruim - duplicação
-// messages/pt-BR/admin/user-management.json
-"form": { "save": "Salvar" }
-
-// messages/pt-BR/consultor/business-unit.json
-"form": { "save": "Salvar" }
-
-// ✅ Bom - reutilização
-// messages/pt-BR/global.json
-"actions": { "save": "Salvar" }
-
-// Uso no código
-const tActions = useTranslations("global.actions");
-<button>{tActions("save")}</button>
-```
+- Paginas de guia: `{nome}Page.json` (ex: `securityPage.json`, `tipsPage.json`)
+- Secoes da home: nome curto (ex: `hero.json`, `about.json`, `contact.json`)
+- Componentes globais: nome do componente (ex: `search.json`, `terminal.json`)
+- Textos compartilhados: `global.json`
 
 ---
 
-## 🔤 Convenções de Nomenclatura
+## Convencoes de Nomenclatura
 
 ### Chaves JSON
 
-Use **camelCase** para chaves:
+Use **camelCase**:
 
 ```json
 {
-  "userManagement": "Gestão de Usuários",
-  "businessUnit": "Unidade de Negócio",
-  "currentMaturity": "Maturidade Atual"
+  "heroTitle": "Dev Showcase",
+  "sectionDescription": "Portfolio de desenvolvimento",
+  "scrollDown": "Rolar para baixo"
 }
 ```
 
-❌ **Evite**:
+Evite:
 
-- `user_management` (snake_case)
-- `user-management` (kebab-case)
-- `UserManagement` (PascalCase)
+- `hero_title` (snake_case)
+- `hero-title` (kebab-case)
+- `HeroTitle` (PascalCase)
 
-### Estrutura Hierárquica
+### Estrutura Hierarquica
 
-Use objetos aninhados para organização:
+Use objetos aninhados para organizacao:
 
 ```json
 {
+  "hero": {
+    "badge": "Portfolio",
+    "title": "Dev Showcase",
+    "description": "Descricao do portfolio"
+  },
   "form": {
-    "fields": {
-      "name": {
-        "label": "Nome",
-        "placeholder": "Digite o nome",
-        "validation": {
-          "required": "Nome é obrigatório",
-          "minLength": "Mínimo de {min} caracteres"
-        }
-      }
-    }
+    "name": "Nome",
+    "email": "E-mail",
+    "submit": "Enviar"
   }
 }
 ```
 
 ```tsx
-// Uso no código
-const t = useTranslations("admin.userManagement");
-<input placeholder={t("form.fields.name.placeholder")} />;
+const t = useTranslations("contact");
+<input placeholder={t("form.name")} />;
 ```
 
-### Evite Duplicação
+### Evite Duplicacao
+
+Se um texto e usado em varios lugares, coloque no `global.json`:
 
 ```tsx
-// ❌ Ruim - criando nova ação
-"admin.userManagement.form.save": "Salvar"
-"consultor.plants.form.save": "Salvar"
+// Ruim - duplicando "Voltar" em cada pagina
+// securityPage.json: "backButton": "Voltar"
+// reactQueryTipsPage.json: "backButton": "Voltar"
 
-// ✅ Bom - reutilizando global
-"global.actions.save": "Salvar"
+// Bom - centralizado
+// global.json: "actions": { "back": "Voltar" }
+const tGlobal = useTranslations("global");
+<button>{tGlobal("actions.back")}</button>
 ```
 
 ---
 
-## 💬 Qualidade das Traduções
+## Qualidade das Traducoes
 
-### Placeholders (Variáveis)
+### Placeholders (Variaveis)
 
-Use **{nomeDaVariavel}** (sem espaços):
+Use `{nomeDaVariavel}` (sem espacos, sem chaves duplas):
 
 ```json
 {
-  "greeting": "Olá, {name}!",
-  "itemCount": "Você tem {count} itens",
-  "userCreated": "{userName} criou {plantCount} plantas"
+  "greeting": "Ola, {name}!",
+  "itemCount": "Voce tem {count} itens"
 }
 ```
 
 ```tsx
-// Uso no código
-t("greeting", { name: "João" });
+t("greeting", { name: "Vinicius" });
 t("itemCount", { count: 5 });
-t("userCreated", { userName: "Maria", plantCount: 3 });
 ```
 
-❌ **Evite**:
+Evite:
 
-- `{{name}}` (dupla chave)
-- `{ name }` (com espaços)
+- `{{name}}` (chave dupla)
+- `{ name }` (com espacos)
 - `$name` (sintaxe incorreta)
 
-### Contexto nos Textos
-
-Seja específico para ajudar tradução automática:
-
-```json
-{
-  // ❌ Vago
-  "name": "Nome",
-
-  // ✅ Específico
-  "form": {
-    "userName": "Nome do usuário",
-    "companyName": "Nome da empresa"
-  }
-}
-```
-
-### Pluralização (ICU Message Format)
+### Pluralizacao (ICU Message Format)
 
 ```json
 {
@@ -239,357 +192,166 @@ t("items", { count: 1 }); // "1 item"
 t("items", { count: 5 }); // "5 itens"
 ```
 
+### Arrays de Objetos
+
+Use `t.raw()` com type assertion para arrays:
+
+```json
+{
+  "features": [
+    { "title": "Feature 1", "description": "Descricao 1" },
+    { "title": "Feature 2", "description": "Descricao 2" }
+  ]
+}
+```
+
+```tsx
+import type myPage from "@/../messages/pt-BR/myPage.json";
+type Feature = (typeof myPage)["features"][number];
+
+const features = t.raw("features") as Feature[];
+```
+
 ---
 
-## 🚫 Anti-Patterns (O Que NÃO Fazer)
+## Anti-Patterns (O Que NAO Fazer)
 
 ### 1. Hardcoded Texts
 
 ```tsx
-// ❌ Texto direto no código
+// Errado - texto direto no codigo
 <button>Salvar</button>
-<h1>Gestão de Usuários</h1>
+<h1>Security Tips</h1>
 
-// ✅ Sempre use i18n
-const t = useTranslations("global");
-<button>{t("actions.save")}</button>
+// Correto - sempre use i18n
+const t = useTranslations("securityPage");
+<h1>{t("hero.title")}</h1>
 ```
 
-### 2. Editar en/es Manualmente
+### 2. Editar en/es/de Manualmente
 
 ```bash
-# ❌ NUNCA faça isso
-vim messages/en/global.json  # Será sobrescrito!
+# Errado - sera sobrescrito!
+# Editar messages/en/hero.json
 
-# ✅ Edite pt-BR e rode script
-vim messages/pt-BR/global.json
-pnpm run translate
+# Correto - edite pt-BR e rode script
+# Editar messages/pt-BR/hero.json
+pnpm translate
 ```
 
-### 3. Namespaces Genéricos
+### 3. Concatenacao de Strings
 
 ```tsx
-// ❌ Dificulta manutenção
-const t = useTranslations("page");
-const t2 = useTranslations("form");
-
-// ✅ Descritivo
-const t = useTranslations("admin.userManagement");
-const tActions = useTranslations("global.actions");
-```
-
-### 4. Duplicação de Textos
-
-```json
-// ❌ Cada módulo cria suas próprias ações
-// admin/user-management.json
-"actions": { "save": "Salvar", "cancel": "Cancelar" }
-
-// consultor/business-unit.json
-"actions": { "save": "Salvar", "cancel": "Cancelar" }
-
-// ✅ Centralize em global
-// global.json
-"actions": { "save": "Salvar", "cancel": "Cancelar" }
-```
-
-### 5. Chaves Muito Longas
-
-```json
-{
-  // ❌ Caminho excessivamente longo
-  "administration.user.management.form.fields.personal.info.name.label": "Nome"
-
-  // ✅ Equilibrado
-  "form.name": "Nome"
-}
-```
-
-### 6. Concatenação de Strings
-
-```tsx
-// ❌ Quebra estrutura gramatical de outros idiomas
+// Errado - quebra estrutura gramatical de outros idiomas
 const message = t("user") + " " + t("created");
 
-// ✅ Use chave completa com placeholder
-// JSON: "userCreated": "{userName} criado com sucesso"
-const message = t("userCreated", { userName: "João" });
+// Correto - use chave completa com placeholder
+// JSON: "userCreated": "{name} criado com sucesso"
+const message = t("userCreated", { name: "Vinicius" });
+```
+
+### 4. Chaves Muito Longas
+
+```json
+{
+  // Errado - caminho excessivo
+  "page.hero.section.main.title.heading.text": "Titulo"
+
+  // Correto - equilibrado
+  "hero.title": "Titulo"
+}
 ```
 
 ---
 
-## 🎨 Padrões por Tipo de Conteúdo
-
-### Ações (Botões)
-
-```json
-{
-  "actions": {
-    "add": "Adicionar",
-    "edit": "Editar",
-    "delete": "Deletar",
-    "save": "Salvar",
-    "cancel": "Cancelar",
-    "confirm": "Confirmar",
-    "close": "Fechar",
-    "open": "Abrir",
-    "export": "Exportar",
-    "import": "Importar"
-  }
-}
-```
-
-**Local:** `global.json` (usado em todo o sistema)
-
-### Status
-
-```json
-{
-  "status": {
-    "loading": "Carregando...",
-    "processing": "Processando...",
-    "success": "Sucesso!",
-    "error": "Erro",
-    "warning": "Atenção",
-    "info": "Informação"
-  }
-}
-```
-
-**Local:** `global.json`
-
-### Validações
-
-```json
-{
-  "validation": {
-    "required": "Este campo é obrigatório",
-    "email": "E-mail inválido",
-    "minLength": "Mínimo de {min} caracteres",
-    "maxLength": "Máximo de {max} caracteres",
-    "numeric": "Apenas números"
-  }
-}
-```
-
-**Local:** `global.json`
-
-### Mensagens de Erro
-
-```json
-{
-  "errors": {
-    "notFound": {
-      "title": "Página não encontrada",
-      "description": "A página que você procura não existe"
-    },
-    "unauthorized": {
-      "title": "Acesso negado",
-      "description": "Você não tem permissão"
-    }
-  }
-}
-```
-
-**Local:** `errors.json`
-
-### Formulários
-
-```json
-{
-  "form": {
-    "title": "Criar Usuário",
-    "fields": {
-      "name": {
-        "label": "Nome",
-        "placeholder": "Digite o nome"
-      },
-      "email": {
-        "label": "E-mail",
-        "placeholder": "exemplo@email.com"
-      }
-    }
-  }
-}
-```
-
-**Local:** Módulo específico (ex: `admin/user-management.json`)
-
----
-
-## 🔄 Reutilização Inteligente
+## Reutilizacao Inteligente
 
 ### Combine Namespaces
 
 ```tsx
-export function UserForm() {
-  // Textos específicos do formulário
-  const tForm = useTranslations("admin.userManagement.form");
-
-  // Ações globais
-  const tActions = useTranslations("global.actions");
-
-  // Validações globais
-  const tValidation = useTranslations("global.validation");
+export function SecurityPage() {
+  const t = useTranslations("securityPage");    // Textos da pagina
+  const tGlobal = useTranslations("global");    // Textos compartilhados
+  const tNav = useTranslations("nav");          // Textos de navegacao
 
   return (
-    <form>
-      <h1>{tForm("title")}</h1>
-
-      <input placeholder={tForm("fields.name.placeholder")} required />
-      {error && <span>{tValidation("required")}</span>}
-
-      <button type="submit">{tActions("save")}</button>
-      <button type="button">{tActions("cancel")}</button>
-    </form>
-  );
-}
-```
-
-### Componentes Reutilizáveis
-
-```tsx
-// src/shared/components/confirm-dialog.tsx
-export function ConfirmDialog({ onConfirm, onCancel }: ConfirmDialogProps) {
-  const t = useTranslations("components.confirmDialog");
-  const tActions = useTranslations("global.actions");
-
-  return (
-    <dialog>
-      <h2>{t("title")}</h2>
-      <p>{t("message")}</p>
-      <button onClick={onConfirm}>{tActions("confirm")}</button>
-      <button onClick={onCancel}>{tActions("cancel")}</button>
-    </dialog>
+    <div>
+      <h1>{t("hero.title")}</h1>
+      <button>{tGlobal("actions.back")}</button>
+      <a>{tNav("sectionTips")}</a>
+    </div>
   );
 }
 ```
 
 ---
 
-## 📊 Checklist de Code Review
+## Checklist de Code Review
 
-### Para Adicionar Tradução
+### Para Adicionar Traducao
 
-- [ ] Editou apenas pt-BR (não en/es)
-- [ ] Rodou `pnpm run translate`
-- [ ] Rodou `pnpm run validate:i18n`
-- [ ] Rodou `pnpm run check:pt-leaks`
+- [ ] Editou apenas pt-BR (nao en/es/de)
+- [ ] Rodou `pnpm translate`
+- [ ] Rodou `pnpm validate:i18n`
+- [ ] Rodou `pnpm check:pt-leaks`
 - [ ] Namespace faz sentido
-- [ ] Não duplicou texto que já existe em global
+- [ ] Nao duplicou texto que ja existe em global
 - [ ] Placeholders usam `{variavel}` correto
-- [ ] TypeScript autocomplete funciona
 
-### Para Usar Tradução
+### Para Usar Traducao
 
-- [ ] Não tem texto hardcoded
+- [ ] Nao tem texto hardcoded
 - [ ] Usa `useTranslations()` correto
-- [ ] Namespace específico + global quando apropriado
+- [ ] Namespace especifico + global quando apropriado
 - [ ] Placeholders passados corretamente
-- [ ] Testes verificam tradução (se aplicável)
 
 ---
 
-## 🛠️ Ferramentas Úteis
-
-### VS Code Snippets
-
-```json
-// .vscode/i18n.code-snippets
-{
-  "Use Translations": {
-    "prefix": "usetrans",
-    "body": ["const t = useTranslations(\"${1:namespace}\");", "$0"]
-  },
-  "Translation Key": {
-    "prefix": "tkey",
-    "body": ["{t(\"${1:key}\")}$0"]
-  }
-}
-```
-
-### ESLint Rule (Custom)
-
-Detecta texto hardcoded em JSX:
-
-```javascript
-// .eslintrc.js (exemplo conceitual)
-rules: {
-  "no-hardcoded-strings": "warn"
-}
-```
-
----
-
-## 🌍 Considerações Culturais
-
-### Evite Expressões Locais
-
-```json
-{
-  // ❌ Gíria brasileira
-  "error": "Deu ruim"
-
-  // ✅ Neutro
-  "error": "Ocorreu um erro"
-}
-```
+## Consideracoes Culturais
 
 ### Formato de Data/Hora
 
-Use `Intl.DateTimeFormat`:
+Use `Intl.DateTimeFormat` com o locale atual:
 
 ```tsx
 import { useLocale } from "next-intl";
 
-export function PlantCreatedDate({ date }: { date: Date }) {
-  const locale = useLocale(); // "pt-BR", "en", "es"
-  const t = useTranslations("global");
+export function DateDisplay({ date }: { date: Date }) {
+  const locale = useLocale();
 
   const formatted = new Intl.DateTimeFormat(locale, {
     dateStyle: "long",
-    timeStyle: "short",
   }).format(date);
 
-  return (
-    <p>
-      {t("createdAt")}: {formatted}
-      {/* pt-BR: "Criado em: 6 de janeiro de 2026 às 14:30" */}
-      {/* en: "Created at: January 6, 2026 at 2:30 PM" */}
-      {/* es: "Creado el: 6 de enero de 2026 a las 14:30" */}
-    </p>
-  );
+  return <time>{formatted}</time>;
+  // pt-BR: "17 de fevereiro de 2026"
+  // en: "February 17, 2026"
+  // es: "17 de febrero de 2026"
+  // de: "17. Februar 2026"
 }
 ```
 
-### Formato de Números
+### Formato de Numeros
 
 ```tsx
 import { useLocale } from "next-intl";
 
-export function SecurityScore({ score }: { score: number }) {
+export function Score({ value }: { value: number }) {
   const locale = useLocale();
-  const t = useTranslations("cockpit.dashboard");
 
   const formatted = new Intl.NumberFormat(locale, {
     minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(score);
+  }).format(value);
 
-  return (
-    <span>
-      {t("score")}: {formatted}%
-    </span>
-  );
-  // pt-BR: "Pontuação: 87,45%"
-  // en: "Score: 87.45%"
-  // es: "Puntuación: 87,45%"
+  return <span>{formatted}%</span>;
+  // pt-BR: "87,45%"
+  // en: "87.45%"
 }
 ```
 
 ---
 
-## 🔗 Recursos Adicionais
+## Recursos
 
 - **next-intl docs**: [next-intl.dev](https://next-intl.dev)
 - **ICU Message Format**: [unicode.org/icu](https://unicode-org.github.io/icu/userguide/format_parse/messages/)
@@ -597,12 +359,12 @@ export function SecurityScore({ score }: { score: number }) {
 
 ---
 
-## 📚 Próximos Passos
+## Proximos Passos
 
-- **Ver scripts disponíveis?** → [SCRIPTS.md](./SCRIPTS.md)
-- **Como adicionar traduções?** → [ADDING_TRANSLATIONS.md](./ADDING_TRANSLATIONS.md)
-- **Voltar ao início?** → [INDEX.md](./INDEX.md)
+- **Ver scripts disponiveis?** → [SCRIPTS.md](./SCRIPTS.md)
+- **Como adicionar traducoes?** → [ADDING_TRANSLATIONS.md](./ADDING_TRANSLATIONS.md)
+- **Voltar ao inicio?** → [INDEX.md](./INDEX.md)
 
 ---
 
-**Lembre-se:** Consistência é mais importante que perfeição! 🎯
+Consistencia e mais importante que perfeicao.

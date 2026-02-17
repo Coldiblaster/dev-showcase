@@ -1,40 +1,43 @@
-# 🚀 Quick Start - Internacionalização
+# Quick Start — Internacionalizacao
 
-Guia prático de 5 minutos para usar o sistema de i18n.
+Guia pratico de 5 minutos para usar o sistema de i18n.
 
 ---
 
-## 📦 Conceitos Básicos
+## Conceitos Basicos
 
-### O que é um Namespace?
+### O que e um Namespace?
 
-Um **namespace** é um grupo de traduções relacionadas:
+Um **namespace** e um grupo de traducoes relacionadas. Neste projeto, cada pagina/feature tem seu proprio JSON:
 
-- `auth` → Login, logout, validações
-- `global` → Ações comuns (salvar, cancelar), status
-- `admin.userManagement` → Gestão de usuários do módulo admin
-- `cockpit.dashboard` → Dashboard do módulo cockpit
+- `hero` → Hero section da home
+- `nav` → Navbar e menus
+- `contact` → Formulario de contato
+- `securityPage` → Pagina de Security Tips
+- `reactQueryTipsPage` → Pagina de React Query Tips
+- `global` → Textos compartilhados
 
 ### Estrutura de Chaves
 
 ```json
 {
-  "login": {
-    "title": "Entrar no sistema",
-    "version": "Versão {version}"
-  },
-  "actions": {
-    "save": "Salvar",
-    "cancel": "Cancelar"
+  "title": "Dev Showcase",
+  "description": "Portfolio de desenvolvimento",
+  "features": [
+    { "title": "Feature 1", "description": "Desc 1" }
+  ],
+  "nested": {
+    "badge": "Novo",
+    "subtitle": "Subtitulo"
   }
 }
 ```
 
-Acesso: `t("login.title")` ou `t("actions.save")`
+Acesso: `t("title")`, `t("nested.badge")`, ou `t.raw("features")` para arrays.
 
 ---
 
-## 🎯 Uso Básico
+## Uso Basico
 
 ### 1. Importar o Hook
 
@@ -45,272 +48,298 @@ import { useTranslations } from "next-intl";
 ### 2. Usar no Componente
 
 ```tsx
-export function LoginPage() {
-  const t = useTranslations("auth"); // namespace "auth"
+export function HeroSection() {
+  const t = useTranslations("hero");
 
   return (
     <div>
-      <h1>{t("login.title")}</h1>
-      <input placeholder={t("login.emailPlaceholder")} />
-      <button>{t("login.submit")}</button>
+      <h1>{t("title")}</h1>
+      <p>{t("description")}</p>
+      <span>{t("badge")}</span>
     </div>
   );
 }
 ```
 
-### 3. Com Variáveis
+### 3. Com Variaveis
 
 ```tsx
-export function WelcomeMessage({ userName }: { userName: string }) {
+export function Greeting({ name }: { name: string }) {
   const t = useTranslations("global");
 
-  return <p>{t("welcome", { name: userName })}</p>;
+  return <p>{t("welcome", { name })}</p>;
   // JSON: "welcome": "Bem-vindo, {name}!"
 }
 ```
 
-### 4. Múltiplos Namespaces
+### 4. Multiplos Namespaces
 
 ```tsx
-export function UserForm() {
-  const tForm = useTranslations("admin.userManagement");
-  const tActions = useTranslations("global");
+export function PageHeader() {
+  const tHero = useTranslations("hero");
+  const tNav = useTranslations("nav");
 
   return (
-    <form>
-      <h1>{tForm("title")}</h1>
-      <input placeholder={tForm("form.namePlaceholder")} />
-      <button>{tActions("actions.save")}</button>
-      <button>{tActions("actions.cancel")}</button>
-    </form>
+    <header>
+      <h1>{tHero("title")}</h1>
+      <nav>
+        <a>{tNav("sectionTips")}</a>
+        <a>{tNav("sectionImplementations")}</a>
+      </nav>
+    </header>
   );
+}
+```
+
+### 5. Arrays com t.raw()
+
+Quando o JSON tem arrays de objetos, use `t.raw()`:
+
+```tsx
+import type securityPage from "@/../messages/pt-BR/securityPage.json";
+
+type Item = (typeof securityPage)["overview"]["items"][number];
+
+export function OverviewSection() {
+  const t = useTranslations("securityPage");
+
+  return (
+    <div>
+      {(t.raw("overview.items") as Item[]).map((item) => (
+        <div key={item.title}>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+### 6. Server Components
+
+```tsx
+import { getTranslations } from "next-intl/server";
+
+export default async function TipsPage() {
+  const t = await getTranslations("tipsPage");
+
+  return <h1>{t("title")}</h1>;
 }
 ```
 
 ---
 
-## 🔤 Cheat Sheet
+## Cheat Sheet
 
-### Sintaxe Básica
+### Sintaxe
 
 ```tsx
 // Texto simples
-t("login.title");
+t("title");
 
-// Com variável
-t("greeting", { name: "João" });
+// Com variavel
+t("greeting", { name: "Vinicius" });
 
-// Aninhado
-t("form.fields.email.label");
+// Chave aninhada
+t("hero.badge");
 
-// Múltiplos namespaces
-const tGlobal = useTranslations("global");
-const tAuth = useTranslations("auth");
+// Array de objetos
+t.raw("features") as Feature[];
+
+// Multiplos namespaces
+const tNav = useTranslations("nav");
+const tHero = useTranslations("hero");
 ```
 
-### Namespaces Comuns
+### Namespaces deste Projeto
 
-| Namespace              | Quando usar                   | Exemplo                        |
-| ---------------------- | ----------------------------- | ------------------------------ |
-| `global`               | Ações, status, navegação      | `t("actions.save")`            |
-| `auth`                 | Login, logout, validações     | `t("login.title")`             |
-| `components`           | Componentes UI compartilhados | `t("header.notifications")`    |
-| `errors`               | Mensagens de erro             | `t("notFound.title")`          |
-| `admin.userManagement` | Gestão de usuários            | `t("form.emailLabel")`         |
-| `cockpit.dashboard`    | Dashboard do cockpit          | `t("metrics.currentMaturity")` |
+| Namespace            | Quando usar                  | Exemplo                    |
+| -------------------- | ---------------------------- | -------------------------- |
+| `hero`               | Hero section da home         | `t("title")`               |
+| `nav`                | Navbar e menus               | `t("sectionTips")`         |
+| `contact`            | Formulario de contato        | `t("form.name")`           |
+| `about`              | Secao sobre                  | `t("sectionTitle")`        |
+| `projects`           | Projetos                     | `t("title")`               |
+| `experience`         | Experiencia                  | `t("title")`               |
+| `securityPage`       | Pagina Security Tips         | `t("hero.title")`          |
+| `reactQueryTipsPage` | Pagina React Query Tips      | `t("hero.badge")`          |
+| `aiChatbotPage`      | Pagina AI Chatbot            | `t("hero.title")`          |
+| `codeReviewPage`     | Pagina Code Review           | `t("hero.title")`          |
+| `seoPage`            | Pagina SEO Showcase          | `t("hero.title")`          |
+| `i18nPage`           | Pagina i18n Showcase         | `t("hero.title")`          |
+| `global`             | Textos compartilhados        | `t("actions.back")`        |
+| `search`             | Global search                | `t("placeholder")`         |
+| `chat`               | Widget de chat IA            | `t("placeholder")`         |
+| `terminal`           | Terminal easter egg           | `t("welcome")`             |
+| `footer`             | Rodape                       | `t("copyright")`           |
 
 ### Placeholders
 
 ```json
 {
-  "greeting": "Olá, {name}!",
-  "itemCount": "Você tem {count} itens",
-  "multipleVars": "{user} criou {count} plantas"
+  "greeting": "Ola, {name}!",
+  "itemCount": "Voce tem {count} itens",
+  "plural": "{count, plural, =0 {nenhum item} =1 {1 item} other {# itens}}"
 }
 ```
 
 ```tsx
-t("greeting", { name: "João" });
+t("greeting", { name: "Vinicius" });
 t("itemCount", { count: 5 });
-t("multipleVars", { user: "Maria", count: 3 });
+t("plural", { count: 0 }); // "nenhum item"
 ```
 
 ---
 
-## 🌐 Trocar Idioma
+## Trocar Idioma
 
-O usuário troca o idioma via `<LanguageSwitcher />` no header:
+O usuario troca o idioma via `<LanguageSwitcher />` na navbar:
 
-```tsx
-// Componente já existe em:
-// src/shared/components/language-switcher.tsx
-
-// Mostra bandeira do idioma atual: 🇧🇷 🇺🇸 🇪🇸
-// Salva preferência em cookie
+```
+src/components/language-switcher.tsx
 ```
 
-**Você não precisa fazer nada!** O sistema detecta automaticamente.
+Configuracao central em:
+
+```
+src/lib/i18n/config.ts
+```
+
+Voce nao precisa fazer nada especial — o sistema detecta automaticamente o idioma do cookie.
 
 ---
 
-## ✅ TypeScript Autocomplete
+## TypeScript Autocomplete
 
-O projeto tem **autocomplete completo**! Ao digitar `t("`, você verá:
+O projeto tem autocomplete completo. Ao digitar `t("`, voce ve:
 
-1. Todos os namespaces disponíveis
-2. Todas as chaves válidas dentro do namespace
-3. Parâmetros obrigatórios (ex: `{name}`)
+1. Todas as chaves validas dentro do namespace
+2. Parametros obrigatorios (ex: `{name}`)
+3. Erros de compilacao se a chave nao existir
 
-**Se não funcionar:**
+Se nao funcionar:
 
 1. `Ctrl+Shift+P` → "TypeScript: Restart TS Server"
-2. Recarregue o VS Code
+2. Se persistir: `Ctrl+Shift+P` → "Developer: Reload Window"
 
 ---
 
-## 📁 Onde Estão as Traduções?
+## Onde estao as traducoes?
 
 ```
 messages/
-├── pt-BR/              # 🇧🇷 Edite aqui (fonte de verdade)
-│   ├── global.json
-│   ├── auth.json
-│   └── admin/
-│       └── user-management.json
-├── en/                 # 🇺🇸 Gerado automaticamente
-└── es/                 # 🇪🇸 Gerado automaticamente
+├── pt-BR/              # Edite aqui (fonte de verdade)
+│   ├── index.ts        # Barrel export
+│   ├── hero.json
+│   ├── nav.json
+│   ├── contact.json
+│   ├── securityPage.json
+│   └── ...             # 32 namespaces
+├── en/                 # Gerado automaticamente
+├── es/                 # Gerado automaticamente
+└── de/                 # Gerado automaticamente
 ```
 
-**Regra de ouro:** SEMPRE edite `pt-BR` primeiro, depois rode `pnpm run translate`
+**Regra de ouro:** SEMPRE edite `pt-BR` primeiro, depois rode `pnpm translate`.
 
 ---
 
-## 🎨 Exemplos Práticos
+## Exemplos Praticos
 
-### Botão com Ação
+### Botao com Acao
 
 ```tsx
 import { useTranslations } from "next-intl";
 
-export function DeleteButton({ onDelete }: { onDelete: () => void }) {
+export function BackButton() {
   const t = useTranslations("global");
 
-  return <button onClick={onDelete}>{t("actions.delete")}</button>;
+  return <button>{t("actions.back")}</button>;
 }
 ```
 
-### Lista Vazia
+### Pagina com Hero
 
 ```tsx
-export function PlantList({ plants }: { plants: Plant[] }) {
-  const t = useTranslations("consultor.businessUnit");
+import { useTranslations } from "next-intl";
 
-  if (plants.length === 0) {
-    return <p>{t("list.empty")}</p>;
-  }
+export function SecurityTips() {
+  const t = useTranslations("securityPage");
 
-  return <ul>{/* render plants */}</ul>;
+  return (
+    <section>
+      <span>{t("hero.badge")}</span>
+      <h1>{t("hero.title")}</h1>
+      <p>{t("hero.description")}</p>
+    </section>
+  );
 }
 ```
 
-### Formulário Completo
+### Formulario de Contato
 
 ```tsx
-export function CreateUserForm() {
-  const tForm = useTranslations("admin.userManagement.form");
-  const tActions = useTranslations("global.actions");
-  const tValidation = useTranslations("global.validation");
+import { useTranslations } from "next-intl";
+
+export function ContactForm() {
+  const t = useTranslations("contact");
 
   return (
     <form>
-      <label>
-        {tForm("nameLabel")}
-        <input placeholder={tForm("namePlaceholder")} required />
-      </label>
-
-      <label>
-        {tForm("emailLabel")}
-        <input type="email" placeholder={tForm("emailPlaceholder")} />
-      </label>
-
-      <div>
-        <button type="submit">{tActions("save")}</button>
-        <button type="button">{tActions("cancel")}</button>
-      </div>
+      <input placeholder={t("form.name")} />
+      <input placeholder={t("form.email")} />
+      <textarea placeholder={t("form.message")} />
+      <button>{t("form.submit")}</button>
     </form>
   );
 }
 ```
 
-### Mensagem de Erro
+---
+
+## Workflow Completo
+
+1. **Adicionar texto em pt-BR**
+
+```bash
+# Edite messages/pt-BR/hero.json
+"newBadge": "Novo texto"
+```
+
+2. **Gerar traducoes**
+
+```bash
+pnpm translate
+```
+
+3. **Usar no codigo**
 
 ```tsx
-export function ErrorMessage({ error }: { error: string | null }) {
-  const t = useTranslations("global.validation");
+const t = useTranslations("hero");
+return <span>{t("newBadge")}</span>;
+```
 
-  if (!error) return null;
+4. **Validar**
 
-  return <span className="error">{t(error)}</span>;
-  // Exemplo: error = "required" → "Este campo é obrigatório"
-}
+```bash
+pnpm validate:i18n
+pnpm check:pt-leaks
 ```
 
 ---
 
-## 🔄 Workflow Completo
-
-1. **Adicionar texto em pt-BR**
-
-   ```bash
-   # Edite messages/pt-BR/global.json
-   "newKey": "Novo texto"
-   ```
-
-2. **Gerar traduções**
-
-   ```bash
-   pnpm run translate
-   ```
-
-3. **Usar no código**
-
-   ```tsx
-   const t = useTranslations("global");
-   return <p>{t("newKey")}</p>;
-   ```
-
-4. **Validar**
-   ```bash
-   pnpm run validate:i18n
-   pnpm run check:pt-leaks
-   ```
-
----
-
-## ❓ Dúvidas Comuns
+## Duvidas Comuns
 
 **Q: Posso usar fora de componentes React?**
-A: Sim! Use `getTranslations()` em Server Components ou actions.
+A: Sim! Use `getTranslations()` em Server Components ou actions:
 
 ```tsx
-// Server Component
 import { getTranslations } from "next-intl/server";
 
-export default async function ServerPage() {
-  const t = await getTranslations("global");
-
-  return <h1>{t("welcome")}</h1>;
-}
-
-// Server Action
-import { getTranslations } from "next-intl/server";
-
-export async function createUserAction(data: FormData) {
-  "use server";
-  const t = await getTranslations("admin.userManagement");
-
-  // Usar t() para mensagens de sucesso/erro
-  return { message: t("success.userCreated") };
+export default async function Page() {
+  const t = await getTranslations("hero");
+  return <h1>{t("title")}</h1>;
 }
 ```
 
@@ -318,33 +347,28 @@ export async function createUserAction(data: FormData) {
 A: Use ICU Message Format:
 
 ```json
-// messages/pt-BR/global.json
-{
-  "plantsCount": "{count, plural, =0 {Nenhuma planta} =1 {1 planta} other {# plantas}}"
-}
+{ "items": "{count, plural, =0 {nenhum} =1 {1 item} other {# itens}}" }
 ```
 
 ```tsx
-// Uso no código
-t("plantsCount", { count: 0 }); // "Nenhuma planta"
-t("plantsCount", { count: 1 }); // "1 planta"
-t("plantsCount", { count: 5 }); // "5 plantas"
+t("items", { count: 0 }); // "nenhum"
+t("items", { count: 5 }); // "5 itens"
 ```
 
-**Q: Posso aninhar namespaces?**
-A: Sim! `admin.userManagement.form.nameLabel`
+**Q: Como acessar arrays do JSON?**
+A: Use `t.raw("chave")` com type assertion. Veja secao "Arrays com t.raw()" acima.
 
-**Q: O que fazer se tradução não aparecer?**
-A: 1) Verifique se o namespace está correto 2) Rode `pnpm run validate:i18n` 3) Reinicie o TS Server
-
----
-
-## 🔗 Próximos Passos
-
-- **Adicionar novas traduções?** → [ADDING_TRANSLATIONS.md](./ADDING_TRANSLATIONS.md)
-- **Ver scripts disponíveis?** → [SCRIPTS.md](./SCRIPTS.md)
-- **Boas práticas?** → [BEST_PRACTICES.md](./BEST_PRACTICES.md)
+**Q: O que fazer se traducao nao aparecer?**
+A: 1) Verifique o namespace 2) Rode `pnpm validate:i18n` 3) Reinicie TS Server
 
 ---
 
-**Precisa de ajuda?** Consulte o [INDEX.md](./INDEX.md) ou [README.md](./README.md)
+## Proximos Passos
+
+- **Adicionar novas traducoes?** → [ADDING_TRANSLATIONS.md](./ADDING_TRANSLATIONS.md)
+- **Ver scripts disponiveis?** → [SCRIPTS.md](./SCRIPTS.md)
+- **Boas praticas?** → [BEST_PRACTICES.md](./BEST_PRACTICES.md)
+
+---
+
+Precisa de ajuda? Consulte o [INDEX.md](./INDEX.md) ou [README.md](./README.md)

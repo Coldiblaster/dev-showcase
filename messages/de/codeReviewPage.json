@@ -1,0 +1,46 @@
+{
+  "hero": {
+    "badge": "AI Code Review",
+    "title": "KI Code Reviewer",
+    "subtitle": "Füge deinen Code ein und erhalte eine professionelle Analyse in Sekunden",
+    "description": "Powered by GPT-4o Mini — Bug-Analyse, Performance, Sicherheit und Best Practices mit Verbesserungsvorschlägen."
+  },
+  "editor": {
+    "placeholder": "// Füge deinen Code hier ein...\n// Unterstützt jede Sprache\n\nfunction example() {\n  return 'Hello World';\n}",
+    "language": "Sprache",
+    "autoDetect": "Auto-erkennen",
+    "review": "Code analysieren",
+    "reviewing": "Analysiere...",
+    "clear": "Löschen",
+    "charCount": "{count} / 5000 Zeichen",
+    "minChars": "Mindestens 10 Zeichen"
+  },
+  "result": {
+    "score": "Score",
+    "summary": "Zusammenfassung",
+    "issues": "Gefundene Probleme",
+    "improvements": "Verbesserungsvorschläge",
+    "strengths": "Stärken",
+    "noIssues": "Keine Probleme gefunden!",
+    "severity": {
+      "error": "Fehler",
+      "warning": "Warnung",
+      "info": "Info"
+    },
+    "line": "Zeile {line}"
+  },
+  "error": {
+    "generic": "Fehler beim Analysieren. Versuche es erneut.",
+    "rateLimit": "Zu viele Anfragen. Bitte warten.",
+    "tooShort": "Code muss mindestens 10 Zeichen haben."
+  },
+  "how": {
+    "title": "So funktioniert's",
+    "steps": [
+      { "title": "Code einfügen", "description": "Füge einen Code-Schnipsel im Editor oben ein" },
+      { "title": "KI analysiert", "description": "GPT-4o Mini analysiert Bugs, Performance, Sicherheit und Stil" },
+      { "title": "Feedback erhalten", "description": "Siehe Score, gefundene Probleme und Verbesserungsvorschläge" }
+    ]
+  },
+  "languages": ["TypeScript", "JavaScript", "Python", "Java", "Go", "Rust", "C++", "CSS", "HTML", "SQL", "Shell", "Ruby", "PHP", "Swift", "Kotlin"]
+}

@@ -53,9 +53,7 @@ export function RecaptchaProvider({ children }: { children: React.ReactNode }) {
 
   if (!SITE_KEY) {
     return (
-      <RecaptchaContext.Provider
-        value={{ executeRecaptcha, isLoaded: false }}
-      >
+      <RecaptchaContext.Provider value={{ executeRecaptcha, isLoaded: false }}>
         {children}
       </RecaptchaContext.Provider>
     );

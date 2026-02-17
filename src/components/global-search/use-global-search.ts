@@ -5,12 +5,7 @@ import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { SEARCH_ITEMS } from "./search-data";
-import type { SearchResult } from "./types";
-
-export type ResolvedSearchResult = SearchResult & {
-  title: string;
-  description: string;
-};
+import type { ResolvedSearchResult } from "./types";
 
 const DEBOUNCE_MS = 200;
 

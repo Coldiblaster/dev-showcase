@@ -12,5 +12,14 @@
   "pageHero": {
     "back": "Portfolio"
   },
-  "copied": "Copied!"
+  "copied": "Copied!",
+  "codeCopied": "Code copied",
+  "copyCode": "Copy code",
+  "scrollToTop": "Back to top",
+  "changeLanguage": "Change language",
+  "goHome": "Go to the home page",
+  "mainMenu": "Main menu",
+  "terminalPress": "Press",
+  "terminalFor": "for terminal",
+  "tip": "Tip:"
 }

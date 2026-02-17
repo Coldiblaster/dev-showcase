@@ -53,7 +53,7 @@ export function PricingSection() {
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                       <Badge className="gap-1 bg-primary text-primary-foreground">
                         <Sparkles className="h-3 w-3" />
-                        Recomendado
+                        {t("pricing.recommended")}
                       </Badge>
                     </div>
                   )}
@@ -63,13 +63,17 @@ export function PricingSection() {
                     </h3>
                     <div className="mb-4 space-y-2">
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-muted-foreground">Input</span>
+                        <span className="text-muted-foreground">
+                          {t("pricing.inputLabel")}
+                        </span>
                         <span className="font-mono font-medium text-foreground">
                           {model.input}
                         </span>
                       </div>
                       <div className="flex items-center justify-between text-sm">
-                        <span className="text-muted-foreground">Output</span>
+                        <span className="text-muted-foreground">
+                          {t("pricing.outputLabel")}
+                        </span>
                         <span className="font-mono font-medium text-foreground">
                           {model.output}
                         </span>

@@ -27,7 +27,7 @@ export function DesktopNav() {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          Home
+          {t("home")}
         </motion.div>
       </Link>
 
@@ -50,9 +50,7 @@ export function DesktopNav() {
                 key={item.href}
                 icon={item.icon}
                 label={t(item.labelKey)}
-                sublabel={
-                  item.sublabelKey ? t(item.sublabelKey) : undefined
-                }
+                sublabel={item.sublabelKey ? t(item.sublabelKey) : undefined}
                 href={item.href}
                 isActive={pathname === item.href}
               />

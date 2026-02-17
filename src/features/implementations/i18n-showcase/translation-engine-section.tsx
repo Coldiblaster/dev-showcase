@@ -86,7 +86,8 @@ export function TranslationEngine() {
 
           <div className="mt-6 rounded-lg border border-primary/20 bg-primary/5 p-4">
             <p className="text-sm text-muted-foreground">
-              <strong className="text-foreground">💡 Dica:</strong> {t("tip")}
+              <strong className="text-foreground">{t("tipLabel")}</strong>{" "}
+              {t("tip")}
             </p>
           </div>
         </motion.div>

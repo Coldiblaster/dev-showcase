@@ -15,6 +15,7 @@
   "section": "Section",
   "implementation": "Implementation",
   "guide": "Guide",
+  "tool": "Tool",
   "items": {
     "about": {
       "title": "About me",
@@ -59,6 +60,14 @@
     "dev-resources": {
       "title": "Developer Resources",
       "description": "Content filtered by level (Jr/Mid/Sr) with interactive playground"
+    },
+    "security-tips": {
+      "title": "Frontend & Backend Security",
+      "description": "Rate Limiting, reCAPTCHA, Honeypot, Zod, Security Headers and secure environment variables"
+    },
+    "code-review": {
+      "title": "AI Code Reviewer",
+      "description": "Paste your code and get a professional AI review — bugs, performance and best practices"
     }
   }
 }

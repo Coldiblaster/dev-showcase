@@ -15,6 +15,7 @@
   "section": "Sección",
   "implementation": "Implementación",
   "guide": "Guía",
+  "tool": "Herramienta",
   "items": {
     "about": {
       "title": "Sobre mí",
@@ -59,6 +60,14 @@
     "dev-resources": {
       "title": "Recursos para Devs",
       "description": "Contenido filtrado por nivel (Jr/Mid/Sr) con playground interactivo"
+    },
+    "security-tips": {
+      "title": "Seguridad Frontend & Backend",
+      "description": "Rate Limiting, reCAPTCHA, Honeypot, Zod, Security Headers y variables de entorno seguras"
+    },
+    "code-review": {
+      "title": "AI Code Reviewer",
+      "description": "Pega tu código y recibe un análisis profesional con IA — bugs, rendimiento y buenas prácticas"
     }
   }
 }

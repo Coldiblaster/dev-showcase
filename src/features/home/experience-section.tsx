@@ -10,6 +10,7 @@ import { CardBlur } from "@/components/ui/card-blur";
 
 type ExperienceItem = (typeof experience)["items"][number];
 
+/** Seção de experiência profissional em timeline. */
 export function ExperienceSection() {
   const t = useTranslations("experience");
   const ref = useRef(null);

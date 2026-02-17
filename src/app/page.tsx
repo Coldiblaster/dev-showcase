@@ -1,7 +1,8 @@
 import { AboutSection } from "@/features/home/about-section";
 import { AISection } from "@/features/home/ai-section";
-import { ContactSection } from "@/features/home/contact-section";
+import { ContactSection } from "@/features/home/contact";
 import { ExperienceSection } from "@/features/home/experience-section";
+import { GitHubStatsSection } from "@/features/home/github-stats";
 import { HomeHeroSection } from "@/features/home/hero-section";
 import { ProjectsSection } from "@/features/home/projects-section";
 import { StackSection } from "@/features/home/stack-section";
@@ -14,6 +15,7 @@ export default function Page() {
       <StatsSection />
       <AboutSection />
       <StackSection />
+      <GitHubStatsSection />
       <ProjectsSection />
       <ExperienceSection />
       <AISection />

@@ -1,0 +1,9 @@
+{
+  "toggle": "View source code",
+  "hide": "Hide code",
+  "title": "Actual source code",
+  "description": "This is the real source code used in this portfolio. Click on any section with the code icon to see how it was implemented.",
+  "copied": "Copied!",
+  "file": "File",
+  "lines": "{count} lines"
+}

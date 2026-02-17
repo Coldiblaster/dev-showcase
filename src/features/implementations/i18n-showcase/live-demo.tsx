@@ -170,10 +170,10 @@ export function LiveDemo() {
 
                   <div className="mb-4">
                     <label className="mb-2 block text-xs font-semibold text-muted-foreground">
-                      Nome (preview)
+                      {t("liveDemo.nameLabel")}
                     </label>
                     <Input
-                      aria-label="Nome para saudacao"
+                      aria-label={t("liveDemo.nameAriaLabel")}
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       className="w-full"
@@ -186,7 +186,7 @@ export function LiveDemo() {
                       variant="outline"
                       onClick={() => setItemCount(Math.max(0, itemCount - 1))}
                       className="h-8 min-w-8 p-0"
-                      aria-label="Diminuir contador"
+                      aria-label={t("liveDemo.decrement")}
                     >
                       -
                     </Button>
@@ -198,7 +198,7 @@ export function LiveDemo() {
                       variant="outline"
                       onClick={() => setItemCount(itemCount + 1)}
                       className="h-8 min-w-8 p-0"
-                      aria-label="Aumentar contador"
+                      aria-label={t("liveDemo.increment")}
                     >
                       +
                     </Button>
@@ -219,9 +219,11 @@ export function LiveDemo() {
                             // ignore
                           }
                         }}
-                        aria-label="Copiar link da demo"
+                        aria-label={t("liveDemo.copyLinkAriaLabel")}
                       >
-                        {copied ? "Link copiado" : "Copiar link"}
+                        {copied
+                          ? t("liveDemo.linkCopied")
+                          : t("liveDemo.copyLink")}
                       </Button>
                     </div>
                   </div>

@@ -550,7 +550,7 @@ export async function run() {
           }
           return outObj as T;
         } else if (typeof src === "string") {
-          // String: traduz se necessário
+          if (src === "") return src;
           if (!FORCE_MODE && tgt !== undefined && tgt !== null && tgt !== "") {
             return tgt as T;
           }

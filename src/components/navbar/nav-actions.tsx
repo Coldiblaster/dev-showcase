@@ -29,9 +29,7 @@ export function NavActions({ isMobileOpen, onMobileToggle }: NavActionsProps) {
       >
         <div className="flex flex-col gap-1">
           <motion.span
-            animate={
-              isMobileOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }
-            }
+            animate={isMobileOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
             className="block h-0.5 w-4 bg-current"
           />
           <motion.span

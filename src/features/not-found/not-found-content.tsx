@@ -30,8 +30,8 @@ const FLOATING_SYMBOLS = [
 const PARTICLES = Array.from({ length: 14 }, (_, i) => ({
   id: i,
   symbol: FLOATING_SYMBOLS[i % FLOATING_SYMBOLS.length],
-  x: ((i * 37 + 13) % 100),
-  y: ((i * 53 + 7) % 100),
+  x: (i * 37 + 13) % 100,
+  y: (i * 53 + 7) % 100,
   duration: 15 + ((i * 7) % 20),
   delay: (i * 3) % 8,
   size: 10 + ((i * 4) % 6),

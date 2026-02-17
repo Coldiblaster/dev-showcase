@@ -1,6 +1,7 @@
 "use client";
 
 import { Check, Copy } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { useCopyFeedback } from "@/components/copy-feedback";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
@@ -23,6 +24,7 @@ import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
  * ```
  */
 export function CodeBlock({ code, title }: { code: string; title?: string }) {
+  const t = useTranslations("global");
   const { copied, copy } = useCopyToClipboard();
   const { showFeedback } = useCopyFeedback();
 
@@ -48,7 +50,7 @@ export function CodeBlock({ code, title }: { code: string; title?: string }) {
           <button
             onClick={handleCopy}
             className="rounded-md p-1.5 text-muted-foreground/50 transition-colors hover:bg-secondary hover:text-foreground"
-            aria-label={copied ? "Código copiado" : "Copiar código"}
+            aria-label={copied ? t("codeCopied") : t("copyCode")}
           >
             {copied ? (
               <Check className="h-3.5 w-3.5 text-primary" />

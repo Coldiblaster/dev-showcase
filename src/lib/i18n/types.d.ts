@@ -2,14 +2,16 @@
 
 // Central type for all namespaces (auto-imported by Next.js)
 import type about from "../../../messages/pt-BR/about.json";
-import type aiChatbotPage from "../../../messages/pt-BR/aiChatbotPage.json";
 import type ai from "../../../messages/pt-BR/ai.json";
-import type chat from "../../../messages/pt-BR/chat.json";
+import type aiChatbotPage from "../../../messages/pt-BR/aiChatbotPage.json";
 import type aiInnovation from "../../../messages/pt-BR/aiInnovation.json";
+import type chat from "../../../messages/pt-BR/chat.json";
+import type codeReviewPage from "../../../messages/pt-BR/codeReviewPage.json";
 import type contact from "../../../messages/pt-BR/contact.json";
 import type devResourcesPage from "../../../messages/pt-BR/devResourcesPage.json";
 import type experience from "../../../messages/pt-BR/experience.json";
 import type footer from "../../../messages/pt-BR/footer.json";
+import type githubStats from "../../../messages/pt-BR/githubStats.json";
 import type global from "../../../messages/pt-BR/global.json";
 import type hero from "../../../messages/pt-BR/hero.json";
 import type homeStack from "../../../messages/pt-BR/homeStack.json";
@@ -18,15 +20,19 @@ import type i18nPage from "../../../messages/pt-BR/i18nPage.json";
 import type i18nShowcase from "../../../messages/pt-BR/i18nShowcase.json";
 import type implementations from "../../../messages/pt-BR/implementations.json";
 import type nav from "../../../messages/pt-BR/nav.json";
+import type notFound from "../../../messages/pt-BR/notFound.json";
 import type portfolio from "../../../messages/pt-BR/portfolio.json";
 import type projects from "../../../messages/pt-BR/projects.json";
+import type reactQueryTipsPage from "../../../messages/pt-BR/reactQueryTipsPage.json";
 import type search from "../../../messages/pt-BR/search.json";
-import type notFound from "../../../messages/pt-BR/notFound.json";
+import type securityPage from "../../../messages/pt-BR/securityPage.json";
 import type seoPage from "../../../messages/pt-BR/seoPage.json";
 import type tailwindTips from "../../../messages/pt-BR/tailwindTips.json";
 import type tailwindTipsPage from "../../../messages/pt-BR/tailwindTipsPage.json";
+import type terminal from "../../../messages/pt-BR/terminal.json";
 import type tips from "../../../messages/pt-BR/tips.json";
 import type tipsPage from "../../../messages/pt-BR/tipsPage.json";
+import type viewSource from "../../../messages/pt-BR/viewSource.json";
 
 export type Messages = {
   global: typeof global;
@@ -36,10 +42,12 @@ export type Messages = {
   ai: typeof ai;
   chat: typeof chat;
   aiInnovation: typeof aiInnovation;
+  codeReviewPage: typeof codeReviewPage;
   contact: typeof contact;
   devResourcesPage: typeof devResourcesPage;
   experience: typeof experience;
   footer: typeof footer;
+  githubStats: typeof githubStats;
   hero: typeof hero;
   homeStack: typeof homeStack;
   homeStats: typeof homeStats;
@@ -49,11 +57,15 @@ export type Messages = {
   notFound: typeof notFound;
   portfolio: typeof portfolio;
   projects: typeof projects;
+  reactQueryTipsPage: typeof reactQueryTipsPage;
+  terminal: typeof terminal;
   tailwindTips: typeof tailwindTips;
   tailwindTipsPage: typeof tailwindTipsPage;
   tips: typeof tips;
   tipsPage: typeof tipsPage;
+  viewSource: typeof viewSource;
   search: typeof search;
+  securityPage: typeof securityPage;
   seoPage: typeof seoPage;
 };
 

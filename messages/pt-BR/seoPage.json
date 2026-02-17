@@ -145,6 +145,7 @@
   },
   "webVitals": {
     "title": "Core Web Vitals",
+    "tipLabel": "Dica:",
     "description": "Métricas de performance que o Google usa como fator de ranking. Monitoradas neste portfolio via Vercel Speed Insights.",
     "items": [
       {

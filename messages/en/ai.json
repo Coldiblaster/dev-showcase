@@ -20,5 +20,12 @@
       "description": "I know how to structure effective prompts: clear context, examples, constraints, and output format. This ensures consistent responses and reduces iterations."
     }
   ],
-  "tryChat": "Try the Chatbot"
+  "tryChat": "Try the Chatbot",
+  "example": {
+    "badge": "Real Example",
+    "title": "How I use Vercel AI SDK in projects",
+    "description": "Chatbot with streaming responses using AI SDK + OpenAI",
+    "codeComment": "// Route Handler for chat with streaming",
+    "codeSystemPrompt": "You are an assistant who helps developers."
+  }
 }

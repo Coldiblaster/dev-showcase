@@ -62,7 +62,7 @@
         "Dokumentieren Sie Standards und erstellen Sie Migrationsbeispiele."
       ]
     },
-    "tipLabel": "Bis:",
+    "tipLabel": "Tipp:",
     "tip": "Erstellen Sie für die Migration eine visuelle Checkliste und beziehen Sie das Team in PR-Überprüfungen mit Schwerpunkt auf i18n ein."
   },
   "hero": {
@@ -86,7 +86,14 @@
     "dateLabel": "Formatiertes Datum",
     "numberLabel": "Formatierte Zahl",
     "pluralLabel": "Pluralisierung",
-    "items": "{count, plural, =0 {Kein Eintrag} one {1 Eintrag} other {# Einträge}}"
+    "items": "{count, plural, =0 {Kein Eintrag} one {1 Eintrag} other {# Einträge}}",
+    "nameLabel": "Name (Vorschau)",
+    "nameAriaLabel": "Name für Begrüßung",
+    "decrement": "Zähler verringern",
+    "increment": "Zähler erhöhen",
+    "copyLinkAriaLabel": "Link zur Demo kopieren",
+    "linkCopied": "Link kopiert",
+    "copyLink": "Link kopieren"
   },
   "architecture": {
     "title": "Architektur",
@@ -124,6 +131,7 @@
       "description": "Kostenloser Tarif ausreichend für die meisten Projekte"
     },
     "setup": "Einrichten",
+    "tipLabel": "💡 Tipp:",
     "tip": "Der kostenlose Tarif von DeepL bietet 500.000 Zeichen pro Monat, was für etwa 50 Seiten Inhalt ausreicht. Perfekt für Start-ups und persönliche Projekte.",
     "getKey": "Holen Sie sich Ihren kostenlosen Schlüssel unter:"
   },

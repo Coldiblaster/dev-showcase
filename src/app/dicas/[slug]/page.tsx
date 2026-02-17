@@ -5,7 +5,7 @@ import {
   generateMetadataForSlug,
   generateStaticParamsForCategory,
   renderDynamicContent,
-} from "@/data/dynamic-page-helper";
+} from "@/lib/dynamic-page-helper";
 
 /**
  * Página dinâmica para exibir dicas e guias.

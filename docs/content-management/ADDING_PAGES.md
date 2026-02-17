@@ -1,12 +1,12 @@
-# 📄 Como Adicionar Novas Páginas
+# Como Adicionar Novas Paginas
 
-Guia prático para adicionar páginas de **Dicas** ou **Implementações** no projeto.
+Guia pratico para adicionar paginas de **Dicas** ou **Implementacoes** no projeto.
 
 ---
 
-## 🎯 O que você vai fazer
+## O que voce vai fazer
 
-Criar uma nova página acessível via URL, tipo:
+Criar uma nova pagina acessivel via URL, tipo:
 - `/dicas/sua-nova-pagina`
 - `/implementacoes/sua-implementacao`
 
@@ -14,224 +14,265 @@ Criar uma nova página acessível via URL, tipo:
 
 ---
 
-## 📋 Passo a Passo
+## Passo a Passo
 
-### **1️⃣ Adicionar no arquivo de conteúdo**
+### 1. Registrar no arquivo de conteudo
 
 **Arquivo:** `src/data/content.ts`
 
-**O que fazer:** Adicione um novo objeto no array `CONTENT_ITEMS`
+Adicione um novo objeto no array `CONTENT_ITEMS`:
 
-```ts
+```typescript
 {
-  slug: "react-query-tips",              // ← URL: /dicas/react-query-tips
-  title: "React Query Essencial",        // ← Título da página (SEO)
-  description: "Cache, mutations...",    // ← Descrição (SEO)
-  component: "ReactQueryPage",           // ← Nome do componente React
-  category: "guide",                     // ← "guide" ou "implementation"
+  slug: "react-patterns",                // URL: /dicas/react-patterns
+  title: "React Patterns Essenciais",    // Titulo da pagina (SEO)
+  description: "Composicao, hooks...",   // Descricao (SEO)
+  component: "ReactPatternsPage",        // Nome do componente React
+  category: "guide",                     // "guide" ou "implementation"
 }
 ```
 
-**Por quê?** Este arquivo é o "índice" de todas as páginas. O sistema lê daqui para saber quais páginas existem.
+**Por que?** Este arquivo e o indice de todas as paginas. O sistema le daqui para saber quais paginas existem, gerar o sitemap e listar no menu.
 
 ---
 
-### **2️⃣ Criar o componente da página**
+### 2. Criar a feature
 
-**Arquivo:** `src/components/react-query-page.tsx` (use o nome que quiser)
+**Pasta:** `src/features/guides/react-patterns/` (ou `implementations/` se for implementacao)
 
-**O que fazer:** Crie um componente React com o conteúdo da página
+Crie a pasta com a estrutura recomendada:
+
+```
+src/features/guides/react-patterns/
+├── index.tsx              # Componente principal (composicao)
+├── constants.ts           # Constantes e dados (opcional)
+├── types.ts               # Tipos (opcional)
+├── hero-section.tsx       # Sub-componentes por secao
+├── examples-section.tsx
+└── checklist-section.tsx
+```
+
+**Componente principal (`index.tsx`):**
 
 ```tsx
 "use client";
 
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-export function ReactQueryPage() {
+import { HeroSection } from "@/components/hero-section";
+import { SectionDivider } from "@/components/section-divider";
+import { SectionWrapper } from "@/components/section-wrapper";
+
+/** Pagina de React Patterns com exemplos praticos. */
+export function ReactPatternsPage() {
+  const t = useTranslations("reactPatternsPage");
+
   return (
-    <div className="min-h-screen pt-20 px-6">
-      {/* Botão voltar */}
-      <Link href="/" className="inline-flex items-center gap-2 mb-8">
-        <ArrowLeft className="h-4 w-4" />
-        Voltar
-      </Link>
-
-      {/* Seu conteúdo aqui */}
-      <h1 className="text-4xl font-bold mb-4">
-        React Query Essencial
-      </h1>
-      <p className="text-muted-foreground">
-        Seu conteúdo vai aqui...
-      </p>
+    <div className="min-h-screen">
+      <HeroSection
+        badge={t("hero.badge")}
+        title={t("hero.title")}
+        description={t("hero.description")}
+      />
+      <SectionDivider />
+      <SectionWrapper>
+        {/* Suas secoes aqui */}
+      </SectionWrapper>
     </div>
   );
 }
 ```
 
-**Por quê?** Este é o conteúdo real que o usuário vai ver. Você pode copiar a estrutura de páginas existentes (ai-tips-page.tsx, tailwind-tips-page.tsx) como base.
-
-**Dica:** Use componentes do shadcn/ui que já estão instalados: `Card`, `Badge`, `Button`, etc.
+**Dica:** Use os componentes reutilizaveis existentes. Veja o [catalogo completo](../architecture/COMPONENTS.md).
 
 ---
 
-### **3️⃣ Registrar no helper**
+### 3. Registrar no helper de paginas
 
-**Arquivo:** `src/lib/dynamic-page-helper.tsx`
+**Arquivo:** `src/data/dynamic-page-helper.tsx`
 
-**O que fazer:** Importe e adicione seu componente no `COMPONENT_MAP`
+Importe e adicione seu componente no `COMPONENT_MAP`:
 
 ```tsx
-// No topo do arquivo
-import { ReactQueryPage } from "@/components/react-query-page";
+import { ReactPatternsPage } from "@/features/guides/react-patterns";
 
-// Dentro do COMPONENT_MAP
-const COMPONENT_MAP: Record<string, React.ComponentType<any>> = {
-  I18nShowcase,
-  AITipsPage,
-  TailwindTipsPage,
-  ReactQueryPage,  // ← Adicione aqui
+const COMPONENT_MAP: Record<string, React.ComponentType> = {
+  // ... existentes
+  ReactPatternsPage,  // Adicione aqui
 };
 ```
 
-**Por quê?** O helper precisa saber qual componente renderizar quando o usuário acessar a URL. É como um "mapa" que conecta o slug (URL) ao componente React.
+**Por que?** O helper conecta o slug (URL) ao componente React. Sem isso, acessar a URL resulta em 404.
 
 ---
 
-### **4️⃣ Adicionar no menu (opcional)**
+### 4. Criar traducoes
 
-**Arquivo:** `messages/pt-BR/nav.json`
-
-**O que fazer:** Adicione as traduções do menu
+**Arquivo:** `messages/pt-BR/reactPatternsPage.json`
 
 ```json
 {
-  "reactQueryTips": "React Query",
-  "reactQueryTipsDesc": "Cache, mutations e otimização"
+  "hero": {
+    "badge": "Guia",
+    "title": "React Patterns Essenciais",
+    "description": "Padroes de composicao, hooks customizados e mais"
+  },
+  "sections": {
+    "composition": {
+      "title": "Composicao",
+      "description": "..."
+    }
+  }
 }
 ```
-## Como adicionar uma nova página (feature)
 
-1. Crie uma pasta em `src/features/<nome-da-feature>`
-2. Separe os componentes, dados e testes:
-  - `dev-resources-page.tsx` (container)
-  - `live-components-section.tsx`, `code-snippets-section.tsx`, etc.
-  - `data/` (dados mocks ou reais)
-  - `__tests__/` (testes unitários)
-3. Crie a rota em `src/app/<nome-da-feature>/page.tsx` importando o container
-4. Prepare textos para i18n em `messages/`
-5. Documente e teste
+**Registrar o namespace:**
 
-Exemplo:
-- `src/app/dev-resources/page.tsx`
-- `src/features/dev-resources/`
-- `src/features/dev-resources/data/`
-- `src/features/dev-resources/__tests__/`
+1. Adicione em `messages/pt-BR/index.ts`:
 
-**Arquivo:** `src/components/navbar.tsx`
+```typescript
+import reactPatternsPage from "./reactPatternsPage.json";
 
-**O que fazer:** Adicione o item no submenu
-
-```tsx
-// Importe o ícone
-import { Database } from "lucide-react";
-
-// Adicione no submenu "Tips & Guides"
-<SubmenuItem
-  icon={Database}
-  label={t("reactQueryTips")}
-  sublabel={t("reactQueryTipsDesc")}
-  href="/dicas/react-query-tips"
-  isActive={pathname === "/dicas/react-query-tips"}
-/>
+export default {
+  // ... existentes
+  reactPatternsPage,
+};
 ```
 
-**Por quê?** Para o usuário conseguir acessar sua página pelo menu de navegação.
+2. Adicione em `src/lib/i18n/types.d.ts`:
 
----
+```typescript
+import type reactPatternsPage from "../../messages/pt-BR/reactPatternsPage.json";
 
-## ✅ Pronto! Teste sua página
-
-1. Rode o projeto: `pnpm dev`
-2. Acesse: `http://localhost:3000/dicas/react-query-tips`
-3. Ou clique no menu: **Dicas & Guias** → **React Query**
-
----
-
-## 🎨 Dicas de Estilo
-
-### Use os componentes existentes:
-
-```tsx
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+type Messages = {
+  // ... existentes
+  reactPatternsPage: typeof reactPatternsPage;
+};
 ```
 
-### Copie estruturas prontas:
+3. Gere traducoes para outros idiomas:
 
-- **Hero section:** Veja `ai-tips-page.tsx` linha 90-150
-- **Cards com animação:** Veja `tailwind-tips-page.tsx` linha 200-250
-- **Code blocks:** Veja qualquer página de dicas
-
----
-
-## 🐛 Problemas Comuns
-
-### ❌ Erro: "Component not found"
-**Solução:** Verifique se o nome do componente em `content.ts` é EXATAMENTE igual ao nome no `COMPONENT_MAP`
-
-### ❌ Página não aparece no menu
-**Solução:** Você esqueceu o passo 4. Adicione as traduções e o item no navbar.
-
-### ❌ Erro 404
-**Solução:** Verifique se o `slug` em `content.ts` está correto e se a `category` é "guide" ou "implementation"
+```bash
+pnpm translate
+pnpm validate:i18n
+```
 
 ---
 
-## 📚 Estrutura de Arquivos
+### 5. Adicionar ao menu
+
+**Arquivo:** `src/components/navbar/nav-data.ts`
+
+Adicione o item no submenu correspondente (guias ou implementacoes):
+
+```typescript
+{
+  icon: Layers,
+  label: t("reactPatterns"),
+  sublabel: t("reactPatternsDesc"),
+  href: "/dicas/react-patterns",
+}
+```
+
+**Traducoes do menu:** Adicione em `messages/pt-BR/nav.json`:
+
+```json
+{
+  "reactPatterns": "React Patterns",
+  "reactPatternsDesc": "Composicao, hooks e boas praticas"
+}
+```
+
+---
+
+### 6. Testar
+
+```bash
+# 1. Dev server
+pnpm dev
+
+# 2. Acesse
+http://localhost:3000/dicas/react-patterns
+
+# 3. Valide build
+pnpm build
+```
+
+---
+
+## Estrutura de arquivos (resumo)
 
 ```
 src/
 ├── data/
-│   └── content.ts              ← 1. Adicione aqui
-├── components/
-│   └── sua-pagina.tsx          ← 2. Crie aqui
-├── lib/
-│   └── dynamic-page-helper.tsx ← 3. Registre aqui
-└── app/
-    ├── dicas/
-    │   ├── page.tsx            ← Lista (não mexe)
-    │   └── [slug]/
-    │       └── page.tsx        ← Rota dinâmica (não mexe)
-    └── implementacoes/
-        ├── page.tsx            ← Lista (não mexe)
-        └── [slug]/
-            └── page.tsx        ← Rota dinâmica (não mexe)
+│   ├── content.ts               # 1. Registre aqui
+│   └── dynamic-page-helper.tsx  # 3. Mapeie aqui
+├── features/
+│   └── guides/
+│       └── react-patterns/      # 2. Crie aqui
+│           ├── index.tsx
+│           └── ...
+└── components/
+    └── navbar/nav-data.ts       # 5. Menu aqui
+
+messages/
+└── pt-BR/
+    ├── reactPatternsPage.json   # 4. Traducoes
+    ├── nav.json                 # 5. Menu traducoes
+    └── index.ts                 # 4. Barrel export
 ```
 
-**Você só mexe nos arquivos marcados com números!**
+**Voce mexe nos arquivos marcados com numeros!**
 
 ---
 
-## 🚀 Próximos Passos
+## Componentes disponiveis
 
-- Adicione traduções para outros idiomas (en, es, de)
-- Rode `pnpm run translate` para gerar traduções automáticas
-- Adicione mais conteúdo e seções na sua página
-- Use animações com `framer-motion` (veja exemplos nas outras páginas)
+Antes de criar componentes do zero, veja o que ja existe:
+
+| Componente | Uso |
+|------------|-----|
+| `HeroSection` | Cabecalho com badge, titulo e descricao |
+| `SectionWrapper` | Wrapper com padding e max-width |
+| `SectionHeader` | Titulo + subtitulo de secao |
+| `SectionDivider` | Separador visual |
+| `StepCard` | Card de etapa com icone e numeracao |
+| `CodeBlock` | Bloco de codigo com syntax highlight |
+| `ViewSource` | Toggle conteudo/codigo |
+| `FeatureCard` | Card de feature |
+| `CtaSection` | Call-to-action final |
+
+> Catalogo completo: [Componentes Reutilizaveis](../architecture/COMPONENTS.md)
 
 ---
 
-## 💡 Exemplo Completo
+## Problemas comuns
 
-Veja a página de React Query como referência:
-- `src/data/content.ts` (linha 24-29)
-- `src/components/react-query-page.tsx`
-- `src/lib/dynamic-page-helper.tsx` (linha 18)
-- `src/components/navbar.tsx` (linha 270-276)
+### Erro: "Component not found"
+**Causa:** O nome do componente em `content.ts` nao bate com o `COMPONENT_MAP`.
+**Solucao:** Verifique se o valor de `component` e EXATAMENTE igual a chave no map.
+
+### Pagina 404
+**Causa:** `slug` errado em `content.ts` ou `category` invalida.
+**Solucao:** Confira que `slug` corresponde a URL e `category` e `"guide"` ou `"implementation"`.
+
+### Traducoes nao aparecem
+**Causa:** Namespace nao registrado no barrel ou types.
+**Solucao:** Verifique `messages/pt-BR/index.ts` e `src/lib/i18n/types.d.ts`. Reinicie o TS Server (`Ctrl+Shift+P` > "TypeScript: Restart TS Server").
+
+### Autocomplete de traducoes nao funciona
+**Causa:** TypeScript cache desatualizado.
+**Solucao:** Reinicie o TS Server ou recarregue o VS Code.
 
 ---
 
-**Dúvidas?** Consulte as páginas existentes ou pergunte no time! 🤝
+## Exemplo de referencia
+
+Veja features existentes como base:
+
+| Feature | Path | Complexidade |
+|---------|------|-------------|
+| AI Tips | `src/features/guides/ai-tips/` | Composto (subdiretório) |
+| Security Tips | `src/features/guides/security-tips/` | Media (subpasta) |
+| Code Review | `src/features/implementations/code-review/` | Complexa (hook, tipos, sub-componentes) |
+| SEO Showcase | `src/features/implementations/seo-showcase/` | Complexa (muitas secoes) |

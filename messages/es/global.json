@@ -12,5 +12,14 @@
   "pageHero": {
     "back": "Cartera"
   },
-  "copied": "¡Copiado!"
+  "copied": "¡Copiado!",
+  "codeCopied": "Código copiado",
+  "copyCode": "Copiar código",
+  "scrollToTop": "Volver al inicio",
+  "changeLanguage": "Cambiar idioma",
+  "goHome": "Ir a la página de inicio",
+  "mainMenu": "Menú principal",
+  "terminalPress": "Pulse",
+  "terminalFor": "para terminal",
+  "tip": "Consejo:"
 }

@@ -22,5 +22,10 @@
   "whatsappHint": "Schnelle Antwort",
   "directEmail": "Direkte E-Mail",
   "directEmailHint": "Ich antworte innerhalb von 24 Stunden.",
-  "social": "Soziale Netzwerke"
+  "social": "Soziale Netzwerke",
+  "recaptchaNotice": "Geschützt durch reCAPTCHA.",
+  "recaptchaPrivacy": "Datenschutz",
+  "recaptchaAnd": " und ",
+  "recaptchaTerms": "Nutzungsbedingungen",
+  "recaptchaGoogle": " von Google."
 }

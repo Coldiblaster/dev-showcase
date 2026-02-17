@@ -1,8 +1,15 @@
 import type { LucideIcon } from "lucide-react";
-import { ArrowRight, BookOpen, Palette, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  Database,
+  Palette,
+  Shield,
+  Sparkles,
+} from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,6 +19,8 @@ import { buildPageMetadata } from "@/lib/seo";
 const iconMap: Record<string, LucideIcon> = {
   "ai-tips": Sparkles,
   "tailwind-tips": Palette,
+  "react-query-tips": Database,
+  "security-tips": Shield,
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -25,13 +34,23 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function DicasPage() {
   const t = await getTranslations("nav");
+  const messages = await getMessages();
+  const searchItems = (
+    messages.search as {
+      items: Record<string, { title: string; description: string }>;
+    }
+  ).items;
   const items = getContentByCategory("guide");
 
   return (
     <div className="container mx-auto px-6 py-12 pt-24 md:py-24 md:pt-32">
       <div className="mb-8 md:mb-12">
-        <h1 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">{t("tips")}</h1>
-        <p className="text-base text-muted-foreground md:text-lg">{t("tipsDesc")}</p>
+        <h1 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
+          {t("tips")}
+        </h1>
+        <p className="text-base text-muted-foreground md:text-lg">
+          {t("tipsDesc")}
+        </p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -45,16 +64,16 @@ export default async function DicasPage() {
                     <Icon className="h-6 w-6 text-primary" />
                   </div>
                   <CardTitle className="flex items-center justify-between">
-                    {item.title}
+                    {searchItems[item.slug]?.title ?? item.title}
                     <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1" />
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground">
-                    {item.description}
+                    {searchItems[item.slug]?.description ?? item.description}
                   </p>
                   <Badge variant="outline" className="mt-4">
-                    Guia
+                    {t("sectionTips")}
                   </Badge>
                 </CardContent>
               </Card>

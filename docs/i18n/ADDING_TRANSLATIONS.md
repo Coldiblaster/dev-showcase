@@ -1,590 +1,284 @@
-# ➕ Adicionar Traduções - Guia Completo
+# Adicionar Traducoes — Guia Completo
 
-Este guia explica **passo a passo** como adicionar novas traduções, incluindo quando e como atualizar a tipagem TypeScript.
-
----
-
-## 📋 Índice de Cenários
-
-1. [Adicionar chaves em arquivo existente](#-cenário-1-adicionar-chaves-em-arquivo-existente) (SEM tipagem)
-2. [Criar novo arquivo global](#-cenário-2-criar-novo-arquivo-global) (COM tipagem)
-3. [Criar novo módulo completo](#-cenário-3-criar-novo-módulo-completo) (COM tipagem)
-4. [Adicionar novo idioma](#-cenário-4-adicionar-novo-idioma)
+Passo a passo para adicionar novas traducoes, incluindo quando e como atualizar a tipagem TypeScript.
 
 ---
 
-## 🎯 Cenário 1: Adicionar Chaves em Arquivo Existente
+## Indice de Cenarios
 
-**Quando:** Você quer adicionar novas chaves em um arquivo JSON que já existe (ex: adicionar `"newAction": "Nova ação"` em `global.json`)
+1. [Adicionar chaves em arquivo existente](#cenario-1-adicionar-chaves-em-arquivo-existente) (SEM tipagem)
+2. [Criar novo namespace](#cenario-2-criar-novo-namespace) (COM tipagem)
+3. [Adicionar novo idioma](#cenario-3-adicionar-novo-idioma)
 
-**Precisa mexer em tipagem?** ❌ **NÃO!** TypeScript detecta automaticamente.
+---
+
+## Cenario 1: Adicionar Chaves em Arquivo Existente
+
+**Quando:** Voce quer adicionar novas chaves em um JSON que ja existe (ex: novo campo em `contact.json`).
+
+**Precisa mexer em tipagem?** NAO — TypeScript detecta automaticamente.
 
 ### Passo a Passo
 
 #### 1. Edite o arquivo pt-BR
 
-```bash
-# Abra o arquivo existente
-# Exemplo: messages/pt-BR/global.json
-```
-
 ```json
+// messages/pt-BR/contact.json
 {
-  "actions": {
-    "save": "Salvar",
-    "cancel": "Cancelar",
-    "export": "Exportar" // ← NOVA CHAVE ADICIONADA
+  "form": {
+    "name": "Nome",
+    "email": "E-mail",
+    "message": "Mensagem",
+    "phone": "Telefone"    // ← NOVA CHAVE
   }
 }
 ```
 
-#### 2. Execute o script de tradução
+#### 2. Execute o script de traducao
 
 ```bash
-pnpm run translate
+pnpm translate
 ```
 
-**O que acontece:**
+O script detecta a nova chave `phone` e traduz para en, es e de.
 
-- Script detecta a nova chave `export`
-- Traduz para EN: `"export": "Export"`
-- Traduz para ES: `"export": "Exportar"`
-
-#### 3. Use no código
+#### 3. Use no codigo
 
 ```tsx
 import { useTranslations } from "next-intl";
 
-export function MyComponent() {
-  const t = useTranslations("global");
+export function ContactForm() {
+  const t = useTranslations("contact");
 
-  return <button>{t("actions.export")}</button>;
-  // TypeScript autocompleta "actions.export" automaticamente! ✅
+  return <input placeholder={t("form.phone")} />;
+  // TypeScript autocompleta "form.phone" automaticamente!
 }
 ```
 
 #### 4. Valide
 
 ```bash
-pnpm run validate:i18n  # Verifica sincronização
-pnpm run check:pt-leaks # Verifica qualidade das traduções
+pnpm validate:i18n
+pnpm check:pt-leaks
 ```
 
-**Pronto!** ✅ Nenhuma configuração de tipo necessária.
+Pronto! Nenhuma configuracao de tipo necessaria.
 
 ---
 
-## 🗂️ Cenário 2: Criar Novo Arquivo Global
+## Cenario 2: Criar Novo Namespace
 
-**Quando:** Você quer criar um novo arquivo JSON na raiz (ex: `notifications.json` para notificações do sistema)
+**Quando:** Voce quer criar um novo JSON (ex: `faqPage.json` para uma nova pagina).
 
-**Precisa mexer em tipagem?** ✅ **SIM!** (3 arquivos)
+**Precisa mexer em tipagem?** SIM — 3 arquivos precisam ser atualizados.
 
 ### Passo a Passo
 
 #### 1. Crie o arquivo pt-BR
 
-```bash
-# Crie o novo arquivo
-touch messages/pt-BR/notifications.json
-```
-
 ```json
+// messages/pt-BR/faqPage.json
 {
-  "title": "Notificações",
-  "markAllAsRead": "Marcar todas como lidas",
-  "empty": "Nenhuma notificação",
-  "types": {
-    "info": "Informação",
-    "warning": "Aviso",
-    "error": "Erro"
-  }
-}
-```
-
-#### 2. Atualize o barrel export (index.ts)
-
-```bash
-# Abra messages/pt-BR/index.ts
-```
-
-```typescript
-// Arquivos globais
-import auth from "./auth.json";
-import components from "./components.json";
-import errors from "./errors.json";
-import global from "./global.json";
-import welcome from "./welcome.json";
-import notifications from "./notifications.json"; // ← ADICIONAR
-
-// Módulos
-import admin from "./admin";
-import cockpit from "./cockpit";
-import consultor from "./consultor";
-
-export default {
-  // Arquivos globais
-  auth,
-  components,
-  errors,
-  global,
-  welcome,
-  notifications, // ← ADICIONAR
-  // Módulos
-  admin,
-  cockpit,
-  consultor,
-};
-```
-
-#### 3. Atualize os tipos TypeScript
-
-```bash
-# Abra src/i18n/types.d.ts
-```
-
-```typescript
-// Importar os tipos dos arquivos JSON (pt-BR como referência)
-import type admin from "../../messages/pt-BR/admin";
-import type auth from "../../messages/pt-BR/auth.json";
-import type cockpit from "../../messages/pt-BR/cockpit";
-import type components from "../../messages/pt-BR/components.json";
-import type consultor from "../../messages/pt-BR/consultor";
-import type errors from "../../messages/pt-BR/errors.json";
-import type global from "../../messages/pt-BR/global.json";
-import type welcome from "../../messages/pt-BR/welcome.json";
-import type notifications from "../../messages/pt-BR/notifications.json"; // ← ADICIONAR
-
-// Estrutura completa das mensagens
-type Messages = {
-  auth: typeof auth;
-  global: typeof global;
-  components: typeof components;
-  errors: typeof errors;
-  welcome: typeof welcome;
-  notifications: typeof notifications; // ← ADICIONAR
-  // Módulos
-  admin: typeof admin;
-  consultor: typeof consultor;
-  cockpit: typeof cockpit;
-};
-
-// ... resto do arquivo
-```
-
-#### 4. Atualize o array de namespaces
-
-```bash
-# Abra src/i18n/load-messages.ts
-```
-
-```typescript
-const NAMESPACES = [
-  "auth",
-  "global",
-  "components",
-  "errors",
-  "welcome",
-  "notifications", // ← ADICIONAR
-  "admin",
-  "consultor",
-  "cockpit",
-] as const;
-```
-
-#### 5. Execute o script de tradução
-
-```bash
-pnpm run translate
-```
-
-**O que acontece:**
-
-- Cria `messages/en/notifications.json` com traduções em inglês
-- Cria `messages/es/notifications.json` com traduções em espanhol
-
-#### 6. Reinicie o TypeScript Server
-
-```
-Ctrl+Shift+P → "TypeScript: Restart TS Server"
-```
-
-**Nota:** Se o autocomplete ainda não funcionar, recarregue o VS Code (`Ctrl+Shift+P` → "Developer: Reload Window").
-
-#### 7. Use no código
-
-```tsx
-import { useTranslations } from "next-intl";
-
-export function NotificationCenter() {
-  const t = useTranslations("notifications");
-
-  return (
-    <div>
-      <h2>{t("title")}</h2>
-      <button>{t("markAllAsRead")}</button>
-      <p>{t("empty")}</p>
-    </div>
-  );
-}
-```
-
-#### 8. Valide
-
-```bash
-pnpm run validate:i18n
-pnpm run check:pt-leaks
-```
-
-**Pronto!** ✅ Novo arquivo global criado com autocomplete completo.
-
----
-
-## 📦 Cenário 3: Criar Novo Módulo Completo
-
-**Quando:** Você quer criar uma nova pasta de módulo (ex: `auditor/` para funcionalidades de auditoria)
-
-**Precisa mexer em tipagem?** ✅ **SIM!** (3 arquivos)
-
-### Passo a Passo
-
-#### 1. Crie a estrutura de pastas
-
-```bash
-mkdir -p messages/pt-BR/auditor
-```
-
-#### 2. Crie os arquivos JSON do módulo
-
-```bash
-# Exemplo: módulo auditor com relatórios e logs
-touch messages/pt-BR/auditor/reports.json
-touch messages/pt-BR/auditor/logs.json
-```
-
-```json
-// messages/pt-BR/auditor/reports.json
-{
-  "title": "Relatórios de Auditoria",
-  "list": {
-    "empty": "Nenhum relatório encontrado",
-    "total": "Total de {count} relatórios"
+  "hero": {
+    "title": "Perguntas Frequentes",
+    "description": "Respostas para as duvidas mais comuns."
   },
-  "actions": {
-    "generate": "Gerar relatório",
-    "download": "Baixar PDF"
-  }
+  "items": [
+    {
+      "question": "Como funciona o i18n?",
+      "answer": "Usamos next-intl com traducao automatica."
+    }
+  ]
 }
 ```
 
-```json
-// messages/pt-BR/auditor/logs.json
-{
-  "title": "Logs de Auditoria",
-  "filters": {
-    "user": "Filtrar por usuário",
-    "date": "Filtrar por data"
-  }
-}
-```
-
-#### 3. Crie o index.ts do módulo
-
-```bash
-touch messages/pt-BR/auditor/index.ts
-```
+#### 2. Registre no barrel export (index.ts)
 
 ```typescript
-// messages/pt-BR/auditor/index.ts
-import reports from "./reports.json";
-import logs from "./logs.json";
+// messages/pt-BR/index.ts
+import faqPage from "./faqPage.json"; // ← ADICIONAR
 
 export default {
-  reports,
-  logs,
+  // ... outros namespaces existentes
+  faqPage, // ← ADICIONAR
 };
 ```
 
-#### 4. Atualize o barrel export principal
+Repita esse passo em `messages/en/index.ts`, `messages/es/index.ts` e `messages/de/index.ts`.
 
-```bash
-# Abra messages/pt-BR/index.ts
-```
+#### 3. Registre nos tipos TypeScript
 
 ```typescript
-// Arquivos globais
-import auth from "./auth.json";
-import global from "./global.json";
-// ... outros
+// src/lib/i18n/types.d.ts
+import type faqPage from "../../../messages/pt-BR/faqPage.json"; // ← ADICIONAR
 
-// Módulos
-import admin from "./admin";
-import auditor from "./auditor"; // ← ADICIONAR
-import cockpit from "./cockpit";
-import consultor from "./consultor";
-
-export default {
-  // Arquivos globais
-  auth,
-  global,
-  // ...
-  // Módulos
-  admin,
-  auditor, // ← ADICIONAR
-  cockpit,
-  consultor,
+export type Messages = {
+  // ... outros tipos existentes
+  faqPage: typeof faqPage; // ← ADICIONAR
 };
 ```
 
-#### 5. Atualize os tipos TypeScript
+#### 4. Execute o script de traducao
 
 ```bash
-# Abra src/i18n/types.d.ts
+pnpm translate
 ```
 
-```typescript
-// Importar módulos
-import type admin from "../../messages/pt-BR/admin";
-import type auditor from "../../messages/pt-BR/auditor"; // ← ADICIONAR
-import type cockpit from "../../messages/pt-BR/cockpit";
-import type consultor from "../../messages/pt-BR/consultor";
-// ... imports de arquivos globais
+Isso cria `messages/en/faqPage.json`, `messages/es/faqPage.json` e `messages/de/faqPage.json`.
 
-// Estrutura completa das mensagens
-type Messages = {
-  // Arquivos globais
-  auth: typeof auth;
-  global: typeof global;
-  // ...
-  // Módulos
-  admin: typeof admin;
-  auditor: typeof auditor; // ← ADICIONAR
-  consultor: typeof consultor;
-  cockpit: typeof cockpit;
-};
-
-// ... resto do arquivo
-```
-
-#### 6. Atualize o array de namespaces
-
-```bash
-# Abra src/i18n/load-messages.ts
-```
-
-```typescript
-const NAMESPACES = [
-  "auth",
-  "global",
-  // ... outros
-  "admin",
-  "auditor", // ← ADICIONAR
-  "consultor",
-  "cockpit",
-] as const;
-```
-
-#### 7. Execute o script de tradução
-
-```bash
-pnpm run translate
-```
-
-**O que acontece:**
-
-- Cria `messages/en/auditor/` com `reports.json` e `logs.json` traduzidos
-- Cria `messages/es/auditor/` com traduções em espanhol
-- Copia `messages/pt-BR/auditor/index.ts` para en e es
-
-#### 8. Reinicie o TypeScript Server
+#### 5. Reinicie o TypeScript Server
 
 ```
 Ctrl+Shift+P → "TypeScript: Restart TS Server"
 ```
 
-#### 9. Use no código
+#### 6. Use no codigo
 
 ```tsx
 import { useTranslations } from "next-intl";
+import type faqPage from "@/../messages/pt-BR/faqPage.json";
 
-export function AuditorReportsPage() {
-  const t = useTranslations("auditor.reports");
-  const tGlobal = useTranslations("global");
+type FAQ = (typeof faqPage)["items"][number];
+
+export function FAQPage() {
+  const t = useTranslations("faqPage");
 
   return (
     <div>
-      <h1>{t("title")}</h1>
-      <p>{t("list.empty")}</p>
-      <button>{t("actions.generate")}</button>
-      <button>{tGlobal("actions.cancel")}</button>
+      <h1>{t("hero.title")}</h1>
+      <p>{t("hero.description")}</p>
+      {(t.raw("items") as FAQ[]).map((item) => (
+        <details key={item.question}>
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
     </div>
   );
 }
 ```
 
-#### 10. Valide
+#### 7. Valide
 
 ```bash
-pnpm run validate:i18n
-pnpm run check:pt-leaks
+pnpm validate:i18n
+pnpm check:pt-leaks
 ```
-
-**Pronto!** ✅ Novo módulo completo criado com autocomplete.
 
 ---
 
-## 🌍 Cenário 4: Adicionar Novo Idioma
+## Cenario 3: Adicionar Novo Idioma
 
-**Quando:** Você quer adicionar suporte a um novo idioma (ex: alemão, francês)
+**Quando:** Voce quer suporte a um novo idioma (ex: frances, italiano).
 
-### Opção A: Usando Script (Recomendado)
-
-#### 1. Execute o script add-locale
+### Opcao A: Usando Script (Recomendado)
 
 ```bash
-# Adicionar alemão
-pnpm run add-locale -- de
-
-# Adicionar francês
-pnpm run add-locale -- fr
+pnpm add-locale -- fr
 ```
 
-**O que o script faz:**
+O script cria `messages/fr/` com a estrutura copiada de pt-BR.
 
-- Cria pasta `messages/de/` (ou `fr/`)
-- Copia estrutura completa de pt-BR
-- Cria todos os `index.ts` necessários
-- Valores ficam vazios (serão preenchidos no próximo passo)
+### Passos apos o script
 
-#### 2. Atualize as configurações do sistema
-
-```bash
-# Abra src/i18n/config.ts
-```
+#### 1. Atualize a configuracao central
 
 ```typescript
-export const SUPPORTED_LOCALES = [
-  "pt-BR",
-  "en",
-  "es",
-  "de", // ← ADICIONAR
-] as const;
-```
-
-#### 3. Adicione no LanguageSwitcher
-
-```bash
-# Abra src/shared/components/language-switcher.tsx
-```
-
-```typescript
-const LOCALES_CONFIG = {
-  "pt-BR": { label: "Português (BR)", flag: "🇧🇷" },
-  en: { label: "English (US)", flag: "🇺🇸" },
-  es: { label: "Español (ES)", flag: "🇪🇸" },
-  de: { label: "Deutsch (DE)", flag: "🇩🇪" }, // ← ADICIONAR
+// src/lib/i18n/config.ts
+export const LOCALES_CONFIG = {
+  "pt-BR": { name: "Portugues (Brasil)", code: "br" },
+  en: { name: "English", code: "us" },
+  de: { name: "Deutsch", code: "de" },
+  es: { name: "Espanol", code: "es" },
+  fr: { name: "Francais", code: "fr" }, // ← ADICIONAR
 } as const;
 ```
 
-#### 4. Gere as traduções
+#### 2. Gere as traducoes
 
 ```bash
-pnpm run translate
+pnpm translate
 ```
 
-#### 5. Valide
+#### 3. Valide
 
 ```bash
-pnpm run validate:i18n
+pnpm validate:i18n
 ```
 
-### Opção B: Manual
+### Opcao B: Manual
 
-Se preferir fazer manualmente, siga os passos do [README.md - Adicionar Novo Idioma](./README.md#-adicionar-novo-idioma-passo-a-passo).
+```bash
+# Criar pasta e copiar arquivos
+mkdir messages/fr
+cp messages/pt-BR/*.json messages/fr/
+cp messages/pt-BR/index.ts messages/fr/
+
+# Atualizar config.ts (passo 1 acima)
+# Gerar traducoes
+pnpm translate
+```
 
 ---
 
-## 📊 Resumo: Quando Mexer em Tipagem?
+## Resumo: Quando Mexer em Tipagem?
 
-| Cenário                                  | Tipagem? | Arquivos Afetados                            |
-| ---------------------------------------- | -------- | -------------------------------------------- |
-| ➕ Adicionar chaves em arquivo existente | ❌ NÃO   | Nenhum                                       |
-| 📄 Criar novo arquivo global (raiz)      | ✅ SIM   | `index.ts`, `types.d.ts`, `load-messages.ts` |
-| 📦 Criar novo módulo (pasta)             | ✅ SIM   | `index.ts`, `types.d.ts`, `load-messages.ts` |
-| 🌍 Adicionar novo idioma                 | ✅ SIM   | `config.ts`, `language-switcher.tsx`         |
+| Cenario                              | Tipagem? | Arquivos Afetados                                |
+| ------------------------------------ | -------- | ------------------------------------------------ |
+| Adicionar chaves em arquivo existente | NAO      | Nenhum                                           |
+| Criar novo namespace (JSON)          | SIM      | `*/index.ts`, `src/lib/i18n/types.d.ts`         |
+| Adicionar novo idioma                | SIM      | `src/lib/i18n/config.ts`                         |
 
 ---
 
-## 🎯 Checklist Rápido
+## Checklist Rapido
 
 ### Para Arquivo Existente
 
 - [ ] Editei `messages/pt-BR/{arquivo}.json`
-- [ ] Rodei `pnpm run translate`
-- [ ] Rodei `pnpm run validate:i18n`
-- [ ] Testei no código
+- [ ] Rodei `pnpm translate`
+- [ ] Rodei `pnpm validate:i18n`
+- [ ] Testei no codigo
 
-### Para Novo Arquivo Global
+### Para Novo Namespace
 
-- [ ] Criei `messages/pt-BR/{novo-arquivo}.json`
-- [ ] Adicionei import em `messages/pt-BR/index.ts`
-- [ ] Adicionei export em `messages/pt-BR/index.ts`
-- [ ] Adicionei import em `src/i18n/types.d.ts`
-- [ ] Adicionei no type `Messages` em `src/i18n/types.d.ts`
-- [ ] Adicionei em `NAMESPACES` em `src/i18n/load-messages.ts`
-- [ ] Rodei `pnpm run translate`
+- [ ] Criei `messages/pt-BR/{novo}.json`
+- [ ] Adicionei import/export em `messages/pt-BR/index.ts`
+- [ ] Adicionei import/export em `messages/en/index.ts`
+- [ ] Adicionei import/export em `messages/es/index.ts`
+- [ ] Adicionei import/export em `messages/de/index.ts`
+- [ ] Adicionei import type em `src/lib/i18n/types.d.ts`
+- [ ] Adicionei no type `Messages` em `src/lib/i18n/types.d.ts`
+- [ ] Rodei `pnpm translate`
 - [ ] Reiniciei TypeScript Server
-- [ ] Rodei `pnpm run validate:i18n`
-- [ ] Testei autocomplete no código
-
-### Para Novo Módulo
-
-- [ ] Criei pasta `messages/pt-BR/{modulo}/`
-- [ ] Criei arquivos `.json` dentro do módulo
-- [ ] Criei `messages/pt-BR/{modulo}/index.ts`
-- [ ] Adicionei import em `messages/pt-BR/index.ts`
-- [ ] Adicionei export em `messages/pt-BR/index.ts`
-- [ ] Adicionei import em `src/i18n/types.d.ts`
-- [ ] Adicionei no type `Messages` em `src/i18n/types.d.ts`
-- [ ] Adicionei em `NAMESPACES` em `src/i18n/load-messages.ts`
-- [ ] Rodei `pnpm run translate`
-- [ ] Reiniciei TypeScript Server
-- [ ] Rodei `pnpm run validate:i18n`
-- [ ] Testei autocomplete no código
+- [ ] Rodei `pnpm validate:i18n`
+- [ ] Testei autocomplete no codigo
 
 ### Para Novo Idioma
 
-- [ ] Rodei `pnpm run add-locale -- {codigo}`
-- [ ] Adicionei em `SUPPORTED_LOCALES` no `config.ts`
-- [ ] Adicionei em `LOCALES_CONFIG` no `language-switcher.tsx`
-- [ ] Rodei `pnpm run translate`
-- [ ] Rodei `pnpm run validate:i18n`
+- [ ] Rodei `pnpm add-locale -- {codigo}` (ou criei manualmente)
+- [ ] Adicionei em `LOCALES_CONFIG` no `src/lib/i18n/config.ts`
+- [ ] Rodei `pnpm translate`
+- [ ] Rodei `pnpm validate:i18n`
 - [ ] Testei troca de idioma no sistema
 
 ---
 
-## ❓ Dúvidas Frequentes
+## Duvidas Frequentes
 
 **Q: Esqueci de atualizar algum arquivo de tipagem, o que acontece?**
-A: Autocomplete não funcionará e você verá erros TypeScript ao tentar usar as traduções.
+A: Autocomplete nao funcionara para o novo namespace. O codigo compila mas sem type safety.
 
-**Q: Posso adicionar vários arquivos/módulos de uma vez?**
-A: Sim! Faça todos os passos 1-4 de uma vez, depois rode `pnpm run translate` uma única vez.
+**Q: Posso adicionar varios namespaces de uma vez?**
+A: Sim! Faca todos os passos 1-3, depois rode `pnpm translate` uma unica vez.
 
 **Q: Preciso reiniciar o servidor Next.js?**
-A: Não para arquivos existentes. Sim para novos arquivos/módulos (ou reinicie TS Server).
-
-**Q: O script translate demora muito, é normal?**
-A: Sim, há delay de 120ms entre cada chamada para evitar rate limit da API. Use `translate:force` com cautela.
+A: Nao para arquivos existentes. Para novos namespaces, reinicie o TS Server.
 
 ---
 
-## 🔗 Próximos Passos
+## Proximos Passos
 
-- **Ver scripts disponíveis?** → [SCRIPTS.md](./SCRIPTS.md)
-- **Boas práticas?** → [BEST_PRACTICES.md](./BEST_PRACTICES.md)
-- **Voltar ao início?** → [INDEX.md](./INDEX.md)
-
----
-
-**Dica:** Salve esta página nos favoritos! Você vai consultar bastante. 😉
+- **Ver scripts disponiveis?** → [SCRIPTS.md](./SCRIPTS.md)
+- **Boas praticas?** → [BEST_PRACTICES.md](./BEST_PRACTICES.md)
+- **Voltar ao inicio?** → [INDEX.md](./INDEX.md)

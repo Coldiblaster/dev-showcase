@@ -24,9 +24,18 @@
   "content": "Conteúdo",
   "contentDesc": "Implementações técnicas e guias para devs",
   "sectionImplementations": "Implementações",
+  "sectionTools": "Ferramentas",
   "sectionTips": "Dicas & Guias",
+  "tools": "Ferramentas",
+  "toolsDesc": "Ferramentas interativas para desenvolvedores — análise de código com IA, revisão automatizada e mais.",
   "devResources": "Recursos Dev",
   "devResourcesDesc": "Dicas, snippets, patterns e refatoração por nível",
+  "securityTips": "Segurança Web",
+  "securityTipsDesc": "Rate Limiting, reCAPTCHA, Headers e Validação",
+  "codeReview": "AI Code Reviewer",
+  "codeReviewDesc": "Análise de código com IA — bugs e boas práticas",
+  "home": "Home",
+  "mainMenu": "Menu principal",
   "openMenu": "Abrir menu",
   "closeMenu": "Fechar menu"
 }

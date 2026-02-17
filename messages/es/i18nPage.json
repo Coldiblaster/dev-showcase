@@ -62,7 +62,7 @@
         "Documente los patrones y cree ejemplos de migración."
       ]
     },
-    "tipLabel": "Hasta:",
+    "tipLabel": "Consejo:",
     "tip": "Para la migración, crea una lista de verificación visual e involucra al equipo en revisiones de PR centradas en i18n."
   },
   "hero": {
@@ -86,7 +86,14 @@
     "dateLabel": "Fecha con formato",
     "numberLabel": "Número formateado",
     "pluralLabel": "Pluralización",
-    "items": "{count, plural, =0 {Ningún ítem} one {1 ítem} other {# ítems}}"
+    "items": "{count, plural, =0 {Ningún ítem} one {1 ítem} other {# ítems}}",
+    "nameLabel": "Nombre (vista previa)",
+    "nameAriaLabel": "Nombre para saludo",
+    "decrement": "Disminuir contador",
+    "increment": "Aumentar contador",
+    "copyLinkAriaLabel": "Copiar enlace de la demo",
+    "linkCopied": "Enlace copiado",
+    "copyLink": "Copiar enlace"
   },
   "architecture": {
     "title": "Arquitectura",
@@ -124,6 +131,7 @@
       "description": "Plan gratuito suficiente para la mayoría de los proyectos"
     },
     "setup": "Cómo configurar",
+    "tipLabel": "💡 Consejo:",
     "tip": "El plan gratuito de DeepL ofrece 500 000 caracteres al mes, suficientes para unas 50 páginas de contenido. Perfecto para startups y proyectos personales.",
     "getKey": "Obtenga su clave gratuita en:"
   },

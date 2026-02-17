@@ -20,5 +20,12 @@
       "description": "Ich weiß, wie man effiziente Eingabeaufforderungen strukturiert: klarer Kontext, Beispiele, Einschränkungen und Ausgabeformat. Dies gewährleistet konsistente Antworten und reduziert Iterationen."
     }
   ],
-  "tryChat": "Chatbot testen"
+  "tryChat": "Chatbot testen",
+  "example": {
+    "badge": "Reales Beispiel",
+    "title": "Wie ich Vercel AI SDK in Projekten verwende",
+    "description": "Chatbot mit Antwort-Streaming unter Verwendung von AI SDK + OpenAI",
+    "codeComment": "// Route Handler für Chat mit Streaming",
+    "codeSystemPrompt": "Sie sind ein Assistent, der Entwicklern hilft."
+  }
 }

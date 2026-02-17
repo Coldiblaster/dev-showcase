@@ -9,11 +9,13 @@ import tseslint from "typescript-eslint";
 
 export default defineConfig([
   {
+    ignores: [".next/**", "dist/**", "node_modules/**", "scripts/**"],
+  },
+  {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
     languageOptions: {
       globals: globals.browser,
     },
-    ignores: [".next/**/*", "dist/**", "node_modules/**"],
     plugins: {
       "simple-import-sort": simpleImportSort,
       react: pluginReact,

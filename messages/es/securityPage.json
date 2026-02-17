@@ -1,0 +1,133 @@
+{
+  "hero": {
+    "badge": "Seguridad Web",
+    "title": "Seguridad Frontend, Backend e IA",
+    "subtitle": "Rate Limiting, reCAPTCHA, Headers, Validación, Anti Prompt Injection y más",
+    "description": "Guía completa sobre cómo proteger tus aplicaciones web — incluyendo APIs con IA. Este portfolio implementa protecciones reales en producción: rate limiting, reCAPTCHA, honeypot, validación con Zod, headers de seguridad, anti prompt injection, validación de output de LLMs y sanitización anti-XSS.",
+    "warning": "Esta guía cubre protecciones esenciales para aplicaciones web modernas, incluyendo APIs con OpenAI. Para escenarios de alto tráfico, considera Redis para rate limiting y WAF para protección adicional."
+  },
+  "overview": {
+    "title": "Visión General",
+    "subtitle": "Conceptos fundamentales",
+    "description": "Conceptos fundamentales de seguridad web implementados en este portfolio y aplicaciones profesionales.",
+    "items": [
+      { "title": "Prevención XSS", "description": "Escape de salida, dangerouslySetInnerHTML evitado, sanitización de inputs. Next.js escapa por defecto." },
+      { "title": "Protección CSRF", "description": "APIs stateless, cookies SameSite, tokens en headers. Formularios protegidos con reCAPTCHA." },
+      { "title": "Rate Limiting", "description": "Límite de peticiones por IP para evitar abuso. Contact: 5/5min, Chat: 30/min, Code Review: 8/5min." },
+      { "title": "Validación de Input", "description": "Schemas Zod en todas las API routes. El backend nunca confía en datos del cliente." },
+      { "title": "Security Headers", "description": "HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy." },
+      { "title": "reCAPTCHA v3", "description": "Protección invisible contra bots en el formulario de contacto. Verificación basada en score." },
+      { "title": "Anti Prompt Injection", "description": "Sanitización de input antes de enviar a la IA. Filtra patrones como 'ignore instructions', 'act as', 'reveal prompt'." },
+      { "title": "Validación de Output IA", "description": "Schema Zod valida la respuesta de la IA antes de enviar al cliente. Sanitización recursiva anti-XSS en el output." }
+    ]
+  },
+  "frontend": {
+    "title": "Seguridad en Frontend",
+    "subtitle": "XSS, CSP, CORS, Honeypot, reCAPTCHA",
+    "description": "El honeypot detecta bots sin afectar usuarios reales. El reCAPTCHA Provider carga el script y expone executeRecaptcha para formularios.",
+    "tips": [
+      { "title": "Evita dangerouslySetInnerHTML", "description": "Solo usa con contenido sanitizado (ej: DOMPurify). Prefiere el escape por defecto de React." },
+      { "title": "CSP (Content Security Policy)", "description": "Configura en next.config o headers para restringir fuentes de script y estilo." },
+      { "title": "Sanitiza el input del usuario", "description": "Valida y sanitiza en el backend. En el frontend, escapa salidas y usa bibliotecas como DOMPurify si es necesario." }
+    ]
+  },
+  "backend": {
+    "title": "Seguridad en Backend",
+    "subtitle": "Rate Limit, Zod, verificación reCAPTCHA",
+    "description": "Rate limiting por IP, validación con Zod en todas las rutas, env vars nunca expuestas. reCAPTCHA verificado en el servidor antes de procesar."
+  },
+  "aiSecurity": {
+    "title": "Seguridad en APIs con IA",
+    "subtitle": "Prompt Injection, Output Validation, XSS Prevention",
+    "description": "Las APIs que integran LLMs (como OpenAI) introducen un nuevo vector de ataque: el usuario puede intentar manipular el modelo mediante <strong>prompt injection</strong>. La defensa requiere protección en capas — sanitizar input, blindar el system prompt, validar output y sanitizar contra XSS antes de entregar al cliente.",
+    "steps": [
+      { "title": "Sanitizar Input", "description": "Filtrar patrones de prompt injection antes de enviar a la IA" },
+      { "title": "Blindar System Prompt", "description": "Reglas estrictas en el prompt para mantener el modelo en contexto" },
+      { "title": "Validar Output", "description": "Schema Zod en la respuesta de la IA — nunca confíes en el output" },
+      { "title": "Sanitizar Output", "description": "Eliminar HTML, scripts y XSS antes de entregar al cliente" }
+    ],
+    "promptInjection": {
+      "title": "1. Anti Prompt Injection",
+      "tips": [
+        { "title": "Trata el input como dato, nunca como instrucción", "description": "Filtra patrones como \"ignore previous instructions\", \"act as\", \"reveal system prompt\" ANTES de enviar a la IA." },
+        { "title": "Regex defensivo por capas", "description": "Ninguna regex es perfecta. Combina sanitización + system prompt + validación de output para defensa en profundidad." }
+      ]
+    },
+    "systemPrompt": {
+      "title": "2. System Prompt Blindado",
+      "tips": [
+        { "title": "Define reglas estrictas de comportamiento", "description": "El system prompt debe prohibir explícitamente: seguir instrucciones del usuario, revelar el prompt, generar contenido fuera del alcance, ejecutar o simular código." },
+        { "title": "Temperatura baja para consistencia", "description": "Usa temperatura 0.1-0.3 para respuestas estructuradas (JSON, análisis). Temperatura alta (0.7+) solo para chat creativo." }
+      ]
+    },
+    "outputValidation": {
+      "title": "3. Validación de Output con Zod",
+      "tips": [
+        { "title": "Nunca confíes en la respuesta de la IA", "description": "El modelo puede retornar JSON malformado, campos extras, tipos incorrectos o contenido malicioso. Valida TODO con Zod." },
+        { "title": "Define límites estrictos", "description": "Usa .max() en strings y arrays para evitar respuestas gigantes. Limita score con .min(0).max(100)." }
+      ]
+    },
+    "outputSanitization": {
+      "title": "4. Sanitización de Output (Anti XSS)",
+      "tips": [
+        { "title": "Sanitiza antes de renderizar", "description": "Incluso con Zod validando la estructura, los strings pueden contener HTML, <script>, javascript: URIs o event handlers." },
+        { "title": "Streaming necesita sanitización por chunk", "description": "En respuestas streamed (chat), cada chunk debe ser sanitizado individualmente antes de enviarse al cliente." }
+      ]
+    },
+    "centralModule": {
+      "title": "5. Módulo Centralizado",
+      "tips": [
+        { "title": "Centraliza la seguridad en un módulo", "description": "Funciones compartidas garantizan que todas las rutas apliquen las mismas protecciones. Menos duplicación = menos brechas." }
+      ]
+    }
+  },
+  "headers": {
+    "title": "Security Headers",
+    "subtitle": "next.config.ts",
+    "description": "Configurados en next.config.ts y aplicados globalmente. HSTS fuerza HTTPS, X-Frame-Options previene clickjacking, X-Content-Type-Options evita MIME sniffing, Referrer-Policy controla fuga de datos, Permissions-Policy deshabilita APIs sensibles."
+  },
+  "envVars": {
+    "title": "Variables de Entorno",
+    "subtitle": "Patrón seguro",
+    "description": "Variables sensibles (RECAPTCHA_SECRET_KEY, RESEND_API_KEY) solo en el servidor. Nunca expongas secrets con NEXT_PUBLIC_. Usa NEXT_PUBLIC_ solo para claves públicas como el site key de reCAPTCHA."
+  },
+  "checklist": {
+    "title": "Checklist de Seguridad",
+    "subtitle": "Estado de este portfolio",
+    "description": "Estado de cada protección implementada en este portfolio.",
+    "items": [
+      { "label": "Rate limiting en API routes (contact, chat, code-review)", "done": true },
+      { "label": "reCAPTCHA v3 en formulario de contacto", "done": true },
+      { "label": "Honeypot en formulario (campo website oculto)", "done": true },
+      { "label": "Validación Zod en todas las APIs (input + output IA)", "done": true },
+      { "label": "Security headers (HSTS, X-Frame, X-Content-Type, etc.)", "done": true },
+      { "label": "Variables de entorno en servidor (nunca en client)", "done": true },
+      { "label": "Extracción de IP para rate limit (Vercel, Cloudflare)", "done": true },
+      { "label": "Verificación reCAPTCHA en backend", "done": true },
+      { "label": "Anti prompt injection (sanitización de input para IA)", "done": true },
+      { "label": "System prompt blindado con reglas anti-desviación", "done": true },
+      { "label": "Validación de la respuesta de la IA con schema Zod", "done": true },
+      { "label": "Sanitización anti-XSS en output de IA (JSON + streaming)", "done": true },
+      { "label": "Módulo de seguridad centralizado (lib/api-security.ts)", "done": true },
+      { "label": "Body size check antes del parse (413 Payload Too Large)", "done": true },
+      { "label": "Secure headers en todas las respuestas de API (nosniff, no-cache)", "done": true }
+    ]
+  },
+  "resources": {
+    "title": "Recursos",
+    "subtitle": "Documentación y referencias",
+    "links": [
+      { "title": "OWASP Top 10", "description": "Top 10 vulnerabilidades web más críticas" },
+      { "title": "OWASP Top 10 para LLMs", "description": "Top 10 riesgos de seguridad en aplicaciones con IA/LLM" },
+      { "title": "OpenAI Safety Best Practices", "description": "Guía oficial de OpenAI para uso seguro de modelos" },
+      { "title": "MDN Web Security", "description": "Guía de seguridad para desarrolladores web" },
+      { "title": "Next.js Security Headers", "description": "Configuración de headers en Next.js" },
+      { "title": "Zod — Schema Validation", "description": "Validación de schemas TypeScript-first usada en APIs" }
+    ]
+  },
+  "cta": {
+    "title": "¿Listo para proteger tu aplicación?",
+    "description": "Vuelve al portfolio y explora más contenido o ve el código en GitHub.",
+    "github": "Ver en GitHub"
+  }
+}

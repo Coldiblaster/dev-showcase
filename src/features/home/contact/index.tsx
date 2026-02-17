@@ -6,111 +6,33 @@ import {
   AtSign,
   CheckCircle2,
   FileText,
-  Github,
-  Linkedin,
   Loader2,
   Mail,
-  MessageCircle,
   Send,
   User,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useCallback, useRef, useState } from "react";
+import { useRef } from "react";
 
-import { useRecaptcha } from "@/components/recaptcha-provider";
 import { Button } from "@/components/ui/button";
 import { CardBlur } from "@/components/ui/card-blur";
 import { Input } from "@/components/ui/input";
-import { buildWhatsAppLink, PERSONAL } from "@/lib/constants";
 
-type FormStatus = "idle" | "sending" | "sent" | "error";
+import { ContactSidebar } from "./contact-sidebar";
+import { useContactForm } from "./use-contact-form";
 
-interface FormErrors {
-  name?: string;
-  email?: string;
-  message?: string;
-}
-
+/** Seção de contato com formulário e reCAPTCHA. */
 export function ContactSection() {
   const t = useTranslations("contact");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const { executeRecaptcha } = useRecaptcha();
-
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    message: "",
-    website: "",
-  });
-  const [status, setStatus] = useState<FormStatus>("idle");
-  const [errors, setErrors] = useState<FormErrors>({});
-
-  const validate = useCallback((): boolean => {
-    const newErrors: FormErrors = {};
-
-    if (formState.name.trim().length < 2) {
-      newErrors.name = t("validationName");
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formState.email)) {
-      newErrors.email = t("validationEmail");
-    }
-
-    if (formState.message.trim().length < 10) {
-      newErrors.message = t("validationMessage");
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  }, [formState, t]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!validate()) return;
-    if (formState.website) return;
-
-    setStatus("sending");
-    setErrors({});
-
-    try {
-      const recaptchaToken = await executeRecaptcha("contact");
-
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formState,
-          recaptchaToken,
-        }),
-      });
-
-      if (!res.ok) throw new Error("Failed to send");
-
-      setStatus("sent");
-      setFormState({ name: "", email: "", message: "", website: "" });
-      setTimeout(() => setStatus("idle"), 5000);
-    } catch {
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 5000);
-    }
-  };
-
-  const whatsappLink = buildWhatsAppLink();
-
-  const socials = [
-    { icon: Github, label: "GitHub", href: PERSONAL.github },
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      href: PERSONAL.linkedin,
-    },
-  ];
-
-  const isSending = status === "sending";
+  const { formState, status, errors, isSending, updateField, handleSubmit } =
+    useContactForm({
+      validationName: t("validationName"),
+      validationEmail: t("validationEmail"),
+      validationMessage: t("validationMessage"),
+    });
 
   return (
     <section id="contact" className="relative px-6 py-16 md:py-32" ref={ref}>
@@ -203,8 +125,11 @@ export function ContactSection() {
               )}
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                {/* Honeypot — hidden from humans, bots fill it */}
-                <div className="absolute -left-[9999px] opacity-0" aria-hidden="true">
+                {/* Honeypot */}
+                <div
+                  className="absolute -left-[9999px] opacity-0"
+                  aria-hidden="true"
+                >
                   <label htmlFor="website">Website</label>
                   <input
                     id="website"
@@ -213,9 +138,7 @@ export function ContactSection() {
                     tabIndex={-1}
                     autoComplete="off"
                     value={formState.website}
-                    onChange={(e) =>
-                      setFormState((s) => ({ ...s, website: e.target.value }))
-                    }
+                    onChange={(e) => updateField("website", e.target.value)}
                   />
                 </div>
 
@@ -233,9 +156,7 @@ export function ContactSection() {
                     required
                     disabled={isSending}
                     value={formState.name}
-                    onChange={(e) =>
-                      setFormState((s) => ({ ...s, name: e.target.value }))
-                    }
+                    onChange={(e) => updateField("name", e.target.value)}
                     placeholder={t("namePlaceholder")}
                     className={errors.name ? "border-destructive" : ""}
                   />
@@ -258,9 +179,7 @@ export function ContactSection() {
                     required
                     disabled={isSending}
                     value={formState.email}
-                    onChange={(e) =>
-                      setFormState((s) => ({ ...s, email: e.target.value }))
-                    }
+                    onChange={(e) => updateField("email", e.target.value)}
                     placeholder={t("emailPlaceholder")}
                     className={errors.email ? "border-destructive" : ""}
                   />
@@ -283,43 +202,37 @@ export function ContactSection() {
                     disabled={isSending}
                     rows={4}
                     value={formState.message}
-                    onChange={(e) =>
-                      setFormState((s) => ({ ...s, message: e.target.value }))
-                    }
+                    onChange={(e) => updateField("message", e.target.value)}
                     placeholder={t("messagePlaceholder")}
                     className={`resize-none rounded-xl border bg-secondary/50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-primary/50 focus:ring-1 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-50 ${
-                      errors.message
-                        ? "border-destructive"
-                        : "border-border"
+                      errors.message ? "border-destructive" : "border-border"
                     }`}
                   />
                   {errors.message && (
-                    <p className="text-xs text-destructive">
-                      {errors.message}
-                    </p>
+                    <p className="text-xs text-destructive">{errors.message}</p>
                   )}
                 </div>
 
                 <p className="text-[11px] leading-relaxed text-muted-foreground/60">
-                  Protegido por reCAPTCHA.{" "}
+                  {t("recaptchaNotice")}{" "}
                   <a
                     href="https://policies.google.com/privacy"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="underline hover:text-muted-foreground"
                   >
-                    Privacidade
+                    {t("recaptchaPrivacy")}
                   </a>
-                  {" e "}
+                  {t("recaptchaAnd")}
                   <a
                     href="https://policies.google.com/terms"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="underline hover:text-muted-foreground"
                   >
-                    Termos
+                    {t("recaptchaTerms")}
                   </a>
-                  {" do Google."}
+                  {t("recaptchaGoogle")}
                 </p>
 
                 <motion.div whileTap={isSending ? {} : { scale: 0.98 }}>
@@ -356,88 +269,8 @@ export function ContactSection() {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col gap-5 md:col-span-2"
           >
-            {/* WhatsApp CTA */}
-            <CardBlur>
-              <div className="mb-4 flex items-center gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#25D366]/10">
-                  <MessageCircle className="h-5 w-5 text-[#25D366]" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-foreground">
-                    WhatsApp
-                  </h3>
-                  <p className="text-xs text-muted-foreground">
-                    {t("whatsappHint")}
-                  </p>
-                </div>
-              </div>
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Button
-                  asChild
-                  className="w-full gap-2 bg-[#25D366] text-white hover:bg-[#20bd5a]"
-                >
-                  <a
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <MessageCircle className="h-4 w-4" />
-                    {t("whatsappButton")}
-                  </a>
-                </Button>
-              </motion.div>
-            </CardBlur>
-
-            {/* Email direto */}
-            <CardBlur>
-              <div className="mb-3 flex items-center gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                  <Mail className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-foreground">
-                    {t("directEmail")}
-                  </h3>
-                  <p className="text-xs text-muted-foreground">
-                    {t("directEmailHint")}
-                  </p>
-                </div>
-              </div>
-              <a
-                href={`mailto:${PERSONAL.email}`}
-                className="inline-block font-mono text-sm text-primary transition-colors hover:text-primary/80"
-              >
-                {PERSONAL.email}
-              </a>
-            </CardBlur>
-
-            {/* Social */}
-            <CardBlur>
-              <p className="mb-4 text-sm font-medium text-foreground">
-                {t("social")}
-              </p>
-              <div className="flex gap-3">
-                {socials.map(({ icon: Icon, label, href }) => (
-                  <motion.a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-11 w-11 items-center justify-center rounded-xl border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    aria-label={label}
-                  >
-                    <Icon className="h-5 w-5" />
-                  </motion.a>
-                ))}
-              </div>
-            </CardBlur>
+            <ContactSidebar />
           </motion.div>
         </div>
       </div>

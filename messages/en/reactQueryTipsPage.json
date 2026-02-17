@@ -1,0 +1,53 @@
+{
+  "hero": {
+    "badge": "Data Fetching",
+    "title": "React Query Essentials",
+    "subtitle": "TanStack Query (React Query)",
+    "description": "Master caching, mutations, optimization and best practices for managing asynchronous state like a pro.",
+    "warning": "This guide assumes basic knowledge of React and hooks. Focus on practical, real-world usage."
+  },
+  "setup": {
+    "title": "Initial Setup",
+    "subtitle": "Basic configuration",
+    "description": "Install React Query and configure the QueryClient at the root of your application."
+  },
+  "useQuery": {
+    "title": "useQuery — Fetching Data",
+    "subtitle": "GET requests",
+    "features": [
+      { "title": "Automatic Caching", "description": "Data is cached and reused automatically" },
+      { "title": "Smart Refetching", "description": "Updates data when needed (window focus)" },
+      { "title": "Loading States", "description": "Ready-to-use loading, error and success states" },
+      { "title": "Automatic Retry", "description": "Retries automatically on failure" }
+    ]
+  },
+  "useMutation": {
+    "title": "useMutation — Modifying Data",
+    "subtitle": "POST, PUT, DELETE",
+    "description": "Use mutations to create, update or delete data. Automatically invalidate the cache on success."
+  },
+  "bestPractices": {
+    "title": "Best Practices",
+    "subtitle": "Essential tips",
+    "tips": [
+      { "title": "Use Consistent Query Keys", "description": "Always use arrays: ['users', userId] instead of plain strings" },
+      { "title": "Configure staleTime", "description": "Define how long data is considered 'fresh'" },
+      { "title": "Invalidate with Precision", "description": "Use invalidateQueries with a specific queryKey, not everything" },
+      { "title": "Optimistic Updates", "description": "Update the UI before the server response for better UX" },
+      { "title": "Error Boundaries", "description": "Always handle errors with error boundaries or try/catch" }
+    ]
+  },
+  "resources": {
+    "title": "Official Resources",
+    "subtitle": "Documentation and tools",
+    "links": [
+      { "title": "Official Docs", "description": "Complete TanStack Query guide" },
+      { "title": "DevTools", "description": "Debug tool for React Query" },
+      { "title": "Examples", "description": "Practical examples and use cases" }
+    ]
+  },
+  "cta": {
+    "title": "Ready to optimize your data fetching?",
+    "description": "Back to portfolio and explore more content"
+  }
+}

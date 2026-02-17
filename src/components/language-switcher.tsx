@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Globe } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,7 @@ import {
 import { getLocaleCookie, setLocaleCookie } from "@/lib/i18n/cookie";
 
 export function LanguageSwitcher() {
+  const t = useTranslations("global");
   const locale = useLocale() as Locale;
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
@@ -49,7 +50,7 @@ export function LanguageSwitcher() {
         variant="outline"
         onClick={() => setIsOpen((s) => !s)}
         className="gap-2 rounded-lg border-border bg-card hover:border-primary/50 hover:bg-card hover:text-primary"
-        aria-label="Change language"
+        aria-label={t("changeLanguage")}
         aria-expanded={isOpen}
       >
         <Globe className="h-4 w-4" />

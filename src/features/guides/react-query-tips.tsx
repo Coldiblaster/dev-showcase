@@ -1,7 +1,9 @@
 "use client";
 
 import { Code2, Database, Link2, RefreshCw, Zap } from "lucide-react";
+import { useTranslations } from "next-intl";
 
+import type reactQueryTipsPage from "@/../messages/pt-BR/reactQueryTipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { CTASection } from "@/components/cta-section";
@@ -19,16 +21,29 @@ import {
   USE_QUERY_CODE,
 } from "./examples/react-query-examples";
 
+type Feature = (typeof reactQueryTipsPage)["useQuery"]["features"][number];
+type Tip = (typeof reactQueryTipsPage)["bestPractices"]["tips"][number];
+type ResourceLinkItem =
+  (typeof reactQueryTipsPage)["resources"]["links"][number];
+
+const RESOURCE_URLS = [
+  "https://tanstack.com/query/latest",
+  "https://tanstack.com/query/latest/docs/framework/react/devtools",
+  "https://tanstack.com/query/latest/docs/framework/react/examples/react/simple",
+];
+
 export function ReactQueryTips() {
+  const t = useTranslations("reactQueryTipsPage");
+
   return (
     <div className="min-h-screen">
       <HeroSection
-        badge="Data Fetching"
+        badge={t("hero.badge")}
         badgeIcon={Database}
-        title="React Query Essencial"
-        subtitle="TanStack Query (React Query)"
-        description="Domine cache, mutations, otimização e boas práticas para gerenciar estado assíncrono de forma profissional."
-        warning="Este guia assume conhecimento básico de React e hooks. Foco em uso prático e real."
+        title={t("hero.title")}
+        subtitle={t("hero.subtitle")}
+        description={t("hero.description")}
+        warning={t("hero.warning")}
       />
 
       <section className="px-6 py-12 md:py-20">
@@ -36,15 +51,14 @@ export function ReactQueryTips() {
           <AnimatedSection>
             <SectionHeader
               icon={Zap}
-              title="Setup Inicial"
-              subtitle="Configuração básica"
+              title={t("setup.title")}
+              subtitle={t("setup.subtitle")}
             />
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
             <p className="mb-8 max-w-3xl text-pretty leading-relaxed text-muted-foreground">
-              Instale o React Query e configure o QueryClient no root da sua
-              aplicação.
+              {t("setup.description")}
             </p>
           </AnimatedSection>
 
@@ -69,31 +83,13 @@ export function ReactQueryTips() {
           <AnimatedSection>
             <SectionHeader
               icon={Database}
-              title="useQuery - Buscar Dados"
-              subtitle="GET requests"
+              title={t("useQuery.title")}
+              subtitle={t("useQuery.subtitle")}
             />
           </AnimatedSection>
 
           <div className="mb-10 grid gap-4 md:grid-cols-2">
-            {[
-              {
-                title: "Cache Automático",
-                description:
-                  "Dados são cacheados e reutilizados automaticamente",
-              },
-              {
-                title: "Refetch Inteligente",
-                description: "Atualiza dados quando necessário (window focus)",
-              },
-              {
-                title: "Loading States",
-                description: "Estados de loading, error e success prontos",
-              },
-              {
-                title: "Retry Automático",
-                description: "Tenta novamente em caso de falha",
-              },
-            ].map((feature, i) => (
+            {(t.raw("useQuery.features") as Feature[]).map((feature, i) => (
               <AnimatedSection key={feature.title} delay={0.1 + i * 0.05}>
                 <FeatureCard
                   title={feature.title}
@@ -121,15 +117,14 @@ export function ReactQueryTips() {
           <AnimatedSection>
             <SectionHeader
               icon={RefreshCw}
-              title="useMutation - Modificar Dados"
-              subtitle="POST, PUT, DELETE"
+              title={t("useMutation.title")}
+              subtitle={t("useMutation.subtitle")}
             />
           </AnimatedSection>
 
           <AnimatedSection delay={0.1}>
             <p className="mb-8 max-w-3xl text-pretty leading-relaxed text-muted-foreground">
-              Use mutations para criar, atualizar ou deletar dados. Invalide o
-              cache automaticamente após sucesso.
+              {t("useMutation.description")}
             </p>
           </AnimatedSection>
 
@@ -151,39 +146,13 @@ export function ReactQueryTips() {
           <AnimatedSection>
             <SectionHeader
               icon={Code2}
-              title="Boas Práticas"
-              subtitle="Dicas essenciais"
+              title={t("bestPractices.title")}
+              subtitle={t("bestPractices.subtitle")}
             />
           </AnimatedSection>
 
           <div className="flex flex-col gap-4">
-            {[
-              {
-                title: "Use Query Keys Consistentes",
-                description:
-                  "Sempre use arrays: ['users', userId] ao invés de strings simples",
-              },
-              {
-                title: "Configure staleTime",
-                description:
-                  "Defina quanto tempo os dados são considerados 'frescos'",
-              },
-              {
-                title: "Invalide com Precisão",
-                description:
-                  "Use invalidateQueries com queryKey específica, não tudo",
-              },
-              {
-                title: "Otimistic Updates",
-                description:
-                  "Atualize UI antes da resposta do servidor para melhor UX",
-              },
-              {
-                title: "Error Boundaries",
-                description:
-                  "Sempre trate erros com error boundaries ou try/catch",
-              },
-            ].map((tip, i) => (
+            {(t.raw("bestPractices.tips") as Tip[]).map((tip, i) => (
               <AnimatedSection key={tip.title} delay={0.1 + i * 0.05}>
                 <TipItem title={tip.title} description={tip.description} />
               </AnimatedSection>
@@ -197,33 +166,21 @@ export function ReactQueryTips() {
           <AnimatedSection>
             <SectionHeader
               icon={Link2}
-              title="Recursos Oficiais"
-              subtitle="Documentação e ferramentas"
+              title={t("resources.title")}
+              subtitle={t("resources.subtitle")}
             />
           </AnimatedSection>
 
           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-            <AnimatedSection delay={0.1}>
-              <ResourceLink
-                href="https://tanstack.com/query/latest"
-                title="Documentação Oficial"
-                description="Guia completo do TanStack Query"
-              />
-            </AnimatedSection>
-            <AnimatedSection delay={0.15}>
-              <ResourceLink
-                href="https://tanstack.com/query/latest/docs/framework/react/devtools"
-                title="DevTools"
-                description="Ferramenta de debug para React Query"
-              />
-            </AnimatedSection>
-            <AnimatedSection delay={0.2}>
-              <ResourceLink
-                href="https://tanstack.com/query/latest/docs/framework/react/examples/react/simple"
-                title="Exemplos"
-                description="Exemplos práticos e casos de uso"
-              />
-            </AnimatedSection>
+            {(t.raw("resources.links") as ResourceLinkItem[]).map((link, i) => (
+              <AnimatedSection key={link.title} delay={0.1 + i * 0.05}>
+                <ResourceLink
+                  href={RESOURCE_URLS[i]}
+                  title={link.title}
+                  description={link.description}
+                />
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
@@ -234,8 +191,8 @@ export function ReactQueryTips() {
 
       <CTASection
         icon={Database}
-        title="Pronto para otimizar seu data fetching?"
-        description="Volte ao portfolio e explore mais conteúdos"
+        title={t("cta.title")}
+        description={t("cta.description")}
       />
     </div>
   );

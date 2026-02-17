@@ -22,5 +22,10 @@
     "Fun fact: O status 404 veio do CERN — sala 404 era onde ficava o servidor original da web.",
     "Curiosidade: Este portfolio tem mais linhas de código do que páginas 404.",
     "Dica: Ctrl+Z não funciona em URLs. Já tentamos."
-  ]
+  ],
+  "meta": {
+    "title": "404 — Página não encontrada",
+    "description": "A página que você procura não existe ou foi removida. Explore o portfolio, implementações e guias disponíveis.",
+    "ogDescription": "Oops! Essa rota fez um git checkout pra outra dimensão. Volte ao portfolio e explore o conteúdo."
+  }
 }

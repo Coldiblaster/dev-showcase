@@ -1,0 +1,9 @@
+{
+  "toggle": "Ver código fuente",
+  "hide": "Ocultar código",
+  "title": "Código fuente real",
+  "description": "Este es el código fuente real utilizado en este portfolio. Haz clic en cualquier sección con el ícono de código para ver cómo fue implementada.",
+  "copied": "¡Copiado!",
+  "file": "Archivo",
+  "lines": "{count} líneas"
+}

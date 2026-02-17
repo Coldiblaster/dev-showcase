@@ -1,0 +1,53 @@
+{
+  "hero": {
+    "badge": "Data Fetching",
+    "title": "React Query Essencial",
+    "subtitle": "TanStack Query (React Query)",
+    "description": "Domine cache, mutations, otimização e boas práticas para gerenciar estado assíncrono de forma profissional.",
+    "warning": "Este guia assume conhecimento básico de React e hooks. Foco em uso prático e real."
+  },
+  "setup": {
+    "title": "Setup Inicial",
+    "subtitle": "Configuração básica",
+    "description": "Instale o React Query e configure o QueryClient no root da sua aplicação."
+  },
+  "useQuery": {
+    "title": "useQuery — Buscar Dados",
+    "subtitle": "GET requests",
+    "features": [
+      { "title": "Cache Automático", "description": "Dados são cacheados e reutilizados automaticamente" },
+      { "title": "Refetch Inteligente", "description": "Atualiza dados quando necessário (window focus)" },
+      { "title": "Loading States", "description": "Estados de loading, error e success prontos" },
+      { "title": "Retry Automático", "description": "Tenta novamente em caso de falha" }
+    ]
+  },
+  "useMutation": {
+    "title": "useMutation — Modificar Dados",
+    "subtitle": "POST, PUT, DELETE",
+    "description": "Use mutations para criar, atualizar ou deletar dados. Invalide o cache automaticamente após sucesso."
+  },
+  "bestPractices": {
+    "title": "Boas Práticas",
+    "subtitle": "Dicas essenciais",
+    "tips": [
+      { "title": "Use Query Keys Consistentes", "description": "Sempre use arrays: ['users', userId] ao invés de strings simples" },
+      { "title": "Configure staleTime", "description": "Defina quanto tempo os dados são considerados 'frescos'" },
+      { "title": "Invalide com Precisão", "description": "Use invalidateQueries com queryKey específica, não tudo" },
+      { "title": "Otimistic Updates", "description": "Atualize UI antes da resposta do servidor para melhor UX" },
+      { "title": "Error Boundaries", "description": "Sempre trate erros com error boundaries ou try/catch" }
+    ]
+  },
+  "resources": {
+    "title": "Recursos Oficiais",
+    "subtitle": "Documentação e ferramentas",
+    "links": [
+      { "title": "Documentação Oficial", "description": "Guia completo do TanStack Query" },
+      { "title": "DevTools", "description": "Ferramenta de debug para React Query" },
+      { "title": "Exemplos", "description": "Exemplos práticos e casos de uso" }
+    ]
+  },
+  "cta": {
+    "title": "Pronto para otimizar seu data fetching?",
+    "description": "Volte ao portfolio e explore mais conteúdos"
+  }
+}

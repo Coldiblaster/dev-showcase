@@ -100,6 +100,9 @@
         "recommended": false
       }
     ],
+    "recommended": "Recomendado",
+    "inputLabel": "Input",
+    "outputLabel": "Output",
     "estimate": "Estimación: ~1000 conversaciones por $0.05 con gpt-4.1-nano",
     "tip": "Con $5 de crédito inicial tienes miles de conversaciones. Perfecto para portfolio."
   },
@@ -139,6 +142,7 @@
   "systemPrompt": {
     "title": "System Prompt — La personalidad",
     "description": "El system prompt define quién es el chatbot, cómo se comporta y qué sabe.",
+    "tipsTitle": "Consejos para un buen prompt",
     "tips": [
       "Define reglas claras: 'Habla en tercera persona', 'No inventes información'",
       "Incluye base de conocimiento: datos reales sobre el dev, proyectos, skills",

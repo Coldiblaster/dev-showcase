@@ -22,7 +22,7 @@ export function Footer() {
           transition={{ duration: 0.5 }}
           className="mb-8 flex flex-col items-center gap-6 sm:flex-row sm:justify-between"
         >
-          <a href="#" className="flex items-center gap-2 text-foreground">
+          <a href="/" className="flex items-center gap-2 text-foreground">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
               <Code2 className="h-4 w-4 text-primary-foreground" />
             </div>
@@ -77,8 +77,7 @@ export function Footer() {
             {t("built")}
           </p>
           <p className="font-mono text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} {PERSONAL.fullName}.{" "}
-            {t("rights")}
+            &copy; {new Date().getFullYear()} {PERSONAL.fullName}. {t("rights")}
           </p>
         </motion.div>
       </div>

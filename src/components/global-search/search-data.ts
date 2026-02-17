@@ -5,11 +5,13 @@ import type { SearchResult } from "./types";
 const CATEGORY_TO_TYPE = {
   implementation: "implementation",
   guide: "guide",
+  tool: "tool",
 } as const;
 
 const CATEGORY_TO_PATH = {
   implementation: "/implementacoes",
   guide: "/dicas",
+  tool: "/ferramentas",
 } as const;
 
 function buildContentSearchItems(): SearchResult[] {
@@ -27,7 +29,15 @@ function buildTags(slug: string): string[] {
   const tagMap: Record<string, string[]> = {
     i18n: ["i18n", "next-intl", "internacionalização", "tradução", "deepl"],
     seo: ["seo", "meta tags", "open graph", "json-ld", "sitemap", "robots"],
-    "ai-chatbot": ["ai", "chatbot", "openai", "gpt", "streaming", "assistente", "ia"],
+    "ai-chatbot": [
+      "ai",
+      "chatbot",
+      "openai",
+      "gpt",
+      "streaming",
+      "assistente",
+      "ia",
+    ],
     "ai-tips": ["ia", "ai", "copilot", "chatgpt", "v0", "prompts"],
     "tailwind-tips": ["tailwind", "shadcn", "css", "ui", "componentes"],
     "react-query-tips": [
@@ -45,6 +55,29 @@ function buildTags(slug: string): string[] {
       "junior",
       "pleno",
       "senior",
+    ],
+    "security-tips": [
+      "segurança",
+      "security",
+      "rate limiting",
+      "recaptcha",
+      "honeypot",
+      "headers",
+      "zod",
+      "validação",
+      "xss",
+      "csrf",
+    ],
+    "code-review": [
+      "code review",
+      "ai",
+      "ia",
+      "análise",
+      "bugs",
+      "openai",
+      "gpt",
+      "reviewer",
+      "qualidade",
     ],
   };
   return tagMap[slug] ?? [slug];

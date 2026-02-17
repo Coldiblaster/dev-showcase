@@ -1,5 +1,7 @@
 "use client";
 
+import { ViewSource } from "@/components/view-source";
+
 import { ChecklistSection } from "./checklist-section";
 import { ComparisonSection } from "./comparison-section";
 import { SeoCta } from "./cta-section";
@@ -9,6 +11,11 @@ import { MetadataSection } from "./metadata-section";
 import { OgImageSection } from "./og-image-section";
 import { OverviewSection } from "./overview-section";
 import { SitemapSection } from "./sitemap-section";
+import {
+  HERO_SECTION_SOURCE,
+  JSON_LD_SECTION_SOURCE,
+  METADATA_SECTION_SOURCE,
+} from "./source-snippets";
 import { WebVitalsSection } from "./web-vitals-section";
 
 /**
@@ -21,11 +28,26 @@ import { WebVitalsSection } from "./web-vitals-section";
 export function SeoShowcase() {
   return (
     <div>
-      <SeoHero />
+      <ViewSource
+        code={HERO_SECTION_SOURCE}
+        filePath="src/features/implementations/seo-showcase/hero-section.tsx"
+      >
+        <SeoHero />
+      </ViewSource>
       <OverviewSection />
-      <MetadataSection />
+      <ViewSource
+        code={METADATA_SECTION_SOURCE}
+        filePath="src/features/implementations/seo-showcase/metadata-section.tsx"
+      >
+        <MetadataSection />
+      </ViewSource>
       <OgImageSection />
-      <JsonLdSection />
+      <ViewSource
+        code={JSON_LD_SECTION_SOURCE}
+        filePath="src/features/implementations/seo-showcase/json-ld-section.tsx"
+      >
+        <JsonLdSection />
+      </ViewSource>
       <SitemapSection />
       <WebVitalsSection />
       <ComparisonSection />

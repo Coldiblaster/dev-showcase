@@ -1,10 +1,11 @@
 "use client";
 
-import { motion, useInView, useSpring } from "framer-motion";
-import { Briefcase, Code2, Coffee, Users } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { Briefcase, Code2, Coffee, type LucideIcon, Users } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { type LucideIcon } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+
+import { AnimatedNumber } from "@/components/animated-number";
 
 const iconList: LucideIcon[] = [Code2, Briefcase, Users, Coffee];
 
@@ -14,36 +15,7 @@ interface StatItem {
   suffix: string;
 }
 
-function AnimatedNumber({ value, suffix }: { value: number; suffix: string }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [displayValue, setDisplayValue] = useState(0);
-
-  const springValue = useSpring(0, {
-    duration: 2000,
-    bounce: 0,
-  });
-
-  useEffect(() => {
-    if (isInView) {
-      springValue.set(value);
-    }
-  }, [isInView, springValue, value]);
-
-  useEffect(() => {
-    return springValue.on("change", (latest) => {
-      setDisplayValue(Math.floor(latest));
-    });
-  }, [springValue]);
-
-  return (
-    <span ref={ref} className="tabular-nums">
-      {displayValue.toLocaleString()}
-      {suffix}
-    </span>
-  );
-}
-
+/** Seção de estatísticas numéricas animadas. */
 export function StatsSection() {
   const t = useTranslations("homeStats");
   const ref = useRef(null);

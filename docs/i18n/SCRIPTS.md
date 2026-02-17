@@ -1,43 +1,43 @@
-# 🔧 Scripts - Referência Completa
+# Scripts — Referencia Completa
 
-Documentação detalhada de todos os scripts disponíveis para i18n.
-
----
-
-## 📋 Lista de Scripts
-
-| Script                | Comando                         | Tempo    | Quando usar                  |
-| --------------------- | ------------------------------- | -------- | ---------------------------- |
-| Tradução normal       | `pnpm run translate`            | 1-3 min  | Traduzir novas chaves apenas |
-| Tradução forçada      | `pnpm run translate:force`      | 5-10 min | Re-traduzir TUDO             |
-| Validar sincronização | `pnpm run validate:i18n`        | 5 seg    | Antes de commit/PR           |
-| Detectar português    | `pnpm run check:pt-leaks`       | 5 seg    | Validar qualidade            |
-| Adicionar idioma      | `pnpm run add-locale -- {code}` | 10 seg   | Novo idioma                  |
+Documentacao de todos os scripts disponiveis para i18n.
 
 ---
 
-## 1️⃣ `pnpm run translate`
+## Lista de Scripts
+
+| Script           | Comando                         | Tempo    | Quando usar                  |
+| ---------------- | ------------------------------- | -------- | ---------------------------- |
+| Traducao normal  | `pnpm translate`                | 1-3 min  | Traduzir novas chaves apenas |
+| Traducao forcada | `pnpm translate:force`          | 5-10 min | Re-traduzir TUDO             |
+| Validar sync     | `pnpm validate:i18n`            | 5 seg    | Antes de commit/PR           |
+| Detectar PT      | `pnpm check:pt-leaks`           | 5 seg    | Validar qualidade            |
+| Adicionar idioma | `pnpm add-locale -- {code}`     | 10 seg   | Novo idioma                  |
+
+---
+
+## 1. `pnpm translate`
 
 ### O que faz
 
-Traduz automaticamente **apenas as chaves novas** de pt-BR para en/es.
+Traduz automaticamente **apenas as chaves novas** de pt-BR para en, es e de.
 
 ### Como funciona
 
-1. Lê todos os arquivos JSON em `messages/pt-BR/` (recursivamente)
-2. Compara com `messages/en/` e `messages/es/`
-3. Identifica chaves que existem em pt-BR mas não em en/es
+1. Le todos os JSONs em `messages/pt-BR/`
+2. Compara com `messages/en/`, `messages/es/` e `messages/de/`
+3. Identifica chaves que existem em pt-BR mas nao nos outros locales
 4. Traduz apenas essas chaves via API (DeepL ou Google Cloud)
-5. Preserva valores existentes (não re-traduz)
+5. Preserva valores existentes (nao re-traduz)
 
 ### Quando usar
 
-- ✅ Após adicionar novas chaves em pt-BR
-- ✅ Antes de commitar código
-- ✅ Quando `validate:i18n` reporta chaves faltando
-- ❌ **NÃO use** quando quer corrigir traduções ruins (use `translate:force`)
+- Apos adicionar novas chaves em pt-BR
+- Antes de commitar codigo
+- Quando `validate:i18n` reporta chaves faltando
+- **NAO use** quando quer corrigir traducoes ruins (use `translate:force`)
 
-### Configuração necessária
+### Configuracao necessaria
 
 ```bash
 # .env.local
@@ -46,160 +46,127 @@ DEEPL_API_KEY=seu_token_aqui
 GOOGLE_CLOUD_API_KEY=seu_token_aqui
 ```
 
-### Exemplo de uso
+### Exemplo
 
 ```bash
-# 1. Adicionou nova chave em pt-BR
-echo '{"newKey": "Novo texto"}' >> messages/pt-BR/global.json
-
-# 2. Roda o script
-pnpm run translate
+# 1. Adicionou nova chave em messages/pt-BR/hero.json
+# 2. Rode o script
+pnpm translate
 
 # 3. Resultado
-# ✅ messages/en/global.json criado/atualizado
-# ✅ messages/es/global.json criado/atualizado
+# messages/en/hero.json atualizado
+# messages/es/hero.json atualizado
+# messages/de/hero.json atualizado
 ```
 
 ### Output esperado
 
 ```
-🔍 Descobrindo arquivos JSON...
-📁 Encontrados 15 arquivos em messages/pt-BR/
+Descobrindo arquivos JSON...
+Encontrados 32 arquivos em messages/pt-BR/
 
-📝 Processando: global.json
+Processando: hero.json
   → EN: 1 novas chaves traduzidas
   → ES: 1 novas chaves traduzidas
+  → DE: 1 novas chaves traduzidas
 
-✅ Tradução concluída!
+Traducao concluida!
 ```
 
 ### Comportamento especial
 
-- **PROTECTED_TERMS**: Palavras como "Safer" e "Cockpit" não são traduzidas
-- **Placeholders ICU**: `{variavel}` é preservado nas traduções
+- **PROTECTED_TERMS**: Palavras como nomes proprios nao sao traduzidas
+- **Placeholders ICU**: `{variavel}` e preservado nas traducoes
 - **Rate limiting**: 120ms de delay entre chamadas (evita erro 429)
 - **Fallback**: Se DeepL falhar, tenta Google Cloud Translation
 
 ---
 
-## 2️⃣ `pnpm run translate:force`
+## 2. `pnpm translate:force`
 
 ### O que faz
 
-Re-traduz **TODAS as chaves** de pt-BR para en/es, mesmo as que já existem.
-
-### Como funciona
-
-Igual ao `translate`, mas ignora valores existentes e re-traduz tudo do zero.
+Re-traduz **TODAS as chaves** de pt-BR para en, es e de, mesmo as que ja existem.
 
 ### Quando usar
 
-- ✅ Quando encontrou traduções ruins em en/es
-- ✅ Quando `check:pt-leaks` reporta palavras em português
-- ✅ Quando mudou texto em pt-BR e quer propagar para outros idiomas
-- ✅ Após atualizar PROTECTED_TERMS no script
-- ❌ **NÃO use** frequentemente (demora e gasta quota da API)
+- Quando encontrou traducoes ruins nos outros locales
+- Quando `check:pt-leaks` reporta palavras em portugues
+- Quando mudou texto em pt-BR e quer propagar para todos os idiomas
+- **NAO use** frequentemente (demora e gasta quota da API)
 
-### Exemplo de uso
-
-```bash
-# Situação: Encontrou "Voltar" em messages/en/global.json
-pnpm run check:pt-leaks
-# ❌ actions.back: "Voltar" (contém: "voltar")
-
-# Opção 1: Force re-tradução (recomendado)
-pnpm run translate:force
-
-# Opção 2: Correção manual (se souber a tradução correta)
-# Edite messages/pt-BR/global.json para melhorar o contexto
-# "back": "Voltar" → "back": "Voltar para a página anterior"
-# Depois rode: pnpm run translate
-
-# Valida se corrigiu
-pnpm run check:pt-leaks
-# ✅ Nenhum problema encontrado
-```
-
-### Configuração
-
-Mesma do `translate` (precisa de DEEPL_API_KEY ou GOOGLE_CLOUD_API_KEY).
-
-### Diferença visual
+### Exemplo
 
 ```bash
-# translate (normal)
-📝 Processando: global.json
-  → EN: 3 novas chaves traduzidas (15 preservadas)
+# Situacao: Encontrou "Voltar" em messages/en/global.json
+pnpm check:pt-leaks
+# actions.back: "Voltar" (contem: "voltar")
 
-# translate:force
-📝 Processando: global.json (FORCE MODE)
-  → EN: 18 chaves RE-TRADUZIDAS
+# Corrigir: re-traduz tudo
+pnpm translate:force
+
+# Validar
+pnpm check:pt-leaks
+# Nenhum problema encontrado
 ```
 
-### ⚠️ Avisos
+### Avisos
 
-- **Demora mais**: Traduz tudo, não só o novo
+- **Demora mais**: Traduz tudo, nao so o novo
 - **Gasta quota**: Cada chave conta na API
-- **Pode sobrescrever**: Se você fez ajustes manuais em en/es, serão perdidos
+- **Sobrescreve**: Ajustes manuais em en/es/de serao perdidos
 
 ---
 
-## 3️⃣ `pnpm run validate:i18n`
+## 3. `pnpm validate:i18n`
 
 ### O que faz
 
-Valida se **todos os locales têm as mesmas chaves**.
+Valida se **todos os locales tem as mesmas chaves**.
 
 ### Como funciona
 
-1. Lê `messages/pt-BR/` como referência
-2. Compara estrutura de chaves com `messages/en/` e `messages/es/`
+1. Le `messages/pt-BR/` como referencia
+2. Compara estrutura de chaves com `messages/en/`, `messages/es/` e `messages/de/`
 3. Reporta chaves faltando ou extras
 
 ### Quando usar
 
-- ✅ Antes de abrir PR
-- ✅ Antes de fazer commit
-- ✅ Após adicionar traduções manualmente
-- ✅ Em pipeline de CI/CD
-- ✅ Quando suspeita de dessincronia
-
-### Exemplo de uso
-
-```bash
-pnpm run validate:i18n
-```
+- Antes de abrir PR
+- Antes de fazer commit
+- Apos adicionar traducoes manualmente
+- Em pipeline de CI/CD
 
 ### Output com sucesso
 
 ```
-✅ Validação concluída com sucesso!
-Todos os locales estão sincronizados.
+Validacao concluida com sucesso!
+Todos os locales estao sincronizados.
 ```
 
 ### Output com erro
 
 ```
-❌ Erros encontrados:
+Erros encontrados:
 
 Locale: en
-  Faltando em global.json:
-    - actions.export
-    - actions.print
+  Faltando em hero.json:
+    - newBadge
+    - newFeature
 
-Locale: es
-  Extra em auth.json:
-    - login.oldKey (não existe em pt-BR)
+Locale: de
+  Extra em nav.json:
+    - oldKey (nao existe em pt-BR)
 ```
 
-### Ação corretiva
+### Acao corretiva
 
 ```bash
 # Se chaves faltando
-pnpm run translate
+pnpm translate
 
-# Se chaves extras (remova manualmente ou re-traduza)
-pnpm run translate:force
+# Se chaves extras
+pnpm translate:force
 ```
 
 ### Exit code
@@ -209,125 +176,65 @@ pnpm run translate:force
 
 ---
 
-## 4️⃣ `pnpm run check:pt-leaks`
+## 4. `pnpm check:pt-leaks`
 
 ### O que faz
 
-Detecta **palavras em português** em arquivos de tradução EN/ES.
+Detecta **palavras em portugues** em arquivos de traducao en/es/de.
 
 ### Como funciona
 
 1. Define lista de palavras portuguesas comuns (voltar, adicionar, carregando, etc.)
-2. Percorre todos os arquivos em `messages/en/` e `messages/es/`
+2. Percorre todos os JSONs em `messages/en/`, `messages/es/` e `messages/de/`
 3. Procura por essas palavras nos valores das chaves
-4. Ignora palavras idênticas em PT/ES (editar, cancelar, confirmar)
+4. Ignora palavras identicas em PT/ES (editar, cancelar, confirmar)
 5. Reporta problemas encontrados
 
 ### Quando usar
 
-- ✅ Após `pnpm run translate` (validar qualidade)
-- ✅ Quando API de tradução falha silenciosamente
-- ✅ Antes de fazer commit/PR
-- ✅ Em pipeline de CI/CD
-- ✅ Quando usuários reportam textos em português no sistema em inglês
-
-### Exemplo de uso
-
-```bash
-pnpm run check:pt-leaks
-```
+- Apos `pnpm translate` (validar qualidade)
+- Quando API de traducao falha silenciosamente
+- Antes de fazer commit/PR
+- Em pipeline de CI/CD
 
 ### Output com problemas
 
 ```
-🔍 Verificando vazamento de português nas traduções...
+Verificando vazamento de portugues nas traducoes...
 
-📁 Verificando locale: en
-  📄 global.json
-    ❌ actions.back: "Voltar" (contém: "voltar")
-    ❌ actions.remove: "Remover" (contém: "remover")
-  📄 cockpit/dashboard.json
-    ❌ categories.malwareControl: "Controle de malware" (contém: "controle")
+Verificando locale: en
+  hero.json
+    actions.back: "Voltar" (contem: "voltar")
 
-📁 Verificando locale: es
-  📄 global.json
-    ❌ status.loading: "Carregando" (contém: "carregando")
+Verificando locale: de
+  contact.json
+    form.submit: "Enviar" (contem: "enviar")
 
-⚠️  Total: 4 problemas encontrados
+Total: 2 problemas encontrados
 ```
 
-### Output sem problemas
+### Output limpo
 
 ```
-🔍 Verificando vazamento de português nas traduções...
+Verificando vazamento de portugues nas traducoes...
 
-📁 Verificando locale: en
-  ✅ Nenhum problema encontrado
+Verificando locale: en
+  Nenhum problema encontrado
 
-📁 Verificando locale: es
-  ✅ Nenhum problema encontrado
+Verificando locale: es
+  Nenhum problema encontrado
 
-✅ Nenhum vazamento de português detectado!
+Verificando locale: de
+  Nenhum problema encontrado
+
+Nenhum vazamento de portugues detectado!
 ```
 
-### Ação corretiva
+### Acao corretiva
 
 ```bash
-# Re-traduza tudo para corrigir
-pnpm run translate:force
-
-# Valide novamente
-pnpm run check:pt-leaks
-```
-
-### Palavras detectadas
-
-```typescript
-const PT_WORDS = [
-  "voltar",
-  "adicionar",
-  "editar",
-  "remover",
-  "deletar",
-  "salvar",
-  "cancelar",
-  "confirmar",
-  "fechar",
-  "abrir",
-  "buscar",
-  "pesquisar",
-  "filtrar",
-  "exportar",
-  "importar",
-  "carregando",
-  "processando",
-  "aguarde",
-  "erro",
-  "sucesso",
-  "atenção",
-  "aviso",
-  "informação",
-  "detalhes",
-  "visualizar",
-];
-```
-
-### Exceções PT/ES
-
-Palavras idênticas em PT e ES não são reportadas para ES:
-
-```typescript
-const PT_ES_IDENTICAL = [
-  "editar",
-  "cancelar",
-  "confirmar",
-  "filtrar",
-  "importar",
-  "exportar",
-  "versão",
-  "estado",
-  "perfil",
-];
+pnpm translate:force
+pnpm check:pt-leaks
 ```
 
 ### Exit code
@@ -337,7 +244,7 @@ const PT_ES_IDENTICAL = [
 
 ---
 
-## 5️⃣ `pnpm run add-locale -- {code}`
+## 5. `pnpm add-locale -- {code}`
 
 ### O que faz
 
@@ -346,159 +253,72 @@ Cria estrutura completa para um **novo idioma**.
 ### Como funciona
 
 1. Cria pasta `messages/{code}/`
-2. Copia todos os arquivos JSON de `messages/pt-BR/`
-3. Deixa valores vazios (tradução será feita depois)
-4. Copia todos os `index.ts` mantendo estrutura
+2. Copia todos os JSONs de `messages/pt-BR/`
+3. Deixa valores vazios (traducao sera feita depois)
+4. Copia `index.ts` mantendo estrutura
 
-### Quando usar
-
-- ✅ Adicionar suporte a alemão, francês, italiano, etc.
-- ✅ Criar locale customizado (ex: pt-PT para Portugal)
-- ❌ **NÃO use** para idiomas já existentes (en, es, pt-BR)
-
-### Exemplo de uso
+### Exemplo
 
 ```bash
-# Adicionar alemão
-pnpm run add-locale -- de
-
-# Adicionar francês
-pnpm run add-locale -- fr
+# Adicionar frances
+pnpm add-locale -- fr
 
 # Adicionar italiano
-pnpm run add-locale -- it
+pnpm add-locale -- it
 ```
 
-### O que é criado
+### Proximos passos apos criar
 
-```
-messages/
-└── de/                    # Novo idioma
-    ├── auth.json          # Estrutura copiada, valores vazios
-    ├── global.json
-    ├── index.ts           # Exports mantidos
-    ├── admin/
-    │   ├── index.ts
-    │   └── user-management.json
-    └── cockpit/
-        ├── index.ts
-        └── dashboard.json
-```
+1. Atualize `src/lib/i18n/config.ts` (adicione no `LOCALES_CONFIG`)
+2. Rode `pnpm translate` para gerar traducoes
+3. Rode `pnpm validate:i18n` para validar
 
-### Próximos passos
-
-Após criar o locale, você precisa:
-
-1. **Configurar o sistema**
-
-```typescript
-// src/i18n/config.ts
-export const SUPPORTED_LOCALES = [
-  "pt-BR",
-  "en",
-  "es",
-  "de", // ← ADICIONAR
-] as const;
-```
-
-2. **Adicionar no LanguageSwitcher**
-
-```typescript
-// src/shared/components/language-switcher.tsx
-const LOCALES_CONFIG = {
-  "pt-BR": { label: "Português (BR)", flag: "🇧🇷" },
-  en: { label: "English (US)", flag: "🇺🇸" },
-  es: { label: "Español (ES)", flag: "🇪🇸" },
-  de: { label: "Deutsch (DE)", flag: "🇩🇪" }, // ← ADICIONAR
-} as const;
-```
-
-3. **Gerar traduções**
-
-```bash
-pnpm run translate
-```
-
-4. **Validar**
-
-```bash
-pnpm run validate:i18n
-```
-
-### ⚠️ Limitações
-
-O script **NÃO atualiza automaticamente**:
-
-- `src/i18n/config.ts`
-- `src/shared/components/language-switcher.tsx`
-
-Você precisa fazer isso manualmente (veja [ADDING_TRANSLATIONS.md - Cenário 4](./ADDING_TRANSLATIONS.md#-cenário-4-adicionar-novo-idioma)).
+Detalhes completos: [ADDING_TRANSLATIONS.md - Cenario 3](./ADDING_TRANSLATIONS.md#cenario-3-adicionar-novo-idioma)
 
 ---
 
-## 🔄 Workflow Recomendado
+## Workflow Recomendado
 
 ### Desenvolvimento Normal
 
 ```bash
-# 1. Adicionar traduções em pt-BR
-vim messages/pt-BR/global.json
+# 1. Adicionar traducoes em pt-BR
+# Edite messages/pt-BR/hero.json
 
-# 2. Gerar traduções
-pnpm run translate
+# 2. Gerar traducoes
+pnpm translate
 
 # 3. Validar qualidade
-pnpm run check:pt-leaks
+pnpm check:pt-leaks
 
-# 4. Validar sincronização
-pnpm run validate:i18n
+# 4. Validar sincronizacao
+pnpm validate:i18n
 
 # 5. Commit
 git add messages/
-git commit -m "feat: adiciona tradução X"
+git commit -m "feat: adiciona traducao X"
 ```
 
-### Corrigir Traduções Ruins
+### Corrigir Traducoes Ruins
 
 ```bash
-# 1. Detectar problemas
-pnpm run check:pt-leaks
-
-# 2. Re-traduzir tudo
-pnpm run translate:force
-
-# 3. Validar correção
-pnpm run check:pt-leaks
-
-# 4. Commit
-git add messages/
-git commit -m "fix: corrige traduções com português"
+pnpm check:pt-leaks        # 1. Detectar problemas
+pnpm translate:force        # 2. Re-traduzir tudo
+pnpm check:pt-leaks        # 3. Validar correcao
 ```
 
 ### Adicionar Novo Idioma
 
 ```bash
-# 1. Criar estrutura
-pnpm run add-locale -- de
-
-# 2. Configurar sistema (manual)
-vim src/i18n/config.ts
-vim src/shared/components/language-switcher.tsx
-
-# 3. Gerar traduções
-pnpm run translate
-
-# 4. Validar
-pnpm run validate:i18n
-
-# 5. Commit
-git add messages/ src/i18n/ src/shared/components/
-git commit -m "feat: adiciona suporte a alemão"
+pnpm add-locale -- fr       # 1. Criar estrutura
+# Edite src/lib/i18n/config.ts  # 2. Configurar
+pnpm translate              # 3. Gerar traducoes
+pnpm validate:i18n          # 4. Validar
 ```
 
 ---
 
-## 🛠️ Configuração das APIs
+## Configuracao das APIs
 
 ### DeepL (Recomendado)
 
@@ -507,9 +327,9 @@ git commit -m "feat: adiciona suporte a alemão"
 DEEPL_API_KEY=your-api-key-here
 ```
 
-- **Vantagens**: Melhor qualidade, mais contexto
-- **Limitações**: 500k caracteres/mês (plano free)
-- **Rate limit**: 5 requisições/segundo (script já controla)
+- Melhor qualidade, mais contexto
+- 500k caracteres/mes (plano free)
+- Rate limit: 5 req/seg (script ja controla)
 
 ### Google Cloud Translation
 
@@ -518,43 +338,32 @@ DEEPL_API_KEY=your-api-key-here
 GOOGLE_CLOUD_API_KEY=your-api-key-here
 ```
 
-- **Vantagens**: Mais quota, suporte a mais idiomas
-- **Limitações**: Qualidade inferior ao DeepL
-- **Rate limit**: Script usa 120ms de delay
+- Mais quota, suporte a mais idiomas
+- Qualidade inferior ao DeepL
+- Rate limit: script usa 120ms de delay
 
 ### Fallback
 
-Se DeepL não estiver configurado ou falhar:
-
-1. Script tenta Google Cloud Translation
-2. Se ambos falharem, mostra erro e para
+Se DeepL nao estiver configurado ou falhar, o script tenta Google Cloud Translation. Se ambos falharem, mostra erro e para.
 
 ---
 
-## 📊 Performance
+## Performance
 
-| Script          | Arquivos    | Chaves          | Tempo Estimado |
-| --------------- | ----------- | --------------- | -------------- |
-| translate       | 15 arquivos | 50 novas chaves | ~2 min         |
-| translate:force | 15 arquivos | 500 chaves      | ~8 min         |
-| validate:i18n   | 45 arquivos | -               | ~3 seg         |
-| check:pt-leaks  | 30 arquivos | -               | ~2 seg         |
-| add-locale      | 15 arquivos | -               | ~1 seg         |
+| Script          | Arquivos     | Tempo Estimado |
+| --------------- | ------------ | -------------- |
+| translate       | 32 arquivos  | ~2 min         |
+| translate:force | 32 arquivos  | ~8 min         |
+| validate:i18n   | 128 arquivos | ~3 seg         |
+| check:pt-leaks  | 96 arquivos  | ~2 seg         |
+| add-locale      | 32 arquivos  | ~1 seg         |
 
-**Nota**: Tempo de `translate` varia com:
-
-- Número de chaves novas
-- API usada (DeepL é mais rápida)
-- Rate limiting (120ms entre cada chave)
+Tempo de `translate` varia com o numero de chaves novas e a API usada.
 
 ---
 
-## 🔗 Próximos Passos
+## Proximos Passos
 
-- **Como adicionar traduções?** → [ADDING_TRANSLATIONS.md](./ADDING_TRANSLATIONS.md)
-- **Boas práticas?** → [BEST_PRACTICES.md](./BEST_PRACTICES.md)
-- **Voltar ao início?** → [INDEX.md](./INDEX.md)
-
----
-
-**Dica:** Adicione esses scripts no seu pre-commit hook! 🚀
+- **Como adicionar traducoes?** → [ADDING_TRANSLATIONS.md](./ADDING_TRANSLATIONS.md)
+- **Boas praticas?** → [BEST_PRACTICES.md](./BEST_PRACTICES.md)
+- **Voltar ao inicio?** → [INDEX.md](./INDEX.md)

@@ -22,5 +22,10 @@
     "Fun fact: The 404 status came from CERN — room 404 housed the original web server.",
     "Fun fact: This portfolio has more lines of code than 404 pages.",
     "Pro tip: Ctrl+Z doesn't work on URLs. We've tried."
-  ]
+  ],
+  "meta": {
+    "title": "404 — Page not found",
+    "description": "The page you are looking for does not exist or has been removed. Explore the portfolio, implementations, and guides available.",
+    "ogDescription": "Oops! This route made a git checkout to another dimension. Return to the portfolio and explore the content."
+  }
 }

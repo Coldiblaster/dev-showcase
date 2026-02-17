@@ -1,21 +1,20 @@
-# 🧪 Testes com i18n
+# Testes com i18n
 
-Guia de como testar componentes que usam traduções.
-
----
-
-## 🎯 Visão Geral
-
-O sistema de testes já está configurado para suportar i18n automaticamente:
-
-- ✅ **Mensagens reais de pt-BR** são usadas (sem duplicação de mocks)
-- ✅ **`renderWithProviders()`** já inclui `NextIntlClientProvider`
-- ✅ **Todos os helpers** suportam i18n out-of-the-box
-- ✅ **Nenhuma configuração extra** necessária na maioria dos casos
+Guia de como testar componentes que usam traducoes.
 
 ---
 
-## 🚀 Uso Básico
+## Visao Geral
+
+O sistema de testes suporta i18n automaticamente:
+
+- Mensagens reais de pt-BR sao usadas (sem duplicacao de mocks)
+- `renderWithProviders()` ja inclui `NextIntlClientProvider`
+- Nenhuma configuracao extra necessaria na maioria dos casos
+
+---
+
+## Uso Basico
 
 ### Testar Componente com i18n
 
@@ -25,52 +24,49 @@ import { renderWithProviders } from "@tests/utils";
 
 import { MyComponent } from "./my-component";
 
-test("renderiza título traduzido", () => {
+test("renderiza titulo traduzido", () => {
   renderWithProviders(<MyComponent />);
 
-  // Mensagens de pt-BR são usadas automaticamente
-  expect(screen.getByText("Bem-vindo")).toBeInTheDocument();
+  // Mensagens de pt-BR sao usadas automaticamente
+  expect(screen.getByText("Titulo Esperado")).toBeInTheDocument();
 });
 ```
 
-**Pronto!** Não precisa de configuração adicional. 🎉
+Pronto! Nao precisa de configuracao adicional.
 
 ---
 
-## 🔧 Casos Avançados
+## Casos Avancados
 
-### 1. Sobrescrever Mensagens para um Teste Específico
+### 1. Sobrescrever Mensagens para um Teste
 
 Se precisar testar com mensagens customizadas:
 
 ```tsx
 import { renderWithProviders, mergeMessages } from "@tests/utils";
 
-test("mostra mensagem de erro customizada", () => {
+test("mostra mensagem customizada", () => {
   const customMessages = mergeMessages({
-    errors: {
-      notFound: {
-        title: "Custom Error Title",
-      },
+    hero: {
+      title: "Custom Title",
     },
   });
 
-  renderWithProviders(<ErrorPage />, { customMessages });
+  renderWithProviders(<HeroSection />, { customMessages });
 
-  expect(screen.getByText("Custom Error Title")).toBeInTheDocument();
+  expect(screen.getByText("Custom Title")).toBeInTheDocument();
 });
 ```
 
-### 2. Testar com Diferentes Idiomas
+### 2. Testar com Mensagens Reais
 
 ```tsx
 import messages from "@/messages/pt-BR";
 
-test("mostra conteúdo em português", () => {
-  // pt-BR é padrão, mas você pode ser explícito
+test("mostra conteudo em portugues", () => {
   renderWithProviders(<MyComponent />, { customMessages: messages });
 
-  expect(screen.getByText("Salvar")).toBeInTheDocument();
+  expect(screen.getByText("Texto em PT-BR")).toBeInTheDocument();
 });
 ```
 
@@ -80,51 +76,50 @@ test("mostra conteúdo em português", () => {
 import { renderHook } from "@testing-library/react";
 import { createQueryClientWrapper } from "@tests/utils";
 
-test("hook usa traduções", () => {
+test("hook usa traducoes", () => {
   const { result } = renderHook(() => useMyHook(), {
     wrapper: createQueryClientWrapper(),
   });
 
-  // Hook tem acesso ao useTranslations()
   expect(result.current.message).toBe("Mensagem traduzida");
 });
 ```
 
 ---
 
-## 📝 Boas Práticas
+## Boas Praticas
 
-### ✅ Do (Faça)
+### Faca
 
 ```tsx
-// ✅ Use renderWithProviders para componentes com i18n
+// Use renderWithProviders para componentes com i18n
 renderWithProviders(<MyComponent />);
 
-// ✅ Use as mensagens reais de pt-BR nos expects
-expect(screen.getByText("Salvar")).toBeInTheDocument();
+// Use as mensagens reais de pt-BR nos expects
+expect(screen.getByText("Titulo")).toBeInTheDocument();
 
-// ✅ Sobrescreva apenas o necessário
+// Sobrescreva apenas o necessario
 const customMessages = mergeMessages({
-  auth: { login: { title: "Custom" } },
+  hero: { title: "Custom" },
 });
 ```
 
-### ❌ Don't (Não faça)
+### Nao Faca
 
 ```tsx
-// ❌ Não use render() direto (falta i18n provider)
+// Nao use render() direto (falta i18n provider)
 render(<MyComponent />); // Vai quebrar se usar useTranslations()
 
-// ❌ Não crie mocks duplicados de mensagens
-const mockMessages = { auth: { ... } }; // Já temos messages de pt-BR!
+// Nao crie mocks duplicados de mensagens
+const mockMessages = { hero: { ... } }; // Ja temos messages de pt-BR!
 
-// ❌ Não force todos os testes a usar custom messages
-// Use customMessages apenas quando realmente necessário
+// Nao force todos os testes a usar custom messages
+// Use customMessages apenas quando realmente necessario
 ```
 
 ---
 
-## 🛠️ Helpers Disponíveis
+## Helpers Disponiveis
 
 ### `renderWithProviders()`
 
@@ -134,7 +129,6 @@ Renderiza componente com todos os providers (incluindo i18n).
 renderWithProviders(<MyComponent />, {
   customMessages, // Opcional: mensagens customizadas
   withRouter: true, // Opcional: adiciona router mock
-  withSidebar: true, // Opcional: adiciona sidebar provider
 });
 ```
 
@@ -144,125 +138,103 @@ Wrapper para `renderHook()` com QueryClient e i18n.
 
 ```tsx
 const { result } = renderHook(() => useMyHook(), {
-  wrapper: createQueryClientWrapper(customMessages), // customMessages opcional
+  wrapper: createQueryClientWrapper(customMessages),
 });
 ```
 
 ### `createQueryClientWrapperWithClient()`
 
-Wrapper com QueryClient e i18n, retornando também o queryClient.
-Útil quando você precisa fazer spy ou acessar o queryClient diretamente.
+Wrapper que retorna tambem o queryClient (util para spies).
 
 ```tsx
 import { createQueryClientWrapperWithClient } from "@tests/utils";
 
-test("invalida cache após mutation", async () => {
+test("invalida cache apos mutation", async () => {
   const { wrapper, queryClient } = createQueryClientWrapperWithClient();
-  const invalidateSpy = vi.spyOn(queryClient, 'invalidateQueries');
-  
-  const { result } = renderHook(() => useCreatePlant(), { wrapper });
-  
-  result.current.mutate(plantData);
-  
+  const invalidateSpy = vi.spyOn(queryClient, "invalidateQueries");
+
+  const { result } = renderHook(() => useCreateItem(), { wrapper });
+
+  result.current.mutate(data);
+
   await waitFor(() => expect(result.current.isSuccess).toBe(true));
-  expect(invalidateSpy).toHaveBeenCalledWith({ queryKey: ["plants"] });
+  expect(invalidateSpy).toHaveBeenCalled();
 });
 ```
 
 ### `mergeMessages()`
 
-Mescla mensagens customizadas com as mensagens padrão.
+Mescla mensagens customizadas com as mensagens padrao de pt-BR.
 
 ```tsx
 const custom = mergeMessages({
-  auth: { login: { title: "Override" } },
+  hero: { title: "Override" },
 });
-// Resultado: todas mensagens de pt-BR + override no auth.login.title
-```
-
-### `createTestWrapper()`
-
-Wrapper completo com todas as opções.
-
-```tsx
-const wrapper = createTestWrapper({
-  withQueryClient: true,
-  withRouter: true,
-  withSidebar: true,
-  customMessages,
-});
+// Resultado: todas mensagens de pt-BR + override no hero.title
 ```
 
 ---
 
-## 🔍 Troubleshooting
+## Troubleshooting
 
 ### Erro: "context from NextIntlClientProvider was not found"
 
-**Causa:** Componente usa `useTranslations()` mas teste não usa `renderWithProviders()`
+**Causa:** Componente usa `useTranslations()` mas teste nao usa `renderWithProviders()`.
 
-**Solução:**
+**Solucao:**
 
 ```tsx
-// ❌ Antes
+// Antes (errado)
 render(<MyComponent />);
 
-// ✅ Depois
+// Depois (correto)
 renderWithProviders(<MyComponent />);
 ```
 
-### Mensagem esperada não aparece
+### Mensagem esperada nao aparece
 
-**Causa:** Texto pode estar em inglês se o teste antigo tinha mock em inglês
+**Causa:** Texto pode estar diferente se o teste antigo tinha mock em ingles.
 
-**Solução:**
+**Solucao:** Use as mensagens reais de pt-BR:
 
 ```tsx
-// Agora usa pt-BR por padrão
-expect(screen.getByText("Salvar")).toBeInTheDocument(); // ✅
-expect(screen.getByText("Save")).toBeInTheDocument(); // ❌ (era o antigo mock)
+expect(screen.getByText("Titulo")).toBeInTheDocument(); // pt-BR
+// Nao: expect(screen.getByText("Title")).toBeInTheDocument(); // ingles antigo
 ```
 
-### Preciso adicionar tradução em novo módulo
+### Preciso adicionar traducao em novo namespace
 
-**Não precisa fazer nada!** 🎉
+Nao precisa fazer nada especial nos testes! O sistema importa `messages/pt-BR/index.ts` automaticamente. Quando voce adicionar um novo namespace:
 
-O sistema importa `messages/pt-BR/index.ts` automaticamente. Quando você adicionar um novo módulo:
-
-1. Crie `messages/pt-BR/meu-modulo/index.ts`
+1. Crie `messages/pt-BR/meuNamespace.json`
 2. Exporte no `messages/pt-BR/index.ts`
-3. Rode `pnpm run translate`
+3. Rode `pnpm translate`
 
-**Os testes já funcionarão automaticamente!** Não precisa atualizar mocks.
+Os testes ja funcionarao automaticamente.
 
 ---
 
-## 📊 Estrutura de Mensagens nos Testes
+## Estrutura nos Testes
 
 ```
 tests/utils.tsx
-├── import messages from "../messages/pt-BR"  ← Mensagens reais
-├── mergeMessages() ← Helper para customização
-├── renderWithProviders() ← Já inclui NextIntlClientProvider
-└── createQueryClientWrapper() ← Já inclui NextIntlClientProvider
+├── import messages from "../messages/pt-BR"   ← Mensagens reais
+├── mergeMessages()                            ← Helper para customizacao
+├── renderWithProviders()                      ← Inclui NextIntlClientProvider
+└── createQueryClientWrapper()                 ← Inclui NextIntlClientProvider
 
-Benefícios:
-✅ Sem duplicação de código
-✅ Sem manutenção dupla (messages/ e tests/)
-✅ Sempre sincronizado com produç
-ão
-✅ Fácil customização quando necessário
+Beneficios:
+- Sem duplicacao de codigo
+- Sem manutencao dupla (messages/ e tests/)
+- Sempre sincronizado com producao
+- Facil customizacao quando necessario
 ```
 
 ---
 
-## 🔗 Ver Também
+## Ver Tambem
 
-- [INDEX.md](./INDEX.md) - Hub de navegação i18n
-- [QUICK_START.md](./QUICK_START.md) - Como usar i18n em componentes
-- [ADDING_TRANSLATIONS.md](./ADDING_TRANSLATIONS.md) - Como adicionar traduções
-- [BEST_PRACTICES.md](./BEST_PRACTICES.md) - Convenções e padrões
-
----
-
-**Última atualização:** Janeiro 2026
+- [INDEX.md](./INDEX.md) — Hub de navegacao i18n
+- [QUICK_START.md](./QUICK_START.md) — Como usar i18n em componentes
+- [ADDING_TRANSLATIONS.md](./ADDING_TRANSLATIONS.md) — Como adicionar traducoes
+- [BEST_PRACTICES.md](./BEST_PRACTICES.md) — Convencoes e padroes

@@ -18,7 +18,3 @@ export function getLocaleCookie(name: string): string | null {
     return null;
   }
 }
-
-export function clearLocaleCookie(name: string) {
-  document.cookie = `${name}=; Path=/; Max-Age=0; SameSite=Lax;`;
-}

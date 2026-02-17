@@ -1,0 +1,16 @@
+{
+  "title": "GitHub Live",
+  "subtitle": "Echtzeitdaten aus meinem GitHub-Profil",
+  "repos": "Repositories",
+  "followers": "Follower",
+  "stars": "Sterne",
+  "topLangs": "Top Sprachen",
+  "recentActivity": "Letzte Aktivität",
+  "viewProfile": "Vollständiges Profil anzeigen",
+  "loading": "GitHub-Daten werden geladen...",
+  "error": "Daten konnten nicht geladen werden",
+  "retry": "Erneut versuchen",
+  "noActivity": "Keine aktuelle Aktivität",
+  "now": "jetzt",
+  "updatedAgo": "In Echtzeit über GitHub API aktualisiert"
+}

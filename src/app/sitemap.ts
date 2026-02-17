@@ -6,6 +6,12 @@ import { SITE_URL } from "@/lib/seo";
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
+  const CATEGORY_PATH_MAP: Record<string, string> = {
+    implementation: "implementacoes",
+    guide: "dicas",
+    tool: "ferramentas",
+  };
+
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: SITE_URL,
@@ -20,6 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${SITE_URL}/ferramentas`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${SITE_URL}/dicas`,
       lastModified: now,
       changeFrequency: "weekly",
@@ -28,8 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const dynamicPages: MetadataRoute.Sitemap = CONTENT_ITEMS.map((item) => {
-    const prefix =
-      item.category === "implementation" ? "implementacoes" : "dicas";
+    const prefix = CATEGORY_PATH_MAP[item.category] ?? "dicas";
 
     return {
       url: `${SITE_URL}/${prefix}/${item.slug}`,

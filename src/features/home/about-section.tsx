@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { CardBlur } from "@/components/ui/card-blur";
 import { Separator } from "@/components/ui/separator";
 
+/** Seção "Sobre" com bio e informações pessoais. */
 export function AboutSection() {
   const t = useTranslations("about");
   const ref = useRef(null);

@@ -50,12 +50,7 @@ export function SubmenuItem({
   if (href) {
     return (
       <motion.div whileHover={{ x: 2 }}>
-        <Link
-          href={href}
-          role="menuitem"
-          tabIndex={-1}
-          className={className}
-        >
+        <Link href={href} role="menuitem" tabIndex={-1} className={className}>
           {content}
         </Link>
       </motion.div>

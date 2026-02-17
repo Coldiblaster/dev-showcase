@@ -23,10 +23,7 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
         <NavLogo />
         <DesktopNav />
-        <NavActions
-          isMobileOpen={isMobileOpen}
-          onMobileToggle={toggleMobile}
-        />
+        <NavActions isMobileOpen={isMobileOpen} onMobileToggle={toggleMobile} />
       </nav>
 
       <MobileNav isOpen={isMobileOpen} onClose={closeMobile} />

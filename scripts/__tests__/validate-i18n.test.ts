@@ -23,7 +23,9 @@ describe("validate-i18n script", () => {
     await fs.unlink(deFile).catch(() => {});
 
     // Também limpa possíveis arquivos com nomes variantes
-    const testFiles = await fs.readdir(path.join(LOCALES_DIR, "pt-BR")).catch(() => []);
+    const testFiles = await fs
+      .readdir(path.join(LOCALES_DIR, "pt-BR"))
+      .catch(() => []);
     for (const file of testFiles) {
       if (file.includes("test-") && file.endsWith("-temp.json")) {
         await fs.unlink(path.join(LOCALES_DIR, "pt-BR", file)).catch(() => {});
@@ -67,7 +69,9 @@ describe("validate-i18n script", () => {
     await fs.writeFile(deFile, JSON.stringify(content, null, 2), "utf-8");
 
     try {
-      const { stdout } = await execAsync("pnpm run validate:i18n", { cwd: ROOT });
+      const { stdout } = await execAsync("pnpm run validate:i18n", {
+        cwd: ROOT,
+      });
       expect(stdout).toContain("Validação i18n concluída");
     } finally {
       // Garante limpeza mesmo se teste falhar
@@ -148,7 +152,9 @@ describe("validate-i18n script", () => {
     }
 
     try {
-      const { stdout } = await execAsync("pnpm run validate:i18n", { cwd: ROOT });
+      const { stdout } = await execAsync("pnpm run validate:i18n", {
+        cwd: ROOT,
+      });
       expect(stdout).toContain("Validação i18n concluída");
     } finally {
       await fs.unlink(testFile);
@@ -164,7 +170,9 @@ describe("validate-i18n script", () => {
     await fs.writeFile(deFile, JSON.stringify(content, null, 2), "utf-8");
 
     try {
-      const { stdout } = await execAsync("pnpm run validate:i18n", { cwd: ROOT });
+      const { stdout } = await execAsync("pnpm run validate:i18n", {
+        cwd: ROOT,
+      });
       expect(stdout).toContain("Validação i18n concluída");
     } finally {
       // Garante limpeza mesmo se teste falhar

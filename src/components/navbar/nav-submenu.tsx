@@ -41,7 +41,10 @@ export function NavSubmenu({
         return;
       }
 
-      if (!open && (e.key === "Enter" || e.key === " " || e.key === "ArrowDown")) {
+      if (
+        !open &&
+        (e.key === "Enter" || e.key === " " || e.key === "ArrowDown")
+      ) {
         e.preventDefault();
         setOpen(true);
         return;
@@ -49,7 +52,8 @@ export function NavSubmenu({
 
       if (!open) return;
 
-      const items = menuRef.current?.querySelectorAll<HTMLElement>('[role="menuitem"]');
+      const items =
+        menuRef.current?.querySelectorAll<HTMLElement>('[role="menuitem"]');
       if (!items?.length) return;
 
       const currentIndex = Array.from(items).findIndex(
@@ -71,7 +75,8 @@ export function NavSubmenu({
 
   useEffect(() => {
     if (open && menuRef.current) {
-      const firstItem = menuRef.current.querySelector<HTMLElement>('[role="menuitem"]');
+      const firstItem =
+        menuRef.current.querySelector<HTMLElement>('[role="menuitem"]');
       firstItem?.focus();
     }
   }, [open]);

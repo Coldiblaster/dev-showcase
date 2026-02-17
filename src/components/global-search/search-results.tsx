@@ -2,7 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 import type { TypeConfigMap } from "./search-config";
-import type { ResolvedSearchResult } from "./use-global-search";
+import type { ResolvedSearchResult } from "./types";
 
 interface SearchResultsProps {
   results: ResolvedSearchResult[];

@@ -125,26 +125,75 @@
     "title": "SEO Checklist",
     "description": "Status of each SEO item implemented in this portfolio.",
     "items": [
-      { "label": "Title template with inheritance", "done": true },
-      { "label": "Meta description on all pages", "done": true },
-      { "label": "Strategic keywords in layout", "done": true },
-      { "label": "Canonical URL per page", "done": true },
-      { "label": "Open Graph image 1200x630", "done": true },
-      { "label": "Twitter Card per page (summary_large_image)", "done": true },
-      { "label": "JSON-LD Person + WebSite + ProfilePage", "done": true },
-      { "label": "JSON-LD BreadcrumbList", "done": true },
-      { "label": "JSON-LD @id cross-referencing", "done": true },
-      { "label": "Dynamic sitemap.xml", "done": true },
-      { "label": "Robots.txt", "done": true },
-      { "label": "Favicon + Apple Touch Icon", "done": true },
-      { "label": "PWA Manifest", "done": true },
-      { "label": "Google Search Console verified", "done": true },
-      { "label": "Optimized viewport (accessible zoom)", "done": true },
-      { "label": "Multi-language with alternateLocale", "done": true }
+      {
+        "label": "Title template with inheritance",
+        "done": true
+      },
+      {
+        "label": "Meta description on all pages",
+        "done": true
+      },
+      {
+        "label": "Strategic keywords in layout",
+        "done": true
+      },
+      {
+        "label": "Canonical URL per page",
+        "done": true
+      },
+      {
+        "label": "Open Graph image 1200x630",
+        "done": true
+      },
+      {
+        "label": "Twitter Card per page (summary_large_image)",
+        "done": true
+      },
+      {
+        "label": "JSON-LD Person + WebSite + ProfilePage",
+        "done": true
+      },
+      {
+        "label": "JSON-LD BreadcrumbList",
+        "done": true
+      },
+      {
+        "label": "JSON-LD @id cross-referencing",
+        "done": true
+      },
+      {
+        "label": "Dynamic sitemap.xml",
+        "done": true
+      },
+      {
+        "label": "Robots.txt",
+        "done": true
+      },
+      {
+        "label": "Favicon + Apple Touch Icon",
+        "done": true
+      },
+      {
+        "label": "PWA Manifest",
+        "done": true
+      },
+      {
+        "label": "Google Search Console verified",
+        "done": true
+      },
+      {
+        "label": "Optimized viewport (accessible zoom)",
+        "done": true
+      },
+      {
+        "label": "Multi-language with alternateLocale",
+        "done": true
+      }
     ]
   },
   "webVitals": {
     "title": "Core Web Vitals",
+    "tipLabel": "Tip:",
     "description": "Performance metrics that Google uses as a ranking factor. Monitored in this portfolio via Vercel Speed Insights.",
     "items": [
       {

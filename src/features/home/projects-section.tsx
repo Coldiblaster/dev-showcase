@@ -13,6 +13,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 type Project = (typeof projectsPage)["items"][number];
 
+/** Seção de projetos em destaque. */
 export function ProjectsSection() {
   const t = useTranslations("projects");
   const ref = useRef(null);

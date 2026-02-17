@@ -1,0 +1,116 @@
+{
+  "greeting": "¡Bienvenido al terminal de Vinicius Bastazin!",
+  "hint": "Escribe 'help' para ver los comandos disponibles.",
+  "prompt": "visitor@portfolio",
+  "commands": {
+    "help": {
+      "description": "Lista todos los comandos disponibles",
+      "output": [
+        "Comandos disponibles:",
+        "",
+        "  about      — Quién soy",
+        "  skills     — Mis tecnologías",
+        "  projects   — Ver proyectos / páginas",
+        "  contact    — Información de contacto",
+        "  social     — Redes sociales",
+        "  theme      — Cambiar tema (matrix, amber, green, blue)",
+        "  clear      — Limpiar terminal",
+        "  exit       — Cerrar terminal",
+        "  whoami     — ¿Quién eres?",
+        "  sudo       — Intentar acceso root 😏",
+        "  rm -rf     — ¿Borrar todo?",
+        "  coffee     — ¿Café?",
+        "  help       — Este menú",
+        "",
+        "Tip: usa Tab para autocompletar"
+      ]
+    },
+    "about": {
+      "description": "Sobre mí",
+      "output": [
+        "╔══════════════════════════════════════════╗",
+        "║  Vinicius Bastazin                       ║",
+        "║  Desarrollador Frontend Senior           ║",
+        "║  Presidente Prudente, SP, Brasil         ║",
+        "╚══════════════════════════════════════════╝",
+        "",
+        "  +10 años de experiencia con React,",
+        "  Next.js, React Native y TypeScript.",
+        "  Apasionado por DX, rendimiento y",
+        "  design systems."
+      ]
+    },
+    "skills": {
+      "description": "Stack",
+      "output": [
+        "🔧 Frontend:",
+        "   React.js • Next.js • React Native • TypeScript",
+        "   Tailwind CSS • shadcn/ui • Framer Motion",
+        "",
+        "⚙️  Backend:",
+        "   Node.js • Express • REST APIs",
+        "",
+        "🗄️  Base de datos:",
+        "   PostgreSQL • MongoDB • Firebase",
+        "",
+        "🛠️  Herramientas:",
+        "   Git • Docker • Vercel • GitHub Actions"
+      ]
+    },
+    "contact": {
+      "description": "Contacto",
+      "output": [
+        "📧 Email: vbastazin@gmail.com",
+        "💼 LinkedIn: linkedin.com/in/vbastazin",
+        "🐙 GitHub: github.com/Coldiblaster",
+        "",
+        "¡O usa el formulario de contacto en el sitio!"
+      ]
+    },
+    "social": {
+      "description": "Social",
+      "output": [
+        "🔗 Links:",
+        "   GitHub   → github.com/Coldiblaster",
+        "   LinkedIn → linkedin.com/in/vbastazin"
+      ]
+    },
+    "whoami": {
+      "description": "¿Quién eres?",
+      "output": ["visitor@portfolio — ¡Gracias por visitar! 🎉"]
+    },
+    "sudo": {
+      "description": "Acceso root",
+      "output": [
+        "🚫 Permission denied.",
+        "¡Buen intento! Este portfolio es read-only 😏",
+        "¡Pero acepto pull requests en GitHub!"
+      ]
+    },
+    "rm -rf": {
+      "description": "Borrar todo",
+      "output": [
+        "🛑 rm: cannot remove '/portfolio': Operation not permitted",
+        "¡Espera! Me tomó meses construir esto 😅"
+      ]
+    },
+    "coffee": {
+      "description": "Café",
+      "output": [
+        "☕ Preparando café...",
+        "████████████████████ 100%",
+        "",
+        "¡Café listo! ☕ ¡Ahora sí a programar!"
+      ]
+    },
+    "projects": {
+      "description": "Proyectos"
+    }
+  },
+  "unknownCommand": "Comando no encontrado: '{command}'. Escribe 'help' para ayuda.",
+  "exitMessage": "¡Adiós! Presiona Ctrl+` para volver.",
+  "clearMessage": "Terminal limpio.",
+  "themeChanged": "Tema cambiado a: {theme}",
+  "themeInvalid": "Temas disponibles: matrix, amber, green, blue",
+  "tabHint": "Presiona Tab para autocompletar"
+}

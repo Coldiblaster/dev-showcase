@@ -1,0 +1,9 @@
+{
+  "toggle": "Quellcode anzeigen",
+  "hide": "Code ausblenden",
+  "title": "Echter Quellcode",
+  "description": "Dies ist der echte Quellcode, der in diesem Portfolio verwendet wird. Klicke auf einen Abschnitt mit dem Code-Symbol, um die Implementierung zu sehen.",
+  "copied": "Kopiert!",
+  "file": "Datei",
+  "lines": "{count} Zeilen"
+}

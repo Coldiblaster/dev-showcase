@@ -1,0 +1,46 @@
+{
+  "hero": {
+    "badge": "AI Code Review",
+    "title": "Code Reviewer con IA",
+    "subtitle": "Pega tu código y recibe un análisis profesional en segundos",
+    "description": "Powered by GPT-4o Mini — análisis de bugs, rendimiento, seguridad y buenas prácticas con sugerencias de mejora."
+  },
+  "editor": {
+    "placeholder": "// Pega tu código aquí...\n// Soporta cualquier lenguaje\n\nfunction example() {\n  return 'Hello World';\n}",
+    "language": "Lenguaje",
+    "autoDetect": "Auto-detectar",
+    "review": "Analizar Código",
+    "reviewing": "Analizando...",
+    "clear": "Limpiar",
+    "charCount": "{count} / 5000 caracteres",
+    "minChars": "Mínimo 10 caracteres"
+  },
+  "result": {
+    "score": "Score",
+    "summary": "Resumen",
+    "issues": "Problemas Encontrados",
+    "improvements": "Sugerencias de Mejora",
+    "strengths": "Puntos Fuertes",
+    "noIssues": "¡Ningún problema encontrado!",
+    "severity": {
+      "error": "Error",
+      "warning": "Aviso",
+      "info": "Info"
+    },
+    "line": "Línea {line}"
+  },
+  "error": {
+    "generic": "Error al analizar el código. Inténtalo de nuevo.",
+    "rateLimit": "Demasiadas solicitudes. Espera un momento.",
+    "tooShort": "El código debe tener al menos 10 caracteres."
+  },
+  "how": {
+    "title": "Cómo Funciona",
+    "steps": [
+      { "title": "Pega el Código", "description": "Pega cualquier fragmento de código en el editor" },
+      { "title": "IA Analiza", "description": "GPT-4o Mini analiza bugs, rendimiento, seguridad y estilo" },
+      { "title": "Recibe Feedback", "description": "Ve score, problemas encontrados y sugerencias de mejora" }
+    ]
+  },
+  "languages": ["TypeScript", "JavaScript", "Python", "Java", "Go", "Rust", "C++", "CSS", "HTML", "SQL", "Shell", "Ruby", "PHP", "Swift", "Kotlin"]
+}

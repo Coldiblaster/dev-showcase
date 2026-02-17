@@ -39,7 +39,11 @@ export function CopyFeedbackProvider({
   const showFeedback = useCallback(() => {
     setVisible(true);
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => setVisible(false), 1500);
+    const FEEDBACK_DURATION_MS = 1500;
+    timeoutRef.current = setTimeout(
+      () => setVisible(false),
+      FEEDBACK_DURATION_MS,
+    );
   }, []);
 
   return (
@@ -52,7 +56,9 @@ export function CopyFeedbackProvider({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed bottom-20 left-1/2 z-100 -translate-x-1/2"
+            className="fixed bottom-20 left-1/2 z-[100] -translate-x-1/2"
+            role="status"
+            aria-live="polite"
           >
             <div className="flex items-center gap-2 rounded-full border border-primary/20 bg-background/95 px-4 py-2 shadow-lg backdrop-blur-sm">
               <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/15">

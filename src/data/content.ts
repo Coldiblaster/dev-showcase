@@ -1,9 +1,11 @@
+export type ContentCategory = "implementation" | "guide" | "tool";
+
 export type ContentItem = {
   slug: string;
   title: string;
   description: string;
   component: string;
-  category: "implementation" | "guide";
+  category: ContentCategory;
 };
 
 export const CONTENT_ITEMS: ContentItem[] = [
@@ -30,6 +32,14 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Como criar um chatbot IA com streaming usando OpenAI, Vercel AI SDK e Next.js App Router. System prompt, pricing e arquitetura completa.",
     component: "AiChatbotShowcase",
     category: "implementation",
+  },
+  {
+    slug: "code-review",
+    title: "AI Code Reviewer — Análise de Código com IA",
+    description:
+      "Cole seu código e receba análise profissional com GPT-4o Mini: bugs, performance, segurança, boas práticas e score de qualidade.",
+    component: "CodeReviewShowcase",
+    category: "tool",
   },
   {
     slug: "ai-tips",
@@ -63,12 +73,20 @@ export const CONTENT_ITEMS: ContentItem[] = [
     component: "DevResourcesPage",
     category: "guide",
   },
+  {
+    slug: "security-tips",
+    title: "Segurança Frontend & Backend — Guia Completo",
+    description:
+      "Proteções reais em produção: Rate Limiting, reCAPTCHA v3, Honeypot, Zod Validation, Security Headers e variáveis de ambiente seguras.",
+    component: "SecurityTips",
+    category: "guide",
+  },
 ];
 
 export function getContentBySlug(slug: string) {
   return CONTENT_ITEMS.find((item) => item.slug === slug);
 }
 
-export function getContentByCategory(category: "implementation" | "guide") {
+export function getContentByCategory(category: ContentCategory) {
   return CONTENT_ITEMS.filter((item) => item.category === category);
 }

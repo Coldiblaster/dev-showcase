@@ -20,5 +20,12 @@
       "description": "Sé estructurar prompts eficientes: contexto claro, ejemplos, restricciones y formato de salida. Esto garantiza respuestas consistentes y reduce las iteraciones."
     }
   ],
-  "tryChat": "Probar el Chatbot"
+  "tryChat": "Probar el Chatbot",
+  "example": {
+    "badge": "Ejemplo real",
+    "title": "Cómo utilizo Vercel AI SDK en proyectos",
+    "description": "Chatbot con respuestas en streaming utilizando AI SDK + OpenAI",
+    "codeComment": "// Controlador de ruta para chat con streaming",
+    "codeSystemPrompt": "Eres un asistente que ayuda a los desarrolladores."
+  }
 }

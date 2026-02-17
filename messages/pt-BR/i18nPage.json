@@ -86,7 +86,14 @@
     "dateLabel": "Data formatada",
     "numberLabel": "Numero formatado",
     "pluralLabel": "Pluralizacao",
-    "items": "{count, plural, =0 {Nenhum item} one {1 item} other {# itens}}"
+    "items": "{count, plural, =0 {Nenhum item} one {1 item} other {# itens}}",
+    "nameLabel": "Nome (preview)",
+    "nameAriaLabel": "Nome para saudação",
+    "decrement": "Diminuir contador",
+    "increment": "Aumentar contador",
+    "copyLinkAriaLabel": "Copiar link da demo",
+    "linkCopied": "Link copiado",
+    "copyLink": "Copiar link"
   },
   "architecture": {
     "title": "Arquitetura",
@@ -124,6 +131,7 @@
       "description": "Plano gratuito suficiente para a maioria dos projetos"
     },
     "setup": "Como Configurar",
+    "tipLabel": "💡 Dica:",
     "tip": "O plano gratuito do DeepL oferece 500.000 caracteres por mes, suficiente para ~50 paginas de conteudo. Perfeito para startups e projetos pessoais.",
     "getKey": "Obtenha sua chave gratuita em:"
   },

@@ -42,7 +42,7 @@ export function SystemPromptSection() {
 
             <motion.div variants={fadeUp}>
               <h3 className="mb-4 text-base font-semibold text-foreground md:text-lg">
-                Dicas para um bom prompt
+                {t("systemPrompt.tipsTitle")}
               </h3>
               <div className="flex flex-col gap-3">
                 {tips.map((tip, i) => (

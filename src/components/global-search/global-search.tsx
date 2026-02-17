@@ -38,6 +38,7 @@ export function GlobalSearch() {
         section: t("section"),
         implementation: t("implementation"),
         guide: t("guide"),
+        tool: t("tool"),
       }),
     [t],
   );

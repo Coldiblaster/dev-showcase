@@ -3,10 +3,13 @@
 import { motion } from "framer-motion";
 import { Code2 } from "lucide-react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export function NavLogo() {
+  const t = useTranslations("global");
+
   return (
-    <Link href="/" aria-label="Ir para a página inicial">
+    <Link href="/" aria-label={t("goHome")}>
       <motion.div
         className="flex items-center gap-2 text-foreground"
         whileHover={{ scale: 1.05 }}

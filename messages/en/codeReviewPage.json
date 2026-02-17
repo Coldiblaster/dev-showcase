@@ -1,0 +1,46 @@
+{
+  "hero": {
+    "badge": "AI Code Review",
+    "title": "AI Code Reviewer",
+    "subtitle": "Paste your code and get a professional review in seconds",
+    "description": "Powered by GPT-4o Mini — bug analysis, performance, security and best practices with improvement suggestions."
+  },
+  "editor": {
+    "placeholder": "// Paste your code here...\n// Supports any language\n\nfunction example() {\n  return 'Hello World';\n}",
+    "language": "Language",
+    "autoDetect": "Auto-detect",
+    "review": "Review Code",
+    "reviewing": "Reviewing...",
+    "clear": "Clear",
+    "charCount": "{count} / 5000 characters",
+    "minChars": "Minimum 10 characters"
+  },
+  "result": {
+    "score": "Score",
+    "summary": "Summary",
+    "issues": "Issues Found",
+    "improvements": "Improvement Suggestions",
+    "strengths": "Strengths",
+    "noIssues": "No issues found!",
+    "severity": {
+      "error": "Error",
+      "warning": "Warning",
+      "info": "Info"
+    },
+    "line": "Line {line}"
+  },
+  "error": {
+    "generic": "Error analyzing code. Try again.",
+    "rateLimit": "Too many requests. Please wait.",
+    "tooShort": "Code must be at least 10 characters."
+  },
+  "how": {
+    "title": "How It Works",
+    "steps": [
+      { "title": "Paste Code", "description": "Paste any code snippet in the editor above" },
+      { "title": "AI Analyzes", "description": "GPT-4o Mini analyzes bugs, performance, security and style" },
+      { "title": "Get Feedback", "description": "See score, issues found and improvement suggestions" }
+    ]
+  },
+  "languages": ["TypeScript", "JavaScript", "Python", "Java", "Go", "Rust", "C++", "CSS", "HTML", "SQL", "Shell", "Ruby", "PHP", "Swift", "Kotlin"]
+}

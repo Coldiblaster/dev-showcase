@@ -1,4 +1,9 @@
-export type SearchResultType = "page" | "section" | "implementation" | "guide";
+export type SearchResultType =
+  | "page"
+  | "section"
+  | "implementation"
+  | "guide"
+  | "tool";
 
 export type SearchResult = {
   id: string;
@@ -7,4 +12,10 @@ export type SearchResult = {
   type: SearchResultType;
   url: string;
   tags: string[];
+};
+
+/** SearchResult com título e descrição já traduzidos. */
+export type ResolvedSearchResult = SearchResult & {
+  title: string;
+  description: string;
 };

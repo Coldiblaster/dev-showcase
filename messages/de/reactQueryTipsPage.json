@@ -1,0 +1,53 @@
+{
+  "hero": {
+    "badge": "Data Fetching",
+    "title": "React Query Grundlagen",
+    "subtitle": "TanStack Query (React Query)",
+    "description": "Beherrschen Sie Caching, Mutations, Optimierung und Best Practices für professionelles asynchrones State-Management.",
+    "warning": "Diese Anleitung setzt grundlegende Kenntnisse von React und Hooks voraus. Fokus auf praktische, reale Anwendung."
+  },
+  "setup": {
+    "title": "Erste Einrichtung",
+    "subtitle": "Grundkonfiguration",
+    "description": "Installieren Sie React Query und konfigurieren Sie den QueryClient im Root Ihrer Anwendung."
+  },
+  "useQuery": {
+    "title": "useQuery — Daten abrufen",
+    "subtitle": "GET requests",
+    "features": [
+      { "title": "Automatisches Caching", "description": "Daten werden automatisch gecacht und wiederverwendet" },
+      { "title": "Intelligentes Refetching", "description": "Aktualisiert Daten bei Bedarf (Window-Fokus)" },
+      { "title": "Ladezustände", "description": "Fertige Loading-, Error- und Success-Zustände" },
+      { "title": "Automatischer Retry", "description": "Versucht bei Fehler automatisch erneut" }
+    ]
+  },
+  "useMutation": {
+    "title": "useMutation — Daten ändern",
+    "subtitle": "POST, PUT, DELETE",
+    "description": "Verwenden Sie Mutations zum Erstellen, Aktualisieren oder Löschen von Daten. Cache wird nach Erfolg automatisch invalidiert."
+  },
+  "bestPractices": {
+    "title": "Best Practices",
+    "subtitle": "Wichtige Tipps",
+    "tips": [
+      { "title": "Konsistente Query Keys verwenden", "description": "Verwenden Sie immer Arrays: ['users', userId] statt einfacher Strings" },
+      { "title": "staleTime konfigurieren", "description": "Definieren Sie, wie lange Daten als 'frisch' gelten" },
+      { "title": "Präzise invalidieren", "description": "Verwenden Sie invalidateQueries mit spezifischem queryKey, nicht alles" },
+      { "title": "Optimistic Updates", "description": "UI vor der Server-Antwort aktualisieren für bessere UX" },
+      { "title": "Error Boundaries", "description": "Fehler immer mit Error Boundaries oder try/catch behandeln" }
+    ]
+  },
+  "resources": {
+    "title": "Offizielle Ressourcen",
+    "subtitle": "Dokumentation und Tools",
+    "links": [
+      { "title": "Offizielle Dokumentation", "description": "Vollständige TanStack Query Anleitung" },
+      { "title": "DevTools", "description": "Debug-Tool für React Query" },
+      { "title": "Beispiele", "description": "Praktische Beispiele und Anwendungsfälle" }
+    ]
+  },
+  "cta": {
+    "title": "Bereit, Ihr Data Fetching zu optimieren?",
+    "description": "Zurück zum Portfolio und mehr Inhalte erkunden"
+  }
+}

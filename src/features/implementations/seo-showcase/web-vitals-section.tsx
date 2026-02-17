@@ -101,7 +101,7 @@ export function WebVitalsSection() {
                       <div className="rounded-lg border border-border/30 bg-secondary/30 p-3">
                         <p className="text-xs leading-relaxed text-muted-foreground">
                           <span className="font-semibold text-foreground">
-                            Dica:{" "}
+                            {t("webVitals.tipLabel")}{" "}
                           </span>
                           {item.tip}
                         </p>

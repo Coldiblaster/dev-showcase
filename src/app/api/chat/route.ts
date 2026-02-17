@@ -1,55 +1,96 @@
+/**
+ * API Route — Chat IA do Portfolio (GPT-4.1 Nano, streaming).
+ *
+ * Responde perguntas sobre o Vinicius e a plataforma com humor.
+ * Segurança compartilhada via @/lib/api-security.
+ */
+
 import OpenAI from "openai";
 import { z } from "zod";
 
+import {
+  checkApiKey,
+  checkBodySize,
+  getApiKey,
+  jsonError,
+  safeParseBody,
+  sanitizeStreamChunk,
+  sanitizeUserInput,
+  secureStreamHeaders,
+} from "@/lib/api-security";
 import { SYSTEM_PROMPT } from "@/lib/chat/system-prompt";
 import { getClientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
-const MAX_MESSAGES = 10;
+// ---------------------------------------------------------------------------
+// Constantes
+// ---------------------------------------------------------------------------
 
+const MAX_MESSAGES = 10;
+const MAX_USER_MSG_LENGTH = 500;
+const MAX_ASSISTANT_MSG_LENGTH = 2_000;
+const MAX_BODY_SIZE = 16_000;
+
+// ---------------------------------------------------------------------------
+// Schemas
+// ---------------------------------------------------------------------------
+
+/** Schema de uma mensagem do usuário. */
 const userMessageSchema = z.object({
   role: z.literal("user"),
-  content: z.string().max(500),
+  content: z.string().min(1).max(MAX_USER_MSG_LENGTH),
 });
 
+/** Schema de uma mensagem do assistente (histórico). */
 const assistantMessageSchema = z.object({
   role: z.literal("assistant"),
-  content: z.string().max(2000),
+  content: z.string().max(MAX_ASSISTANT_MSG_LENGTH),
 });
 
 const messageSchema = z.union([userMessageSchema, assistantMessageSchema]);
 
+/** Schema do body da requisição. */
 const bodySchema = z.object({
-  messages: z.array(messageSchema).max(MAX_MESSAGES),
+  messages: z.array(messageSchema).min(1).max(MAX_MESSAGES),
 });
 
+// ---------------------------------------------------------------------------
+// Handler
+// ---------------------------------------------------------------------------
+
+/** Processa mensagem de chat, aplica segurança e retorna stream da IA. */
 export async function POST(request: Request) {
   try {
+    // 1. Body size
+    const sizeError = checkBodySize(request, MAX_BODY_SIZE);
+    if (sizeError) return sizeError;
+
+    // 2. Rate limit
     const ip = getClientIp(request);
     const rl = rateLimit(ip, { prefix: "chat", limit: 30, windowSeconds: 60 });
     if (!rl.success) return rateLimitResponse(rl);
 
-    const apiKey = process.env.OPENAI_API_KEY;
+    // 3. API key
+    const keyError = checkApiKey();
+    if (keyError) return keyError;
 
-    if (!apiKey) {
-      return new Response(
-        JSON.stringify({ error: "Chat não configurado" }),
-        { status: 503, headers: { "Content-Type": "application/json" } },
-      );
-    }
+    // 4. Parse body
+    const bodyResult = await safeParseBody(request);
+    if ("error" in bodyResult) return bodyResult.error;
 
-    const body = await request.json();
-    const parsed = bodySchema.safeParse(body);
+    // 5. Validar schema
+    const parsed = bodySchema.safeParse(bodyResult.data);
+    if (!parsed.success) return jsonError("Dados inválidos", 400);
 
-    if (!parsed.success) {
-      return new Response(
-        JSON.stringify({ error: "Dados inválidos" }),
-        { status: 400, headers: { "Content-Type": "application/json" } },
-      );
-    }
+    // 6. Sanitizar inputs do usuário (apenas mensagens do user)
+    const sanitizedMessages = parsed.data.messages.slice(-6).map((msg) => {
+      if (msg.role === "user") {
+        return { ...msg, content: sanitizeUserInput(msg.content) };
+      }
+      return msg;
+    });
 
-    const recentMessages = parsed.data.messages.slice(-6);
-
-    const openai = new OpenAI({ apiKey });
+    // 7. Chamar OpenAI com streaming
+    const openai = new OpenAI({ apiKey: getApiKey() });
 
     const stream = await openai.chat.completions.create({
       model: "gpt-4.1-nano",
@@ -58,10 +99,11 @@ export async function POST(request: Request) {
       stream: true,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
-        ...recentMessages,
+        ...sanitizedMessages,
       ],
     });
 
+    // 8. Stream com sanitização de cada chunk
     const encoder = new TextEncoder();
     const readable = new ReadableStream({
       async start(controller) {
@@ -69,7 +111,7 @@ export async function POST(request: Request) {
           for await (const chunk of stream) {
             const text = chunk.choices[0]?.delta?.content;
             if (text) {
-              controller.enqueue(encoder.encode(text));
+              controller.enqueue(encoder.encode(sanitizeStreamChunk(text)));
             }
           }
         } catch (streamErr) {
@@ -83,12 +125,7 @@ export async function POST(request: Request) {
       },
     });
 
-    return new Response(readable, {
-      headers: {
-        "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "no-cache",
-      },
-    });
+    return new Response(readable, { headers: secureStreamHeaders() });
   } catch (err) {
     const errorMessage =
       err instanceof Error ? err.message : "Erro desconhecido";
@@ -100,13 +137,9 @@ export async function POST(request: Request) {
         errorMessage.includes("rate_limit") ||
         errorMessage.includes("insufficient"));
 
-    return new Response(
-      JSON.stringify({
-        error: isQuota
-          ? "Limite de uso atingido. Tente mais tarde."
-          : "Erro interno",
-      }),
-      { status: isQuota ? 429 : 500, headers: { "Content-Type": "application/json" } },
+    return jsonError(
+      isQuota ? "Limite de uso atingido. Tente mais tarde." : "Erro interno",
+      isQuota ? 429 : 500,
     );
   }
 }

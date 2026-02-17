@@ -26,6 +26,7 @@ const levelConfig = {
   intermediate: { dots: 3, color: "bg-primary" },
 };
 
+/** Seção de tech stack com abas por categoria. */
 export function StackSection() {
   const t = useTranslations("homeStack");
   const ref = useRef(null);
@@ -35,7 +36,11 @@ export function StackSection() {
   const tabs = t.raw("tabs") as TabData[];
 
   return (
-    <section id="stack" className="relative px-4 py-16 md:px-6 md:py-32" ref={ref}>
+    <section
+      id="stack"
+      className="relative px-4 py-16 md:px-6 md:py-32"
+      ref={ref}
+    >
       <div className="relative mx-auto max-w-5xl">
         {/* Header */}
         <motion.div
@@ -124,9 +129,7 @@ export function StackSection() {
                                 <div
                                   key={i}
                                   className={`h-1 w-2.5 rounded-full md:h-1.5 md:w-3 ${
-                                    i < level.dots
-                                      ? level.color
-                                      : "bg-muted"
+                                    i < level.dots ? level.color : "bg-muted"
                                   }`}
                                 />
                               ))}
@@ -144,7 +147,6 @@ export function StackSection() {
             ))}
           </Tabs>
         </motion.div>
-
       </div>
     </section>
   );

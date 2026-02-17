@@ -58,6 +58,9 @@
       { "name": "gpt-4.1-mini", "input": "$0.40/1M tokens", "output": "$1.60/1M tokens", "best": "Mais inteligente, bom para respostas complexas", "recommended": false },
       { "name": "gpt-4.1", "input": "$2.00/1M tokens", "output": "$8.00/1M tokens", "best": "Modelo mais capaz, para casos avançados", "recommended": false }
     ],
+    "recommended": "Recomendado",
+    "inputLabel": "Input",
+    "outputLabel": "Output",
     "estimate": "Estimativa: ~1000 conversas por $0.05 com gpt-4.1-nano",
     "tip": "Com $5 de crédito inicial você tem milhares de conversas. Perfeito para portfolio."
   },
@@ -85,6 +88,7 @@
   "systemPrompt": {
     "title": "System Prompt — A personalidade",
     "description": "O system prompt define quem o chatbot é, como se comporta e o que sabe.",
+    "tipsTitle": "Dicas para um bom prompt",
     "tips": [
       "Defina regras claras: 'Fale em terceira pessoa', 'Não invente informações'",
       "Inclua knowledge base: dados reais sobre o dev, projetos, skills",

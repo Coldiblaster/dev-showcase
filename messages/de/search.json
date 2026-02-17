@@ -15,6 +15,7 @@
   "section": "Abschnitt",
   "implementation": "Implementierung",
   "guide": "Anleitung",
+  "tool": "Werkzeug",
   "items": {
     "about": {
       "title": "Über mich",
@@ -59,6 +60,14 @@
     "dev-resources": {
       "title": "Entwickler-Ressourcen",
       "description": "Inhalte nach Niveau gefiltert (Jr/Mid/Sr) mit interaktivem Playground"
+    },
+    "security-tips": {
+      "title": "Frontend- & Backend-Sicherheit",
+      "description": "Rate Limiting, reCAPTCHA, Honeypot, Zod, Security Headers und sichere Umgebungsvariablen"
+    },
+    "code-review": {
+      "title": "KI Code Reviewer",
+      "description": "Code einfügen und professionelle KI-Analyse erhalten — Bugs, Performance und Best Practices"
     }
   }
 }

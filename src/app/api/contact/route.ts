@@ -1,7 +1,13 @@
-import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 
+import {
+  checkBodySize,
+  jsonError,
+  safeParseBody,
+  sanitizeUserInput,
+  secureJsonHeaders,
+} from "@/lib/api-security";
 import { PERSONAL } from "@/lib/constants";
 import { ContactEmailTemplate } from "@/lib/email/contact-template";
 import { getClientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
@@ -15,6 +21,7 @@ const contactSchema = z.object({
 
 const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET_KEY;
 const RECAPTCHA_THRESHOLD = 0.5;
+const MAX_BODY_SIZE = 8_000;
 
 async function verifyRecaptcha(token: string): Promise<boolean> {
   if (!RECAPTCHA_SECRET) return true;
@@ -40,27 +47,30 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
 export async function POST(request: Request) {
   try {
     const ip = getClientIp(request);
-    const rl = rateLimit(ip, { prefix: "contact", limit: 5, windowSeconds: 300 });
+    const rl = rateLimit(ip, {
+      prefix: "contact",
+      limit: 5,
+      windowSeconds: 300,
+    });
     if (!rl.success) return rateLimitResponse(rl);
+
+    const sizeError = checkBodySize(request, MAX_BODY_SIZE);
+    if (sizeError) return sizeError;
 
     const apiKey = process.env.RESEND_API_KEY;
 
     if (!apiKey) {
       console.error("[Contact API] RESEND_API_KEY not configured");
-      return NextResponse.json(
-        { error: "Serviço de email não configurado" },
-        { status: 503 },
-      );
+      return jsonError("Email service not configured", 503);
     }
 
-    const body = await request.json();
-    const parsed = contactSchema.safeParse(body);
+    const bodyResult = await safeParseBody(request);
+    if ("error" in bodyResult) return bodyResult.error;
+
+    const parsed = contactSchema.safeParse(bodyResult.data);
 
     if (!parsed.success) {
-      return NextResponse.json(
-        { error: "Dados inválidos", details: parsed.error.flatten() },
-        { status: 400 },
-      );
+      return jsonError("Invalid data", 400);
     }
 
     const { name, email, message, recaptchaToken } = parsed.data;
@@ -68,12 +78,10 @@ export async function POST(request: Request) {
     if (RECAPTCHA_SECRET && recaptchaToken) {
       const isHuman = await verifyRecaptcha(recaptchaToken);
       if (!isHuman) {
-        return NextResponse.json(
-          { error: "Verificação reCAPTCHA falhou" },
-          { status: 403 },
-        );
+        return jsonError("reCAPTCHA verification failed", 403);
       }
     }
+
     const resend = new Resend(apiKey);
 
     const fromAddress =
@@ -84,24 +92,25 @@ export async function POST(request: Request) {
       from: fromAddress,
       to: [toAddress],
       replyTo: email,
-      subject: `Novo contato: ${name}`,
-      react: ContactEmailTemplate({ name, email, message }),
+      subject: `Novo contato: ${sanitizeUserInput(name)}`,
+      react: ContactEmailTemplate({
+        name: sanitizeUserInput(name),
+        email,
+        message: sanitizeUserInput(message),
+      }),
     });
 
     if (error) {
       console.error("[Contact API] Resend error:", error);
-      return NextResponse.json(
-        { error: "Falha ao enviar email" },
-        { status: 500 },
-      );
+      return jsonError("Failed to send email", 500);
     }
 
-    return NextResponse.json({ success: true });
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: secureJsonHeaders(),
+    });
   } catch (err) {
     console.error("[Contact API] Unexpected error:", err);
-    return NextResponse.json(
-      { error: "Erro interno do servidor" },
-      { status: 500 },
-    );
+    return jsonError("Internal server error", 500);
   }
 }

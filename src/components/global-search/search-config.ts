@@ -1,4 +1,4 @@
-import { Book, Home, Lightbulb } from "lucide-react";
+import { Book, Home, Lightbulb, Wrench } from "lucide-react";
 
 import type { SearchResultType } from "./types";
 
@@ -23,6 +23,11 @@ export function getTypeConfig(labels: Record<SearchResultType, string>) {
       icon: Book,
       label: labels.guide,
       color: "bg-accent/10 text-accent",
+    },
+    tool: {
+      icon: Wrench,
+      label: labels.tool,
+      color: "bg-chart-2/10 text-chart-2",
     },
   } as const;
 }

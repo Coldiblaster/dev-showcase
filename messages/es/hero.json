@@ -10,9 +10,19 @@
   "cta": "Explorar implementaciones",
   "secondary": "Hablemos",
   "downloadCv": "Descargar CV",
+  "scrollDown": "Desplazar hacia abajo",
   "stats": {
     "impact": "Más de 8 años de experiencia",
     "implementations": "Proyectos reales, no tutoriales",
     "opensource": "De dev para devs"
+  },
+  "meta": {
+    "description": "Portafolio de Vinicius Bastazin. Desarrollador frontend sénior con más de 8 años de experiencia en React.js, Next.js y React Native. Especialista en arquitectura frontend, sistemas de diseño, rendimiento y accesibilidad.",
+    "ogDescription": "Portafolio y plataforma de contenido de Vinicius. Más de 8 años con React, Next.js y React Native. Implementaciones reales, guías y consejos para desarrolladores.",
+    "twitterDescription": "Portafolio de Vinicius. Más de 8 años con React, Next.js y React Native. Implementaciones reales y guías para desarrolladores.",
+    "ogImageDescription": "Más de 8 años de experiencia en React, Next.js y React Native. Arquitectura frontend, sistemas de diseño y liderazgo técnico.",
+    "personDescription": "Desarrollador frontend sénior con más de 8 años de experiencia en React.js, Next.js y React Native. Especialista en arquitectura frontend, sistemas de diseño, rendimiento, accesibilidad y liderazgo técnico.",
+    "websiteDescription": "Portafolio, implementaciones reales y guías técnicas de Vinicius — React, Next.js, React Native y más.",
+    "profileDescription": "Portafolio profesional de Vinicius. Proyectos, experiencia, implementaciones técnicas y guías para desarrolladores."
   }
 }

@@ -1,12 +1,11 @@
 import "./globals.css";
 
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
-
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { getMessages, getTranslations } from "next-intl/server";
 
 import { ChatWidget } from "@/components/chat/chat-widget";
 import { CopyFeedbackProvider } from "@/components/copy-feedback";
@@ -15,6 +14,7 @@ import { JsonLd } from "@/components/json-ld";
 import { Navbar } from "@/components/navbar";
 import { RecaptchaProvider } from "@/components/recaptcha-provider";
 import { ScrollTopButton } from "@/components/scroll-top";
+import { TerminalEasterEgg } from "@/components/terminal";
 import { PERSONAL } from "@/lib/constants";
 import { resolveLocale } from "@/lib/i18n/request";
 import { SITE_AUTHOR, SITE_NAME, SITE_URL } from "@/lib/seo";
@@ -29,51 +29,55 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: `${SITE_NAME} | ${PERSONAL.role} — React, Next.js, React Native`,
-    template: `%s | ${SITE_NAME}`,
-  },
-  description: `Portfolio de ${PERSONAL.fullName}. ${PERSONAL.role} com mais de 8 anos de experiência em React.js, Next.js e React Native. Especialista em arquitetura frontend, design systems, performance e acessibilidade.`,
-  authors: [{ name: SITE_AUTHOR, url: SITE_URL }],
-  creator: SITE_AUTHOR,
-  applicationName: SITE_NAME,
-  robots: { index: true, follow: true },
-  alternates: { canonical: SITE_URL },
-  openGraph: {
-    title: `${SITE_NAME} — ${PERSONAL.role}`,
-    description: `Portfolio e plataforma de conteúdo de ${PERSONAL.name}. +8 anos com React, Next.js e React Native. Implementações reais, guias e dicas para devs.`,
-    url: SITE_URL,
-    siteName: SITE_NAME,
-    type: "website",
-    locale: "pt_BR",
-    alternateLocale: ["en_US", "es_ES", "de_DE"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${SITE_NAME} — ${PERSONAL.role}`,
-    description: `Portfolio de ${PERSONAL.name}. +8 anos com React, Next.js e React Native. Implementações reais e guias para devs.`,
-  },
-  keywords: [
-    "Vinicius Bastazin",
-    "portfolio frontend",
-    "desenvolvedor React",
-    "Next.js developer",
-    "React Native",
-    "TypeScript",
-    "frontend senior",
-    "design systems",
-    "arquitetura frontend",
-    "Tailwind CSS",
-    "i18n",
-    "SEO Next.js",
-    "chatbot IA",
-  ],
-  verification: {
-    google: PERSONAL.googleVerification,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("hero");
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: `${SITE_NAME} | ${PERSONAL.role} — React, Next.js, React Native`,
+      template: `%s | ${SITE_NAME}`,
+    },
+    description: t("meta.description"),
+    authors: [{ name: SITE_AUTHOR, url: SITE_URL }],
+    creator: SITE_AUTHOR,
+    applicationName: SITE_NAME,
+    robots: { index: true, follow: true },
+    alternates: { canonical: SITE_URL },
+    openGraph: {
+      title: `${SITE_NAME} — ${PERSONAL.role}`,
+      description: t("meta.ogDescription"),
+      url: SITE_URL,
+      siteName: SITE_NAME,
+      type: "website",
+      locale: "pt_BR",
+      alternateLocale: ["en_US", "es_ES", "de_DE"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${SITE_NAME} — ${PERSONAL.role}`,
+      description: t("meta.twitterDescription"),
+    },
+    keywords: [
+      "Vinicius Bastazin",
+      "portfolio frontend",
+      "React developer",
+      "Next.js developer",
+      "React Native",
+      "TypeScript",
+      "frontend senior",
+      "design systems",
+      "frontend architecture",
+      "Tailwind CSS",
+      "i18n",
+      "SEO Next.js",
+      "AI chatbot",
+    ],
+    verification: {
+      google: PERSONAL.googleVerification,
+    },
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: "#0a0f1a",
@@ -107,6 +111,7 @@ export default async function RootLayout({
               <ScrollTopButton />
               <ChatWidget />
               <Footer />
+              <TerminalEasterEgg />
             </CopyFeedbackProvider>
           </RecaptchaProvider>
         </NextIntlClientProvider>

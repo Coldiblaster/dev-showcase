@@ -1,0 +1,16 @@
+{
+  "title": "GitHub ao Vivo",
+  "subtitle": "Dados em tempo real do meu perfil GitHub",
+  "repos": "Repositórios",
+  "followers": "Seguidores",
+  "stars": "Estrelas",
+  "topLangs": "Top Linguagens",
+  "recentActivity": "Atividade Recente",
+  "viewProfile": "Ver perfil completo",
+  "loading": "Carregando dados do GitHub...",
+  "error": "Não foi possível carregar os dados",
+  "retry": "Tentar novamente",
+  "noActivity": "Sem atividade recente",
+  "now": "agora",
+  "updatedAgo": "Atualizado em tempo real via GitHub API"
+}
