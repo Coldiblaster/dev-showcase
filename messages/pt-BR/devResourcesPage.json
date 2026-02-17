@@ -1,0 +1,47 @@
+{
+  "hero": {
+    "badge": "Guia",
+    "title": "Recursos para Desenvolvedores",
+    "subtitle": "Explore ferramentas, dicas e exemplos práticos para acelerar seu aprendizado.",
+    "description": "Componentes ao vivo, snippets úteis, comparações de código e playground interativo. Tudo que você precisa para aprender e evoluir como dev. Aqui você encontra recursos para diferentes stacks, frameworks e temas, com exemplos reais e dicas de produtividade."
+  },
+  "liveComponents": {
+    "badge": "Componentes ao Vivo",
+    "title": "Veja, Teste e Aprenda",
+    "description": "Componentes reais que você pode testar, ver o código e entender como funcionam",
+    "tabs": {
+      "preview": "Visualizar",
+      "code": "Código",
+      "explanation": "Explicação"
+    },
+    "copy": "Copiar",
+    "copied": "Copiado!"
+  },
+  "snippets": {
+    "badge": "Code Snippets",
+    "title": "Biblioteca de Snippets",
+    "description": "Códigos úteis e reutilizáveis. Copie, cole e adapte aos seus projetos",
+    "searchPlaceholder": "Buscar snippets...",
+    "resultCount": "{count, plural, =0 {Nenhum snippet encontrado} one {# snippet encontrado} other {# snippets encontrados}}",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "emptyState": "Nenhum snippet encontrado. Tente outro termo de busca."
+  },
+  "beforeAfter": {
+    "badge": "Code Refactoring",
+    "title": "Antes & Depois",
+    "description": "Veja como código ruim se transforma em código limpo e profissional",
+    "tabs": {
+      "comparison": "Comparação",
+      "before": "Antes",
+      "after": "Depois"
+    },
+    "beforeProblems": "Antes - Problemas",
+    "afterImprovements": "Depois - Melhorias",
+    "metrics": {
+      "performance": "Performance",
+      "readability": "Legibilidade",
+      "maintainability": "Manutenção"
+    }
+  }
+}

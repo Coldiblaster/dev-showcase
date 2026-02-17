@@ -2,6 +2,7 @@ import about from "./about.json";
 import ai from "./ai.json";
 import aiInnovation from "./aiInnovation.json";
 import contact from "./contact.json";
+import devResourcesPage from "./devResourcesPage.json";
 import experience from "./experience.json";
 import footer from "./footer.json";
 import global from "./global.json";
@@ -25,6 +26,7 @@ export default {
   ai,
   aiInnovation,
   contact,
+  devResourcesPage,
   experience,
   footer,
   hero,

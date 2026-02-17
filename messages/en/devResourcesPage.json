@@ -1,0 +1,47 @@
+{
+  "hero": {
+    "badge": "Guide",
+    "title": "Developer Resources",
+    "subtitle": "Explore tools, tips, and practical examples to speed up your learning.",
+    "description": "Live components, useful snippets, code comparisons, and interactive playground. Everything you need to learn and grow as a developer. Here you'll find resources for different stacks, frameworks, and topics, with real-world examples and productivity tips."
+  },
+  "liveComponents": {
+    "badge": "Live Components",
+    "title": "See, Test and Learn",
+    "description": "Real components you can test, view the code, and understand how they work",
+    "tabs": {
+      "preview": "Preview",
+      "code": "Code",
+      "explanation": "Explanation"
+    },
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "snippets": {
+    "badge": "Code Snippets",
+    "title": "Snippets Library",
+    "description": "Useful and reusable code. Copy, paste, and adapt to your projects",
+    "searchPlaceholder": "Search snippets...",
+    "resultCount": "{count, plural, =0 {No snippets found} one {# snippet found} other {# snippets found}}",
+    "copy": "Copy",
+    "copied": "Copied",
+    "emptyState": "No snippets found. Try a different search term."
+  },
+  "beforeAfter": {
+    "badge": "Code Refactoring",
+    "title": "Before & After",
+    "description": "See how bad code transforms into clean and professional code",
+    "tabs": {
+      "comparison": "Comparison",
+      "before": "Before",
+      "after": "After"
+    },
+    "beforeProblems": "Before - Issues",
+    "afterImprovements": "After - Improvements",
+    "metrics": {
+      "performance": "Performance",
+      "readability": "Readability",
+      "maintainability": "Maintainability"
+    }
+  }
+}

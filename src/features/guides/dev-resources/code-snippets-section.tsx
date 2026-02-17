@@ -1,192 +1,239 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { Check, Copy, Search } from "lucide-react";
-import { useRef, useState } from "react";
+import { BookOpen, Check, Code, Copy, Play, Search } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useCallback, useMemo, useState } from "react";
 
+import { AnimatedSection } from "@/components/animated-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
 
 import { snippets } from "./data/code-snippets";
 
 export function CodeSnippetsSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const t = useTranslations("devResourcesPage.snippets");
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  const handleCopy = async (code: string, id: string) => {
+  const handleCopy = useCallback(async (code: string, id: string) => {
     await navigator.clipboard.writeText(code);
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2000);
-  };
+  }, []);
 
-  // Get all unique tags
-  const allTags = Array.from(new Set(snippets.flatMap((s) => s.tags))).sort();
+  const allTags = useMemo(
+    () => Array.from(new Set(snippets.flatMap((s) => s.tags))).sort(),
+    [],
+  );
 
-  // Filter snippets
-  const filteredSnippets = snippets.filter((snippet) => {
-    const matchesSearch =
-      searchQuery === "" ||
-      snippet.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      snippet.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      snippet.tags.some((tag) =>
-        tag.toLowerCase().includes(searchQuery.toLowerCase()),
-      );
+  const filteredSnippets = useMemo(() => {
+    return snippets.filter((snippet) => {
+      const query = searchQuery.toLowerCase();
+      const matchesSearch =
+        !query ||
+        snippet.title.toLowerCase().includes(query) ||
+        snippet.description.toLowerCase().includes(query) ||
+        snippet.tags.some((tag) => tag.toLowerCase().includes(query));
 
-    const matchesTags =
-      selectedTags.length === 0 ||
-      selectedTags.every((tag) => snippet.tags.includes(tag));
+      const matchesTags =
+        selectedTags.length === 0 ||
+        selectedTags.every((tag) => snippet.tags.includes(tag));
 
-    return matchesSearch && matchesTags;
-  });
+      return matchesSearch && matchesTags;
+    });
+  }, [searchQuery, selectedTags]);
 
-  const toggleTag = (tag: string) => {
+  const toggleTag = useCallback((tag: string) => {
     setSelectedTags((prev) =>
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
     );
-  };
+  }, []);
 
   return (
-    <section id="snippets" className="relative px-6 py-32" ref={ref}>
+    <section id="snippets" className="relative px-6 py-32">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="mb-12 text-center"
-        >
-          <Badge variant="secondary" className="mb-4 font-mono text-xs">
-            Code Snippets
-          </Badge>
-          <h2 className="mb-4 text-balance text-4xl font-bold tracking-tight md:text-5xl">
-            Biblioteca de Snippets
-          </h2>
-          <p className="mx-auto max-w-2xl text-pretty text-lg text-muted-foreground">
-            Códigos úteis e reutilizáveis. Copie, cole e adapte aos seus
-            projetos
-          </p>
-        </motion.div>
+        <AnimatedSection>
+          <div className="mb-12 text-center">
+            <Badge variant="secondary" className="mb-4 font-mono text-xs">
+              {t("badge")}
+            </Badge>
+            <h2 className="mb-4 text-balance text-4xl font-bold tracking-tight md:text-5xl">
+              {t("title")}
+            </h2>
+            <p className="mx-auto max-w-2xl text-pretty text-lg text-muted-foreground">
+              {t("description")}
+            </p>
+          </div>
+        </AnimatedSection>
 
         {/* Search & Filters */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-8 space-y-4"
-        >
-          {/* Search */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              placeholder="Buscar snippets..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10"
-            />
-          </div>
+        <AnimatedSection delay={0.1}>
+          <div className="mb-8 space-y-4">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                placeholder={t("searchPlaceholder")}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10"
+              />
+            </div>
 
-          {/* Tag Filters */}
-          <div className="flex flex-wrap gap-2">
-            {allTags.map((tag) => (
-              <Badge
-                key={tag}
-                variant={selectedTags.includes(tag) ? "default" : "outline"}
-                className="cursor-pointer transition-colors hover:bg-primary/90"
-                onClick={() => toggleTag(tag)}
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
+            <div className="flex flex-wrap gap-2">
+              {allTags.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant={selectedTags.includes(tag) ? "default" : "outline"}
+                  className="cursor-pointer transition-colors hover:bg-primary/90"
+                  onClick={() => toggleTag(tag)}
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
 
-          {/* Results count */}
-          <p className="text-sm text-muted-foreground">
-            {filteredSnippets.length}{" "}
-            {filteredSnippets.length === 1
-              ? "snippet encontrado"
-              : "snippets encontrados"}
-          </p>
-        </motion.div>
+            <p className="text-sm text-muted-foreground">
+              {t("resultCount", { count: filteredSnippets.length })}
+            </p>
+          </div>
+        </AnimatedSection>
 
         {/* Snippets Grid */}
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-8 md:grid-cols-2">
           {filteredSnippets.map((snippet, index) => (
-            <motion.div
-              key={snippet.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 + index * 0.05 }}
-            >
+            <AnimatedSection key={snippet.id} delay={0.2 + index * 0.05}>
               <Card className="h-full overflow-hidden border-border bg-card">
-                <div className="space-y-4 p-6">
-                  {/* Header */}
-                  <div className="space-y-2">
-                    <div className="flex items-start justify-between gap-4">
+                <Tabs defaultValue="code" className="w-full">
+                  {/* Card header */}
+                  <div className="border-b px-6 pt-6">
+                    <div className="mb-4 flex items-start justify-between gap-4">
                       <div className="flex-1">
-                        <h3 className="font-semibold text-foreground">
+                        <h3 className="text-lg font-semibold text-foreground">
                           {snippet.title}
                         </h3>
                         <p className="mt-1 text-sm text-muted-foreground">
                           {snippet.description}
                         </p>
+                        <div className="mt-2 flex flex-wrap gap-1.5">
+                          {snippet.tags.map((tag) => (
+                            <Badge
+                              key={tag}
+                              variant="secondary"
+                              className="text-xs"
+                            >
+                              {tag}
+                            </Badge>
+                          ))}
+                        </div>
                       </div>
+                    </div>
+
+                    <TabsList className="grid w-full grid-cols-3">
+                      <TabsTrigger value="code" className="gap-2">
+                        <Code className="h-4 w-4" />
+                        <span className="hidden sm:inline">
+                          {t("tabs.code")}
+                        </span>
+                      </TabsTrigger>
+                      <TabsTrigger value="usage" className="gap-2">
+                        <Play className="h-4 w-4" />
+                        <span className="hidden sm:inline">
+                          {t("tabs.usage")}
+                        </span>
+                      </TabsTrigger>
+                      <TabsTrigger value="explanation" className="gap-2">
+                        <BookOpen className="h-4 w-4" />
+                        <span className="hidden sm:inline">
+                          {t("tabs.explanation")}
+                        </span>
+                      </TabsTrigger>
+                    </TabsList>
+                  </div>
+
+                  {/* Code Tab */}
+                  <TabsContent value="code" className="p-6">
+                    <div className="relative">
+                      <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-xs">
+                        <code className="font-mono">{snippet.code}</code>
+                      </pre>
                       <Button
                         size="sm"
-                        variant="ghost"
+                        variant="secondary"
+                        className="absolute right-2 top-2"
                         onClick={() => handleCopy(snippet.code, snippet.id)}
-                        className="shrink-0"
                       >
                         {copiedId === snippet.id ? (
                           <>
                             <Check className="mr-1 h-3 w-3" />
-                            Copiado
+                            {t("copied")}
                           </>
                         ) : (
                           <>
                             <Copy className="mr-1 h-3 w-3" />
-                            Copiar
+                            {t("copy")}
                           </>
                         )}
                       </Button>
                     </div>
+                  </TabsContent>
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-1.5">
-                      {snippet.tags.map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant="secondary"
-                          className="text-xs"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
+                  {/* Usage Tab */}
+                  <TabsContent value="usage" className="p-6">
+                    <div className="relative">
+                      <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-xs">
+                        <code className="font-mono">{snippet.usage}</code>
+                      </pre>
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        className="absolute right-2 top-2"
+                        onClick={() =>
+                          handleCopy(snippet.usage, `${snippet.id}-usage`)
+                        }
+                      >
+                        {copiedId === `${snippet.id}-usage` ? (
+                          <>
+                            <Check className="mr-1 h-3 w-3" />
+                            {t("copied")}
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="mr-1 h-3 w-3" />
+                            {t("copy")}
+                          </>
+                        )}
+                      </Button>
                     </div>
-                  </div>
+                  </TabsContent>
 
-                  {/* Code Block */}
-                  <div className="relative">
-                    <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-xs">
-                      <code className="font-mono">{snippet.code}</code>
-                    </pre>
-                  </div>
-                </div>
+                  {/* Explanation Tab */}
+                  <TabsContent value="explanation" className="p-6">
+                    <div className="prose prose-sm max-w-none dark:prose-invert">
+                      <div className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
+                        {snippet.explanation}
+                      </div>
+                    </div>
+                  </TabsContent>
+                </Tabs>
               </Card>
-            </motion.div>
+            </AnimatedSection>
           ))}
         </div>
 
         {/* Empty State */}
         {filteredSnippets.length === 0 && (
           <div className="py-12 text-center">
-            <p className="text-muted-foreground">
-              Nenhum snippet encontrado. Tente outro termo de busca.
-            </p>
+            <p className="text-muted-foreground">{t("emptyState")}</p>
           </div>
         )}
       </div>

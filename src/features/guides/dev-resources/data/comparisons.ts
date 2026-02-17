@@ -1,5 +1,24 @@
-// Array de comparações para BeforeAfterSection
-export const comparisons = [
+interface Comparison {
+  id: string;
+  title: string;
+  category: string;
+  problem: string;
+  before: {
+    code: string;
+    issues: string[];
+  };
+  after: {
+    code: string;
+    improvements: string[];
+  };
+  metrics?: {
+    performance?: string;
+    readability?: string;
+    maintainability?: string;
+  };
+}
+
+export const comparisons: Comparison[] = [
   {
     id: "prop-drilling",
     title: "Prop Drilling vs Context",
@@ -10,6 +29,7 @@ export const comparisons = [
       code: `// ❌ Prop Drilling - Ruim
 function App() {
   const [user, setUser] = useState(null)
+  
   return <Layout user={user} setUser={setUser} />
 }
 
@@ -37,6 +57,7 @@ const UserContext = createContext()
 
 function App() {
   const [user, setUser] = useState(null)
+  
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <Layout />
@@ -173,13 +194,16 @@ const user = await getUser(123)
 async function getUser(id: string) {
   try {
     const response = await fetch(\`/api/users/\${id}\`)
+    
     if (!response.ok) {
       throw new Error(
         \`HTTP error! status: \${response.status}\`
       )
     }
+    
     const data = await response.json()
     return { data, error: null }
+    
   } catch (error) {
     console.error('Failed to fetch user:', error)
     return { 

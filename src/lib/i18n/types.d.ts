@@ -5,6 +5,7 @@ import type about from "../../../messages/pt-BR/about.json";
 import type ai from "../../../messages/pt-BR/ai.json";
 import type aiInnovation from "../../../messages/pt-BR/aiInnovation.json";
 import type contact from "../../../messages/pt-BR/contact.json";
+import type devResourcesPage from "../../../messages/pt-BR/devResourcesPage.json";
 import type experience from "../../../messages/pt-BR/experience.json";
 import type footer from "../../../messages/pt-BR/footer.json";
 import type global from "../../../messages/pt-BR/global.json";
@@ -28,6 +29,7 @@ export type Messages = {
   ai: typeof ai;
   aiInnovation: typeof aiInnovation;
   contact: typeof contact;
+  devResourcesPage: typeof devResourcesPage;
   experience: typeof experience;
   footer: typeof footer;
   hero: typeof hero;
