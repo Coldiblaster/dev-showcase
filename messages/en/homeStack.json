@@ -7,59 +7,103 @@
     "advanced": "Advanced",
     "intermediate": "Intermediate"
   },
-  "categories": [
+  "tabs": [
     {
-      "name": "Frontend Core",
+      "id": "frontend",
+      "label": "Frontend",
       "techs": [
-        { "name": "React", "icon": "⚛️", "level": "expert", "years": "8+ years" },
-        { "name": "Next.js", "icon": "▲", "level": "expert", "years": "6 years" },
-        { "name": "TypeScript", "icon": "TS", "level": "expert", "years": "8+ years" },
-        { "name": "JavaScript", "icon": "JS", "level": "expert", "years": "10 years" }
+        { "name": "React", "icon": "⚛️", "level": "expert", "years": "8+" },
+        { "name": "Next.js", "icon": "▲", "level": "expert", "years": "6" },
+        { "name": "TypeScript", "icon": "TS", "level": "expert", "years": "8+" },
+        { "name": "JavaScript", "icon": "JS", "level": "expert", "years": "10" },
+        { "name": "Zod", "icon": "✅", "level": "expert", "years": "3" },
+        { "name": "React Hook Form", "icon": "📋", "level": "expert", "years": "4" }
       ]
     },
     {
-      "name": "Mobile",
+      "id": "styling",
+      "label": "Styling & UI",
       "techs": [
-        { "name": "React Native", "icon": "📱", "level": "intermediate", "years": "4 years" },
-        { "name": "Expo", "icon": "🎯", "level": "advanced", "years": "3 years" }
+        { "name": "Tailwind CSS", "icon": "🎨", "level": "expert", "years": "4" },
+        { "name": "shadcn/ui", "icon": "🧩", "level": "expert", "years": "2" },
+        { "name": "Radix UI", "icon": "🔘", "level": "expert", "years": "3" },
+        { "name": "Styled Components", "icon": "💅", "level": "expert", "years": "5" },
+        { "name": "Framer Motion", "icon": "🎬", "level": "advanced", "years": "2" },
+        { "name": "Material UI", "icon": "Ⓜ️", "level": "advanced", "years": "3" },
+        { "name": "Chakra UI", "icon": "⚡", "level": "advanced", "years": "2" },
+        { "name": "CSS Modules", "icon": "🎯", "level": "expert", "years": "6" }
       ]
     },
     {
-      "name": "Styling & UI",
+      "id": "state",
+      "label": "State & Data",
       "techs": [
-        { "name": "Tailwind CSS", "icon": "🎨", "level": "expert", "years": "4 years" },
-        { "name": "shadcn/ui", "icon": "🧩", "level": "expert", "years": "2 years" },
-        { "name": "Framer Motion", "icon": "🎬", "level": "advanced", "years": "2 years" },
-        { "name": "Styled Components", "icon": "💅", "level": "expert", "years": "5 years" }
+        { "name": "React Query", "icon": "🔄", "level": "expert", "years": "4" },
+        { "name": "Zustand", "icon": "🐻", "level": "expert", "years": "3" },
+        { "name": "Redux", "icon": "🔮", "level": "advanced", "years": "5" },
+        { "name": "Context API", "icon": "🔗", "level": "expert", "years": "6" },
+        { "name": "GraphQL", "icon": "◈", "level": "advanced", "years": "3" }
       ]
     },
     {
-      "name": "Backend & Database",
+      "id": "mobile",
+      "label": "Mobile",
       "techs": [
-        { "name": "Node.js", "icon": "🟢", "level": "advanced", "years": "5 years" },
-        { "name": "NestJS", "icon": "🐱", "level": "advanced", "years": "2 years" },
-        { "name": "PostgreSQL", "icon": "🐘", "level": "advanced", "years": "4 years" },
-        { "name": "MongoDB", "icon": "🍃", "level": "advanced", "years": "3 years" }
+        { "name": "React Native", "icon": "📱", "level": "intermediate", "years": "4" },
+        { "name": "Expo", "icon": "🎯", "level": "advanced", "years": "3" }
       ]
     },
     {
-      "name": "State & Data",
+      "id": "backend",
+      "label": "Backend & DB",
       "techs": [
-        { "name": "React Query", "icon": "🔄", "level": "expert", "years": "4 years" },
-        { "name": "Zustand", "icon": "🐻", "level": "expert", "years": "3 years" },
-        { "name": "Redux", "icon": "🔮", "level": "advanced", "years": "5 years" },
-        { "name": "GraphQL", "icon": "◈", "level": "advanced", "years": "3 years" }
+        { "name": "Node.js", "icon": "🟢", "level": "advanced", "years": "5" },
+        { "name": "NestJS", "icon": "🐱", "level": "advanced", "years": "2" },
+        { "name": "PostgreSQL", "icon": "🐘", "level": "advanced", "years": "4" },
+        { "name": "MongoDB", "icon": "🍃", "level": "advanced", "years": "3" },
+        { "name": "Firebase", "icon": "🔥", "level": "advanced", "years": "3" },
+        { "name": "REST APIs", "icon": "🌐", "level": "expert", "years": "8" }
       ]
     },
     {
-      "name": "DevOps & IA",
+      "id": "quality",
+      "label": "Quality",
       "techs": [
-        { "name": "Git", "icon": "🔀", "level": "expert", "years": "10 years" },
-        { "name": "Vercel", "icon": "▲", "level": "expert", "years": "4 years" },
-        { "name": "Docker", "icon": "🐳", "level": "intermediate", "years": "2 years" },
-        { "name": "GitHub Copilot", "icon": "🤖", "level": "expert", "years": "2 years" }
+        { "name": "Jest", "icon": "🃏", "level": "advanced", "years": "4" },
+        { "name": "Vitest", "icon": "⚡", "level": "advanced", "years": "2" },
+        { "name": "Testing Library", "icon": "🧪", "level": "advanced", "years": "4" },
+        { "name": "Storybook", "icon": "📖", "level": "advanced", "years": "3" },
+        { "name": "Design Systems", "icon": "🏗️", "level": "expert", "years": "4" },
+        { "name": "A11y (WCAG)", "icon": "♿", "level": "advanced", "years": "3" }
+      ]
+    },
+    {
+      "id": "devops",
+      "label": "DevOps & AI",
+      "techs": [
+        { "name": "Git", "icon": "🔀", "level": "expert", "years": "10" },
+        { "name": "Vercel", "icon": "▲", "level": "expert", "years": "4" },
+        { "name": "Docker", "icon": "🐳", "level": "intermediate", "years": "2" },
+        { "name": "CI/CD", "icon": "🔄", "level": "advanced", "years": "4" },
+        { "name": "AWS", "icon": "☁️", "level": "intermediate", "years": "2" },
+        { "name": "GitHub Copilot", "icon": "🤖", "level": "expert", "years": "2" },
+        { "name": "Figma", "icon": "🎨", "level": "advanced", "years": "4" }
+      ]
+    },
+    {
+      "id": "process",
+      "label": "Processes",
+      "techs": [
+        { "name": "Scrum", "icon": "🔁", "level": "expert", "years": "6" },
+        { "name": "Kanban", "icon": "📌", "level": "expert", "years": "5" },
+        { "name": "PO/UX Alignment", "icon": "🤝", "level": "expert", "years": "6" },
+        { "name": "Code Review", "icon": "👀", "level": "expert", "years": "5" },
+        { "name": "Mentoring & Pairing", "icon": "👥", "level": "expert", "years": "4" },
+        { "name": "Clean Architecture", "icon": "🏛️", "level": "advanced", "years": "4" },
+        { "name": "SOLID", "icon": "💎", "level": "advanced", "years": "4" },
+        { "name": "Performance (Lighthouse)", "icon": "🚀", "level": "expert", "years": "5" }
       ]
     }
   ],
-  "techCount": "{count} technologies"
+  "yearsLabel": "years"
 }

@@ -25,8 +25,7 @@ export function HomeHeroSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-4 md:mb-6"
             >
-              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary md:px-4 md:py-1.5 md:text-sm">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+              <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary md:px-4 md:py-1.5 md:text-sm">
                 {t("greeting")}
               </span>
             </motion.div>
