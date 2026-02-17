@@ -62,21 +62,21 @@ export default function I18nTroubleshootingSection() {
   ];
 
   return (
-    <section ref={ref} className="px-6 py-24 bg-secondary/20">
+    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24 bg-secondary/20">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={stagger}
-          className="mb-12 text-center"
+          className="mb-8 md:mb-12 text-center"
         >
           <motion.h2
             variants={fadeUp}
-            className="mb-2 text-3xl font-bold text-foreground md:text-4xl"
+            className="mb-2 text-2xl font-bold text-foreground md:text-4xl"
           >
             {t("title")}
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-muted-foreground">
+          <motion.p variants={fadeUp} className="text-sm md:text-base text-muted-foreground">
             {t("description")}
           </motion.p>
         </motion.div>
@@ -84,7 +84,7 @@ export default function I18nTroubleshootingSection() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={stagger}
-          className="grid gap-6 md:grid-cols-2"
+          className="grid gap-4 md:gap-6 md:grid-cols-2"
         >
           {problems.map((problem, i) => (
             <motion.div key={i} variants={fadeUp}>

@@ -42,18 +42,18 @@ src/i18n/
 └── types.d.ts          # TypeScript autocomplete`;
 
   return (
-    <section ref={ref} className="px-6 py-24">
+    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="mb-12 text-center"
+          className="mb-8 md:mb-12 text-center"
         >
-          <h2 className="mb-2 text-3xl font-bold text-foreground md:text-4xl">
+          <h2 className="mb-2 text-2xl font-bold text-foreground md:text-4xl">
             {t("structure.title")}
           </h2>
-          <p className="text-muted-foreground">{t("structure.subtitle")}</p>
+          <p className="text-sm md:text-base text-muted-foreground">{t("structure.subtitle")}</p>
         </motion.div>
 
         <motion.div

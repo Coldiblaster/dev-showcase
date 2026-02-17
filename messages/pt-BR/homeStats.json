@@ -1,0 +1,8 @@
+{
+  "stats": [
+    { "label": "Anos de Experiência", "value": 10, "suffix": "+" },
+    { "label": "Projetos Entregues", "value": 50, "suffix": "+" },
+    { "label": "Devs Mentorados", "value": 20, "suffix": "+" },
+    { "label": "Xícaras de Café", "value": 5000, "suffix": "+" }
+  ]
+}

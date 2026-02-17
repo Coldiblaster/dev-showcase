@@ -1,7 +1,9 @@
 "use client";
 
-import { Copy } from "lucide-react";
-import { useState } from "react";
+import { Check, Copy } from "lucide-react";
+
+import { useCopyFeedback } from "@/components/copy-feedback";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 
 /**
  * Bloco de código com syntax highlighting e botão de copiar.
@@ -21,12 +23,12 @@ import { useState } from "react";
  * ```
  */
 export function CodeBlock({ code, title }: { code: string; title?: string }) {
-  const [copied, setCopied] = useState(false);
+  const { copied, copy } = useCopyToClipboard();
+  const { showFeedback } = useCopyFeedback();
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    copy(code);
+    showFeedback();
   };
 
   return (
@@ -48,11 +50,15 @@ export function CodeBlock({ code, title }: { code: string; title?: string }) {
             className="rounded-md p-1.5 text-muted-foreground/50 transition-colors hover:bg-secondary hover:text-foreground"
             aria-label={copied ? "Código copiado" : "Copiar código"}
           >
-            <Copy className="h-3.5 w-3.5" />
+            {copied ? (
+              <Check className="h-3.5 w-3.5 text-primary" />
+            ) : (
+              <Copy className="h-3.5 w-3.5" />
+            )}
           </button>
         </div>
       )}
-      <pre className="overflow-x-auto p-4 font-mono text-xs leading-relaxed text-foreground/90 md:text-sm">
+      <pre className="overflow-x-auto whitespace-pre-wrap break-all p-3 font-mono text-xs leading-relaxed text-foreground/90 md:whitespace-pre md:break-normal md:p-4 md:text-sm">
         <code>{code}</code>
       </pre>
     </div>

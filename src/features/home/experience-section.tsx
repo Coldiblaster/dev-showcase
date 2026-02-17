@@ -16,7 +16,7 @@ export function ExperienceSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" className="relative px-6 py-32" ref={ref}>
+    <section id="experience" className="relative px-6 py-16 md:py-32" ref={ref}>
       <div className="mx-auto max-w-6xl">
         <motion.span
           initial={{ opacity: 0, x: -20 }}
@@ -32,7 +32,7 @@ export function ExperienceSection() {
           initial={{ opacity: 0, x: -20 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-16 text-balance text-4xl font-bold tracking-tight text-foreground md:text-5xl"
+          className="mb-8 text-balance text-4xl font-bold tracking-tight text-foreground md:mb-16 md:text-5xl"
         >
           {t("title")}
         </motion.h2>
@@ -41,7 +41,7 @@ export function ExperienceSection() {
           {/* Timeline line */}
           <div className="absolute left-0 top-0 hidden h-full w-px bg-border md:left-8 md:block" />
 
-          <div className="flex flex-col gap-12">
+          <div className="flex flex-col gap-8 md:gap-12">
             {(t.raw("items") as ExperienceItem[]).map((item, i) => (
               <motion.div
                 key={`${item.company}-${i}`}
@@ -66,7 +66,7 @@ export function ExperienceSection() {
                 >
                   <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                      <h3 className="text-lg font-semibold text-foreground">
+                      <h3 className="text-base font-semibold text-foreground md:text-lg">
                         {item.role}
                       </h3>
                       <p className="font-mono text-sm text-primary">
@@ -78,7 +78,7 @@ export function ExperienceSection() {
                     </span>
                   </div>
 
-                  <p className="mb-4 leading-relaxed text-muted-foreground">
+                  <p className="mb-4 text-sm leading-relaxed text-muted-foreground md:text-base">
                     {item.description}
                   </p>
 

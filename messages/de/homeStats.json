@@ -1,0 +1,8 @@
+{
+  "stats": [
+    { "label": "Jahre Erfahrung", "value": 10, "suffix": "+" },
+    { "label": "Projekte abgeschlossen", "value": 50, "suffix": "+" },
+    { "label": "Entwickler betreut", "value": 20, "suffix": "+" },
+    { "label": "Tassen Kaffee", "value": 5000, "suffix": "+" }
+  ]
+}

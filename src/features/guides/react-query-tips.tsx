@@ -24,7 +24,7 @@ export function ReactQueryTips() {
         warning="Este guia assume conhecimento básico de React e hooks. Foco em uso prático e real."
       />
 
-      <section className="px-6 py-20">
+      <section className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader
@@ -87,7 +87,7 @@ export default function RootLayout({ children }) {
         <Separator />
       </div>
 
-      <section className="px-6 py-20">
+      <section className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader
@@ -162,7 +162,7 @@ export function UserProfile({ userId }: { userId: string }) {
         <Separator />
       </div>
 
-      <section className="px-6 py-20">
+      <section className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader
@@ -233,7 +233,7 @@ export function CreateUserForm() {
         <Separator />
       </div>
 
-      <section className="px-6 py-20 bg-secondary/20">
+      <section className="px-6 py-12 md:py-20 bg-secondary/20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader
@@ -279,7 +279,7 @@ export function CreateUserForm() {
         </div>
       </section>
 
-      <section className="px-6 py-20">
+      <section className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader

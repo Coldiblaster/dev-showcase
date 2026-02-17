@@ -16,11 +16,11 @@ export function AISection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="ai" className="relative px-6 py-32" ref={ref}>
+    <section id="ai" className="relative px-6 py-16 md:py-32" ref={ref}>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.04),transparent_60%)]" />
 
       <div className="relative mx-auto max-w-6xl">
-        <div className="mb-16 text-center">
+        <div className="mb-8 text-center md:mb-16">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -44,7 +44,7 @@ export function AISection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mx-auto max-w-2xl text-pretty leading-relaxed text-muted-foreground"
+            className="mx-auto max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground md:text-base"
           >
             {t("description")}
           </motion.p>
@@ -76,12 +76,12 @@ export function AISection() {
                         >
                           <Icon className="h-5 w-5" />
                         </motion.div>
-                        <h3 className="text-base font-semibold text-foreground">
+                        <h3 className="text-base font-semibold text-foreground md:text-lg">
                           {feature.title}
                         </h3>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-sm leading-relaxed text-muted-foreground">
+                        <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
                           {feature.description}
                         </p>
                       </CardContent>
@@ -97,7 +97,7 @@ export function AISection() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-16"
+          className="mt-8 md:mt-16"
         >
           <div className="mb-6 text-center">
             <Badge variant="secondary" className="mb-3 font-mono text-xs">

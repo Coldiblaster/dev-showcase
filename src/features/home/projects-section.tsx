@@ -19,7 +19,7 @@ export function ProjectsSection() {
   const items = t.raw("items") as Project[];
 
   return (
-    <section id="projects" className="relative px-6 py-32" ref={ref}>
+    <section id="projects" className="relative px-6 py-16 md:py-32" ref={ref}>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.03),transparent_70%)]" />
 
       <div className="relative mx-auto max-w-6xl">
@@ -37,7 +37,7 @@ export function ProjectsSection() {
           initial={{ opacity: 0, x: -20 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-16 text-balance text-4xl font-bold tracking-tight text-foreground md:text-5xl"
+          className="mb-8 text-balance text-4xl font-bold tracking-tight text-foreground md:mb-16 md:text-5xl"
         >
           {t("title")}
         </motion.h2>
@@ -61,13 +61,13 @@ export function ProjectsSection() {
                 </div>
 
                 <CardHeader className="pb-3">
-                  <h3 className="text-lg font-semibold text-foreground">
+                  <h3 className="text-base font-semibold text-foreground md:text-lg">
                     {project.title}
                   </h3>
                 </CardHeader>
 
                 <CardContent className="flex flex-1 flex-col gap-4">
-                  <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
+                  <p className="flex-1 text-sm leading-relaxed text-muted-foreground md:text-base">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-1.5">

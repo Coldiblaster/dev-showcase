@@ -40,6 +40,10 @@
       "title": "SEO Showcase",
       "description": "Meta tags, Open Graph, JSON-LD, Sitemap — Next.js vs React + Vite"
     },
+    "ai-chatbot": {
+      "title": "AI Chatbot con OpenAI",
+      "description": "Chatbot IA con streaming, system prompt y Next.js App Router"
+    },
     "ai-tips": {
       "title": "Consejos de IA",
       "description": "Prompts, workflows y herramientas de IA para desarrolladores"

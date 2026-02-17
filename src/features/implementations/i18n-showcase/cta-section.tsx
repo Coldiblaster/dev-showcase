@@ -15,17 +15,17 @@ export function CTASection() {
   const { ref, isInView } = useSectionInView();
 
   return (
-    <section ref={ref} className="px-6 py-24 bg-secondary/20">
+    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24 bg-secondary/20">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
         className="mx-auto max-w-2xl text-center"
       >
-        <h2 className="mb-4 text-3xl font-bold text-foreground">
+        <h2 className="mb-4 text-2xl font-bold text-foreground md:text-4xl">
           {t("cta.title")}
         </h2>
-        <p className="mb-8 leading-relaxed text-muted-foreground">
+        <p className="mb-8 text-sm md:text-base leading-relaxed text-muted-foreground">
           {t("cta.description")}
         </p>
         <Button size="lg" asChild className="gap-2">

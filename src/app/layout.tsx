@@ -8,6 +8,7 @@ import { getMessages } from "next-intl/server";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { ChatWidget } from "@/components/chat/chat-widget";
+import { CopyFeedbackProvider } from "@/components/copy-feedback";
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
 import { Navbar } from "@/components/navbar";
@@ -84,11 +85,13 @@ export default async function RootLayout({
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Navbar />
-          {children}
-          <ScrollTopButton />
-          <ChatWidget />
-          <Footer />
+          <CopyFeedbackProvider>
+            <Navbar />
+            {children}
+            <ScrollTopButton />
+            <ChatWidget />
+            <Footer />
+          </CopyFeedbackProvider>
         </NextIntlClientProvider>
         <SpeedInsights />
       </body>

@@ -22,6 +22,13 @@ export const CONTENT_ITEMS: ContentItem[] = [
     category: "implementation",
   },
   {
+    slug: "ai-chatbot",
+    title: "AI Chatbot com OpenAI",
+    description: "Chatbot IA com streaming, system prompt e Next.js App Router",
+    component: "AiChatbotShowcase",
+    category: "implementation",
+  },
+  {
     slug: "ai-tips",
     title: "Dicas de IA",
     description: "v0, Copilot, Prompts e ferramentas de IA",

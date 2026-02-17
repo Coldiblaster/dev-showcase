@@ -1,0 +1,65 @@
+{
+  "badge": "Tech Stack",
+  "title": "Tecnologias que Domino",
+  "subtitle": "Ferramentas e frameworks que uso no dia a dia para construir produtos de alta qualidade",
+  "legend": {
+    "expert": "Expert",
+    "advanced": "Avançado",
+    "intermediate": "Intermediário"
+  },
+  "categories": [
+    {
+      "name": "Frontend Core",
+      "techs": [
+        { "name": "React", "icon": "⚛️", "level": "expert", "years": "8+ anos" },
+        { "name": "Next.js", "icon": "▲", "level": "expert", "years": "6 anos" },
+        { "name": "TypeScript", "icon": "TS", "level": "expert", "years": "8+ anos" },
+        { "name": "JavaScript", "icon": "JS", "level": "expert", "years": "10 anos" }
+      ]
+    },
+    {
+      "name": "Mobile",
+      "techs": [
+        { "name": "React Native", "icon": "📱", "level": "intermediate", "years": "4 anos" },
+        { "name": "Expo", "icon": "🎯", "level": "advanced", "years": "3 anos" }
+      ]
+    },
+    {
+      "name": "Styling & UI",
+      "techs": [
+        { "name": "Tailwind CSS", "icon": "🎨", "level": "expert", "years": "4 anos" },
+        { "name": "shadcn/ui", "icon": "🧩", "level": "expert", "years": "2 anos" },
+        { "name": "Framer Motion", "icon": "🎬", "level": "advanced", "years": "2 anos" },
+        { "name": "Styled Components", "icon": "💅", "level": "expert", "years": "5 anos" }
+      ]
+    },
+    {
+      "name": "Backend & Database",
+      "techs": [
+        { "name": "Node.js", "icon": "🟢", "level": "advanced", "years": "5 anos" },
+        { "name": "NestJS", "icon": "🐱", "level": "advanced", "years": "2 anos" },
+        { "name": "PostgreSQL", "icon": "🐘", "level": "advanced", "years": "4 anos" },
+        { "name": "MongoDB", "icon": "🍃", "level": "advanced", "years": "3 anos" }
+      ]
+    },
+    {
+      "name": "State & Data",
+      "techs": [
+        { "name": "React Query", "icon": "🔄", "level": "expert", "years": "4 anos" },
+        { "name": "Zustand", "icon": "🐻", "level": "expert", "years": "3 anos" },
+        { "name": "Redux", "icon": "🔮", "level": "advanced", "years": "5 anos" },
+        { "name": "GraphQL", "icon": "◈", "level": "advanced", "years": "3 anos" }
+      ]
+    },
+    {
+      "name": "DevOps & IA",
+      "techs": [
+        { "name": "Git", "icon": "🔀", "level": "expert", "years": "10 anos" },
+        { "name": "Vercel", "icon": "▲", "level": "expert", "years": "4 anos" },
+        { "name": "Docker", "icon": "🐳", "level": "intermediate", "years": "2 anos" },
+        { "name": "GitHub Copilot", "icon": "🤖", "level": "expert", "years": "2 anos" }
+      ]
+    }
+  ],
+  "techCount": "{count} tecnologias"
+}

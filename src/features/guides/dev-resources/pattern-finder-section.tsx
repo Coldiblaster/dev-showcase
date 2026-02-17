@@ -20,6 +20,7 @@ import { useTranslations } from "next-intl";
 import { useCallback, useMemo, useState } from "react";
 
 import { AnimatedSection } from "@/components/animated-section";
+import { useCopyFeedback } from "@/components/copy-feedback";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -48,6 +49,7 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
   const tLevel = useTranslations("devResourcesPage.levelSelector.levels");
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const { showFeedback } = useCopyFeedback();
 
   const filteredScenarios = useMemo(
     () =>
@@ -64,23 +66,24 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
   const handleCopy = useCallback(async (code: string, id: string) => {
     await navigator.clipboard.writeText(code);
     setCopiedId(id);
+    showFeedback();
     setTimeout(() => setCopiedId(null), 2000);
-  }, []);
+  }, [showFeedback]);
 
   if (filteredScenarios.length === 0) return null;
 
   return (
-    <section id="patterns" className="relative px-6 py-32">
+    <section id="patterns" className="relative px-6 py-16 md:py-32">
       <div className="mx-auto max-w-4xl">
         <AnimatedSection>
-          <div className="mb-12 text-center">
+          <div className="mb-8 text-center md:mb-12">
             <Badge variant="secondary" className="mb-4 font-mono text-xs">
               {t("badge")}
             </Badge>
             <h2 className="mb-4 text-balance text-4xl font-bold tracking-tight md:text-5xl">
               {t("title")}
             </h2>
-            <p className="mx-auto max-w-2xl text-pretty text-lg text-muted-foreground">
+            <p className="mx-auto max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
               {t("description")}
             </p>
           </div>
@@ -155,7 +158,7 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
                           <div className="border-t px-5 pb-5 pt-4">
                             {/* Pattern name and explanation */}
                             <div className="mb-4">
-                              <h4 className="mb-2 text-lg font-semibold text-primary">
+                              <h4 className="mb-2 text-base font-semibold text-primary md:text-lg">
                                 {scenario.pattern}
                               </h4>
                               <p className="text-sm leading-relaxed text-muted-foreground">

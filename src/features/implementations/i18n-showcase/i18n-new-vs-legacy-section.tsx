@@ -34,21 +34,21 @@ export default function I18nNewVsLegacySection() {
   ];
 
   return (
-    <section ref={ref} className="px-6 py-24 bg-secondary/20">
+    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24 bg-secondary/20">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={stagger}
-          className="mb-12 text-center"
+          className="mb-8 md:mb-12 text-center"
         >
           <motion.h2
             variants={fadeUp}
-            className="mb-2 text-3xl font-bold text-foreground md:text-4xl"
+            className="mb-2 text-2xl font-bold text-foreground md:text-4xl"
           >
             {sectionTitle}
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-muted-foreground">
+          <motion.p variants={fadeUp} className="text-sm md:text-base text-muted-foreground">
             {sectionDesc}
           </motion.p>
         </motion.div>
@@ -57,14 +57,14 @@ export default function I18nNewVsLegacySection() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={stagger}
-          className="grid gap-6 md:grid-cols-2"
+          className="grid gap-4 md:gap-6 md:grid-cols-2"
         >
           {cards.map((card, i) => (
             <motion.div key={i} variants={fadeUp}>
               <Card className="h-full border-border/50 bg-card">
                 <CardHeader className="pb-4 flex flex-row items-center gap-2">
                   <IconBadge icon={card.icon} />
-                  <CardTitle className="text-lg font-semibold">
+                  <CardTitle className="text-base font-semibold md:text-lg">
                     {card.title}
                   </CardTitle>
                 </CardHeader>

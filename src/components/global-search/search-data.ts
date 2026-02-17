@@ -27,6 +27,7 @@ function buildTags(slug: string): string[] {
   const tagMap: Record<string, string[]> = {
     i18n: ["i18n", "next-intl", "internacionalização", "tradução", "deepl"],
     seo: ["seo", "meta tags", "open graph", "json-ld", "sitemap", "robots"],
+    "ai-chatbot": ["ai", "chatbot", "openai", "gpt", "streaming", "assistente", "ia"],
     "ai-tips": ["ia", "ai", "copilot", "chatgpt", "v0", "prompts"],
     "tailwind-tips": ["tailwind", "shadcn", "css", "ui", "componentes"],
     "react-query-tips": [

@@ -37,18 +37,18 @@ export function OverviewSection() {
   const items = t.raw("overview.items") as OverviewItem[];
 
   return (
-    <section ref={ref} className="px-6 py-24">
+    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={stagger}
         >
-          <motion.div variants={fadeUp} className="mb-12 max-w-2xl">
-            <h2 className="mb-3 text-3xl font-bold text-foreground">
+          <motion.div variants={fadeUp} className="mb-8 max-w-2xl md:mb-12">
+            <h2 className="mb-3 text-2xl font-bold text-foreground">
               {t("overview.title")}
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-sm md:text-base text-muted-foreground">
               {t("overview.description")}
             </p>
           </motion.div>
@@ -59,7 +59,7 @@ export function OverviewSection() {
               return (
                 <motion.div key={item.title} variants={fadeUp}>
                   <Card className="h-full border-border/50 transition-colors hover:border-primary/30">
-                    <CardContent className="flex gap-4 p-5">
+                    <CardContent className="flex gap-4 p-4 md:p-5">
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
                         <Icon className="h-5 w-5 text-primary" />
                       </div>

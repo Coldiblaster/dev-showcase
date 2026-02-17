@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { AnimatedSection } from "@/components/animated-section";
+import { useCopyFeedback } from "@/components/copy-feedback";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -25,6 +26,7 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const { showFeedback } = useCopyFeedback();
 
   useEffect(() => {
     setSearchQuery("");
@@ -34,8 +36,9 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
   const handleCopy = useCallback(async (code: string, id: string) => {
     await navigator.clipboard.writeText(code);
     setCopiedId(id);
+    showFeedback();
     setTimeout(() => setCopiedId(null), 2000);
-  }, []);
+  }, [showFeedback]);
 
   const levelSnippets = useMemo(
     () =>
@@ -72,18 +75,18 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
   }, []);
 
   return (
-    <section id="snippets" className="relative px-6 py-32">
+    <section id="snippets" className="relative px-6 py-16 md:py-32">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <AnimatedSection>
-          <div className="mb-12 text-center">
+          <div className="mb-8 text-center md:mb-12">
             <Badge variant="secondary" className="mb-4 font-mono text-xs">
               {t("badge")}
             </Badge>
             <h2 className="mb-4 text-balance text-4xl font-bold tracking-tight md:text-5xl">
               {t("title")}
             </h2>
-            <p className="mx-auto max-w-2xl text-pretty text-lg text-muted-foreground">
+            <p className="mx-auto max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
               {t("description")}
             </p>
           </div>
@@ -134,7 +137,7 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="grid gap-8 md:grid-cols-2"
+            className="grid gap-6 md:grid-cols-2 md:gap-8"
           >
             {filteredSnippets.map((snippet, index) => (
               <AnimatedSection key={snippet.id} delay={0.1 + index * 0.05}>
@@ -145,7 +148,7 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
                       <div className="mb-4 flex items-start justify-between gap-4">
                         <div className="flex-1">
                           <div className="mb-2 flex items-center gap-2">
-                            <h3 className="text-lg font-semibold text-foreground">
+                            <h3 className="text-base font-semibold text-foreground md:text-lg">
                               {snippet.title}
                             </h3>
                             <Badge

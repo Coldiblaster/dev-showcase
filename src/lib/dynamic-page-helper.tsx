@@ -10,6 +10,7 @@ import { AITips } from "@/features/guides/ai-tips";
 import { DevResourcesPage } from "@/features/guides/dev-resources";
 import { ReactQueryTips } from "@/features/guides/react-query-tips";
 import { TailwindTips } from "@/features/guides/tailwind-tips";
+import { AiChatbotShowcase } from "@/features/implementations/ai-chatbot-showcase";
 import { I18nShowcase } from "@/features/implementations/i18n-showcase";
 import { SeoShowcase } from "@/features/implementations/seo-showcase";
 import { buildPageMetadata } from "@/lib/seo";
@@ -21,6 +22,7 @@ import { buildPageMetadata } from "@/lib/seo";
 const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
   I18nShowcase,
   SeoShowcase,
+  AiChatbotShowcase,
   AITips,
   TailwindTips,
   ReactQueryTips,

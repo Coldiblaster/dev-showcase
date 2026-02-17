@@ -260,7 +260,7 @@ export function ChatWidget() {
                     disabled={isStreaming}
                     placeholder={t("placeholder")}
                     maxLength={500}
-                    className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground/50 outline-none disabled:opacity-50"
+                    className="flex-1 bg-transparent text-base text-foreground placeholder:text-muted-foreground/50 outline-none disabled:opacity-50"
                   />
                   <Button
                     size="icon"

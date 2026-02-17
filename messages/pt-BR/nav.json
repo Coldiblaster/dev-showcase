@@ -19,6 +19,8 @@
   "tipsDesc": "Conteúdo educativo para devs",
   "seoShowcase": "SEO Showcase",
   "seoShowcaseDesc": "Meta tags, Open Graph, JSON-LD e Sitemap",
+  "aiChatbot": "AI Chatbot",
+  "aiChatbotDesc": "Chatbot IA com OpenAI, streaming e Next.js",
   "content": "Conteúdo",
   "contentDesc": "Implementações técnicas e guias para devs",
   "sectionImplementations": "Implementações",

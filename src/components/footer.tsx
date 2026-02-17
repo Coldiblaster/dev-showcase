@@ -13,7 +13,7 @@ export function Footer() {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <footer className="border-t border-border px-6 py-16" ref={ref}>
+    <footer className="border-t border-border px-6 py-12 md:py-16" ref={ref}>
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -49,7 +49,7 @@ export function JsonLdSection() {
   const { ref, isInView } = useSectionInView();
 
   return (
-    <section ref={ref} className="bg-muted/30 px-6 py-24">
+    <section ref={ref} className="bg-muted/30 px-4 py-12 md:px-6 md:py-24 bg-secondary/20">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
@@ -57,10 +57,10 @@ export function JsonLdSection() {
           variants={stagger}
         >
           <motion.div variants={fadeUp} className="mb-8 max-w-2xl">
-            <h2 className="mb-3 text-3xl font-bold text-foreground">
+            <h2 className="mb-3 text-2xl font-bold text-foreground">
               {t("jsonLd.title")}
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-sm md:text-base text-muted-foreground">
               {t("jsonLd.description")}
             </p>
           </motion.div>

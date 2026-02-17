@@ -43,7 +43,7 @@ export function TailwindTips() {
         warning={t("hero.warning")}
       />
 
-      <section className="px-6 py-20">
+      <section className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader
@@ -59,7 +59,7 @@ export function TailwindTips() {
             </p>
           </AnimatedSection>
 
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-6 md:gap-8">
             {(t.raw("setup.steps") as SetupStep[]).map((step, i) => (
               <AnimatedSection key={step.title} delay={0.1 + i * 0.05}>
                 <div className="flex gap-4">
@@ -86,7 +86,7 @@ export function TailwindTips() {
         <Separator />
       </div>
 
-      <section className="px-6 py-20">
+      <section className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader
@@ -102,11 +102,11 @@ export function TailwindTips() {
             </p>
           </AnimatedSection>
 
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-6 md:gap-10">
             {(t.raw("components.items") as ComponentItem[]).map((item, i) => (
               <AnimatedSection key={item.name} delay={0.1 + i * 0.08}>
                 <CardBlur radius="xl" padding="p-6" className="">
-                  <div className="flex items-center gap-2 text-lg text-foreground mb-2">
+                  <div className="mb-2 flex items-center gap-2 text-base text-foreground md:text-lg">
                     <CheckCircle2 className="h-5 w-5 text-primary" />
                     {item.name}
                   </div>
@@ -127,7 +127,7 @@ export function TailwindTips() {
         <Separator />
       </div>
 
-      <section className="px-6 py-20">
+      <section className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader
@@ -137,7 +137,7 @@ export function TailwindTips() {
             />
           </AnimatedSection>
 
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-6 md:gap-8">
             {(t.raw("patterns.items") as PatternItem[]).map((pattern, i) => (
               <AnimatedSection key={pattern.title} delay={0.1 + i * 0.05}>
                 <CardBlur radius="xl" padding="p-6">
@@ -160,10 +160,10 @@ export function TailwindTips() {
       </div>
 
       {/* Do vs Don't Section */}
-      <section className="px-6 py-20">
+      <section className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
-            <div className="mb-12 flex items-center gap-3">
+            <div className="mb-8 flex items-center gap-3 md:mb-12">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/10">
                 <BookOpen className="h-5 w-5 text-amber-500" />
               </div>
@@ -209,7 +209,7 @@ export function TailwindTips() {
         </div>
       </section>
 
-      <section className="px-6 py-20">
+      <section className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader

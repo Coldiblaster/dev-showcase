@@ -22,21 +22,21 @@ export function Workflow() {
   const steps: WorkflowStep[] = t.raw("workflow.steps");
 
   return (
-    <section ref={ref} className="px-6 py-24 bg-secondary/20">
+    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24 bg-secondary/20">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={stagger}
-          className="mb-12 text-center"
+          className="mb-8 md:mb-12 text-center"
         >
           <motion.h2
             variants={fadeUp}
-            className="mb-2 text-3xl font-bold text-foreground md:text-4xl"
+            className="mb-2 text-2xl font-bold text-foreground md:text-4xl"
           >
             {t("workflow.title")}
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-muted-foreground">
+          <motion.p variants={fadeUp} className="text-sm md:text-base text-muted-foreground">
             {t("workflow.subtitle")}
           </motion.p>
         </motion.div>
@@ -48,7 +48,7 @@ export function Workflow() {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={stagger}
-            className="flex flex-col gap-8"
+            className="flex flex-col gap-6 md:gap-8"
           >
             {steps.map((step, i: number) => (
               <motion.div
@@ -69,14 +69,14 @@ export function Workflow() {
                   className={`flex-1 pl-0 md:pl-16 ${i % 2 === 0 ? "lg:pr-16 lg:pl-0 lg:text-right" : "lg:pl-16 lg:pr-0"}`}
                 >
                   <Card className="border-border/50 bg-card">
-                    <CardContent className="p-5">
+                    <CardContent className="p-4 md:p-5">
                       <div
                         className={`flex items-center gap-2 ${i % 2 === 0 ? "lg:justify-end" : ""}`}
                       >
                         <span className="font-mono text-xs text-primary md:hidden">
                           {step.step}
                         </span>
-                        <h3 className="font-semibold text-foreground">
+                        <h3 className="text-base md:text-lg font-semibold text-foreground">
                           {step.title}
                         </h3>
                       </div>

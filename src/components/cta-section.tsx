@@ -62,13 +62,13 @@ export function CTASection({
 }: CTASectionProps) {
   const t = useTranslations("global.cta");
   return (
-    <section className="px-6 py-20">
+    <section className="px-6 py-12 md:py-20">
       <div className="mx-auto max-w-3xl">
         <AnimatedSection>
           <div className="rounded-2xl border border-primary/20 bg-primary/5 p-8 text-center md:p-12">
             <Icon className="mx-auto mb-4 h-8 w-8 text-primary" />
-            <h2 className="mb-3 text-2xl font-bold text-foreground">{title}</h2>
-            <p className="mb-6 text-muted-foreground">{description}</p>
+            <h2 className="mb-3 text-xl font-bold text-foreground md:text-2xl">{title}</h2>
+            <p className="mb-6 text-sm text-muted-foreground md:text-base">{description}</p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <motion.div
                 whileHover={{ scale: 1.02 }}

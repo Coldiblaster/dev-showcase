@@ -1,0 +1,8 @@
+{
+  "stats": [
+    { "label": "Años de Experiencia", "value": 10, "suffix": "+" },
+    { "label": "Proyectos Entregados", "value": 50, "suffix": "+" },
+    { "label": "Desarrolladores Mentorizados", "value": 20, "suffix": "+" },
+    { "label": "Tazas de Café", "value": 5000, "suffix": "+" }
+  ]
+}

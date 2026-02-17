@@ -2,6 +2,7 @@
 
 // Central type for all namespaces (auto-imported by Next.js)
 import type about from "../../../messages/pt-BR/about.json";
+import type aiChatbotPage from "../../../messages/pt-BR/aiChatbotPage.json";
 import type ai from "../../../messages/pt-BR/ai.json";
 import type chat from "../../../messages/pt-BR/chat.json";
 import type aiInnovation from "../../../messages/pt-BR/aiInnovation.json";
@@ -11,6 +12,8 @@ import type experience from "../../../messages/pt-BR/experience.json";
 import type footer from "../../../messages/pt-BR/footer.json";
 import type global from "../../../messages/pt-BR/global.json";
 import type hero from "../../../messages/pt-BR/hero.json";
+import type homeStack from "../../../messages/pt-BR/homeStack.json";
+import type homeStats from "../../../messages/pt-BR/homeStats.json";
 import type i18nPage from "../../../messages/pt-BR/i18nPage.json";
 import type i18nShowcase from "../../../messages/pt-BR/i18nShowcase.json";
 import type implementations from "../../../messages/pt-BR/implementations.json";
@@ -27,6 +30,7 @@ import type tipsPage from "../../../messages/pt-BR/tipsPage.json";
 export type Messages = {
   global: typeof global;
   about: typeof about;
+  aiChatbotPage: typeof aiChatbotPage;
   nav: typeof nav;
   ai: typeof ai;
   chat: typeof chat;
@@ -36,6 +40,8 @@ export type Messages = {
   experience: typeof experience;
   footer: typeof footer;
   hero: typeof hero;
+  homeStack: typeof homeStack;
+  homeStats: typeof homeStats;
   i18nPage: typeof i18nPage;
   i18nShowcase: typeof i18nShowcase;
   implementations: typeof implementations;

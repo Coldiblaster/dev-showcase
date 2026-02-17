@@ -19,7 +19,7 @@ export function GitHubRepo() {
   const { ref, isInView } = useSectionInView();
 
   return (
-    <section ref={ref} className="px-6 py-24">
+    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24">
       <div className="mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -52,7 +52,7 @@ export function GitHubRepo() {
                   initial="hidden"
                   animate={isInView ? "visible" : "hidden"}
                   transition={{ delay: 0.4 }}
-                  className="mb-8 max-w-2xl text-muted-foreground"
+                  className="mb-8 max-w-2xl text-sm md:text-base text-muted-foreground"
                 >
                   {t("description")}
                 </motion.p>

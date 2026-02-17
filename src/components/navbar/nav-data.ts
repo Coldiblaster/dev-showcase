@@ -1,5 +1,6 @@
 import {
   BookOpen,
+  Bot,
   Briefcase,
   Database,
   FolderKanban,
@@ -37,6 +38,8 @@ type NavKey =
   | "contentDesc"
   | "seoShowcase"
   | "seoShowcaseDesc"
+  | "aiChatbot"
+  | "aiChatbotDesc"
   | "sectionImplementations"
   | "sectionTips"
   | "devResources"
@@ -104,6 +107,12 @@ export const contentGroup: NavGroup = {
           labelKey: "seoShowcase",
           sublabelKey: "seoShowcaseDesc",
           href: "/implementacoes/seo",
+        },
+        {
+          icon: Bot,
+          labelKey: "aiChatbot",
+          sublabelKey: "aiChatbotDesc",
+          href: "/implementacoes/ai-chatbot",
         },
       ],
     },

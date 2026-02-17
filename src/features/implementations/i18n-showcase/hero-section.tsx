@@ -20,9 +20,9 @@ export function I18nHero({ onScrollToDemo }: { onScrollToDemo: () => void }) {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[70vh] items-center overflow-hidden pb-16"
+      className="relative flex min-h-[70vh] items-center overflow-hidden pb-10 md:pb-16"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-6xl px-4 md:px-6">
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -57,14 +57,14 @@ export function I18nHero({ onScrollToDemo }: { onScrollToDemo: () => void }) {
                 <motion.p
                   variants={fadeUp}
                   transition={{ duration: 0.5 }}
-                  className="mb-4 text-lg text-primary font-medium"
+                  className="mb-4 text-base font-medium text-primary md:text-lg"
                 >
                   {t("hero.subtitle")}
                 </motion.p>
                 <motion.p
                   variants={fadeUp}
                   transition={{ duration: 0.5 }}
-                  className="mb-8 max-w-2xl text-pretty leading-relaxed text-muted-foreground"
+                  className="mb-8 max-w-2xl text-sm text-pretty leading-relaxed text-muted-foreground md:text-base"
                 >
                   {t("hero.description")}
                 </motion.p>

@@ -30,17 +30,17 @@ export function QuickTipsSection({ level }: QuickTipsSectionProps) {
   if (filteredTips.length === 0) return null;
 
   return (
-    <section id="tips" className="relative px-6 py-32">
+    <section id="tips" className="relative px-6 py-16 md:py-32">
       <div className="mx-auto max-w-7xl">
         <AnimatedSection>
-          <div className="mb-12 text-center">
+          <div className="mb-8 text-center md:mb-12">
             <Badge variant="secondary" className="mb-4 font-mono text-xs">
               {t("badge")}
             </Badge>
             <h2 className="mb-4 text-balance text-4xl font-bold tracking-tight md:text-5xl">
               {t("title")}
             </h2>
-            <p className="mx-auto max-w-2xl text-pretty text-lg text-muted-foreground">
+            <p className="mx-auto max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
               {t("description")}
             </p>
           </div>

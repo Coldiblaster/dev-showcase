@@ -1,0 +1,241 @@
+{
+  "hero": {
+    "badge": "AI Chatbot",
+    "title": "AI Chatbot with OpenAI",
+    "subtitle": "Intelligent assistant with real-time streaming",
+    "description": "How to create a chatbot with personality using the OpenAI API, response streaming, and Next.js App Router. From scratch to deploy."
+  },
+  "overview": {
+    "title": "What was built",
+    "description": "An AI assistant integrated into the portfolio that answers questions about the developer, their skills, and projects.",
+    "items": [
+      {
+        "title": "Real-time streaming",
+        "description": "Responses appear token by token using ReadableStream, without waiting for the complete response.",
+        "icon": "Zap"
+      },
+      {
+        "title": "Custom System Prompt",
+        "description": "Personality, tone of voice, and knowledge base defined to respond as the portfolio assistant.",
+        "icon": "Brain"
+      },
+      {
+        "title": "Validation with Zod",
+        "description": "Messages validated on the backend with separate schemas for user and assistant.",
+        "icon": "Shield"
+      },
+      {
+        "title": "Rate limiting and security",
+        "description": "Message limit per session and API quota/rate limit detection.",
+        "icon": "Lock"
+      },
+      {
+        "title": "Responsive UI",
+        "description": "Floating widget with fullscreen on mobile, ScrollArea, timestamps, and initial suggestions.",
+        "icon": "Smartphone"
+      },
+      {
+        "title": "Internationalized",
+        "description": "All chat strings translated into 4 languages via next-intl.",
+        "icon": "Globe"
+      }
+    ]
+  },
+  "setup": {
+    "title": "How to get started with OpenAI",
+    "description": "Step-by-step to get your API key and start using it.",
+    "steps": [
+      {
+        "step": "1",
+        "title": "Create OpenAI account",
+        "description": "Go to platform.openai.com and create an account. You can use Google, Microsoft, or email.",
+        "link": "https://platform.openai.com/signup",
+        "linkLabel": "Create account"
+      },
+      {
+        "step": "2",
+        "title": "Add credits",
+        "description": "Go to Settings → Billing and add credits. Minimum is $5. The gpt-4.1-nano model costs ~$0.10/1M input tokens.",
+        "link": "https://platform.openai.com/settings/organization/billing/overview",
+        "linkLabel": "View Billing"
+      },
+      {
+        "step": "3",
+        "title": "Generate API Key",
+        "description": "Go to API Keys and generate a new key. Copy and save it — it's only shown once.",
+        "link": "https://platform.openai.com/api-keys",
+        "linkLabel": "Generate Key"
+      },
+      {
+        "step": "4",
+        "title": "Configure in project",
+        "description": "Add the key to your Next.js project's .env.local. Never expose it on the frontend.",
+        "code": "OPENAI_API_KEY=sk-proj-your_key_here"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "How much does it cost?",
+    "description": "OpenAI's nano models are extremely cheap. For a portfolio, the cost is practically zero.",
+    "models": [
+      {
+        "name": "gpt-4.1-nano",
+        "input": "$0.10/1M tokens",
+        "output": "$0.40/1M tokens",
+        "best": "Best cost-benefit for simple chatbots",
+        "recommended": true
+      },
+      {
+        "name": "gpt-4.1-mini",
+        "input": "$0.40/1M tokens",
+        "output": "$1.60/1M tokens",
+        "best": "Smarter, good for complex responses",
+        "recommended": false
+      },
+      {
+        "name": "gpt-4.1",
+        "input": "$2.00/1M tokens",
+        "output": "$8.00/1M tokens",
+        "best": "Most capable model, for advanced use cases",
+        "recommended": false
+      }
+    ],
+    "estimate": "Estimate: ~1000 conversations for $0.05 with gpt-4.1-nano",
+    "tip": "With $5 initial credit you get thousands of conversations. Perfect for a portfolio."
+  },
+  "architecture": {
+    "title": "Solution architecture",
+    "description": "Overview of how the pieces connect.",
+    "items": [
+      {
+        "title": "Frontend (React)",
+        "description": "Floating widget with local state, streaming via fetch + ReadableStream, and UI with framer-motion."
+      },
+      {
+        "title": "API Route (Next.js)",
+        "description": "Route handler at /api/chat that receives messages, validates with Zod, and streams the OpenAI response."
+      },
+      {
+        "title": "OpenAI SDK",
+        "description": "Official SDK with stream: true. gpt-4.1-nano model with custom system prompt and controlled max_tokens."
+      },
+      {
+        "title": "System Prompt",
+        "description": "Dedicated file with personality, behavior rules, and complete knowledge base about the developer."
+      }
+    ]
+  },
+  "apiRoute": {
+    "title": "API Route — The backend",
+    "description": "The Next.js route handler that connects frontend and OpenAI.",
+    "codeTitle": "src/app/api/chat/route.ts",
+    "highlights": [
+      "Zod validation: separate schemas for user (max 500 chars) and assistant (max 2000 chars)",
+      "Streaming: ReadableStream that sends tokens in real time",
+      "Security: API key never exposed, rate limit detection, graceful error handling",
+      "Context window: Sends only the last 6 messages to save tokens"
+    ]
+  },
+  "systemPrompt": {
+    "title": "System Prompt — The personality",
+    "description": "The system prompt defines who the chatbot is, how it behaves, and what it knows.",
+    "tips": [
+      "Define clear rules: 'Speak in third person', 'Do not invent information'",
+      "Include knowledge base: real data about the dev, projects, skills",
+      "Limit scope: 'Politely redirect questions outside the scope'",
+      "Define tone of voice: professional but relaxed, with code analogies",
+      "Keep it compact: large prompts consume more tokens on each request"
+    ],
+    "codeTitle": "src/lib/chat/system-prompt.ts"
+  },
+  "frontend": {
+    "title": "Frontend — The widget",
+    "description": "React component with local state, streaming, and responsive UI.",
+    "features": [
+      {
+        "title": "Floating FAB",
+        "description": "Fixed button in the corner with open/close animation and mobile opacity."
+      },
+      {
+        "title": "Token-by-token streaming",
+        "description": "Uses fetch + ReadableStream to show the response being typed in real time."
+      },
+      {
+        "title": "Fullscreen on mobile",
+        "description": "On screens < 420px, the chat takes up the entire screen with a dedicated close button."
+      },
+      {
+        "title": "Initial suggestions",
+        "description": "Clickable chips that fill the input, guiding the user on first interaction."
+      },
+      {
+        "title": "Timestamps",
+        "description": "Each message shows the time, like in real chat apps."
+      },
+      {
+        "title": "Message limit",
+        "description": "Frontend control to prevent excessive API usage per session."
+      }
+    ]
+  },
+  "checklist": {
+    "title": "Implementation checklist",
+    "description": "Everything you need to implement your chatbot.",
+    "items": [
+      {
+        "label": "OpenAI Platform account",
+        "done": true
+      },
+      {
+        "label": "Credits added ($5 minimum)",
+        "done": true
+      },
+      {
+        "label": "API Key generated and saved in .env.local",
+        "done": true
+      },
+      {
+        "label": "SDK openai installed (npm i openai)",
+        "done": true
+      },
+      {
+        "label": "Route handler /api/chat created",
+        "done": true
+      },
+      {
+        "label": "System prompt with defined personality",
+        "done": true
+      },
+      {
+        "label": "Zod validation on backend",
+        "done": true
+      },
+      {
+        "label": "Streaming with ReadableStream",
+        "done": true
+      },
+      {
+        "label": "React widget with state and UI",
+        "done": true
+      },
+      {
+        "label": "Rate limiting and error handling",
+        "done": true
+      },
+      {
+        "label": "Mobile responsiveness",
+        "done": true
+      },
+      {
+        "label": "String internationalization",
+        "done": true
+      }
+    ]
+  },
+  "cta": {
+    "title": "Want to try it live?",
+    "description": "Click the chat icon in the bottom right corner and talk to this portfolio's AI assistant.",
+    "button": "Open OpenAI documentation",
+    "buttonLink": "https://platform.openai.com/docs/guides/text-generation"
+  }
+}

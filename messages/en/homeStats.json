@@ -1,0 +1,8 @@
+{
+  "stats": [
+    { "label": "Years of Experience", "value": 10, "suffix": "+" },
+    { "label": "Projects Delivered", "value": 50, "suffix": "+" },
+    { "label": "Developers Mentored", "value": 20, "suffix": "+" },
+    { "label": "Cups of Coffee", "value": 5000, "suffix": "+" }
+  ]
+}

@@ -23,9 +23,9 @@ export function HomeHeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-6"
+              className="mb-4 md:mb-6"
             >
-              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-sm font-medium text-primary">
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary md:px-4 md:py-1.5 md:text-sm">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                 {t("greeting")}
               </span>
@@ -36,7 +36,7 @@ export function HomeHeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="mb-4 text-balance text-5xl font-bold tracking-tight text-foreground md:text-7xl"
+              className="mb-3 text-balance text-3xl font-bold tracking-tight text-foreground md:mb-4 md:text-5xl lg:text-7xl"
             >
               {t("name")}
             </motion.h1>
@@ -46,15 +46,15 @@ export function HomeHeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="mx-auto mb-10 max-w-2xl space-y-4"
+              className="mx-auto mb-6 max-w-2xl space-y-2 md:mb-10 md:space-y-4"
             >
-              <p className="text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="text-sm leading-relaxed text-muted-foreground md:text-base lg:text-lg">
                 {t("description.intro")}
               </p>
-              <p className="text-base font-medium leading-relaxed text-foreground md:text-lg">
+              <p className="text-sm font-medium leading-relaxed text-foreground md:text-base lg:text-lg">
                 {t("description.value")}
               </p>
-              <p className="text-sm italic leading-relaxed text-muted-foreground/80">
+              <p className="text-xs italic leading-relaxed text-muted-foreground/80 md:text-sm">
                 {t("description.mission")}
               </p>
             </motion.div>
@@ -64,15 +64,15 @@ export function HomeHeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="mb-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
+              className="mb-6 flex flex-col items-center justify-center gap-3 sm:flex-row md:mb-12 md:gap-4"
             >
-              <Button size="lg" className="min-w-45 font-medium" asChild>
+              <Button size="default" className="min-w-40 font-medium md:min-w-45 md:text-base md:px-6 md:py-5" asChild>
                 <a href="#projects">{t("cta")}</a>
               </Button>
               <Button
                 variant="outline"
-                size="lg"
-                className="min-w-45 font-medium"
+                size="default"
+                className="min-w-40 font-medium md:min-w-45 md:text-base md:px-6 md:py-5"
                 asChild
               >
                 <a href="#contact">{t("secondary")}</a>
@@ -84,7 +84,7 @@ export function HomeHeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="mb-8 flex flex-wrap items-center justify-center gap-4 text-xs text-muted-foreground md:gap-6 md:text-sm"
+              className="mb-4 flex flex-wrap items-center justify-center gap-3 text-[11px] text-muted-foreground md:mb-8 md:gap-6 md:text-sm"
             >
               <span className="flex items-center gap-1.5">
                 <span className="text-primary">✓</span>
@@ -107,7 +107,7 @@ export function HomeHeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.9 }}
-              className="flex items-center justify-center gap-4"
+              className="flex items-center justify-center gap-3 md:gap-4"
             >
               {[
                 {
@@ -131,7 +131,7 @@ export function HomeHeroSection() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary md:h-10 md:w-10"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   aria-label={label}
@@ -146,7 +146,7 @@ export function HomeHeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6 }}
-        className="mt-16 flex justify-center"
+        className="-mt-4 flex justify-center pb-6 md:-mt-8 md:pb-10"
       >
         <motion.a
           href="#about"

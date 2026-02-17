@@ -25,9 +25,9 @@ export function AboutSection() {
   ];
 
   return (
-    <section id="about" className="relative px-6 py-32" ref={ref}>
+    <section id="about" className="relative px-6 py-16 md:py-32" ref={ref}>
       <div className="mx-auto max-w-6xl">
-        <div className="grid items-start gap-16 lg:grid-cols-2">
+        <div className="grid items-start gap-8 md:gap-16 lg:grid-cols-2">
           {/* Left - Title area */}
           <div>
             <motion.span
@@ -53,7 +53,7 @@ export function AboutSection() {
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-pretty leading-relaxed text-muted-foreground"
+              className="text-pretty text-sm leading-relaxed text-muted-foreground md:text-base"
             >
               {t("description")}
             </motion.p>
@@ -93,7 +93,7 @@ export function AboutSection() {
               </div>
 
               {/* Tech stack pills */}
-              <Separator className="my-8" />
+              <Separator className="my-4 md:my-8" />
               <div className="flex flex-wrap gap-2">
                 {[
                   "React 18+",

@@ -1,0 +1,133 @@
+{
+  "hero": {
+    "badge": "AI Chatbot",
+    "title": "Chatbot IA com OpenAI",
+    "subtitle": "Assistente inteligente com streaming em tempo real",
+    "description": "Como criar um chatbot com personalidade usando a API da OpenAI, streaming de respostas e Next.js App Router. Do zero ao deploy."
+  },
+  "overview": {
+    "title": "O que foi construído",
+    "description": "Um assistente IA integrado ao portfolio que responde perguntas sobre o desenvolvedor, suas habilidades e projetos.",
+    "items": [
+      { "title": "Streaming em tempo real", "description": "Respostas aparecem token por token usando ReadableStream, sem esperar a resposta completa.", "icon": "Zap" },
+      { "title": "System Prompt personalizado", "description": "Personalidade, tom de voz e knowledge base definidos para responder como assistente do portfolio.", "icon": "Brain" },
+      { "title": "Validação com Zod", "description": "Mensagens validadas no backend com schemas diferenciados para user e assistant.", "icon": "Shield" },
+      { "title": "Rate limiting e segurança", "description": "Limite de mensagens por sessão e detecção de quota/rate limit da API.", "icon": "Lock" },
+      { "title": "UI responsiva", "description": "Widget flutuante com fullscreen no mobile, ScrollArea, timestamps e sugestões iniciais.", "icon": "Smartphone" },
+      { "title": "Internacionalizado", "description": "Todas as strings do chat traduzidas em 4 idiomas via next-intl.", "icon": "Globe" }
+    ]
+  },
+  "setup": {
+    "title": "Como começar com a OpenAI",
+    "description": "Passo a passo para obter sua API key e começar a usar.",
+    "steps": [
+      {
+        "step": "1",
+        "title": "Criar conta na OpenAI",
+        "description": "Acesse platform.openai.com e crie uma conta. Você pode usar Google, Microsoft ou email.",
+        "link": "https://platform.openai.com/signup",
+        "linkLabel": "Criar conta"
+      },
+      {
+        "step": "2",
+        "title": "Adicionar créditos",
+        "description": "Vá em Settings → Billing e adicione créditos. O mínimo é $5. O modelo gpt-4.1-nano custa ~$0.10/1M tokens de input.",
+        "link": "https://platform.openai.com/settings/organization/billing/overview",
+        "linkLabel": "Ver Billing"
+      },
+      {
+        "step": "3",
+        "title": "Gerar API Key",
+        "description": "Vá em API Keys e gere uma nova chave. Copie e guarde — ela só é mostrada uma vez.",
+        "link": "https://platform.openai.com/api-keys",
+        "linkLabel": "Gerar Key"
+      },
+      {
+        "step": "4",
+        "title": "Configurar no projeto",
+        "description": "Adicione a chave no .env.local do seu projeto Next.js. Nunca exponha no frontend.",
+        "code": "OPENAI_API_KEY=sk-proj-sua_chave_aqui"
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Quanto custa?",
+    "description": "Os modelos nano da OpenAI são extremamente baratos. Para um portfolio, o custo é praticamente zero.",
+    "models": [
+      { "name": "gpt-4.1-nano", "input": "$0.10/1M tokens", "output": "$0.40/1M tokens", "best": "Melhor custo-benefício para chatbots simples", "recommended": true },
+      { "name": "gpt-4.1-mini", "input": "$0.40/1M tokens", "output": "$1.60/1M tokens", "best": "Mais inteligente, bom para respostas complexas", "recommended": false },
+      { "name": "gpt-4.1", "input": "$2.00/1M tokens", "output": "$8.00/1M tokens", "best": "Modelo mais capaz, para casos avançados", "recommended": false }
+    ],
+    "estimate": "Estimativa: ~1000 conversas por $0.05 com gpt-4.1-nano",
+    "tip": "Com $5 de crédito inicial você tem milhares de conversas. Perfeito para portfolio."
+  },
+  "architecture": {
+    "title": "Arquitetura da solução",
+    "description": "Visão geral de como as peças se conectam.",
+    "items": [
+      { "title": "Frontend (React)", "description": "Widget flutuante com estado local, streaming via fetch + ReadableStream, e UI com framer-motion." },
+      { "title": "API Route (Next.js)", "description": "Route handler em /api/chat que recebe mensagens, valida com Zod e faz streaming da resposta da OpenAI." },
+      { "title": "OpenAI SDK", "description": "SDK oficial com stream: true. Modelo gpt-4.1-nano com system prompt customizado e max_tokens controlado." },
+      { "title": "System Prompt", "description": "Arquivo dedicado com personalidade, regras de comportamento e knowledge base completo sobre o desenvolvedor." }
+    ]
+  },
+  "apiRoute": {
+    "title": "API Route — O backend",
+    "description": "A route handler do Next.js que conecta frontend e OpenAI.",
+    "codeTitle": "src/app/api/chat/route.ts",
+    "highlights": [
+      "Validação com Zod: schemas separados para user (max 500 chars) e assistant (max 2000 chars)",
+      "Streaming: ReadableStream que envia tokens em tempo real",
+      "Segurança: API key nunca exposta, rate limit detection, error handling graceful",
+      "Context window: Envia apenas as últimas 6 mensagens para economizar tokens"
+    ]
+  },
+  "systemPrompt": {
+    "title": "System Prompt — A personalidade",
+    "description": "O system prompt define quem o chatbot é, como se comporta e o que sabe.",
+    "tips": [
+      "Defina regras claras: 'Fale em terceira pessoa', 'Não invente informações'",
+      "Inclua knowledge base: dados reais sobre o dev, projetos, skills",
+      "Limite o escopo: 'Redirecione perguntas fora do escopo educadamente'",
+      "Defina tom de voz: profissional mas descontraído, com analogias de código",
+      "Mantenha compacto: prompts grandes consomem mais tokens a cada request"
+    ],
+    "codeTitle": "src/lib/chat/system-prompt.ts"
+  },
+  "frontend": {
+    "title": "Frontend — O widget",
+    "description": "Componente React com estado local, streaming e UI responsiva.",
+    "features": [
+      { "title": "FAB flutuante", "description": "Botão fixo no canto inferior com animação de open/close e opacity no mobile." },
+      { "title": "Streaming token a token", "description": "Usa fetch + ReadableStream para mostrar a resposta sendo digitada em tempo real." },
+      { "title": "Fullscreen no mobile", "description": "Em telas < 420px, o chat ocupa a tela toda com botão de fechar dedicado." },
+      { "title": "Sugestões iniciais", "description": "Chips clicáveis que preenchem o input, guiando o usuário na primeira interação." },
+      { "title": "Timestamps", "description": "Cada mensagem mostra o horário, como em apps de chat reais." },
+      { "title": "Limite de mensagens", "description": "Controle no frontend para evitar uso excessivo da API por sessão." }
+    ]
+  },
+  "checklist": {
+    "title": "Checklist de implementação",
+    "description": "Tudo que você precisa para implementar seu chatbot.",
+    "items": [
+      { "label": "Conta na OpenAI Platform", "done": true },
+      { "label": "Créditos adicionados ($5 mínimo)", "done": true },
+      { "label": "API Key gerada e salva no .env.local", "done": true },
+      { "label": "SDK openai instalado (npm i openai)", "done": true },
+      { "label": "Route handler /api/chat criada", "done": true },
+      { "label": "System prompt com personalidade definida", "done": true },
+      { "label": "Validação Zod no backend", "done": true },
+      { "label": "Streaming com ReadableStream", "done": true },
+      { "label": "Widget React com estado e UI", "done": true },
+      { "label": "Rate limiting e error handling", "done": true },
+      { "label": "Responsividade mobile", "done": true },
+      { "label": "Internacionalização das strings", "done": true }
+    ]
+  },
+  "cta": {
+    "title": "Quer testar ao vivo?",
+    "description": "Clique no ícone de chat no canto inferior direito e converse com o assistente IA deste portfolio.",
+    "button": "Abrir documentação OpenAI",
+    "buttonLink": "https://platform.openai.com/docs/guides/text-generation"
+  }
+}

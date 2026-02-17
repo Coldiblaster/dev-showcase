@@ -21,21 +21,21 @@ export function Methods() {
   const showcase = useI18nShowcaseData();
 
   return (
-    <section ref={ref} className="px-6 py-24">
+    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={stagger}
-          className="mb-12 text-center"
+          className="mb-8 md:mb-12 text-center"
         >
           <motion.h2
             variants={fadeUp}
-            className="mb-2 text-3xl font-bold text-foreground md:text-4xl"
+            className="mb-2 text-2xl font-bold text-foreground md:text-4xl"
           >
             {t("methods.title")}
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-muted-foreground">
+          <motion.p variants={fadeUp} className="text-sm md:text-base text-muted-foreground">
             {t("methods.subtitle")}
           </motion.p>
         </motion.div>
@@ -60,7 +60,7 @@ export function Methods() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                className="grid gap-6 lg:grid-cols-[1fr_1.2fr]"
+                className="grid gap-4 md:gap-6 lg:grid-cols-[1fr_1.2fr]"
               >
                 <div className="flex flex-col justify-center">
                   <Badge
@@ -72,7 +72,7 @@ export function Methods() {
                   <h3 className="mb-3 font-mono text-xl font-bold text-foreground">
                     {m.title}
                   </h3>
-                  <p className="leading-relaxed text-muted-foreground">
+                  <p className="leading-relaxed text-sm md:text-base text-muted-foreground">
                     {m.description}
                   </p>
                 </div>

@@ -50,7 +50,7 @@ export function AITips() {
         warning={t("hero.warning")}
       />
 
-      <section className="px-6 py-20">
+      <section className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader
@@ -96,7 +96,7 @@ export function AITips() {
         <Separator />
       </div>
 
-      <section className="px-6 py-20">
+      <section className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader
@@ -149,7 +149,7 @@ export function AITips() {
         <Separator />
       </div>
 
-      <section className="px-6 py-20">
+      <section className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader
@@ -216,7 +216,7 @@ export function AITips() {
         <Separator />
       </div>
 
-      <section className="px-6 py-20">
+      <section className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader
@@ -226,7 +226,7 @@ export function AITips() {
             />
           </AnimatedSection>
 
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-6 md:gap-10">
             {(t.raw("tools.categories") as ToolsCategory[]).map(
               (cat, i: number) => (
                 <AnimatedSection key={cat.category} delay={i * 0.1}>
@@ -268,7 +268,7 @@ export function AITips() {
         <Separator />
       </div>
 
-      <section className="px-6 py-20">
+      <section className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader

@@ -40,6 +40,10 @@
       "title": "SEO Showcase",
       "description": "Meta-Tags, Open Graph, JSON-LD, Sitemap — Next.js vs React + Vite"
     },
+    "ai-chatbot": {
+      "title": "KI-Chatbot mit OpenAI",
+      "description": "KI-Chatbot mit Streaming, System-Prompt und Next.js App Router"
+    },
     "ai-tips": {
       "title": "KI-Tipps",
       "description": "Prompts, Workflows und KI-Tools für Entwickler"

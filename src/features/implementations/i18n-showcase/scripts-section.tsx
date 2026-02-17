@@ -23,21 +23,21 @@ export function Scripts() {
   const items: ScriptItem[] = t.raw("scripts.items");
 
   return (
-    <section ref={ref} className="px-6 py-24">
+    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={stagger}
-          className="mb-12 text-center"
+          className="mb-8 md:mb-12 text-center"
         >
           <motion.h2
             variants={fadeUp}
-            className="mb-2 text-3xl font-bold text-foreground md:text-4xl"
+            className="mb-2 text-2xl font-bold text-foreground md:text-4xl"
           >
             {t("scripts.title")}
           </motion.h2>
-          <motion.p variants={fadeUp} className="text-muted-foreground">
+          <motion.p variants={fadeUp} className="text-sm md:text-base text-muted-foreground">
             {t("scripts.subtitle")}
           </motion.p>
         </motion.div>
@@ -55,7 +55,7 @@ export function Scripts() {
               transition={{ duration: 0.4 }}
             >
               <Card className="group border-border/50 bg-card transition-all hover:border-primary/30">
-                <CardContent className="flex flex-col items-start gap-4 p-5 sm:flex-row sm:items-center">
+                <CardContent className="flex flex-col items-start gap-3 p-4 md:gap-4 md:p-5 sm:flex-row sm:items-center">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20">
                     <Terminal className="h-5 w-5 text-primary" />
                   </div>

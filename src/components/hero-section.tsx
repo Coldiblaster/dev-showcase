@@ -53,7 +53,7 @@ export function HeroSection({
             "url(\"data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='none' stroke='%23fff' stroke-width='.5'/%3E%3C/svg%3E\")",
         }}
       />
-      <section className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6 py-24 md:py-32">
+      <section className="relative flex min-h-[90dvh] flex-col justify-center overflow-hidden px-6 py-16 md:min-h-screen md:py-32">
         {/* Animated grid background */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-[size:60px_60px]" />
@@ -91,7 +91,7 @@ export function HeroSection({
           </AnimatedSection>
           <AnimatedSection delay={0.2}>
             {subtitle && (
-              <p className="mb-4 font-mono text-sm text-primary md:text-base">
+              <p className="mb-2 font-mono text-xs text-primary md:mb-4 md:text-base">
                 {subtitle}
               </p>
             )}

@@ -28,10 +28,10 @@ export default async function DicasPage() {
   const items = getContentByCategory("guide");
 
   return (
-    <div className="container mx-auto px-6 py-24 pt-32">
-      <div className="mb-12">
-        <h1 className="mb-4 text-4xl font-bold text-foreground">{t("tips")}</h1>
-        <p className="text-lg text-muted-foreground">{t("tipsDesc")}</p>
+    <div className="container mx-auto px-6 py-12 pt-24 md:py-24 md:pt-32">
+      <div className="mb-8 md:mb-12">
+        <h1 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">{t("tips")}</h1>
+        <p className="text-base text-muted-foreground md:text-lg">{t("tipsDesc")}</p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

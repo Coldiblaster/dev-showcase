@@ -1,4 +1,5 @@
 import about from "./about.json";
+import aiChatbotPage from "./aiChatbotPage.json";
 import ai from "./ai.json";
 import chat from "./chat.json";
 import aiInnovation from "./aiInnovation.json";
@@ -8,6 +9,8 @@ import experience from "./experience.json";
 import footer from "./footer.json";
 import global from "./global.json";
 import hero from "./hero.json";
+import homeStack from "./homeStack.json";
+import homeStats from "./homeStats.json";
 import i18nPage from "./i18nPage.json";
 import i18nShowcase from "./i18nShowcase.json";
 import implementations from "./implementations.json";
@@ -24,6 +27,7 @@ import tipsPage from "./tipsPage.json";
 export default {
   global,
   about,
+  aiChatbotPage,
   nav,
   ai,
   chat,
@@ -33,6 +37,8 @@ export default {
   experience,
   footer,
   hero,
+  homeStack,
+  homeStats,
   i18nPage,
   i18nShowcase,
   implementations,

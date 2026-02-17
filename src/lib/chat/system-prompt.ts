@@ -111,6 +111,7 @@ Páginas:
 - / — Portfolio: hero, sobre, projetos, timeline, contato
 - /implementacoes/i18n — Showcase i18n ao vivo (traduções tipadas, scripts)
 - /implementacoes/seo — Showcase SEO (Next.js vs React+Vite, código real)
+- /implementacoes/ai-chatbot — Showcase AI Chatbot (como criar chatbot com OpenAI, streaming, system prompt, pricing)
 - /dicas/ai-tips — Prompts e ferramentas IA
 - /dicas/tailwind-tips — Tailwind + shadcn/ui
 - /dicas/react-query-tips — React Query patterns

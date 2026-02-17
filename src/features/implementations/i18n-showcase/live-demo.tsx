@@ -5,6 +5,7 @@ import { Check } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
 
+import { useCopyFeedback } from "@/components/copy-feedback";
 import { Button } from "@/components/ui/button";
 import { CardBlur } from "@/components/ui/card-blur";
 import { Input } from "@/components/ui/input";
@@ -25,6 +26,7 @@ export function LiveDemo() {
   const [itemCount, setItemCount] = useState(5);
   const [name, setName] = useState("Vinicius");
   const [copied, setCopied] = useState(false);
+  const { showFeedback } = useCopyFeedback();
 
   // Use real translations from messages/*/i18nPage.json for the preview
   const msgs = getDemoMessages(demoLocale);
@@ -99,7 +101,7 @@ export function LiveDemo() {
   );
 
   return (
-    <section ref={ref} id="live-demo" className="px-6 py-24">
+    <section ref={ref} id="live-demo" className="px-4 py-12 md:px-6 md:py-24">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
@@ -108,20 +110,20 @@ export function LiveDemo() {
             visible: { opacity: 1, y: 0 },
             hidden: { opacity: 0, y: 30 },
           }}
-          className="mb-12 text-center"
+          className="mb-8 md:mb-12 text-center"
         >
           <motion.h2
             variants={{
               visible: { opacity: 1, y: 0 },
               hidden: { opacity: 0, y: 30 },
             }}
-            className="mb-2 text-3xl font-bold text-foreground md:text-4xl"
+            className="mb-2 text-2xl font-bold text-foreground md:text-4xl"
           >
             {t("liveDemo.title")}
           </motion.h2>
           <motion.p
             variants={{ visible: { opacity: 1 }, hidden: { opacity: 0 } }}
-            className="text-muted-foreground"
+            className="text-sm md:text-base text-muted-foreground"
           >
             {t("liveDemo.subtitle")}
           </motion.p>
@@ -211,6 +213,7 @@ export function LiveDemo() {
                               window.location.href,
                             );
                             setCopied(true);
+                            showFeedback();
                             setTimeout(() => setCopied(false), 2000);
                           } catch {
                             // ignore
@@ -251,7 +254,7 @@ export function LiveDemo() {
                       <p className="mb-1 text-xs text-muted-foreground">
                         {msgs.greeting}
                       </p>
-                      <p className="text-lg font-semibold text-foreground">
+                      <p className="text-base font-semibold text-foreground md:text-lg">
                         {interpolate(msgs.greetingName, { name })}
                       </p>
                     </CardBlur>
@@ -313,7 +316,7 @@ export function LiveDemo() {
                           {msgs.itemCountLabel}
                         </p>
                       </div>
-                      <p className="text-lg font-semibold text-primary">
+                      <p className="text-base font-semibold text-primary md:text-lg">
                         {pluralResult}
                       </p>
                     </CardBlur>

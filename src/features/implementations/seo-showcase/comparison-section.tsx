@@ -26,18 +26,18 @@ export function ComparisonSection() {
   const active = items[activeIndex];
 
   return (
-    <section ref={ref} className="px-6 py-24">
+    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={stagger}
         >
-          <motion.div variants={fadeUp} className="mb-10 max-w-2xl">
-            <h2 className="mb-3 text-3xl font-bold text-foreground">
+          <motion.div variants={fadeUp} className="mb-8 max-w-2xl md:mb-10">
+            <h2 className="mb-3 text-2xl font-bold text-foreground">
               {t("comparison.title")}
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-sm md:text-base text-muted-foreground">
               {t("comparison.description")}
             </p>
           </motion.div>
@@ -68,7 +68,7 @@ export function ComparisonSection() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25 }}
-            className="grid gap-6 lg:grid-cols-2"
+            className="grid gap-4 md:gap-6 lg:grid-cols-2"
           >
             {/* Next.js side */}
             <div className="flex flex-col gap-3">

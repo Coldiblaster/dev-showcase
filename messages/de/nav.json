@@ -19,6 +19,8 @@
   "tipsDesc": "Bildungsinhalte für Entwickler",
   "seoShowcase": "SEO Showcase",
   "seoShowcaseDesc": "Meta-Tags, Open Graph, JSON-LD und Sitemap",
+  "aiChatbot": "KI-Chatbot",
+  "aiChatbotDesc": "KI-Chatbot mit OpenAI, Streaming und Next.js",
   "content": "Inhalt",
   "contentDesc": "Technische Implementierungen und Anleitungen für Devs",
   "sectionImplementations": "Implementierungen",

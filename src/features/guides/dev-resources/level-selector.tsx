@@ -98,7 +98,7 @@ export function LevelSelector({
                   </div>
 
                   <div className="relative z-10">
-                    <p className="text-lg font-semibold">{t(item.id)}</p>
+                    <p className="text-base font-semibold md:text-lg">{t(item.id)}</p>
                     <p className="mt-1 text-sm text-muted-foreground">
                       {t(`${item.id}Description`)}
                     </p>
@@ -128,7 +128,7 @@ export function LevelSelector({
             transition={{ duration: 0.3 }}
             className="mt-8 text-center"
           >
-            <p className="text-lg text-muted-foreground">
+            <p className="text-base text-muted-foreground md:text-lg">
               {t(`greeting.${greetingKey}`)}
             </p>
 

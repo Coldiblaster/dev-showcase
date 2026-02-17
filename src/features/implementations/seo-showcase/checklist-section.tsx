@@ -18,18 +18,21 @@ export function ChecklistSection() {
   const items = t.raw("checklist.items") as ChecklistItem[];
 
   return (
-    <section ref={ref} className="bg-muted/30 px-6 py-24">
+    <section
+      ref={ref}
+      className="bg-muted/30 px-4 py-12 md:px-6 md:py-24 bg-secondary/20"
+    >
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={stagger}
         >
-          <motion.div variants={fadeUp} className="mb-10 text-center">
-            <h2 className="mb-3 text-3xl font-bold text-foreground">
+          <motion.div variants={fadeUp} className="mb-8 text-center md:mb-10">
+            <h2 className="mb-3 text-2xl font-bold text-foreground">
               {t("checklist.title")}
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-sm md:text-base text-muted-foreground">
               {t("checklist.description")}
             </p>
           </motion.div>

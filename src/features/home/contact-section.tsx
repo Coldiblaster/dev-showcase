@@ -102,12 +102,12 @@ export function ContactSection() {
   const isSending = status === "sending";
 
   return (
-    <section id="contact" className="relative px-6 py-32" ref={ref}>
+    <section id="contact" className="relative px-6 py-16 md:py-32" ref={ref}>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,hsl(var(--primary)/0.06),transparent_60%)]" />
 
       <div className="relative mx-auto max-w-5xl">
         {/* Header */}
-        <div className="mb-16 text-center">
+        <div className="mb-8 text-center md:mb-16">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -131,13 +131,13 @@ export function ContactSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mx-auto max-w-xl text-pretty leading-relaxed text-muted-foreground"
+            className="mx-auto max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground md:text-base"
           >
             {t("description")}
           </motion.p>
         </div>
 
-        <div className="grid gap-10 md:grid-cols-5">
+        <div className="grid gap-6 md:grid-cols-5 md:gap-10">
           {/* Form - takes 3 cols */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -148,7 +148,7 @@ export function ContactSection() {
             <CardBlur className="md:p-8">
               <div className="mb-6 flex items-center gap-2">
                 <Mail className="h-5 w-5 text-primary" />
-                <h3 className="text-lg font-semibold text-foreground">
+                <h3 className="text-base font-semibold text-foreground md:text-lg">
                   {t("formTitle")}
                 </h3>
               </div>
