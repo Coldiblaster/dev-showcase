@@ -25,10 +25,9 @@ export function ScrollTopButton() {
       onClick={scrollToTop}
       variant="default"
       size="icon"
-      className={`fixed bottom-24 right-6 z-50 h-14 w-14 rounded-full shadow-lg transition-opacity duration-300 bg-primary text-primary-foreground hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-primary/50 ${visible ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-      style={{ boxShadow: "0 4px 24px 0 rgba(0,0,0,0.12)" }}
+      className={`fixed bottom-[4.5rem] right-4 z-40 h-10 w-10 rounded-full shadow-md transition-all duration-300 bg-primary/80 text-primary-foreground hover:bg-primary hover:opacity-100 focus:outline-none md:bottom-24 md:right-6 md:h-14 md:w-14 md:bg-primary ${visible ? "opacity-70 md:opacity-100" : "opacity-0 pointer-events-none"}`}
     >
-      <ArrowUp size={22} className="text-primary-foreground" />
+      <ArrowUp size={16} className="text-primary-foreground md:size-[22px]" />
     </Button>
   );
 }

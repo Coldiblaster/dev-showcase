@@ -84,9 +84,9 @@ export function Workflow() {
                         {step.description}
                       </p>
                       {step.command && (
-                        <div className="mt-3 inline-flex items-center gap-2 rounded-lg bg-secondary px-3 py-1.5">
-                          <Terminal className="h-3.5 w-3.5 text-primary" />
-                          <code className="font-mono text-xs text-foreground">
+                        <div className="mt-3 inline-flex max-w-full items-center gap-2 overflow-hidden rounded-lg bg-secondary px-3 py-1.5">
+                          <Terminal className="h-3.5 w-3.5 shrink-0 text-primary" />
+                          <code className="truncate font-mono text-xs text-foreground">
                             {step.command}
                           </code>
                         </div>

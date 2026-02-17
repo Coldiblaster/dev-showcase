@@ -59,8 +59,8 @@ export function Scripts() {
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20">
                     <Terminal className="h-5 w-5 text-primary" />
                   </div>
-                  <div className="flex-1">
-                    <code className="font-mono text-sm font-semibold text-foreground">
+                  <div className="min-w-0 flex-1">
+                    <code className="break-all font-mono text-sm font-semibold text-foreground">
                       {item.command}
                     </code>
                     <p className="mt-1 text-sm text-muted-foreground">

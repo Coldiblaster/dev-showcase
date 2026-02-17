@@ -146,7 +146,7 @@ export function HomeHeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6 }}
-        className="mt-16"
+        className="mt-16 flex justify-center"
       >
         <motion.a
           href="#about"

@@ -186,15 +186,15 @@ export function TailwindTips() {
                     {item.title}
                   </h3>
                   <div className="mb-4 grid gap-3 md:grid-cols-2">
-                    <div className="flex items-start gap-2.5 rounded-lg border border-red-500/20 bg-red-500/5 p-3">
+                    <div className="flex items-start gap-2.5 overflow-hidden rounded-lg border border-red-500/20 bg-red-500/5 p-3">
                       <X className="mt-0.5 h-4 w-4 shrink-0 text-red-400" />
-                      <code className="font-mono text-xs text-red-300">
+                      <code className="min-w-0 break-all font-mono text-xs text-red-300">
                         {item.bad}
                       </code>
                     </div>
-                    <div className="flex items-start gap-2.5 rounded-lg border border-green-500/20 bg-green-500/5 p-3">
+                    <div className="flex items-start gap-2.5 overflow-hidden rounded-lg border border-green-500/20 bg-green-500/5 p-3">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-green-400" />
-                      <code className="font-mono text-xs text-green-300">
+                      <code className="min-w-0 break-all font-mono text-xs text-green-300">
                         {item.good}
                       </code>
                     </div>

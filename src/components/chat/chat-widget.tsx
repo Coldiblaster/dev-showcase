@@ -128,8 +128,9 @@ export function ChatWidget() {
       {/* FAB button */}
       <motion.button
         onClick={() => setOpen((prev) => !prev)}
-        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/25 transition-colors hover:bg-primary/90"
-        whileHover={{ scale: 1.05 }}
+        className="fixed bottom-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md transition-colors hover:bg-primary/90 hover:opacity-100 md:bottom-6 md:right-6 md:h-14 md:w-14 md:shadow-lg md:shadow-primary/25"
+        style={{ opacity: open ? 1 : 0.7 }}
+        whileHover={{ scale: 1.05, opacity: 1 }}
         whileTap={{ scale: 0.95 }}
         aria-label={open ? t("close") : t("open")}
       >
@@ -142,7 +143,7 @@ export function ChatWidget() {
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.15 }}
             >
-              <X className="h-6 w-6" />
+              <X className="h-5 w-5 md:h-6 md:w-6" />
             </motion.div>
           ) : (
             <motion.div
@@ -152,7 +153,7 @@ export function ChatWidget() {
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.15 }}
             >
-              <MessageCircle className="h-6 w-6" />
+              <MessageCircle className="h-5 w-5 md:h-6 md:w-6" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -166,7 +167,7 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="fixed bottom-24 right-6 z-50 flex h-[500px] w-[380px] flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-2xl max-[420px]:bottom-0 max-[420px]:right-0 max-[420px]:h-full max-[420px]:w-full max-[420px]:rounded-none"
+            className="fixed bottom-24 right-6 z-50 flex h-[500px] w-[380px] flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-2xl max-[420px]:inset-0 max-[420px]:bottom-0 max-[420px]:right-0 max-[420px]:h-full max-[420px]:w-full max-[420px]:rounded-none"
           >
             {/* Header */}
             <div className="flex items-center gap-3 border-b border-border bg-secondary/50 px-5 py-4">
@@ -179,6 +180,13 @@ export function ChatWidget() {
                 </p>
                 <p className="text-xs text-muted-foreground">{t("subtitle")}</p>
               </div>
+              <button
+                onClick={() => setOpen(false)}
+                className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                aria-label={t("close")}
+              >
+                <X className="h-4 w-4" />
+              </button>
             </div>
 
             {/* Messages */}

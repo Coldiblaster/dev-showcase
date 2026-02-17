@@ -69,7 +69,7 @@ export function AboutSection() {
               <div className="flex flex-col gap-6">
                 {stats.map((stat, i) => (
                   <div key={stat.label}>
-                    <div className="flex items-baseline justify-between">
+                    <div className="flex items-baseline gap-3">
                       <motion.span
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -79,7 +79,7 @@ export function AboutSection() {
                           type: "spring",
                           stiffness: 200,
                         }}
-                        className="font-mono text-4xl font-bold text-primary"
+                        className="shrink-0 font-mono text-3xl font-bold text-primary md:text-4xl"
                       >
                         {stat.value}
                       </motion.span>

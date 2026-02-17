@@ -23,8 +23,8 @@ export function PromptCard({
   description: string;
 }) {
   return (
-    <div className="rounded-xl border border-border bg-card/50 p-4 backdrop-blur-sm">
-      <code className="mb-2 block font-mono text-sm text-primary">
+    <div className="overflow-hidden rounded-xl border border-border bg-card/50 p-4 backdrop-blur-sm">
+      <code className="mb-2 block break-words font-mono text-sm text-primary">
         {prompt}
       </code>
       <p className="text-xs text-muted-foreground">{description}</p>

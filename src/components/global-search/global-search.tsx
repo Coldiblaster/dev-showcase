@@ -55,7 +55,7 @@ export function GlobalSearch() {
       />
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="flex h-125 max-w-2xl flex-col p-0">
+        <DialogContent className="flex h-[min(500px,85dvh)] max-w-2xl flex-col p-0">
           <DialogHeader className="sr-only">
             <DialogTitle>{t("title")}</DialogTitle>
           </DialogHeader>

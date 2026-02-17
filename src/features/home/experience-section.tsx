@@ -73,7 +73,7 @@ export function ExperienceSection() {
                         {item.company}
                       </p>
                     </div>
-                    <span className="whitespace-nowrap font-mono text-xs text-muted-foreground">
+                    <span className="font-mono text-xs text-muted-foreground">
                       {item.period}
                     </span>
                   </div>

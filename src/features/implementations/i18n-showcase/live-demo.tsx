@@ -134,7 +134,7 @@ export function LiveDemo() {
         >
           <div className="overflow-hidden border-primary/20 bg-card rounded-xl shadow">
             <div className="p-0">
-              <div className="grid gap-0 lg:grid-cols-[300px_1fr]">
+              <div className="grid gap-0 lg:grid-cols-[minmax(200px,300px)_1fr]">
                 {/* Controls */}
                 <div className="border-b border-border bg-secondary/30 p-6 lg:border-b-0 lg:border-r">
                   <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">

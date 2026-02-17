@@ -4,7 +4,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 import { MobileMenuItem } from "./mobile-menu-item";
 import { navGroups } from "./nav-data";
@@ -19,6 +21,45 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
+    if (isOpen) {
+      const scrollY = window.scrollY;
+      html.style.overflow = "hidden";
+      body.style.overflow = "hidden";
+      body.style.position = "fixed";
+      body.style.top = `-${scrollY}px`;
+      body.style.left = "0";
+      body.style.right = "0";
+    } else {
+      const top = body.style.top;
+      html.style.overflow = "";
+      body.style.overflow = "";
+      body.style.position = "";
+      body.style.top = "";
+      body.style.left = "";
+      body.style.right = "";
+      if (top) {
+        window.scrollTo(0, parseInt(top, 10) * -1);
+      }
+    }
+
+    return () => {
+      const top = body.style.top;
+      html.style.overflow = "";
+      body.style.overflow = "";
+      body.style.position = "";
+      body.style.top = "";
+      body.style.left = "";
+      body.style.right = "";
+      if (top) {
+        window.scrollTo(0, parseInt(top, 10) * -1);
+      }
+    };
+  }, [isOpen]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -27,11 +68,12 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           role="navigation"
           aria-label="Menu principal"
           initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
+          animate={{ height: "calc(100dvh - 57px)", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.2 }}
           className="overflow-hidden border-t border-border/50 md:hidden"
         >
+          <ScrollArea className="h-full">
           <div className="flex flex-col gap-1 p-4">
             <Link
               href="/"
@@ -101,6 +143,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
               );
             })}
           </div>
+          </ScrollArea>
         </motion.div>
       )}
     </AnimatePresence>
