@@ -2,46 +2,80 @@
   "title": "Proyectos",
   "subtitle": "Trabajos destacados",
   "viewCode": "Ver código",
+  "viewSite": "Ver sitio",
   "items": [
     {
+      "title": "Azul Seguros",
+      "description": "Azul Seguro Auto por Suscripción es el seguro mensual para tu carro. Plataforma completa con flujo de contratación.",
+      "tags": ["React", "Next.js", "TypeScript", "Styled Components", "Framer Motion", "Storybook"],
+      "image": "/portfolio/azul-seguros-1.png",
+      "link": "https://assinatura.azulseguros.com.br/"
+    },
+    {
+      "title": "Auto Fácil Itaú",
+      "description": "Auto Fácil es un producto de Azul Seguros en alianza con Itaú. Seguro mensual para autos con UX simplificada.",
+      "tags": ["Next.js", "TypeScript", "Styled Components", "Framer Motion", "Storybook"],
+      "image": "/portfolio/auto-facil-itau.png",
+      "link": "https://autofacilitau.azulseguros.com.br/"
+    },
+    {
+      "title": "Rio Card Mais",
+      "description": "Sistema de búsqueda de puntos de atención cercanos con mapa interactivo y filtros avanzados.",
+      "tags": ["Next.js", "TypeScript", "Tailwind", "shadcn/ui", "React Query", "Zustand", "Leaflet"],
+      "image": "/portfolio/rio-card-mais.png",
+      "link": "https://ondeestamos.riocardmais.com.br/"
+    },
+    {
       "title": "Mind Schedule",
-      "description": "Panel administrativo donde los profesionales registran negocios, configuran horarios, definen servicios y valores. Integra autenticación vía Clerk, sugerencias por IA y despliegue en Vercel.",
+      "description": "Panel administrativo donde profesionales registran negocios, configuran horarios, definen servicios y valores. Integra autenticación vía Clerk, sugerencias por IA y despliegue en Vercel.",
       "tags": ["Next.js 15", "TypeScript", "Tailwind", "Clerk", "Zustand", "Zod"],
+      "image": "/portfolio/mind-schedule.png",
       "github": "https://github.com/Coldiblaster/mind-schedule"
     },
     {
+      "title": "Safira Energia",
+      "description": "Landing page creada para mostrar los servicios de Safira Energia, con diseño moderno e integraciones.",
+      "tags": ["Next.js", "TypeScript", "Tailwind", "Framer Motion", "Firebase"],
+      "image": "/portfolio/safira-energia.png",
+      "link": "https://safiraenergia.com.br/"
+    },
+    {
+      "title": "UChallenger",
+      "description": "Plataforma innovadora que optimiza el tiempo de los jugadores, permitiendo obtener rentabilidad en cualquier momento en competiciones online.",
+      "tags": ["Next.js", "TypeScript", "Tailwind", "shadcn/ui", "React Query", "Zod", "Zustand"],
+      "image": "/portfolio/uchallenger.png",
+      "link": "https://uchallenger.com/"
+    },
+    {
+      "title": "Stellantis Financiamentos APP",
+      "description": "Portal del Cliente Stellantis Financiamientos: plataforma para gestión completa de financiamientos, pagos seguros y consulta de cuotas.",
+      "tags": ["TypeScript", "React Native", "Native Base"],
+      "image": "/portfolio/stellantis-financiamentos-app.png",
+      "link": "https://play.google.com/store/apps/details?id=com.app.plataforma.digital&hl=pt_BR"
+    },
+    {
+      "title": "Stellantis Financial",
+      "description": "Soluciones completas para consumidores y concesionarios incluyendo financiamientos, seguros y consorcios.",
+      "tags": ["Next.js", "TypeScript", "Tailwind", "Radix UI", "Prisma", "Storybook"],
+      "image": "/portfolio/stellantis-financial.png",
+      "link": "https://www.stellantis-sf.com.br/"
+    },
+    {
+      "title": "Stellantis Seguros",
+      "description": "Producto enfocado en cotizaciones de seguros de automóviles con flujo intuitivo y diseño limpio.",
+      "tags": ["Next.js", "TypeScript", "Tailwind", "Radix UI", "Storybook"],
+      "image": "/portfolio/stellantis-seguros.png",
+      "link": "https://www.stellantisseguros.com.br/"
+    },
+    {
       "title": "Dynamic Form Builder",
-      "description": "Aplicación para la creación y respuesta de formularios dinámicos con preguntas condicionales, múltiples tipos de respuesta y panel de visualización. 100% responsiva.",
+      "description": "Aplicación para creación y respuesta de formularios dinámicos con preguntas condicionales, múltiples tipos de respuesta y panel de visualización.",
       "tags": ["Next.js", "TypeScript", "React Hook Form", "Tailwind", "shadcn/ui"],
       "github": "https://github.com/Coldiblaster/dynamic-form-builder"
     },
     {
-      "title": "Checkout Cakto",
-      "description": "Mini-checkout que simula el flujo real de compra de un curso digital. UX mobile-first, validaciones robustas, cálculo de tasas, pago a plazos inteligente y destaque para PIX.",
-      "tags": ["Next.js 15", "React 19", "Zod", "Tailwind 4", "shadcn/ui"],
-      "github": "https://github.com/Coldiblaster/teste-frontend-cakto-vinicius-bastazin"
-    },
-    {
-      "title": "Widget iFrame Bonifiq",
-      "description": "Widget incorporable mediante script externo que muestra datos de usuario y publicaciones a través de API. PostMessage entre parent e iframe, skeleton loaders y pruebas con Vitest.",
-      "tags": ["React 19", "TypeScript", "Vite", "Vitest", "Tailwind 4", "shadcn/ui"],
-      "github": "https://github.com/Coldiblaster/prova-frontend-bonifiq"
-    },
-    {
-      "title": "My Portfolio",
-      "description": "Portfolio personal responsivo con diseño moderno, animaciones suaves y enfoque en accesibilidad. Vitrina técnica y visual para reclutadores y networking.",
-      "tags": ["Next.js 15", "TypeScript", "Tailwind", "shadcn/ui"],
-      "github": "https://github.com/Coldiblaster/my-portfolio"
-    },
-    {
-      "title": "Football League Tables",
-      "description": "Página para seleccionar campeonatos de fútbol de todo el mundo y visualizar las rondas de todos los equipos o individualmente, consumiendo la API de football-data.org.",
-      "tags": ["Next.js 14", "TypeScript", "Tailwind", "React Query"],
-      "github": "https://github.com/Coldiblaster/football-league-tables"
-    },
-    {
       "title": "GoBarber",
-      "description": "Plataforma completa de programación de citas para barberías con backend en Node.js (TDD, Clean Architecture, SOLID) y frontend React con Styled Components.",
+      "description": "Plataforma completa de programación de citas para barberías con backend en Node.js (TDD, Clean Architecture, SOLID) y frontend React.",
       "tags": ["React", "Node.js", "TypeScript", "Styled Components", "TDD"],
       "github": "https://github.com/Coldiblaster/go-barber-web"
     }

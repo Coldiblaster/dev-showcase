@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { Code, Github } from "lucide-react";
+import { Code, ExternalLink, Github } from "lucide-react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
 
@@ -48,16 +49,28 @@ export function ProjectsSection() {
               key={project.title}
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
+              transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
             >
               <Card className="group h-full border-border bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
                 <div className="border-b border-border">
-                  <div className="flex h-48 items-center justify-center bg-secondary/50">
-                    <div className="flex items-center gap-2 font-mono text-sm text-muted-foreground">
-                      <Code className="h-5 w-5 text-primary" />
-                      <span>{project.title}</span>
+                  {project.image ? (
+                    <div className="relative h-48 overflow-hidden">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
                     </div>
-                  </div>
+                  ) : (
+                    <div className="flex h-48 items-center justify-center bg-secondary/50">
+                      <div className="flex items-center gap-2 font-mono text-sm text-muted-foreground">
+                        <Code className="h-5 w-5 text-primary" />
+                        <span>{project.title}</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <CardHeader className="pb-3">
@@ -81,12 +94,29 @@ export function ProjectsSection() {
                       </Badge>
                     ))}
                   </div>
-                  <div className="pt-2">
+                  <div className="flex gap-2 pt-2">
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1"
+                      >
+                        <Button
+                          size="sm"
+                          className="w-full gap-1.5 text-xs"
+                        >
+                          <ExternalLink className="h-3.5 w-3.5" />
+                          {t("viewSite")}
+                        </Button>
+                      </a>
+                    )}
                     {project.github && (
                       <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className={project.link ? "" : "flex-1"}
                       >
                         <Button
                           size="sm"

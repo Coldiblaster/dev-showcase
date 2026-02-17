@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail, User } from "lucide-react";
+import { ArrowDown, Download, Github, Linkedin, Mail, User } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { HeroSection } from "@/components/hero-section";
@@ -73,10 +73,27 @@ export function HomeHeroSection() {
                 variant="outline"
                 size="default"
                 className="min-w-40 font-medium md:min-w-45 md:text-base md:px-6 md:py-5"
-                asChild
+                onClick={() => window.dispatchEvent(new CustomEvent("open-chat-widget"))}
               >
-                <a href="#contact">{t("secondary")}</a>
+                {t("secondary")}
               </Button>
+            </motion.div>
+          }
+          cvSlot={
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="mb-4 flex justify-center md:mb-8"
+            >
+              <a
+                href="/curriculo_VINICIUS_BASTAZIN_ARAUJO.pdf"
+                download
+                className="inline-flex items-center gap-1.5 text-xs text-muted-foreground/70 transition-colors hover:text-primary md:text-sm"
+              >
+                <Download className="h-3 w-3 md:h-3.5 md:w-3.5" />
+                {t("downloadCv")}
+              </a>
             </motion.div>
           }
           statsSlot={

@@ -110,14 +110,14 @@ PLATAFORMA (DEV SHOWCASE):
 Stack: Next.js 16, React 19, TypeScript, Tailwind CSS 4, shadcn/ui
 Features: i18n 4 idiomas (next-intl/DeepL), SEO (OG dinâmico, JSON-LD, sitemap, robots), busca global (Fuse.js), Framer Motion, contato via Resend, chat IA (gpt-4.1-nano), navbar modular a11y, open source
 
-Páginas:
-- / — Portfolio: hero, sobre, projetos, timeline, contato
-- /implementacoes/i18n — Showcase i18n ao vivo (traduções tipadas, scripts)
-- /implementacoes/seo — Showcase SEO (Next.js vs React+Vite, código real)
-- /implementacoes/ai-chatbot — Showcase AI Chatbot (como criar chatbot com OpenAI, streaming, system prompt, pricing)
-- /dicas/ai-tips — Prompts e ferramentas IA
-- /dicas/tailwind-tips — Tailwind + shadcn/ui
-- /dicas/react-query-tips — React Query patterns
-- /dicas/dev-resources — Conteúdo por nível (Jr/Pl/Sr) com playground
+Páginas (SEMPRE use a URL completa ao mencionar):
+- ${PERSONAL.siteUrl} — Portfolio: hero, sobre, projetos, timeline, contato
+- ${PERSONAL.siteUrl}/implementacoes/i18n — Showcase i18n ao vivo (traduções tipadas, scripts)
+- ${PERSONAL.siteUrl}/implementacoes/seo — Showcase SEO (Next.js vs React+Vite, código real)
+- ${PERSONAL.siteUrl}/implementacoes/ai-chatbot — Showcase AI Chatbot (como criar chatbot com OpenAI, streaming, system prompt, pricing)
+- ${PERSONAL.siteUrl}/dicas/ai-tips — Prompts e ferramentas IA
+- ${PERSONAL.siteUrl}/dicas/tailwind-tips — Tailwind + shadcn/ui
+- ${PERSONAL.siteUrl}/dicas/react-query-tips — React Query patterns
+- ${PERSONAL.siteUrl}/dicas/dev-resources — Conteúdo por nível (Jr/Pl/Sr) com playground
 
 Objetivo: ir além do portfolio — mostrar conhecimento real em produção + ajudar outros devs.`;

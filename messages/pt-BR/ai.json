@@ -19,5 +19,6 @@
       "title": "Prompt Engineering",
       "description": "Sei estruturar prompts eficientes: contexto claro, exemplos, restricoes e formato de saida. Isso garante respostas consistentes e reduz iteracoes."
     }
-  ]
+  ],
+  "tryChat": "Testar o Chatbot"
 }

@@ -19,5 +19,6 @@
       "title": "Prompt-Engineering",
       "description": "Ich weiß, wie man effiziente Eingabeaufforderungen strukturiert: klarer Kontext, Beispiele, Einschränkungen und Ausgabeformat. Dies gewährleistet konsistente Antworten und reduziert Iterationen."
     }
-  ]
+  ],
+  "tryChat": "Chatbot testen"
 }

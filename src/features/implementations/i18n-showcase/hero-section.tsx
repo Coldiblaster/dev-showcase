@@ -22,7 +22,7 @@ export function I18nHero({ onScrollToDemo }: { onScrollToDemo: () => void }) {
       ref={ref}
       className="relative flex min-h-[70vh] items-center overflow-hidden pb-10 md:pb-16"
     >
-      <div className="mx-auto max-w-6xl px-4 md:px-6">
+      <div className="mx-auto max-w-6xl ">
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}

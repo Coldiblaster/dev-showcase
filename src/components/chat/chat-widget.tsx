@@ -1,9 +1,10 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Bot, Loader2, MessageCircle, Send, X } from "lucide-react";
+import { Bot, Loader2, Mail, MessageCircle, Send, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import {
+  type ReactNode,
   useCallback,
   useEffect,
   useRef,
@@ -20,6 +21,34 @@ interface Message {
 }
 
 const MAX_MESSAGES = 10;
+
+const URL_REGEX = /(https?:\/\/[^\s`,)]+)/g;
+const BOLD_REGEX = /\*\*(.+?)\*\*/g;
+
+function formatMessage(text: string): ReactNode[] {
+  const parts = text.split(/(https?:\/\/[^\s`,)]+|\*\*.+?\*\*)/g);
+  return parts.map((part, i) => {
+    if (URL_REGEX.test(part)) {
+      URL_REGEX.lastIndex = 0;
+      return (
+        <a
+          key={i}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline underline-offset-2 break-all hover:text-primary"
+        >
+          {part.replace(/https?:\/\//, "")}
+        </a>
+      );
+    }
+    if (BOLD_REGEX.test(part)) {
+      BOLD_REGEX.lastIndex = 0;
+      return <strong key={i}>{part.replace(/\*\*/g, "")}</strong>;
+    }
+    return part;
+  });
+}
 
 export function ChatWidget() {
   const t = useTranslations("chat");
@@ -48,6 +77,12 @@ export function ChatWidget() {
       inputRef.current.focus();
     }
   }, [open]);
+
+  useEffect(() => {
+    const handler = () => setOpen(true);
+    window.addEventListener("open-chat-widget", handler);
+    return () => window.removeEventListener("open-chat-widget", handler);
+  }, []);
 
   const userMessageCount = messages.filter((m) => m.role === "user").length;
   const limitReached = userMessageCount >= MAX_MESSAGES;
@@ -223,13 +258,15 @@ export function ChatWidget() {
                     className={`flex flex-col ${msg.role === "user" ? "items-end" : "items-start"}`}
                   >
                     <div
-                      className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                      className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed break-words ${
                         msg.role === "user"
                           ? "rounded-br-md bg-primary text-primary-foreground"
                           : "rounded-bl-md bg-secondary text-foreground"
                       }`}
                     >
-                      {msg.content || (
+                      {msg.content ? (
+                        formatMessage(msg.content)
+                      ) : (
                         <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
                       )}
                     </div>
@@ -277,6 +314,14 @@ export function ChatWidget() {
                   </Button>
                 </div>
               )}
+              <a
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="mt-2 flex items-center justify-center gap-1.5 text-[10px] text-muted-foreground/60 transition-colors hover:text-primary"
+              >
+                <Mail className="h-3 w-3" />
+                {t("goToContact")}
+              </a>
             </div>
           </motion.div>
         )}

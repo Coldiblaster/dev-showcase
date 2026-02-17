@@ -1,11 +1,12 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { Code2, Lightbulb, MessageSquare, Sparkles } from "lucide-react";
+import { Code2, Lightbulb, MessageCircle, MessageSquare, Sparkles } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const icons = [Sparkles, Code2, MessageSquare, Lightbulb];
@@ -14,6 +15,10 @@ export function AISection() {
   const t = useTranslations("ai");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const openChat = useCallback(() => {
+    window.dispatchEvent(new CustomEvent("open-chat-widget"));
+  }, []);
 
   return (
     <section id="ai" className="relative px-6 py-16 md:py-32" ref={ref}>
@@ -181,6 +186,22 @@ export function AISection() {
                 <span className="text-foreground">{"}"}</span>
               </code>
             </pre>
+          </div>
+
+          <div className="mt-6 flex justify-center">
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <Button
+                size="lg"
+                className="gap-2"
+                onClick={openChat}
+              >
+                <MessageCircle className="h-4 w-4" />
+                {t("tryChat")}
+              </Button>
+            </motion.div>
           </div>
         </motion.div>
       </div>

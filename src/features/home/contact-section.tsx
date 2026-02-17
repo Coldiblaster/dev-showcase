@@ -39,6 +39,7 @@ export function ContactSection() {
     name: "",
     email: "",
     message: "",
+    website: "",
   });
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errors, setErrors] = useState<FormErrors>({});
@@ -67,6 +68,7 @@ export function ContactSection() {
     e.preventDefault();
 
     if (!validate()) return;
+    if (formState.website) return;
 
     setStatus("sending");
     setErrors({});
@@ -81,7 +83,7 @@ export function ContactSection() {
       if (!res.ok) throw new Error("Failed to send");
 
       setStatus("sent");
-      setFormState({ name: "", email: "", message: "" });
+      setFormState({ name: "", email: "", message: "", website: "" });
       setTimeout(() => setStatus("idle"), 5000);
     } catch {
       setStatus("error");
@@ -193,6 +195,22 @@ export function ContactSection() {
               )}
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                {/* Honeypot — hidden from humans, bots fill it */}
+                <div className="absolute -left-[9999px] opacity-0" aria-hidden="true">
+                  <label htmlFor="website">Website</label>
+                  <input
+                    id="website"
+                    name="website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={formState.website}
+                    onChange={(e) =>
+                      setFormState((s) => ({ ...s, website: e.target.value }))
+                    }
+                  />
+                </div>
+
                 <div className="flex flex-col gap-1.5">
                   <label
                     htmlFor="name"

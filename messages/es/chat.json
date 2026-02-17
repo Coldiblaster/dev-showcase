@@ -7,6 +7,7 @@
   "placeholder": "Pregunta algo...",
   "error": "Lo siento, algo salió mal. Inténtalo de nuevo.",
   "limitReached": "Límite de mensajes alcanzado. Usa el formulario de contacto para más detalles.",
+  "goToContact": "¿Prefieres enviar un mensaje formal? Ir al contacto",
   "suggestions": [
     "¿Por qué contratar a Vinicius?",
     "¿Cómo lidera y mentora equipos?",

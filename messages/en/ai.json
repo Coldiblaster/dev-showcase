@@ -19,5 +19,6 @@
       "title": "Prompt Engineering",
       "description": "I know how to structure effective prompts: clear context, examples, constraints, and output format. This ensures consistent responses and reduces iterations."
     }
-  ]
+  ],
+  "tryChat": "Try the Chatbot"
 }

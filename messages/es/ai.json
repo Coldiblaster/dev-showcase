@@ -19,5 +19,6 @@
       "title": "Ingeniería rápida",
       "description": "Sé estructurar prompts eficientes: contexto claro, ejemplos, restricciones y formato de salida. Esto garantiza respuestas consistentes y reduce las iteraciones."
     }
-  ]
+  ],
+  "tryChat": "Probar el Chatbot"
 }
