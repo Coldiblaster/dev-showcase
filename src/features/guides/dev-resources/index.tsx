@@ -1,10 +1,12 @@
 "use client";
 
-import { BookOpen } from "lucide-react";
+import { BookOpen, Github } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCallback, useMemo, useState } from "react";
 
+import { CTASection } from "@/components/cta-section";
 import { HeroSection } from "@/components/hero-section";
+import { Button } from "@/components/ui/button";
 
 import { BeforeAfterSection } from "./before-after-section";
 import { CodeSnippetsSection } from "./code-snippets-section";
@@ -16,10 +18,9 @@ import type { DevLevel, DevLevelFilter } from "./data/types";
 import { LevelSelector } from "./level-selector";
 import { PatternFinderSection } from "./pattern-finder-section";
 import { QuickTipsSection } from "./quick-tips-section";
+import { SectionNav } from "./section-nav";
 
-function countByLevel(
-  items: { level: DevLevel }[],
-): Record<DevLevel, number> {
+function countByLevel(items: { level: DevLevel }[]): Record<DevLevel, number> {
   return {
     junior: items.filter((i) => i.level === "junior").length,
     pleno: items.filter((i) => i.level === "pleno").length,
@@ -46,7 +47,7 @@ export function DevResourcesPage() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen">
       <HeroSection
         badge={t("hero.badge")}
         badgeIcon={BookOpen}
@@ -55,6 +56,8 @@ export function DevResourcesPage() {
         description={t("hero.description")}
       />
 
+      <SectionNav />
+
       <LevelSelector
         level={level}
         onLevelChange={handleLevelChange}
@@ -62,9 +65,35 @@ export function DevResourcesPage() {
       />
 
       <QuickTipsSection level={level} />
-      <CodeSnippetsSection level={level} />
+
+      <div className="bg-muted/30">
+        <CodeSnippetsSection level={level} />
+      </div>
+
       <PatternFinderSection level={level} />
-      <BeforeAfterSection level={level} />
-    </div>
+
+      <div className="bg-muted/30">
+        <BeforeAfterSection level={level} />
+      </div>
+
+      <CTASection
+        icon={BookOpen}
+        title={t("cta.title")}
+        description={t("cta.description")}
+        buttonText={t("cta.projects")}
+        secondaryButton={
+          <Button asChild variant="outline" size="lg" className="gap-2">
+            <a
+              href="https://github.com/Coldiblaster"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Github className="h-4 w-4" />
+              {t("cta.github")}
+            </a>
+          </Button>
+        }
+      />
+    </main>
   );
 }

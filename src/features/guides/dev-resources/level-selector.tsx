@@ -12,7 +12,10 @@ const levels = [
   { id: "junior" as const, icon: Sprout },
   { id: "pleno" as const, icon: Code2 },
   { id: "senior" as const, icon: Crown },
-] satisfies { id: DevLevel; icon: React.ComponentType<{ className?: string }> }[];
+] satisfies {
+  id: DevLevel;
+  icon: React.ComponentType<{ className?: string }>;
+}[];
 
 interface LevelSelectorProps {
   level: DevLevelFilter;
@@ -29,8 +32,7 @@ export function LevelSelector({
 
   const isSelected = (id: DevLevel) => level === id;
 
-  const greetingKey =
-    level === "all" ? "none" : level;
+  const greetingKey = level === "all" ? "none" : level;
 
   return (
     <section className="relative px-6 py-16">
@@ -54,12 +56,14 @@ export function LevelSelector({
               return (
                 <motion.button
                   key={item.id}
+                  aria-pressed={selected}
                   onClick={() => {
                     onLevelChange(selected ? "all" : item.id);
                     setTimeout(() => {
-                      document
-                        .getElementById("tips")
-                        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                      document.getElementById("tips")?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
                     }, 100);
                   }}
                   whileHover={{ scale: 1.02 }}
@@ -131,6 +135,7 @@ export function LevelSelector({
             {level !== "all" && (
               <button
                 onClick={() => onLevelChange("all")}
+                aria-label={t("showAll")}
                 className="mt-3 text-sm text-primary underline-offset-4 hover:underline"
               >
                 {t("showAll")}

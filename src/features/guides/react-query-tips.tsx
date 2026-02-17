@@ -14,7 +14,7 @@ import { Separator } from "@/components/ui/separator";
 
 export function ReactQueryTips() {
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen">
       <HeroSection
         badge="Data Fetching"
         badgeIcon={Database}

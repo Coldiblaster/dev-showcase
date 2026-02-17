@@ -10,15 +10,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { snippets } from "./data/code-snippets";
-import { levelColors, type DevLevelFilter } from "./data/types";
+import { type DevLevelFilter, levelColors } from "./data/types";
 
 interface CodeSnippetsSectionProps {
   level: DevLevelFilter;
@@ -44,9 +39,7 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
 
   const levelSnippets = useMemo(
     () =>
-      level === "all"
-        ? snippets
-        : snippets.filter((s) => s.level === level),
+      level === "all" ? snippets : snippets.filter((s) => s.level === level),
     [level],
   );
 
@@ -102,6 +95,7 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
             <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
+                aria-label={t("searchPlaceholder")}
                 placeholder={t("searchPlaceholder")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -109,16 +103,20 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
               />
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrar por tag">
               {allTags.map((tag) => (
-                <Badge
+                <button
                   key={tag}
-                  variant={selectedTags.includes(tag) ? "default" : "outline"}
-                  className="cursor-pointer transition-colors hover:bg-primary/90"
+                  aria-pressed={selectedTags.includes(tag)}
                   onClick={() => toggleTag(tag)}
+                  className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                    selectedTags.includes(tag)
+                      ? "border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
+                      : "border-border text-foreground hover:bg-primary/90 hover:text-primary-foreground"
+                  }`}
                 >
                   {tag}
-                </Badge>
+                </button>
               ))}
             </div>
 
@@ -140,130 +138,132 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
           >
             {filteredSnippets.map((snippet, index) => (
               <AnimatedSection key={snippet.id} delay={0.1 + index * 0.05}>
-              <Card className="h-full overflow-hidden border-border bg-card">
-                <Tabs defaultValue="code" className="w-full">
-                  {/* Card header */}
-                  <div className="border-b px-6 pt-6">
-                    <div className="mb-4 flex items-start justify-between gap-4">
-                      <div className="flex-1">
-                        <div className="mb-2 flex items-center gap-2">
-                          <h3 className="text-lg font-semibold text-foreground">
-                            {snippet.title}
-                          </h3>
-                          <Badge
-                            variant="outline"
-                            className={`text-[10px] ${levelColors[snippet.level]}`}
-                          >
-                            {tLevel(snippet.level)}
-                          </Badge>
-                        </div>
-                        <p className="text-sm text-muted-foreground">
-                          {snippet.description}
-                        </p>
-                        <div className="mt-2 flex flex-wrap gap-1.5">
-                          {snippet.tags.map((tag) => (
+                <Card className="h-full overflow-hidden border-border bg-card">
+                  <Tabs defaultValue="code" className="w-full">
+                    {/* Card header */}
+                    <div className="border-b px-6 pt-6">
+                      <div className="mb-4 flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <div className="mb-2 flex items-center gap-2">
+                            <h3 className="text-lg font-semibold text-foreground">
+                              {snippet.title}
+                            </h3>
                             <Badge
-                              key={tag}
-                              variant="secondary"
-                              className="text-xs"
+                              variant="outline"
+                              className={`text-[10px] ${levelColors[snippet.level]}`}
                             >
-                              {tag}
+                              {tLevel(snippet.level)}
                             </Badge>
-                          ))}
+                          </div>
+                          <p className="text-sm text-muted-foreground">
+                            {snippet.description}
+                          </p>
+                          <div className="mt-2 flex flex-wrap gap-1.5">
+                            {snippet.tags.map((tag) => (
+                              <Badge
+                                key={tag}
+                                variant="secondary"
+                                className="text-xs"
+                              >
+                                {tag}
+                              </Badge>
+                            ))}
+                          </div>
                         </div>
                       </div>
+
+                      <TabsList className="grid w-full grid-cols-3">
+                        <TabsTrigger value="code" className="gap-2">
+                          <Code className="h-4 w-4" />
+                          <span className="hidden sm:inline">
+                            {t("tabs.code")}
+                          </span>
+                        </TabsTrigger>
+                        <TabsTrigger value="usage" className="gap-2">
+                          <Play className="h-4 w-4" />
+                          <span className="hidden sm:inline">
+                            {t("tabs.usage")}
+                          </span>
+                        </TabsTrigger>
+                        <TabsTrigger value="explanation" className="gap-2">
+                          <BookOpen className="h-4 w-4" />
+                          <span className="hidden sm:inline">
+                            {t("tabs.explanation")}
+                          </span>
+                        </TabsTrigger>
+                      </TabsList>
                     </div>
 
-                    <TabsList className="grid w-full grid-cols-3">
-                      <TabsTrigger value="code" className="gap-2">
-                        <Code className="h-4 w-4" />
-                        <span className="hidden sm:inline">
-                          {t("tabs.code")}
-                        </span>
-                      </TabsTrigger>
-                      <TabsTrigger value="usage" className="gap-2">
-                        <Play className="h-4 w-4" />
-                        <span className="hidden sm:inline">
-                          {t("tabs.usage")}
-                        </span>
-                      </TabsTrigger>
-                      <TabsTrigger value="explanation" className="gap-2">
-                        <BookOpen className="h-4 w-4" />
-                        <span className="hidden sm:inline">
-                          {t("tabs.explanation")}
-                        </span>
-                      </TabsTrigger>
-                    </TabsList>
-                  </div>
-
-                  {/* Code Tab */}
-                  <TabsContent value="code" className="p-6">
-                    <div className="relative">
-                      <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-xs">
-                        <code className="font-mono">{snippet.code}</code>
-                      </pre>
-                      <Button
-                        size="sm"
-                        variant="secondary"
-                        className="absolute right-2 top-2"
-                        onClick={() => handleCopy(snippet.code, snippet.id)}
-                      >
-                        {copiedId === snippet.id ? (
-                          <>
-                            <Check className="mr-1 h-3 w-3" />
-                            {t("copied")}
-                          </>
-                        ) : (
-                          <>
-                            <Copy className="mr-1 h-3 w-3" />
-                            {t("copy")}
-                          </>
-                        )}
-                      </Button>
-                    </div>
-                  </TabsContent>
-
-                  {/* Usage Tab */}
-                  <TabsContent value="usage" className="p-6">
-                    <div className="relative">
-                      <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-xs">
-                        <code className="font-mono">{snippet.usage}</code>
-                      </pre>
-                      <Button
-                        size="sm"
-                        variant="secondary"
-                        className="absolute right-2 top-2"
-                        onClick={() =>
-                          handleCopy(snippet.usage, `${snippet.id}-usage`)
-                        }
-                      >
-                        {copiedId === `${snippet.id}-usage` ? (
-                          <>
-                            <Check className="mr-1 h-3 w-3" />
-                            {t("copied")}
-                          </>
-                        ) : (
-                          <>
-                            <Copy className="mr-1 h-3 w-3" />
-                            {t("copy")}
-                          </>
-                        )}
-                      </Button>
-                    </div>
-                  </TabsContent>
-
-                  {/* Explanation Tab */}
-                  <TabsContent value="explanation" className="p-6">
-                    <div className="prose prose-sm max-w-none dark:prose-invert">
-                      <div className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-                        {snippet.explanation}
+                    {/* Code Tab */}
+                    <TabsContent value="code" className="p-6">
+                      <div className="relative">
+                        <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-xs">
+                          <code className="font-mono">{snippet.code}</code>
+                        </pre>
+                        <Button
+                          size="sm"
+                          variant="secondary"
+                          aria-label={`${t("copy")} ${snippet.title}`}
+                          className="absolute right-2 top-2"
+                          onClick={() => handleCopy(snippet.code, snippet.id)}
+                        >
+                          {copiedId === snippet.id ? (
+                            <>
+                              <Check className="mr-1 h-3 w-3" />
+                              {t("copied")}
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="mr-1 h-3 w-3" />
+                              {t("copy")}
+                            </>
+                          )}
+                        </Button>
                       </div>
-                    </div>
-                  </TabsContent>
-                </Tabs>
-              </Card>
-            </AnimatedSection>
-          ))}
+                    </TabsContent>
+
+                    {/* Usage Tab */}
+                    <TabsContent value="usage" className="p-6">
+                      <div className="relative">
+                        <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-xs">
+                          <code className="font-mono">{snippet.usage}</code>
+                        </pre>
+                        <Button
+                          size="sm"
+                          variant="secondary"
+                          aria-label={`${t("copy")} ${snippet.title} usage`}
+                          className="absolute right-2 top-2"
+                          onClick={() =>
+                            handleCopy(snippet.usage, `${snippet.id}-usage`)
+                          }
+                        >
+                          {copiedId === `${snippet.id}-usage` ? (
+                            <>
+                              <Check className="mr-1 h-3 w-3" />
+                              {t("copied")}
+                            </>
+                          ) : (
+                            <>
+                              <Copy className="mr-1 h-3 w-3" />
+                              {t("copy")}
+                            </>
+                          )}
+                        </Button>
+                      </div>
+                    </TabsContent>
+
+                    {/* Explanation Tab */}
+                    <TabsContent value="explanation" className="p-6">
+                      <div className="prose prose-sm max-w-none dark:prose-invert">
+                        <div className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
+                          {snippet.explanation}
+                        </div>
+                      </div>
+                    </TabsContent>
+                  </Tabs>
+                </Card>
+              </AnimatedSection>
+            ))}
           </motion.div>
         </AnimatePresence>
 

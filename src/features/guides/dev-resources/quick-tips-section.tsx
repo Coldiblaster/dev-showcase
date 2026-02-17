@@ -9,7 +9,7 @@ import { AnimatedSection } from "@/components/animated-section";
 import { Badge } from "@/components/ui/badge";
 
 import { quickTips } from "./data/quick-tips";
-import { levelColors, type DevLevelFilter } from "./data/types";
+import { type DevLevelFilter, levelColors } from "./data/types";
 
 interface QuickTipsSectionProps {
   level: DevLevelFilter;

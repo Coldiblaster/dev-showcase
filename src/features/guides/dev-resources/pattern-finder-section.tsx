@@ -25,7 +25,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
 import { patternScenarios } from "./data/pattern-finder";
-import { levelColors, type DevLevelFilter } from "./data/types";
+import { type DevLevelFilter, levelColors } from "./data/types";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Share2,
@@ -98,6 +98,7 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
             {filteredScenarios.map((scenario, index) => {
               const Icon = iconMap[scenario.icon] || HelpCircle;
               const isExpanded = expandedId === scenario.id;
+              const contentId = `pattern-content-${scenario.id}`;
 
               return (
                 <AnimatedSection key={scenario.id} delay={0.1 + index * 0.05}>
@@ -105,6 +106,8 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
                     {/* Question button */}
                     <button
                       onClick={() => toggleExpand(scenario.id)}
+                      aria-expanded={isExpanded}
+                      aria-controls={contentId}
                       className="flex w-full items-center gap-4 p-5 text-left transition-colors hover:bg-muted/50"
                     >
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
@@ -140,6 +143,9 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
                     <AnimatePresence>
                       {isExpanded && (
                         <motion.div
+                          id={contentId}
+                          role="region"
+                          aria-labelledby={`pattern-trigger-${scenario.id}`}
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: "auto", opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
@@ -167,6 +173,7 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
                               <Button
                                 size="sm"
                                 variant="secondary"
+                                aria-label={`${t("copy")} ${scenario.pattern}`}
                                 className="absolute right-2 top-2"
                                 onClick={(e) => {
                                   e.stopPropagation();

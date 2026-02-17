@@ -33,7 +33,7 @@ export function TailwindTips() {
   const t = useTranslations("tailwindTipsPage");
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen">
       <HeroSection
         badge={t("hero.badge")}
         badgeIcon={Palette}

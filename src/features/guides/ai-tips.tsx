@@ -40,7 +40,7 @@ export function AITips() {
   const t = useTranslations("tipsPage");
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen">
       <HeroSection
         badge={t("hero.badge")}
         badgeIcon={Sparkles}

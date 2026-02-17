@@ -9,15 +9,10 @@ import { AnimatedSection } from "@/components/animated-section";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { comparisons } from "./data/comparisons";
-import { levelColors, type DevLevelFilter } from "./data/types";
+import { type DevLevelFilter, levelColors } from "./data/types";
 
 interface BeforeAfterSectionProps {
   level: DevLevelFilter;
@@ -89,6 +84,7 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
             <Button
               variant="outline"
               size="sm"
+              aria-label={t("nav.prev")}
               onClick={goPrev}
               disabled={currentIndex === 0}
               className="gap-1"
@@ -98,10 +94,17 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
             </Button>
 
             {/* Dot indicators */}
-            <div className="flex items-center gap-2">
+            <div
+              className="flex items-center gap-2"
+              role="tablist"
+              aria-label="Navegação de exemplos"
+            >
               {filteredComparisons.map((comp, index) => (
                 <button
                   key={comp.id}
+                  role="tab"
+                  aria-selected={index === currentIndex}
+                  aria-label={`${comp.title} (${index + 1} / ${filteredComparisons.length})`}
                   onClick={() => goTo(index)}
                   className={`h-2.5 rounded-full transition-all ${
                     index === currentIndex
@@ -115,6 +118,7 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
             <Button
               variant="outline"
               size="sm"
+              aria-label={t("nav.next")}
               onClick={goNext}
               disabled={currentIndex === filteredComparisons.length - 1}
               className="gap-1"
@@ -163,9 +167,7 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
                     <TabsTrigger value="comparison">
                       {t("tabs.comparison")}
                     </TabsTrigger>
-                    <TabsTrigger value="before">
-                      {t("tabs.before")}
-                    </TabsTrigger>
+                    <TabsTrigger value="before">{t("tabs.before")}</TabsTrigger>
                     <TabsTrigger value="after">{t("tabs.after")}</TabsTrigger>
                   </TabsList>
 
@@ -186,10 +188,7 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
                         </pre>
                         <ul className="space-y-2 text-sm">
                           {comparison.before.issues.map((issue, i) => (
-                            <li
-                              key={i}
-                              className="flex gap-2 text-destructive"
-                            >
+                            <li key={i} className="flex gap-2 text-destructive">
                               <X className="mt-0.5 h-4 w-4 shrink-0" />
                               <span>{issue}</span>
                             </li>
@@ -212,10 +211,7 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
                         <ul className="space-y-2 text-sm">
                           {comparison.after.improvements.map(
                             (improvement, i) => (
-                              <li
-                                key={i}
-                                className="flex gap-2 text-green-500"
-                              >
+                              <li key={i} className="flex gap-2 text-green-500">
                                 <Check className="mt-0.5 h-4 w-4 shrink-0" />
                                 <span>{improvement}</span>
                               </li>
@@ -246,9 +242,7 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
                   {/* After Tab */}
                   <TabsContent value="after" className="mt-6">
                     <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-sm">
-                      <code className="font-mono">
-                        {comparison.after.code}
-                      </code>
+                      <code className="font-mono">{comparison.after.code}</code>
                     </pre>
                     <ul className="mt-4 space-y-2 text-sm">
                       {comparison.after.improvements.map((improvement, i) => (

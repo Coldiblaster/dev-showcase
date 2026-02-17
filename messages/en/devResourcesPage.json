@@ -72,5 +72,17 @@
     "copied": "Copied!",
     "whenToUse": "When to use",
     "whenToAvoid": "When to avoid"
+  },
+  "sectionNav": {
+    "tips": "Tips",
+    "snippets": "Snippets",
+    "patterns": "Patterns",
+    "refactoring": "Refactoring"
+  },
+  "cta": {
+    "title": "Enjoyed the content?",
+    "description": "Check out my projects and see these patterns applied in real code.",
+    "github": "View on GitHub",
+    "projects": "View projects"
   }
 }

@@ -20,7 +20,7 @@ export function I18nHero({ onScrollToDemo }: { onScrollToDemo: () => void }) {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[70vh] items-center overflow-hidden px-6 pt-28 pb-16"
+      className="relative flex min-h-[70vh] items-center overflow-hidden px-6 pb-16"
     >
       <div className="mx-auto max-w-6xl">
         <motion.div

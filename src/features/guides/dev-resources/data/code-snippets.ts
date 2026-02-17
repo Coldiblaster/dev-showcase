@@ -9,7 +9,6 @@ export interface CodeSnippet {
   usage: string;
   explanation: string;
   tags: string[];
-  language: string;
 }
 
 export const snippets: CodeSnippet[] = [
@@ -70,7 +69,6 @@ function SearchComponent() {
 
 **Performance:** Reduz chamadas de API de ~10/s para ~2/s em digitação normal.`,
     tags: ["React", "Hooks", "Performance"],
-    language: "typescript",
   },
   {
     id: "format-date",
@@ -134,7 +132,6 @@ formatRelative(new Date(Date.now() - 172800000)) // "2d atrás"`,
 
 **Dica:** Passe o locale como parâmetro para suportar i18n.`,
     tags: ["Utilities", "Formatting"],
-    language: "typescript",
   },
   {
     id: "use-toggle",
@@ -200,7 +197,6 @@ function ProductCard({ product }: { product: Product }) {
 
 **Pattern:** Retornar objeto em vez de array permite nomes semânticos sem desestruturação posicional.`,
     tags: ["React", "Hooks", "Utilities"],
-    language: "typescript",
   },
 
   // ── Pleno ─────────────────────────────────────────────────
@@ -289,7 +285,6 @@ function UserMenu() {
 
 **Pattern usado em:** Radix UI, shadcn/ui internals, Chakra UI.`,
     tags: ["React", "Context", "TypeScript"],
-    language: "typescript",
   },
   {
     id: "media-query",
@@ -373,7 +368,6 @@ function DashboardLayout() {
 
 **Cuidado:** Não use para esconder conteúdo visualmente — prefira CSS para isso (melhor para SEO/accessibility).`,
     tags: ["React", "Hooks", "Responsive", "SSR"],
-    language: "typescript",
   },
   {
     id: "event-callback",
@@ -439,7 +433,6 @@ function ChatRoom({ roomId }: { roomId: string }) {
 
 **Equivalente no React 19:** useEffectEvent (experimental).`,
     tags: ["React", "Hooks", "Performance"],
-    language: "typescript",
   },
 
   // ── Senior ────────────────────────────────────────────────
@@ -538,7 +531,6 @@ const users = await typedFetch('/api/users', UserListSchema, {
 
 **Bundle:** Zod ~13KB gzipped — vale cada byte em produção.`,
     tags: ["TypeScript", "API", "Zod", "Validation"],
-    language: "typescript",
   },
   {
     id: "discriminated-props",
@@ -638,7 +630,6 @@ export function Button(props: ButtonProps) {
 
 **Resultado:** Erros aparecem no editor, não em produção. O autocomplete só mostra props válidas para a variante escolhida.`,
     tags: ["TypeScript", "React", "Component API"],
-    language: "typescript",
   },
   {
     id: "type-safe-exhaustive",
@@ -729,6 +720,5 @@ function reducer(state: number, action: Action): number {
 
 **Pattern adotado por:** Effect-TS, fp-ts, Prisma, tRPC.`,
     tags: ["TypeScript", "Patterns", "Type Safety"],
-    language: "typescript",
   },
 ];
