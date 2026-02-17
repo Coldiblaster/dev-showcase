@@ -23,11 +23,17 @@ export function useI18nShowcaseData(): I18nShowcaseItem[] {
   const tShow = useTranslations("i18nShowcase");
   const tPage = useTranslations("i18nPage");
 
+  type ShowcaseKey = Parameters<typeof tShow>[0];
+  type PageKey = Parameters<typeof tPage>[0];
+
   const tt = (key: string, fallback: string): string => {
     // choose namespace
     try {
       if (key.startsWith("i18nShowcase.")) {
-        const short = key.replace(/^i18nShowcase\./, "");
+        const short = key.replace(
+          /^i18nShowcase\./,
+          "",
+        ) as ShowcaseKey;
 
         // 1) try to read raw message (avoids formatting runtime)
         const rawGetter =
@@ -62,7 +68,10 @@ export function useI18nShowcaseData(): I18nShowcaseItem[] {
       }
 
       try {
-        const res = typeof tPage === "function" ? tPage(key) : undefined;
+        const res =
+          typeof tPage === "function"
+            ? tPage(key as PageKey)
+            : undefined;
         if (typeof res === "string" && res && res !== key) return res;
       } catch (err) {
         console.debug(

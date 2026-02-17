@@ -1,7 +1,7 @@
 "use client";
 
 import Fuse from "fuse.js";
-import { Book, FileCode, Lightbulb, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -15,8 +15,11 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-// import { typeConfig } from "@/lib/global-search/global-search-helper";
-import { searchItems } from "@/lib/global-search/search-items";
+import { typeConfig } from "@/lib/global-search/global-search-helper";
+import {
+  type SearchItemI18nKey,
+  searchItems,
+} from "@/lib/global-search/search-items";
 
 // Tipos de resultado de busca
 export type GlobalSearchResult = {
@@ -26,27 +29,6 @@ export type GlobalSearchResult = {
   type: "project" | "implementation" | "guide";
   url: string;
 };
-
-// Busca internacionalizada e indexada
-
-// Configuração de tipos para badge e ícone
-const typeConfig = (t: (k: string) => string) => ({
-  project: {
-    icon: FileCode,
-    label: t("project"),
-    color: "bg-primary/10 text-primary",
-  },
-  implementation: {
-    icon: Lightbulb,
-    label: t("implementation"),
-    color: "bg-chart-4/10 text-chart-4",
-  },
-  guide: {
-    icon: Book,
-    label: t("guide"),
-    color: "bg-accent/10 text-accent",
-  },
-});
 
 export function GlobalSearch() {
   // Index do item selecionado para navegação por teclado
@@ -64,8 +46,7 @@ export function GlobalSearch() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<GlobalSearchResult[]>([]);
   // Monta textos internacionalizados para cada item
-  const getI18nTexts = (i18nKey: string) => {
-    // Busca tradução correta, fallback para string vazia
+  const getI18nTexts = (i18nKey: SearchItemI18nKey) => {
     const title = t(`${i18nKey}.title`) || "";
     const description = t(`${i18nKey}.description`) || "";
     return { title, description };
@@ -80,6 +61,7 @@ export function GlobalSearch() {
           ...item,
           title,
           description,
+          type: item.type as "project" | "implementation" | "guide",
         };
       });
     }
@@ -89,6 +71,7 @@ export function GlobalSearch() {
         ...item,
         title,
         description,
+        type: item.type as "project" | "implementation" | "guide",
       };
     });
     const fuse = new Fuse(results, {
@@ -184,7 +167,11 @@ export function GlobalSearch() {
     };
   }, [query]);
 
-  const types = typeConfig(t);
+  const types = typeConfig({
+    project: t("project"),
+    implementation: t("implementation"),
+    guide: t("guide"),
+  });
 
   return (
     <>

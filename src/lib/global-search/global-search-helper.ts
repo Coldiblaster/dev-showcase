@@ -1,22 +1,5 @@
-// Badge/icon config for search types
-export const typeConfig = (t: (k: string) => string) => ({
-  project: {
-    icon: "FileCode",
-    label: t("project"),
-    color: "bg-primary/10 text-primary",
-  },
-  implementation: {
-    icon: "Lightbulb",
-    label: t("implementation"),
-    color: "bg-chart-4/10 text-chart-4",
-  },
-  guide: {
-    icon: "Book",
-    label: t("guide"),
-    color: "bg-accent/10 text-accent",
-  },
-});
 import Fuse from "fuse.js";
+import { Book, FileCode, Lightbulb } from "lucide-react";
 
 import type searchI18n from "@/../messages/pt-BR/search.json";
 
@@ -40,6 +23,28 @@ export type SearchTexts = {
     description: string;
   };
 };
+
+export const typeConfig = (labels: {
+  project: string;
+  implementation: string;
+  guide: string;
+}) => ({
+  project: {
+    icon: FileCode,
+    label: labels.project,
+    color: "bg-primary/10 text-primary",
+  },
+  implementation: {
+    icon: Lightbulb,
+    label: labels.implementation,
+    color: "bg-chart-4/10 text-chart-4",
+  },
+  guide: {
+    icon: Book,
+    label: labels.guide,
+    color: "bg-accent/10 text-accent",
+  },
+});
 
 export function createFuse(
   searchItems: SearchItem[],

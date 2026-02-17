@@ -4,7 +4,8 @@ export const comparisons = [
     id: "prop-drilling",
     title: "Prop Drilling vs Context",
     category: "React Patterns",
-    problem: "Componentes profundamente aninhados precisam passar props por vários níveis",
+    problem:
+      "Componentes profundamente aninhados precisam passar props por vários níveis",
     before: {
       code: `// ❌ Prop Drilling - Ruim
 function App() {
@@ -27,8 +28,8 @@ function UserMenu({ user, setUser }) {
         "Props passadas por múltiplos níveis",
         "Componentes intermediários acoplados",
         "Difícil manutenção e refatoração",
-        "Código verboso e repetitivo"
-      ]
+        "Código verboso e repetitivo",
+      ],
     },
     after: {
       code: `// ✅ Context API - Bom
@@ -59,19 +60,20 @@ function UserMenu() {
         "Sem prop drilling",
         "Componentes desacoplados",
         "Fácil manutenção",
-        "Código limpo e escalável"
-      ]
+        "Código limpo e escalável",
+      ],
     },
     metrics: {
       readability: "+40%",
-      maintainability: "+60%"
-    }
+      maintainability: "+60%",
+    },
   },
   {
     id: "useeffect-deps",
     title: "useEffect Dependencies",
     category: "React Hooks",
-    problem: "useEffect sem dependências corretas causa bugs e re-renders desnecessários",
+    problem:
+      "useEffect sem dependências corretas causa bugs e re-renders desnecessários",
     before: {
       code: `// ❌ Dependências incorretas
 function SearchComponent() {
@@ -80,7 +82,7 @@ function SearchComponent() {
 
   useEffect(() => {
     // ⚠️ Falta 'query' nas deps!
-    fetch(`/api/search?q=${query}`)
+    fetch(\`/api/search?q=\${query}\`)
       .then(res => res.json())
       .then(setResults)
   }, []) // Array vazio = roda só 1x
@@ -96,8 +98,8 @@ function SearchComponent() {
         "Busca não atualiza quando query muda",
         "ESLint warning ignorado",
         "Bug difícil de debugar",
-        "Comportamento inesperado"
-      ]
+        "Comportamento inesperado",
+      ],
     },
     after: {
       code: `// ✅ Dependências corretas + Debounce
@@ -111,7 +113,7 @@ function SearchComponent() {
 
     const controller = new AbortController()
 
-    fetch(`/api/search?q=${debouncedQuery}`, {
+    fetch(\`/api/search?q=\${debouncedQuery}\`, {
       signal: controller.signal
     })
       .then(res => res.json())
@@ -134,23 +136,24 @@ function SearchComponent() {
         "Dependências corretas",
         "Debounce para performance",
         "Cleanup com AbortController",
-        "Sem race conditions"
-      ]
+        "Sem race conditions",
+      ],
     },
     metrics: {
       performance: "+70%",
-      readability: "+30%"
-    }
+      readability: "+30%",
+    },
   },
   {
     id: "fetch-error",
     title: "Error Handling em Fetch",
     category: "API & Async",
-    problem: "Fetch sem tratamento de erro adequado deixa app quebrando silenciosamente",
+    problem:
+      "Fetch sem tratamento de erro adequado deixa app quebrando silenciosamente",
     before: {
       code: `// ❌ Sem error handling
 async function getUser(id) {
-  const response = await fetch(`/api/users/${id}`)
+  const response = await fetch(\`/api/users/\${id}\`)
   const data = await response.json()
   return data
 }
@@ -162,17 +165,17 @@ const user = await getUser(123)
         "Não verifica se response.ok",
         "Erros HTTP não tratados",
         "Sem feedback ao usuário",
-        "App pode quebrar silenciosamente"
-      ]
+        "App pode quebrar silenciosamente",
+      ],
     },
     after: {
       code: `// ✅ Com error handling robusto
 async function getUser(id: string) {
   try {
-    const response = await fetch(`/api/users/${id}`)
+    const response = await fetch(\`/api/users/\${id}\`)
     if (!response.ok) {
       throw new Error(
-        `HTTP error! status: ${response.status}`
+        \`HTTP error! status: \${response.status}\`
       )
     }
     const data = await response.json()
@@ -195,13 +198,13 @@ if (error) {
         "Verifica response.ok",
         "Try/catch para erros de rede",
         "Retorno estruturado",
-        "Fácil mostrar feedback ao usuário"
-      ]
+        "Fácil mostrar feedback ao usuário",
+      ],
     },
     metrics: {
       maintainability: "+80%",
-      readability: "+50%"
-    }
+      readability: "+50%",
+    },
   },
   {
     id: "type-safety",
@@ -225,8 +228,8 @@ const result = processData(apiResponse)
         "Perde autocomplete do IDE",
         "Erros só em runtime",
         "Difícil refatorar",
-        "Documentação implícita perdida"
-      ]
+        "Documentação implícita perdida",
+      ],
     },
     after: {
       code: `// ✅ Types explícitos e seguros
@@ -255,12 +258,12 @@ const result = processData(apiResponse)
         "Autocomplete total no IDE",
         "Erros detectados ao escrever",
         "Fácil refatorar com confiança",
-        "Auto-documentação do código"
-      ]
+        "Auto-documentação do código",
+      ],
     },
     metrics: {
       maintainability: "+90%",
-      readability: "+70%"
-    }
-  }
+      readability: "+70%",
+    },
+  },
 ];

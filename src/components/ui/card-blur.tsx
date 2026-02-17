@@ -1,7 +1,7 @@
 import React from "react";
 
 type CardBlurRadius = "lg" | "xl" | "2xl";
-type CardBlurPadding = "p-4" | "p-5" | "p-6" | "p-8";
+type CardBlurPadding = "p-3" | "p-4" | "p-5" | "p-6" | "p-8";
 
 interface CardBlurProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;

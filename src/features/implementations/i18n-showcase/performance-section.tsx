@@ -43,11 +43,11 @@ export function Performance() {
           variants={stagger}
           className="grid gap-6 md:grid-cols-3"
         >
-          {[
+          {([
             { icon: Rocket, key: "buildTime" },
             { icon: Gauge, key: "bundle" },
             { icon: Shield, key: "typeSafe" },
-          ].map((item) => (
+          ] as const).map((item) => (
             <motion.div key={item.key} variants={fadeUp}>
               <Card className="h-full border-border/50 bg-card">
                 <CardContent className="p-6">

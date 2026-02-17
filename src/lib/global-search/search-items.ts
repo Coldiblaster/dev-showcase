@@ -54,4 +54,6 @@ export const searchItems = [
     category: "guide",
     relevance: 8,
   },
-];
+] as const;
+
+export type SearchItemI18nKey = (typeof searchItems)[number]["i18nKey"];

@@ -1,3 +1,4 @@
+import type { LucideIcon } from "lucide-react";
 import { ArrowRight, BookOpen, Palette, Sparkles } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -7,7 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getContentByCategory } from "@/data/content";
 
-const iconMap: Record<string, React.ComponentType<unknown>> = {
+const iconMap: Record<string, LucideIcon> = {
   "ai-tips": Sparkles,
   "tailwind-tips": Palette,
 };

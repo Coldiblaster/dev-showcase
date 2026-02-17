@@ -44,11 +44,11 @@ export function TranslationEngine() {
           variants={stagger}
           className="grid gap-6 md:grid-cols-3 mb-10"
         >
-          {[
+          {([
             { icon: Sparkles, key: "quality" },
             { icon: Zap, key: "buildTime" },
             { icon: Globe, key: "free" },
-          ].map((item, i) => (
+          ] as const).map((item) => (
             <motion.div key={item.key} variants={fadeUp}>
               <Card className="h-full border-border/50 bg-card">
                 <CardContent className="p-6">
