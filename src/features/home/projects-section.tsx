@@ -102,10 +102,7 @@ export function ProjectsSection() {
                         rel="noopener noreferrer"
                         className="flex-1"
                       >
-                        <Button
-                          size="sm"
-                          className="w-full gap-1.5 text-xs"
-                        >
+                        <Button size="sm" className="w-full gap-1.5 text-xs">
                           <ExternalLink className="h-3.5 w-3.5" />
                           {t("viewSite")}
                         </Button>
