@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 
 import { HeroSection } from "@/components/hero-section";
 import { Button } from "@/components/ui/button";
+import { PERSONAL } from "@/lib/constants";
 
 export function HomeHeroSection() {
   const t = useTranslations("hero");
@@ -111,17 +112,17 @@ export function HomeHeroSection() {
               {[
                 {
                   icon: Github,
-                  href: "https://github.com/Coldiblaster",
+                  href: PERSONAL.github,
                   label: "GitHub",
                 },
                 {
                   icon: Linkedin,
-                  href: "https://www.linkedin.com/in/vbastazin/",
+                  href: PERSONAL.linkedin,
                   label: "LinkedIn",
                 },
                 {
                   icon: Mail,
-                  href: "mailto:vbastazin@gmail.com",
+                  href: `mailto:${PERSONAL.email}`,
                   label: "Email",
                 },
               ].map(({ icon: Icon, href, label }) => (

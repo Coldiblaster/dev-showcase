@@ -7,6 +7,7 @@ import { useCallback, useMemo, useState } from "react";
 import { CTASection } from "@/components/cta-section";
 import { HeroSection } from "@/components/hero-section";
 import { Button } from "@/components/ui/button";
+import { PERSONAL } from "@/lib/constants";
 
 import { BeforeAfterSection } from "./before-after-section";
 import { CodeSnippetsSection } from "./code-snippets-section";
@@ -84,7 +85,7 @@ export function DevResourcesPage() {
         secondaryButton={
           <Button asChild variant="outline" size="lg" className="gap-2">
             <a
-              href="https://github.com/Coldiblaster"
+              href={PERSONAL.github}
               target="_blank"
               rel="noopener noreferrer"
             >

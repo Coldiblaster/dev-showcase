@@ -20,6 +20,7 @@ import { useCallback, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CardBlur } from "@/components/ui/card-blur";
 import { Input } from "@/components/ui/input";
+import { buildWhatsAppLink, PERSONAL } from "@/lib/constants";
 
 type FormStatus = "idle" | "sending" | "sent" | "error";
 
@@ -88,14 +89,14 @@ export function ContactSection() {
     }
   };
 
-  const whatsappLink = `https://wa.me/5518988111220?text=${encodeURIComponent("Ola! Vi seu portfolio e gostaria de conversar.")}`;
+  const whatsappLink = buildWhatsAppLink();
 
   const socials = [
-    { icon: Github, label: "GitHub", href: "https://github.com/Coldiblaster" },
+    { icon: Github, label: "GitHub", href: PERSONAL.github },
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/vbastazin/",
+      href: PERSONAL.linkedin,
     },
   ];
 
@@ -360,10 +361,10 @@ export function ContactSection() {
                 </div>
               </div>
               <a
-                href="mailto:vbastazin@gmail.com"
+                href={`mailto:${PERSONAL.email}`}
                 className="inline-block font-mono text-sm text-primary transition-colors hover:text-primary/80"
               >
-                vbastazin@gmail.com
+                {PERSONAL.email}
               </a>
             </CardBlur>
 

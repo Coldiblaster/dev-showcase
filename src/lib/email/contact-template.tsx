@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import { PERSONAL } from "@/lib/constants";
+
 interface ContactEmailProps {
   name: string;
   email: string;
@@ -233,10 +235,10 @@ export function ContactEmailTemplate({
         >
           Enviado via{" "}
           <a
-            href="https://viniciusbastazin.vercel.app"
+            href={PERSONAL.siteUrl}
             style={{ color: "#4cceac", textDecoration: "none" }}
           >
-            viniciusbastazin.vercel.app
+            {PERSONAL.siteUrl.replace("https://", "")}
           </a>
         </p>
       </div>

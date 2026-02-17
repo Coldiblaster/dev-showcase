@@ -1,16 +1,13 @@
+import { PERSONAL } from "@/lib/constants";
 import { SITE_AUTHOR, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const personSchema = {
   "@type": "Person",
   name: SITE_AUTHOR,
   url: SITE_URL,
-  jobTitle: "Desenvolvedor Frontend Senior",
-  description:
-    "Desenvolvedor Frontend Senior com mais de 8 anos de experiência em React.js, Next.js e React Native. Especialista em arquitetura frontend, design systems, performance, acessibilidade e liderança técnica.",
-  sameAs: [
-    "https://github.com/Coldiblaster",
-    "https://www.linkedin.com/in/vbastazin/",
-  ],
+  jobTitle: PERSONAL.role,
+  description: `${PERSONAL.role} com mais de 8 anos de experiência em React.js, Next.js e React Native. Especialista em arquitetura frontend, design systems, performance, acessibilidade e liderança técnica.`,
+  sameAs: [PERSONAL.github, PERSONAL.linkedin],
   knowsAbout: [
     "React",
     "Next.js",
@@ -30,7 +27,7 @@ const personSchema = {
     "Docker",
     "CI/CD",
   ],
-  image: `${SITE_URL}/avatar-desk.png`,
+  image: `${SITE_URL}${PERSONAL.avatar}`,
 };
 
 const websiteSchema = {
@@ -38,7 +35,7 @@ const websiteSchema = {
   name: SITE_NAME,
   url: SITE_URL,
   description:
-    "Portfolio, implementações reais e guias técnicos de Vinicius Bastazin — React, Next.js, React Native e mais.",
+    `Portfolio, implementações reais e guias técnicos de ${PERSONAL.name} — React, Next.js, React Native e mais.`,
   author: { "@type": "Person", name: SITE_AUTHOR },
   inLanguage: ["pt-BR", "en", "es", "de"],
 };

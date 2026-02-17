@@ -3,13 +3,15 @@ import { join } from "node:path";
 
 import { ImageResponse } from "next/og";
 
-export const alt = "Vinicius Bastazin — Desenvolvedor Frontend Senior";
+import { PERSONAL } from "@/lib/constants";
+
+export const alt = `${PERSONAL.name} — ${PERSONAL.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function OGImage() {
   const avatarData = await readFile(
-    join(process.cwd(), "public", "avatar-desk.png"),
+    join(process.cwd(), "public", PERSONAL.avatar.replace("/", "")),
   );
   const avatarBase64 = `data:image/png;base64,${avatarData.toString("base64")}`;
 
@@ -127,7 +129,7 @@ export default async function OGImage() {
               margin: 0,
             }}
           >
-            Vinicius Bastazin
+            {PERSONAL.name}
           </h1>
 
           {/* Title */}
@@ -139,7 +141,7 @@ export default async function OGImage() {
               margin: 0,
             }}
           >
-            Desenvolvedor Frontend Senior
+            {PERSONAL.role}
           </p>
 
           {/* Description */}
@@ -151,8 +153,7 @@ export default async function OGImage() {
               margin: 0,
             }}
           >
-            +8 anos de experiência em React, Next.js e React Native. Arquitetura
-            frontend, design systems e liderança técnica.
+            {`+8 anos de experiência em React, Next.js e React Native. Arquitetura frontend, design systems e liderança técnica.`}
           </p>
 
           {/* Skills */}
@@ -185,7 +186,7 @@ export default async function OGImage() {
               marginTop: 8,
             }}
           >
-            viniciusbastazin.vercel.app
+            {PERSONAL.siteUrl.replace("https://", "")}
           </p>
         </div>
 

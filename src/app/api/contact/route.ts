@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 
+import { PERSONAL } from "@/lib/constants";
 import { ContactEmailTemplate } from "@/lib/email/contact-template";
 
 const contactSchema = z.object({
@@ -37,7 +38,7 @@ export async function POST(request: Request) {
 
     const fromAddress =
       process.env.RESEND_FROM_EMAIL ?? "Portfolio VB <onboarding@resend.dev>";
-    const toAddress = process.env.RESEND_TO_EMAIL ?? "vbastazin@gmail.com";
+    const toAddress = process.env.RESEND_TO_EMAIL ?? PERSONAL.email;
 
     const { error } = await resend.emails.send({
       from: fromAddress,

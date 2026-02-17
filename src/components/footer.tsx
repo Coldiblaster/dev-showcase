@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { useRef } from "react";
 
 import { Separator } from "@/components/ui/separator";
+import { PERSONAL } from "@/lib/constants";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -34,17 +35,17 @@ export function Footer() {
             {[
               {
                 icon: Github,
-                href: "https://github.com/Coldiblaster",
+                href: PERSONAL.github,
                 label: "GitHub",
               },
               {
                 icon: Linkedin,
-                href: "https://www.linkedin.com/in/vbastazin/",
+                href: PERSONAL.linkedin,
                 label: "LinkedIn",
               },
               {
                 icon: Mail,
-                href: "mailto:vbastazin@gmail.com",
+                href: `mailto:${PERSONAL.email}`,
                 label: "Email",
               },
             ].map(({ icon: Icon, href, label }) => (
@@ -76,7 +77,7 @@ export function Footer() {
             {t("built")}
           </p>
           <p className="font-mono text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} Vinicius Bastazin Araujo.{" "}
+            &copy; {new Date().getFullYear()} {PERSONAL.fullName}.{" "}
             {t("rights")}
           </p>
         </motion.div>

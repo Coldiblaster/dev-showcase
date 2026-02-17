@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 
-export const SITE_URL = "https://viniciusbastazin.vercel.app";
-export const SITE_NAME = "Vinicius Bastazin";
-export const SITE_AUTHOR = "Vinicius Bastazin Araujo";
+import { PERSONAL } from "@/lib/constants";
+
+export const SITE_URL = PERSONAL.siteUrl;
+export const SITE_NAME = PERSONAL.siteName;
+export const SITE_AUTHOR = PERSONAL.fullName;
 
 /**
  * Gera metadata completa para uma página, herdando as configurações base do site.

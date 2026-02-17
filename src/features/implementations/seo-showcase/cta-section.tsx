@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 
 import { CTASection } from "@/components/cta-section";
 import { Button } from "@/components/ui/button";
+import { PERSONAL } from "@/lib/constants";
 
 export function SeoCta() {
   const t = useTranslations("seoPage");
@@ -18,7 +19,7 @@ export function SeoCta() {
       secondaryButton={
         <Button asChild variant="outline" size="lg" className="gap-2">
           <a
-            href="https://github.com/Coldiblaster"
+            href={PERSONAL.github}
             target="_blank"
             rel="noopener noreferrer"
           >
