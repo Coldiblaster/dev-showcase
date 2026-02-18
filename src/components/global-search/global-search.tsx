@@ -1,7 +1,7 @@
 "use client";
 
-import { Search } from "lucide-react";
-import { useMemo } from "react";
+import { Search, X } from "lucide-react";
+import { useCallback, useMemo } from "react";
 
 import {
   Dialog,
@@ -45,6 +45,14 @@ export function GlobalSearch() {
 
   const hasQuery = query.trim().length > 0;
 
+  const handleClear = useCallback(() => {
+    if (query) {
+      setQuery("");
+    } else {
+      setOpen(false);
+    }
+  }, [query, setQuery, setOpen]);
+
   return (
     <>
       <SearchTrigger
@@ -56,20 +64,30 @@ export function GlobalSearch() {
       />
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="flex h-[min(500px,85dvh)] max-w-2xl flex-col p-0">
+        <DialogContent
+          showCloseButton={false}
+          className="flex h-[min(500px,85dvh)] max-w-2xl flex-col gap-0 p-0 max-md:top-0 max-md:h-dvh max-md:max-w-full max-md:translate-y-0 max-md:rounded-none max-md:border-0"
+        >
           <DialogHeader className="sr-only">
             <DialogTitle>{t("title")}</DialogTitle>
           </DialogHeader>
 
-          <div className="flex items-center gap-3 border-b px-6 py-2">
+          <div className="flex items-center gap-3 border-b px-4 py-3 md:px-6 md:py-2">
             <Search className="h-5 w-5 shrink-0 text-muted-foreground" />
             <Input
               placeholder={t("inputPlaceholder")}
-              className="h-11 flex-1 border-0 bg-transparent p-0 text-base placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0"
+              className="h-10 flex-1 border-0 bg-transparent p-0 text-base placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 md:h-11"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               autoFocus
             />
+            <button
+              onClick={handleClear}
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground md:hidden"
+              aria-label={t("close")}
+            >
+              <X className="h-5 w-5" />
+            </button>
           </div>
 
           {results.length > 0 ? (

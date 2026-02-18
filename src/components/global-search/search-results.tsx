@@ -18,8 +18,8 @@ export function SearchResults({
   onSelect,
 }: SearchResultsProps) {
   return (
-    <ScrollArea className="flex h-full max-h-87.5 flex-col justify-center px-4 py-3 scrollbar-none">
-      <div className="flex-1 space-y-1">
+    <ScrollArea className="flex h-full max-h-87.5 flex-col justify-center px-3 py-2 scrollbar-none md:px-4 md:py-3">
+      <div className="flex-1 space-y-0.5 md:space-y-1">
         {results.map((result, idx) => {
           const config = typeConfig[result.type];
           const Icon = config.icon;
@@ -29,33 +29,33 @@ export function SearchResults({
             <button
               key={result.id}
               onClick={() => onSelect(result)}
-              className={`group flex w-full items-start gap-4 rounded-xl border border-transparent p-3 text-left transition-all hover:border-border hover:bg-muted/50 ${
+              className={`group flex w-full items-start gap-3 rounded-lg border border-transparent p-2.5 text-left transition-all hover:border-border hover:bg-muted/50 md:gap-4 md:rounded-xl md:p-3 ${
                 isSelected ? "border-primary bg-primary/10" : ""
               }`}
               tabIndex={-1}
               aria-selected={isSelected}
             >
               <div
-                className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${config.color} transition-transform group-hover:scale-110`}
+                className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg md:h-10 md:w-10 ${config.color} transition-transform group-hover:scale-110`}
               >
-                <Icon className="h-5 w-5" />
+                <Icon className="h-4 w-4 md:h-5 md:w-5" />
               </div>
-              <div className="flex-1 space-y-1.5">
-                <div className="flex flex-wrap items-center gap-2">
+              <div className="min-w-0 flex-1 space-y-1">
+                <div className="flex flex-wrap items-center gap-1.5 md:gap-2">
                   <p
-                    className={`break-all font-semibold text-foreground group-hover:text-primary ${
+                    className={`text-sm font-semibold text-foreground group-hover:text-primary md:text-base ${
                       isSelected ? "text-primary" : ""
                     }`}
                     style={{ wordBreak: "break-word" }}
                   >
                     {result.title}
                   </p>
-                  <Badge variant="outline" className="text-xs font-medium">
+                  <Badge variant="outline" className="text-[10px] font-medium md:text-xs">
                     {config.label}
                   </Badge>
                 </div>
                 <p
-                  className="text-sm text-muted-foreground"
+                  className="text-xs text-muted-foreground md:text-sm"
                   style={{ whiteSpace: "normal" }}
                 >
                   {result.description}
