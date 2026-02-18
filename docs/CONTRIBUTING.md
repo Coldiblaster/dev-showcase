@@ -66,6 +66,7 @@ git checkout -b feature/minha-feature
 ```
 
 **Nomenclatura de branches:**
+
 - `feature/nome` — nova funcionalidade
 - `fix/nome` — correcao de bug
 - `docs/nome` — documentacao
@@ -118,10 +119,23 @@ git commit -m "feat: adiciona secao de skills na pagina sobre"
 git push origin feature/minha-feature
 ```
 
-Abra o PR apontando para `develop` com:
-- Titulo descritivo
+Abra o PR **apontando para `develop`** (nunca direto para `main`):
+
+- Titulo descritivo seguindo Conventional Commits (ex: `feat: adiciona secao de skills`)
 - Descricao do que foi feito e por que
 - Screenshot/GIF se for mudanca visual
+
+A CI roda automaticamente (lint, typecheck, test, build). O merge so e liberado quando todos os checks passam e tem pelo menos 1 approval.
+
+### 7. Deploy (develop → main)
+
+Apos o merge na `develop`, um PR de release para `main` e criado automaticamente pela CI. Basta revisar e aprovar quando quiser fazer deploy.
+
+```
+feature/* → PR → develop → auto-PR → main → Vercel deploy
+```
+
+> Detalhes: [BRANCH_PROTECTION.md](./BRANCH_PROTECTION.md)
 
 ---
 
@@ -129,13 +143,13 @@ Abra o PR apontando para `develop` com:
 
 ### Componentes
 
-| Regra | Exemplo |
-|-------|---------|
-| Nomes em PascalCase | `ScoreGauge`, `StepCard` |
-| Um componente por arquivo | `score-gauge.tsx` |
-| Arquivos em kebab-case | `section-wrapper.tsx` |
-| JSDoc em portugues | `/** Medidor circular de pontuacao. */` |
-| Props com interface | `interface ScoreGaugeProps { ... }` |
+| Regra                     | Exemplo                                 |
+| ------------------------- | --------------------------------------- |
+| Nomes em PascalCase       | `ScoreGauge`, `StepCard`                |
+| Um componente por arquivo | `score-gauge.tsx`                       |
+| Arquivos em kebab-case    | `section-wrapper.tsx`                   |
+| JSDoc em portugues        | `/** Medidor circular de pontuacao. */` |
+| Props com interface       | `interface ScoreGaugeProps { ... }`     |
 
 ### Estrutura de features
 
@@ -184,16 +198,16 @@ Usamos [Conventional Commits](https://www.conventionalcommits.org/):
 
 ### Tipos
 
-| Tipo | Quando usar | Exemplo |
-|------|-------------|---------|
-| `feat` | Nova funcionalidade | `feat: adiciona revisor de codigo com IA` |
-| `fix` | Correcao de bug | `fix: corrige tradução do placeholder` |
-| `docs` | Documentacao | `docs: atualiza README com novas features` |
-| `refactor` | Refatoracao (sem mudanca funcional) | `refactor: extrai hook useGitHubStats` |
-| `style` | Formatacao, espacos | `style: formata imports com prettier` |
-| `test` | Testes | `test: adiciona testes para rate-limit` |
-| `chore` | Build, config, deps | `chore: atualiza next.js para 16.1` |
-| `perf` | Performance | `perf: memoiza componente de stats` |
+| Tipo       | Quando usar                         | Exemplo                                    |
+| ---------- | ----------------------------------- | ------------------------------------------ |
+| `feat`     | Nova funcionalidade                 | `feat: adiciona revisor de codigo com IA`  |
+| `fix`      | Correcao de bug                     | `fix: corrige tradução do placeholder`     |
+| `docs`     | Documentacao                        | `docs: atualiza README com novas features` |
+| `refactor` | Refatoracao (sem mudanca funcional) | `refactor: extrai hook useGitHubStats`     |
+| `style`    | Formatacao, espacos                 | `style: formata imports com prettier`      |
+| `test`     | Testes                              | `test: adiciona testes para rate-limit`    |
+| `chore`    | Build, config, deps                 | `chore: atualiza next.js para 16.1`        |
+| `perf`     | Performance                         | `perf: memoiza componente de stats`        |
 
 ### Regras
 

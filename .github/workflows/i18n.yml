@@ -2,7 +2,7 @@ name: i18n Validation
 
 on:
   pull_request:
-    branches: [main]
+    branches: [develop, main]
     paths:
       - "messages/**"
       - "src/lib/i18n/**"

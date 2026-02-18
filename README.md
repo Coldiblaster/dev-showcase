@@ -272,10 +272,10 @@ O projeto esta configurado para deploy na **Vercel** com zero configuracao:
 Contribuicoes sao bem-vindas! Veja o [guia de contribuicao](./docs/CONTRIBUTING.md) para entender o fluxo.
 
 1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/minha-feature`)
+2. Crie uma branch a partir de `develop` (`git checkout -b feature/minha-feature`)
 3. Commit suas mudancas (`git commit -m 'feat: minha feature'`)
 4. Push para a branch (`git push origin feature/minha-feature`)
-5. Abra um Pull Request
+5. Abra um Pull Request para `develop` (nunca direto para `main`)
 
 ---
 

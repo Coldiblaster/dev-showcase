@@ -1,0 +1,69 @@
+name: Release PR
+
+on:
+  push:
+    branches: [develop]
+
+jobs:
+  release-pr:
+    name: Create Release PR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for existing PR
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          EXISTING=$(gh pr list --base main --head develop --state open --json number --jq '.[0].number // empty')
+          echo "existing=$EXISTING" >> "$GITHUB_OUTPUT"
+
+      - name: Get new commits
+        id: commits
+        run: |
+          MERGE_BASE=$(git merge-base origin/main origin/develop)
+          COMMIT_LIST=$(git log --oneline "$MERGE_BASE..origin/develop" --no-merges | head -20)
+          {
+            echo "list<<EOF"
+            echo "$COMMIT_LIST"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create or update PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BODY=$(cat <<'EOF'
+          ## Release: develop → main
+
+          Merge automatico da branch develop para producao.
+
+          ### Commits incluidos
+
+          ${{ steps.commits.outputs.list }}
+
+          ### Checklist
+
+          - [ ] Testei as features localmente
+          - [ ] Build de producao funciona (`pnpm build`)
+          - [ ] Nenhum bug critico pendente
+          EOF
+          )
+
+          if [ -n "${{ steps.check.outputs.existing }}" ]; then
+            gh pr edit "${{ steps.check.outputs.existing }}" --body "$BODY"
+            echo "PR #${{ steps.check.outputs.existing }} atualizado"
+          else
+            gh pr create \
+              --base main \
+              --head develop \
+              --title "release: develop → main" \
+              --body "$BODY"
+            echo "Novo PR criado"
+          fi

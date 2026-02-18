@@ -1,105 +1,109 @@
 # Branch Protection — Configuracao no GitHub
 
-Passo a passo para proteger a branch `main` no GitHub.
-
-Essas regras garantem que nenhum codigo entre na main sem passar por PR, review e CI.
+Passo a passo para proteger as branches `develop` e `main` no GitHub.
 
 ---
 
-## Passo a Passo
-
-### 1. Acesse as configuracoes
+## Git Flow do projeto
 
 ```
-GitHub → Repo → Settings → Branches → Add branch protection rule
+feature/nome ──→ PR ──→ develop ──→ auto-PR ──→ main ──→ Vercel deploy
+                         (CI roda)                (CI roda)
 ```
 
-### 2. Configure a regra
+- **feature → develop:** PR obrigatorio com CI + review
+- **develop → main:** PR criado automaticamente pela CI. Voce so revisa e aprova
+- **feature → main:** BLOQUEADO (nao permitido)
+- **Push direto em develop ou main:** BLOQUEADO
 
-**Branch name pattern:**
+---
 
-```
-main
-```
+## Configuracao: branch `develop`
 
-### 3. Marque as opcoes
+**Settings → Branches → Add rule** — pattern: `develop`
 
-| Opcao                                                              | Marcar?  | Por que                                                    |
-| ------------------------------------------------------------------ | :------: | ---------------------------------------------------------- |
-| **Require a pull request before merging**                          |   SIM    | Ninguem faz push direto na main                            |
-| → Require approvals (1)                                            |   SIM    | Pelo menos 1 review antes do merge                         |
-| → Dismiss stale pull request approvals when new commits are pushed |   SIM    | Novo push invalida approvals antigos                       |
-| **Require status checks to pass before merging**                   |   SIM    | CI deve passar antes do merge                              |
-| → Require branches to be up to date before merging                 |   SIM    | Branch precisa estar atualizada com main                   |
-| **Status checks obrigatorios**                                     |    —     | Adicione estes (aparecem apos o primeiro push):            |
-| → `Lint`                                                           |   SIM    | ESLint                                                     |
-| → `Type Check`                                                     |   SIM    | TypeScript                                                 |
-| → `Tests`                                                          |   SIM    | Vitest                                                     |
-| → `Build`                                                          |   SIM    | Next.js build                                              |
-| **Require conversation resolution before merging**                 |   SIM    | Comentarios de review devem ser resolvidos                 |
-| **Do not allow bypassing the above settings**                      | OPCIONAL | Se marcar, nem admins podem pular (recomendado para times) |
-| **Allow force pushes**                                             |   NAO    | Nunca force push na main                                   |
-| **Allow deletions**                                                |   NAO    | Nao permitir deletar main                                  |
+| Opcao                                                   | Marcar? | Por que                            |
+| ------------------------------------------------------- | :-----: | ---------------------------------- |
+| **Require a pull request before merging**               |   SIM   | Features entram via PR             |
+| → Require approvals (1)                                 |   SIM   | Pelo menos 1 review                |
+| → Dismiss stale approvals on new pushes                 |   SIM   | Novo push invalida approval antigo |
+| **Require status checks to pass**                       |   SIM   | CI deve passar                     |
+| → Require branches to be up to date                     |   SIM   | Branch atualizada com develop      |
+| → Status checks: `Lint`, `Type Check`, `Tests`, `Build` |   SIM   | Todos obrigatorios                 |
+| **Require conversation resolution**                     |   SIM   | Comentarios resolvidos             |
+| **Allow force pushes**                                  |   NAO   | Nunca                              |
+| **Allow deletions**                                     |   NAO   | Nunca                              |
 
-### 4. Salve
+---
 
-Clique em **Create** (ou **Save changes** se editando).
+## Configuracao: branch `main`
+
+**Settings → Branches → Add rule** — pattern: `main`
+
+| Opcao                                                   | Marcar?  | Por que                             |
+| ------------------------------------------------------- | :------: | ----------------------------------- |
+| **Require a pull request before merging**               |   SIM    | Nada entra direto                   |
+| → Require approvals (1)                                 |   SIM    | Review antes de ir pra producao     |
+| → Dismiss stale approvals on new pushes                 |   SIM    | Seguranca extra                     |
+| **Require status checks to pass**                       |   SIM    | CI roda novamente na PR             |
+| → Require branches to be up to date                     |   SIM    | Sem conflitos                       |
+| → Status checks: `Lint`, `Type Check`, `Tests`, `Build` |   SIM    | Todos obrigatorios                  |
+| **Require conversation resolution**                     |   SIM    | Tudo resolvido                      |
+| **Restrict who can push to matching branches**          | OPCIONAL | Se quiser limitar quem pode mergear |
+| **Allow force pushes**                                  |   NAO    | Nunca                               |
+| **Allow deletions**                                     |   NAO    | Nunca                               |
 
 ---
 
 ## Status Checks disponiveis
 
-Apos o primeiro PR com CI rodando, os checks aparecem para selecionar:
+| Check                   | Workflow   | Roda quando                    |
+| ----------------------- | ---------- | ------------------------------ |
+| `Lint`                  | `ci.yml`   | PR para develop ou main        |
+| `Type Check`            | `ci.yml`   | PR para develop ou main        |
+| `Tests`                 | `ci.yml`   | PR para develop ou main        |
+| `Build`                 | `ci.yml`   | PR para develop ou main        |
+| `Validate Translations` | `i18n.yml` | PR com mudancas em `messages/` |
 
-| Check                   | Workflow   | O que valida                                            |
-| ----------------------- | ---------- | ------------------------------------------------------- |
-| `Lint`                  | `ci.yml`   | ESLint — erros de codigo                                |
-| `Type Check`            | `ci.yml`   | TypeScript — erros de tipo                              |
-| `Tests`                 | `ci.yml`   | Vitest — testes unitarios                               |
-| `Build`                 | `ci.yml`   | Next.js build — build de producao                       |
-| `Validate Translations` | `i18n.yml` | Sincronizacao de traducoes (so roda se messages/ mudar) |
-
-**Importante:** Os checks so aparecem na lista depois que a CI roda pela primeira vez. Faca o primeiro PR, espere a CI rodar, e ai configure os status checks.
+**Os checks so aparecem na lista depois que a CI roda pela primeira vez.** Faca o primeiro PR, espere rodar, depois configure.
 
 ---
 
-## Fluxo resultante
+## Release automatica (develop → main)
 
-```
-1. Cria branch (feature/minha-feature)
-        ↓
-2. Desenvolve e commita (Husky valida formato)
-        ↓
-3. Push e abre PR para main
-        ↓
-4. CI roda automaticamente (lint, typecheck, test, build)
-        ↓
-5. Alguem faz code review e aprova
-        ↓
-6. Todos os checks verdes + approved → merge liberado
-        ↓
-7. Merge na main → Vercel faz deploy automatico
-```
+O workflow `release.yml` cria automaticamente um PR de `develop → main` toda vez que a develop recebe um merge.
+
+**Como funciona:**
+
+1. Voce mergeia um feature PR na `develop`
+2. A CI cria (ou atualiza) um PR `develop → main` com a lista de commits
+3. A CI roda no PR de release (lint, typecheck, test, build)
+4. Voce revisa e aprova quando quiser fazer deploy
+5. Merge → Vercel faz deploy automatico
+
+Se ja existir um PR aberto de release, ele e atualizado (nao cria duplicado).
 
 ---
 
 ## Para projetos solo
 
-Se voce e o unico contribuidor, pode ajustar:
+Se voce e o unico contribuidor:
 
-- **Require approvals:** pode desmarcar ou manter 0 approvals (ainda exige PR, so nao exige review de outra pessoa)
-- **Do not allow bypassing:** pode desmarcar para poder fazer merge dos seus proprios PRs
+- **Approvals:** pode setar 0 (ainda exige PR, so nao exige review de outra pessoa)
+- **Bypassing:** pode permitir para voce mesmo nos PRs de release (develop → main)
 
-O importante e manter a CI obrigatoria — isso garante que nada quebrado entra na main.
+O importante e manter CI obrigatoria e fluxo via PR.
 
 ---
 
-## Resumo
+## Resumo das camadas
 
-| Camada | Ferramenta         | Quando roda                                              |
-| ------ | ------------------ | -------------------------------------------------------- |
-| Local  | Husky + commitlint | A cada commit (formato da mensagem)                      |
-| Local  | lint-staged        | A cada commit (ESLint + Prettier nos arquivos alterados) |
-| CI     | GitHub Actions     | A cada push/PR (lint, typecheck, test, build)            |
-| GitHub | Branch Protection  | Bloqueia merge sem PR + checks + review                  |
-| Deploy | Vercel             | Deploy automatico apos merge na main                     |
+| Camada | Ferramenta         | Quando                                            |
+| ------ | ------------------ | ------------------------------------------------- |
+| Local  | Husky + commitlint | Commit — valida formato (feat, fix, etc.)         |
+| Local  | lint-staged        | Commit — ESLint + Prettier nos arquivos alterados |
+| CI     | GitHub Actions     | PR — lint, typecheck, test, build                 |
+| CI     | GitHub Actions     | PR — validacao i18n (se messages/ mudar)          |
+| CI     | GitHub Actions     | Push na develop — cria PR automatico para main    |
+| GitHub | Branch Protection  | Bloqueia merge sem PR + checks + review           |
+| Deploy | Vercel             | Deploy automatico apos merge na main              |
