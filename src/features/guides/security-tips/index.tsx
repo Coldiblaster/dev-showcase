@@ -60,6 +60,8 @@ export function SecurityTips() {
         icon={Shield}
         title={t("cta.title")}
         description={t("cta.description")}
+        buttonText={t("cta.button")}
+        buttonHref="/dicas"
         secondaryButton={
           <a
             href={REPOS.devShowcase}

@@ -50,6 +50,20 @@ const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
   SecurityTips: dynamic(() =>
     import("@/features/guides/security-tips").then((m) => m.SecurityTips),
   ),
+  RegexPlayground: dynamic(() =>
+    import("@/features/implementations/regex-playground").then(
+      (m) => m.RegexPlayground,
+    ),
+  ),
+  TsPatterns: dynamic(() =>
+    import("@/features/guides/ts-patterns").then((m) => m.TsPatterns),
+  ),
+  GitWorkflow: dynamic(() =>
+    import("@/features/guides/git-workflow").then((m) => m.GitWorkflow),
+  ),
+  ReactPatterns: dynamic(() =>
+    import("@/features/guides/react-patterns").then((m) => m.ReactPatterns),
+  ),
 };
 
 /**

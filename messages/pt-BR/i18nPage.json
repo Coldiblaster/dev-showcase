@@ -292,6 +292,6 @@
   "cta": {
     "title": "Pronto para implementar?",
     "description": "Este sistema de i18n demonstra uma arquitetura production-ready com type-safety, automacao e qualidade. Tudo construido com next-intl v4+.",
-    "button": "Voltar ao Portfolio"
+    "button": "Voltar às Implementações"
   }
 }

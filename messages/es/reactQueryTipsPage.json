@@ -48,7 +48,8 @@
   },
   "cta": {
     "title": "¿Listo para optimizar tu data fetching?",
-    "description": "Vuelve al portfolio y explora más contenido"
+    "description": "Explora más guías y herramientas prácticas para devs.",
+    "button": "Volver a los Consejos"
   },
   "sectionNav": {
     "bestPractices": "Buenas Prácticas",

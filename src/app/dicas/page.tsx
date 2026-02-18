@@ -1,6 +1,9 @@
 import {
   BookOpen,
+  Component,
   Database,
+  FileCode,
+  GitBranch,
   Palette,
   Shield,
   Sparkles,
@@ -18,6 +21,9 @@ const iconMap = {
   "react-query-tips": Database,
   "dev-resources": Wrench,
   "security-tips": Shield,
+  "typescript-patterns": FileCode,
+  "git-workflow": GitBranch,
+  "react-patterns": Component,
 };
 
 export async function generateMetadata(): Promise<Metadata> {

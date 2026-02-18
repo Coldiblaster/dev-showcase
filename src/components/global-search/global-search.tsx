@@ -90,22 +90,24 @@ export function GlobalSearch() {
             </button>
           </div>
 
-          {results.length > 0 ? (
-            <SearchResults
-              results={results}
-              selectedIndex={selectedIndex}
-              typeConfig={typeConfig}
-              onSelect={handleSelect}
-            />
-          ) : (
-            <SearchEmpty
-              hasQuery={hasQuery}
-              startTypingText={t("startTyping")}
-              hintText={t("hint")}
-              noResultsText={t("noResults")}
-              tryOtherTermsText={t("tryOtherTerms")}
-            />
-          )}
+          <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+            {results.length > 0 ? (
+              <SearchResults
+                results={results}
+                selectedIndex={selectedIndex}
+                typeConfig={typeConfig}
+                onSelect={handleSelect}
+              />
+            ) : (
+              <SearchEmpty
+                hasQuery={hasQuery}
+                startTypingText={t("startTyping")}
+                hintText={t("hint")}
+                noResultsText={t("noResults")}
+                tryOtherTermsText={t("tryOtherTerms")}
+              />
+            )}
+          </div>
 
           <SearchFooter
             navigateText={t("navigate")}

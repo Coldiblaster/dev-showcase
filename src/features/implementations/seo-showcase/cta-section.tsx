@@ -16,6 +16,7 @@ export function SeoCta() {
       title={t("cta.title")}
       description={t("cta.description")}
       buttonText={t("cta.back")}
+      buttonHref="/implementacoes"
       secondaryButton={
         <Button asChild variant="outline" size="lg" className="gap-2">
           <a href={REPOS.devShowcase} target="_blank" rel="noopener noreferrer">

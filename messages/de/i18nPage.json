@@ -292,6 +292,6 @@
   "cta": {
     "title": "Bereit zur Umsetzung?",
     "description": "Dieses i18n-System demonstriert eine produktionsreife Architektur mit Typsicherheit, Automatisierung und Qualität. Alles wurde mit next-intl v4+ erstellt.",
-    "button": "Zurück zum Portfolio"
+    "button": "Zurück zu den Implementierungen"
   }
 }

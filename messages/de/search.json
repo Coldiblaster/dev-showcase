@@ -80,6 +80,22 @@
     "code-review": {
       "title": "KI Code Reviewer",
       "description": "Code einfügen und professionelle KI-Analyse erhalten — Bugs, Performance und Best Practices"
+    },
+    "regex": {
+      "title": "Regex Playground",
+      "description": "Interaktiver Regex-Editor mit Hervorhebung, fertigen Patterns und Cheat Sheet"
+    },
+    "typescript-patterns": {
+      "title": "TypeScript Patterns",
+      "description": "Utility Types, Generics, Type Narrowing und fortgeschrittene Patterns mit interaktiven Beispielen"
+    },
+    "git-workflow": {
+      "title": "Git Workflow & Cheat Sheet",
+      "description": "Branching-Strategien, Conventional Commits, wichtige Befehle und professionelle Workflows"
+    },
+    "react-patterns": {
+      "title": "React Design Patterns",
+      "description": "Compound Components, Custom Hooks, Render Props und Performance-Patterns mit praktischen Beispielen"
     }
   }
 }

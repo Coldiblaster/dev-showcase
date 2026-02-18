@@ -80,6 +80,22 @@
     "code-review": {
       "title": "AI Code Reviewer",
       "description": "Pega tu código y recibe un análisis profesional con IA — bugs, rendimiento y buenas prácticas"
+    },
+    "regex": {
+      "title": "Regex Playground",
+      "description": "Editor interactivo de regex con resaltado, patrones listos y cheat sheet"
+    },
+    "typescript-patterns": {
+      "title": "TypeScript Patterns",
+      "description": "Utility Types, Generics, Type Narrowing y patrones avanzados con ejemplos interactivos"
+    },
+    "git-workflow": {
+      "title": "Git Workflow & Cheat Sheet",
+      "description": "Estrategias de branching, conventional commits, comandos esenciales y workflows profesionales"
+    },
+    "react-patterns": {
+      "title": "React Design Patterns",
+      "description": "Compound Components, Custom Hooks, Render Props y patrones de rendimiento con ejemplos prácticos"
     }
   }
 }

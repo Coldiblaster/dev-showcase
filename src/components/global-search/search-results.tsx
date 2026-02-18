@@ -18,7 +18,7 @@ export function SearchResults({
   onSelect,
 }: SearchResultsProps) {
   return (
-    <ScrollArea className="flex h-full max-h-87.5 flex-col justify-center px-3 py-2 scrollbar-none md:px-4 md:py-3">
+    <ScrollArea className="h-full px-3 py-2 scrollbar-none md:px-4 md:py-3">
       <div className="flex-1 space-y-0.5 md:space-y-1">
         {results.map((result, idx) => {
           const config = typeConfig[result.type];

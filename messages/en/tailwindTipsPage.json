@@ -150,7 +150,7 @@
   "cta": {
     "title": "Did you like the tips?",
     "description": "If you want to chat about Tailwind, shadcn/ui, or anything related to frontend development, give me a shout!",
-    "button": "Back to Portfolio"
+    "button": "Back to Tips"
   },
   "sectionNav": {
     "components": "Components",

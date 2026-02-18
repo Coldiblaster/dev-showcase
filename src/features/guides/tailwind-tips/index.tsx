@@ -55,6 +55,7 @@ export function TailwindTips() {
         title={t("cta.title")}
         description={t("cta.description")}
         buttonText={t("cta.button")}
+        buttonHref="/dicas"
       />
     </div>
   );

@@ -1,0 +1,117 @@
+{
+  "hero": {
+    "badge": "Praktischer Leitfaden",
+    "title": "React Design Patterns",
+    "subtitle": "// Architektur, Komposition und Best Practices",
+    "description": "Architektonische React-Patterns aus professionellen Projekten: Compound Components, Custom Hooks, Render Props, HOCs und mehr — mit praktischen Beispielen."
+  },
+  "sectionNav": {
+    "composition": "Komposition",
+    "hooks": "Custom Hooks",
+    "statePatterns": "Zustand",
+    "performance": "Performance"
+  },
+  "composition": {
+    "title": "Komposition & Komponenten",
+    "subtitle": "// Patterns für flexible Komponenten",
+    "description": "Patterns, die deine Komponenten flexibler, wiederverwendbar und wartbar machen.",
+    "items": [
+      {
+        "name": "Compound Components",
+        "description": "Komponenten, die zusammenarbeiten und impliziten Zustand über Context teilen. Ermöglicht deklarative und flexible API.",
+        "code": "// Deklarative und saubere API\n<Select>\n  <Select.Trigger>Wähle eine Option</Select.Trigger>\n  <Select.Content>\n    <Select.Item value=\"react\">React</Select.Item>\n    <Select.Item value=\"vue\">Vue</Select.Item>\n    <Select.Item value=\"angular\">Angular</Select.Item>\n  </Select.Content>\n</Select>\n\n// Implementierung mit Context\nconst SelectContext = createContext<SelectState | null>(null);\n\nfunction Select({ children }: { children: ReactNode }) {\n  const [value, setValue] = useState('');\n  return (\n    <SelectContext.Provider value={{ value, setValue }}>\n      {children}\n    </SelectContext.Provider>\n  );\n}\n\nSelect.Trigger = function Trigger({ children }) { /* ... */ };\nSelect.Content = function Content({ children }) { /* ... */ };\nSelect.Item = function Item({ value, children }) { /* ... */ };",
+        "useCases": ["Selects, Tabs, Accordions", "Menüs und Dropdowns", "Zusammengesetzte Form-Felder"]
+      },
+      {
+        "name": "Render Props",
+        "description": "Übergibt eine Funktion als Prop (oder children), die Daten erhält und JSX zurückgibt. Nützlich zum Injizieren von Logik ohne UI vorzuschreiben.",
+        "code": "// Komponente liefert Daten, Consumer entscheidet UI\nfunction MouseTracker({ children }: {\n  children: (pos: { x: number; y: number }) => ReactNode\n}) {\n  const [pos, setPos] = useState({ x: 0, y: 0 });\n\n  useEffect(() => {\n    const handler = (e: MouseEvent) =>\n      setPos({ x: e.clientX, y: e.clientY });\n    window.addEventListener('mousemove', handler);\n    return () => window.removeEventListener('mousemove', handler);\n  }, []);\n\n  return <>{children(pos)}</>;\n}\n\n// Verwendung\n<MouseTracker>\n  {({ x, y }) => (\n    <div>Mouse: {x}, {y}</div>\n  )}\n</MouseTracker>",
+        "useCases": ["Daten-Injection ohne Layout-Vorgabe", "Headless-Komponenten", "Form-Bibliotheken"]
+      },
+      {
+        "name": "Container / Presentational",
+        "description": "Trenne Logik (Container) von Darstellung (Presentational). Container holt Daten und verwaltet Zustand, Presentational rendert nur.",
+        "code": "// Container — Logik und Daten\nfunction UserListContainer() {\n  const { data, isLoading } = useQuery({\n    queryKey: ['users'],\n    queryFn: fetchUsers\n  });\n\n  if (isLoading) return <Skeleton />;\n  return <UserList users={data ?? []} />;\n}\n\n// Presentational — nur UI, keine Logik\nfunction UserList({ users }: { users: User[] }) {\n  return (\n    <ul>\n      {users.map(user => (\n        <li key={user.id}>{user.name}</li>\n      ))}\n    </ul>\n  );\n}",
+        "useCases": ["Trennung von Zuständigkeiten", "Testbare Komponenten", "Wiederverwendung der Darstellungsschicht"]
+      }
+    ],
+    "useCasesLabel": "Wann verwenden"
+  },
+  "hooks": {
+    "title": "Custom Hooks",
+    "subtitle": "// Logik extrahieren und wiederverwenden",
+    "description": "Custom Hooks kapseln wiederverwendbare Logik. Sie sind die idiomatischste Art, Verhalten zwischen Komponenten in React zu teilen.",
+    "items": [
+      {
+        "name": "useLocalStorage",
+        "description": "Persistiert Zustand im localStorage mit automatischer Synchronisation.",
+        "code": "function useLocalStorage<T>(key: string, initial: T) {\n  const [value, setValue] = useState<T>(() => {\n    if (typeof window === 'undefined') return initial;\n    const stored = localStorage.getItem(key);\n    return stored ? JSON.parse(stored) : initial;\n  });\n\n  useEffect(() => {\n    localStorage.setItem(key, JSON.stringify(value));\n  }, [key, value]);\n\n  return [value, setValue] as const;\n}\n\n// Verwendung\nconst [theme, setTheme] = useLocalStorage('theme', 'dark');"
+      },
+      {
+        "name": "useDebounce",
+        "description": "Verzögert Wertaktualisierungen — ideal für Suche und Inputs.",
+        "code": "function useDebounce<T>(value: T, delay: number): T {\n  const [debounced, setDebounced] = useState(value);\n\n  useEffect(() => {\n    const timer = setTimeout(() => setDebounced(value), delay);\n    return () => clearTimeout(timer);\n  }, [value, delay]);\n\n  return debounced;\n}\n\n// Verwendung\nconst [search, setSearch] = useState('');\nconst debouncedSearch = useDebounce(search, 300);\n\nuseEffect(() => {\n  fetchResults(debouncedSearch);\n}, [debouncedSearch]);"
+      },
+      {
+        "name": "useMediaQuery",
+        "description": "Reagiert auf Media-Query-Änderungen (Responsivität) in JavaScript.",
+        "code": "function useMediaQuery(query: string): boolean {\n  const [matches, setMatches] = useState(false);\n\n  useEffect(() => {\n    const media = window.matchMedia(query);\n    setMatches(media.matches);\n\n    const listener = (e: MediaQueryListEvent) =>\n      setMatches(e.matches);\n    media.addEventListener('change', listener);\n    return () => media.removeEventListener('change', listener);\n  }, [query]);\n\n  return matches;\n}\n\n// Verwendung\nconst isMobile = useMediaQuery('(max-width: 768px)');"
+      },
+      {
+        "name": "useClickOutside",
+        "description": "Erkennt Klicks außerhalb eines Elements — perfekt für Modals und Dropdowns.",
+        "code": "function useClickOutside(\n  ref: RefObject<HTMLElement | null>,\n  handler: () => void\n) {\n  useEffect(() => {\n    const listener = (e: MouseEvent | TouchEvent) => {\n      if (!ref.current?.contains(e.target as Node)) {\n        handler();\n      }\n    };\n    document.addEventListener('mousedown', listener);\n    document.addEventListener('touchstart', listener);\n    return () => {\n      document.removeEventListener('mousedown', listener);\n      document.removeEventListener('touchstart', listener);\n    };\n  }, [ref, handler]);\n}\n\n// Verwendung\nconst ref = useRef<HTMLDivElement>(null);\nuseClickOutside(ref, () => setOpen(false));"
+      }
+    ]
+  },
+  "statePatterns": {
+    "title": "Zustands-Patterns",
+    "subtitle": "// Zustand skalierbar verwalten",
+    "description": "Patterns zur strukturierten und vorhersehbaren Verwaltung komplexen Zustands.",
+    "items": [
+      {
+        "name": "Reducer Pattern",
+        "description": "Nutze useReducer für komplexen Zustand mit mehreren Aktionen. Vorhersehbarer als mehrere useState.",
+        "before": "// Mehrere useState — schwer zu warten\nconst [items, setItems] = useState([]);\nconst [loading, setLoading] = useState(false);\nconst [error, setError] = useState(null);\nconst [page, setPage] = useState(1);\n\n// Updates über die Komponente verteilt\nsetLoading(true);\nsetError(null);\nfetch(url)\n  .then(data => { setItems(data); setLoading(false); })\n  .catch(err => { setError(err); setLoading(false); });",
+        "after": "type Action =\n  | { type: 'FETCH_START' }\n  | { type: 'FETCH_SUCCESS'; payload: Item[] }\n  | { type: 'FETCH_ERROR'; error: string }\n  | { type: 'NEXT_PAGE' };\n\nfunction reducer(state: State, action: Action): State {\n  switch (action.type) {\n    case 'FETCH_START':\n      return { ...state, loading: true, error: null };\n    case 'FETCH_SUCCESS':\n      return { ...state, items: action.payload, loading: false };\n    case 'FETCH_ERROR':\n      return { ...state, error: action.error, loading: false };\n    case 'NEXT_PAGE':\n      return { ...state, page: state.page + 1 };\n  }\n}\n\nconst [state, dispatch] = useReducer(reducer, initialState);"
+      },
+      {
+        "name": "Context + Provider Pattern",
+        "description": "Teile globalen Zustand typsicher über Context. Vermeidet Prop Drilling in tiefen Bäumen.",
+        "before": "// Prop drilling — 4 Ebenen tief\n<App user={user} />\n  <Layout user={user} />\n    <Sidebar user={user} />\n      <UserMenu user={user} />\n        <Avatar name={user.name} />",
+        "after": "// Context eliminiert prop drilling\nconst UserContext = createContext<User | null>(null);\n\nfunction useUser() {\n  const user = useContext(UserContext);\n  if (!user) throw new Error('useUser must be within Provider');\n  return user;\n}\n\nfunction UserProvider({ children }: { children: ReactNode }) {\n  const [user, setUser] = useState<User | null>(null);\n  return (\n    <UserContext.Provider value={user}>\n      {children}\n    </UserContext.Provider>\n  );\n}\n\n// Jede Ebene greift direkt zu\nfunction Avatar() {\n  const user = useUser();\n  return <img src={user.avatar} />;\n}"
+      }
+    ],
+    "before": "Vorher",
+    "after": "Nachher",
+    "withPattern": "✅ mit Pattern",
+    "withoutPattern": "❌ ohne Pattern"
+  },
+  "performance": {
+    "title": "Performance Patterns",
+    "subtitle": "// Renders und Ladezeiten optimieren",
+    "description": "Techniken zur Vermeidung unnötiger Re-Renders und Optimierung des Ladens.",
+    "items": [
+      {
+        "name": "React.memo + useCallback",
+        "description": "Vermeide Re-Renders von Kindkomponenten, wenn Props sich nicht ändern.",
+        "code": "// Memoisierte Komponente — re-rendert nur bei Props-Änderung\nconst ExpensiveList = memo(function ExpensiveList({\n  items,\n  onItemClick,\n}: {\n  items: Item[];\n  onItemClick: (id: string) => void;\n}) {\n  return (\n    <ul>\n      {items.map(item => (\n        <li key={item.id} onClick={() => onItemClick(item.id)}>\n          {item.name}\n        </li>\n      ))}\n    </ul>\n  );\n});\n\n// Parent stabilisiert Funktionsreferenz\nfunction Parent() {\n  const [items] = useState(fetchItems());\n\n  const handleClick = useCallback((id: string) => {\n    console.log('clicked', id);\n  }, []);\n\n  return <ExpensiveList items={items} onItemClick={handleClick} />;\n}"
+      },
+      {
+        "name": "useMemo für schwere Berechnungen",
+        "description": "Memoisiere Ergebnisse teurer Berechnungen, um Neuberechnung bei jedem Render zu vermeiden.",
+        "code": "function Dashboard({ transactions }: { transactions: Transaction[] }) {\n  // Rechnet nur neu, wenn transactions sich ändert\n  const stats = useMemo(() => ({\n    total: transactions.reduce((sum, t) => sum + t.amount, 0),\n    average: transactions.reduce((sum, t) => sum + t.amount, 0)\n      / transactions.length,\n    max: Math.max(...transactions.map(t => t.amount)),\n    byCategory: groupBy(transactions, 'category'),\n  }), [transactions]);\n\n  return (\n    <div>\n      <StatCard label=\"Gesamt\" value={stats.total} />\n      <StatCard label=\"Durchschnitt\" value={stats.average} />\n    </div>\n  );\n}"
+      },
+      {
+        "name": "Lazy Loading + Suspense",
+        "description": "Lade schwere Komponenten on-demand, um die initiale Bundle-Größe zu reduzieren.",
+        "code": "import { lazy, Suspense } from 'react';\n\n// Nur bei Bedarf geladen\nconst HeavyChart = lazy(() => import('./HeavyChart'));\nconst MarkdownEditor = lazy(() => import('./MarkdownEditor'));\n\nfunction App() {\n  const [showChart, setShowChart] = useState(false);\n\n  return (\n    <div>\n      <button onClick={() => setShowChart(true)}>\n        Diagramm anzeigen\n      </button>\n\n      {showChart && (\n        <Suspense fallback={<Skeleton className=\"h-64\" />}>\n          <HeavyChart data={data} />\n        </Suspense>\n      )}\n    </div>\n  );\n}"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Bereit für fortgeschrittenes React?",
+    "description": "Entdecke weitere Anleitungen und praktische Tools für Entwickler.",
+    "button": "Zurück zu Tipps"
+  }
+}

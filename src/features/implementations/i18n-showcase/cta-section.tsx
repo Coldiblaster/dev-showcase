@@ -29,7 +29,7 @@ export function CTASection() {
           {t("cta.description")}
         </p>
         <Button size="lg" asChild className="gap-2">
-          <a href="/">
+          <a href="/implementacoes">
             {t("cta.button")} <ArrowRight className="h-4 w-4" />
           </a>
         </Button>

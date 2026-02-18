@@ -2,11 +2,13 @@ import type { LucideIcon } from "lucide-react";
 import {
   Briefcase,
   Code2,
+  FileCode,
   FolderKanban,
   Github,
   Globe,
   Layers,
   Mail,
+  Regex,
   Search,
   Sparkles,
   SquareStack,
@@ -54,6 +56,14 @@ export type NavKey =
   | "securityTipsDesc"
   | "codeReview"
   | "codeReviewDesc"
+  | "regexPlayground"
+  | "regexPlaygroundDesc"
+  | "tsPatterns"
+  | "tsPatternsDesc"
+  | "gitWorkflow"
+  | "gitWorkflowDesc"
+  | "reactPatterns"
+  | "reactPatternsDesc"
   | "openMenu"
   | "closeMenu"
   | "viewAll";
@@ -152,6 +162,12 @@ export const contentGroup: NavGroup = {
           sublabelKey: "devResourcesDesc",
           href: "/dicas/dev-resources",
         },
+        {
+          icon: FileCode,
+          labelKey: "tsPatterns",
+          sublabelKey: "tsPatternsDesc",
+          href: "/dicas/typescript-patterns",
+        },
       ],
     },
     {
@@ -166,6 +182,12 @@ export const contentGroup: NavGroup = {
           labelKey: "codeReview",
           sublabelKey: "codeReviewDesc",
           href: "/ferramentas/code-review",
+        },
+        {
+          icon: Regex,
+          labelKey: "regexPlayground",
+          sublabelKey: "regexPlaygroundDesc",
+          href: "/ferramentas/regex",
         },
       ],
     },

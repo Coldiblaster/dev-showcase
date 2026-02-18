@@ -1,4 +1,4 @@
-import { Code2 } from "lucide-react";
+import { Code2, Regex } from "lucide-react";
 import { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 
@@ -7,6 +7,7 @@ import { buildPageMetadata } from "@/lib/seo";
 
 const iconMap = {
   "code-review": Code2,
+  regex: Regex,
 };
 
 export async function generateMetadata(): Promise<Metadata> {

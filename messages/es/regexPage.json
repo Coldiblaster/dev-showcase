@@ -1,0 +1,177 @@
+{
+  "hero": {
+    "badge": "Herramienta Interactiva",
+    "title": "Regex Playground",
+    "subtitle": "// prueba, aprende y domina expresiones regulares",
+    "description": "Editor interactivo de regex con resaltado en tiempo real, biblioteca de patterns listos y cheat sheet completo. Todo en el navegador, sin dependencias."
+  },
+  "editor": {
+    "title": "Editor",
+    "regexLabel": "Expresión Regular",
+    "regexPlaceholder": "Escribe tu regex aquí...",
+    "flagsLabel": "Flags",
+    "testLabel": "Texto de Prueba",
+    "testPlaceholder": "Pega o escribe el texto para probar tu regex...",
+    "matchesTitle": "Resultados",
+    "matchesFound": "{count, plural, =0 {Sin coincidencias} one {1 coincidencia} other {# coincidencias}}",
+    "groupsLabel": "Grupos",
+    "fullMatch": "Match completo",
+    "group": "Grupo {index}",
+    "position": "Posición {start}-{end}",
+    "noMatches": "Ninguna coincidencia encontrada",
+    "noMatchesHint": "Ajusta la regex o el texto de prueba",
+    "invalidRegex": "Regex inválida",
+    "copyRegex": "Copiar regex",
+    "copied": "¡Copiado!",
+    "clear": "Limpiar",
+    "flags": {
+      "g": "Global — encuentra todos los matches",
+      "i": "Case Insensitive — ignora mayúsculas/minúsculas",
+      "m": "Multiline — ^ y $ por línea",
+      "s": "DotAll — punto (.) incluye \\n"
+    }
+  },
+  "patterns": {
+    "title": "Patterns Listos",
+    "description": "Expresiones regulares comunes listas para usar. Haz clic para cargar en el editor.",
+    "usePattern": "Usar",
+    "categories": {
+      "validation": "Validación",
+      "extraction": "Extracción",
+      "formatting": "Formateo"
+    },
+    "items": {
+      "email": {
+        "name": "Email",
+        "regex": "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}",
+        "description": "Valida direcciones de email",
+        "testString": "contacto@empresa.com\ninvalido@\nuser.name+tag@domain.co.uk\n@sindominio.com"
+      },
+      "url": {
+        "name": "URL",
+        "regex": "https?://[\\w\\-]+(\\.[\\w\\-]+)+[\\w\\-.,@?^=%&:/~+#]*",
+        "description": "Captura URLs HTTP/HTTPS",
+        "testString": "Visita https://www.google.com o http://example.org/path?q=1\nTexto sin enlace aquí\nhttps://sub.domain.co.uk/page#section"
+      },
+      "phone": {
+        "name": "Teléfono BR",
+        "regex": "\\(?\\d{2}\\)?\\s?\\d{4,5}-?\\d{4}",
+        "description": "Teléfono brasileño con o sin formato",
+        "testString": "(11) 98765-4321\n11987654321\n(21) 3456-7890\n123"
+      },
+      "cpf": {
+        "name": "CPF",
+        "regex": "\\d{3}\\.?\\d{3}\\.?\\d{3}-?\\d{2}",
+        "description": "CPF con o sin puntuación",
+        "testString": "123.456.789-00\n12345678900\n000.000.000-00\n12345"
+      },
+      "cep": {
+        "name": "CEP",
+        "regex": "\\d{5}-?\\d{3}",
+        "description": "Código postal brasileño",
+        "testString": "19053-310\n01001000\n12345-678\n1234"
+      },
+      "uuid": {
+        "name": "UUID",
+        "regex": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
+        "description": "UUID v4 estándar",
+        "testString": "550e8400-e29b-41d4-a716-446655440000\nnot-a-uuid\n123e4567-e89b-12d3-a456-426614174000"
+      },
+      "date": {
+        "name": "Fecha DD/MM/YYYY",
+        "regex": "(0[1-9]|[12]\\d|3[01])/(0[1-9]|1[0-2])/\\d{4}",
+        "description": "Fecha en formato brasileño",
+        "testString": "17/02/2026\n01/01/2000\n32/13/2024\n15/06/1990"
+      },
+      "hexColor": {
+        "name": "Color Hexadecimal",
+        "regex": "#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\\b",
+        "description": "Colores hex (#FFF o #FFFFFF)",
+        "testString": "background: #FF5733;\ncolor: #fff;\nborder: #1a2b3c;\ninválido: #GGG;"
+      },
+      "ipv4": {
+        "name": "IPv4",
+        "regex": "\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b",
+        "description": "Dirección IPv4",
+        "testString": "192.168.1.1\n10.0.0.1\n999.999.999.999\n127.0.0.1"
+      },
+      "htmlTag": {
+        "name": "Tag HTML",
+        "regex": "</?[a-zA-Z][a-zA-Z0-9]*[^>]*>",
+        "description": "Tags HTML de apertura y cierre",
+        "testString": "<div class=\"container\">\n  <p>Hello</p>\n  <img src=\"photo.jpg\" />\n</div>"
+      }
+    }
+  },
+  "cheatSheet": {
+    "title": "Cheat Sheet",
+    "description": "Referencia rápida de los principales operadores y metacaracteres.",
+    "categories": {
+      "basics": {
+        "title": "Básicos",
+        "items": [
+          {"token": ".", "description": "Cualquier carácter (excepto \\n)"},
+          {"token": "\\d", "description": "Dígito (0-9)"},
+          {"token": "\\D", "description": "No-dígito"},
+          {"token": "\\w", "description": "Alfanumérico (a-z, 0-9, _)"},
+          {"token": "\\W", "description": "No-alfanumérico"},
+          {"token": "\\s", "description": "Espacio en blanco"},
+          {"token": "\\S", "description": "No-espacio"}
+        ]
+      },
+      "quantifiers": {
+        "title": "Cuantificadores",
+        "items": [
+          {"token": "*", "description": "0 o más"},
+          {"token": "+", "description": "1 o más"},
+          {"token": "?", "description": "0 o 1 (opcional)"},
+          {"token": "{n}", "description": "Exactamente n veces"},
+          {"token": "{n,}", "description": "n o más veces"},
+          {"token": "{n,m}", "description": "Entre n y m veces"}
+        ]
+      },
+      "anchors": {
+        "title": "Anclas",
+        "items": [
+          {"token": "^", "description": "Inicio de cadena/línea"},
+          {"token": "$", "description": "Fin de cadena/línea"},
+          {"token": "\\b", "description": "Límite de palabra (word boundary)"},
+          {"token": "\\B", "description": "No-límite de palabra"}
+        ]
+      },
+      "groups": {
+        "title": "Grupos y Alternancia",
+        "items": [
+          {"token": "(abc)", "description": "Grupo de captura"},
+          {"token": "(?:abc)", "description": "Grupo sin captura"},
+          {"token": "(?<name>abc)", "description": "Grupo nombrado"},
+          {"token": "a|b", "description": "Alternancia (a o b)"},
+          {"token": "\\1", "description": "Referencia al grupo 1"}
+        ]
+      },
+      "lookaround": {
+        "title": "Lookahead y Lookbehind",
+        "items": [
+          {"token": "(?=abc)", "description": "Lookahead positivo"},
+          {"token": "(?!abc)", "description": "Lookahead negativo"},
+          {"token": "(?<=abc)", "description": "Lookbehind positivo"},
+          {"token": "(?<!abc)", "description": "Lookbehind negativo"}
+        ]
+      },
+      "classes": {
+        "title": "Clases de Caracteres",
+        "items": [
+          {"token": "[abc]", "description": "a, b o c"},
+          {"token": "[^abc]", "description": "Cualquier excepto a, b o c"},
+          {"token": "[a-z]", "description": "Rango de a hasta z"},
+          {"token": "[0-9]", "description": "Rango de 0 hasta 9"}
+        ]
+      }
+    }
+  },
+  "cta": {
+    "title": "¿Te gustó la herramienta?",
+    "description": "Revisa el código fuente y otras herramientas para devs en el repositorio.",
+    "back": "Volver a Herramientas"
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "hero": {
+    "badge": "Praktische Anleitung",
+    "title": "TypeScript Patterns",
+    "subtitle": "// erweiterte Typen, Generics und Best Practices",
+    "description": "Praktische Referenz mit interaktiven Beispielen zu Utility Types, Generics, Type Narrowing und fortgeschrittenen Patterns für sichereres und ausdrucksstärkeres TypeScript."
+  },
+  "sectionNav": {
+    "utilityTypes": "Utility Types",
+    "narrowing": "Narrowing",
+    "advanced": "Fortgeschritten"
+  },
+  "utilityTypes": {
+    "title": "Utility Types",
+    "subtitle": "// built-in Typen, die jeder Dev kennen sollte",
+    "description": "TypeScript bietet mehrere globale Utility Types, die gängige Typ-Transformationen vereinfachen.",
+    "items": [
+      {
+        "name": "Partial<T>",
+        "description": "Macht alle Eigenschaften optional. Nützlich für partielle Update-Funktionen.",
+        "code": "interface User {\n  name: string;\n  email: string;\n  age: number;\n}\n\nfunction updateUser(user: User, fields: Partial<User>) {\n  return { ...user, ...fields };\n}\n\n// ✅ Nur übergeben, was aktualisiert werden soll\nupdateUser(user, { name: 'Neuer Name' });",
+        "highlight": "Partial<User>"
+      },
+      {
+        "name": "Required<T>",
+        "description": "Das Gegenteil von Partial — macht alle Eigenschaften erforderlich.",
+        "code": "interface Config {\n  host?: string;\n  port?: number;\n  debug?: boolean;\n}\n\nfunction startServer(config: Required<Config>) {\n  // Garantie, dass alle Felder vorhanden sind\n  console.log(`${config.host}:${config.port}`);\n}",
+        "highlight": "Required<Config>"
+      },
+      {
+        "name": "Pick<T, K>",
+        "description": "Wählt nur bestimmte Eigenschaften eines Typs aus.",
+        "code": "interface Article {\n  id: string;\n  title: string;\n  body: string;\n  author: string;\n  createdAt: Date;\n}\n\n// Nur title und body für das Formular nötig\ntype ArticleForm = Pick<Article, 'title' | 'body'>;",
+        "highlight": "Pick<Article, 'title' | 'body'>"
+      },
+      {
+        "name": "Omit<T, K>",
+        "description": "Entfernt bestimmte Eigenschaften von einem Typ.",
+        "code": "interface User {\n  id: string;\n  name: string;\n  email: string;\n  password: string;\n}\n\n// Entfernt Passwort für API-Antworten\ntype PublicUser = Omit<User, 'password'>;",
+        "highlight": "Omit<User, 'password'>"
+      },
+      {
+        "name": "Record<K, T>",
+        "description": "Erstellt einen Objekttyp mit Schlüsseln K und Werten T.",
+        "code": "type Status = 'idle' | 'loading' | 'success' | 'error';\n\nconst statusMessages: Record<Status, string> = {\n  idle: 'Warten...',\n  loading: 'Laden...',\n  success: 'Fertig!',\n  error: 'Fehler bei der Verarbeitung',\n};",
+        "highlight": "Record<Status, string>"
+      },
+      {
+        "name": "Extract / Exclude",
+        "description": "Extract behält zuweisbare Typen, Exclude entfernt sie.",
+        "code": "type Event = 'click' | 'scroll' | 'mousemove' | 'keypress';\n\n// Nur Maus-Events\ntype MouseEvent = Extract<Event, 'click' | 'mousemove'>;\n// → 'click' | 'mousemove'\n\n// Alles außer Tastatur\ntype NonKeyEvent = Exclude<Event, 'keypress'>;\n// → 'click' | 'scroll' | 'mousemove'",
+        "highlight": "Extract / Exclude"
+      }
+    ]
+  },
+  "generics": {
+    "title": "Generics",
+    "subtitle": "// wiederverwendbare und type-safe Typen",
+    "description": "Generics ermöglichen die Erstellung von Komponenten, Funktionen und Typen, die mit beliebigen Typen funktionieren und Type Safety beibehalten.",
+    "items": [
+      {
+        "name": "Generische Funktion",
+        "description": "Der Typ wird automatisch aus den Argumenten abgeleitet.",
+        "code": "function firstElement<T>(arr: T[]): T | undefined {\n  return arr[0];\n}\n\n// TypeScript leitet den Rückgabetyp ab\nconst num = firstElement([1, 2, 3]);      // number\nconst str = firstElement(['a', 'b']);      // string",
+        "tag": "Grundlegend"
+      },
+      {
+        "name": "Constraints (extends)",
+        "description": "Beschränkt den generischen Typ, um sicherzustellen, dass er bestimmte Eigenschaften hat.",
+        "code": "interface HasLength {\n  length: number;\n}\n\nfunction logLength<T extends HasLength>(item: T): T {\n  console.log(item.length);\n  return item;\n}\n\nlogLength('hello');     // ✅ string hat length\nlogLength([1, 2, 3]);   // ✅ array hat length\n// logLength(123);      // ❌ number hat kein length",
+        "tag": "Constraints"
+      },
+      {
+        "name": "keyof + Generics",
+        "description": "Kombiniert keyof mit Generics für type-sicheren Zugriff auf Eigenschaften.",
+        "code": "function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {\n  return obj[key];\n}\n\nconst user = { name: 'Ana', age: 28 };\n\nconst name = getProperty(user, 'name'); // string\nconst age = getProperty(user, 'age');   // number\n// getProperty(user, 'email');           // ❌ Fehler!",
+        "tag": "Fortgeschritten"
+      },
+      {
+        "name": "Generic mit Default",
+        "description": "Definiert einen Standardtyp, wenn das Generic nicht angegeben wird.",
+        "code": "interface ApiResponse<T = unknown> {\n  data: T;\n  status: number;\n  message: string;\n}\n\n// Mit spezifischem Typ\nconst userRes: ApiResponse<User> = { ... };\n\n// Ohne Angabe (verwendet unknown)\nconst genericRes: ApiResponse = { ... };",
+        "tag": "Patterns"
+      },
+      {
+        "name": "Mapped Types + Generics",
+        "description": "Erstellt neue Typen durch Transformation von Eigenschaften bestehender Typen.",
+        "code": "type Getters<T> = {\n  [K in keyof T as `get${Capitalize<string & K>}`]: () => T[K];\n};\n\ninterface Person {\n  name: string;\n  age: number;\n}\n\ntype PersonGetters = Getters<Person>;\n// { getName: () => string; getAge: () => number; }",
+        "tag": "Fortgeschritten"
+      }
+    ]
+  },
+  "narrowing": {
+    "title": "Type Narrowing",
+    "subtitle": "// Typen zur Laufzeit verfeinern",
+    "description": "Type Narrowing ist der Prozess, Typen von einem breiteren zu einem spezifischeren Typ mithilfe von Laufzeit-Prüfungen zu verfeinern.",
+    "before": "Vorher",
+    "after": "Nachher",
+    "withNarrowing": "✅ mit narrowing",
+    "withoutNarrowing": "❌ ohne narrowing",
+    "items": [
+      {
+        "name": "typeof guard",
+        "description": "Der einfachste Guard — prüft primitive Typen.",
+        "before": "function process(value: string | number) {\n  // value ist string | number\n  console.log(value.toUpperCase());\n  // ❌ Fehler: toUpperCase existiert nicht bei number\n}",
+        "after": "function process(value: string | number) {\n  if (typeof value === 'string') {\n    console.log(value.toUpperCase()); // ✅ string\n  } else {\n    console.log(value.toFixed(2));    // ✅ number\n  }\n}"
+      },
+      {
+        "name": "Discriminated Unions",
+        "description": "Mächtiges Pattern mit einer Literal-Eigenschaft zur Unterscheidung von Typen.",
+        "before": "interface Shape {\n  kind: string;\n  radius?: number;\n  width?: number;\n  height?: number;\n}\n\n// Optionale Eigenschaften erzeugen Unsicherheit\nfunction area(shape: Shape) {\n  if (shape.kind === 'circle') {\n    return Math.PI * shape.radius! ** 2; // ! ist gefährlich\n  }\n}",
+        "after": "interface Circle  { kind: 'circle';  radius: number }\ninterface Square  { kind: 'square';  side: number }\ninterface Rect    { kind: 'rect';    w: number; h: number }\n\ntype Shape = Circle | Square | Rect;\n\nfunction area(shape: Shape): number {\n  switch (shape.kind) {\n    case 'circle': return Math.PI * shape.radius ** 2;\n    case 'square': return shape.side ** 2;\n    case 'rect':   return shape.w * shape.h;\n  }\n}"
+      },
+      {
+        "name": "Type Predicates (is)",
+        "description": "Erstelle eigene benutzerdefinierte Type-Guard-Funktionen.",
+        "before": "interface Fish { swim: () => void }\ninterface Bird { fly: () => void }\n\n// Ohne Type Predicate weiß TS nicht, welcher Typ es ist\nfunction move(animal: Fish | Bird) {\n  if ('swim' in animal) {\n    animal.swim(); // funktioniert, aber nicht ideal\n  }\n}",
+        "after": "function isFish(pet: Fish | Bird): pet is Fish {\n  return 'swim' in pet;\n}\n\nfunction move(animal: Fish | Bird) {\n  if (isFish(animal)) {\n    animal.swim(); // ✅ TypeScript weiß, dass es Fish ist\n  } else {\n    animal.fly();  // ✅ TypeScript weiß, dass es Bird ist\n  }\n}"
+      },
+      {
+        "name": "Exhaustive Check (never)",
+        "description": "Stelle sicher, dass alle Union-Fälle zur Compile-Zeit behandelt werden.",
+        "before": "type Status = 'active' | 'inactive' | 'banned';\n\nfunction getLabel(status: Status) {\n  switch (status) {\n    case 'active': return 'Aktiv';\n    case 'inactive': return 'Inaktiv';\n    // 'banned' vergessen — kein Fehler!\n  }\n}",
+        "after": "function getLabel(status: Status): string {\n  switch (status) {\n    case 'active':   return 'Aktiv';\n    case 'inactive': return 'Inaktiv';\n    case 'banned':   return 'Gesperrt';\n    default: {\n      const _exhaustive: never = status;\n      return _exhaustive; // ❌ Fehler wenn ein Fall fehlt\n    }\n  }\n}"
+      }
+    ]
+  },
+  "advanced": {
+    "title": "Fortgeschrittene Patterns",
+    "subtitle": "// Techniken für echte Projekte",
+    "description": "Fortgeschrittene TypeScript-Patterns und -Techniken, die in professionellen Projekten verwendet werden.",
+    "items": [
+      {
+        "name": "Template Literal Types",
+        "description": "Kombiniert String-Literale zur automatischen Ableitung von Typen.",
+        "code": "type EventName = 'click' | 'focus' | 'blur';\ntype Handler = `on${Capitalize<EventName>}`;\n// 'onClick' | 'onFocus' | 'onBlur'\n\ntype CSSProperty = 'margin' | 'padding';\ntype Direction = 'Top' | 'Right' | 'Bottom' | 'Left';\ntype CSSKey = `${CSSProperty}${Direction}`;\n// 'marginTop' | 'marginRight' | ... 8 Kombinationen"
+      },
+      {
+        "name": "Conditional Types",
+        "description": "Typen, die sich wie if/else basierend auf Bedingungen verhalten.",
+        "code": "type IsString<T> = T extends string ? true : false;\n\ntype A = IsString<'hello'>; // true\ntype B = IsString<42>;      // false\n\n// Praktisches Beispiel: Promise-Rückgabetyp extrahieren\ntype UnwrapPromise<T> = T extends Promise<infer U> ? U : T;\n\ntype Result = UnwrapPromise<Promise<string>>; // string\ntype Plain = UnwrapPromise<number>;           // number"
+      },
+      {
+        "name": "Infer Keyword",
+        "description": "Extrahiert Typen aus anderen Typen mit infer.",
+        "code": "// Elementtyp aus einem Array extrahieren\ntype ElementOf<T> = T extends (infer E)[] ? E : never;\ntype Num = ElementOf<number[]>; // number\n\n// Funktionsparametertypen extrahieren\ntype FirstParam<F> = F extends (arg: infer P, ...args: unknown[]) => unknown\n  ? P\n  : never;\n\ntype Param = FirstParam<(name: string, age: number) => void>;\n// string"
+      },
+      {
+        "name": "Builder Pattern Type-Safe",
+        "description": "Nutze Generics für flüssige APIs mit sich entwickelnden Typen.",
+        "code": "class QueryBuilder<T extends object = object> {\n  private filters: Partial<T> = {};\n\n  where<K extends keyof T>(key: K, value: T[K]) {\n    this.filters[key] = value;\n    return this;\n  }\n\n  build() {\n    return this.filters;\n  }\n}\n\n// Type-safe Verwendung\nnew QueryBuilder<User>()\n  .where('name', 'Ana')   // ✅\n  .where('age', 28)        // ✅\n  // .where('age', 'abc')  // ❌ Fehler!\n  .build();"
+      },
+      {
+        "name": "Branded Types",
+        "description": "Erstelle nominale Typen, um das Vermischen strukturell gleicher Werte zu vermeiden.",
+        "code": "type Brand<T, B> = T & { __brand: B };\n\ntype UserId = Brand<string, 'UserId'>;\ntype OrderId = Brand<string, 'OrderId'>;\n\nfunction getUser(id: UserId) { /* ... */ }\nfunction getOrder(id: OrderId) { /* ... */ }\n\nconst userId = 'u_123' as UserId;\nconst orderId = 'o_456' as OrderId;\n\ngetUser(userId);    // ✅\n// getUser(orderId); // ❌ Inkompatibler Typ!"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Bereit für fortgeschrittenes TypeScript?",
+    "description": "Entdecke weitere praktische Anleitungen und Tools für Entwickler.",
+    "button": "Zurück zu den Tipps"
+  }
+}

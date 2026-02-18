@@ -33,6 +33,10 @@ import type tailwindTipsPage from "../../../messages/pt-BR/tailwindTipsPage.json
 import type terminal from "../../../messages/pt-BR/terminal.json";
 import type tips from "../../../messages/pt-BR/tips.json";
 import type tipsPage from "../../../messages/pt-BR/tipsPage.json";
+import type gitWorkflow from "../../../messages/pt-BR/gitWorkflow.json";
+import type reactPatterns from "../../../messages/pt-BR/reactPatterns.json";
+import type regexPage from "../../../messages/pt-BR/regexPage.json";
+import type tsPatterns from "../../../messages/pt-BR/tsPatterns.json";
 import type viewSource from "../../../messages/pt-BR/viewSource.json";
 
 export type Messages = {
@@ -49,6 +53,7 @@ export type Messages = {
   devResourcesPage: typeof devResourcesPage;
   experience: typeof experience;
   footer: typeof footer;
+  gitWorkflow: typeof gitWorkflow;
   githubStats: typeof githubStats;
   hero: typeof hero;
   homeStack: typeof homeStack;
@@ -59,12 +64,15 @@ export type Messages = {
   notFound: typeof notFound;
   portfolio: typeof portfolio;
   projects: typeof projects;
+  reactPatterns: typeof reactPatterns;
   reactQueryTipsPage: typeof reactQueryTipsPage;
+  regexPage: typeof regexPage;
   terminal: typeof terminal;
   tailwindTips: typeof tailwindTips;
   tailwindTipsPage: typeof tailwindTipsPage;
   tips: typeof tips;
   tipsPage: typeof tipsPage;
+  tsPatterns: typeof tsPatterns;
   viewSource: typeof viewSource;
   search: typeof search;
   securityPage: typeof securityPage;

@@ -127,7 +127,8 @@
   },
   "cta": {
     "title": "Pronto para proteger sua aplicação?",
-    "description": "Volte ao portfolio e explore mais conteúdos ou veja o código no GitHub.",
+    "description": "Explore mais guias ou veja o código no GitHub.",
+    "button": "Voltar às Dicas",
     "github": "Ver no GitHub"
   },
   "sectionNav": {

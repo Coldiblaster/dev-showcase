@@ -1,0 +1,165 @@
+{
+  "hero": {
+    "badge": "Practical Guide",
+    "title": "TypeScript Patterns",
+    "subtitle": "// advanced types, generics and best practices",
+    "description": "Practical reference with interactive examples of Utility Types, Generics, Type Narrowing and advanced patterns for writing safer and more expressive TypeScript."
+  },
+  "sectionNav": {
+    "utilityTypes": "Utility Types",
+    "narrowing": "Narrowing",
+    "advanced": "Advanced"
+  },
+  "utilityTypes": {
+    "title": "Utility Types",
+    "subtitle": "// built-in types every dev needs to know",
+    "description": "TypeScript offers several global utility types that make common type transformations easier.",
+    "items": [
+      {
+        "name": "Partial<T>",
+        "description": "Makes all properties optional. Useful for partial update functions.",
+        "code": "interface User {\n  name: string;\n  email: string;\n  age: number;\n}\n\nfunction updateUser(user: User, fields: Partial<User>) {\n  return { ...user, ...fields };\n}\n\n// ✅ Only pass what you want to update\nupdateUser(user, { name: 'New Name' });",
+        "highlight": "Partial<User>"
+      },
+      {
+        "name": "Required<T>",
+        "description": "The opposite of Partial — makes all properties required.",
+        "code": "interface Config {\n  host?: string;\n  port?: number;\n  debug?: boolean;\n}\n\nfunction startServer(config: Required<Config>) {\n  // Guarantee all fields exist\n  console.log(`${config.host}:${config.port}`);\n}",
+        "highlight": "Required<Config>"
+      },
+      {
+        "name": "Pick<T, K>",
+        "description": "Selects only specific properties from a type.",
+        "code": "interface Article {\n  id: string;\n  title: string;\n  body: string;\n  author: string;\n  createdAt: Date;\n}\n\n// Only need title and body for the form\ntype ArticleForm = Pick<Article, 'title' | 'body'>;",
+        "highlight": "Pick<Article, 'title' | 'body'>"
+      },
+      {
+        "name": "Omit<T, K>",
+        "description": "Removes specific properties from a type.",
+        "code": "interface User {\n  id: string;\n  name: string;\n  email: string;\n  password: string;\n}\n\n// Remove password for API responses\ntype PublicUser = Omit<User, 'password'>;",
+        "highlight": "Omit<User, 'password'>"
+      },
+      {
+        "name": "Record<K, T>",
+        "description": "Creates an object type with keys K and values T.",
+        "code": "type Status = 'idle' | 'loading' | 'success' | 'error';\n\nconst statusMessages: Record<Status, string> = {\n  idle: 'Waiting...',\n  loading: 'Loading...',\n  success: 'Done!',\n  error: 'Error processing',\n};",
+        "highlight": "Record<Status, string>"
+      },
+      {
+        "name": "Extract / Exclude",
+        "description": "Extract keeps assignable types, Exclude removes them.",
+        "code": "type Event = 'click' | 'scroll' | 'mousemove' | 'keypress';\n\n// Mouse events only\ntype MouseEvent = Extract<Event, 'click' | 'mousemove'>;\n// → 'click' | 'mousemove'\n\n// Everything except keyboard\ntype NonKeyEvent = Exclude<Event, 'keypress'>;\n// → 'click' | 'scroll' | 'mousemove'",
+        "highlight": "Extract / Exclude"
+      }
+    ]
+  },
+  "generics": {
+    "title": "Generics",
+    "subtitle": "// reusable and type-safe types",
+    "description": "Generics allow you to create components, functions and types that work with any type while maintaining type safety.",
+    "items": [
+      {
+        "name": "Generic Function",
+        "description": "The type is inferred automatically from the arguments.",
+        "code": "function firstElement<T>(arr: T[]): T | undefined {\n  return arr[0];\n}\n\n// TypeScript infers the return type\nconst num = firstElement([1, 2, 3]);      // number\nconst str = firstElement(['a', 'b']);      // string",
+        "tag": "Basic"
+      },
+      {
+        "name": "Constraints (extends)",
+        "description": "Restrict the generic type to ensure it has certain properties.",
+        "code": "interface HasLength {\n  length: number;\n}\n\nfunction logLength<T extends HasLength>(item: T): T {\n  console.log(item.length);\n  return item;\n}\n\nlogLength('hello');     // ✅ string has length\nlogLength([1, 2, 3]);   // ✅ array has length\n// logLength(123);      // ❌ number has no length",
+        "tag": "Constraints"
+      },
+      {
+        "name": "keyof + Generics",
+        "description": "Combine keyof with generics to access properties in a type-safe way.",
+        "code": "function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {\n  return obj[key];\n}\n\nconst user = { name: 'Ana', age: 28 };\n\nconst name = getProperty(user, 'name'); // string\nconst age = getProperty(user, 'age');   // number\n// getProperty(user, 'email');           // ❌ Error!",
+        "tag": "Advanced"
+      },
+      {
+        "name": "Generic with Default",
+        "description": "Define a default type for when the generic is not specified.",
+        "code": "interface ApiResponse<T = unknown> {\n  data: T;\n  status: number;\n  message: string;\n}\n\n// With specific type\nconst userRes: ApiResponse<User> = { ... };\n\n// Without specifying (uses unknown)\nconst genericRes: ApiResponse = { ... };",
+        "tag": "Patterns"
+      },
+      {
+        "name": "Mapped Types + Generics",
+        "description": "Create new types by transforming properties of existing types.",
+        "code": "type Getters<T> = {\n  [K in keyof T as `get${Capitalize<string & K>}`]: () => T[K];\n};\n\ninterface Person {\n  name: string;\n  age: number;\n}\n\ntype PersonGetters = Getters<Person>;\n// { getName: () => string; getAge: () => number; }",
+        "tag": "Advanced"
+      }
+    ]
+  },
+  "narrowing": {
+    "title": "Type Narrowing",
+    "subtitle": "// refining types at runtime",
+    "description": "Type Narrowing is the process of refining types from a broader type to a more specific one using runtime checks.",
+    "before": "Before",
+    "after": "After",
+    "withNarrowing": "✅ with narrowing",
+    "withoutNarrowing": "❌ without narrowing",
+    "items": [
+      {
+        "name": "typeof guard",
+        "description": "The most basic guard — checks primitive types.",
+        "before": "function process(value: string | number) {\n  // value is string | number\n  console.log(value.toUpperCase());\n  // ❌ Error: toUpperCase does not exist on number\n}",
+        "after": "function process(value: string | number) {\n  if (typeof value === 'string') {\n    console.log(value.toUpperCase()); // ✅ string\n  } else {\n    console.log(value.toFixed(2));    // ✅ number\n  }\n}"
+      },
+      {
+        "name": "Discriminated Unions",
+        "description": "Powerful pattern using a literal property to distinguish types.",
+        "before": "interface Shape {\n  kind: string;\n  radius?: number;\n  width?: number;\n  height?: number;\n}\n\n// Optional properties create uncertainty\nfunction area(shape: Shape) {\n  if (shape.kind === 'circle') {\n    return Math.PI * shape.radius! ** 2; // ! is dangerous\n  }\n}",
+        "after": "interface Circle  { kind: 'circle';  radius: number }\ninterface Square  { kind: 'square';  side: number }\ninterface Rect    { kind: 'rect';    w: number; h: number }\n\ntype Shape = Circle | Square | Rect;\n\nfunction area(shape: Shape): number {\n  switch (shape.kind) {\n    case 'circle': return Math.PI * shape.radius ** 2;\n    case 'square': return shape.side ** 2;\n    case 'rect':   return shape.w * shape.h;\n  }\n}"
+      },
+      {
+        "name": "Type Predicates (is)",
+        "description": "Create your own custom type guard functions.",
+        "before": "interface Fish { swim: () => void }\ninterface Bird { fly: () => void }\n\n// Without type predicate, TS doesn't know the type\nfunction move(animal: Fish | Bird) {\n  if ('swim' in animal) {\n    animal.swim(); // works, but not ideal\n  }\n}",
+        "after": "function isFish(pet: Fish | Bird): pet is Fish {\n  return 'swim' in pet;\n}\n\nfunction move(animal: Fish | Bird) {\n  if (isFish(animal)) {\n    animal.swim(); // ✅ TypeScript knows it's Fish\n  } else {\n    animal.fly();  // ✅ TypeScript knows it's Bird\n  }\n}"
+      },
+      {
+        "name": "Exhaustive Check (never)",
+        "description": "Ensure all union cases are handled at compile time.",
+        "before": "type Status = 'active' | 'inactive' | 'banned';\n\nfunction getLabel(status: Status) {\n  switch (status) {\n    case 'active': return 'Active';\n    case 'inactive': return 'Inactive';\n    // Forgot 'banned' — no error!\n  }\n}",
+        "after": "function getLabel(status: Status): string {\n  switch (status) {\n    case 'active':   return 'Active';\n    case 'inactive': return 'Inactive';\n    case 'banned':   return 'Banned';\n    default: {\n      const _exhaustive: never = status;\n      return _exhaustive; // ❌ Error if a case is missing\n    }\n  }\n}"
+      }
+    ]
+  },
+  "advanced": {
+    "title": "Advanced Patterns",
+    "subtitle": "// techniques for real projects",
+    "description": "Advanced TypeScript patterns and techniques used in professional projects.",
+    "items": [
+      {
+        "name": "Template Literal Types",
+        "description": "Combine string literals to create automatically derived types.",
+        "code": "type EventName = 'click' | 'focus' | 'blur';\ntype Handler = `on${Capitalize<EventName>}`;\n// 'onClick' | 'onFocus' | 'onBlur'\n\ntype CSSProperty = 'margin' | 'padding';\ntype Direction = 'Top' | 'Right' | 'Bottom' | 'Left';\ntype CSSKey = `${CSSProperty}${Direction}`;\n// 'marginTop' | 'marginRight' | ... 8 combinations"
+      },
+      {
+        "name": "Conditional Types",
+        "description": "Types that behave like if/else based on conditions.",
+        "code": "type IsString<T> = T extends string ? true : false;\n\ntype A = IsString<'hello'>; // true\ntype B = IsString<42>;      // false\n\n// Practical example: extract Promise return type\ntype UnwrapPromise<T> = T extends Promise<infer U> ? U : T;\n\ntype Result = UnwrapPromise<Promise<string>>; // string\ntype Plain = UnwrapPromise<number>;           // number"
+      },
+      {
+        "name": "Infer Keyword",
+        "description": "Extract types from within other types using infer.",
+        "code": "// Extract element type from an array\ntype ElementOf<T> = T extends (infer E)[] ? E : never;\ntype Num = ElementOf<number[]>; // number\n\n// Extract function parameter types\ntype FirstParam<F> = F extends (arg: infer P, ...args: unknown[]) => unknown\n  ? P\n  : never;\n\ntype Param = FirstParam<(name: string, age: number) => void>;\n// string"
+      },
+      {
+        "name": "Builder Pattern Type-Safe",
+        "description": "Use generics to create fluent APIs with evolving types.",
+        "code": "class QueryBuilder<T extends object = object> {\n  private filters: Partial<T> = {};\n\n  where<K extends keyof T>(key: K, value: T[K]) {\n    this.filters[key] = value;\n    return this;\n  }\n\n  build() {\n    return this.filters;\n  }\n}\n\n// Type-safe usage\nnew QueryBuilder<User>()\n  .where('name', 'Ana')   // ✅\n  .where('age', 28)        // ✅\n  // .where('age', 'abc')  // ❌ Error!\n  .build();"
+      },
+      {
+        "name": "Branded Types",
+        "description": "Create nominal types to avoid mixing structurally equal values.",
+        "code": "type Brand<T, B> = T & { __brand: B };\n\ntype UserId = Brand<string, 'UserId'>;\ntype OrderId = Brand<string, 'OrderId'>;\n\nfunction getUser(id: UserId) { /* ... */ }\nfunction getOrder(id: OrderId) { /* ... */ }\n\nconst userId = 'u_123' as UserId;\nconst orderId = 'o_456' as OrderId;\n\ngetUser(userId);    // ✅\n// getUser(orderId); // ❌ Incompatible type!"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Ready for advanced TypeScript?",
+    "description": "Explore more practical guides and tools for developers.",
+    "button": "Back to Tips"
+  }
+}

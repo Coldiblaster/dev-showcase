@@ -1,0 +1,215 @@
+{
+  "hero": {
+    "badge": "Guia Prático",
+    "title": "Git Workflow & Cheat Sheet",
+    "subtitle": "// branching, commits e comandos essenciais",
+    "description": "Guia completo de Git para o dia a dia: estratégias de branching, conventional commits, comandos mais usados e fluxos de trabalho profissionais."
+  },
+  "sectionNav": {
+    "commands": "Comandos",
+    "branching": "Branching",
+    "commits": "Commits",
+    "workflows": "Workflows",
+    "cheatSheet": "Cheat Sheet"
+  },
+  "commands": {
+    "title": "Comandos Essenciais",
+    "subtitle": "// os comandos que você mais vai usar",
+    "description": "Referência rápida dos comandos Git fundamentais organizados por categoria.",
+    "categories": {
+      "basics": {
+        "title": "Básicos",
+        "items": [
+          { "command": "git init", "description": "Inicializa um repositório Git no diretório atual" },
+          { "command": "git clone <url>", "description": "Clona um repositório remoto" },
+          { "command": "git status", "description": "Mostra o estado dos arquivos (modificados, staged, untracked)" },
+          { "command": "git add <arquivo>", "description": "Adiciona arquivo ao staging area" },
+          { "command": "git add .", "description": "Adiciona todos os arquivos modificados" },
+          { "command": "git commit -m \"msg\"", "description": "Cria um commit com mensagem" }
+        ]
+      },
+      "branches": {
+        "title": "Branches",
+        "items": [
+          { "command": "git branch", "description": "Lista branches locais" },
+          { "command": "git branch <nome>", "description": "Cria nova branch" },
+          { "command": "git checkout <branch>", "description": "Troca para outra branch" },
+          { "command": "git checkout -b <nome>", "description": "Cria e troca para nova branch" },
+          { "command": "git branch -d <nome>", "description": "Deleta branch local" },
+          { "command": "git merge <branch>", "description": "Merge de outra branch na atual" }
+        ]
+      },
+      "remote": {
+        "title": "Remoto",
+        "items": [
+          { "command": "git push", "description": "Envia commits para o remoto" },
+          { "command": "git push -u origin <branch>", "description": "Push e define upstream da branch" },
+          { "command": "git pull", "description": "Puxa e faz merge das mudanças remotas" },
+          { "command": "git fetch", "description": "Baixa mudanças remotas sem merge" },
+          { "command": "git remote -v", "description": "Lista repositórios remotos" }
+        ]
+      },
+      "history": {
+        "title": "Histórico",
+        "items": [
+          { "command": "git log --oneline", "description": "Histórico compacto de commits" },
+          { "command": "git log --graph", "description": "Histórico visual com branches" },
+          { "command": "git diff", "description": "Mostra diferenças não staged" },
+          { "command": "git diff --staged", "description": "Mostra diferenças já staged" },
+          { "command": "git blame <arquivo>", "description": "Mostra quem alterou cada linha" }
+        ]
+      },
+      "undo": {
+        "title": "Desfazer",
+        "items": [
+          { "command": "git restore <arquivo>", "description": "Descarta mudanças não staged" },
+          { "command": "git restore --staged <arquivo>", "description": "Remove do staging area" },
+          { "command": "git reset HEAD~1", "description": "Desfaz último commit mantendo mudanças" },
+          { "command": "git reset --hard HEAD~1", "description": "Desfaz último commit e descarta tudo" },
+          { "command": "git stash", "description": "Salva mudanças temporariamente" },
+          { "command": "git stash pop", "description": "Restaura mudanças do stash" }
+        ]
+      }
+    }
+  },
+  "branching": {
+    "title": "Estratégias de Branching",
+    "subtitle": "// organize seu fluxo de desenvolvimento",
+    "description": "As principais estratégias de branching usadas em equipes profissionais.",
+    "strategies": [
+      {
+        "name": "Git Flow",
+        "description": "Modelo robusto com branches dedicadas para features, releases e hotfixes. Ideal para projetos com ciclos de release definidos.",
+        "branches": ["main", "develop", "feature/*", "release/*", "hotfix/*"],
+        "pros": ["Ciclo de release organizado", "Separação clara de responsabilidades", "Ideal para versionamento semântico"],
+        "cons": ["Complexidade maior", "Muitas branches para gerenciar", "Lento para CI/CD contínuo"],
+        "bestFor": "Projetos com releases planejadas"
+      },
+      {
+        "name": "GitHub Flow",
+        "description": "Modelo simplificado: main + feature branches com Pull Requests. Perfeito para deploy contínuo.",
+        "branches": ["main", "feature/*"],
+        "pros": ["Simples e direto", "Ótimo para CI/CD", "Deploy a cada merge"],
+        "cons": ["Sem branch de staging", "Pode ser limitado para releases complexas"],
+        "bestFor": "SaaS e projetos com deploy contínuo"
+      },
+      {
+        "name": "Trunk Based Development",
+        "description": "Todo mundo commita direto na main (ou em branches muito curtas). Foco em integração contínua real.",
+        "branches": ["main", "short-lived/*"],
+        "pros": ["Integração contínua real", "Menos conflitos de merge", "Feedback rápido"],
+        "cons": ["Requer feature flags", "Precisa de boa cobertura de testes", "Disciplina da equipe"],
+        "bestFor": "Equipes maduras com bom CI/CD"
+      }
+    ],
+    "prosLabel": "Vantagens",
+    "consLabel": "Desvantagens",
+    "bestForLabel": "Ideal para",
+    "branchesLabel": "Branches"
+  },
+  "commits": {
+    "title": "Conventional Commits",
+    "subtitle": "// mensagens de commit padronizadas",
+    "description": "Padrão para mensagens de commit que facilita changelogs automáticos, versionamento semântico e histórico legível.",
+    "format": "tipo(escopo?): descrição",
+    "formatLabel": "Formato",
+    "types": [
+      { "type": "feat", "description": "Nova funcionalidade", "example": "feat(auth): add login with Google", "color": "green" },
+      { "type": "fix", "description": "Correção de bug", "example": "fix(cart): resolve quantity update issue", "color": "red" },
+      { "type": "docs", "description": "Documentação", "example": "docs(readme): update installation guide", "color": "blue" },
+      { "type": "style", "description": "Formatação (sem mudança de lógica)", "example": "style(button): fix indentation", "color": "purple" },
+      { "type": "refactor", "description": "Refatoração de código", "example": "refactor(api): simplify error handling", "color": "orange" },
+      { "type": "test", "description": "Testes", "example": "test(user): add unit tests for signup", "color": "yellow" },
+      { "type": "chore", "description": "Tarefas de manutenção", "example": "chore(deps): update dependencies", "color": "gray" },
+      { "type": "perf", "description": "Melhoria de performance", "example": "perf(query): optimize database queries", "color": "cyan" }
+    ],
+    "tipsTitle": "Dicas para boas mensagens",
+    "tips": [
+      "Use o imperativo: \"add feature\" e não \"added feature\"",
+      "Máximo 72 caracteres na primeira linha",
+      "Escopo é opcional mas ajuda: feat(auth), fix(cart)",
+      "Body para explicar o \"porquê\", não o \"o quê\"",
+      "Breaking changes: adicione BREAKING CHANGE no footer ou ! após o tipo"
+    ]
+  },
+  "workflows": {
+    "title": "Workflows Comuns",
+    "subtitle": "// fluxos do dia a dia",
+    "description": "Passo a passo dos fluxos de trabalho mais comuns no Git.",
+    "items": [
+      {
+        "name": "Criar Feature",
+        "steps": [
+          "git checkout main",
+          "git pull origin main",
+          "git checkout -b feature/nome-da-feature",
+          "# Desenvolva e faça commits...",
+          "git push -u origin feature/nome-da-feature",
+          "# Abra um Pull Request"
+        ]
+      },
+      {
+        "name": "Resolver Conflito de Merge",
+        "steps": [
+          "git checkout feature/minha-feature",
+          "git merge main",
+          "# Resolva os conflitos nos arquivos marcados",
+          "git add .",
+          "git commit -m \"fix: resolve merge conflicts\"",
+          "git push"
+        ]
+      },
+      {
+        "name": "Hotfix em Produção",
+        "steps": [
+          "git checkout main",
+          "git pull origin main",
+          "git checkout -b hotfix/descricao-do-bug",
+          "# Corrija o bug",
+          "git commit -m \"fix: descricao do bug\"",
+          "git push -u origin hotfix/descricao-do-bug",
+          "# Abra PR para main e develop"
+        ]
+      },
+      {
+        "name": "Desfazer Último Commit (não pushed)",
+        "steps": [
+          "# Manter mudanças (unstaged)",
+          "git reset HEAD~1",
+          "",
+          "# Manter mudanças (staged)",
+          "git reset --soft HEAD~1",
+          "",
+          "# Descartar tudo",
+          "git reset --hard HEAD~1"
+        ]
+      }
+    ]
+  },
+  "cheatSheet": {
+    "title": "Cheat Sheet Rápido",
+    "subtitle": "// atalhos e aliases úteis",
+    "description": "Aliases e configurações para acelerar seu workflow no Git.",
+    "aliases": [
+      { "alias": "git co", "command": "git config --global alias.co checkout", "description": "Atalho para checkout" },
+      { "alias": "git br", "command": "git config --global alias.br branch", "description": "Atalho para branch" },
+      { "alias": "git ci", "command": "git config --global alias.ci commit", "description": "Atalho para commit" },
+      { "alias": "git st", "command": "git config --global alias.st status", "description": "Atalho para status" },
+      { "alias": "git lg", "command": "git config --global alias.lg \"log --oneline --graph --all\"", "description": "Log visual compacto" }
+    ],
+    "usefulTitle": "Comandos Úteis",
+    "useful": [
+      { "command": "git commit --amend", "description": "Edita o último commit" },
+      { "command": "git rebase -i HEAD~3", "description": "Rebase interativo dos últimos 3 commits" },
+      { "command": "git cherry-pick <hash>", "description": "Aplica um commit específico na branch atual" },
+      { "command": "git bisect start", "description": "Busca binária para encontrar commit com bug" },
+      { "command": "git reflog", "description": "Histórico de todas as operações (mesmo resets)" },
+      { "command": "git clean -fd", "description": "Remove arquivos untracked e diretórios" }
+    ]
+  },
+  "cta": {
+    "title": "Curtiu o guia?",
+    "description": "Explore mais guias e ferramentas práticas para devs.",
+    "button": "Voltar às Dicas"
+  }
+}

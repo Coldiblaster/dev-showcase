@@ -42,6 +42,14 @@ export const CONTENT_ITEMS: ContentItem[] = [
     category: "tool",
   },
   {
+    slug: "regex",
+    title: "Regex Playground — Editor Interativo de Regex",
+    description:
+      "Editor de expressões regulares com highlight em tempo real, biblioteca de patterns prontos e cheat sheet completo.",
+    component: "RegexPlayground",
+    category: "tool",
+  },
+  {
     slug: "ai-tips",
     title: "Dicas de IA para Desenvolvedores",
     description:
@@ -79,6 +87,30 @@ export const CONTENT_ITEMS: ContentItem[] = [
     description:
       "Proteções reais em produção: Rate Limiting, reCAPTCHA v3, Honeypot, Zod Validation, Security Headers e variáveis de ambiente seguras.",
     component: "SecurityTips",
+    category: "guide",
+  },
+  {
+    slug: "typescript-patterns",
+    title: "TypeScript Patterns — Utility Types, Generics e Mais",
+    description:
+      "Referência prática com exemplos interativos de Utility Types, Generics, Type Narrowing e patterns avançados de TypeScript.",
+    component: "TsPatterns",
+    category: "guide",
+  },
+  {
+    slug: "git-workflow",
+    title: "Git Workflow & Cheat Sheet",
+    description:
+      "Guia completo de Git: estratégias de branching, conventional commits, comandos essenciais e fluxos de trabalho profissionais.",
+    component: "GitWorkflow",
+    category: "guide",
+  },
+  {
+    slug: "react-patterns",
+    title: "React Design Patterns — Composição, Hooks e Performance",
+    description:
+      "Compound Components, Custom Hooks, Render Props, HOCs e patterns de performance com exemplos práticos.",
+    component: "ReactPatterns",
     category: "guide",
   },
 ];

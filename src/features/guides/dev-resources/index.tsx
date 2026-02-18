@@ -89,6 +89,7 @@ export function DevResourcesPage() {
         title={t("cta.title")}
         description={t("cta.description")}
         buttonText={t("cta.projects")}
+        buttonHref="/dicas"
         secondaryButton={
           <Button asChild variant="outline" size="lg" className="gap-2">
             <a href={REPOS.devShowcase} target="_blank" rel="noopener noreferrer">

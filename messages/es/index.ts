@@ -9,6 +9,7 @@ import devResourcesData from "./devResourcesData.json";
 import devResourcesPage from "./devResourcesPage.json";
 import experience from "./experience.json";
 import footer from "./footer.json";
+import gitWorkflow from "./gitWorkflow.json";
 import githubStats from "./githubStats.json";
 import global from "./global.json";
 import hero from "./hero.json";
@@ -21,7 +22,9 @@ import nav from "./nav.json";
 import notFound from "./notFound.json";
 import portfolio from "./portfolio.json";
 import projects from "./projects.json";
+import reactPatterns from "./reactPatterns.json";
 import reactQueryTipsPage from "./reactQueryTipsPage.json";
+import regexPage from "./regexPage.json";
 import search from "./search.json";
 import securityPage from "./securityPage.json";
 import seoPage from "./seoPage.json";
@@ -30,6 +33,7 @@ import tailwindTipsPage from "./tailwindTipsPage.json";
 import terminal from "./terminal.json";
 import tips from "./tips.json";
 import tipsPage from "./tipsPage.json";
+import tsPatterns from "./tsPatterns.json";
 import viewSource from "./viewSource.json";
 
 export default {
@@ -46,6 +50,7 @@ export default {
   devResourcesPage,
   experience,
   footer,
+  gitWorkflow,
   githubStats,
   hero,
   homeStack,
@@ -56,12 +61,15 @@ export default {
   notFound,
   portfolio,
   projects,
+  reactPatterns,
   reactQueryTipsPage,
+  regexPage,
   terminal,
   tailwindTips,
   tailwindTipsPage,
   tips,
   tipsPage,
+  tsPatterns,
   viewSource,
   search,
   securityPage,
