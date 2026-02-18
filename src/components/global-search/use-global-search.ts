@@ -1,6 +1,7 @@
 "use client";
 
 import Fuse from "fuse.js";
+import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
@@ -11,6 +12,7 @@ const DEBOUNCE_MS = 200;
 
 export function useGlobalSearch() {
   const t = useTranslations("search");
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<ResolvedSearchResult[]>([]);
@@ -19,10 +21,7 @@ export function useGlobalSearch() {
 
   const [isMac, setIsMac] = useState(false);
   useEffect(() => {
-    setIsMac(
-      typeof navigator !== "undefined" &&
-        navigator.platform.toLowerCase().includes("mac"),
-    );
+    setIsMac(/mac|iphone|ipad|ipod/i.test(navigator.userAgent));
   }, []);
 
   const resolvedItems = useMemo<ResolvedSearchResult[]>(
@@ -69,20 +68,23 @@ export function useGlobalSearch() {
     setSelectedIndex(-1);
   }, [open, query]);
 
-  const handleSelect = useCallback((result: ResolvedSearchResult) => {
-    setOpen(false);
-    setQuery("");
+  const handleSelect = useCallback(
+    (result: ResolvedSearchResult) => {
+      setOpen(false);
+      setQuery("");
 
-    if (result.url.startsWith("/#")) {
-      const hash = result.url.slice(1);
-      const element = document.querySelector(hash);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+      if (result.url.startsWith("/#")) {
+        const hash = result.url.slice(1);
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        router.push(result.url);
       }
-    } else {
-      window.location.href = result.url;
-    }
-  }, []);
+    },
+    [router],
+  );
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {

@@ -38,20 +38,20 @@ O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto c
 
 ## Tech Stack
 
-| Camada | Tecnologias |
-|--------|------------|
-| **Framework** | Next.js 16 (App Router) |
-| **UI** | React 19, Tailwind CSS 4, shadcn/ui (Radix UI) |
-| **Animacoes** | Framer Motion |
-| **i18n** | next-intl (pt-BR, en, es, de) + traducao automatica (DeepL / Google) |
-| **SEO** | Metadata API, Open Graph dinamico, JSON-LD, Sitemap, Robots |
-| **IA** | OpenAI (GPT-4o Mini para code review, GPT-4.1 Nano para chat) |
-| **Validacao** | Zod (schema validation) |
-| **Busca** | Fuse.js (busca global fuzzy) |
-| **Email** | Resend (formulario de contato) |
-| **Seguranca** | Rate limiting, sanitizacao I/O, anti prompt injection, Zod schemas |
-| **Testes** | Vitest + Testing Library |
-| **Deploy** | Vercel + Analytics + Speed Insights |
+| Camada        | Tecnologias                                                          |
+| ------------- | -------------------------------------------------------------------- |
+| **Framework** | Next.js 16 (App Router)                                              |
+| **UI**        | React 19, Tailwind CSS 4, shadcn/ui (Radix UI)                       |
+| **Animacoes** | Framer Motion                                                        |
+| **i18n**      | next-intl (pt-BR, en, es, de) + traducao automatica (DeepL / Google) |
+| **SEO**       | Metadata API, Open Graph dinamico, JSON-LD, Sitemap, Robots          |
+| **IA**        | OpenAI (GPT-4o Mini para code review, GPT-4.1 Nano para chat)        |
+| **Validacao** | Zod (schema validation)                                              |
+| **Busca**     | Fuse.js (busca global fuzzy)                                         |
+| **Email**     | Resend (formulario de contato)                                       |
+| **Seguranca** | Rate limiting, sanitizacao I/O, anti prompt injection, Zod schemas   |
+| **Testes**    | Vitest + Testing Library                                             |
+| **Deploy**    | Vercel + Analytics + Speed Insights                                  |
 
 ---
 
@@ -59,53 +59,53 @@ O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto c
 
 ### Portfolio
 
-| Secao | Descricao |
-|-------|-----------|
-| Hero | Apresentacao com animacoes e CTA |
-| Sobre | Bio, skills e informacoes pessoais |
-| Stack | Tecnologias com categorias visuais |
+| Secao        | Descricao                                                            |
+| ------------ | -------------------------------------------------------------------- |
+| Hero         | Apresentacao com animacoes e CTA                                     |
+| Sobre        | Bio, skills e informacoes pessoais                                   |
+| Stack        | Tecnologias com categorias visuais                                   |
 | GitHub Stats | Estatisticas ao vivo do GitHub (repos, stars, linguagens, atividade) |
-| Projetos | Grid de projetos com links e tags |
-| Experiencia | Timeline interativa de carreira |
-| IA | Secao sobre uso de IA no desenvolvimento |
-| Contato | Formulario com Resend + reCAPTCHA |
+| Projetos     | Grid de projetos com links e tags                                    |
+| Experiencia  | Timeline interativa de carreira                                      |
+| IA           | Secao sobre uso de IA no desenvolvimento                             |
+| Contato      | Formulario com Resend + reCAPTCHA                                    |
 
 ### Implementacoes
 
-| Rota | Descricao |
-|------|-----------|
-| `/implementacoes/i18n` | Showcase de internacionalizacao com next-intl |
-| `/implementacoes/seo` | SEO completo — Next.js vs React + Vite |
+| Rota                         | Descricao                                                               |
+| ---------------------------- | ----------------------------------------------------------------------- |
+| `/implementacoes/i18n`       | Showcase de internacionalizacao com next-intl                           |
+| `/implementacoes/seo`        | SEO completo — Next.js vs React + Vite                                  |
 | `/implementacoes/ai-chatbot` | Showcase de AI Chatbot (arquitetura, streaming, system prompt, pricing) |
 
 ### Ferramentas
 
-| Rota | Descricao |
-|------|-----------|
-| `/ferramentas/code-review` | Revisor de codigo com IA — analisa qualidade, bugs e seguranca |
-| `/ferramentas/regex` | Regex Playground — editor, biblioteca de patterns e cheat sheet |
+| Rota                       | Descricao                                                       |
+| -------------------------- | --------------------------------------------------------------- |
+| `/ferramentas/code-review` | Revisor de codigo com IA — analisa qualidade, bugs e seguranca  |
+| `/ferramentas/regex`       | Regex Playground — editor, biblioteca de patterns e cheat sheet |
 
 ### Guias & Dicas
 
-| Rota | Descricao |
-|------|-----------|
-| `/dicas/ai-tips` | Prompts e workflows com IA para devs |
-| `/dicas/tailwind-tips` | Dicas de Tailwind CSS + shadcn/ui |
-| `/dicas/react-query-tips` | Patterns essenciais de React Query |
-| `/dicas/dev-resources` | Snippets e recursos por nivel (Jr/Pleno/Sr) |
-| `/dicas/security-tips` | Seguranca web — frontend, backend, headers, env vars |
+| Rota                         | Descricao                                               |
+| ---------------------------- | ------------------------------------------------------- |
+| `/dicas/ai-tips`             | Prompts e workflows com IA para devs                    |
+| `/dicas/tailwind-tips`       | Dicas de Tailwind CSS + shadcn/ui                       |
+| `/dicas/react-query-tips`    | Patterns essenciais de React Query                      |
+| `/dicas/dev-resources`       | Snippets e recursos por nivel (Jr/Pleno/Sr)             |
+| `/dicas/security-tips`       | Seguranca web — frontend, backend, headers, env vars    |
 | `/dicas/typescript-patterns` | Utility types, generics, narrowing e patterns avancados |
-| `/dicas/git-workflow` | Branching, commits, workflows e cheat sheet |
-| `/dicas/react-patterns` | Composicao, hooks customizados, state e performance |
+| `/dicas/git-workflow`        | Branching, commits, workflows e cheat sheet             |
+| `/dicas/react-patterns`      | Composicao, hooks customizados, state e performance     |
 
 ### API Routes
 
-| Rota | Descricao |
-|------|-----------|
-| `/api/chat` | Chat IA com streaming (GPT-4.1 Nano) |
+| Rota               | Descricao                              |
+| ------------------ | -------------------------------------- |
+| `/api/chat`        | Chat IA com streaming (GPT-4.1 Nano)   |
 | `/api/code-review` | Revisao de codigo com IA (GPT-4o Mini) |
-| `/api/contact` | Envio de email via Resend |
-| `/api/github` | Estatisticas do GitHub com cache |
+| `/api/contact`     | Envio de email via Resend              |
+| `/api/github`      | Estatisticas do GitHub com cache       |
 
 ---
 
@@ -201,14 +201,14 @@ pnpm dev
 
 Copie `.env.example` para `.env.local` e preencha:
 
-| Variavel | Obrigatoria | Descricao |
-|----------|:-----------:|-----------|
-| `OPENAI_API_KEY` | Para IA | Chat e Code Review |
-| `RESEND_API_KEY` | Para email | Formulario de contato |
-| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | Para contato | reCAPTCHA v3 (client) |
-| `RECAPTCHA_SECRET_KEY` | Para contato | reCAPTCHA v3 (server) |
-| `DEEPL_API_KEY` | Para traducao | Traducao automatica (DeepL) |
-| `GOOGLE_CLOUD_API_KEY` | Para traducao | Fallback de traducao (Google) |
+| Variavel                         |  Obrigatoria  | Descricao                     |
+| -------------------------------- | :-----------: | ----------------------------- |
+| `OPENAI_API_KEY`                 |    Para IA    | Chat e Code Review            |
+| `RESEND_API_KEY`                 |  Para email   | Formulario de contato         |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | Para contato  | reCAPTCHA v3 (client)         |
+| `RECAPTCHA_SECRET_KEY`           | Para contato  | reCAPTCHA v3 (server)         |
+| `DEEPL_API_KEY`                  | Para traducao | Traducao automatica (DeepL)   |
+| `GOOGLE_CLOUD_API_KEY`           | Para traducao | Fallback de traducao (Google) |
 
 > A plataforma funciona sem essas chaves — os recursos que dependem delas ficam desabilitados graciosamente.
 
@@ -226,17 +226,17 @@ pnpm test:coverage     # Com cobertura
 
 ## Scripts
 
-| Comando | Descricao |
-|---------|-----------|
-| `pnpm dev` | Servidor de desenvolvimento |
-| `pnpm build` | Build de producao |
-| `pnpm lint` | Linting com ESLint |
-| `pnpm translate` | Traduz chaves novas para todos os idiomas |
-| `pnpm translate:force` | Retraduz tudo |
-| `pnpm add-locale -- <code>` | Adiciona novo idioma |
-| `pnpm validate:i18n` | Valida chaves entre idiomas |
-| `pnpm check:pt-leaks` | Detecta pt-BR vazando para outros idiomas |
-| `pnpm test` | Roda testes com Vitest |
+| Comando                     | Descricao                                 |
+| --------------------------- | ----------------------------------------- |
+| `pnpm dev`                  | Servidor de desenvolvimento               |
+| `pnpm build`                | Build de producao                         |
+| `pnpm lint`                 | Linting com ESLint                        |
+| `pnpm translate`            | Traduz chaves novas para todos os idiomas |
+| `pnpm translate:force`      | Retraduz tudo                             |
+| `pnpm add-locale -- <code>` | Adiciona novo idioma                      |
+| `pnpm validate:i18n`        | Valida chaves entre idiomas               |
+| `pnpm check:pt-leaks`       | Detecta pt-BR vazando para outros idiomas |
+| `pnpm test`                 | Roda testes com Vitest                    |
 
 > Detalhes dos scripts de i18n em [`docs/i18n/`](./docs/i18n/INDEX.md)
 
@@ -255,14 +255,15 @@ O projeto esta configurado para deploy na **Vercel** com zero configuracao:
 
 ## Documentacao
 
-| Documento | Descricao |
-|-----------|-----------|
-| [docs/README.md](./docs/README.md) | Hub da documentacao — arquitetura e convencoes |
-| [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md) | Guia de contribuicao |
-| [docs/api/SECURITY.md](./docs/api/SECURITY.md) | Seguranca das API Routes |
-| [docs/architecture/COMPONENTS.md](./docs/architecture/COMPONENTS.md) | Catalogo de componentes reutilizaveis |
-| [docs/content-management/ADDING_PAGES.md](./docs/content-management/ADDING_PAGES.md) | Como criar novas paginas |
-| [docs/i18n/INDEX.md](./docs/i18n/INDEX.md) | Sistema de internacionalizacao |
+| Documento                                                                            | Descricao                                      |
+| ------------------------------------------------------------------------------------ | ---------------------------------------------- |
+| [docs/README.md](./docs/README.md)                                                   | Hub da documentacao — arquitetura e convencoes |
+| [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md)                                       | Guia de contribuicao                           |
+| [docs/BRANCH_PROTECTION.md](./docs/BRANCH_PROTECTION.md)                             | CI, branch protection e fluxo de PR            |
+| [docs/api/SECURITY.md](./docs/api/SECURITY.md)                                       | Seguranca das API Routes                       |
+| [docs/architecture/COMPONENTS.md](./docs/architecture/COMPONENTS.md)                 | Catalogo de componentes reutilizaveis          |
+| [docs/content-management/ADDING_PAGES.md](./docs/content-management/ADDING_PAGES.md) | Como criar novas paginas                       |
+| [docs/i18n/INDEX.md](./docs/i18n/INDEX.md)                                           | Sistema de internacionalizacao                 |
 
 ---
 

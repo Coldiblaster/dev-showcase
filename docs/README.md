@@ -11,6 +11,7 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 | Documento                                                   | Descricao                                           | Para quem    |
 | ----------------------------------------------------------- | --------------------------------------------------- | ------------ |
 | [Contribuicao](./CONTRIBUTING.md)                           | Como contribuir, fluxo de PR, convencoes de commit  | Todos        |
+| [Branch Protection](./BRANCH_PROTECTION.md)                 | Protecao da main, CI obrigatoria, fluxo de PR       | Todos        |
 | [Seguranca das APIs](./api/SECURITY.md)                     | Rate limiting, sanitizacao, anti prompt injection   | Pleno/Senior |
 | [Componentes Reutilizaveis](./architecture/COMPONENTS.md)   | Catalogo de componentes compartilhados              | Todos        |
 | [Adicionando Paginas](./content-management/ADDING_PAGES.md) | Como criar novas paginas de implementacoes ou guias | Todos        |

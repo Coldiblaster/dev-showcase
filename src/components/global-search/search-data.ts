@@ -127,6 +127,49 @@ function buildTags(slug: string): string[] {
   return tagMap[slug] ?? [slug];
 }
 
+const LISTING_PAGES: SearchResult[] = [
+  {
+    id: "page-implementations",
+    titleKey: "items.implementations.title",
+    descriptionKey: "items.implementations.description",
+    type: "page",
+    url: "/implementacoes",
+    tags: ["implementações", "implementations", "i18n", "seo", "chatbot"],
+  },
+  {
+    id: "page-guides",
+    titleKey: "items.guides.title",
+    descriptionKey: "items.guides.description",
+    type: "page",
+    url: "/dicas",
+    tags: [
+      "dicas",
+      "guias",
+      "tips",
+      "guides",
+      "tutoriais",
+      "react",
+      "typescript",
+      "git",
+    ],
+  },
+  {
+    id: "page-tools",
+    titleKey: "items.tools.title",
+    descriptionKey: "items.tools.description",
+    type: "page",
+    url: "/ferramentas",
+    tags: [
+      "ferramentas",
+      "tools",
+      "code review",
+      "regex",
+      "playground",
+      "editor",
+    ],
+  },
+];
+
 const HOME_SECTIONS: SearchResult[] = [
   {
     id: "home-about",
@@ -208,6 +251,7 @@ const HOME_SECTIONS: SearchResult[] = [
 ];
 
 export const SEARCH_ITEMS: SearchResult[] = [
+  ...LISTING_PAGES,
   ...HOME_SECTIONS,
   ...buildContentSearchItems(),
 ];

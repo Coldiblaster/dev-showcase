@@ -2,10 +2,10 @@
   "open": "Open search",
   "placeholder": "Search...",
   "title": "Search the site",
-  "inputPlaceholder": "Search sections, implementations and guides...",
+  "inputPlaceholder": "Search sections, implementations, guides and tools...",
   "clear": "Clear search",
   "startTyping": "Start typing to search",
-  "hint": "Sections, implementations and guides",
+  "hint": "Sections, implementations, guides and tools",
   "noResults": "No results found",
   "tryOtherTerms": "Try other search terms",
   "navigate": "Navigate",
@@ -44,6 +44,18 @@
     "contact": {
       "title": "Contact",
       "description": "Send a message via form or WhatsApp"
+    },
+    "implementations": {
+      "title": "Implementations",
+      "description": "All technical implementations — i18n, SEO, AI Chatbot and more"
+    },
+    "guides": {
+      "title": "Tips & Guides",
+      "description": "All practical guides — React, TypeScript, Git, Tailwind and more"
+    },
+    "tools": {
+      "title": "Tools",
+      "description": "Interactive tools — AI Code Review, Regex Playground and more"
     },
     "i18n": {
       "title": "i18n Showcase",
