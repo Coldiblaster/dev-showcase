@@ -125,7 +125,9 @@ Abra o PR **apontando para `develop`** (nunca direto para `main`):
 - Descricao do que foi feito e por que
 - Screenshot/GIF se for mudanca visual
 
-A CI roda automaticamente (lint, typecheck, test, build). O merge so e liberado quando todos os checks passam e tem pelo menos 1 approval.
+O merge requer pelo menos 1 approval. Quando a CI estiver ativa, os checks (lint, typecheck, test, build) tambem rodam automaticamente no PR.
+
+> **Nota:** A CI (GitHub Actions) esta temporariamente desabilitada. A validacao local continua ativa via Husky (lint-staged + commitlint).
 
 ### 7. Deploy (develop → main)
 

@@ -67,6 +67,14 @@ feature/nome ──→ PR ──→ develop ──→ auto-PR ──→ main ─
 
 **Os checks so aparecem na lista depois que a CI roda pela primeira vez.** Faca o primeiro PR, espere rodar, depois configure.
 
+> **Estado atual:** A CI (GitHub Actions) esta temporariamente desabilitada. Os status checks ainda nao foram adicionados como obrigatorios nas branch protection rules. Para reativar:
+>
+> ```bash
+> echo '{"enabled":true,"allowed_actions":"all"}' | gh api repos/Coldiblaster/dev-showcase/actions/permissions -X PUT --input -
+> ```
+>
+> Apos reativar, rode um PR para que os checks aparecam e entao adicione-os como obrigatorios.
+
 ---
 
 ## Release automatica (develop → main)
@@ -98,12 +106,14 @@ O importante e manter CI obrigatoria e fluxo via PR.
 
 ## Resumo das camadas
 
-| Camada | Ferramenta         | Quando                                            |
-| ------ | ------------------ | ------------------------------------------------- |
-| Local  | Husky + commitlint | Commit — valida formato (feat, fix, etc.)         |
-| Local  | lint-staged        | Commit — ESLint + Prettier nos arquivos alterados |
-| CI     | GitHub Actions     | PR — lint, typecheck, test, build                 |
-| CI     | GitHub Actions     | PR — validacao i18n (se messages/ mudar)          |
-| CI     | GitHub Actions     | Push na develop — cria PR automatico para main    |
-| GitHub | Branch Protection  | Bloqueia merge sem PR + checks + review           |
-| Deploy | Vercel             | Deploy automatico apos merge na main              |
+| Camada | Ferramenta         | Quando                                            | Status         |
+| ------ | ------------------ | ------------------------------------------------- | -------------- |
+| Local  | Husky + commitlint | Commit — valida formato (feat, fix, etc.)         | Ativo          |
+| Local  | lint-staged        | Commit — ESLint + Prettier nos arquivos alterados | Ativo          |
+| CI     | GitHub Actions     | PR — lint, typecheck, test, build                 | Desabilitado\* |
+| CI     | GitHub Actions     | PR — validacao i18n (se messages/ mudar)          | Desabilitado\* |
+| CI     | GitHub Actions     | Push na develop — cria PR automatico para main    | Desabilitado\* |
+| GitHub | Branch Protection  | Bloqueia merge sem PR + review                    | Ativo          |
+| Deploy | Vercel             | Deploy automatico apos merge na main              | Ativo          |
+
+\* _GitHub Actions temporariamente desabilitado. Reativar quando o billing for resolvido._
