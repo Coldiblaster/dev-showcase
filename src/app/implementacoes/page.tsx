@@ -16,10 +16,7 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const [t, locale] = await Promise.all([
-    getTranslations("nav"),
-    getLocale(),
-  ]);
+  const [t, locale] = await Promise.all([getTranslations("nav"), getLocale()]);
   return buildPageMetadata({
     title: t("implementations"),
     description: t("implementationsDesc"),
@@ -39,7 +36,7 @@ export default async function ImplementacoesPage() {
   const items = getContentByCategory("implementation");
 
   return (
-    <div className="container mx-auto px-6 py-24 pt-32">
+    <div className="container mx-auto min-h-[calc(100dvh-4rem)] px-6 py-24 pt-32">
       <div className="mb-12">
         <h1 className="mb-4 text-4xl font-bold text-foreground">
           {t("implementations")}

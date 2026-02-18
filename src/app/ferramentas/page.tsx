@@ -37,7 +37,7 @@ export default async function FerramentasPage() {
   const items = getContentByCategory("tool");
 
   return (
-    <div className="container mx-auto px-6 py-12 pt-24 md:py-24 md:pt-32">
+    <div className="container mx-auto min-h-[calc(100dvh-4rem)] px-6 py-12 pt-24 md:py-24 md:pt-32">
       <div className="mb-8 md:mb-12">
         <h1 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
           {t("tools")}
