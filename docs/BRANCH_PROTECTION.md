@@ -1,6 +1,6 @@
 # Branch Protection — Configuracao no GitHub
 
-Passo a passo para proteger as branches `develop` e `main` no GitHub.
+Guia para proteger as branches `develop` e `main` no GitHub.
 
 ---
 
