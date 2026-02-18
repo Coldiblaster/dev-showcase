@@ -1,6 +1,6 @@
 # Documentacao — Dev Showcase
 
-Hub centralizado da documentacao tecnica do projeto.
+Hub centralizado de toda a documentacao tecnica do projeto.
 
 Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e trabalhar com cada parte do sistema.
 
