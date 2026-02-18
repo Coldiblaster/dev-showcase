@@ -1,6 +1,6 @@
 # Guia de Contribuicao
 
-Obrigado pelo interesse em contribuir com o **Dev Showcase**! Este guia explica o fluxo de trabalho, convencoes e boas praticas.
+Obrigado pelo interesse em contribuir com o **Dev Showcase**! Este guia explica o fluxo de trabalho, convencoes e boas praticas do projeto.
 
 ---
 
