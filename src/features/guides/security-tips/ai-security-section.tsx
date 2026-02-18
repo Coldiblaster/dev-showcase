@@ -58,7 +58,7 @@ export function AISecuritySection() {
   ];
 
   return (
-    <SectionWrapper>
+    <SectionWrapper id="ai-security">
       <AnimatedSection>
         <SectionHeader
           icon={Bot}

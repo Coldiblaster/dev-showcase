@@ -187,7 +187,8 @@ export async function POST(request: Request) {
     let rawReview: unknown;
     try {
       rawReview = JSON.parse(content);
-    } catch {
+    } catch (error) {
+      console.error("Code review error:", error);
       return jsonError("Failed to parse AI response", 502);
     }
 
@@ -204,7 +205,8 @@ export async function POST(request: Request) {
       status: 200,
       headers: secureJsonHeaders(),
     });
-  } catch {
+  } catch (error) {
+    console.error("Code review error:", error);
     return jsonError("Internal server error", 500);
   }
 }

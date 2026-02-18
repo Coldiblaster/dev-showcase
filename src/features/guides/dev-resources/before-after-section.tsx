@@ -20,6 +20,10 @@ interface BeforeAfterSectionProps {
 
 export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
   const t = useTranslations("devResourcesPage.beforeAfter");
+  const tData = useTranslations("devResourcesData.comparisons") as unknown as {
+    (key: string): string;
+    raw(key: string): unknown;
+  };
   const tLevel = useTranslations("devResourcesPage.levelSelector.levels");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
@@ -59,57 +63,56 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
   if (filteredComparisons.length === 0) return null;
 
   const comparison = filteredComparisons[currentIndex];
+  const issues = tData.raw(`${comparison.id}.issues`) as string[];
+  const improvements = tData.raw(`${comparison.id}.improvements`) as string[];
 
   return (
-    <section id="refactoring" className="relative px-6 py-16 md:py-32">
+    <section id="refactoring" className="relative px-4 py-16 md:px-6 md:py-32">
       <div className="mx-auto max-w-7xl">
-        {/* Header */}
         <AnimatedSection>
-          <div className="mb-8 text-center md:mb-12">
+          <div className="mb-6 text-center md:mb-12">
             <Badge variant="secondary" className="mb-4 font-mono text-xs">
               {t("badge")}
             </Badge>
-            <h2 className="mb-4 text-balance text-4xl font-bold tracking-tight md:text-5xl">
+            <h2 className="mb-3 text-balance text-3xl font-bold tracking-tight md:mb-4 md:text-5xl">
               {t("title")}
             </h2>
-            <p className="mx-auto max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
+            <p className="mx-auto max-w-2xl text-pretty text-sm text-muted-foreground md:text-lg">
               {t("description")}
             </p>
           </div>
         </AnimatedSection>
 
-        {/* Navigation bar */}
         <AnimatedSection delay={0.1}>
-          <div className="mb-8 flex items-center justify-between">
+          <div className="mb-6 flex items-center justify-between gap-2 md:mb-8">
             <Button
               variant="outline"
               size="sm"
               aria-label={t("nav.prev")}
               onClick={goPrev}
               disabled={currentIndex === 0}
-              className="gap-1"
+              className="gap-1 px-2 text-xs md:px-3 md:text-sm"
             >
               <ChevronLeft className="h-4 w-4" />
-              {t("nav.prev")}
+              <span className="hidden sm:inline">{t("nav.prev")}</span>
             </Button>
 
-            {/* Dot indicators */}
             <div
-              className="flex items-center gap-2"
+              className="flex items-center gap-1.5 md:gap-2"
               role="tablist"
-              aria-label="Navegação de exemplos"
+              aria-label="Navigation"
             >
               {filteredComparisons.map((comp, index) => (
                 <button
                   key={comp.id}
                   role="tab"
                   aria-selected={index === currentIndex}
-                  aria-label={`${comp.title} (${index + 1} / ${filteredComparisons.length})`}
+                  aria-label={`${String(tData.raw(`${comp.id}.title`))} (${index + 1} / ${filteredComparisons.length})`}
                   onClick={() => goTo(index)}
-                  className={`h-2.5 rounded-full transition-all ${
+                  className={`h-2 rounded-full transition-all md:h-2.5 ${
                     index === currentIndex
-                      ? "w-8 bg-primary"
-                      : "w-2.5 bg-muted-foreground/30 hover:bg-muted-foreground/50"
+                      ? "w-6 bg-primary md:w-8"
+                      : "w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50 md:w-2.5"
                   }`}
                 />
               ))}
@@ -121,15 +124,14 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
               aria-label={t("nav.next")}
               onClick={goNext}
               disabled={currentIndex === filteredComparisons.length - 1}
-              className="gap-1"
+              className="gap-1 px-2 text-xs md:px-3 md:text-sm"
             >
-              {t("nav.next")}
+              <span className="hidden sm:inline">{t("nav.next")}</span>
               <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
         </AnimatedSection>
 
-        {/* Single comparison with animation */}
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={comparison.id}
@@ -139,115 +141,116 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
             exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <Card className="overflow-hidden border-border bg-card">
-              <div className="p-6">
-                {/* Header */}
-                <div className="mb-6">
-                  <div className="mb-3 flex items-center gap-2">
-                    <Badge variant="outline">{comparison.category}</Badge>
+            <Card className="border-border bg-card">
+              <div className="p-4 md:p-6">
+                <div className="mb-4 md:mb-6">
+                  <div className="mb-2 flex flex-wrap items-center gap-1.5 md:mb-3 md:gap-2">
+                    <Badge variant="outline" className="text-[11px] md:text-xs">
+                      {String(tData.raw(`${comparison.id}.category`))}
+                    </Badge>
                     <Badge
                       variant="outline"
                       className={`text-[10px] ${levelColors[comparison.level]}`}
                     >
                       {tLevel(comparison.level)}
                     </Badge>
-                    <span className="ml-auto text-sm text-muted-foreground">
+                    <span className="ml-auto text-xs text-muted-foreground md:text-sm">
                       {currentIndex + 1} / {filteredComparisons.length}
                     </span>
                   </div>
-                  <h3 className="mb-2 text-2xl font-semibold">
-                    {comparison.title}
+                  <h3 className="mb-1.5 text-lg font-semibold md:mb-2 md:text-2xl">
+                    {String(tData.raw(`${comparison.id}.title`))}
                   </h3>
-                  <p className="text-muted-foreground">{comparison.problem}</p>
+                  <p className="text-xs text-muted-foreground md:text-base">
+                    {String(tData.raw(`${comparison.id}.problem`))}
+                  </p>
                 </div>
 
-                {/* Tabs */}
-                <Tabs defaultValue="comparison" className="w-full">
+                <Tabs defaultValue="comparison">
                   <TabsList className="grid w-full grid-cols-3">
-                    <TabsTrigger value="comparison">
+                    <TabsTrigger value="comparison" className="text-xs md:text-sm">
                       {t("tabs.comparison")}
                     </TabsTrigger>
-                    <TabsTrigger value="before">{t("tabs.before")}</TabsTrigger>
-                    <TabsTrigger value="after">{t("tabs.after")}</TabsTrigger>
+                    <TabsTrigger value="before" className="text-xs md:text-sm">
+                      {t("tabs.before")}
+                    </TabsTrigger>
+                    <TabsTrigger value="after" className="text-xs md:text-sm">
+                      {t("tabs.after")}
+                    </TabsTrigger>
                   </TabsList>
 
-                  {/* Comparison View */}
-                  <TabsContent value="comparison" className="mt-6">
+                  <TabsContent value="comparison" className="mt-4 md:mt-6">
                     <div className="grid gap-4 lg:grid-cols-2">
-                      <div className="space-y-3">
+                      <div className="min-w-0 space-y-3">
                         <div className="flex items-center gap-2">
-                          <X className="h-4 w-4 text-destructive" />
-                          <span className="font-semibold">
+                          <X className="h-4 w-4 shrink-0 text-destructive" />
+                          <span className="text-sm font-semibold">
                             {t("beforeProblems")}
                           </span>
                         </div>
-                        <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-xs">
+                        <pre className="overflow-x-auto overflow-y-hidden rounded-lg bg-muted p-3 text-[11px] leading-relaxed md:p-4 md:text-xs">
                           <code className="font-mono">
                             {comparison.before.code}
                           </code>
                         </pre>
-                        <ul className="space-y-2 text-sm">
-                          {comparison.before.issues.map((issue, i) => (
-                            <li key={i} className="flex gap-2 text-destructive">
-                              <X className="mt-0.5 h-4 w-4 shrink-0" />
+                        <ul className="space-y-1.5 md:space-y-2">
+                          {issues.map((issue, i) => (
+                            <li key={i} className="flex gap-1.5 text-xs text-destructive md:gap-2 md:text-sm">
+                              <X className="mt-0.5 h-3.5 w-3.5 shrink-0 md:h-4 md:w-4" />
                               <span>{issue}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
-                      <div className="space-y-3">
+                      <div className="min-w-0 space-y-3">
                         <div className="flex items-center gap-2">
-                          <Check className="h-4 w-4 text-green-500" />
-                          <span className="font-semibold">
+                          <Check className="h-4 w-4 shrink-0 text-green-500" />
+                          <span className="text-sm font-semibold">
                             {t("afterImprovements")}
                           </span>
                         </div>
-                        <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-xs">
+                        <pre className="overflow-x-auto overflow-y-hidden rounded-lg bg-muted p-3 text-[11px] leading-relaxed md:p-4 md:text-xs">
                           <code className="font-mono">
                             {comparison.after.code}
                           </code>
                         </pre>
-                        <ul className="space-y-2 text-sm">
-                          {comparison.after.improvements.map(
-                            (improvement, i) => (
-                              <li key={i} className="flex gap-2 text-green-500">
-                                <Check className="mt-0.5 h-4 w-4 shrink-0" />
-                                <span>{improvement}</span>
-                              </li>
-                            ),
-                          )}
+                        <ul className="space-y-1.5 md:space-y-2">
+                          {improvements.map((improvement, i) => (
+                            <li key={i} className="flex gap-1.5 text-xs text-green-500 md:gap-2 md:text-sm">
+                              <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 md:h-4 md:w-4" />
+                              <span>{improvement}</span>
+                            </li>
+                          ))}
                         </ul>
                       </div>
                     </div>
                   </TabsContent>
 
-                  {/* Before Tab */}
-                  <TabsContent value="before" className="mt-6">
-                    <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-sm">
+                  <TabsContent value="before" className="mt-4 md:mt-6">
+                    <pre className="overflow-x-auto rounded-lg bg-muted p-3 text-[11px] leading-relaxed md:p-4 md:text-sm">
                       <code className="font-mono">
                         {comparison.before.code}
                       </code>
                     </pre>
-                    <ul className="mt-4 space-y-2 text-sm">
-                      {comparison.before.issues.map((issue, i) => (
-                        <li key={i} className="flex gap-2 text-destructive">
-                          <X className="mt-0.5 h-4 w-4 shrink-0" />
+                    <ul className="mt-3 space-y-1.5 md:mt-4 md:space-y-2">
+                      {issues.map((issue, i) => (
+                        <li key={i} className="flex gap-1.5 text-xs text-destructive md:gap-2 md:text-sm">
+                          <X className="mt-0.5 h-3.5 w-3.5 shrink-0 md:h-4 md:w-4" />
                           <span>{issue}</span>
                         </li>
                       ))}
                     </ul>
                   </TabsContent>
 
-                  {/* After Tab */}
-                  <TabsContent value="after" className="mt-6">
-                    <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-sm">
+                  <TabsContent value="after" className="mt-4 md:mt-6">
+                    <pre className="overflow-x-auto rounded-lg bg-muted p-3 text-[11px] leading-relaxed md:p-4 md:text-sm">
                       <code className="font-mono">{comparison.after.code}</code>
                     </pre>
-                    <ul className="mt-4 space-y-2 text-sm">
-                      {comparison.after.improvements.map((improvement, i) => (
-                        <li key={i} className="flex gap-2 text-green-500">
-                          <Check className="mt-0.5 h-4 w-4 shrink-0" />
+                    <ul className="mt-3 space-y-1.5 md:mt-4 md:space-y-2">
+                      {improvements.map((improvement, i) => (
+                        <li key={i} className="flex gap-1.5 text-xs text-green-500 md:gap-2 md:text-sm">
+                          <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 md:h-4 md:w-4" />
                           <span>{improvement}</span>
                         </li>
                       ))}

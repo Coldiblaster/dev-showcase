@@ -17,7 +17,7 @@ export function CopilotSection() {
   const t = useTranslations("tipsPage");
 
   return (
-    <section className="px-6 py-12 md:py-20">
+    <section id="copilot" className="px-6 py-12 md:py-20">
       <div className="mx-auto max-w-5xl">
         <AnimatedSection>
           <SectionHeader

@@ -48,7 +48,7 @@ export function useI18nShowcaseData(): I18nShowcaseItem[] {
           if (typeof res === "string" && res && res !== short) return res;
         } catch (err) {
           // translator may throw if placeholders are missing; fallthrough to fallback
-          console.debug("i18n-showcase: formatting skipped for", short, err);
+          void err;
         }
 
         return fallback;
@@ -69,16 +69,12 @@ export function useI18nShowcaseData(): I18nShowcaseItem[] {
           typeof tPage === "function" ? tPage(key as PageKey) : undefined;
         if (typeof res === "string" && res && res !== key) return res;
       } catch (err) {
-        console.debug(
-          "i18n-showcase: formatting skipped for page key",
-          key,
-          err,
-        );
+        void err;
       }
 
       return fallback;
     } catch (err) {
-      console.debug("i18n-showcase: tt unexpected error", err);
+      void err;
       return fallback;
     }
   };

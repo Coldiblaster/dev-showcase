@@ -19,7 +19,7 @@ import type { DevLevel, DevLevelFilter } from "./data/types";
 import { LevelSelector } from "./level-selector";
 import { PatternFinderSection } from "./pattern-finder-section";
 import { QuickTipsSection } from "./quick-tips-section";
-import { SectionNav } from "./section-nav";
+import { SectionNav } from "@/components/section-nav";
 
 function countByLevel(items: { level: DevLevel }[]): Record<DevLevel, number> {
   return {
@@ -57,7 +57,14 @@ export function DevResourcesPage() {
         description={t("hero.description")}
       />
 
-      <SectionNav />
+      <SectionNav
+        sections={[
+          { id: "tips", label: t("sectionNav.tips") },
+          { id: "snippets", label: t("sectionNav.snippets") },
+          { id: "patterns", label: t("sectionNav.patterns") },
+          { id: "refactoring", label: t("sectionNav.refactoring") },
+        ]}
+      />
 
       <LevelSelector
         level={level}

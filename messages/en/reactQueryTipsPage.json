@@ -49,5 +49,9 @@
   "cta": {
     "title": "Ready to optimize your data fetching?",
     "description": "Back to portfolio and explore more content"
+  },
+  "sectionNav": {
+    "bestPractices": "Best Practices",
+    "resources": "Resources"
   }
 }

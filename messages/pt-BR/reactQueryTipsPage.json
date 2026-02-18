@@ -49,5 +49,9 @@
   "cta": {
     "title": "Pronto para otimizar seu data fetching?",
     "description": "Volte ao portfolio e explore mais conteúdos"
+  },
+  "sectionNav": {
+    "bestPractices": "Boas Práticas",
+    "resources": "Recursos"
   }
 }

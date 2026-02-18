@@ -3,6 +3,7 @@ import { cn, MAX_WIDTH_MAP, type MaxWidth } from "@/lib/utils";
 /** Props do wrapper de seção com largura máxima configurável. */
 interface SectionWrapperProps {
   children: React.ReactNode;
+  id?: string;
   maxWidth?: MaxWidth;
   variant?: "default" | "alternate";
   className?: string;
@@ -11,12 +12,14 @@ interface SectionWrapperProps {
 /** Envolve o conteúdo em uma seção com padding e largura máxima. */
 export function SectionWrapper({
   children,
+  id,
   maxWidth = "5xl",
   variant = "default",
   className,
 }: SectionWrapperProps) {
   return (
     <section
+      id={id}
       className={cn(
         "px-6 py-12 md:py-20",
         variant === "alternate" && "bg-secondary/20",

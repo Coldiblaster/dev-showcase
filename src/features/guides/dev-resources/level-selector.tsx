@@ -35,20 +35,20 @@ export function LevelSelector({
   const greetingKey = level === "all" ? "none" : level;
 
   return (
-    <section className="relative px-6 py-16">
+    <section className="relative px-4 py-16 md:px-6">
       <div className="mx-auto max-w-4xl">
         <AnimatedSection>
-          <div className="mb-10 text-center">
-            <h2 className="mb-2 text-3xl font-bold tracking-tight md:text-4xl">
+          <div className="mb-8 text-center md:mb-10">
+            <h2 className="mb-2 text-2xl font-bold tracking-tight md:text-4xl">
               {t("title")}
             </h2>
-            <p className="text-muted-foreground">{t("subtitle")}</p>
+            <p className="text-sm text-muted-foreground md:text-base">{t("subtitle")}</p>
           </div>
         </AnimatedSection>
 
         {/* Level Cards */}
         <AnimatedSection delay={0.1}>
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid grid-cols-3 gap-2 md:gap-4">
             {levels.map((item) => {
               const Icon = item.icon;
               const selected = isSelected(item.id);
@@ -68,7 +68,7 @@ export function LevelSelector({
                   }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className={`relative flex flex-col items-center gap-3 rounded-xl border-2 p-6 text-center transition-colors ${
+                  className={`relative flex flex-col items-center gap-2 rounded-xl border-2 p-3 text-center transition-colors md:gap-3 md:p-6 ${
                     selected
                       ? "border-primary bg-primary/5"
                       : "border-border bg-card hover:border-primary/40"
@@ -88,26 +88,26 @@ export function LevelSelector({
                   )}
 
                   <div
-                    className={`relative z-10 flex h-12 w-12 items-center justify-center rounded-lg transition-colors ${
+                    className={`relative z-10 flex h-9 w-9 items-center justify-center rounded-lg transition-colors md:h-12 md:w-12 ${
                       selected
                         ? "bg-primary text-primary-foreground"
                         : "bg-muted text-muted-foreground"
                     }`}
                   >
-                    <Icon className="h-6 w-6" />
+                    <Icon className="h-4 w-4 md:h-6 md:w-6" />
                   </div>
 
                   <div className="relative z-10">
-                    <p className="text-base font-semibold md:text-lg">
+                    <p className="text-sm font-semibold md:text-lg">
                       {t(item.id)}
                     </p>
-                    <p className="mt-1 text-sm text-muted-foreground">
+                    <p className="mt-0.5 hidden text-sm text-muted-foreground sm:block md:mt-1">
                       {t(`${item.id}Description`)}
                     </p>
                   </div>
 
                   <span
-                    className={`relative z-10 rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                    className={`relative z-10 rounded-full px-2 py-0.5 text-[10px] font-medium transition-colors md:px-3 md:py-1 md:text-xs ${
                       selected
                         ? "bg-primary/10 text-primary"
                         : "bg-muted text-muted-foreground"

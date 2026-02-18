@@ -16,7 +16,7 @@ export function OverviewSection() {
   const t = useTranslations("securityPage");
 
   return (
-    <SectionWrapper>
+    <SectionWrapper id="overview">
       <AnimatedSection>
         <SectionHeader
           icon={Shield}

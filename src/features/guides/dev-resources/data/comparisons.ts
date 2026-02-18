@@ -2,34 +2,21 @@ import type { DevLevel } from "./types";
 
 export interface Comparison {
   id: string;
-  title: string;
-  category: string;
   level: DevLevel;
-  problem: string;
-  before: {
-    code: string;
-    issues: string[];
-  };
-  after: {
-    code: string;
-    improvements: string[];
-  };
+  before: { code: string };
+  after: { code: string };
 }
 
 export const comparisons: Comparison[] = [
   {
     id: "key-prop",
-    title: "Index como Key vs Key Estável",
-    category: "React Fundamentals",
     level: "junior",
-    problem:
-      "Usar index como key em listas causa bugs visuais silenciosos quando itens são reordenados, removidos ou inseridos",
     before: {
       code: `function TodoList({ todos, onRemove }) {
   return (
     <ul>
       {todos.map((todo, index) => (
-        // ❌ index como key — React perde track dos itens
+        // ❌ index as key — React loses track of items
         <li key={index}>
           <input
             type="checkbox"
@@ -37,30 +24,20 @@ export const comparisons: Comparison[] = [
           />
           <span>{todo.text}</span>
           <button onClick={() => onRemove(index)}>
-            Remover
+            Remove
           </button>
         </li>
       ))}
     </ul>
   )
-}
-
-// Bug: remove o item 1, mas o checkbox do item 2
-// continua marcado — React reutilizou o DOM errado!
-// O estado interno do input ficou "preso" no index antigo.`,
-      issues: [
-        "Index muda quando itens são reordenados ou removidos",
-        "React reutiliza o DOM do index antigo — estado visual fica errado",
-        "Checkboxes, inputs e animações quebram silenciosamente",
-        "Bug aparece só em runtime — impossível pegar em code review",
-      ],
+}`,
     },
     after: {
       code: `function TodoList({ todos, onRemove }) {
   return (
     <ul>
       {todos.map((todo) => (
-        // ✅ ID único e estável — React rastreia corretamente
+        // ✅ Unique stable ID — React tracks correctly
         <li key={todo.id}>
           <input
             type="checkbox"
@@ -68,37 +45,18 @@ export const comparisons: Comparison[] = [
           />
           <span>{todo.text}</span>
           <button onClick={() => onRemove(todo.id)}>
-            Remover
+            Remove
           </button>
         </li>
       ))}
     </ul>
   )
-}
-
-// Cada item mantém seu estado correto
-// mesmo após reordenação, inserção ou remoção.
-// O React sabe exatamente qual DOM pertence a qual item.
-
-// Quando index é OK:
-// • Lista estática que nunca muda
-// • Lista sem estado interno nos itens
-// • Lista que só adiciona no final (append-only)`,
-      improvements: [
-        "Key estável (id) garante rastreamento correto do DOM",
-        "Checkboxes, inputs e animações preservam estado",
-        "Remoção e reordenação funcionam sem bugs visuais",
-        "Regra simples: se o item tem id, use como key",
-      ],
+}`,
     },
   },
   {
     id: "early-returns",
-    title: "Conditional Rendering Limpo",
-    category: "React Patterns",
     level: "junior",
-    problem:
-      "Ifs aninhados e ternários encadeados tornam o JSX ilegível e difícil de manter",
     before: {
       code: `function UserProfile({ user, isLoading, error }) {
   return (
@@ -108,11 +66,11 @@ export const comparisons: Comparison[] = [
       ) : error ? (
         <div className="text-red-500">
           {error.status === 404 ? (
-            <p>Usuário não encontrado</p>
+            <p>User not found</p>
           ) : error.status === 403 ? (
-            <p>Sem permissão</p>
+            <p>No permission</p>
           ) : (
-            <p>Erro desconhecido</p>
+            <p>Unknown error</p>
           )}
         </div>
       ) : user ? (
@@ -129,12 +87,6 @@ export const comparisons: Comparison[] = [
     </div>
   )
 }`,
-      issues: [
-        "Ternários aninhados em 4+ níveis",
-        "Difícil rastrear qual condição leva a qual resultado",
-        "Adicionar um novo estado exige reescrever a árvore inteira",
-        "Code review vira pesadelo — ninguém confia no diff",
-      ],
     },
     after: {
       code: `function UserProfile({ user, isLoading, error }) {
@@ -153,13 +105,13 @@ export const comparisons: Comparison[] = [
 
 function ErrorMessage({ error }: { error: ApiError }) {
   const messages: Record<number, string> = {
-    404: 'Usuário não encontrado',
-    403: 'Sem permissão',
+    404: 'User not found',
+    403: 'No permission',
   }
 
   return (
     <p className="text-red-500">
-      {messages[error.status] ?? 'Erro desconhecido'}
+      {messages[error.status] ?? 'Unknown error'}
     </p>
   )
 }
@@ -169,21 +121,11 @@ function RoleBadge({ role }: { role: string }) {
   if (role === 'mod') return <ModBadge />
   return null
 }`,
-      improvements: [
-        "Early returns eliminam todo aninhamento",
-        "Cada estado (loading/error/empty) tratado em 1 linha",
-        "Componentes extraídos são testáveis isoladamente",
-        "Adicionar novo estado = 1 linha, sem tocar no resto",
-      ],
     },
   },
   {
     id: "custom-hooks",
-    title: "useEffect Kitchen Sink vs Custom Hooks",
-    category: "React Hooks",
     level: "pleno",
-    problem:
-      "Toda lógica jogada num useEffect gigante torna o componente intestável e impossível de reutilizar",
     before: {
       code: `function ProductPage({ id }: { id: string }) {
   const [product, setProduct] = useState(null)
@@ -197,14 +139,12 @@ function RoleBadge({ role }: { role: string }) {
 
     fetch(\`/api/products/\${id}\`)
       .then(res => {
-        if (!res.ok) throw new Error('Falhou')
+        if (!res.ok) throw new Error('Failed')
         return res.json()
       })
       .then(data => {
         setProduct(data)
         setLoading(false)
-
-        // Verifica favorito também aqui...
         const favs = JSON.parse(
           localStorage.getItem('favorites') || '[]'
         )
@@ -227,15 +167,8 @@ function RoleBadge({ role }: { role: string }) {
     setIsFavorite(!isFavorite)
   }
 
-  // 40+ linhas de lógica antes de qualquer JSX...
   return (/* ... */)
 }`,
-      issues: [
-        "useEffect mistura fetch + localStorage + state — 3 responsabilidades",
-        "Impossível testar o fetch separado do componente",
-        "Lógica de favoritos não é reutilizável em outras páginas",
-        "Componente com 60+ linhas antes do return",
-      ],
     },
     after: {
       code: `// hooks/use-product.ts
@@ -279,7 +212,6 @@ function useFavorite(id: string) {
   return { isFavorite, toggle }
 }
 
-// Componente limpo — só composição
 function ProductPage({ id }: { id: string }) {
   const { product, loading, error } = useProduct(id)
   const { isFavorite, toggle } = useFavorite(id)
@@ -288,23 +220,13 @@ function ProductPage({ id }: { id: string }) {
   if (error) return <ErrorMessage message={error} />
   if (!product) return null
 
-  return (/* JSX limpo, sem lógica */)
+  return (/* clean JSX */)
 }`,
-      improvements: [
-        "Cada hook tem 1 responsabilidade — testável com renderHook()",
-        "useFavorite reutilizável em qualquer página",
-        "AbortController previne race conditions e memory leaks",
-        "Componente final tem ~10 linhas — só composição",
-      ],
     },
   },
   {
     id: "error-handling",
-    title: "Try/Catch Genérico vs Error Boundaries + Result Pattern",
-    category: "Error Handling",
     level: "pleno",
-    problem:
-      "Try/catch genérico esconde erros e dificulta recovery — o usuário vê tela branca ou mensagem inútil",
     before: {
       code: `async function submitForm(data: FormData) {
   try {
@@ -313,34 +235,23 @@ function ProductPage({ id }: { id: string }) {
       body: JSON.stringify(data),
     })
     const json = await res.json()
-    toast.success('Salvo!')
+    toast.success('Saved!')
     return json
   } catch (error) {
-    // Qual erro? Network? Validação? 500?
     console.error(error)
-    toast.error('Algo deu errado')
-    // Sem recovery — o usuário não sabe o que fazer
+    toast.error('Something went wrong')
   }
 }
 
-// No componente:
 function Form() {
   const handleSubmit = async (data) => {
     const result = await submitForm(data)
     if (result) router.push('/success')
-    // Se deu erro, nada acontece...
   }
 }`,
-      issues: [
-        "catch genérico trata network error, 400 e 500 da mesma forma",
-        "Mensagem 'Algo deu errado' não ajuda o usuário a resolver",
-        "Console.error em produção — ninguém vê",
-        "Sem distinction entre erro recuperável e fatal",
-      ],
     },
     after: {
-      code: `// lib/result.ts — Result pattern type-safe
-type Result<T, E = Error> =
+      code: `type Result<T, E = Error> =
   | { ok: true; data: T }
   | { ok: false; error: E }
 
@@ -376,50 +287,26 @@ async function submitForm(
   }
 }
 
-// No componente — cada erro tem tratamento específico
 function Form() {
   const handleSubmit = async (data) => {
     const result = await submitForm(data)
-
-    if (result.ok) {
-      router.push('/success')
-      return
-    }
+    if (result.ok) { router.push('/success'); return }
 
     switch (result.error.type) {
-      case 'validation':
-        setFieldErrors(result.error.fields)
-        break
-      case 'unauthorized':
-        router.push('/login')
-        break
-      case 'network':
-        toast.error('Sem conexão. Tente novamente.')
-        break
-      case 'server':
-        toast.error('Erro no servidor. Tente em alguns minutos.')
-        break
+      case 'validation': setFieldErrors(result.error.fields); break
+      case 'unauthorized': router.push('/login'); break
+      case 'network': toast.error('No connection. Try again.'); break
+      case 'server': toast.error('Server error. Try later.'); break
     }
   }
 }`,
-      improvements: [
-        "Result pattern força tratamento explícito de sucesso e erro",
-        "Cada tipo de erro tem recovery específico (redirect, retry, field errors)",
-        "TypeScript garante que todos os tipos de erro foram tratados (exhaustive switch)",
-        "Sem throw — fluxo previsível, sem surpresas em produção",
-      ],
     },
   },
   {
     id: "zod-validation",
-    title: "API sem Validação vs Zod Schema",
-    category: "TypeScript",
     level: "senior",
-    problem:
-      "Confiar que a API retorna o formato correto causa crashes em produção quando o backend muda",
     before: {
-      code: `// Confia cegamente no retorno da API
-interface User {
+      code: `interface User {
   id: string
   name: string
   email: string
@@ -429,27 +316,17 @@ interface User {
 async function getUser(id: string): Promise<User> {
   const res = await fetch(\`/api/users/\${id}\`)
   const data = await res.json()
-  return data // sem nenhuma validação
+  return data // no validation
 }
 
-// Em produção, o backend mudou "role" para "type"
-// e adicionou "role" como número...
 const user = await getUser('123')
 console.log(user.role.toUpperCase())
 // TypeError: Cannot read properties of undefined
-// (reading 'toUpperCase')
-// 💥 App crashou em produção`,
-      issues: [
-        "Interface TypeScript só existe em compile time — zero proteção em runtime",
-        "Backend muda um campo e o frontend crashou silenciosamente",
-        "Erro aparece longe da causa real (no .toUpperCase, não no fetch)",
-        "Sem mensagem útil — stack trace aponta pro lugar errado",
-      ],
+// (reading 'toUpperCase')`,
     },
     after: {
       code: `import { z } from 'zod'
 
-// Schema = validação runtime + tipo TypeScript
 const UserSchema = z.object({
   id: z.string(),
   name: z.string(),
@@ -457,44 +334,28 @@ const UserSchema = z.object({
   role: z.enum(['admin', 'user']),
 })
 
-// Tipo inferido automaticamente do schema
 type User = z.infer<typeof UserSchema>
 
 async function getUser(id: string): Promise<User> {
   const res = await fetch(\`/api/users/\${id}\`)
   const data = await res.json()
 
-  // Valida em runtime — falha aqui, não no componente
   const parsed = UserSchema.safeParse(data)
 
   if (!parsed.success) {
-    console.error('API response inválida:', parsed.error.issues)
-    throw new Error('Formato de dados inesperado')
+    console.error('Invalid API response:', parsed.error.issues)
+    throw new Error('Unexpected data format')
   }
 
-  return parsed.data // tipo seguro garantido
-}
-
-// Se o backend mudar, o erro é claro e imediato:
-// "Expected 'admin' | 'user', received number at 'role'"`,
-      improvements: [
-        "Validação em runtime — catch no ponto exato do problema",
-        "Tipo TypeScript inferido do schema — single source of truth",
-        "Mensagem de erro descritiva (campo, valor esperado vs recebido)",
-        "safeParse não crashou a app — você decide como tratar",
-      ],
+  return parsed.data
+}`,
     },
   },
   {
     id: "typed-context",
-    title: "Estado Espalhado vs Context Tipado",
-    category: "React Patterns",
     level: "senior",
-    problem:
-      "useState espalhado em múltiplos componentes causa dessincronização e props drilling",
     before: {
-      code: `// Estado espalhado por N componentes
-function App() {
+      code: `function App() {
   const [user, setUser] = useState(null)
   const [theme, setTheme] = useState('light')
   const [notifications, setNotifications] = useState([])
@@ -522,20 +383,10 @@ function App() {
     />
     <Footer theme={theme} />
   )
-}
-
-// Cada componente filho recebe 4-6 props
-// que só repassa para componentes mais internos...`,
-      issues: [
-        "App component vira um 'God component' com todo o estado",
-        "Props drilling em cascata — 3+ níveis de repasse",
-        "Adicionar um novo estado global = mudar 10+ componentes",
-        "Impossível saber quem modifica o quê — bugs de sincronização",
-      ],
+}`,
     },
     after: {
-      code: `// contexts/app-context.tsx
-type AppState = {
+      code: `type AppState = {
   user: User | null
   theme: 'light' | 'dark'
   sidebarOpen: boolean
@@ -571,7 +422,6 @@ function useApp() {
   return ctx
 }
 
-// Uso — zero props drilling
 function Header() {
   const { state, dispatch } = useApp()
   return (
@@ -580,12 +430,6 @@ function Header() {
     </button>
   )
 }`,
-      improvements: [
-        "Estado centralizado com transições previsíveis (reducer)",
-        "Componentes acessam só o que precisam — zero props drilling",
-        "Actions tipadas — impossível dispatch inválido em compile time",
-        "useApp() com guard — erro claro se usado fora do Provider",
-      ],
     },
   },
 ];

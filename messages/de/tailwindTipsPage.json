@@ -151,5 +151,9 @@
     "title": "Gefallen Ihnen die Tipps?",
     "description": "Wenn du dich über Tailwind, shadcn/ui oder irgendetwas anderes aus dem Bereich Frontend austauschen möchtest, melde dich bei mir!",
     "button": "Zurück zum Portfolio"
+  },
+  "sectionNav": {
+    "components": "Komponenten",
+    "resources": "Ressourcen"
   }
 }

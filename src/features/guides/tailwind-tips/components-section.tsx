@@ -16,7 +16,7 @@ export function ComponentsSection() {
   const t = useTranslations("tailwindTipsPage");
 
   return (
-    <section className="px-6 py-12 md:py-20">
+    <section id="components" className="px-6 py-12 md:py-20">
       <div className="mx-auto max-w-5xl">
         <AnimatedSection>
           <SectionHeader

@@ -212,5 +212,8 @@
     "title": "Would you like to exchange ideas?",
     "description": "If you enjoyed these tips, let's talk about how to apply AI to your development workflow.",
     "button": "Back to Portfolio"
+  },
+  "sectionNav": {
+    "tools": "Tools"
   }
 }

@@ -15,6 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { snippets } from "./data/code-snippets";
 import { type DevLevelFilter, levelColors } from "./data/types";
+import { SnippetExplanation } from "./snippet-explanation";
 
 interface CodeSnippetsSectionProps {
   level: DevLevelFilter;
@@ -22,6 +23,10 @@ interface CodeSnippetsSectionProps {
 
 export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
   const t = useTranslations("devResourcesPage.snippets");
+  const tData = useTranslations("devResourcesData.snippets") as unknown as {
+    (key: string): string;
+    raw(key: string): unknown;
+  };
   const tLevel = useTranslations("devResourcesPage.levelSelector.levels");
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -57,10 +62,12 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
   const filteredSnippets = useMemo(() => {
     return levelSnippets.filter((snippet) => {
       const query = searchQuery.toLowerCase();
+      const title = String(tData.raw(`${snippet.id}.title`)).toLowerCase();
+      const description = String(tData.raw(`${snippet.id}.description`)).toLowerCase();
       const matchesSearch =
         !query ||
-        snippet.title.toLowerCase().includes(query) ||
-        snippet.description.toLowerCase().includes(query) ||
+        title.includes(query) ||
+        description.includes(query) ||
         snippet.tags.some((tag) => tag.toLowerCase().includes(query));
 
       const matchesTags =
@@ -69,7 +76,7 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
 
       return matchesSearch && matchesTags;
     });
-  }, [levelSnippets, searchQuery, selectedTags]);
+  }, [levelSnippets, searchQuery, selectedTags, tData]);
 
   const toggleTag = useCallback((tag: string) => {
     setSelectedTags((prev) =>
@@ -78,18 +85,18 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
   }, []);
 
   return (
-    <section id="snippets" className="relative px-6 py-16 md:py-32">
+    <section id="snippets" className="relative px-4 py-16 md:px-6 md:py-32">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <AnimatedSection>
-          <div className="mb-8 text-center md:mb-12">
+          <div className="mb-6 text-center md:mb-12">
             <Badge variant="secondary" className="mb-4 font-mono text-xs">
               {t("badge")}
             </Badge>
-            <h2 className="mb-4 text-balance text-4xl font-bold tracking-tight md:text-5xl">
+            <h2 className="mb-3 text-balance text-3xl font-bold tracking-tight md:mb-4 md:text-5xl">
               {t("title")}
             </h2>
-            <p className="mx-auto max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
+            <p className="mx-auto max-w-2xl text-pretty text-sm text-muted-foreground md:text-lg">
               {t("description")}
             </p>
           </div>
@@ -97,7 +104,7 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
 
         {/* Search & Filters */}
         <AnimatedSection delay={0.1}>
-          <div className="mb-8 space-y-4">
+          <div className="mb-6 space-y-3 md:mb-8 md:space-y-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
@@ -105,12 +112,12 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
                 placeholder={t("searchPlaceholder")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
+                className="w-full pl-10"
               />
             </div>
 
             <div
-              className="flex flex-wrap gap-2"
+              className="flex flex-wrap gap-1.5 md:gap-2"
               role="group"
               aria-label="Filtrar por tag"
             >
@@ -119,7 +126,7 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
                   key={tag}
                   aria-pressed={selectedTags.includes(tag)}
                   onClick={() => toggleTag(tag)}
-                  className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                  className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:px-2.5 md:text-xs ${
                     selectedTags.includes(tag)
                       ? "border-transparent bg-primary text-primary-foreground hover:bg-primary/80"
                       : "border-border text-foreground hover:bg-primary/90 hover:text-primary-foreground"
@@ -144,59 +151,57 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="grid gap-6 md:grid-cols-2 md:gap-8"
+            className="grid gap-4 md:grid-cols-2 md:gap-8"
           >
             {filteredSnippets.map((snippet, index) => (
               <AnimatedSection key={snippet.id} delay={0.1 + index * 0.05}>
-                <Card className="h-full overflow-hidden border-border bg-card">
-                  <Tabs defaultValue="code" className="w-full">
+                <Card className="h-full border-border bg-card">
+                  <Tabs defaultValue="code">
                     {/* Card header */}
-                    <div className="border-b px-6 pt-6">
-                      <div className="mb-4 flex items-start justify-between gap-4">
-                        <div className="flex-1">
-                          <div className="mb-2 flex items-center gap-2">
-                            <h3 className="text-base font-semibold text-foreground md:text-lg">
-                              {snippet.title}
-                            </h3>
+                    <div className="border-b px-4 py-4 md:px-6 md:py-6">
+                      <div className="mb-3 md:mb-4">
+                        <div className="mb-2 flex flex-wrap items-center gap-2">
+                          <h3 className="text-sm font-semibold text-foreground md:text-lg">
+                            {String(tData.raw(`${snippet.id}.title`))}
+                          </h3>
+                          <Badge
+                            variant="outline"
+                            className={`text-[10px] ${levelColors[snippet.level]}`}
+                          >
+                            {tLevel(snippet.level)}
+                          </Badge>
+                        </div>
+                        <p className="text-xs text-muted-foreground md:text-sm">
+                          {String(tData.raw(`${snippet.id}.description`))}
+                        </p>
+                        <div className="mt-2 flex flex-wrap gap-1.5">
+                          {snippet.tags.map((tag) => (
                             <Badge
-                              variant="outline"
-                              className={`text-[10px] ${levelColors[snippet.level]}`}
+                              key={tag}
+                              variant="secondary"
+                              className="text-[10px] md:text-xs"
                             >
-                              {tLevel(snippet.level)}
+                              {tag}
                             </Badge>
-                          </div>
-                          <p className="text-sm text-muted-foreground">
-                            {snippet.description}
-                          </p>
-                          <div className="mt-2 flex flex-wrap gap-1.5">
-                            {snippet.tags.map((tag) => (
-                              <Badge
-                                key={tag}
-                                variant="secondary"
-                                className="text-xs"
-                              >
-                                {tag}
-                              </Badge>
-                            ))}
-                          </div>
+                          ))}
                         </div>
                       </div>
 
                       <TabsList className="grid w-full grid-cols-3">
-                        <TabsTrigger value="code" className="gap-2">
-                          <Code className="h-4 w-4" />
+                        <TabsTrigger value="code" className="gap-1 text-xs md:gap-2 md:text-sm">
+                          <Code className="h-3.5 w-3.5 md:h-4 md:w-4" />
                           <span className="hidden sm:inline">
                             {t("tabs.code")}
                           </span>
                         </TabsTrigger>
-                        <TabsTrigger value="usage" className="gap-2">
-                          <Play className="h-4 w-4" />
+                        <TabsTrigger value="usage" className="gap-1 text-xs md:gap-2 md:text-sm">
+                          <Play className="h-3.5 w-3.5 md:h-4 md:w-4" />
                           <span className="hidden sm:inline">
                             {t("tabs.usage")}
                           </span>
                         </TabsTrigger>
-                        <TabsTrigger value="explanation" className="gap-2">
-                          <BookOpen className="h-4 w-4" />
+                        <TabsTrigger value="explanation" className="gap-1 text-xs md:gap-2 md:text-sm">
+                          <BookOpen className="h-3.5 w-3.5 md:h-4 md:w-4" />
                           <span className="hidden sm:inline">
                             {t("tabs.explanation")}
                           </span>
@@ -205,16 +210,16 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
                     </div>
 
                     {/* Code Tab */}
-                    <TabsContent value="code" className="p-6">
+                    <TabsContent value="code" className="p-3 md:p-6">
                       <div className="relative">
-                        <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-xs">
+                        <pre className="overflow-x-auto rounded-lg bg-muted p-3 text-[11px] leading-relaxed md:p-4 md:text-xs">
                           <code className="font-mono">{snippet.code}</code>
                         </pre>
                         <Button
                           size="sm"
                           variant="secondary"
-                          aria-label={`${t("copy")} ${snippet.title}`}
-                          className="absolute right-2 top-2"
+                          aria-label={`${t("copy")} ${String(tData.raw(`${snippet.id}.title`))}`}
+                          className="absolute right-2 top-2 h-7 px-2 text-[10px] md:h-8 md:px-3 md:text-xs"
                           onClick={() => handleCopy(snippet.code, snippet.id)}
                         >
                           {copiedId === snippet.id ? (
@@ -233,16 +238,16 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
                     </TabsContent>
 
                     {/* Usage Tab */}
-                    <TabsContent value="usage" className="p-6">
+                    <TabsContent value="usage" className="p-3 md:p-6">
                       <div className="relative">
-                        <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-xs">
+                        <pre className="overflow-x-auto rounded-lg bg-muted p-3 text-[11px] leading-relaxed md:p-4 md:text-xs">
                           <code className="font-mono">{snippet.usage}</code>
                         </pre>
                         <Button
                           size="sm"
                           variant="secondary"
-                          aria-label={`${t("copy")} ${snippet.title} usage`}
-                          className="absolute right-2 top-2"
+                          aria-label={`${t("copy")} ${String(tData.raw(`${snippet.id}.title`))} usage`}
+                          className="absolute right-2 top-2 h-7 px-2 text-[10px] md:h-8 md:px-3 md:text-xs"
                           onClick={() =>
                             handleCopy(snippet.usage, `${snippet.id}-usage`)
                           }
@@ -263,12 +268,8 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
                     </TabsContent>
 
                     {/* Explanation Tab */}
-                    <TabsContent value="explanation" className="p-6">
-                      <div className="prose prose-sm max-w-none dark:prose-invert">
-                        <div className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-                          {snippet.explanation}
-                        </div>
-                      </div>
+                    <TabsContent value="explanation" className="p-3 md:p-6">
+                      <SnippetExplanation text={String(tData.raw(`${snippet.id}.explanation`))} />
                     </TabsContent>
                   </Tabs>
                 </Card>

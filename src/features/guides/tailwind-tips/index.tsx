@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { CTASection } from "@/components/cta-section";
 import { HeroSection } from "@/components/hero-section";
 import { SectionDivider } from "@/components/section-divider";
+import { SectionNav } from "@/components/section-nav";
 
 import { ComponentsSection } from "./components-section";
 import { PatternsSection } from "./patterns-section";
@@ -26,6 +27,16 @@ export function TailwindTips() {
         subtitle={t("hero.subtitle")}
         description={t("hero.description")}
         warning={t("hero.warning")}
+      />
+
+      <SectionNav
+        sections={[
+          { id: "setup", label: "Setup" },
+          { id: "components", label: t("sectionNav.components") },
+          { id: "patterns", label: "Patterns" },
+          { id: "tips", label: "Do vs Don't" },
+          { id: "resources", label: t("sectionNav.resources") },
+        ]}
       />
 
       <SetupSection />

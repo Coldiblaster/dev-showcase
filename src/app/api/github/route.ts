@@ -26,7 +26,12 @@ export async function GET() {
   try {
     const now = Date.now();
     if (cache.data && now - cache.updatedAt < CACHE_TTL) {
-      return NextResponse.json(cache.data);
+      return NextResponse.json(cache.data, {
+        headers: {
+          "Cache-Control":
+            "public, s-maxage=3600, stale-while-revalidate=86400",
+        },
+      });
     }
 
     const userRes = await fetch(
@@ -112,8 +117,13 @@ export async function GET() {
     };
 
     cache = { data: stats, updatedAt: now };
-    return NextResponse.json(stats);
-  } catch {
+    return NextResponse.json(stats, {
+      headers: {
+        "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+      },
+    });
+  } catch (error) {
+    console.error("GitHub API error:", error);
     if (cache.data) return NextResponse.json(cache.data);
     return NextResponse.json(
       {

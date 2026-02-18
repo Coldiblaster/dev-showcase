@@ -1,0 +1,344 @@
+{
+  "snippets": {
+    "debounce": {
+      "title": "useDebounce Hook",
+      "description": "Atrasa a atualização de um valor até o usuário parar de digitar",
+      "explanation": "**useDebounce** atrasa a atualização de um valor até que o usuário pare de digitar.\n\n**Como funciona:**\n• Recebe o valor e o delay em ms\n• Usa setTimeout para atrasar a atualização\n• Limpa o timer anterior a cada mudança (cleanup do useEffect)\n• Retorna o valor \"debounced\" — só atualiza após o delay\n\n**Quando usar:**\n• Campos de busca (evita requisição a cada tecla)\n• Filtros dinâmicos\n• Auto-save de formulários\n\n**Performance:** Reduz chamadas de API de ~10/s para ~2/s em digitação normal."
+    },
+    "format-date": {
+      "title": "Formatador de Data (Intl API)",
+      "description": "Formata datas sem dependências usando a Intl API nativa",
+      "explanation": "**Formatadores de data** usando a Intl API nativa — sem dependências externas.\n\n**Vantagens da Intl API:**\n• Nativa do browser — zero bundle size\n• Suporte a qualquer locale automaticamente\n• Funciona em Node.js e browsers modernos\n\n**formatDate vs moment/date-fns:**\n• moment.js: ~70KB (deprecated)\n• date-fns: ~12KB (tree-shakeable)\n• Intl API: 0KB — já está no browser!\n\n**formatRelative — quando usar:**\n• Feeds de atividade, comentários, notificações\n• Qualquer timestamp que precisa ser \"humano\"\n\n**Dica:** Passe o locale como parâmetro para suportar i18n."
+    },
+    "use-toggle": {
+      "title": "useToggle Hook",
+      "description": "Hook para booleanos com actions nomeadas — mais legível que useState(false)",
+      "explanation": "**useToggle** substitui useState(false) com uma API mais expressiva e legível.\n\n**Por que é melhor que useState puro:**\n• `modal.setTrue` é mais claro que `setIsOpen(true)`\n• `favorite.toggle` é mais claro que `setFav(v => !v)`\n• Ações são useCallback — safe para passar como props\n• Destructuring nomeado: `const modal = useToggle()`\n\n**Quando usar:**\n• Modais (open/close)\n• Dropdowns e menus\n• Favoritos (toggle)\n• Dark mode toggle\n• Qualquer estado boolean\n\n**Pattern:** Retornar objeto em vez de array permite nomes semânticos sem desestruturação posicional."
+    },
+    "safe-context": {
+      "title": "createSafeContext",
+      "description": "Cria context + hook type-safe sem precisar checar undefined",
+      "explanation": "**createSafeContext** elimina o padrão repetitivo de criar context + provider + hook com check de null.\n\n**Problema que resolve:**\n• Todo createContext<T | undefined>(undefined) exige if (!ctx) throw...\n• Repetir isso em 10+ contexts = boilerplate massivo\n• Fácil esquecer o check e ter runtime error\n\n**Como funciona:**\n• Cria o context com null como default\n• O hook useContextValue faz o null check uma vez\n• Retorna [Provider, Hook] como tupla\n\n**Por que é melhor que o padrão manual:**\n• 0 boilerplate — 1 linha cria Provider + Hook tipado\n• Erro descritivo automático (\"useAuth must be used within AuthProvider\")\n• displayName aparece no React DevTools\n\n**Pattern usado em:** Radix UI, shadcn/ui internals, Chakra UI."
+    },
+    "media-query": {
+      "title": "useMediaQuery (SSR-safe)",
+      "description": "Hook responsivo que funciona com SSR/Next.js sem hydration mismatch",
+      "explanation": "**useMediaQuery** detecta media queries CSS no JavaScript — SSR-safe.\n\n**O truque do SSR:**\n• useState(false) como default — server e client começam iguais\n• useEffect sincroniza com o valor real no client\n• Evita hydration mismatch (o erro mais chato do Next.js)\n\n**Por que não usar CSS @media direto?**\n• Quando a lógica depende do breakpoint (mudar componente, não só estilo)\n• Quando precisa do valor em JavaScript (analytics, feature flags)\n• Acessibilidade: prefers-reduced-motion para desligar animações\n\n**Presets incluídos:**\n• Breakpoints do Tailwind (sm, md, lg, xl)\n• Dark mode e reduced motion\n• Extensível — passe qualquer media query string\n\n**Cuidado:** Não use para esconder conteúdo visualmente — prefira CSS para isso (melhor para SEO/accessibility)."
+    },
+    "event-callback": {
+      "title": "useEventCallback",
+      "description": "Referência estável de função sem stale closures — resolve o bug mais comum de hooks",
+      "explanation": "**useEventCallback** retorna uma função com referência estável que sempre acessa o state mais recente.\n\n**O problema que resolve:**\n• useCallback com deps = re-cria função = re-subscribe em effects\n• useCallback sem deps = stale closure = lê state antigo\n• Dilema clássico que gera bugs sutis em WebSockets, timers, event listeners\n\n**Como funciona:**\n• useRef armazena a versão mais recente da função\n• ref.current é atualizado a cada render (sync)\n• useCallback([], ...) retorna wrapper estável que chama ref.current\n• Resultado: referência estável + closure sempre fresca\n\n**Quando usar:**\n• Event handlers passados para useEffect\n• Callbacks de WebSocket/SSE\n• Timers de longa duração (setInterval)\n• Qualquer lugar onde estabilidade + freshness importam\n\n**Equivalente no React 19:** useEffectEvent (experimental)."
+    },
+    "typed-fetch-zod": {
+      "title": "Typed Fetch + Zod Validation",
+      "description": "Fetch type-safe com validação runtime — single source of truth",
+      "explanation": "**typedFetch** combina fetch + Zod para validação em compile time E runtime.\n\n**Por que interfaces TypeScript não bastam:**\n• Interface só existe em compile time — desaparece no JavaScript\n• Se o backend mudar um campo, o TypeScript não protege\n• O crash aparece longe da causa real (no render, não no fetch)\n\n**O que Zod adiciona:**\n• Validação runtime — erro no ponto exato do fetch\n• Tipo inferido do schema (z.infer) — single source of truth\n• Mensagem descritiva: campo, valor esperado vs recebido\n• safeParse não crasha — você decide como tratar\n\n**Quando usar:**\n• Qualquer fetch de API externa que você não controla\n• APIs internas que mudam frequentemente\n• Dados críticos (pagamento, auth, configuração)\n• Integração com terceiros (webhooks, APIs públicas)\n\n**Bundle:** Zod ~13KB gzipped — vale cada byte em produção."
+    },
+    "discriminated-props": {
+      "title": "Discriminated Union Props",
+      "description": "Pattern TypeScript que torna props impossíveis de usar errado",
+      "explanation": "**Discriminated Union Props** usa o sistema de tipos do TypeScript para tornar combinações inválidas impossíveis.\n\n**O problema com props opcionais:**\n• variant=\"link\" com loading={true}? Faz sentido?\n• href e onClick juntos? Qual vence?\n• Props opcionais permitem QUALQUER combinação — bugs silenciosos\n\n**Como funciona:**\n• Uma propriedade \"discriminante\" (variant) determina quais props existem\n• `never` bloqueia props que não fazem sentido naquela variante\n• TypeScript narra (type narrowing) dentro do if/switch\n\n**Quando usar:**\n• Componentes com múltiplas variantes (Button, Input, Modal)\n• Props mutuamente exclusivas (href vs onClick, mode vs config)\n• APIs de componentes que serão usadas por outros devs\n\n**Resultado:** Erros aparecem no editor, não em produção. O autocomplete só mostra props válidas para a variante escolhida."
+    },
+    "type-safe-exhaustive": {
+      "title": "Exhaustive Switch Pattern",
+      "description": "Pattern que garante em compile time que todos os cases de uma union foram tratados",
+      "explanation": "**assertNever** é o pattern que garante cobertura completa de union types em compile time.\n\n**O problema sem ele:**\n• Adiciona um novo status/variant/action no type\n• Esquece de tratar em 3 dos 5 switches do codebase\n• Bug aparece só em runtime — meses depois\n\n**Como funciona:**\n• O parâmetro é do tipo `never`\n• Se todos os cases estão cobertos, o default é unreachable = tipo `never` = OK\n• Se faltar um case, o tipo não é `never` = erro em compile time\n\n**Onde usar:**\n• Reducers (useReducer, Redux)\n• Status machines (pagamento, pedido, auth)\n• Componentes com múltiplas variantes\n• Qualquer switch sobre union types\n\n**Pattern adotado por:** Effect-TS, fp-ts, Prisma, tRPC."
+    }
+  },
+  "comparisons": {
+    "key-prop": {
+      "title": "Index como Key vs Key Estável",
+      "category": "React Fundamentals",
+      "problem": "Usar index como key em listas causa bugs visuais silenciosos quando itens são reordenados, removidos ou inseridos",
+      "issues": [
+        "Index muda quando itens são reordenados ou removidos",
+        "React reutiliza o DOM do index antigo — estado visual fica errado",
+        "Checkboxes, inputs e animações quebram silenciosamente",
+        "Bug aparece só em runtime — impossível pegar em code review"
+      ],
+      "improvements": [
+        "Key estável (id) garante rastreamento correto do DOM",
+        "Checkboxes, inputs e animações preservam estado",
+        "Remoção e reordenação funcionam sem bugs visuais",
+        "Regra simples: se o item tem id, use como key"
+      ]
+    },
+    "early-returns": {
+      "title": "Conditional Rendering Limpo",
+      "category": "React Patterns",
+      "problem": "Ifs aninhados e ternários encadeados tornam o JSX ilegível e difícil de manter",
+      "issues": [
+        "Ternários aninhados em 4+ níveis",
+        "Difícil rastrear qual condição leva a qual resultado",
+        "Adicionar um novo estado exige reescrever a árvore inteira",
+        "Code review vira pesadelo — ninguém confia no diff"
+      ],
+      "improvements": [
+        "Early returns eliminam todo aninhamento",
+        "Cada estado (loading/error/empty) tratado em 1 linha",
+        "Componentes extraídos são testáveis isoladamente",
+        "Adicionar novo estado = 1 linha, sem tocar no resto"
+      ]
+    },
+    "custom-hooks": {
+      "title": "useEffect Kitchen Sink vs Custom Hooks",
+      "category": "React Hooks",
+      "problem": "Toda lógica jogada num useEffect gigante torna o componente não testável e impossível de reutilizar",
+      "issues": [
+        "useEffect mistura fetch + localStorage + state — 3 responsabilidades",
+        "Impossível testar o fetch separado do componente",
+        "Lógica de favoritos não é reutilizável em outras páginas",
+        "Componente com 60+ linhas antes do return"
+      ],
+      "improvements": [
+        "Cada hook tem 1 responsabilidade — testável com renderHook()",
+        "useFavorite reutilizável em qualquer página",
+        "AbortController previne race conditions e memory leaks",
+        "Componente final tem ~10 linhas — só composição"
+      ]
+    },
+    "error-handling": {
+      "title": "Try/Catch Genérico vs Error Boundaries + Result Pattern",
+      "category": "Error Handling",
+      "problem": "Try/catch genérico esconde erros e dificulta recovery — o usuário vê tela branca ou mensagem inútil",
+      "issues": [
+        "catch genérico trata network error, 400 e 500 da mesma forma",
+        "Mensagem 'Algo deu errado' não ajuda o usuário a resolver",
+        "Console.error em produção — ninguém vê",
+        "Sem distinction entre erro recuperável e fatal"
+      ],
+      "improvements": [
+        "Result pattern força tratamento explícito de sucesso e erro",
+        "Cada tipo de erro tem recovery específico (redirect, retry, field errors)",
+        "TypeScript garante que todos os tipos de erro foram tratados (exhaustive switch)",
+        "Sem throw — fluxo previsível, sem surpresas em produção"
+      ]
+    },
+    "zod-validation": {
+      "title": "API sem Validação vs Zod Schema",
+      "category": "TypeScript",
+      "problem": "Confiar que a API retorna o formato correto causa crashes em produção quando o backend muda",
+      "issues": [
+        "Interface TypeScript só existe em compile time — zero proteção em runtime",
+        "Backend muda um campo e o frontend crashou silenciosamente",
+        "Erro aparece longe da causa real (no .toUpperCase, não no fetch)",
+        "Sem mensagem útil — stack trace aponta pro lugar errado"
+      ],
+      "improvements": [
+        "Validação em runtime — catch no ponto exato do problema",
+        "Tipo TypeScript inferido do schema — single source of truth",
+        "Mensagem de erro descritiva (campo, valor esperado vs recebido)",
+        "safeParse não crashou a app — você decide como tratar"
+      ]
+    },
+    "typed-context": {
+      "title": "Estado Espalhado vs Context Tipado",
+      "category": "React Patterns",
+      "problem": "useState espalhado em múltiplos componentes causa dessincronização e props drilling",
+      "issues": [
+        "App component vira um 'God component' com todo o estado",
+        "Props drilling em cascata — 3+ níveis de repasse",
+        "Adicionar um novo estado global = mudar 10+ componentes",
+        "Impossível saber quem modifica o quê — bugs de sincronização"
+      ],
+      "improvements": [
+        "Estado centralizado com transições previsíveis (reducer)",
+        "Componentes acessam só o que precisam — zero props drilling",
+        "Actions tipadas — impossível dispatch inválido em compile time",
+        "useApp() com guard — erro claro se usado fora do Provider"
+      ]
+    }
+  },
+  "patterns": {
+    "share-state": {
+      "question": "Preciso compartilhar estado entre componentes distantes",
+      "pattern": "Context API + useContext",
+      "explanation": "Context é a forma nativa do React de evitar prop drilling. Crie um Provider no nível mais alto necessário e consuma com useContext nos componentes que precisam.",
+      "when": [
+        "Tema, idioma, auth — dados usados em muitos componentes",
+        "Evitar passar props por 3+ níveis",
+        "Estado que muda pouco (baixa frequência de update)"
+      ],
+      "avoid": [
+        "Estado que muda a cada keystroke (causa re-render em todos consumers)",
+        "Dados que só 1-2 componentes usam (prop normal basta)"
+      ]
+    },
+    "prevent-rerender": {
+      "question": "Meu componente re-renderiza demais e a UI está lenta",
+      "pattern": "React.memo + useMemo + useCallback",
+      "explanation": "React re-renderiza um componente quando seu pai re-renderiza. memo() pula o re-render se as props não mudaram. useMemo e useCallback estabilizam valores e funções para que memo funcione.",
+      "when": [
+        "Listas com 100+ itens que re-renderizam sem necessidade",
+        "Componentes com cálculos pesados (sort, filter, transform)",
+        "Componentes filhos estáveis que recebem funções como props"
+      ],
+      "avoid": [
+        "Otimizar prematuramente — meça primeiro com React DevTools Profiler",
+        "memo() em componentes que SEMPRE recebem props diferentes",
+        "useMemo/useCallback para valores simples (o overhead não compensa)"
+      ]
+    },
+    "form-validation": {
+      "question": "Preciso validar formulários complexos com boa UX",
+      "pattern": "React Hook Form + Zod",
+      "explanation": "React Hook Form gerencia estado do form sem re-renders desnecessários. Zod define o schema de validação e infere o tipo TypeScript automaticamente.",
+      "when": [
+        "Forms com 3+ campos e regras de validação",
+        "Validação em tempo real (on blur/change)",
+        "Forms que precisam de performance (sem re-render a cada keystroke)"
+      ],
+      "avoid": [
+        "Forms simples com 1-2 campos (useState basta)",
+        "Quando não precisa de validação client-side"
+      ]
+    },
+    "async-state": {
+      "question": "Preciso gerenciar estado assíncrono (loading, error, data)",
+      "pattern": "TanStack Query (React Query)",
+      "explanation": "TanStack Query gerencia todo o ciclo de vida de dados remotos: fetch, cache, revalidação, retry, optimistic updates. Elimina useState + useEffect para fetch de dados.",
+      "when": [
+        "Qualquer fetch de API que precisa de cache e revalidação",
+        "Listas com paginação, infinite scroll ou polling",
+        "Mutations que precisam atualizar cache local"
+      ],
+      "avoid": [
+        "Dados estáticos que nunca mudam (importe direto ou use getStaticProps)",
+        "Estado puramente client-side (form state, UI toggles)"
+      ]
+    },
+    "type-narrowing": {
+      "question": "Preciso lidar com diferentes tipos de resposta de forma segura",
+      "pattern": "Discriminated Unions + Type Narrowing",
+      "explanation": "Discriminated unions usam uma propriedade literal (type, status, kind) para que o TypeScript saiba automaticamente qual variante é qual dentro de um switch/if.",
+      "when": [
+        "Respostas de API com múltiplos formatos (success/error/loading)",
+        "Componentes com variantes mutuamente exclusivas",
+        "State machines (pedido: pendente → processando → concluído → cancelado)"
+      ],
+      "avoid": [
+        "Quando o tipo é simples e não tem variantes (use type guard simples)",
+        "Quando todas as propriedades são sempre presentes (interface normal basta)"
+      ]
+    },
+    "render-optimization": {
+      "question": "Preciso renderizar uma lista com milhares de itens",
+      "pattern": "Virtualização com TanStack Virtual",
+      "explanation": "Virtualização só renderiza os itens visíveis na viewport. Em vez de 10.000 DOM nodes, renderiza ~20. A diferença de performance é brutal.",
+      "when": [
+        "Listas com 500+ itens (tabelas, feeds, logs)",
+        "Quando scroll fica lento ou janky",
+        "Listas com itens de altura variável (estimateSize)"
+      ],
+      "avoid": [
+        "Listas com menos de ~100 itens (overhead não compensa)",
+        "Quando precisa de SEO em todos os itens (virtualização esconde do crawler)"
+      ]
+    },
+    "conditional-style": {
+      "question": "Preciso aplicar estilos condicionais sem bagunçar o JSX",
+      "pattern": "clsx/cn + Tailwind Variants",
+      "explanation": "A função cn() (clsx + tailwind-merge) concatena classes condicionalmente e resolve conflitos do Tailwind. É o padrão usado pelo shadcn/ui e toda a comunidade Tailwind.",
+      "when": [
+        "Qualquer componente com estilos que mudam por estado ou prop",
+        "Componentes reutilizáveis que precisam aceitar className externo",
+        "Sistemas de design com múltiplas variantes (button, badge, alert)"
+      ],
+      "avoid": [
+        "Estilos que nunca mudam (use classes estáticas direto)",
+        "Lógica de estilo muito complexa (considere CSS Modules ou styled-components)"
+      ]
+    },
+    "fetch-data": {
+      "question": "Qual a melhor forma de buscar dados em um componente?",
+      "pattern": "useEffect + fetch (básico) ou Server Components (Next.js)",
+      "explanation": "Para buscar dados, use useEffect com fetch em componentes client-side, ou aproveite Server Components do Next.js para buscar no servidor sem JavaScript no client.",
+      "when": [
+        "Qualquer componente que precisa mostrar dados de uma API",
+        "Server Components: dados estáticos ou que podem ser buscados no servidor",
+        "Client Components: dados que dependem de interação do usuário"
+      ],
+      "avoid": [
+        "Fetch dentro de event handlers (use para ações, não para dados iniciais)",
+        "Fetch sem AbortController em useEffect (causa memory leaks)"
+      ]
+    },
+    "error-recovery": {
+      "question": "Como implementar error recovery gracioso em produção?",
+      "pattern": "Error Boundaries + Suspense + Retry Pattern",
+      "explanation": "Combine Error Boundaries para catch de erros de render, Suspense para loading states, e um retry pattern para dar ao usuário a opção de tentar novamente sem recarregar a página.",
+      "when": [
+        "Dashboards com múltiplas seções independentes",
+        "Componentes que dependem de APIs externas (podem falhar)",
+        "Qualquer app em produção que precisa de resiliência"
+      ],
+      "avoid": [
+        "Erros em event handlers (Error Boundaries não capturam — use try/catch)",
+        "Erros em código assíncrono fora do render (use Result pattern)"
+      ]
+    }
+  },
+  "quickTips": {
+    "key-unique": {
+      "tip": "Nunca use index como key em listas que mudam",
+      "detail": "Use um ID único e estável (como id do banco). Index causa bugs visuais silenciosos quando itens são reordenados ou removidos — o React reutiliza o DOM errado.",
+      "category": "React"
+    },
+    "optional-chaining": {
+      "tip": "Use optional chaining (?.) em vez de && encadeado",
+      "detail": "user?.address?.city é mais limpo e seguro que user && user.address && user.address.city. Funciona com chamadas de função também: obj.method?.()",
+      "category": "JavaScript"
+    },
+    "fragment-div": {
+      "tip": "Use <></> em vez de <div> quando só precisa agrupar JSX",
+      "detail": "Fragments não criam nó extra no DOM. Divs desnecessárias quebram layouts CSS (flex, grid) e poluem a árvore DOM sem razão.",
+      "category": "React"
+    },
+    "const-let": {
+      "tip": "Prefira const sempre — só use let quando realmente precisa reatribuir",
+      "detail": "const comunica intenção: esse valor não muda. Facilita code review e evita reatribuições acidentais. Em ~95% dos casos, const é suficiente.",
+      "category": "JavaScript"
+    },
+    "updater-function": {
+      "tip": "Use updater function no setState quando depende do valor anterior",
+      "detail": "setCount(count + 1) pode usar valor stale em batched updates. setCount(prev => prev + 1) sempre usa o valor mais recente. Essencial em event handlers assíncronos.",
+      "category": "React"
+    },
+    "abort-controller": {
+      "tip": "Sempre use AbortController em fetches dentro de useEffect",
+      "detail": "Sem abort, trocar de página rapidamente causa race conditions — a resposta do fetch anterior sobrescreve a nova. AbortController cancela requests pendentes no cleanup.",
+      "category": "Performance"
+    },
+    "as-const": {
+      "tip": "Use 'as const' para inferir tipos literais em vez de string genérica",
+      "detail": "const roles = ['admin', 'user'] as const infere tipo readonly ['admin', 'user'] em vez de string[]. Permite extrair union types: type Role = typeof roles[number]",
+      "category": "TypeScript"
+    },
+    "error-boundary": {
+      "tip": "Sempre envolva rotas e seções independentes com Error Boundaries",
+      "detail": "Um erro em um componente filho derruba toda a árvore React. Error Boundaries isolam crashes — a sidebar pode quebrar sem derrubar a página inteira.",
+      "category": "React"
+    },
+    "barrel-files": {
+      "tip": "Evite barrel files (index.ts) em projetos grandes — eles matam tree-shaking",
+      "detail": "Importar de um index.ts força o bundler a avaliar todos os re-exports. Em monorepos, isso pode adicionar centenas de KB ao bundle. Importe direto do arquivo fonte.",
+      "category": "Architecture"
+    },
+    "server-components": {
+      "tip": "Componentes que só mostram dados devem ser Server Components — não adicione 'use client' sem necessidade",
+      "detail": "Server Components rodam no servidor = zero JavaScript no bundle do client. Só adicione 'use client' quando precisa de hooks, event handlers ou browser APIs.",
+      "category": "Next.js"
+    },
+    "composition-over-config": {
+      "tip": "Prefira composição sobre configuração em componentes públicos",
+      "detail": "Em vez de <Card showHeader showFooter headerTitle='...' footerAction='...'>, use <Card><CardHeader>...</CardHeader><CardFooter>...</CardFooter></Card>. Mais flexível, tipado e extensível.",
+      "category": "Patterns"
+    },
+    "use-sync-external-store": {
+      "tip": "Use useSyncExternalStore para integrar stores externos com React 18+",
+      "detail": "É o hook oficial para sincronizar React com qualquer fonte de dados externa (localStorage, WebSocket, Redux-like stores). Garante consistência com concurrent rendering.",
+      "category": "React"
+    }
+  }
+}

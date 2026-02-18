@@ -5,6 +5,7 @@ import aiInnovation from "./aiInnovation.json";
 import chat from "./chat.json";
 import codeReviewPage from "./codeReviewPage.json";
 import contact from "./contact.json";
+import devResourcesData from "./devResourcesData.json";
 import devResourcesPage from "./devResourcesPage.json";
 import experience from "./experience.json";
 import footer from "./footer.json";
@@ -41,6 +42,7 @@ export default {
   aiInnovation,
   codeReviewPage,
   contact,
+  devResourcesData,
   devResourcesPage,
   experience,
   footer,

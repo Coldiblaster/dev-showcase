@@ -111,5 +111,8 @@
     "title": "Quer trocar uma ideia?",
     "description": "Se voce curtiu essas dicas, vamos conversar sobre como aplicar IA no seu fluxo de desenvolvimento.",
     "button": "Voltar ao Portfolio"
+  },
+  "sectionNav": {
+    "tools": "Ferramentas"
   }
 }

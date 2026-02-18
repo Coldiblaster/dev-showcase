@@ -1,37 +1,51 @@
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
-import { getMessages } from "next-intl/server";
+import { getLocale, getMessages } from "next-intl/server";
 
 import {
   CONTENT_ITEMS,
   type ContentItem,
   getContentBySlug,
 } from "@/data/content";
-import { AITips } from "@/features/guides/ai-tips";
-import { DevResourcesPage } from "@/features/guides/dev-resources";
-import { ReactQueryTips } from "@/features/guides/react-query-tips";
-import { SecurityTips } from "@/features/guides/security-tips";
-import { TailwindTips } from "@/features/guides/tailwind-tips";
-import { AiChatbotShowcase } from "@/features/implementations/ai-chatbot-showcase";
-import { CodeReviewShowcase } from "@/features/implementations/code-review";
-import { I18nShowcase } from "@/features/implementations/i18n-showcase";
-import { SeoShowcase } from "@/features/implementations/seo-showcase";
 import { buildPageMetadata } from "@/lib/seo";
 
 /**
- * Mapeamento de componentes disponíveis para renderização dinâmica.
- * Adicione novos componentes aqui conforme necessário.
+ * Mapeamento de componentes com lazy loading.
+ * Cada rota carrega apenas o bundle do seu componente.
  */
 const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
-  I18nShowcase,
-  SeoShowcase,
-  AiChatbotShowcase,
-  CodeReviewShowcase,
-  AITips,
-  TailwindTips,
-  ReactQueryTips,
-  DevResourcesPage,
-  SecurityTips,
+  I18nShowcase: dynamic(() =>
+    import("@/features/implementations/i18n-showcase").then((m) => m.I18nShowcase),
+  ),
+  SeoShowcase: dynamic(() =>
+    import("@/features/implementations/seo-showcase").then((m) => m.SeoShowcase),
+  ),
+  AiChatbotShowcase: dynamic(() =>
+    import("@/features/implementations/ai-chatbot-showcase").then(
+      (m) => m.AiChatbotShowcase,
+    ),
+  ),
+  CodeReviewShowcase: dynamic(() =>
+    import("@/features/implementations/code-review").then(
+      (m) => m.CodeReviewShowcase,
+    ),
+  ),
+  AITips: dynamic(() =>
+    import("@/features/guides/ai-tips").then((m) => m.AITips),
+  ),
+  TailwindTips: dynamic(() =>
+    import("@/features/guides/tailwind-tips").then((m) => m.TailwindTips),
+  ),
+  ReactQueryTips: dynamic(() =>
+    import("@/features/guides/react-query-tips").then((m) => m.ReactQueryTips),
+  ),
+  DevResourcesPage: dynamic(() =>
+    import("@/features/guides/dev-resources").then((m) => m.DevResourcesPage),
+  ),
+  SecurityTips: dynamic(() =>
+    import("@/features/guides/security-tips").then((m) => m.SecurityTips),
+  ),
 };
 
 /**
@@ -92,10 +106,12 @@ export async function generateMetadataForSlug(
   };
   const prefix = CATEGORY_PATH_MAP[content.category] ?? "dicas";
 
+  const locale = await getLocale();
   return buildPageMetadata({
     title: searchItems[slug]?.title ?? content.title,
     description: searchItems[slug]?.description ?? content.description,
     path: `/${prefix}/${content.slug}`,
+    locale,
   });
 }
 

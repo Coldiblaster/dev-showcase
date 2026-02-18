@@ -8,6 +8,7 @@ import type aiInnovation from "../../../messages/pt-BR/aiInnovation.json";
 import type chat from "../../../messages/pt-BR/chat.json";
 import type codeReviewPage from "../../../messages/pt-BR/codeReviewPage.json";
 import type contact from "../../../messages/pt-BR/contact.json";
+import type devResourcesData from "../../../messages/pt-BR/devResourcesData.json";
 import type devResourcesPage from "../../../messages/pt-BR/devResourcesPage.json";
 import type experience from "../../../messages/pt-BR/experience.json";
 import type footer from "../../../messages/pt-BR/footer.json";
@@ -44,6 +45,7 @@ export type Messages = {
   aiInnovation: typeof aiInnovation;
   codeReviewPage: typeof codeReviewPage;
   contact: typeof contact;
+  devResourcesData: typeof devResourcesData;
   devResourcesPage: typeof devResourcesPage;
   experience: typeof experience;
   footer: typeof footer;

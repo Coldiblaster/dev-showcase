@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { CTASection } from "@/components/cta-section";
 import { HeroSection } from "@/components/hero-section";
 import { SectionDivider } from "@/components/section-divider";
+import { SectionNav } from "@/components/section-nav";
 import { PERSONAL } from "@/lib/constants";
 
 import { AISecuritySection } from "./ai-security-section";
@@ -31,6 +32,16 @@ export function SecurityTips() {
         description={t("hero.description")}
         warning={t("hero.warning")}
       />
+      <SectionNav
+        sections={[
+          { id: "overview", label: t("sectionNav.overview") },
+          { id: "frontend", label: "Frontend" },
+          { id: "backend", label: "Backend" },
+          { id: "ai-security", label: "IA" },
+          { id: "checklist", label: "Checklist" },
+        ]}
+      />
+
       <OverviewSection />
       <SectionDivider />
       <FrontendSection />

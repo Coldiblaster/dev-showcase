@@ -22,7 +22,7 @@ export function FrontendSection() {
   const t = useTranslations("securityPage");
 
   return (
-    <SectionWrapper>
+    <SectionWrapper id="frontend">
       <AnimatedSection>
         <SectionHeader
           icon={Lock}

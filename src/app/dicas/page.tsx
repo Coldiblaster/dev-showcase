@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { Metadata } from "next";
 import Link from "next/link";
-import { getMessages, getTranslations } from "next-intl/server";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -24,11 +24,15 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations("nav");
+  const [t, locale] = await Promise.all([
+    getTranslations("nav"),
+    getLocale(),
+  ]);
   return buildPageMetadata({
     title: t("tips"),
     description: t("tipsDesc"),
     path: "/dicas",
+    locale,
   });
 }
 

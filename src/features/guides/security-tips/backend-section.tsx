@@ -19,7 +19,7 @@ export function BackendSection() {
   const t = useTranslations("securityPage");
 
   return (
-    <SectionWrapper>
+    <SectionWrapper id="backend">
       <AnimatedSection>
         <SectionHeader
           icon={Server}

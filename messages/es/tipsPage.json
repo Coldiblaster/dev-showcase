@@ -212,5 +212,8 @@
     "title": "¿Quieres intercambiar ideas?",
     "description": "Si te han gustado estos consejos, hablemos sobre cómo aplicar la IA en tu flujo de desarrollo.",
     "button": "Volver al portafolio"
+  },
+  "sectionNav": {
+    "tools": "Herramientas"
   }
 }

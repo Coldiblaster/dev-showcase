@@ -46,6 +46,10 @@ interface PatternFinderSectionProps {
 
 export function PatternFinderSection({ level }: PatternFinderSectionProps) {
   const t = useTranslations("devResourcesPage.patternFinder");
+  const tData = useTranslations("devResourcesData.patterns") as unknown as {
+    (key: string): string;
+    raw(key: string): unknown;
+  };
   const tLevel = useTranslations("devResourcesPage.levelSelector.levels");
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -76,17 +80,17 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
   if (filteredScenarios.length === 0) return null;
 
   return (
-    <section id="patterns" className="relative px-6 py-16 md:py-32">
+    <section id="patterns" className="relative px-4 py-16 md:px-6 md:py-32">
       <div className="mx-auto max-w-4xl">
         <AnimatedSection>
-          <div className="mb-8 text-center md:mb-12">
+          <div className="mb-6 text-center md:mb-12">
             <Badge variant="secondary" className="mb-4 font-mono text-xs">
               {t("badge")}
             </Badge>
-            <h2 className="mb-4 text-balance text-4xl font-bold tracking-tight md:text-5xl">
+            <h2 className="mb-3 text-balance text-3xl font-bold tracking-tight md:mb-4 md:text-5xl">
               {t("title")}
             </h2>
-            <p className="mx-auto max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
+            <p className="mx-auto max-w-2xl text-pretty text-sm text-muted-foreground md:text-lg">
               {t("description")}
             </p>
           </div>
@@ -106,33 +110,35 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
               const isExpanded = expandedId === scenario.id;
               const contentId = `pattern-content-${scenario.id}`;
 
+              const whenItems = tData.raw(`${scenario.id}.when`) as string[];
+              const avoidItems = tData.raw(`${scenario.id}.avoid`) as string[];
+
               return (
                 <AnimatedSection key={scenario.id} delay={0.1 + index * 0.05}>
-                  <Card className="overflow-hidden border-border bg-card">
-                    {/* Question button */}
+                  <Card className="border-border bg-card">
                     <button
                       onClick={() => toggleExpand(scenario.id)}
                       aria-expanded={isExpanded}
                       aria-controls={contentId}
-                      className="flex w-full items-center gap-4 p-5 text-left transition-colors hover:bg-muted/50"
+                      className="flex w-full items-center gap-3 p-4 text-left transition-colors hover:bg-muted/50 md:gap-4 md:p-5"
                     >
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                        <Icon className="h-5 w-5 text-primary" />
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 md:h-10 md:w-10">
+                        <Icon className="h-4 w-4 text-primary md:h-5 md:w-5" />
                       </div>
 
-                      <div className="flex-1">
-                        <p className="font-semibold text-foreground">
-                          {scenario.question}
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-semibold text-foreground md:text-base">
+                          {String(tData.raw(`${scenario.id}.question`))}
                         </p>
-                        <div className="mt-1 flex items-center gap-2">
+                        <div className="mt-1 flex flex-wrap items-center gap-1.5 md:gap-2">
                           <Badge
                             variant="outline"
                             className={`text-[10px] ${levelColors[scenario.level]}`}
                           >
                             {tLevel(scenario.level)}
                           </Badge>
-                          <span className="text-xs text-muted-foreground">
-                            {scenario.pattern}
+                          <span className="text-[11px] text-muted-foreground md:text-xs">
+                            {String(tData.raw(`${scenario.id}.pattern`))}
                           </span>
                         </div>
                       </div>
@@ -140,12 +146,12 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
                       <motion.div
                         animate={{ rotate: isExpanded ? 180 : 0 }}
                         transition={{ duration: 0.2 }}
+                        className="shrink-0"
                       >
-                        <ChevronDown className="h-5 w-5 text-muted-foreground" />
+                        <ChevronDown className="h-4 w-4 text-muted-foreground md:h-5 md:w-5" />
                       </motion.div>
                     </button>
 
-                    {/* Expanded answer */}
                     <AnimatePresence>
                       {isExpanded && (
                         <motion.div
@@ -158,20 +164,18 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
                           transition={{ duration: 0.3 }}
                           className="overflow-hidden"
                         >
-                          <div className="border-t px-5 pb-5 pt-4">
-                            {/* Pattern name and explanation */}
-                            <div className="mb-4">
-                              <h4 className="mb-2 text-base font-semibold text-primary md:text-lg">
-                                {scenario.pattern}
+                          <div className="border-t px-4 pb-4 pt-3 md:px-5 md:pb-5 md:pt-4">
+                            <div className="mb-3 md:mb-4">
+                              <h4 className="mb-1.5 text-sm font-semibold text-primary md:mb-2 md:text-lg">
+                                {String(tData.raw(`${scenario.id}.pattern`))}
                               </h4>
-                              <p className="text-sm leading-relaxed text-muted-foreground">
-                                {scenario.explanation}
+                              <p className="text-xs leading-relaxed text-muted-foreground md:text-sm">
+                                {String(tData.raw(`${scenario.id}.explanation`))}
                               </p>
                             </div>
 
-                            {/* Code */}
-                            <div className="relative mb-4">
-                              <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-xs">
+                            <div className="relative mb-3 md:mb-4">
+                              <pre className="overflow-x-auto rounded-lg bg-muted p-3 text-[11px] leading-relaxed md:p-4 md:text-xs">
                                 <code className="font-mono">
                                   {scenario.code}
                                 </code>
@@ -179,8 +183,8 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
                               <Button
                                 size="sm"
                                 variant="secondary"
-                                aria-label={`${t("copy")} ${scenario.pattern}`}
-                                className="absolute right-2 top-2"
+                                aria-label={`${t("copy")} ${String(tData.raw(`${scenario.id}.pattern`))}`}
+                                className="absolute right-2 top-2 h-7 px-2 text-[10px] md:h-8 md:px-3 md:text-xs"
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   handleCopy(scenario.code, scenario.id);
@@ -192,17 +196,16 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
                               </Button>
                             </div>
 
-                            {/* When to use / Avoid */}
-                            <div className="grid gap-4 sm:grid-cols-2">
+                            <div className="grid gap-3 sm:grid-cols-2 md:gap-4">
                               <div>
-                                <p className="mb-2 text-sm font-semibold text-green-600">
+                                <p className="mb-1.5 text-xs font-semibold text-green-600 md:mb-2 md:text-sm">
                                   {t("whenToUse")}
                                 </p>
                                 <ul className="space-y-1.5">
-                                  {scenario.when.map((item, i) => (
+                                  {whenItems.map((item, i) => (
                                     <li
                                       key={i}
-                                      className="flex gap-2 text-xs text-muted-foreground"
+                                      className="flex gap-1.5 text-[11px] text-muted-foreground md:gap-2 md:text-xs"
                                     >
                                       <Check className="mt-0.5 h-3 w-3 shrink-0 text-green-500" />
                                       <span>{item}</span>
@@ -211,14 +214,14 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
                                 </ul>
                               </div>
                               <div>
-                                <p className="mb-2 text-sm font-semibold text-destructive">
+                                <p className="mb-1.5 text-xs font-semibold text-destructive md:mb-2 md:text-sm">
                                   {t("whenToAvoid")}
                                 </p>
                                 <ul className="space-y-1.5">
-                                  {scenario.avoid.map((item, i) => (
+                                  {avoidItems.map((item, i) => (
                                     <li
                                       key={i}
-                                      className="flex gap-2 text-xs text-muted-foreground"
+                                      className="flex gap-1.5 text-[11px] text-muted-foreground md:gap-2 md:text-xs"
                                     >
                                       <X className="mt-0.5 h-3 w-3 shrink-0 text-destructive" />
                                       <span>{item}</span>

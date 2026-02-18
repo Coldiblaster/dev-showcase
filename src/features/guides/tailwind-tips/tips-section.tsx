@@ -14,7 +14,7 @@ export function TipsSection() {
   const t = useTranslations("tailwindTipsPage");
 
   return (
-    <section className="px-6 py-12 md:py-20">
+    <section id="tips" className="px-6 py-12 md:py-20">
       <div className="mx-auto max-w-5xl">
         <AnimatedSection>
           <div className="mb-8 flex items-center gap-3 md:mb-12">

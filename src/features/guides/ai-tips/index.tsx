@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { CTASection } from "@/components/cta-section";
 import { HeroSection } from "@/components/hero-section";
 import { SectionDivider } from "@/components/section-divider";
+import { SectionNav } from "@/components/section-nav";
 
 import { CopilotSection } from "./copilot-section";
 import { MindsetSection } from "./mindset-section";
@@ -26,6 +27,16 @@ export function AITips() {
         subtitle={t("hero.subtitle")}
         description={t("hero.description")}
         warning={t("hero.warning")}
+      />
+
+      <SectionNav
+        sections={[
+          { id: "v0", label: "v0" },
+          { id: "copilot", label: "Copilot" },
+          { id: "prompts", label: "Prompts" },
+          { id: "tools", label: t("sectionNav.tools") },
+          { id: "mindset", label: "Mindset" },
+        ]}
       />
 
       <V0Section />

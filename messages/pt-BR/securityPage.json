@@ -129,5 +129,8 @@
     "title": "Pronto para proteger sua aplicação?",
     "description": "Volte ao portfolio e explore mais conteúdos ou veja o código no GitHub.",
     "github": "Ver no GitHub"
+  },
+  "sectionNav": {
+    "overview": "Visão Geral"
   }
 }

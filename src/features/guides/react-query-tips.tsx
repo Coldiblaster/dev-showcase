@@ -7,6 +7,7 @@ import type reactQueryTipsPage from "@/../messages/pt-BR/reactQueryTipsPage.json
 import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { CTASection } from "@/components/cta-section";
+import { SectionNav } from "@/components/section-nav";
 import { FeatureCard } from "@/components/feature-card";
 import { HeroSection } from "@/components/hero-section";
 import { ResourceLink } from "@/components/resource-link";
@@ -46,7 +47,17 @@ export function ReactQueryTips() {
         warning={t("hero.warning")}
       />
 
-      <section className="px-6 py-12 md:py-20">
+      <SectionNav
+        sections={[
+          { id: "setup", label: "Setup" },
+          { id: "use-query", label: "useQuery" },
+          { id: "use-mutation", label: "useMutation" },
+          { id: "best-practices", label: t("sectionNav.bestPractices") },
+          { id: "resources", label: t("sectionNav.resources") },
+        ]}
+      />
+
+      <section id="setup" className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader
@@ -78,7 +89,7 @@ export function ReactQueryTips() {
         <Separator />
       </div>
 
-      <section className="px-6 py-12 md:py-20">
+      <section id="use-query" className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader
@@ -112,7 +123,7 @@ export function ReactQueryTips() {
         <Separator />
       </div>
 
-      <section className="px-6 py-12 md:py-20">
+      <section id="use-mutation" className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader
@@ -141,7 +152,7 @@ export function ReactQueryTips() {
         <Separator />
       </div>
 
-      <section className="px-6 py-12 md:py-20 bg-secondary/20">
+      <section id="best-practices" className="px-6 py-12 md:py-20 bg-secondary/20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader
@@ -161,7 +172,7 @@ export function ReactQueryTips() {
         </div>
       </section>
 
-      <section className="px-6 py-12 md:py-20">
+      <section id="resources" className="px-6 py-12 md:py-20">
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader

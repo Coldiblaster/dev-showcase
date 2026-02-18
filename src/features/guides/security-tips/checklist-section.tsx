@@ -15,7 +15,7 @@ export function ChecklistSection() {
   const t = useTranslations("securityPage");
 
   return (
-    <SectionWrapper variant="alternate">
+    <SectionWrapper id="checklist" variant="alternate">
       <AnimatedSection>
         <SectionHeader
           icon={Check}

@@ -3,11 +3,11 @@ import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
+import dynamic from "next/dynamic";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 
-import { ChatWidget } from "@/components/chat/chat-widget";
 import { CopyFeedbackProvider } from "@/components/copy-feedback";
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
@@ -15,10 +15,16 @@ import { MobileActionBar } from "@/components/mobile-action-bar";
 import { Navbar } from "@/components/navbar";
 import { RecaptchaProvider } from "@/components/recaptcha-provider";
 import { ScrollTopButton } from "@/components/scroll-top";
-import { TerminalEasterEgg } from "@/components/terminal";
 import { PERSONAL } from "@/lib/constants";
 import { resolveLocale } from "@/lib/i18n/request";
 import { SITE_AUTHOR, SITE_NAME, SITE_URL } from "@/lib/seo";
+
+const ChatWidget = dynamic(() =>
+  import("@/components/chat/chat-widget").then((m) => m.ChatWidget),
+);
+const TerminalEasterEgg = dynamic(() =>
+  import("@/components/terminal").then((m) => m.TerminalEasterEgg),
+);
 
 const inter = Inter({
   subsets: ["latin"],

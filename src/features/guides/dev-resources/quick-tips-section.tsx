@@ -17,6 +17,10 @@ interface QuickTipsSectionProps {
 
 export function QuickTipsSection({ level }: QuickTipsSectionProps) {
   const t = useTranslations("devResourcesPage.quickTips");
+  const tData = useTranslations("devResourcesData.quickTips") as unknown as {
+    (key: string): string;
+    raw(key: string): unknown;
+  };
   const tLevel = useTranslations("devResourcesPage.levelSelector.levels");
 
   const filteredTips = useMemo(
@@ -30,17 +34,17 @@ export function QuickTipsSection({ level }: QuickTipsSectionProps) {
   if (filteredTips.length === 0) return null;
 
   return (
-    <section id="tips" className="relative px-6 py-16 md:py-32">
+    <section id="tips" className="relative px-4 py-16 md:px-6 md:py-32">
       <div className="mx-auto max-w-7xl">
         <AnimatedSection>
-          <div className="mb-8 text-center md:mb-12">
+          <div className="mb-6 text-center md:mb-12">
             <Badge variant="secondary" className="mb-4 font-mono text-xs">
               {t("badge")}
             </Badge>
-            <h2 className="mb-4 text-balance text-4xl font-bold tracking-tight md:text-5xl">
+            <h2 className="mb-3 text-balance text-3xl font-bold tracking-tight md:mb-4 md:text-5xl">
               {t("title")}
             </h2>
-            <p className="mx-auto max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
+            <p className="mx-auto max-w-2xl text-pretty text-sm text-muted-foreground md:text-lg">
               {t("description")}
             </p>
           </div>
@@ -53,18 +57,18 @@ export function QuickTipsSection({ level }: QuickTipsSectionProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-3 sm:grid-cols-2 md:gap-4 lg:grid-cols-3"
           >
             {filteredTips.map((tip, index) => (
               <AnimatedSection key={tip.id} delay={0.1 + index * 0.05}>
-                <div className="group relative h-full rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/30">
-                  <div className="mb-3 flex items-start justify-between gap-3">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                      <Lightbulb className="h-4 w-4 text-primary" />
+                <div className="group relative h-full rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary/30 md:p-5">
+                  <div className="mb-2.5 flex items-start justify-between gap-2 md:mb-3 md:gap-3">
+                    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 md:h-8 md:w-8">
+                      <Lightbulb className="h-3.5 w-3.5 text-primary md:h-4 md:w-4" />
                     </div>
                     <div className="flex gap-1.5">
                       <Badge variant="outline" className="text-[10px]">
-                        {tip.category}
+                        {String(tData.raw(`${tip.id}.category`))}
                       </Badge>
                       <Badge
                         variant="outline"
@@ -75,11 +79,11 @@ export function QuickTipsSection({ level }: QuickTipsSectionProps) {
                     </div>
                   </div>
 
-                  <p className="mb-2 font-semibold leading-snug text-foreground">
-                    {tip.tip}
+                  <p className="mb-1.5 text-sm font-semibold leading-snug text-foreground md:mb-2 md:text-base">
+                    {String(tData.raw(`${tip.id}.tip`))}
                   </p>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {tip.detail}
+                  <p className="text-xs leading-relaxed text-muted-foreground md:text-sm">
+                    {String(tData.raw(`${tip.id}.detail`))}
                   </p>
                 </div>
               </AnimatedSection>
