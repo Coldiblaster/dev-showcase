@@ -7,7 +7,7 @@ import { CTASection } from "@/components/cta-section";
 import { HeroSection } from "@/components/hero-section";
 import { SectionDivider } from "@/components/section-divider";
 import { SectionNav } from "@/components/section-nav";
-import { PERSONAL } from "@/lib/constants";
+import { REPOS } from "@/lib/constants";
 
 import { AISecuritySection } from "./ai-security-section";
 import { BackendSection } from "./backend-section";
@@ -62,7 +62,7 @@ export function SecurityTips() {
         description={t("cta.description")}
         secondaryButton={
           <a
-            href={PERSONAL.github}
+            href={REPOS.devShowcase}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-lg border border-input bg-background px-4 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"

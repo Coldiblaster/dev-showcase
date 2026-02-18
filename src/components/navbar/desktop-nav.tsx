@@ -5,7 +5,6 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Fragment } from "react";
 
 import type { NavCategory } from "./nav-data";
 import { navGroups } from "./nav-data";

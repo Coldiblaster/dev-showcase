@@ -19,7 +19,7 @@ export function ContactSidebar() {
   const whatsappLink = buildWhatsAppLink();
 
   return (
-    <div className="flex flex-col gap-5 md:col-span-2">
+    <div className="flex flex-col gap-5">
       {/* WhatsApp CTA */}
       <CardBlur>
         <div className="mb-4 flex items-center gap-2">

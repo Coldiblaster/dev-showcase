@@ -16,7 +16,11 @@ export function SystemPromptSection() {
   const tips = t.raw("systemPrompt.tips") as string[];
 
   return (
-    <section ref={ref} className="bg-secondary/20 px-4 py-12 md:px-6 md:py-24">
+    <section
+      ref={ref}
+      id="system-prompt"
+      className="bg-secondary/20 px-4 py-12 md:px-6 md:py-24"
+    >
       <div className="mx-auto max-w-5xl">
         <motion.div
           initial="hidden"

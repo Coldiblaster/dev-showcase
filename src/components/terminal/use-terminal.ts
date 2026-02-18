@@ -3,9 +3,8 @@
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { useScrollLock } from "@/hooks/use-scroll-lock";
-
 import { CONTENT_ITEMS } from "@/data/content";
+import { useScrollLock } from "@/hooks/use-scroll-lock";
 
 import {
   AVAILABLE_COMMANDS,

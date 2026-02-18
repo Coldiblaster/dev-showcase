@@ -168,7 +168,10 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
 
                 <Tabs defaultValue="comparison">
                   <TabsList className="grid w-full grid-cols-3">
-                    <TabsTrigger value="comparison" className="text-xs md:text-sm">
+                    <TabsTrigger
+                      value="comparison"
+                      className="text-xs md:text-sm"
+                    >
                       {t("tabs.comparison")}
                     </TabsTrigger>
                     <TabsTrigger value="before" className="text-xs md:text-sm">
@@ -195,7 +198,10 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
                         </pre>
                         <ul className="space-y-1.5 md:space-y-2">
                           {issues.map((issue, i) => (
-                            <li key={i} className="flex gap-1.5 text-xs text-destructive md:gap-2 md:text-sm">
+                            <li
+                              key={i}
+                              className="flex gap-1.5 text-xs text-destructive md:gap-2 md:text-sm"
+                            >
                               <X className="mt-0.5 h-3.5 w-3.5 shrink-0 md:h-4 md:w-4" />
                               <span>{issue}</span>
                             </li>
@@ -217,7 +223,10 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
                         </pre>
                         <ul className="space-y-1.5 md:space-y-2">
                           {improvements.map((improvement, i) => (
-                            <li key={i} className="flex gap-1.5 text-xs text-green-500 md:gap-2 md:text-sm">
+                            <li
+                              key={i}
+                              className="flex gap-1.5 text-xs text-green-500 md:gap-2 md:text-sm"
+                            >
                               <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 md:h-4 md:w-4" />
                               <span>{improvement}</span>
                             </li>
@@ -235,7 +244,10 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
                     </pre>
                     <ul className="mt-3 space-y-1.5 md:mt-4 md:space-y-2">
                       {issues.map((issue, i) => (
-                        <li key={i} className="flex gap-1.5 text-xs text-destructive md:gap-2 md:text-sm">
+                        <li
+                          key={i}
+                          className="flex gap-1.5 text-xs text-destructive md:gap-2 md:text-sm"
+                        >
                           <X className="mt-0.5 h-3.5 w-3.5 shrink-0 md:h-4 md:w-4" />
                           <span>{issue}</span>
                         </li>
@@ -249,7 +261,10 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
                     </pre>
                     <ul className="mt-3 space-y-1.5 md:mt-4 md:space-y-2">
                       {improvements.map((improvement, i) => (
-                        <li key={i} className="flex gap-1.5 text-xs text-green-500 md:gap-2 md:text-sm">
+                        <li
+                          key={i}
+                          className="flex gap-1.5 text-xs text-green-500 md:gap-2 md:text-sm"
+                        >
                           <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 md:h-4 md:w-4" />
                           <span>{improvement}</span>
                         </li>

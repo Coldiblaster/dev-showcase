@@ -1,6 +1,6 @@
 "use client";
 
-import { ViewSource } from "@/components/view-source";
+import { SectionNav } from "@/components/section-nav";
 
 import { ChecklistSection } from "./checklist-section";
 import { ComparisonSection } from "./comparison-section";
@@ -11,12 +11,18 @@ import { MetadataSection } from "./metadata-section";
 import { OgImageSection } from "./og-image-section";
 import { OverviewSection } from "./overview-section";
 import { SitemapSection } from "./sitemap-section";
-import {
-  HERO_SECTION_SOURCE,
-  JSON_LD_SECTION_SOURCE,
-  METADATA_SECTION_SOURCE,
-} from "./source-snippets";
 import { WebVitalsSection } from "./web-vitals-section";
+
+const SEO_SECTIONS = [
+  { id: "overview", label: "Overview" },
+  { id: "metadata", label: "Metadata" },
+  { id: "og-image", label: "OG Image" },
+  { id: "json-ld", label: "JSON-LD" },
+  { id: "sitemap", label: "Sitemap" },
+  { id: "web-vitals", label: "Web Vitals" },
+  { id: "comparison", label: "Next vs Vite" },
+  { id: "checklist", label: "Checklist" },
+];
 
 /**
  * Showcase completo de SEO.
@@ -28,26 +34,14 @@ import { WebVitalsSection } from "./web-vitals-section";
 export function SeoShowcase() {
   return (
     <div>
-      <ViewSource
-        code={HERO_SECTION_SOURCE}
-        filePath="src/features/implementations/seo-showcase/hero-section.tsx"
-      >
-        <SeoHero />
-      </ViewSource>
+      <SeoHero />
+
+      <SectionNav sections={SEO_SECTIONS} triggerId="overview" />
+
       <OverviewSection />
-      <ViewSource
-        code={METADATA_SECTION_SOURCE}
-        filePath="src/features/implementations/seo-showcase/metadata-section.tsx"
-      >
-        <MetadataSection />
-      </ViewSource>
+      <MetadataSection />
       <OgImageSection />
-      <ViewSource
-        code={JSON_LD_SECTION_SOURCE}
-        filePath="src/features/implementations/seo-showcase/json-ld-section.tsx"
-      >
-        <JsonLdSection />
-      </ViewSource>
+      <JsonLdSection />
       <SitemapSection />
       <WebVitalsSection />
       <ComparisonSection />

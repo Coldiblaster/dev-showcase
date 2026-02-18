@@ -42,7 +42,9 @@ export function LevelSelector({
             <h2 className="mb-2 text-2xl font-bold tracking-tight md:text-4xl">
               {t("title")}
             </h2>
-            <p className="text-sm text-muted-foreground md:text-base">{t("subtitle")}</p>
+            <p className="text-sm text-muted-foreground md:text-base">
+              {t("subtitle")}
+            </p>
           </div>
         </AnimatedSection>
 

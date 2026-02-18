@@ -62,7 +62,11 @@ export default function I18nTroubleshootingSection() {
   ];
 
   return (
-    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24 bg-secondary/20">
+    <section
+      ref={ref}
+      id="troubleshooting"
+      className="px-4 py-12 md:px-6 md:py-24 bg-secondary/20"
+    >
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"

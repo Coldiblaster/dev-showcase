@@ -16,7 +16,7 @@ export function OgImageSection() {
   const { ref, isInView } = useSectionInView();
 
   return (
-    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24">
+    <section ref={ref} id="og-image" className="px-4 py-12 md:px-6 md:py-24">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"

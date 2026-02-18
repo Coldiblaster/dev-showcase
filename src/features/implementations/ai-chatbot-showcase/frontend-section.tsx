@@ -18,7 +18,7 @@ export function FrontendSection() {
   const features = t.raw("frontend.features") as FeatureItem[];
 
   return (
-    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24">
+    <section ref={ref} id="frontend" className="px-4 py-12 md:px-6 md:py-24">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"

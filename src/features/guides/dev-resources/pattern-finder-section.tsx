@@ -170,7 +170,9 @@ export function PatternFinderSection({ level }: PatternFinderSectionProps) {
                                 {String(tData.raw(`${scenario.id}.pattern`))}
                               </h4>
                               <p className="text-xs leading-relaxed text-muted-foreground md:text-sm">
-                                {String(tData.raw(`${scenario.id}.explanation`))}
+                                {String(
+                                  tData.raw(`${scenario.id}.explanation`),
+                                )}
                               </p>
                             </div>
 

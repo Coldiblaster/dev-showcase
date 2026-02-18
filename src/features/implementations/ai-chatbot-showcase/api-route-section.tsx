@@ -16,7 +16,7 @@ export function ApiRouteSection() {
   const highlights = t.raw("apiRoute.highlights") as string[];
 
   return (
-    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24">
+    <section ref={ref} id="api-route" className="px-4 py-12 md:px-6 md:py-24">
       <div className="mx-auto max-w-5xl">
         <motion.div
           initial="hidden"

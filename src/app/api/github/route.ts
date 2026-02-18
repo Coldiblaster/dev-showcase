@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 
-/** Usuário do GitHub a ser consultado. */
-const GITHUB_USERNAME = "Coldiblaster";
+import { PERSONAL } from "@/lib/constants";
+
+const GITHUB_USERNAME = PERSONAL.githubUsername;
 /** TTL do cache em ms (1 hora). */
 const CACHE_TTL = 3600 * 1000; // 1 hour
 

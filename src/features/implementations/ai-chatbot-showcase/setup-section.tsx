@@ -25,7 +25,11 @@ export function SetupSection() {
   const steps = t.raw("setup.steps") as SetupStep[];
 
   return (
-    <section ref={ref} className="bg-secondary/20 px-4 py-12 md:px-6 md:py-24">
+    <section
+      ref={ref}
+      id="setup"
+      className="bg-secondary/20 px-4 py-12 md:px-6 md:py-24"
+    >
       <div className="mx-auto max-w-4xl">
         <motion.div
           initial="hidden"

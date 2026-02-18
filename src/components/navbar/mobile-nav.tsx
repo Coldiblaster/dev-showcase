@@ -34,7 +34,10 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           role="navigation"
           aria-label={t("mainMenu")}
           initial={{ height: 0, opacity: 0 }}
-          animate={{ height: `calc(100dvh - ${HEADER_HEIGHT} - 3.5rem)`, opacity: 1 }}
+          animate={{
+            height: `calc(100dvh - ${HEADER_HEIGHT} - 3.5rem)`,
+            opacity: 1,
+          }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.2 }}
           className="overflow-hidden border-t border-border/50 md:hidden"

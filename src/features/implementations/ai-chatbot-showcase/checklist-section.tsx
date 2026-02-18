@@ -18,7 +18,11 @@ export function ChecklistSection() {
   const items = t.raw("checklist.items") as ChecklistItem[];
 
   return (
-    <section ref={ref} className="bg-secondary/20 px-4 py-12 md:px-6 md:py-24">
+    <section
+      ref={ref}
+      id="checklist"
+      className="bg-secondary/20 px-4 py-12 md:px-6 md:py-24"
+    >
       <div className="mx-auto max-w-3xl">
         <motion.div
           initial="hidden"

@@ -50,7 +50,10 @@ export function SearchResults({
                   >
                     {result.title}
                   </p>
-                  <Badge variant="outline" className="text-[10px] font-medium md:text-xs">
+                  <Badge
+                    variant="outline"
+                    className="text-[10px] font-medium md:text-xs"
+                  >
                     {config.label}
                   </Badge>
                 </div>

@@ -34,7 +34,11 @@ export default function I18nNewVsLegacySection() {
   ];
 
   return (
-    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24 bg-secondary/20">
+    <section
+      ref={ref}
+      id="new-vs-legacy"
+      className="px-4 py-12 md:px-6 md:py-24 bg-secondary/20"
+    >
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"

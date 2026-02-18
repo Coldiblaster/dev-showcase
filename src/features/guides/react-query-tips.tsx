@@ -7,11 +7,11 @@ import type reactQueryTipsPage from "@/../messages/pt-BR/reactQueryTipsPage.json
 import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { CTASection } from "@/components/cta-section";
-import { SectionNav } from "@/components/section-nav";
 import { FeatureCard } from "@/components/feature-card";
 import { HeroSection } from "@/components/hero-section";
 import { ResourceLink } from "@/components/resource-link";
 import { SectionHeader } from "@/components/section-header";
+import { SectionNav } from "@/components/section-nav";
 import { TipItem } from "@/components/tip-item";
 import { Separator } from "@/components/ui/separator";
 
@@ -152,7 +152,10 @@ export function ReactQueryTips() {
         <Separator />
       </div>
 
-      <section id="best-practices" className="px-6 py-12 md:py-20 bg-secondary/20">
+      <section
+        id="best-practices"
+        className="px-6 py-12 md:py-20 bg-secondary/20"
+      >
         <div className="mx-auto max-w-5xl">
           <AnimatedSection>
             <SectionHeader

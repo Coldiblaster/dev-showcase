@@ -2,6 +2,8 @@
 
 import { useRef } from "react";
 
+import { SectionNav } from "@/components/section-nav";
+
 import { Architecture } from "./architecture-section";
 import { BestPractices } from "./best-practices-section";
 import { CTASection } from "./cta-section";
@@ -17,6 +19,17 @@ import { TranslationEngine } from "./translation-engine-section";
 import I18nTroubleshootingSection from "./troubleshooting-section";
 import { Workflow } from "./workflow-section";
 
+const I18N_SECTIONS = [
+  { id: "live-demo", label: "Demo" },
+  { id: "architecture", label: "Architecture" },
+  { id: "translation-engine", label: "Engine" },
+  { id: "performance", label: "Performance" },
+  { id: "methods", label: "Methods" },
+  { id: "workflow", label: "Workflow" },
+  { id: "best-practices", label: "Best Practices" },
+  { id: "troubleshooting", label: "Troubleshooting" },
+];
+
 /**
  * Showcase completo de internacionalização.
  *
@@ -31,6 +44,9 @@ export function I18nShowcase() {
   return (
     <div>
       <I18nHero onScrollToDemo={scrollToDemo} />
+
+      <SectionNav sections={I18N_SECTIONS} triggerId="live-demo" />
+
       <div ref={demoRef}>
         <LiveDemo />
       </div>

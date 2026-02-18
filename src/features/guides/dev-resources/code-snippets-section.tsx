@@ -63,7 +63,9 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
     return levelSnippets.filter((snippet) => {
       const query = searchQuery.toLowerCase();
       const title = String(tData.raw(`${snippet.id}.title`)).toLowerCase();
-      const description = String(tData.raw(`${snippet.id}.description`)).toLowerCase();
+      const description = String(
+        tData.raw(`${snippet.id}.description`),
+      ).toLowerCase();
       const matchesSearch =
         !query ||
         title.includes(query) ||
@@ -188,19 +190,28 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
                       </div>
 
                       <TabsList className="grid w-full grid-cols-3">
-                        <TabsTrigger value="code" className="gap-1 text-xs md:gap-2 md:text-sm">
+                        <TabsTrigger
+                          value="code"
+                          className="gap-1 text-xs md:gap-2 md:text-sm"
+                        >
                           <Code className="h-3.5 w-3.5 md:h-4 md:w-4" />
                           <span className="hidden sm:inline">
                             {t("tabs.code")}
                           </span>
                         </TabsTrigger>
-                        <TabsTrigger value="usage" className="gap-1 text-xs md:gap-2 md:text-sm">
+                        <TabsTrigger
+                          value="usage"
+                          className="gap-1 text-xs md:gap-2 md:text-sm"
+                        >
                           <Play className="h-3.5 w-3.5 md:h-4 md:w-4" />
                           <span className="hidden sm:inline">
                             {t("tabs.usage")}
                           </span>
                         </TabsTrigger>
-                        <TabsTrigger value="explanation" className="gap-1 text-xs md:gap-2 md:text-sm">
+                        <TabsTrigger
+                          value="explanation"
+                          className="gap-1 text-xs md:gap-2 md:text-sm"
+                        >
                           <BookOpen className="h-3.5 w-3.5 md:h-4 md:w-4" />
                           <span className="hidden sm:inline">
                             {t("tabs.explanation")}
@@ -269,7 +280,9 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
 
                     {/* Explanation Tab */}
                     <TabsContent value="explanation" className="p-3 md:p-6">
-                      <SnippetExplanation text={String(tData.raw(`${snippet.id}.explanation`))} />
+                      <SnippetExplanation
+                        text={String(tData.raw(`${snippet.id}.explanation`))}
+                      />
                     </TabsContent>
                   </Tabs>
                 </Card>

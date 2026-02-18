@@ -28,9 +28,7 @@ export function buildPageMetadata(page: {
   locale?: string;
 }): Metadata {
   const url = `${SITE_URL}${page.path ?? ""}`;
-  const ogLocale = page.locale
-    ? toOpenGraphLocale(page.locale)
-    : "pt_BR";
+  const ogLocale = page.locale ? toOpenGraphLocale(page.locale) : "pt_BR";
 
   return {
     title: page.title,

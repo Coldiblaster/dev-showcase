@@ -71,7 +71,9 @@ export function AISecuritySection() {
         <p className="mb-8 max-w-3xl text-pretty leading-relaxed text-muted-foreground">
           {t.rich("aiSecurity.description", {
             strong: (chunks) => (
-              <strong className="font-semibold text-foreground">{chunks}</strong>
+              <strong className="font-semibold text-foreground">
+                {chunks}
+              </strong>
             ),
           })}
         </p>

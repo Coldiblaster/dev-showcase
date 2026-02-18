@@ -18,7 +18,11 @@ export function ArchitectureSection() {
   const items = t.raw("architecture.items") as ArchItem[];
 
   return (
-    <section ref={ref} className="bg-secondary/20 px-4 py-12 md:px-6 md:py-24">
+    <section
+      ref={ref}
+      id="architecture"
+      className="bg-secondary/20 px-4 py-12 md:px-6 md:py-24"
+    >
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial="hidden"

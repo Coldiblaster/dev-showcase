@@ -23,7 +23,7 @@ export function PricingSection() {
   const models = t.raw("pricing.models") as ModelInfo[];
 
   return (
-    <section ref={ref} className="px-4 py-12 md:px-6 md:py-24">
+    <section ref={ref} id="pricing" className="px-4 py-12 md:px-6 md:py-24">
       <div className="mx-auto max-w-5xl">
         <motion.div
           initial="hidden"

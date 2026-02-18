@@ -21,7 +21,7 @@ export function GitHubStatsSection() {
   const { stats, loading, error, retry } = useGitHubStats();
 
   return (
-    <section ref={ref} className="px-4 py-16 md:px-6 md:py-24">
+    <section ref={ref} id="github" className="px-4 py-16 md:px-6 md:py-24">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

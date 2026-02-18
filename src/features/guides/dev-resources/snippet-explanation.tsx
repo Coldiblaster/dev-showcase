@@ -53,7 +53,10 @@ function ExplanationBlock({ block }: { block: string }) {
     return (
       <ul className="space-y-1.5 pl-1">
         {lines.map((line, i) => (
-          <li key={i} className="flex gap-2 text-xs text-muted-foreground md:text-sm">
+          <li
+            key={i}
+            className="flex gap-2 text-xs text-muted-foreground md:text-sm"
+          >
             <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
             <span className="leading-relaxed">
               <InlineFormat text={line.replace(/^[•\-]\s*/, "")} />
@@ -64,7 +67,10 @@ function ExplanationBlock({ block }: { block: string }) {
     );
   }
 
-  if (lines.length > 1 && lines.slice(1).every((l) => l.startsWith("•") || l.startsWith("- "))) {
+  if (
+    lines.length > 1 &&
+    lines.slice(1).every((l) => l.startsWith("•") || l.startsWith("- "))
+  ) {
     const [header, ...bullets] = lines;
     return (
       <div className="space-y-2">
@@ -73,7 +79,10 @@ function ExplanationBlock({ block }: { block: string }) {
         </p>
         <ul className="space-y-1.5 pl-1">
           {bullets.map((line, i) => (
-            <li key={i} className="flex gap-2 text-xs text-muted-foreground md:text-sm">
+            <li
+              key={i}
+              className="flex gap-2 text-xs text-muted-foreground md:text-sm"
+            >
               <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-primary/60" />
               <span className="leading-relaxed">
                 <InlineFormat text={line.replace(/^[•\-]\s*/, "")} />

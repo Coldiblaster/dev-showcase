@@ -6,8 +6,9 @@ import { useCallback, useMemo, useState } from "react";
 
 import { CTASection } from "@/components/cta-section";
 import { HeroSection } from "@/components/hero-section";
+import { SectionNav } from "@/components/section-nav";
 import { Button } from "@/components/ui/button";
-import { PERSONAL } from "@/lib/constants";
+import { REPOS } from "@/lib/constants";
 
 import { BeforeAfterSection } from "./before-after-section";
 import { CodeSnippetsSection } from "./code-snippets-section";
@@ -19,7 +20,6 @@ import type { DevLevel, DevLevelFilter } from "./data/types";
 import { LevelSelector } from "./level-selector";
 import { PatternFinderSection } from "./pattern-finder-section";
 import { QuickTipsSection } from "./quick-tips-section";
-import { SectionNav } from "@/components/section-nav";
 
 function countByLevel(items: { level: DevLevel }[]): Record<DevLevel, number> {
   return {
@@ -91,7 +91,7 @@ export function DevResourcesPage() {
         buttonText={t("cta.projects")}
         secondaryButton={
           <Button asChild variant="outline" size="lg" className="gap-2">
-            <a href={PERSONAL.github} target="_blank" rel="noopener noreferrer">
+            <a href={REPOS.devShowcase} target="_blank" rel="noopener noreferrer">
               <Github className="h-4 w-4" />
               {t("cta.github")}
             </a>

@@ -29,6 +29,18 @@
       "title": "Erfahrung",
       "description": "Karrierezeitlinie — vom technischen Support zum Frontend Tech Lead"
     },
+    "techStack": {
+      "title": "Tech Stack",
+      "description": "Verwendete Technologien und Tools — React, Next.js, TypeScript und mehr"
+    },
+    "github": {
+      "title": "GitHub Stats",
+      "description": "GitHub-Statistiken — Sprachen, Repositories und Beiträge"
+    },
+    "ai": {
+      "title": "KI & Innovation",
+      "description": "Wie KI die Entwicklung beschleunigt — Copilot, ChatGPT und KI-Tools"
+    },
     "contact": {
       "title": "Kontakt",
       "description": "Nachricht per Formular oder WhatsApp senden"

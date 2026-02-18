@@ -16,10 +16,14 @@ import { buildPageMetadata } from "@/lib/seo";
  */
 const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
   I18nShowcase: dynamic(() =>
-    import("@/features/implementations/i18n-showcase").then((m) => m.I18nShowcase),
+    import("@/features/implementations/i18n-showcase").then(
+      (m) => m.I18nShowcase,
+    ),
   ),
   SeoShowcase: dynamic(() =>
-    import("@/features/implementations/seo-showcase").then((m) => m.SeoShowcase),
+    import("@/features/implementations/seo-showcase").then(
+      (m) => m.SeoShowcase,
+    ),
   ),
   AiChatbotShowcase: dynamic(() =>
     import("@/features/implementations/ai-chatbot-showcase").then(

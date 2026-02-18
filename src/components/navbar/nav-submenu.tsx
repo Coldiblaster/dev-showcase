@@ -128,7 +128,7 @@ export function NavSubmenu({
             transition={{ duration: 0.15, ease: "easeOut" }}
             className={cn(
               "absolute top-full z-50 mt-1 overflow-hidden rounded-xl border border-border bg-card/95 shadow-xl backdrop-blur-lg",
-              wide ? "right-0 w-[660px]" : "left-0 min-w-70",
+              wide ? "left-0 w-[660px]" : "left-0 min-w-70",
             )}
           >
             {description && (

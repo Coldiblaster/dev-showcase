@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { fadeUp } from "@/lib/animation-variants";
+import { REPOS } from "@/lib/constants";
 
 /**
  * Seção com link para repositório GitHub.
@@ -66,7 +67,7 @@ export function GitHubRepo() {
                 >
                   <Button size="lg" className="gap-2" asChild>
                     <a
-                      href="https://github.com/vinibastazini/nextjs-i18n-starter"
+                      href={REPOS.i18nStarter}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -78,7 +79,7 @@ export function GitHubRepo() {
 
                   <Button size="lg" variant="outline" className="gap-2" asChild>
                     <a
-                      href="https://github.com/vinibastazini/nextjs-i18n-starter"
+                      href={REPOS.i18nStarter}
                       target="_blank"
                       rel="noopener noreferrer"
                     >

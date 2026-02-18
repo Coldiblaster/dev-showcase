@@ -1,14 +1,15 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  Bot,
   Briefcase,
   Code2,
   FolderKanban,
+  Github,
   Globe,
   Layers,
   Mail,
   Search,
   Sparkles,
+  SquareStack,
   User,
   Wrench,
 } from "lucide-react";
@@ -17,6 +18,8 @@ import { getContentByCategory } from "@/data/content";
 
 export type NavKey =
   | "about"
+  | "techStack"
+  | "github"
   | "projects"
   | "experience"
   | "aiInnovation"
@@ -90,6 +93,8 @@ export const portfolioGroup: NavGroup = {
   activeCheck: () => false,
   items: [
     { icon: User, labelKey: "about", href: "#about" },
+    { icon: SquareStack, labelKey: "techStack", href: "#stack" },
+    { icon: Github, labelKey: "github", href: "#github" },
     { icon: FolderKanban, labelKey: "projects", href: "#projects" },
     { icon: Briefcase, labelKey: "experience", href: "#experience" },
     { icon: Sparkles, labelKey: "aiInnovation", href: "#ai" },

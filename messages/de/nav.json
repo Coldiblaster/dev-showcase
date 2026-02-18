@@ -3,6 +3,8 @@
   "projects": "Projekte",
   "experience": "Erfahrung",
   "aiInnovation": "KI & Innovation",
+  "techStack": "Tech Stack",
+  "github": "GitHub",
   "contact": "Kontakt",
   "i18nShowcase": "i18n-Showcase",
   "i18nShowcaseDesc": "Internationalisierung mit next-intl und DeepL",
@@ -38,5 +40,8 @@
   "mainMenu": "Hauptmenü",
   "openMenu": "Menü öffnen",
   "closeMenu": "Menü schließen",
-  "viewAll": "Alle anzeigen ({count})"
+  "viewAll": "Alle anzeigen ({count})",
+  "implementationCount": "{count} Implementierungen",
+  "guideCount": "{count} Anleitungen",
+  "toolCount": "{count} Werkzeuge"
 }

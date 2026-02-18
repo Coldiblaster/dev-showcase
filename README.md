@@ -46,7 +46,7 @@ O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto c
 | **i18n** | next-intl (pt-BR, en, es, de) + traducao automatica (DeepL / Google) |
 | **SEO** | Metadata API, Open Graph dinamico, JSON-LD, Sitemap, Robots |
 | **IA** | OpenAI (GPT-4o Mini para code review, GPT-4.1 Nano para chat) |
-| **Formularios** | React Hook Form + Zod |
+| **Validacao** | Zod (schema validation) |
 | **Busca** | Fuse.js (busca global fuzzy) |
 | **Email** | Resend (formulario de contato) |
 | **Seguranca** | Rate limiting, sanitizacao I/O, anti prompt injection, Zod schemas |
@@ -185,8 +185,8 @@ Copie `.env.example` para `.env.local` e preencha:
 |----------|:-----------:|-----------|
 | `OPENAI_API_KEY` | Para IA | Chat e Code Review |
 | `RESEND_API_KEY` | Para email | Formulario de contato |
-| `RECAPTCHA_SITE_KEY` | Para contato | reCAPTCHA v2 (client) |
-| `RECAPTCHA_SECRET_KEY` | Para contato | reCAPTCHA v2 (server) |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | Para contato | reCAPTCHA v3 (client) |
+| `RECAPTCHA_SECRET_KEY` | Para contato | reCAPTCHA v3 (server) |
 | `DEEPL_API_KEY` | Para traducao | Traducao automatica (DeepL) |
 | `GOOGLE_CLOUD_API_KEY` | Para traducao | Fallback de traducao (Google) |
 

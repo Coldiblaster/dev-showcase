@@ -154,9 +154,7 @@ export function MobileActionBar() {
                   <span className="flex-1 font-medium">
                     {LOCALES_CONFIG[loc].name}
                   </span>
-                  {active === loc && (
-                    <Check className="h-4 w-4 text-primary" />
-                  )}
+                  {active === loc && <Check className="h-4 w-4 text-primary" />}
                 </button>
               ))}
             </motion.div>

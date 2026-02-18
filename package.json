@@ -1,7 +1,14 @@
 {
   "name": "dev-showcase",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Portfolio profissional + plataforma de conteudo para desenvolvedores — Next.js 16, React 19, TypeScript, i18n, SEO, AI",
+  "homepage": "https://viniciusbastazin.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Coldiblaster/dev-showcase.git"
+  },
+  "license": "MIT",
+  "author": "Vinicius Bastazin <vbastazin@gmail.com>",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

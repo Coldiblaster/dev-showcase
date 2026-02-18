@@ -29,6 +29,18 @@
       "title": "Experiencia",
       "description": "Línea de carrera — de soporte técnico a líder técnico frontend"
     },
+    "techStack": {
+      "title": "Tech Stack",
+      "description": "Tecnologías y herramientas utilizadas — React, Next.js, TypeScript y más"
+    },
+    "github": {
+      "title": "GitHub Stats",
+      "description": "Estadísticas de GitHub — lenguajes, repositorios y contribuciones"
+    },
+    "ai": {
+      "title": "IA e Innovación",
+      "description": "Cómo la IA acelera el desarrollo — Copilot, ChatGPT y herramientas de IA"
+    },
     "contact": {
       "title": "Contacto",
       "description": "Envía un mensaje por formulario o WhatsApp"
