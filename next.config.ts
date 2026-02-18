@@ -21,6 +21,12 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   images: {
     qualities: [100, 75],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+    ],
   },
   async headers() {
     return [

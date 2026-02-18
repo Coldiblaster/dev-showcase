@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "title": "Architecture | Dev Showcase",
+    "description": "Folder structure, organization patterns, data flow and technical decisions of the Dev Showcase project."
+  },
+  "hero": {
+    "badge": "Architecture",
+    "title": "How the project is organized",
+    "description": "Learn about the folder structure, adopted patterns and technical decisions that guide Dev Showcase development.",
+    "cta": "Explore structure"
+  },
+  "sectionNav": {
+    "structure": "Structure",
+    "patterns": "Patterns",
+    "dataFlow": "Data Flow",
+    "decisions": "Decisions"
+  },
+  "structure": {
+    "badge": "Folder Structure",
+    "title": "Code organization",
+    "description": "Each folder has a clear responsibility, facilitating navigation and maintenance.",
+    "folders": {
+      "app": {
+        "name": "src/app/",
+        "description": "App Router routes — each folder is a route, with page.tsx, loading.tsx and metadata."
+      },
+      "features": {
+        "name": "src/features/",
+        "description": "Domain components grouped by functionality — each feature is isolated and self-contained."
+      },
+      "components": {
+        "name": "src/components/",
+        "description": "Shared and reusable components — UI primitives, layout, navigation."
+      },
+      "lib": {
+        "name": "src/lib/",
+        "description": "Utilities, configuration, helpers — i18n, SEO, rate limiting, animations."
+      },
+      "messages": {
+        "name": "messages/",
+        "description": "JSON translation files per language — pt-BR, en, es, de."
+      },
+      "hooks": {
+        "name": "src/hooks/",
+        "description": "Reusable custom hooks — scroll lock, media queries, etc."
+      }
+    }
+  },
+  "patterns": {
+    "badge": "Patterns",
+    "title": "Code conventions",
+    "description": "Consistent patterns that every contributor should follow.",
+    "items": {
+      "featureSlice": {
+        "title": "Feature Slices",
+        "description": "Each feature has its own folder in features/ with isolated components, hooks and data. The index.tsx exports the main component."
+      },
+      "barrelExports": {
+        "title": "Barrel Exports",
+        "description": "Each feature exports via index.tsx. External imports use @/features/name, never access internal files directly."
+      },
+      "serverClient": {
+        "title": "Server vs Client",
+        "description": "Components are Server by default. Only those using hooks, state or events receive 'use client' at the top."
+      },
+      "i18nNamespaces": {
+        "title": "i18n Namespaces",
+        "description": "Each page has its JSON namespace. New pages must create the JSON, register in load-messages.ts and types.d.ts."
+      },
+      "sharedComponents": {
+        "title": "Shared Components",
+        "description": "HeroSection, SectionWrapper, SectionNav, AnimatedSection — reused across all pages for consistency."
+      }
+    }
+  },
+  "dataFlow": {
+    "badge": "Data Flow",
+    "title": "How data flows",
+    "description": "From server to client, each layer has a clear responsibility.",
+    "flows": {
+      "i18n": {
+        "title": "Internationalization",
+        "steps": [
+          "Cookie safer_locale defines the language",
+          "load-messages.ts loads the language JSONs",
+          "next-intl injects into the global provider",
+          "useTranslations('namespace') in components"
+        ]
+      },
+      "api": {
+        "title": "Internal APIs",
+        "steps": [
+          "Client fetches to /api/endpoint",
+          "Rate limiting validates IP and limits",
+          "Handler processes and returns JSON",
+          "In-memory cache + Cache-Control headers"
+        ]
+      },
+      "content": {
+        "title": "Dynamic Content",
+        "steps": [
+          "content.ts defines typed CONTENT_ITEMS",
+          "Listing pages filter by category",
+          "[slug] routes use generateStaticParams",
+          "Feature component renders the page"
+        ]
+      }
+    }
+  },
+  "decisions": {
+    "badge": "Technical Decisions",
+    "title": "Why these choices?",
+    "description": "Each architectural decision was made based on real trade-offs.",
+    "items": {
+      "appRouter": {
+        "title": "App Router (not Pages Router)",
+        "reason": "Server Components by default, nested layouts, streaming, native generateMetadata."
+      },
+      "nextIntl": {
+        "title": "next-intl (not next-i18next)",
+        "reason": "Native App Router support, strong typing, no route rewrites, simple namespaces."
+      },
+      "tailwind": {
+        "title": "Tailwind CSS v4 (not CSS Modules)",
+        "reason": "Utility-first accelerates development, visual consistency, native dark mode, automatic tree-shaking."
+      },
+      "framerMotion": {
+        "title": "Framer Motion (not CSS animations)",
+        "reason": "Declarative animations, reusable variants, viewport control, exit animations."
+      },
+      "monorepo": {
+        "title": "Single repo (not monorepo)",
+        "reason": "Single-scope project. One repository keeps the workflow simple for contributors."
+      }
+    }
+  }
+}

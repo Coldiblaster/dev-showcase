@@ -1,0 +1,165 @@
+{
+  "showcase": { "viewCode": "View code", "hideCode": "Hide code" },
+  "meta": {
+    "title": "Design System | Dev Showcase",
+    "description": "Complete component catalog of Dev Showcase — live preview, props, variants and usage examples."
+  },
+  "hero": {
+    "badge": "Design System",
+    "title": "Project components",
+    "description": "All reusable components of Dev Showcase organized by category, with live preview and props documentation.",
+    "cta": "Explore components"
+  },
+  "sectionNav": {
+    "primitives": "Primitives",
+    "layout": "Layout",
+    "feedback": "Feedback",
+    "navigation": "Navigation",
+    "content": "Content"
+  },
+  "primitives": {
+    "badge": "UI Primitives",
+    "title": "Base components",
+    "description": "Fundamental building blocks used throughout the application.",
+    "components": {
+      "button": {
+        "name": "Button",
+        "description": "Button with variants (default, outline, ghost, destructive), sizes (sm, lg, icon) and asChild support.",
+        "path": "src/components/ui/button.tsx"
+      },
+      "badge": {
+        "name": "Badge",
+        "description": "Compact tag with variants (default, secondary, outline, destructive) for status and categories.",
+        "path": "src/components/ui/badge.tsx"
+      },
+      "input": {
+        "name": "Input",
+        "description": "Input field with consistent styles, accessible focus and icon support.",
+        "path": "src/components/ui/input.tsx"
+      },
+      "card": {
+        "name": "Card",
+        "description": "Container with header, content and footer — base for content and feature cards.",
+        "path": "src/components/ui/card.tsx"
+      },
+      "separator": {
+        "name": "Separator",
+        "description": "Horizontal or vertical visual divider based on Radix UI.",
+        "path": "src/components/ui/separator.tsx"
+      },
+      "tabs": {
+        "name": "Tabs",
+        "description": "Tab navigation with Radix UI — accessible List, Trigger and Content.",
+        "path": "src/components/ui/tabs.tsx"
+      }
+    }
+  },
+  "layout": {
+    "badge": "Layout",
+    "title": "Page structure",
+    "description": "Components that define the visual structure of pages.",
+    "components": {
+      "heroSection": {
+        "name": "HeroSection",
+        "description": "Extensible hero with badge, title, description, warning, slots for CTA, stats and social links.",
+        "path": "src/components/hero-section.tsx"
+      },
+      "sectionWrapper": {
+        "name": "SectionWrapper",
+        "description": "Wraps sections with padding, configurable max width and variants (default, alternate).",
+        "path": "src/components/section-wrapper.tsx"
+      },
+      "sectionNav": {
+        "name": "SectionNav",
+        "description": "Sticky navigation between page sections with scroll spy and active highlight.",
+        "path": "src/components/section-nav.tsx"
+      },
+      "sectionDivider": {
+        "name": "SectionDivider",
+        "description": "Visual divider with gradient between page sections.",
+        "path": "src/components/section-divider.tsx"
+      }
+    }
+  },
+  "feedback": {
+    "badge": "Feedback",
+    "title": "Feedback and states",
+    "description": "Components for loading, errors, animations and status.",
+    "components": {
+      "animatedSection": {
+        "name": "AnimatedSection",
+        "description": "Wrapper with fade-in animation on viewport entry via Framer Motion.",
+        "path": "src/components/animated-section.tsx"
+      },
+      "pageSkeleton": {
+        "name": "PageSkeleton",
+        "description": "Loading skeleton with variants (guide, implementation, tool) for loading states.",
+        "path": "src/components/page-skeleton.tsx"
+      },
+      "scoreGauge": {
+        "name": "ScoreGauge",
+        "description": "Animated circular score indicator with colors by range (red, yellow, green).",
+        "path": "src/components/score-gauge.tsx"
+      },
+      "copyFeedback": {
+        "name": "CopyFeedback",
+        "description": "Copy button with visual success feedback.",
+        "path": "src/components/copy-feedback.tsx"
+      }
+    }
+  },
+  "navigation": {
+    "badge": "Navigation",
+    "title": "Navigation and search",
+    "description": "Global site navigation components.",
+    "components": {
+      "navbar": {
+        "name": "Navbar",
+        "description": "Navigation bar with desktop submenus, mobile menu, theme toggle and global search.",
+        "path": "src/components/navbar/"
+      },
+      "globalSearch": {
+        "name": "Global Search",
+        "description": "Fuzzy search with Fuse.js, Cmd+K shortcut, results grouped by type.",
+        "path": "src/components/global-search/"
+      },
+      "skipLink": {
+        "name": "SkipLink",
+        "description": "Invisible link that jumps directly to main content — essential for accessibility.",
+        "path": "src/components/skip-link.tsx"
+      },
+      "footer": {
+        "name": "Footer",
+        "description": "Footer with social links, secondary navigation and author information.",
+        "path": "src/components/footer.tsx"
+      }
+    }
+  },
+  "contentComponents": {
+    "badge": "Content",
+    "title": "Content display",
+    "description": "Components for displaying dynamic content.",
+    "components": {
+      "featureCard": {
+        "name": "FeatureCard",
+        "description": "Card for feature listing with icon, title, description, tags and link.",
+        "path": "src/components/feature-card.tsx"
+      },
+      "stepCard": {
+        "name": "StepCard",
+        "description": "Numbered card for step-by-step with icon, title and description.",
+        "path": "src/components/step-card.tsx"
+      },
+      "codeBlock": {
+        "name": "CodeBlock",
+        "description": "Code block with syntax highlighting, copy button and horizontal scroll.",
+        "path": "src/components/code-block.tsx"
+      },
+      "viewSource": {
+        "name": "ViewSource",
+        "description": "Expandable link to view component source code.",
+        "path": "src/components/view-source.tsx"
+      }
+    }
+  }
+}

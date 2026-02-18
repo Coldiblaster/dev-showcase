@@ -18,7 +18,7 @@ import {
   sanitizeUserInput,
   secureStreamHeaders,
 } from "@/lib/api-security";
-import { SYSTEM_PROMPT } from "@/lib/chat/system-prompt";
+import { buildSystemPrompt } from "@/lib/chat/system-prompt";
 import { getClientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
 // ---------------------------------------------------------------------------
@@ -51,6 +51,7 @@ const messageSchema = z.union([userMessageSchema, assistantMessageSchema]);
 /** Schema do body da requisição. */
 const bodySchema = z.object({
   messages: z.array(messageSchema).min(1).max(MAX_MESSAGES),
+  currentPage: z.string().max(200).optional(),
 });
 
 // ---------------------------------------------------------------------------
@@ -94,11 +95,16 @@ export async function POST(request: Request) {
 
     const stream = await openai.chat.completions.create({
       model: "gpt-4.1-nano",
-      max_tokens: 500,
+      max_tokens: 600,
       temperature: 0.7,
+      frequency_penalty: 0.3,
+      presence_penalty: 0.1,
       stream: true,
       messages: [
-        { role: "system", content: SYSTEM_PROMPT },
+        {
+          role: "system",
+          content: buildSystemPrompt(parsed.data.currentPage),
+        },
         ...sanitizedMessages,
       ],
     });

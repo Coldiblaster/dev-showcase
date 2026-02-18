@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "title": "Contribuye",
+    "description": "Aprende cómo contribuir al Dev Showcase — historia del proyecto, estándares, flujo de trabajo y contribuidores."
+  },
+  "hero": {
+    "badge": "Open Source",
+    "title": "Construido por la comunidad, para la comunidad",
+    "description": "Dev Showcase es una plataforma open source que combina un portafolio profesional con contenido técnico real. Cualquier dev puede contribuir con guías, herramientas y mejoras.",
+    "cta": "Cómo contribuir"
+  },
+  "history": {
+    "badge": "La Historia",
+    "title": "De una idea a una plataforma",
+    "description": "Lo que empezó como un portafolio personal se transformó en una plataforma completa para la comunidad dev — todo en pocos días.",
+    "timeline": {
+      "day1": {
+        "date": "13/02/2026",
+        "title": "Primer commit",
+        "description": "Nació la idea: crear más que un portafolio — una plataforma de contenido para devs."
+      },
+      "day2": {
+        "date": "14/02/2026",
+        "title": "Portafolio + Chat IA",
+        "description": "Landing page completa con hero, proyectos, experiencia y chatbot integrado con GPT-4.1."
+      },
+      "day3": {
+        "date": "15/02/2026",
+        "title": "Guías y herramientas",
+        "description": "8 guías técnicas, Code Reviewer con IA, Regex Playground e internacionalización en 4 idiomas."
+      },
+      "day4": {
+        "date": "16/02/2026",
+        "title": "Calidad e infraestructura",
+        "description": "CI/CD con GitHub Actions, Husky, commitlint, accesibilidad completa y documentación."
+      },
+      "day5": {
+        "date": "17/02/2026",
+        "title": "Plataforma en línea",
+        "description": "Deploy en producción, protección de branches, Git Flow y apertura para contribuciones de la comunidad."
+      }
+    }
+  },
+  "whatYouCanDo": {
+    "badge": "Contribuciones",
+    "title": "Lo que puedes hacer",
+    "description": "Hay varias formas de contribuir, sin importar tu nivel de experiencia.",
+    "cards": {
+      "guides": {
+        "title": "Crear guías",
+        "description": "Escribe guías técnicas sobre cualquier tema — React, Node, DevOps, testing y más."
+      },
+      "tools": {
+        "title": "Crear herramientas",
+        "description": "Construye herramientas interactivas como editores, playgrounds y analizadores."
+      },
+      "improve": {
+        "title": "Mejorar existentes",
+        "description": "Refactoriza código, corrige bugs, mejora la UX o agrega funcionalidades."
+      },
+      "translations": {
+        "title": "Traducciones",
+        "description": "Ayuda a traducir a nuevos idiomas o mejora las traducciones existentes."
+      },
+      "docs": {
+        "title": "Documentación",
+        "description": "Mejora la documentación, agrega ejemplos o crea tutoriales."
+      }
+    }
+  },
+  "howItWorks": {
+    "badge": "Paso a paso",
+    "title": "Cómo funciona",
+    "description": "El proceso de contribución es simple y sigue el estándar open source.",
+    "steps": {
+      "fork": {
+        "title": "Haz fork del repositorio",
+        "description": "Crea una copia del proyecto en tu cuenta de GitHub."
+      },
+      "branch": {
+        "title": "Crea una branch",
+        "description": "Desde develop, crea feature/nombre-de-feature."
+      },
+      "develop": {
+        "title": "Desarrolla",
+        "description": "Sigue los estándares del proyecto: i18n, accesibilidad y tests."
+      },
+      "pr": {
+        "title": "Abre un PR",
+        "description": "Envía tu Pull Request a la branch develop."
+      },
+      "review": {
+        "title": "Review y merge",
+        "description": "Después de la aprobación, tu código entra en la plataforma."
+      }
+    },
+    "flow": "feature → develop → main → deploy"
+  },
+  "standards": {
+    "badge": "Estándares",
+    "title": "Estándares del proyecto",
+    "description": "Seguimos convenciones que mantienen el código organizado y accesible.",
+    "items": {
+      "commits": {
+        "title": "Conventional Commits",
+        "description": "feat:, fix:, docs: — mensajes de commit estandarizados."
+      },
+      "structure": {
+        "title": "Estructura de carpetas",
+        "description": "features/ para dominios, components/ para reutilizables."
+      },
+      "i18n": {
+        "title": "Internacionalización",
+        "description": "Todo texto visible usa i18n. pt-BR es la fuente de verdad."
+      },
+      "a11y": {
+        "title": "Accesibilidad",
+        "description": "Roles ARIA, focus trap, navegación por teclado y skip links."
+      },
+      "quality": {
+        "title": "Calidad",
+        "description": "ESLint, Prettier, TypeScript strict y tests con Vitest."
+      }
+    },
+    "docsLink": "Ver documentación completa"
+  },
+  "contributors": {
+    "badge": "Comunidad",
+    "title": "Contribuidores",
+    "description": "Personas que ayudaron a construir esta plataforma.",
+    "contributions": "{count} contribuciones",
+    "beFirst": "¡Sé el primero en contribuir!",
+    "beFirstDescription": "La plataforma acaba de abrir para contribuciones. ¿Qué tal ser el primero?",
+    "loading": "Cargando contribuidores...",
+    "error": "No se pudieron cargar los contribuidores.",
+    "retry": "Intentar de nuevo",
+    "viewOnGithub": "Ver en GitHub"
+  },
+  "cta": {
+    "title": "¿Listo para contribuir?",
+    "description": "Explora el código, elige un issue o crea algo nuevo. Toda contribución es bienvenida.",
+    "github": "Ver en GitHub",
+    "docs": "Leer documentación",
+    "issues": "Ver issues"
+  },
+  "explore": {
+    "badge": "Documentación técnica",
+    "title": "Explora la plataforma",
+    "description": "Conoce la arquitectura, los componentes, las APIs y los estándares que hacen funcionar el proyecto."
+  },
+  "sectionNav": {
+    "explore": "Explorar",
+    "history": "Historia",
+    "whatYouCanDo": "Contribuciones",
+    "howItWorks": "Cómo funciona",
+    "standards": "Estándares",
+    "contributors": "Contribuidores",
+    "cta": "Empieza"
+  }
+}

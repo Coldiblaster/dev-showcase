@@ -2,10 +2,10 @@
   "open": "Open search",
   "placeholder": "Search...",
   "title": "Search the site",
-  "inputPlaceholder": "Search sections, implementations, guides and tools...",
+  "inputPlaceholder": "Search sections, implementations, guides, tools and docs...",
   "clear": "Clear search",
   "startTyping": "Start typing to search",
-  "hint": "Sections, implementations, guides and tools",
+  "hint": "Sections, implementations, guides, tools and docs",
   "noResults": "No results found",
   "tryOtherTerms": "Try other search terms",
   "navigate": "Navigate",
@@ -108,6 +108,30 @@
     "react-patterns": {
       "title": "React Design Patterns",
       "description": "Compound Components, Custom Hooks, Render Props and performance patterns with practical examples"
+    },
+    "contribute": {
+      "title": "Contribute",
+      "description": "Project history, standards, contribution workflow and contributors"
+    },
+    "architecture": {
+      "title": "Architecture",
+      "description": "Folder structure, organization patterns, data flow and technical decisions"
+    },
+    "techStack-page": {
+      "title": "Tech Stack",
+      "description": "Technologies, libraries and tools with versions and motivation"
+    },
+    "designSystem": {
+      "title": "Design System",
+      "description": "Component catalog with live preview and documentation"
+    },
+    "apiDocs": {
+      "title": "API Reference",
+      "description": "Endpoints, parameters, rate limiting and API security"
+    },
+    "accessibility": {
+      "title": "Accessibility",
+      "description": "Skip links, ARIA, keyboard navigation, contrast and checklist"
     }
   }
 }

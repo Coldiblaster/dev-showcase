@@ -2,12 +2,17 @@
 
 // Central type for all namespaces (auto-imported by Next.js)
 import type about from "../../../messages/pt-BR/about.json";
+import type accessibilityPage from "../../../messages/pt-BR/accessibilityPage.json";
 import type ai from "../../../messages/pt-BR/ai.json";
 import type aiChatbotPage from "../../../messages/pt-BR/aiChatbotPage.json";
 import type aiInnovation from "../../../messages/pt-BR/aiInnovation.json";
+import type apiDocsPage from "../../../messages/pt-BR/apiDocsPage.json";
+import type architecturePage from "../../../messages/pt-BR/architecturePage.json";
 import type chat from "../../../messages/pt-BR/chat.json";
 import type codeReviewPage from "../../../messages/pt-BR/codeReviewPage.json";
 import type contact from "../../../messages/pt-BR/contact.json";
+import type contributePage from "../../../messages/pt-BR/contributePage.json";
+import type designSystemPage from "../../../messages/pt-BR/designSystemPage.json";
 import type devResourcesData from "../../../messages/pt-BR/devResourcesData.json";
 import type devResourcesPage from "../../../messages/pt-BR/devResourcesPage.json";
 import type experience from "../../../messages/pt-BR/experience.json";
@@ -33,6 +38,7 @@ import type securityPage from "../../../messages/pt-BR/securityPage.json";
 import type seoPage from "../../../messages/pt-BR/seoPage.json";
 import type tailwindTips from "../../../messages/pt-BR/tailwindTips.json";
 import type tailwindTipsPage from "../../../messages/pt-BR/tailwindTipsPage.json";
+import type techStackPage from "../../../messages/pt-BR/techStackPage.json";
 import type terminal from "../../../messages/pt-BR/terminal.json";
 import type tips from "../../../messages/pt-BR/tips.json";
 import type tipsPage from "../../../messages/pt-BR/tipsPage.json";
@@ -42,13 +48,18 @@ import type viewSource from "../../../messages/pt-BR/viewSource.json";
 export type Messages = {
   global: typeof global;
   about: typeof about;
+  accessibilityPage: typeof accessibilityPage;
   aiChatbotPage: typeof aiChatbotPage;
   nav: typeof nav;
   ai: typeof ai;
+  apiDocsPage: typeof apiDocsPage;
+  architecturePage: typeof architecturePage;
   chat: typeof chat;
   aiInnovation: typeof aiInnovation;
   codeReviewPage: typeof codeReviewPage;
   contact: typeof contact;
+  contributePage: typeof contributePage;
+  designSystemPage: typeof designSystemPage;
   devResourcesData: typeof devResourcesData;
   devResourcesPage: typeof devResourcesPage;
   experience: typeof experience;
@@ -68,6 +79,7 @@ export type Messages = {
   reactQueryTipsPage: typeof reactQueryTipsPage;
   regexPage: typeof regexPage;
   terminal: typeof terminal;
+  techStackPage: typeof techStackPage;
   tailwindTips: typeof tailwindTips;
   tailwindTipsPage: typeof tailwindTipsPage;
   tips: typeof tips;

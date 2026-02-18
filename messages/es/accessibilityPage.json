@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "Accesibilidad | Dev Showcase",
+    "description": "Prácticas de accesibilidad implementadas en Dev Showcase — skip links, ARIA, navegación por teclado, contraste y más."
+  },
+  "hero": {
+    "badge": "Accesibilidad",
+    "title": "Accesible para todos",
+    "description": "La accesibilidad no es una feature opcional — es fundamental. Conoce todas las prácticas implementadas en Dev Showcase.",
+    "cta": "Ver recursos"
+  },
+  "sectionNav": {
+    "features": "Recursos",
+    "checklist": "Checklist",
+    "tools": "Herramientas",
+    "guidelines": "Directrices"
+  },
+  "features": {
+    "badge": "Recursos Implementados",
+    "title": "Lo que ya hacemos",
+    "description": "Recursos de accesibilidad presentes en todo el proyecto.",
+    "items": {
+      "skipLink": {
+        "title": "Skip Link",
+        "description": "Enlace invisible en la parte superior de la página que permite saltar la navegación e ir directo al contenido principal. Aparece al presionar Tab."
+      },
+      "semanticHtml": {
+        "title": "HTML Semántico",
+        "description": "Uso correcto de header, main, nav, section, article y footer. Jerarquía de headings h1→h2→h3 en todas las páginas."
+      },
+      "ariaRoles": {
+        "title": "ARIA Roles & Labels",
+        "description": "role='navigation', role='status', aria-label, aria-live='polite' en elementos dinámicos. Los lectores de pantalla reciben contexto adecuado."
+      },
+      "keyboardNav": {
+        "title": "Navegación por Teclado",
+        "description": "Todos los elementos interactivos son accesibles vía Tab, Enter y Escape. Foco visible con outline consistente."
+      },
+      "focusManagement": {
+        "title": "Gestión de Foco",
+        "description": "Focus traps en modales y menús móviles. El foco vuelve al elemento de origen al cerrar diálogos."
+      },
+      "colorContrast": {
+        "title": "Contraste de Colores",
+        "description": "Los colores primarios y de texto siguen las directrices WCAG AA. El dark mode mantiene contraste adecuado."
+      },
+      "responsiveText": {
+        "title": "Texto Responsivo",
+        "description": "Fuentes escalables con rem/em. Soporte a zoom de hasta 200% sin rotura de layout."
+      },
+      "reducedMotion": {
+        "title": "Reduced Motion",
+        "description": "Las animaciones Framer Motion respetan prefers-reduced-motion. Usuarios sensibles ven transiciones simplificadas."
+      }
+    }
+  },
+  "checklist": {
+    "badge": "Checklist",
+    "title": "Checklist para contribuidores",
+    "description": "Antes de enviar un PR, verifica estos ítems de accesibilidad.",
+    "items": {
+      "semantics": "Usar elementos HTML semánticos (button, no div con onClick)",
+      "headings": "Mantener jerarquía de headings (h1→h2→h3, sin saltar niveles)",
+      "altText": "Añadir alt text descriptivo en todas las imágenes",
+      "ariaLabels": "Incluir aria-label en botones que solo tienen icono",
+      "keyboard": "Probar navegación completa vía teclado (Tab, Enter, Escape)",
+      "focus": "Garantizar foco visible en todos los elementos interactivos",
+      "contrast": "Verificar contraste mínimo 4.5:1 para texto normal",
+      "motion": "Respetar prefers-reduced-motion en las animaciones",
+      "forms": "Asociar labels a los inputs con htmlFor/id",
+      "errors": "Anunciar errores de formulario a lectores de pantalla con aria-live"
+    }
+  },
+  "tools": {
+    "badge": "Herramientas",
+    "title": "Cómo probar accesibilidad",
+    "description": "Herramientas recomendadas para validar accesibilidad en el proyecto.",
+    "items": {
+      "lighthouse": {
+        "title": "Lighthouse",
+        "description": "Auditoría integrada en Chrome DevTools. Ejecuta en modo 'Accessibility' para score y sugerencias."
+      },
+      "axe": {
+        "title": "axe DevTools",
+        "description": "Extensión del navegador que detecta violaciones WCAG automáticamente. Identifica contraste, ARIA y semántica."
+      },
+      "screenReader": {
+        "title": "Screen Readers",
+        "description": "Prueba con NVDA (Windows), VoiceOver (Mac) u Orca (Linux). Navega por la página solo con teclado y audio."
+      },
+      "tabTest": {
+        "title": "Prueba de Tab",
+        "description": "Navega por el sitio usando solo Tab y Shift+Tab. Verifica que el orden sea lógico y que todos los elementos sean alcanzables."
+      },
+      "contrastChecker": {
+        "title": "Contrast Checker",
+        "description": "Usa WebAIM Contrast Checker o las herramientas de DevTools para verificar ratios de contraste."
+      }
+    }
+  },
+  "guidelines": {
+    "badge": "Directrices",
+    "title": "Estándares que seguimos",
+    "description": "Referencias y directrices que guían nuestras decisiones de accesibilidad.",
+    "items": {
+      "wcag": {
+        "title": "WCAG 2.1 AA",
+        "description": "Web Content Accessibility Guidelines — estándar internacional de accesibilidad. Seguimos el nivel AA."
+      },
+      "waiAria": {
+        "title": "WAI-ARIA 1.2",
+        "description": "Especificación de roles, states y properties para enriquecer la semántica de componentes interactivos."
+      },
+      "a11yProject": {
+        "title": "The A11Y Project",
+        "description": "Recurso comunitario con checklists, artículos y buenas prácticas accesibles."
+      }
+    }
+  }
+}

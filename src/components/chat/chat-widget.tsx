@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { MessageCircle, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import {
   type KeyboardEvent,
@@ -23,6 +24,7 @@ const FULLSCREEN_QUERY = "(max-width: 420px)";
 
 export function ChatWidget() {
   const t = useTranslations("chat");
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -93,6 +95,7 @@ export function ChatWidget() {
           messages: newMessages
             .filter((m) => m.role === "user" || m.content !== t("error"))
             .map(({ role, content }) => ({ role, content })),
+          currentPage: pathname.replace(/^\/(pt-BR|en|es|de)/, "") || "/",
         }),
       });
 

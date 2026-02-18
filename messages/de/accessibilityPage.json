@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "Barrierefreiheit | Dev Showcase",
+    "description": "Barrierefreiheitspraktiken im Dev Showcase — Skip Links, ARIA, Tastaturnavigation, Kontrast und mehr."
+  },
+  "hero": {
+    "badge": "Barrierefreiheit",
+    "title": "Zugänglich für alle",
+    "description": "Barrierefreiheit ist keine optionale Feature — sie ist fundamental. Lernen Sie alle im Dev Showcase implementierten Praktiken kennen.",
+    "cta": "Ressourcen anzeigen"
+  },
+  "sectionNav": {
+    "features": "Funktionen",
+    "checklist": "Checkliste",
+    "tools": "Tools",
+    "guidelines": "Richtlinien"
+  },
+  "features": {
+    "badge": "Implementierte Funktionen",
+    "title": "Was wir bereits tun",
+    "description": "Barrierefreiheitsfunktionen, die im gesamten Projekt vorhanden sind.",
+    "items": {
+      "skipLink": {
+        "title": "Skip Link",
+        "description": "Unsichtbarer Link am oberen Seitenrand, der das Überspringen der Navigation und den direkten Sprung zum Hauptinhalt ermöglicht. Erscheint bei Betätigung von Tab."
+      },
+      "semanticHtml": {
+        "title": "Semantisches HTML",
+        "description": "Korrekte Verwendung von header, main, nav, section, article und footer. Überschriften-Hierarchie h1→h2→h3 auf allen Seiten."
+      },
+      "ariaRoles": {
+        "title": "ARIA Roles & Labels",
+        "description": "role='navigation', role='status', aria-label, aria-live='polite' bei dynamischen Elementen. Screenreader erhalten angemessenen Kontext."
+      },
+      "keyboardNav": {
+        "title": "Tastaturnavigation",
+        "description": "Alle interaktiven Elemente sind per Tab, Enter und Escape zugänglich. Sichtbarer Fokus mit konsistentem Outline."
+      },
+      "focusManagement": {
+        "title": "Fokus-Management",
+        "description": "Focus Traps in Modals und Mobile-Menüs. Fokus kehrt zum Ausgangselement zurück beim Schließen von Dialogen."
+      },
+      "colorContrast": {
+        "title": "Farbkontrast",
+        "description": "Primär- und Textfarben folgen den WCAG-AA-Richtlinien. Dark Mode hält angemessenen Kontrast."
+      },
+      "responsiveText": {
+        "title": "Responsiver Text",
+        "description": "Skalierbare Schriften mit rem/em. Zoom-Unterstützung bis 200% ohne Layout-Bruch."
+      },
+      "reducedMotion": {
+        "title": "Reduced Motion",
+        "description": "Framer Motion Animationen respektieren prefers-reduced-motion. Sensible Nutzer sehen vereinfachte Übergänge."
+      }
+    }
+  },
+  "checklist": {
+    "badge": "Checkliste",
+    "title": "Checkliste für Mitwirkende",
+    "description": "Vor dem Einreichen eines PR prüfen Sie bitte diese Barrierefreiheitspunkte.",
+    "items": {
+      "semantics": "Semantische HTML-Elemente verwenden (button, nicht div mit onClick)",
+      "headings": "Überschriften-Hierarchie einhalten (h1→h2→h3, keine Ebenen überspringen)",
+      "altText": "Descriptiven Alt-Text zu allen Bildern hinzufügen",
+      "ariaLabels": "aria-label bei reinen Icon-Buttons einbeziehen",
+      "keyboard": "Vollständige Navigation per Tastatur testen (Tab, Enter, Escape)",
+      "focus": "Sichtbaren Fokus bei allen interaktiven Elementen sicherstellen",
+      "contrast": "Mindestkontrast 4.5:1 für Normaltext prüfen",
+      "motion": "prefers-reduced-motion bei Animationen respektieren",
+      "forms": "Labels mit htmlFor/id den Inputs zuordnen",
+      "errors": "Formularfehler für Screenreader mit aria-live ankündigen"
+    }
+  },
+  "tools": {
+    "badge": "Tools",
+    "title": "So testen Sie Barrierefreiheit",
+    "description": "Empfohlene Tools zum Validieren der Barrierefreiheit im Projekt.",
+    "items": {
+      "lighthouse": {
+        "title": "Lighthouse",
+        "description": "Integrierte Audit-Funktion in Chrome DevTools. Führen Sie im Modus 'Accessibility' für Score und Vorschläge aus."
+      },
+      "axe": {
+        "title": "axe DevTools",
+        "description": "Browser-Extension, die WCAG-Verstöße automatisch erkennt. Identifiziert Kontrast, ARIA und Semantik."
+      },
+      "screenReader": {
+        "title": "Screen Reader",
+        "description": "Testen Sie mit NVDA (Windows), VoiceOver (Mac) oder Orca (Linux). Navigieren Sie die Seite nur mit Tastatur und Audio."
+      },
+      "tabTest": {
+        "title": "Tab-Test",
+        "description": "Navigieren Sie die Site nur mit Tab und Shift+Tab. Prüfen Sie, ob die Reihenfolge logisch ist und alle Elemente erreichbar sind."
+      },
+      "contrastChecker": {
+        "title": "Contrast Checker",
+        "description": "Nutzen Sie WebAIM Contrast Checker oder die DevTools-Tools zum Prüfen von Kontrastverhältnissen."
+      }
+    }
+  },
+  "guidelines": {
+    "badge": "Richtlinien",
+    "title": "Standards, die wir befolgen",
+    "description": "Referenzen und Richtlinien, die unsere Barrierefreiheitsentscheidungen leiten.",
+    "items": {
+      "wcag": {
+        "title": "WCAG 2.1 AA",
+        "description": "Web Content Accessibility Guidelines — internationaler Barrierefreiheitsstandard. Wir folgen Level AA."
+      },
+      "waiAria": {
+        "title": "WAI-ARIA 1.2",
+        "description": "Spezifikation für Roles, States und Properties zur Anreicherung der Semantik interaktiver Komponenten."
+      },
+      "a11yProject": {
+        "title": "The A11Y Project",
+        "description": "Community-Ressource mit Checklisten, Artikeln und zugänglichen Best Practices."
+      }
+    }
+  }
+}

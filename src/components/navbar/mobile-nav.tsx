@@ -13,6 +13,7 @@ import { MobileMenuItem } from "./mobile-menu-item";
 import { navGroups } from "./nav-data";
 
 const HEADER_HEIGHT = "57px";
+const MAX_PREVIEW_ITEMS = 4;
 
 interface MobileNavProps {
   isOpen: boolean;
@@ -59,6 +60,23 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
               {navGroups.map((group) => {
                 if (group.showOnlyOn === "home" && !isHome) return null;
 
+                if (group.href) {
+                  return (
+                    <Link
+                      key={group.id}
+                      href={group.href}
+                      onClick={onClose}
+                      className={`w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium ${
+                        group.activeCheck(pathname)
+                          ? "bg-primary/10 text-primary"
+                          : "text-muted-foreground"
+                      }`}
+                    >
+                      {t(group.labelKey)}
+                    </Link>
+                  );
+                }
+
                 return (
                   <div key={group.id}>
                     {/* Flat items (portfolio) */}
@@ -95,21 +113,23 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                             </p>
                           </div>
 
-                          {category.featured.map((item) => (
-                            <MobileMenuItem
-                              key={item.href}
-                              icon={item.icon}
-                              label={t(item.labelKey)}
-                              sublabel={
-                                item.sublabelKey
-                                  ? t(item.sublabelKey)
-                                  : undefined
-                              }
-                              href={item.href}
-                              isActive={pathname === item.href}
-                              onClick={onClose}
-                            />
-                          ))}
+                          {category.featured
+                            .slice(0, MAX_PREVIEW_ITEMS)
+                            .map((item) => (
+                              <MobileMenuItem
+                                key={item.href}
+                                icon={item.icon}
+                                label={t(item.labelKey)}
+                                sublabel={
+                                  item.sublabelKey
+                                    ? t(item.sublabelKey)
+                                    : undefined
+                                }
+                                href={item.href}
+                                isActive={pathname === item.href}
+                                onClick={onClose}
+                              />
+                            ))}
 
                           <Link
                             href={category.href}

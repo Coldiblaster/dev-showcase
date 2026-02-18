@@ -1,10 +1,15 @@
 import about from "./about.json";
+import accessibilityPage from "./accessibilityPage.json";
 import ai from "./ai.json";
 import aiChatbotPage from "./aiChatbotPage.json";
 import aiInnovation from "./aiInnovation.json";
+import apiDocsPage from "./apiDocsPage.json";
+import architecturePage from "./architecturePage.json";
 import chat from "./chat.json";
 import codeReviewPage from "./codeReviewPage.json";
 import contact from "./contact.json";
+import contributePage from "./contributePage.json";
+import designSystemPage from "./designSystemPage.json";
 import devResourcesData from "./devResourcesData.json";
 import devResourcesPage from "./devResourcesPage.json";
 import experience from "./experience.json";
@@ -30,6 +35,7 @@ import securityPage from "./securityPage.json";
 import seoPage from "./seoPage.json";
 import tailwindTips from "./tailwindTips.json";
 import tailwindTipsPage from "./tailwindTipsPage.json";
+import techStackPage from "./techStackPage.json";
 import terminal from "./terminal.json";
 import tips from "./tips.json";
 import tipsPage from "./tipsPage.json";
@@ -39,13 +45,18 @@ import viewSource from "./viewSource.json";
 export default {
   global,
   about,
+  accessibilityPage,
   aiChatbotPage,
   nav,
   ai,
+  apiDocsPage,
+  architecturePage,
   chat,
   aiInnovation,
   codeReviewPage,
   contact,
+  contributePage,
+  designSystemPage,
   devResourcesData,
   devResourcesPage,
   experience,
@@ -64,6 +75,7 @@ export default {
   reactPatterns,
   reactQueryTipsPage,
   regexPage,
+  techStackPage,
   terminal,
   tailwindTips,
   tailwindTipsPage,

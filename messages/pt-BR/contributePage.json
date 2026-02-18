@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "title": "Contribua",
+    "description": "Saiba como contribuir com o Dev Showcase — história do projeto, padrões, fluxo de trabalho e contribuidores."
+  },
+  "hero": {
+    "badge": "Open Source",
+    "title": "Construído pela comunidade, para a comunidade",
+    "description": "O Dev Showcase é uma plataforma open source que combina portfólio profissional com conteúdo técnico real. Qualquer dev pode contribuir com guias, ferramentas e melhorias.",
+    "cta": "Como contribuir"
+  },
+  "history": {
+    "badge": "A História",
+    "title": "De uma ideia a uma plataforma",
+    "description": "O que começou como um portfólio pessoal se transformou em uma plataforma completa para a comunidade dev — tudo em poucos dias.",
+    "timeline": {
+      "day1": {
+        "date": "13/02/2026",
+        "title": "Primeiro commit",
+        "description": "A ideia nasceu: criar mais do que um portfólio — uma plataforma de conteúdo para devs."
+      },
+      "day2": {
+        "date": "14/02/2026",
+        "title": "Portfólio + Chat IA",
+        "description": "Landing page completa com hero, projetos, experiência e chatbot integrado com GPT-4.1."
+      },
+      "day3": {
+        "date": "15/02/2026",
+        "title": "Guias e ferramentas",
+        "description": "8 guias técnicos, Code Reviewer com IA, Regex Playground e internacionalização em 4 idiomas."
+      },
+      "day4": {
+        "date": "16/02/2026",
+        "title": "Qualidade e infra",
+        "description": "CI/CD com GitHub Actions, Husky, commitlint, acessibilidade completa e documentação."
+      },
+      "day5": {
+        "date": "17/02/2026",
+        "title": "Plataforma no ar",
+        "description": "Deploy em produção, branch protection, Git Flow e abertura para contribuições da comunidade."
+      }
+    }
+  },
+  "whatYouCanDo": {
+    "badge": "Contribuições",
+    "title": "O que você pode fazer",
+    "description": "Existem várias formas de contribuir, independente do seu nível de experiência.",
+    "cards": {
+      "guides": {
+        "title": "Criar guias",
+        "description": "Escreva guias técnicos sobre qualquer tema — React, Node, DevOps, testes e mais."
+      },
+      "tools": {
+        "title": "Criar ferramentas",
+        "description": "Construa ferramentas interativas como editores, playgrounds e analisadores."
+      },
+      "improve": {
+        "title": "Melhorar existentes",
+        "description": "Refatore código, corrija bugs, melhore a UX ou adicione funcionalidades."
+      },
+      "translations": {
+        "title": "Traduções",
+        "description": "Ajude a traduzir para novos idiomas ou melhore as traduções existentes."
+      },
+      "docs": {
+        "title": "Documentação",
+        "description": "Melhore a documentação, adicione exemplos ou crie tutoriais."
+      }
+    }
+  },
+  "howItWorks": {
+    "badge": "Passo a passo",
+    "title": "Como funciona",
+    "description": "O processo de contribuição é simples e segue o padrão open source.",
+    "steps": {
+      "fork": {
+        "title": "Fork o repositório",
+        "description": "Crie uma cópia do projeto na sua conta do GitHub."
+      },
+      "branch": {
+        "title": "Crie uma branch",
+        "description": "A partir de develop, crie feature/nome-da-feature."
+      },
+      "develop": {
+        "title": "Desenvolva",
+        "description": "Siga os padrões do projeto: i18n, acessibilidade e testes."
+      },
+      "pr": {
+        "title": "Abra um PR",
+        "description": "Envie seu Pull Request para a branch develop."
+      },
+      "review": {
+        "title": "Review e merge",
+        "description": "Após aprovação, seu código entra na plataforma."
+      }
+    },
+    "flow": "feature → develop → main → deploy"
+  },
+  "standards": {
+    "badge": "Padrões",
+    "title": "Padrões do projeto",
+    "description": "Seguimos convenções que mantêm o código organizado e acessível.",
+    "items": {
+      "commits": {
+        "title": "Conventional Commits",
+        "description": "feat:, fix:, docs: — mensagens de commit padronizadas."
+      },
+      "structure": {
+        "title": "Estrutura de pastas",
+        "description": "features/ para domínios, components/ para reutilizáveis."
+      },
+      "i18n": {
+        "title": "Internacionalização",
+        "description": "Todo texto visível usa i18n. pt-BR é a fonte de verdade."
+      },
+      "a11y": {
+        "title": "Acessibilidade",
+        "description": "ARIA roles, focus trap, navegação por teclado e skip links."
+      },
+      "quality": {
+        "title": "Qualidade",
+        "description": "ESLint, Prettier, TypeScript strict e testes com Vitest."
+      }
+    },
+    "docsLink": "Ver documentação completa"
+  },
+  "contributors": {
+    "badge": "Comunidade",
+    "title": "Contribuidores",
+    "description": "Pessoas que ajudaram a construir essa plataforma.",
+    "contributions": "{count} contribuições",
+    "beFirst": "Seja o primeiro a contribuir!",
+    "beFirstDescription": "A plataforma acabou de abrir para contribuições. Que tal ser o primeiro?",
+    "loading": "Carregando contribuidores...",
+    "error": "Não foi possível carregar os contribuidores.",
+    "retry": "Tentar novamente",
+    "viewOnGithub": "Ver no GitHub"
+  },
+  "cta": {
+    "title": "Pronto para contribuir?",
+    "description": "Explore o código, escolha uma issue ou crie algo novo. Toda contribuição é bem-vinda.",
+    "github": "Ver no GitHub",
+    "docs": "Ler documentação",
+    "issues": "Ver issues"
+  },
+  "explore": {
+    "badge": "Documentação técnica",
+    "title": "Explore a plataforma",
+    "description": "Conheça a arquitetura, os componentes, as APIs e os padrões que fazem o projeto funcionar."
+  },
+  "sectionNav": {
+    "explore": "Explorar",
+    "history": "História",
+    "whatYouCanDo": "Contribuições",
+    "howItWorks": "Como funciona",
+    "standards": "Padrões",
+    "contributors": "Contribuidores",
+    "cta": "Comece"
+  }
+}

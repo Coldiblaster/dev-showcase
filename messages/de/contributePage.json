@@ -1,0 +1,160 @@
+{
+  "meta": {
+    "title": "Mitwirken",
+    "description": "Erfahren Sie, wie Sie zum Dev Showcase beitragen können — Projektgeschichte, Standards, Workflow und Mitwirkende."
+  },
+  "hero": {
+    "badge": "Open Source",
+    "title": "Von der Community gebaut, für die Community",
+    "description": "Dev Showcase ist eine Open-Source-Plattform, die ein professionelles Portfolio mit echtem technischen Inhalt kombiniert. Jeder Entwickler kann mit Anleitungen, Tools und Verbesserungen beitragen.",
+    "cta": "Wie Sie beitragen können"
+  },
+  "history": {
+    "badge": "Die Geschichte",
+    "title": "Von einer Idee zur Plattform",
+    "description": "Was als persönliches Portfolio begann, wurde in wenigen Tagen zu einer vollständigen Plattform für die Entwickler-Community.",
+    "timeline": {
+      "day1": {
+        "date": "13.02.2026",
+        "title": "Erster Commit",
+        "description": "Die Idee wurde geboren: mehr als ein Portfolio erstellen — eine Content-Plattform für Entwickler."
+      },
+      "day2": {
+        "date": "14.02.2026",
+        "title": "Portfolio + KI-Chat",
+        "description": "Vollständige Landing Page mit Hero, Projekten, Erfahrung und Chatbot integriert mit GPT-4.1."
+      },
+      "day3": {
+        "date": "15.02.2026",
+        "title": "Anleitungen und Tools",
+        "description": "8 technische Anleitungen, KI Code Reviewer, Regex Playground und Internationalisierung in 4 Sprachen."
+      },
+      "day4": {
+        "date": "16.02.2026",
+        "title": "Qualität und Infrastruktur",
+        "description": "CI/CD mit GitHub Actions, Husky, commitlint, vollständige Barrierefreiheit und Dokumentation."
+      },
+      "day5": {
+        "date": "17.02.2026",
+        "title": "Plattform geht online",
+        "description": "Produktions-Deploy, Branch Protection, Git Flow und Öffnung für Community-Beiträge."
+      }
+    }
+  },
+  "whatYouCanDo": {
+    "badge": "Beiträge",
+    "title": "Was Sie tun können",
+    "description": "Es gibt viele Möglichkeiten beizutragen, unabhängig von Ihrem Erfahrungsniveau.",
+    "cards": {
+      "guides": {
+        "title": "Anleitungen erstellen",
+        "description": "Schreiben Sie technische Anleitungen zu jedem Thema — React, Node, DevOps, Tests und mehr."
+      },
+      "tools": {
+        "title": "Tools erstellen",
+        "description": "Erstellen Sie interaktive Tools wie Editoren, Playgrounds und Analysatoren."
+      },
+      "improve": {
+        "title": "Bestehendes verbessern",
+        "description": "Code refaktorieren, Bugs beheben, UX verbessern oder Funktionen hinzufügen."
+      },
+      "translations": {
+        "title": "Übersetzungen",
+        "description": "Helfen Sie bei der Übersetzung in neue Sprachen oder verbessern Sie bestehende Übersetzungen."
+      },
+      "docs": {
+        "title": "Dokumentation",
+        "description": "Verbessern Sie die Dokumentation, fügen Sie Beispiele hinzu oder erstellen Sie Tutorials."
+      }
+    }
+  },
+  "howItWorks": {
+    "badge": "Schritt für Schritt",
+    "title": "So funktioniert es",
+    "description": "Der Beitragsprozess ist einfach und folgt dem Open-Source-Standard.",
+    "steps": {
+      "fork": {
+        "title": "Repository forken",
+        "description": "Erstellen Sie eine Kopie des Projekts in Ihrem GitHub-Konto."
+      },
+      "branch": {
+        "title": "Branch erstellen",
+        "description": "Von develop aus feature/feature-name erstellen."
+      },
+      "develop": {
+        "title": "Entwickeln",
+        "description": "Folgen Sie den Projektstandards: i18n, Barrierefreiheit und Tests."
+      },
+      "pr": {
+        "title": "PR öffnen",
+        "description": "Senden Sie Ihren Pull Request an den develop-Branch."
+      },
+      "review": {
+        "title": "Review und Merge",
+        "description": "Nach der Genehmigung geht Ihr Code auf der Plattform live."
+      }
+    },
+    "flow": "feature → develop → main → deploy"
+  },
+  "standards": {
+    "badge": "Standards",
+    "title": "Projektstandards",
+    "description": "Wir folgen Konventionen, die den Code organisiert und zugänglich halten.",
+    "items": {
+      "commits": {
+        "title": "Conventional Commits",
+        "description": "feat:, fix:, docs: — standardisierte Commit-Nachrichten."
+      },
+      "structure": {
+        "title": "Ordnerstruktur",
+        "description": "features/ für Domänen, components/ für Wiederverwendbares."
+      },
+      "i18n": {
+        "title": "Internationalisierung",
+        "description": "Aller sichtbarer Text verwendet i18n. pt-BR ist die Quelle der Wahrheit."
+      },
+      "a11y": {
+        "title": "Barrierefreiheit",
+        "description": "ARIA-Rollen, Focus Trap, Tastaturnavigation und Skip Links."
+      },
+      "quality": {
+        "title": "Qualität",
+        "description": "ESLint, Prettier, striktes TypeScript und Tests mit Vitest."
+      }
+    },
+    "docsLink": "Vollständige Dokumentation anzeigen"
+  },
+  "contributors": {
+    "badge": "Community",
+    "title": "Mitwirkende",
+    "description": "Menschen, die beim Aufbau dieser Plattform geholfen haben.",
+    "contributions": "{count} Beiträge",
+    "beFirst": "Seien Sie der Erste, der beiträgt!",
+    "beFirstDescription": "Die Plattform wurde gerade für Beiträge geöffnet. Wie wäre es, der Erste zu sein?",
+    "loading": "Mitwirkende werden geladen...",
+    "error": "Mitwirkende konnten nicht geladen werden.",
+    "retry": "Erneut versuchen",
+    "viewOnGithub": "Auf GitHub ansehen"
+  },
+  "cta": {
+    "title": "Bereit beizutragen?",
+    "description": "Erkunden Sie den Code, wählen Sie ein Issue oder erstellen Sie etwas Neues. Jeder Beitrag ist willkommen.",
+    "github": "Auf GitHub ansehen",
+    "docs": "Dokumentation lesen",
+    "issues": "Issues ansehen"
+  },
+  "explore": {
+    "badge": "Technische Dokumentation",
+    "title": "Plattform erkunden",
+    "description": "Lernen Sie die Architektur, Komponenten, APIs und Standards kennen, die das Projekt ausmachen."
+  },
+  "sectionNav": {
+    "explore": "Erkunden",
+    "history": "Geschichte",
+    "whatYouCanDo": "Beiträge",
+    "howItWorks": "So funktioniert es",
+    "standards": "Standards",
+    "contributors": "Mitwirkende",
+    "cta": "Starten"
+  }
+}

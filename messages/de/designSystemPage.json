@@ -1,0 +1,165 @@
+{
+  "showcase": { "viewCode": "Code anzeigen", "hideCode": "Code ausblenden" },
+  "meta": {
+    "title": "Design System | Dev Showcase",
+    "description": "Vollständiger Komponentenkatalog des Dev Showcase — Live-Preview, Props, Varianten und Verwendungsbeispiele."
+  },
+  "hero": {
+    "badge": "Design System",
+    "title": "Projekt-Komponenten",
+    "description": "Alle wiederverwendbaren Komponenten des Dev Showcase nach Kategorie organisiert, mit Live-Preview und Props-Dokumentation.",
+    "cta": "Komponenten erkunden"
+  },
+  "sectionNav": {
+    "primitives": "Primitive",
+    "layout": "Layout",
+    "feedback": "Feedback",
+    "navigation": "Navigation",
+    "content": "Inhalt"
+  },
+  "primitives": {
+    "badge": "UI-Primitive",
+    "title": "Basis-Komponenten",
+    "description": "Grundlegende Bausteine, die in der gesamten Anwendung verwendet werden.",
+    "components": {
+      "button": {
+        "name": "Button",
+        "description": "Button mit Varianten (default, outline, ghost, destructive), Größen (sm, lg, icon) und asChild-Unterstützung.",
+        "path": "src/components/ui/button.tsx"
+      },
+      "badge": {
+        "name": "Badge",
+        "description": "Kompaktes Tag mit Varianten (default, secondary, outline, destructive) für Status und Kategorien.",
+        "path": "src/components/ui/badge.tsx"
+      },
+      "input": {
+        "name": "Input",
+        "description": "Eingabefeld mit konsistenten Stilen, zugänglichem Fokus und Icon-Unterstützung.",
+        "path": "src/components/ui/input.tsx"
+      },
+      "card": {
+        "name": "Card",
+        "description": "Container mit Header, Content und Footer — Basis für Content- und Feature-Cards.",
+        "path": "src/components/ui/card.tsx"
+      },
+      "separator": {
+        "name": "Separator",
+        "description": "Horizontale oder vertikale visuelle Trennlinie basierend auf Radix UI.",
+        "path": "src/components/ui/separator.tsx"
+      },
+      "tabs": {
+        "name": "Tabs",
+        "description": "Tab-Navigation mit Radix UI — zugängliche List, Trigger und Content.",
+        "path": "src/components/ui/tabs.tsx"
+      }
+    }
+  },
+  "layout": {
+    "badge": "Layout",
+    "title": "Seitenstruktur",
+    "description": "Komponenten, die die visuelle Struktur der Seiten definieren.",
+    "components": {
+      "heroSection": {
+        "name": "HeroSection",
+        "description": "Erweiterbarer Hero mit Badge, Titel, Beschreibung, Warning, Slots für CTA, Stats und Social Links.",
+        "path": "src/components/hero-section.tsx"
+      },
+      "sectionWrapper": {
+        "name": "SectionWrapper",
+        "description": "Umschließt Abschnitte mit Padding, konfigurierbarer Max-Breite und Varianten (default, alternate).",
+        "path": "src/components/section-wrapper.tsx"
+      },
+      "sectionNav": {
+        "name": "SectionNav",
+        "description": "Sticky-Navigation zwischen Seitenabschnitten mit Scroll-Spy und aktivem Highlight.",
+        "path": "src/components/section-nav.tsx"
+      },
+      "sectionDivider": {
+        "name": "SectionDivider",
+        "description": "Visueller Trenner mit Verlauf zwischen Seitenabschnitten.",
+        "path": "src/components/section-divider.tsx"
+      }
+    }
+  },
+  "feedback": {
+    "badge": "Feedback",
+    "title": "Feedback und Zustände",
+    "description": "Komponenten für Loading, Fehler, Animationen und Status.",
+    "components": {
+      "animatedSection": {
+        "name": "AnimatedSection",
+        "description": "Wrapper mit Fade-in-Animation beim Betreten des Viewports via Framer Motion.",
+        "path": "src/components/animated-section.tsx"
+      },
+      "pageSkeleton": {
+        "name": "PageSkeleton",
+        "description": "Loading-Skeleton mit Varianten (guide, implementation, tool) für Loading-Zustände.",
+        "path": "src/components/page-skeleton.tsx"
+      },
+      "scoreGauge": {
+        "name": "ScoreGauge",
+        "description": "Animierter kreisförmiger Bewertungsindikator mit Farben nach Bereich (rot, gelb, grün).",
+        "path": "src/components/score-gauge.tsx"
+      },
+      "copyFeedback": {
+        "name": "CopyFeedback",
+        "description": "Kopier-Button mit visuellem Erfolgs-Feedback.",
+        "path": "src/components/copy-feedback.tsx"
+      }
+    }
+  },
+  "navigation": {
+    "badge": "Navigation",
+    "title": "Navigation und Suche",
+    "description": "Globale Site-Navigationskomponenten.",
+    "components": {
+      "navbar": {
+        "name": "Navbar",
+        "description": "Navigationsleiste mit Desktop-Submenüs, Mobile-Menü, Theme-Toggle und globaler Suche.",
+        "path": "src/components/navbar/"
+      },
+      "globalSearch": {
+        "name": "Global Search",
+        "description": "Fuzzy-Suche mit Fuse.js, Cmd+K-Shortcut, Ergebnisse nach Typ gruppiert.",
+        "path": "src/components/global-search/"
+      },
+      "skipLink": {
+        "name": "SkipLink",
+        "description": "Unsichtbarer Link, der direkt zum Hauptinhalt springt — essenziell für Barrierefreiheit.",
+        "path": "src/components/skip-link.tsx"
+      },
+      "footer": {
+        "name": "Footer",
+        "description": "Footer mit Social-Links, Sekundär-Navigation und Autoreninformationen.",
+        "path": "src/components/footer.tsx"
+      }
+    }
+  },
+  "contentComponents": {
+    "badge": "Inhalt",
+    "title": "Inhaltsdarstellung",
+    "description": "Komponenten zur Anzeige dynamischer Inhalte.",
+    "components": {
+      "featureCard": {
+        "name": "FeatureCard",
+        "description": "Card für Feature-Auflistung mit Icon, Titel, Beschreibung, Tags und Link.",
+        "path": "src/components/feature-card.tsx"
+      },
+      "stepCard": {
+        "name": "StepCard",
+        "description": "Nummerierte Card für Schritt-für-Schritt mit Icon, Titel und Beschreibung.",
+        "path": "src/components/step-card.tsx"
+      },
+      "codeBlock": {
+        "name": "CodeBlock",
+        "description": "Code-Block mit Syntax-Highlighting, Kopier-Button und horizontalem Scroll.",
+        "path": "src/components/code-block.tsx"
+      },
+      "viewSource": {
+        "name": "ViewSource",
+        "description": "Erweiterbarer Link zur Anzeige des Quellcodes der Komponente.",
+        "path": "src/components/view-source.tsx"
+      }
+    }
+  }
+}

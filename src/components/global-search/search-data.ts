@@ -127,6 +127,73 @@ function buildTags(slug: string): string[] {
   return tagMap[slug] ?? [slug];
 }
 
+const STANDALONE_PAGES: SearchResult[] = [
+  {
+    id: "page-contribute",
+    titleKey: "items.contribute.title",
+    descriptionKey: "items.contribute.description",
+    type: "page",
+    url: "/contribua",
+    tags: [
+      "contribuir",
+      "contribute",
+      "open source",
+      "comunidade",
+      "community",
+      "github",
+      "pr",
+      "pull request",
+    ],
+  },
+  {
+    id: "page-architecture",
+    titleKey: "items.architecture.title",
+    descriptionKey: "items.architecture.description",
+    type: "page",
+    url: "/contribua/arquitetura",
+    tags: ["arquitetura", "architecture", "estrutura", "pastas", "padrões"],
+  },
+  {
+    id: "page-tech-stack",
+    titleKey: "items.techStack-page.title",
+    descriptionKey: "items.techStack-page.description",
+    type: "page",
+    url: "/contribua/tech-stack",
+    tags: ["tech stack", "bibliotecas", "libs", "dependências", "versões"],
+  },
+  {
+    id: "page-design-system",
+    titleKey: "items.designSystem.title",
+    descriptionKey: "items.designSystem.description",
+    type: "page",
+    url: "/contribua/design-system",
+    tags: ["design system", "componentes", "ui", "button", "card", "badge"],
+  },
+  {
+    id: "page-api-docs",
+    titleKey: "items.apiDocs.title",
+    descriptionKey: "items.apiDocs.description",
+    type: "page",
+    url: "/contribua/api",
+    tags: ["api", "endpoints", "rest", "rate limiting", "segurança"],
+  },
+  {
+    id: "page-accessibility",
+    titleKey: "items.accessibility.title",
+    descriptionKey: "items.accessibility.description",
+    type: "page",
+    url: "/contribua/acessibilidade",
+    tags: [
+      "acessibilidade",
+      "accessibility",
+      "a11y",
+      "aria",
+      "wcag",
+      "teclado",
+    ],
+  },
+];
+
 const LISTING_PAGES: SearchResult[] = [
   {
     id: "page-implementations",
@@ -251,6 +318,7 @@ const HOME_SECTIONS: SearchResult[] = [
 ];
 
 export const SEARCH_ITEMS: SearchResult[] = [
+  ...STANDALONE_PAGES,
   ...LISTING_PAGES,
   ...HOME_SECTIONS,
   ...buildContentSearchItems(),

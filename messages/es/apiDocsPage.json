@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "title": "API Reference | Dev Showcase",
+    "description": "Documentación completa de las APIs internas del Dev Showcase — endpoints, parámetros, rate limiting y seguridad."
+  },
+  "hero": {
+    "badge": "API Reference",
+    "title": "APIs del proyecto",
+    "description": "Documentación de todos los endpoints internos con parámetros, respuestas, rate limiting y seguridad.",
+    "cta": "Ver endpoints"
+  },
+  "sectionNav": {
+    "overview": "Visión General",
+    "endpoints": "Endpoints",
+    "security": "Seguridad"
+  },
+  "overview": {
+    "badge": "Visión General",
+    "title": "Cómo funcionan las APIs",
+    "description": "Todas las APIs son Route Handlers de Next.js ubicados en src/app/api/. Se ejecutan en el servidor y están protegidas por rate limiting.",
+    "features": {
+      "rateLimit": {
+        "title": "Rate Limiting",
+        "description": "Cada endpoint tiene límites por IP con ventana de tiempo configurable."
+      },
+      "caching": {
+        "title": "Cache Inteligente",
+        "description": "Cache en memoria con TTL + headers Cache-Control para CDN."
+      },
+      "validation": {
+        "title": "Validación con Zod",
+        "description": "Schemas tipados validan body, query params y headers."
+      },
+      "errorHandling": {
+        "title": "Manejo de Errores",
+        "description": "Respuestas consistentes con códigos de estado adecuados y mensajes claros."
+      }
+    }
+  },
+  "endpoints": {
+    "badge": "Endpoints",
+    "title": "Rutas disponibles",
+    "description": "Todos los endpoints de la API con detalles de uso.",
+    "labels": {
+      "rateLimit": "Rate limit",
+      "params": "Parámetros",
+      "response": "Respuesta"
+    },
+    "items": {
+      "chat": {
+        "title": "AI Chat",
+        "method": "POST",
+        "path": "/api/chat",
+        "description": "Chatbot con IA usando OpenAI GPT-4 con streaming de respuesta.",
+        "rateLimit": "5 peticiones/minuto por IP",
+        "params": "message (string), history (array opcional)",
+        "response": "Stream de texto (Server-Sent Events)"
+      },
+      "codeReview": {
+        "title": "Code Review",
+        "method": "POST",
+        "path": "/api/code-review",
+        "description": "Análisis de código con IA — identifica bugs, sugiere mejoras y buenas prácticas.",
+        "rateLimit": "10 peticiones/minuto por IP",
+        "params": "code (string), language (string opcional)",
+        "response": "JSON con análisis, score y sugerencias"
+      },
+      "contact": {
+        "title": "Contacto",
+        "method": "POST",
+        "path": "/api/contact",
+        "description": "Envío de email vía Resend con validación reCAPTCHA.",
+        "rateLimit": "3 peticiones/minuto por IP",
+        "params": "name, email, message, recaptchaToken",
+        "response": "JSON con estado de envío"
+      },
+      "github": {
+        "title": "GitHub Stats",
+        "method": "GET",
+        "path": "/api/github",
+        "description": "Estadísticas del perfil GitHub — repos, stars, followers, lenguajes.",
+        "rateLimit": "30 peticiones/minuto por IP",
+        "params": "Ninguno",
+        "response": "JSON con datos del perfil y repositorios"
+      },
+      "contributors": {
+        "title": "Contributors",
+        "method": "GET",
+        "path": "/api/github/contributors",
+        "description": "Lista de contribuidores del repositorio con avatar y conteo de contribuciones.",
+        "rateLimit": "30 peticiones/minuto por IP",
+        "params": "Ninguno",
+        "response": "Array JSON con login, avatarUrl, profileUrl, contributions"
+      }
+    }
+  },
+  "security": {
+    "badge": "Seguridad",
+    "title": "Protecciones implementadas",
+    "description": "Capas de seguridad que protegen las APIs contra abuso.",
+    "layers": {
+      "rateLimit": {
+        "title": "Rate Limiting por IP",
+        "description": "Ventana deslizante con conteo por IP. Retorna 429 Too Many Requests cuando se excede el límite."
+      },
+      "recaptcha": {
+        "title": "Google reCAPTCHA v3",
+        "description": "Validación en el endpoint de contacto para bloquear bots y spam automatizado."
+      },
+      "validation": {
+        "title": "Validación de Input",
+        "description": "Schemas Zod validan todos los inputs antes del procesamiento. Datos inválidos reciben 400 Bad Request."
+      },
+      "headers": {
+        "title": "Security Headers",
+        "description": "Cache-Control, CORS y headers de seguridad configurados en el middleware de Next.js."
+      },
+      "envVars": {
+        "title": "Variables de Entorno",
+        "description": "Claves de API (OpenAI, Resend, reCAPTCHA) almacenadas en variables de entorno, nunca expuestas al cliente."
+      }
+    }
+  }
+}

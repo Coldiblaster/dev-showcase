@@ -1,5 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
+  Accessibility,
+  Blocks,
   Bot,
   Briefcase,
   Code2,
@@ -10,6 +12,7 @@ import {
   GitBranch,
   Github,
   Globe,
+  Heart,
   Layers,
   Mail,
   Paintbrush,
@@ -70,6 +73,22 @@ export type NavKey =
   | "gitWorkflowDesc"
   | "reactPatterns"
   | "reactPatternsDesc"
+  | "contribute"
+  | "contributeDesc"
+  | "sectionProject"
+  | "sectionReference"
+  | "overview"
+  | "overviewDesc"
+  | "architecture"
+  | "architectureDesc"
+  | "contribTechStack"
+  | "contribTechStackDesc"
+  | "designSystem"
+  | "designSystemDesc"
+  | "apiReference"
+  | "apiReferenceDesc"
+  | "a11y"
+  | "a11yDesc"
   | "openMenu"
   | "closeMenu"
   | "viewAll";
@@ -95,6 +114,8 @@ export interface NavGroup {
   labelKey: NavKey;
   descriptionKey?: NavKey;
   icon: LucideIcon;
+  /** Link direto (sem submenu). Se definido, renderiza como link simples. */
+  href?: string;
   items?: NavItem[];
   categories?: NavCategory[];
   activeCheck: (pathname: string) => boolean;
@@ -236,4 +257,72 @@ export const contentGroup: NavGroup = {
   ],
 };
 
-export const navGroups: NavGroup[] = [portfolioGroup, contentGroup];
+export const contributeGroup: NavGroup = {
+  id: "contribute",
+  labelKey: "contribute",
+  descriptionKey: "contributeDesc",
+  icon: Heart,
+  activeCheck: (pathname) => pathname.startsWith("/contribua"),
+  categories: [
+    {
+      id: "project",
+      labelKey: "sectionProject",
+      icon: FolderKanban,
+      href: "/contribua#explore",
+      totalItems: 3,
+      featured: [
+        {
+          icon: Heart,
+          labelKey: "overview",
+          sublabelKey: "overviewDesc",
+          href: "/contribua",
+        },
+        {
+          icon: Layers,
+          labelKey: "architecture",
+          sublabelKey: "architectureDesc",
+          href: "/contribua/arquitetura",
+        },
+        {
+          icon: Blocks,
+          labelKey: "contribTechStack",
+          sublabelKey: "contribTechStackDesc",
+          href: "/contribua/tech-stack",
+        },
+      ],
+    },
+    {
+      id: "reference",
+      labelKey: "sectionReference",
+      icon: Code2,
+      href: "/contribua#explore",
+      totalItems: 3,
+      featured: [
+        {
+          icon: Component,
+          labelKey: "designSystem",
+          sublabelKey: "designSystemDesc",
+          href: "/contribua/design-system",
+        },
+        {
+          icon: FileCode,
+          labelKey: "apiReference",
+          sublabelKey: "apiReferenceDesc",
+          href: "/contribua/api",
+        },
+        {
+          icon: Accessibility,
+          labelKey: "a11y",
+          sublabelKey: "a11yDesc",
+          href: "/contribua/acessibilidade",
+        },
+      ],
+    },
+  ],
+};
+
+export const navGroups: NavGroup[] = [
+  portfolioGroup,
+  contentGroup,
+  contributeGroup,
+];

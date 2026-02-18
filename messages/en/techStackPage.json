@@ -1,0 +1,204 @@
+{
+  "meta": {
+    "title": "Tech Stack | Dev Showcase",
+    "description": "All technologies, libraries and tools used in Dev Showcase — versions, categories and motivation for each choice."
+  },
+  "hero": {
+    "badge": "Tech Stack",
+    "title": "Technologies we use",
+    "description": "Each library was chosen with purpose. Learn about the full stack and the motivation behind each decision.",
+    "cta": "View all libs"
+  },
+  "sectionNav": {
+    "framework": "Framework",
+    "ui": "UI & Style",
+    "i18n": "Internationalization",
+    "ai": "AI & APIs",
+    "devTools": "Dev Tools",
+    "testing": "Testing",
+    "deploy": "Deploy"
+  },
+  "categories": {
+    "framework": {
+      "badge": "Framework",
+      "title": "Project foundation",
+      "description": "The heart of the application — framework, runtime and language.",
+      "libs": {
+        "next": {
+          "name": "Next.js",
+          "version": "16.1.6",
+          "description": "React framework with App Router, Server Components, SSR/SSG and API Routes.",
+          "why": "Best DX for full-stack React apps with native SEO and performance support."
+        },
+        "react": {
+          "name": "React",
+          "version": "19.2.3",
+          "description": "Library for building interfaces with declarative components.",
+          "why": "Mature ecosystem, Server Components in React 19, powerful hooks."
+        },
+        "typescript": {
+          "name": "TypeScript",
+          "version": "5.7.3",
+          "description": "JavaScript superset with static typing.",
+          "why": "Type safety, autocomplete, reliable refactoring."
+        }
+      }
+    },
+    "ui": {
+      "badge": "UI & Style",
+      "title": "Interface and visual",
+      "description": "Components, styles and animations that create the visual experience.",
+      "libs": {
+        "tailwind": {
+          "name": "Tailwind CSS",
+          "version": "4.1.13",
+          "description": "Utility-first CSS framework for fast and consistent styling.",
+          "why": "Fast dev, native dark mode, tree-shaking, v4 with new engine."
+        },
+        "radix": {
+          "name": "Radix UI",
+          "version": "1.4.3",
+          "description": "Accessible and unstyled UI primitives — tabs, dialog, toast, switch.",
+          "why": "Accessibility out-of-box, headless, flexible composition."
+        },
+        "framerMotion": {
+          "name": "Framer Motion",
+          "version": "12.34.0",
+          "description": "Declarative animation library for React.",
+          "why": "Reusable variants, viewport control, exit animations."
+        },
+        "lucide": {
+          "name": "Lucide React",
+          "version": "0.564.0",
+          "description": "Clean and consistent SVG icons with tree-shaking.",
+          "why": "Lightweight, wide variety, simple API as React components."
+        },
+        "cva": {
+          "name": "CVA",
+          "version": "0.7.1",
+          "description": "Class Variance Authority for typed component variants.",
+          "why": "Type-safe variants for components with Tailwind."
+        },
+        "shadcn": {
+          "name": "shadcn/ui",
+          "version": "CLI 3.8.4",
+          "description": "Collection of copyable components based on Radix + Tailwind.",
+          "why": "Customizable, no lock-in, copy-paste with full control."
+        }
+      }
+    },
+    "i18n": {
+      "badge": "i18n",
+      "title": "Internationalization",
+      "description": "Support for 4 languages with strong typing and automatic translation.",
+      "libs": {
+        "nextIntl": {
+          "name": "next-intl",
+          "version": "4.8.2",
+          "description": "Internationalization for Next.js with App Router and Server Components.",
+          "why": "Strong typing, namespaces, App Router compatible without rewrites."
+        },
+        "deepl": {
+          "name": "DeepL API",
+          "version": "1.24.0",
+          "description": "High-quality automatic translation API.",
+          "why": "Natural translations for en, es, de from pt-BR."
+        }
+      }
+    },
+    "ai": {
+      "badge": "AI & APIs",
+      "title": "Artificial Intelligence",
+      "description": "Features powered by AI.",
+      "libs": {
+        "openai": {
+          "name": "OpenAI SDK",
+          "version": "6.22.0",
+          "description": "Official SDK for GPT-4, streaming and chat completions.",
+          "why": "Chatbot and AI code review, native streaming."
+        },
+        "resend": {
+          "name": "Resend",
+          "version": "6.9.2",
+          "description": "Modern API for sending transactional emails.",
+          "why": "Excellent DX, React Email, no spam."
+        },
+        "zod": {
+          "name": "Zod",
+          "version": "4.3.6",
+          "description": "Schema validation with type inference.",
+          "why": "API validation, forms, type-safe, v4 with improved performance."
+        }
+      }
+    },
+    "devTools": {
+      "badge": "Dev Tools",
+      "title": "Development tools",
+      "description": "Linting, formatting, commits and code quality.",
+      "libs": {
+        "eslint": {
+          "name": "ESLint",
+          "version": "9.x",
+          "description": "Linter for JavaScript/TypeScript with configurable rules.",
+          "why": "Flat config v9, integrated with Prettier and import sort."
+        },
+        "prettier": {
+          "name": "Prettier",
+          "version": "3.6.2",
+          "description": "Opinionated and consistent code formatter.",
+          "why": "Zero style discussion, auto-format on save."
+        },
+        "husky": {
+          "name": "Husky",
+          "version": "9.1.7",
+          "description": "Native Git hooks — pre-commit and commit-msg.",
+          "why": "Ensures lint and commit format before push."
+        },
+        "commitlint": {
+          "name": "Commitlint",
+          "version": "20.4.1",
+          "description": "Validation of commit messages in Conventional Commits format.",
+          "why": "Clean history, automatic changelog, semver."
+        }
+      }
+    },
+    "testing": {
+      "badge": "Testing",
+      "title": "Automated testing",
+      "description": "Testing infrastructure for reliability.",
+      "libs": {
+        "vitest": {
+          "name": "Vitest",
+          "version": "3.2.4",
+          "description": "Fast test framework compatible with Vite and TypeScript.",
+          "why": "Jest API compatible, fast, native HMR."
+        },
+        "testingLibrary": {
+          "name": "Testing Library",
+          "version": "6.9.1",
+          "description": "Utilities for testing React components focusing on user behavior.",
+          "why": "Accessible tests, simulates real interactions."
+        }
+      }
+    },
+    "deploy": {
+      "badge": "Deploy",
+      "title": "Deploy and monitoring",
+      "description": "Deploy infrastructure and analytics.",
+      "libs": {
+        "vercel": {
+          "name": "Vercel",
+          "version": "Platform",
+          "description": "Deploy platform with PR preview, edge functions and analytics.",
+          "why": "Automatic deploy, preview URLs, native Next.js integration."
+        },
+        "vercelAnalytics": {
+          "name": "Vercel Analytics",
+          "version": "1.6.1",
+          "description": "Web analytics with performance metrics (Web Vitals).",
+          "why": "Zero config, Core Web Vitals, no bundle impact."
+        }
+      }
+    }
+  }
+}

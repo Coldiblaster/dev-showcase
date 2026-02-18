@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "title": "Architektur | Dev Showcase",
+    "description": "Ordnerstruktur, Organisationsmuster, Datenfluss und technische Entscheidungen des Dev Showcase-Projekts."
+  },
+  "hero": {
+    "badge": "Architektur",
+    "title": "Wie das Projekt organisiert ist",
+    "description": "Lernen Sie die Ordnerstruktur, die übernommenen Muster und die technischen Entscheidungen kennen, die die Entwicklung des Dev Showcase leiten.",
+    "cta": "Struktur erkunden"
+  },
+  "sectionNav": {
+    "structure": "Struktur",
+    "patterns": "Muster",
+    "dataFlow": "Datenfluss",
+    "decisions": "Entscheidungen"
+  },
+  "structure": {
+    "badge": "Ordnerstruktur",
+    "title": "Code-Organisation",
+    "description": "Jeder Ordner hat eine klare Verantwortung und erleichtert Navigation und Wartung.",
+    "folders": {
+      "app": {
+        "name": "src/app/",
+        "description": "App Router-Routen — jeder Ordner ist eine Route mit page.tsx, loading.tsx und metadata."
+      },
+      "features": {
+        "name": "src/features/",
+        "description": "Domain-Komponenten nach Funktionalität gruppiert — jede Feature ist isoliert und eigenständig."
+      },
+      "components": {
+        "name": "src/components/",
+        "description": "Gemeinsame und wiederverwendbare Komponenten — UI-Primitive, Layout, Navigation."
+      },
+      "lib": {
+        "name": "src/lib/",
+        "description": "Utilitäten, Konfiguration, Helpers — i18n, SEO, Rate Limiting, Animationen."
+      },
+      "messages": {
+        "name": "messages/",
+        "description": "JSON-Übersetzungsdateien pro Sprache — pt-BR, en, es, de."
+      },
+      "hooks": {
+        "name": "src/hooks/",
+        "description": "Wiederverwendbare Custom Hooks — scroll lock, media queries usw."
+      }
+    }
+  },
+  "patterns": {
+    "badge": "Muster",
+    "title": "Code-Konventionen",
+    "description": "Konsistente Muster, die jeder Mitwirkende befolgen sollte.",
+    "items": {
+      "featureSlice": {
+        "title": "Feature Slices",
+        "description": "Jede Funktionalität hat ihren eigenen Ordner in features/ mit isolierten Komponenten, Hooks und Daten. index.tsx exportiert die Hauptkomponente."
+      },
+      "barrelExports": {
+        "title": "Barrel Exports",
+        "description": "Jede Feature exportiert über index.tsx. Externe Importe nutzen @/features/name, greifen nie direkt auf interne Dateien zu."
+      },
+      "serverClient": {
+        "title": "Server vs Client",
+        "description": "Komponenten sind standardmäßig Server. Nur solche mit Hooks, State oder Events erhalten 'use client' an der Spitze."
+      },
+      "i18nNamespaces": {
+        "title": "i18n Namespaces",
+        "description": "Jede Seite hat ihren JSON-Namespace. Neue Seiten müssen die JSON-Datei erstellen, in load-messages.ts und types.d.ts registrieren."
+      },
+      "sharedComponents": {
+        "title": "Gemeinsame Komponenten",
+        "description": "HeroSection, SectionWrapper, SectionNav, AnimatedSection — auf allen Seiten für Konsistenz wiederverwendet."
+      }
+    }
+  },
+  "dataFlow": {
+    "badge": "Datenfluss",
+    "title": "Wie die Daten fließen",
+    "description": "Vom Server zum Client hat jede Ebene eine klare Verantwortung.",
+    "flows": {
+      "i18n": {
+        "title": "Internationalisierung",
+        "steps": [
+          "Cookie safer_locale definiert die Sprache",
+          "load-messages.ts lädt die Sprach-JSONs",
+          "next-intl injiziert in den globalen Provider",
+          "useTranslations('namespace') in Komponenten"
+        ]
+      },
+      "api": {
+        "title": "Interne APIs",
+        "steps": [
+          "Client macht fetch zu /api/endpoint",
+          "Rate Limiting validiert IP und Limits",
+          "Handler verarbeitet und gibt JSON zurück",
+          "In-Memory-Cache + Cache-Control-Header"
+        ]
+      },
+      "content": {
+        "title": "Dynamischer Inhalt",
+        "steps": [
+          "content.ts definiert typisierte CONTENT_ITEMS",
+          "Listen-Seiten filtern nach Kategorie",
+          "[slug]-Routen nutzen generateStaticParams",
+          "Feature-Komponente rendert die Seite"
+        ]
+      }
+    }
+  },
+  "decisions": {
+    "badge": "Technische Entscheidungen",
+    "title": "Warum diese Entscheidungen?",
+    "description": "Jede architektonische Entscheidung basiert auf realen Trade-offs.",
+    "items": {
+      "appRouter": {
+        "title": "App Router (nicht Pages Router)",
+        "reason": "Server Components standardmäßig, verschachtelte Layouts, Streaming, natives generateMetadata."
+      },
+      "nextIntl": {
+        "title": "next-intl (nicht next-i18next)",
+        "reason": "Native App-Router-Unterstützung, starke Typisierung, keine Route-Rewrites, einfache Namespaces."
+      },
+      "tailwind": {
+        "title": "Tailwind CSS v4 (nicht CSS Modules)",
+        "reason": "Utility-first beschleunigt die Entwicklung, visuelle Konsistenz, natives Dark Mode, automatisches Tree-Shaking."
+      },
+      "framerMotion": {
+        "title": "Framer Motion (nicht CSS-Animationen)",
+        "reason": "Deklarative Animationen, wiederverwendbare Varianten, Viewport-Steuerung, Exit-Animationen."
+      },
+      "monorepo": {
+        "title": "Single repo (nicht Monorepo)",
+        "reason": "Projekt mit einzigem Umfang. Ein Repository hält den Workflow für Mitwirkende einfach."
+      }
+    }
+  }
+}

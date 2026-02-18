@@ -11,6 +11,8 @@ import { navGroups } from "./nav-data";
 import { NavSubmenu } from "./nav-submenu";
 import { SubmenuItem } from "./submenu-item";
 
+const MAX_PREVIEW_ITEMS = 4;
+
 function CategoryColumn({
   category,
   t,
@@ -21,6 +23,7 @@ function CategoryColumn({
   pathname: string;
 }) {
   const Icon = category.icon;
+  const visibleItems = category.featured.slice(0, MAX_PREVIEW_ITEMS);
 
   return (
     <div className="flex flex-col">
@@ -32,7 +35,7 @@ function CategoryColumn({
       </div>
 
       <div className="flex-1 space-y-0.5">
-        {category.featured.map((item) => (
+        {visibleItems.map((item) => (
           <SubmenuItem
             key={item.href}
             icon={item.icon}
@@ -80,6 +83,24 @@ export function DesktopNav() {
 
       {navGroups.map((group) => {
         if (group.showOnlyOn === "home" && !isHome) return null;
+
+        if (group.href) {
+          return (
+            <Link key={group.id} href={group.href}>
+              <motion.div
+                className={`rounded-lg px-3 py-2 text-sm transition-colors ${
+                  group.activeCheck(pathname)
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {t(group.labelKey)}
+              </motion.div>
+            </Link>
+          );
+        }
 
         const hasCategories = !!group.categories?.length;
 
