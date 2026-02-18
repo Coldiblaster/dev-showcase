@@ -32,7 +32,7 @@
       },
       {
         "name": "Tailwind CSS IntelliSense",
-        "description": "Extensao do VS Code com autocomplete, linting e preview de classes Tailwind.",
+        "description": "VS Code extension with autocomplete, linting, and preview of Tailwind classes.",
         "url": "https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss"
       },
       {
@@ -75,19 +75,19 @@
     "description": "These are patterns that I use in practically every project. Shadcn components composed with Tailwind in a clean and reusable way.",
     "items": [
       {
-        "name": "Card com hover e badge",
+        "name": "Card with hover and badge",
         "description": "Reusable card with subtle hover effect, status badge, and flexbox layout. I use it a lot in project listings and dashboards.",
-        "code": "<Card className=\"group border-border bg-card/50 transition-colors hover:border-primary/20\"> <CardHeader className=\"pb-2\"> <div className=\"flex items-center justify-between\"> <CardTitle className=\"text-base\">Titulo</CardTitle>\n      <Badge variant=\"secondary\">Ativo</Badge> </div> </CardHeader> <CardContent> <p className=\"text-sm text-muted-foreground\">Descricao aqui</p> </CardContent> </Card>"
+        "code": "<Card className=\"group border-border bg-card/50 transition-colors hover:border-primary/20\"> <CardHeader className=\"pb-2\"> <div className=\"flex items-center justify-between\"> <CardTitle className=\"text-base\">Title</CardTitle>\n      <Badge variant=\"secondary\">Active</Badge> </div> </CardHeader> <CardContent> <p className=\"text-sm text-muted-foreground\">Description here</p> </CardContent> </Card>"
       },
       {
         "name": "Buttons with variants",
         "description": "The shadcn variant system is very powerful. I combine it with utility classes to create consistent buttons.",
-        "code": "<div className=\"flex gap-3\"> <Button>Primario</Button> <Button variant=\"secondary\">Secundario</Button> <Button variant=\"outline\" className=\"gap-1.5\"> <Github className=\"h-4 w-4\" /> GitHub </Button>\n  <Button variant=\"ghost\" size=\"icon\"> <Sun className=\"h-4 w-4\" /> </Button> </div>"
+        "code": "<div className=\"flex gap-3\"> <Button>Primary</Button> <Button variant=\"secondary\">Secondary</Button> <Button variant=\"outline\" className=\"gap-1.5\"> <Github className=\"h-4 w-4\" /> GitHub </Button>\n  <Button variant=\"ghost\" size=\"icon\"> <Sun className=\"h-4 w-4\" /> </Button> </div>"
       },
       {
-        "name": "Form com validacao (React Hook Form + Zod)",
+        "name": "Form with validation (React Hook Form + Zod)",
         "description": "This is the stack I use most for forms: shadcn Form + React Hook Form + Zod. Type-safe, automatic validation, and consistent UX.",
-        "code": "const formSchema = z.object({\n  email: z.string().email(\"Email invalido\"),\n  name: z.string().min(2, \"Minimo 2 caracteres\"),\n}) <Form {...form}>\n  <FormField name=\"email\" render={({ field }) => ( <FormItem> <FormLabel>Email</FormLabel> <FormControl> <Input placeholder=\"seu@email.com\" {...field} /> </FormControl> <FormMessage /> </FormItem> )} /> </Form>"
+        "code": "const formSchema = z.object({\n  email: z.string().email(\"Invalid email\"),\n  name: z.string().min(2, \"Minimum 2 characters\"),\n}) <Form {...form}>\n  <FormField name=\"email\" render={({ field }) => ( <FormItem> <FormLabel>Email</FormLabel> <FormControl> <Input placeholder=\"your@email.com\" {...field} /> </FormControl> <FormMessage /> </FormItem> )} /> </Form>"
       }
     ]
   },
@@ -98,7 +98,7 @@
       {
         "title": "Composition instead of giant props",
         "description": "I prefer to compose smaller components rather than create one with 20 props. It's more readable, testable, and easier to maintain.",
-        "code": "// Ruim: <Card title=\"...\" subtitle=\"...\" icon=\"...\" badge=\"...\" /> // Bom: <Card> <CardHeader> <CardTitle>Titulo</CardTitle> <CardDescription>Subtitulo</CardDescription> </CardHeader> <CardContent>...</CardContent>\n</Card>"
+        "code": "// Bad: <Card title=\"...\" subtitle=\"...\" icon=\"...\" badge=\"...\" /> // Good: <Card> <CardHeader> <CardTitle>Title</CardTitle> <CardDescription>Subtitle</CardDescription> </CardHeader> <CardContent>...</CardContent>\n</Card>"
       },
       {
         "title": "cn() for conditional classes",
@@ -108,7 +108,7 @@
       {
         "title": "Semantic tokens instead of hardcoded colors",
         "description": "I never use bg-white or text-gray-500 directly. I always use semantic tokens (bg-background, text-muted-foreground) to ensure that dark mode works.",
-        "code": "// Ruim: <div className=\"bg-white text-gray-900 border-gray-200\"> // Bom: <div className=\"bg-background text-foreground border-border\">"
+        "code": "// Bad: <div className=\"bg-white text-gray-900 border-gray-200\"> // Good: <div className=\"bg-background text-foreground border-border\">"
       },
       {
         "title": "Mobile-first responsive",
@@ -135,9 +135,9 @@
       },
       {
         "title": "Layout",
-        "bad": "float-left position: absolute (pra layout)",
+        "bad": "float-left position: absolute (for layout)",
         "good": "flex items-center justify-between gap-4",
-        "explanation": "Flexbox resolve 90% dos layouts. Reserve absolute/fixed pra overlays e tooltips."
+        "explanation": "Flexbox solves 90% of layouts. Reserve absolute/fixed for overlays and tooltips."
       },
       {
         "title": "Spacing between children",

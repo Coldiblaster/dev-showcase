@@ -1,3 +1,5 @@
+"use client";
+
 import { useInView } from "framer-motion";
 import { type RefObject, useRef } from "react";
 

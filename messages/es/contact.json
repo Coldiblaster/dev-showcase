@@ -6,7 +6,7 @@
   "nameLabel": "Nombre",
   "namePlaceholder": "Su nombre completo",
   "emailFieldLabel": "Correo electrónico",
-  "emailPlaceholder": "seu@email.com",
+  "emailPlaceholder": "tu@email.com",
   "messageLabel": "Mensaje",
   "messagePlaceholder": "Describe tu proyecto o idea...",
   "sendButton": "Enviar mensaje",

@@ -17,7 +17,7 @@
   "pluralization": {
     "title": "Pluralización",
     "badge": "Formato",
-    "description": "Utilice reglas ICU para tratar plurales y variaciones numéricas (por ejemplo: =0 {nenhum}, one {1}, other {#}), asegurándose de que las formas gramaticales sean correctas según la cantidad."
+    "description": "Utilice reglas ICU para tratar plurales y variaciones numéricas (por ejemplo: =0 {ninguno}, one {1}, other {#}), asegurándose de que las formas gramaticales sean correctas según la cantidad."
   },
   "interpolation": {
     "title": "Interpolación",

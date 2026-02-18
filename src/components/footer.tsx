@@ -8,6 +8,24 @@ import { useRef } from "react";
 import { Separator } from "@/components/ui/separator";
 import { PERSONAL } from "@/lib/constants";
 
+const SOCIAL_LINKS = [
+  {
+    icon: Github,
+    href: PERSONAL.github,
+    label: "GitHub",
+  },
+  {
+    icon: Linkedin,
+    href: PERSONAL.linkedin,
+    label: "LinkedIn",
+  },
+  {
+    icon: Mail,
+    href: `mailto:${PERSONAL.email}`,
+    label: "Email",
+  },
+] as const;
+
 export function Footer() {
   const t = useTranslations("footer");
   const ref = useRef(null);
@@ -35,23 +53,7 @@ export function Footer() {
           </a>
 
           <div className="flex items-center gap-4">
-            {[
-              {
-                icon: Github,
-                href: PERSONAL.github,
-                label: "GitHub",
-              },
-              {
-                icon: Linkedin,
-                href: PERSONAL.linkedin,
-                label: "LinkedIn",
-              },
-              {
-                icon: Mail,
-                href: `mailto:${PERSONAL.email}`,
-                label: "Email",
-              },
-            ].map(({ icon: Icon, href, label }) => (
+            {SOCIAL_LINKS.map(({ icon: Icon, href, label }) => (
               <motion.a
                 key={label}
                 href={href}

@@ -232,7 +232,8 @@ docs/             # Documentacao tecnica
 - [ ] `pnpm build` passa sem erros
 - [ ] `pnpm test` passa sem falhas
 - [ ] Responsivo (testei em mobile)
-- [ ] Acessibilidade basica (tab navigation, contraste)
+- [ ] Acessibilidade: navegacao por Tab funciona, foco visivel, `aria-label` em botoes de icone
+- [ ] Dialogs/modals usam `role="dialog"`, `aria-modal` e focus trap
 
 ### Se adicionou textos
 
@@ -257,9 +258,11 @@ docs/             # Documentacao tecnica
 
 ### Se adicionou pagina
 
-- [ ] Registrada em `data/content.ts`
+- [ ] Registrada em `data/content.ts` (category: `"guide"`, `"implementation"` ou `"tool"`)
 - [ ] Mapeada em `data/dynamic-page-helper.tsx`
 - [ ] Adicionada ao menu em `navbar/nav-data.ts`
+- [ ] Adicionada a busca em `global-search/search-data.ts`
+- [ ] `loading.tsx` criado com `PageSkeleton` (variant: `guide`, `implementation` ou `tool`)
 - [ ] Traducoes criadas
 
 ---

@@ -17,7 +17,7 @@
   "pluralization": {
     "title": "Pluralisierung",
     "badge": "Formatierung",
-    "description": "Verwenden Sie ICU-Regeln, um Pluralformen und numerische Variationen zu behandeln (z. B.: =0 {nenhum}, one {1}, other {#}), um sicherzustellen, dass die grammatikalischen Formen entsprechend der Menge korrekt sind."
+    "description": "Verwenden Sie ICU-Regeln, um Pluralformen und numerische Variationen zu behandeln (z. B.: =0 {keine}, one {1}, other {#}), um sicherzustellen, dass die grammatikalischen Formen entsprechend der Menge korrekt sind."
   },
   "interpolation": {
     "title": "Interpolation",

@@ -23,28 +23,30 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 ```
 ┌──────────────────────────────────────────────────────────┐
 │                    Next.js 16 App Router                  │
-├──────────┬──────────────────┬────────────────────────────┤
-│  Rotas   │  API Routes      │   SEO (build time)         │
-│  /       │  /api/chat       │   sitemap.ts               │
-│  /dicas  │  /api/code-review│   robots.ts                │
-│  /impl.  │  /api/contact    │   opengraph-image.tsx      │
-│          │  /api/github     │   icon.tsx                 │
-├──────────┴──────────────────┴────────────────────────────┤
+├──────────────┬──────────────────┬────────────────────────┤
+│  Rotas       │  API Routes      │   SEO (build time)     │
+│  /           │  /api/chat       │   sitemap.ts           │
+│  /dicas      │  /api/code-review│   robots.ts            │
+│  /impl.      │  /api/contact    │   opengraph-image.tsx  │
+│  /ferramentas│  /api/github     │   icon.tsx             │
+├──────────────┴──────────────────┴────────────────────────┤
 │                       Features                            │
 │  home/ ─── hero, about, stack, github-stats, projects,   │
 │            experience, ai-section, contact                │
-│  implementations/ ─── i18n, seo, ai-chatbot, code-review │
+│  implementations/ ─── i18n, seo, ai-chatbot              │
+│  implementations/ ─── code-review, regex-playground       │
 │  guides/ ─── ai-tips, tailwind, react-query, security,   │
-│              dev-resources                                │
+│     dev-resources, ts-patterns, git-workflow, react-patt. │
 ├──────────────────────────────────────────────────────────┤
 │                  Componentes Globais                      │
 │  navbar/ (modular, 9 componentes)                        │
-│  chat/ (widget IA flutuante)                             │
-│  terminal/ (easter egg interativo)                       │
-│  global-search/ (Fuse.js)                                │
+│  chat/ (widget IA com focus trap)                        │
+│  terminal/ (easter egg com focus trap)                   │
+│  global-search/ (Fuse.js, listbox a11y)                  │
+│  skip-link (pular para conteudo)                         │
+│  page-skeleton (loading por tipo de pagina)              │
+│  section-nav (navegacao entre secoes)                    │
 │  ui/ (shadcn/ui + Radix)                                 │
-│  section-header, section-wrapper, section-divider,       │
-│  step-card, score-gauge, code-block, hero-section, etc.  │
 ├──────────────────────────────────────────────────────────┤
 │                    Infraestrutura                         │
 │  lib/api-security.ts (sanitizacao, headers, validacao)   │
@@ -59,7 +61,7 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 │  data/content.ts (registro de paginas dinamicas)         │
 │  data/dynamic-page-helper.tsx (mapa componente ↔ slug)   │
 │  data/demo-messages.ts (mensagens demo do chat)          │
-│  messages/ (pt-BR, en, es, de)                           │
+│  messages/ (pt-BR, en, es, de — 37 namespaces)           │
 ├──────────────────────────────────────────────────────────┤
 │                     Automacao                             │
 │  scripts/translate.ts (DeepL / Google)                   │
@@ -130,6 +132,14 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 - Validacao de schemas com Zod na entrada e na saida
 
 > Guia completo: [Seguranca das APIs](./api/SECURITY.md)
+
+### Acessibilidade
+
+- Skip link (`SkipLink`) — pula direto para `<main>` com Tab
+- Focus trap em dialogs (terminal, chat) — teclado nao escapa do overlay
+- ARIA semantico: `role="dialog"`, `aria-modal`, `role="listbox"` na busca
+- Todos os textos `aria-label` e `sr-only` sao traduzidos via i18n
+- Navegacao por teclado: Tab, Enter, Escape, Arrow keys nos componentes interativos
 
 ### Estilo & Animacoes
 

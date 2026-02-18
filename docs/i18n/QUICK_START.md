@@ -168,10 +168,15 @@ const tHero = useTranslations("hero");
 | `codeReviewPage`     | Pagina Code Review           | `t("hero.title")`          |
 | `seoPage`            | Pagina SEO Showcase          | `t("hero.title")`          |
 | `i18nPage`           | Pagina i18n Showcase         | `t("hero.title")`          |
-| `global`             | Textos compartilhados        | `t("actions.back")`        |
+| `regexPage`          | Pagina Regex Playground      | `t("hero.title")`          |
+| `reactPatterns`      | Pagina React Patterns        | `t("hero.title")`          |
+| `tsPatterns`         | Pagina TypeScript Patterns   | `t("hero.title")`          |
+| `gitWorkflow`        | Pagina Git Workflow          | `t("hero.title")`          |
+| `global`             | Textos compartilhados (a11y) | `t("skipToContent")`       |
 | `search`             | Global search                | `t("placeholder")`         |
 | `chat`               | Widget de chat IA            | `t("placeholder")`         |
 | `terminal`           | Terminal easter egg           | `t("welcome")`             |
+| `viewSource`         | Componente ViewSource        | `t("toggle")`              |
 | `footer`             | Rodape                       | `t("copyright")`           |
 
 ### Placeholders
@@ -235,7 +240,7 @@ messages/
 │   ├── nav.json
 │   ├── contact.json
 │   ├── securityPage.json
-│   └── ...             # 32 namespaces
+│   └── ...             # 37 namespaces
 ├── en/                 # Gerado automaticamente
 ├── es/                 # Gerado automaticamente
 └── de/                 # Gerado automaticamente

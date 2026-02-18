@@ -53,7 +53,7 @@
       ]
     },
     "legacy": {
-      "title": "Projekt Legado (in Arbeit)",
+      "title": "Legacy-Projekt (in Arbeit)",
       "items": [
         "Hardcodierte Texte zuordnen und die am häufigsten verwendeten priorisieren.",
         "Migrieren Sie Komponenten schrittweise zu i18n.",
@@ -155,7 +155,7 @@
   "github": {
     "title": "Verwenden Sie diese Vorlage",
     "description": "Komplettes Repository mit der gesamten i18n-Struktur, Automatisierungsskripten und Dokumentation. Bereit für den Einsatz in der Produktion.",
-    "viewGithub": "Siehe nicht GitHub",
+    "viewGithub": "Auf GitHub ansehen",
     "giveStar": "Einen Stern vergeben"
   },
   "methods": {
@@ -178,7 +178,7 @@
     },
     "pluralization": {
       "title": "Pluralisierung ICU",
-      "description": "Unterstützung des ICU-Nachrichtenformats für intelligente Pluralisierung: =0 {nenhum}, =1 {1 item}, andere {# itens}.",
+      "description": "Unterstützung des ICU-Nachrichtenformats für intelligente Pluralisierung: =0 {keine}, =1 {1 Element}, andere {# Elemente}.",
       "badge": "ICU-Format"
     },
     "interpolation": {
@@ -200,7 +200,7 @@
         "step": "01",
         "title": "Bearbeiten pt-BR",
         "description": "Fügen Sie die Übersetzungsschlüssel in der entsprechenden JSON-Datei unter messages/pt-BR/ hinzu oder bearbeiten Sie sie.",
-        "command": "vim-Meldungen/pt-BR/global.json"
+        "command": "vim messages/pt-BR/global.json"
       },
       {
         "step": "02",
@@ -222,7 +222,7 @@
       },
       {
         "step": "05",
-        "title": "Nicht verwenden Code",
+        "title": "Im Code verwenden",
         "description": "Importieren Sie den Hook useTranslations mit dem richtigen Namespace und verwenden Sie t(), um mit Autocomplete auf die Übersetzungen zuzugreifen."
       }
     ]
@@ -232,7 +232,7 @@
     "subtitle": "Automatisierungstools für das i18n-System",
     "items": [
       {
-        "command": "pnpm ausführen übersetzen",
+        "command": "pnpm run translate",
         "description": "Übersetzt nur neue Schlüssel von pt-BR nach en/es. Behält bestehende Übersetzungen bei.",
         "badge": "ein bis drei Minuten"
       },
@@ -244,17 +244,17 @@
       {
         "command": "pnpm run validate:i18n",
         "description": "Überprüft, ob alle Standorte über dieselben synchronisierten Schlüssel verfügen.",
-        "badge": "~5 sich"
+        "badge": "~5 Sek."
       },
       {
         "command": "pnpm run check:pt-leaks",
         "description": "Erkennt Wörter in Portugiesisch, die in en/es-Dateien durchgesickert sind.",
-        "badge": "~5 sich"
+        "badge": "~5 Sek."
       },
       {
         "command": "pnpm run add-locale -- {code}",
         "description": "Erstellt eine vollständige Struktur für eine neue Sprache (z. B. de, fr, it).",
-        "badge": "~10 sich"
+        "badge": "~10 Sek."
       }
     ]
   },
@@ -262,13 +262,13 @@
     "title": "Bewährte Praktiken",
     "subtitle": "Projektvereinbarungen zur Aufrechterhaltung der Qualität",
     "do": {
-      "title": "Faca",
+      "title": "Empfohlen",
       "items": [
         "IMMER zuerst pt-BR bearbeiten (echte Quelle)",
         "Verwenden Sie beschreibende Namespaces: auth, global, admin.userManagement",
         "Verwenden Sie globale Texte für allgemeine Aktionen (speichern, löschen) wieder.",
         "Übersetzen und validieren vor dem Commit",
-        "Verwenden Sie Platzhalter {variavel} für dynamische Inhalte.",
+        "Verwenden Sie Platzhalter {variable} für dynamische Inhalte.",
         "Kombinieren Sie spezifische + globale Namespaces in derselben Komponente."
       ]
     },
@@ -287,7 +287,7 @@
   "structure": {
     "title": "Dateistruktur",
     "subtitle": "Organisation des Nachrichtensystems",
-    "description": "pt-BR und die Quelle der Wahrheit. en/ und es/ werden automatisch generiert. Jedes Modul hat seinen eigenen Ordner mit index.ts."
+    "description": "pt-BR ist die Quelle der Wahrheit. en/ und es/ werden automatisch generiert. Jedes Modul hat seinen eigenen Ordner mit index.ts."
   },
   "cta": {
     "title": "Bereit zur Umsetzung?",

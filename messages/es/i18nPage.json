@@ -71,7 +71,7 @@
     "subtitle": "Arquitectura completa para aplicaciones multilingües",
     "description": "Demostración interactiva del sistema i18n implementado con next-intl, compatible con PT-BR, EN y ES con seguridad de tipos completa, traducción automática a través de DeepL/Google Cloud y validación de calidad.",
     "ctaDemo": "Ver demostración en vivo",
-    "ctaDocs": "Documentacao"
+    "ctaDocs": "Documentación"
   },
   "liveDemo": {
     "title": "Demostración interactiva",
@@ -97,7 +97,7 @@
   },
   "architecture": {
     "title": "Arquitectura",
-    "subtitle": "Como o sistema foi construido",
+    "subtitle": "Cómo se construyó el sistema",
     "sourceOfTruth": {
       "title": "pt-BR como Fuente de Verdad",
       "description": "Todas las traducciones se basan en el portugués. Los archivos en/ y es/ se generan automáticamente mediante scripts, lo que garantiza la coherencia y elimina la duplicación manual."
@@ -155,7 +155,7 @@
   "github": {
     "title": "Utilizar esta plantilla",
     "description": "Repositorio completo con toda la estructura de i18n, scripts de automatización y documentación. Listo para usar en producción.",
-    "viewGithub": "Ver no GitHub",
+    "viewGithub": "Ver en GitHub",
     "giveStar": "Dar una estrella"
   },
   "methods": {
@@ -178,7 +178,7 @@
     },
     "pluralization": {
       "title": "Pluralización ICU",
-      "description": "Compatibilidad con el formato de mensajes ICU para la pluralización inteligente: =0 {nenhum}, =1 {1 item}, otro {# itens}.",
+      "description": "Compatibilidad con el formato de mensajes ICU para la pluralización inteligente: =0 {ninguno}, =1 {1 ítem}, otro {# ítems}.",
       "badge": "Formato ICU"
     },
     "interpolation": {
@@ -200,13 +200,13 @@
         "step": "01",
         "title": "Editar pt-BR",
         "description": "Añade o edita las claves de traducción en el archivo JSON correspondiente en messages/pt-BR/.",
-        "command": "vim mensajes/pt-BR/global.json"
+        "command": "vim messages/pt-BR/global.json"
       },
       {
         "step": "02",
         "title": "Generar traducciones",
         "description": "Ejecute el script que detecta nuevas claves y las traduce automáticamente al inglés y al español.",
-        "command": "pnpm ejecutar traducir"
+        "command": "pnpm run translate"
       },
       {
         "step": "03",
@@ -222,7 +222,7 @@
       },
       {
         "step": "05",
-        "title": "Usar no Codigo",
+        "title": "Usar en Código",
         "description": "Importe el hook useTranslations con el espacio de nombres correcto y utilice t() para acceder a las traducciones con autocompletado."
       }
     ]
@@ -232,7 +232,7 @@
     "subtitle": "Herramientas de automatización del sistema i18n",
     "items": [
       {
-        "command": "pnpm ejecutar traducir",
+        "command": "pnpm run translate",
         "description": "Solo traduce las nuevas claves de pt-BR a en/es. Conserva las traducciones existentes.",
         "badge": "de uno a tres minutos"
       },
@@ -244,17 +244,17 @@
       {
         "command": "pnpm run validate:i18n",
         "description": "Valida si todos los locales tienen las mismas claves sincronizadas.",
-        "badge": "~5 sí"
+        "badge": "~5 seg"
       },
       {
         "command": "pnpm run check:pt-leaks",
         "description": "Detecta palabras en portugués que se filtran a archivos en/es.",
-        "badge": "~5 sí"
+        "badge": "~5 seg"
       },
       {
         "command": "pnpm run add-locale -- {code}",
         "description": "Crea una estructura completa para un nuevo idioma (por ejemplo: de, fr, it).",
-        "badge": "~10 sí"
+        "badge": "~10 seg"
       }
     ]
   },
@@ -262,13 +262,13 @@
     "title": "Buenas prácticas",
     "subtitle": "Convenciones del proyecto para mantener la calidad",
     "do": {
-      "title": "Faca",
+      "title": "Hacer",
       "items": [
         "SIEMPRE edite primero pt-BR (fuente verdadera)",
         "Utiliza espacios de nombres descriptivos: auth, global, admin.userManagement",
         "Reutiliza textos globales para acciones comunes (guardar, cancelar).",
-        "Rode traducir + validar antes de confirmar",
-        "Utilice marcadores de posición {variavel} para contenido dinámico.",
+        "Ejecute translate + validate antes de confirmar",
+        "Utilice marcadores de posición {variable} para contenido dinámico.",
         "Combine espacios de nombres específicos + globales en el mismo componente."
       ]
     },
@@ -287,7 +287,7 @@
   "structure": {
     "title": "Estructura de archivos",
     "subtitle": "Organización del sistema de mensajes",
-    "description": "pt-BR y la fuente de verdad. en/ y es/ se generan automáticamente. Cada módulo tiene su propia carpeta con index.ts."
+    "description": "pt-BR es la fuente de verdad. en/ y es/ se generan automáticamente. Cada módulo tiene su propia carpeta con index.ts."
   },
   "cta": {
     "title": "¿Listo para implementar?",

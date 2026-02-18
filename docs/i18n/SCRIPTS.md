@@ -63,7 +63,7 @@ pnpm translate
 
 ```
 Descobrindo arquivos JSON...
-Encontrados 32 arquivos em messages/pt-BR/
+Encontrados 37 arquivos em messages/pt-BR/
 
 Processando: hero.json
   → EN: 1 novas chaves traduzidas
@@ -352,11 +352,11 @@ Se DeepL nao estiver configurado ou falhar, o script tenta Google Cloud Translat
 
 | Script          | Arquivos     | Tempo Estimado |
 | --------------- | ------------ | -------------- |
-| translate       | 32 arquivos  | ~2 min         |
-| translate:force | 32 arquivos  | ~8 min         |
-| validate:i18n   | 128 arquivos | ~3 seg         |
-| check:pt-leaks  | 96 arquivos  | ~2 seg         |
-| add-locale      | 32 arquivos  | ~1 seg         |
+| translate       | 37 arquivos  | ~2 min         |
+| translate:force | 37 arquivos  | ~8 min         |
+| validate:i18n   | 148 arquivos | ~3 seg         |
+| check:pt-leaks  | 111 arquivos | ~2 seg         |
+| add-locale      | 37 arquivos  | ~1 seg         |
 
 Tempo de `translate` varia com o numero de chaves novas e a API usada.
 

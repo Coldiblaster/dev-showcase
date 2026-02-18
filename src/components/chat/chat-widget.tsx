@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { MessageCircle, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent } from "react";
 
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 
@@ -59,8 +59,10 @@ export function ChatWidget() {
     return () => window.removeEventListener("open-chat-widget", handler);
   }, []);
 
-  const userMessageCount = messages.filter((m) => m.role === "user").length;
-  const limitReached = userMessageCount >= MAX_MESSAGES;
+  const limitReached = useMemo(
+    () => messages.filter((m) => m.role === "user").length >= MAX_MESSAGES,
+    [messages],
+  );
 
   const handleSend = async () => {
     const text = input.trim();

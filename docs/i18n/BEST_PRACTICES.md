@@ -78,8 +78,13 @@ messages/pt-BR/
 ├── reactQueryTipsPage.json # Pagina React Query Tips
 ├── aiChatbotPage.json      # Pagina AI Chatbot Showcase
 ├── codeReviewPage.json     # Pagina Code Review
+├── regexPage.json          # Pagina Regex Playground
 ├── seoPage.json            # Pagina SEO Showcase
 ├── i18nPage.json           # Pagina i18n Showcase
+├── reactPatterns.json      # React Design Patterns
+├── tsPatterns.json         # TypeScript Patterns
+├── gitWorkflow.json        # Git Workflow
+├── viewSource.json         # Componente ViewSource
 ├── ...                     # Outros namespaces
 └── index.ts                # Barrel export
 ```

@@ -171,7 +171,7 @@ messages/
 │   ├── nav.json        # Navbar
 │   ├── contact.json    # Formulario de contato
 │   ├── securityPage.json # Pagina de Security Tips
-│   └── ...             # 32 namespaces no total
+│   └── ...             # 37 namespaces no total
 ├── en/                 # Gerado automaticamente
 ├── es/                 # Gerado automaticamente
 └── de/                 # Gerado automaticamente

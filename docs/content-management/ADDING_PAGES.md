@@ -1,14 +1,15 @@
 # Como Adicionar Novas Paginas
 
-Guia pratico para adicionar paginas de **Dicas** ou **Implementacoes** no projeto.
+Guia pratico para adicionar paginas de **Dicas**, **Implementacoes** ou **Ferramentas** no projeto.
 
 ---
 
 ## O que voce vai fazer
 
 Criar uma nova pagina acessivel via URL, tipo:
-- `/dicas/sua-nova-pagina`
-- `/implementacoes/sua-implementacao`
+- `/dicas/sua-nova-pagina` (guia)
+- `/implementacoes/sua-implementacao` (showcase tecnico)
+- `/ferramentas/sua-ferramenta` (ferramenta interativa)
 
 **Tempo estimado:** 15-20 minutos
 
@@ -28,9 +29,17 @@ Adicione um novo objeto no array `CONTENT_ITEMS`:
   title: "React Patterns Essenciais",    // Titulo da pagina (SEO)
   description: "Composicao, hooks...",   // Descricao (SEO)
   component: "ReactPatternsPage",        // Nome do componente React
-  category: "guide",                     // "guide" ou "implementation"
+  category: "guide",                     // "guide", "implementation" ou "tool"
 }
 ```
+
+**Categorias disponiveis:**
+
+| Category | Rota gerada | Exemplo |
+|----------|------------|---------|
+| `guide` | `/dicas/[slug]` | `/dicas/react-patterns` |
+| `implementation` | `/implementacoes/[slug]` | `/implementacoes/seo` |
+| `tool` | `/ferramentas/[slug]` | `/ferramentas/code-review` |
 
 **Por que?** Este arquivo e o indice de todas as paginas. O sistema le daqui para saber quais paginas existem, gerar o sitemap e listar no menu.
 
@@ -185,7 +194,41 @@ Adicione o item no submenu correspondente (guias ou implementacoes):
 
 ---
 
-### 6. Testar
+### 6. Criar loading skeleton
+
+**Arquivo:** `src/app/dicas/[slug]/loading.tsx` (ou `ferramentas/[slug]/` ou `implementacoes/[slug]/`)
+
+Se a rota dinamica ainda nao tem `loading.tsx`, crie:
+
+```tsx
+import { PageSkeleton } from "@/components/page-skeleton";
+
+export default function Loading() {
+  return <PageSkeleton variant="guide" />;
+}
+```
+
+Use a variant correspondente: `"guide"`, `"implementation"` ou `"tool"`.
+
+---
+
+### 7. Adicionar a busca global
+
+**Arquivo:** `src/components/global-search/search-data.ts`
+
+Adicione o item para que apareca nos resultados de busca (`Ctrl+K`):
+
+```typescript
+{
+  title: t("reactPatterns"),
+  href: "/dicas/react-patterns",
+  category: "tips" as const,  // "tips", "implementations" ou "tools"
+}
+```
+
+---
+
+### 8. Testar
 
 ```bash
 # 1. Dev server
@@ -204,6 +247,8 @@ pnpm build
 
 ```
 src/
+├── app/dicas/[slug]/
+│   └── loading.tsx              # 6. Loading skeleton
 ├── data/
 │   ├── content.ts               # 1. Registre aqui
 │   └── dynamic-page-helper.tsx  # 3. Mapeie aqui
@@ -213,7 +258,8 @@ src/
 │           ├── index.tsx
 │           └── ...
 └── components/
-    └── navbar/nav-data.ts       # 5. Menu aqui
+    ├── navbar/nav-data.ts       # 5. Menu aqui
+    └── global-search/search-data.ts  # 7. Busca global
 
 messages/
 └── pt-BR/
@@ -236,11 +282,14 @@ Antes de criar componentes do zero, veja o que ja existe:
 | `SectionWrapper` | Wrapper com padding e max-width |
 | `SectionHeader` | Titulo + subtitulo de secao |
 | `SectionDivider` | Separador visual |
+| `SectionNav` | Navegacao fixa entre secoes (desktop) |
 | `StepCard` | Card de etapa com icone e numeracao |
 | `CodeBlock` | Bloco de codigo com syntax highlight |
 | `ViewSource` | Toggle conteudo/codigo |
 | `FeatureCard` | Card de feature |
+| `ScoreGauge` | Medidor circular de pontuacao |
 | `CtaSection` | Call-to-action final |
+| `PageSkeleton` | Loading skeleton (usado no loading.tsx) |
 
 > Catalogo completo: [Componentes Reutilizaveis](../architecture/COMPONENTS.md)
 
@@ -254,7 +303,7 @@ Antes de criar componentes do zero, veja o que ja existe:
 
 ### Pagina 404
 **Causa:** `slug` errado em `content.ts` ou `category` invalida.
-**Solucao:** Confira que `slug` corresponde a URL e `category` e `"guide"` ou `"implementation"`.
+**Solucao:** Confira que `slug` corresponde a URL e `category` e `"guide"`, `"implementation"` ou `"tool"`.
 
 ### Traducoes nao aparecem
 **Causa:** Namespace nao registrado no barrel ou types.
@@ -270,9 +319,11 @@ Antes de criar componentes do zero, veja o que ja existe:
 
 Veja features existentes como base:
 
-| Feature | Path | Complexidade |
-|---------|------|-------------|
-| AI Tips | `src/features/guides/ai-tips/` | Composto (subdiretório) |
-| Security Tips | `src/features/guides/security-tips/` | Media (subpasta) |
-| Code Review | `src/features/implementations/code-review/` | Complexa (hook, tipos, sub-componentes) |
-| SEO Showcase | `src/features/implementations/seo-showcase/` | Complexa (muitas secoes) |
+| Feature | Path | Categoria | Complexidade |
+|---------|------|-----------|-------------|
+| AI Tips | `src/features/guides/ai-tips/` | guide | Composto (subdiretório) |
+| Security Tips | `src/features/guides/security-tips/` | guide | Media (subpasta) |
+| React Patterns | `src/features/guides/react-patterns/` | guide | Simples (3 secoes) |
+| SEO Showcase | `src/features/implementations/seo-showcase/` | implementation | Complexa (muitas secoes) |
+| Code Review | `src/features/implementations/code-review/` | tool | Complexa (hook, tipos, sub-componentes) |
+| Regex Playground | `src/features/implementations/regex-playground/` | tool | Media (editor + patterns) |

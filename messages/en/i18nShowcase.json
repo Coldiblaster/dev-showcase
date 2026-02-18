@@ -17,7 +17,7 @@
   "pluralization": {
     "title": "Pluralization",
     "badge": "Formatting",
-    "description": "Use ICU rules to handle plurals and numerical variations (e.g., =0 {nenhum}, one {1}, other {#}), ensuring that grammatical forms are correct according to quantity."
+    "description": "Use ICU rules to handle plurals and numerical variations (e.g., =0 {none}, one {1}, other {#}), ensuring that grammatical forms are correct according to quantity."
   },
   "interpolation": {
     "title": "Interpolation",

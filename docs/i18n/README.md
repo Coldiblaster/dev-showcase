@@ -55,7 +55,11 @@ messages/
 │   ├── seoPage.json            # Pagina SEO Showcase
 │   ├── aiChatbotPage.json      # Pagina AI Chatbot Showcase
 │   ├── codeReviewPage.json     # Pagina Code Review
+│   ├── regexPage.json          # Pagina Regex Playground
 │   ├── githubStats.json        # GitHub stats da home
+│   ├── reactPatterns.json      # React Patterns
+│   ├── tsPatterns.json         # TypeScript Patterns
+│   ├── gitWorkflow.json        # Git Workflow
 │   └── ...                     # Outros namespaces
 ├── en/                         # Ingles (gerado automaticamente)
 ├── es/                         # Espanhol (gerado automaticamente)
@@ -67,7 +71,7 @@ src/lib/i18n/
 └── types.d.ts                  # TypeScript (autocomplete completo)
 ```
 
-Cada locale tem os mesmos 32 arquivos JSON e um `index.ts` barrel.
+Cada locale tem os mesmos 37 arquivos JSON e um `index.ts` barrel.
 
 ---
 

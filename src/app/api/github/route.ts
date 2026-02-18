@@ -1,6 +1,7 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import { PERSONAL } from "@/lib/constants";
+import { getClientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
 const GITHUB_USERNAME = PERSONAL.githubUsername;
 /** TTL do cache em ms (1 hora). */
@@ -23,8 +24,16 @@ interface GitHubStats {
 }
 
 /** Handler GET que retorna estatísticas agregadas do perfil GitHub. */
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const ip = getClientIp(request);
+    const rl = rateLimit(ip, {
+      prefix: "github",
+      limit: 30,
+      windowSeconds: 60,
+    });
+    if (!rl.success) return rateLimitResponse(rl);
+
     const now = Date.now();
     if (cache.data && now - cache.updatedAt < CACHE_TTL) {
       return NextResponse.json(cache.data, {

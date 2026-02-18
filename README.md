@@ -77,7 +77,13 @@ O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto c
 | `/implementacoes/i18n` | Showcase de internacionalizacao com next-intl |
 | `/implementacoes/seo` | SEO completo — Next.js vs React + Vite |
 | `/implementacoes/ai-chatbot` | Showcase de AI Chatbot (arquitetura, streaming, system prompt, pricing) |
-| `/implementacoes/code-review` | Revisor de codigo com IA — analisa qualidade, bugs e seguranca |
+
+### Ferramentas
+
+| Rota | Descricao |
+|------|-----------|
+| `/ferramentas/code-review` | Revisor de codigo com IA — analisa qualidade, bugs e seguranca |
+| `/ferramentas/regex` | Regex Playground — editor, biblioteca de patterns e cheat sheet |
 
 ### Guias & Dicas
 
@@ -88,6 +94,9 @@ O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto c
 | `/dicas/react-query-tips` | Patterns essenciais de React Query |
 | `/dicas/dev-resources` | Snippets e recursos por nivel (Jr/Pleno/Sr) |
 | `/dicas/security-tips` | Seguranca web — frontend, backend, headers, env vars |
+| `/dicas/typescript-patterns` | Utility types, generics, narrowing e patterns avancados |
+| `/dicas/git-workflow` | Branching, commits, workflows e cheat sheet |
+| `/dicas/react-patterns` | Composicao, hooks customizados, state e performance |
 
 ### API Routes
 
@@ -110,30 +119,41 @@ src/
 │   │   ├── code-review/route.ts      #   Code Review IA
 │   │   ├── contact/route.ts          #   Envio de email
 │   │   └── github/route.ts           #   GitHub stats
-│   ├── dicas/[slug]/                 # Guias dinamicos
-│   ├── implementacoes/[slug]/        # Implementacoes dinamicas
+│   ├── dicas/[slug]/                 # Guias dinamicos (8 guias)
+│   ├── ferramentas/[slug]/           # Ferramentas dinamicas (code-review, regex)
+│   ├── implementacoes/[slug]/        # Implementacoes dinamicas (i18n, seo, ai-chatbot)
 │   ├── icon.tsx                      # Favicon dinamico (VB)
 │   ├── opengraph-image.tsx           # OG image 1200x630
 │   ├── sitemap.ts                    # Sitemap automatico
 │   └── robots.ts                     # Regras de crawling
 ├── components/
-│   ├── chat/                         # Widget de chat IA
+│   ├── chat/                         # Widget de chat IA (dialog com a11y)
 │   ├── global-search/                # Busca global (Fuse.js)
 │   ├── navbar/                       # Navbar modular (9 componentes)
-│   ├── terminal/                     # Terminal Easter Egg
+│   ├── terminal/                     # Terminal Easter Egg (focus trap)
 │   ├── ui/                           # Primitivos shadcn/ui
+│   ├── skip-link.tsx                 # Skip to content (acessibilidade)
+│   ├── page-skeleton.tsx             # Loading skeletons por tipo de pagina
+│   ├── section-nav.tsx               # Navegacao entre secoes
 │   └── ...                           # Componentes reutilizaveis
 ├── features/
-│   ├── home/                         # Hero, About, Projects, Experience, etc.
+│   ├── home/                         # Hero, About, Stack, GitHub Stats, Projects, etc.
 │   │   └── github-stats/             # GitHub Stats (hook + sub-componentes)
 │   ├── implementations/
 │   │   ├── ai-chatbot-showcase/      # Showcase AI Chatbot
 │   │   ├── code-review/              # Revisor de Codigo IA
 │   │   ├── i18n-showcase/            # Showcase i18n
+│   │   ├── regex-playground/         # Regex Playground
 │   │   └── seo-showcase/             # Showcase SEO
 │   ├── guides/
+│   │   ├── ai-tips/                  # Dicas de IA
 │   │   ├── dev-resources/            # Recursos por nivel
-│   │   └── security-tips/            # Dicas de seguranca
+│   │   ├── git-workflow/             # Git Workflow & Cheat Sheet
+│   │   ├── react-patterns/           # React Design Patterns
+│   │   ├── react-query-tips/         # React Query Essencial
+│   │   ├── security-tips/            # Seguranca Frontend & Backend
+│   │   ├── tailwind-tips/            # Tailwind CSS + shadcn/ui
+│   │   └── ts-patterns/              # TypeScript Patterns
 │   └── not-found/                    # Pagina 404
 ├── data/                             # Registro de conteudo e dados estaticos
 ├── hooks/                            # Hooks customizados
@@ -146,7 +166,7 @@ src/
     ├── seo.ts                        # Helpers de SEO
     └── animation-variants.ts         # Variantes Framer Motion
 
-messages/                             # Traducoes por idioma
+messages/                             # Traducoes por idioma (37 namespaces)
 ├── pt-BR/                            # Portugues (fonte de verdade)
 ├── en/                               # English (gerado)
 ├── es/                               # Espanol (gerado)

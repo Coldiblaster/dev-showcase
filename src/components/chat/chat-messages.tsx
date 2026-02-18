@@ -27,7 +27,7 @@ export function ChatMessages({
 
   return (
     <ScrollArea ref={scrollAreaRef} className="min-h-0 flex-1 overflow-hidden">
-      <div className="flex flex-col gap-3 px-4 py-4">
+      <div role="log" aria-live="polite" className="flex flex-col gap-3 px-4 py-4">
         {messages.length === 0 && (
           <div className="flex flex-1 flex-col items-center justify-center gap-4 px-2">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
@@ -56,7 +56,7 @@ export function ChatMessages({
             className={`flex flex-col ${msg.role === "user" ? "items-end" : "items-start"}`}
           >
             <div
-              className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed break-words ${
+              className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed wrap-break-word ${
                 msg.role === "user"
                   ? "rounded-br-md bg-primary text-primary-foreground"
                   : "rounded-bl-md bg-secondary text-foreground"

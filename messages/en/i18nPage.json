@@ -153,9 +153,9 @@
     "overhead": "overhead during runtime"
   },
   "github": {
-    "title": "Use Este Template",
+    "title": "Use This Template",
     "description": "Complete repository with the entire i18n structure, automation scripts, and documentation. Ready for use in production.",
-    "viewGithub": "See not GitHub",
+    "viewGithub": "View on GitHub",
     "giveStar": "Give a Star"
   },
   "methods": {
@@ -178,7 +178,7 @@
     },
     "pluralization": {
       "title": "Pluralization ICU",
-      "description": "Support for ICU Message Format for intelligent pluralization: =0 {nenhum}, =1 {1 item}, other {# itens}.",
+      "description": "Support for ICU Message Format for intelligent pluralization: =0 {none}, =1 {1 item}, other {# items}.",
       "badge": "ICU Format"
     },
     "interpolation": {
@@ -222,7 +222,7 @@
       },
       {
         "step": "05",
-        "title": "Use no code",
+        "title": "Use in Code",
         "description": "Import the useTranslations hook with the correct namespace and use t() to access translations with autocomplete."
       }
     ]
@@ -234,27 +234,27 @@
       {
         "command": "pnpm run translate",
         "description": "Translate only new keys from pt-BR to en/es. Preserve existing translations.",
-        "badge": "one to three minutes"
+        "badge": "1-3 min"
       },
       {
         "command": "pnpm run translate:force",
         "description": "Re-translate ALL keys from scratch. Use when you encounter poor translations.",
-        "badge": "5-10 minutes"
+        "badge": "5-10 min"
       },
       {
         "command": "pnpm run validate:i18n",
         "description": "Validates whether all locations have the same synchronized keys.",
-        "badge": "~5 themselves"
+        "badge": "~5 sec"
       },
       {
         "command": "pnpm run check:pt-leaks",
         "description": "Detects Portuguese words leaking into en/es files.",
-        "badge": "~5 themselves"
+        "badge": "~5 sec"
       },
       {
         "command": "pnpm run add-locale -- {code}",
         "description": "Creates a complete structure for a new language (e.g., de, fr, it).",
-        "badge": "~10 themselves"
+        "badge": "~10 sec"
       }
     ]
   },
@@ -262,13 +262,13 @@
     "title": "Best Practices",
     "subtitle": "Project conventions to maintain quality",
     "do": {
-      "title": "Faca",
+      "title": "Do",
       "items": [
         "ALWAYS edit pt-BR first (true source)",
-        "Use namespaces descritivos: auth, global, admin.userManagement",
+        "Use descriptive namespaces: auth, global, admin.userManagement",
         "Reuse global texts for common actions (save, cancel)",
-        "Rode translate + validate antes de commitar",
-        "Use placeholders {variavel} para conteudo dinamico",
+        "Run translate + validate before committing",
+        "Use placeholders {variable} for dynamic content",
         "Combine specific + global namespaces in the same component"
       ]
     },
@@ -287,7 +287,7 @@
   "structure": {
     "title": "File Structure",
     "subtitle": "Organization of the messaging system",
-    "description": "en-US and the source of truth. en/ and es/ are generated automatically. Each module has its own folder with its own index.ts."
+    "description": "pt-BR is the source of truth. en/ and es/ are generated automatically. Each module has its own folder with its own index.ts."
   },
   "cta": {
     "title": "Ready to implement?",

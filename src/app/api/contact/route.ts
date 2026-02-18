@@ -17,6 +17,7 @@ const contactSchema = z.object({
   email: z.string().email(),
   message: z.string().min(10).max(2000),
   recaptchaToken: z.string().nullable().optional(),
+  website: z.string().max(0, "Spam detected").optional(),
 });
 
 const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET_KEY;
@@ -75,7 +76,10 @@ export async function POST(request: Request) {
 
     const { name, email, message, recaptchaToken } = parsed.data;
 
-    if (RECAPTCHA_SECRET && recaptchaToken) {
+    if (RECAPTCHA_SECRET) {
+      if (!recaptchaToken) {
+        return jsonError("reCAPTCHA token required", 400);
+      }
       const isHuman = await verifyRecaptcha(recaptchaToken);
       if (!isHuman) {
         return jsonError("reCAPTCHA verification failed", 403);

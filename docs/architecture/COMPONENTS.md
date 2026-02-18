@@ -238,6 +238,88 @@ Badge com icone para categorias e tags.
 
 ---
 
+### `SkipLink`
+
+**Arquivo:** `src/components/skip-link.tsx`
+
+Link de acessibilidade "Pular para o conteudo". Fica invisivel ate receber foco via Tab, entao desliza para a tela e leva o foco para `<main id="main">`.
+
+```tsx
+import { SkipLink } from "@/components/skip-link";
+
+// Usado no layout.tsx (ja integrado)
+<SkipLink />
+```
+
+Nao precisa de props — usa `useTranslations("global")` para o texto traduzido.
+
+---
+
+### `PageSkeleton`
+
+**Arquivo:** `src/components/page-skeleton.tsx`
+
+Skeleton de loading para paginas dinamicas. Renderiza um layout diferente conforme o tipo de conteudo.
+
+```tsx
+import { PageSkeleton } from "@/components/page-skeleton";
+
+// No loading.tsx de cada rota dinamica
+export default function Loading() {
+  return <PageSkeleton variant="guide" />;
+}
+```
+
+**Props:**
+
+- `variant` — `"guide"` | `"implementation"` | `"tool"`
+
+Cada variant simula o layout real da pagina (hero + grid de cards para guia, hero + code windows para implementacao, hero + editor split para ferramenta).
+
+---
+
+### `SectionNav`
+
+**Arquivo:** `src/components/section-nav.tsx`
+
+Navegacao fixa por secoes com pill animada. Aparece no desktop ao scrollar e some apos inatividade.
+
+```tsx
+import { SectionNav, type SectionNavItem } from "@/components/section-nav";
+
+const sections: SectionNavItem[] = [
+  { id: "overview", label: t("sectionNav.overview") },
+  { id: "examples", label: t("sectionNav.examples") },
+];
+
+<SectionNav sections={sections} />
+```
+
+**Props:**
+
+- `sections` — array de `{ id: string; label: string }`
+- `triggerId` — ID do elemento que dispara a visibilidade (opcional, default: primeiro section)
+- `hideDelay` — ms para esconder apos parar de scrollar (default: 2000)
+
+---
+
+### `MobileActionBar`
+
+**Arquivo:** `src/components/mobile-action-bar.tsx`
+
+Barra fixa no rodape, visivel apenas no mobile. Acesso rapido a busca, idioma, voltar ao topo, chat e terminal.
+
+```tsx
+import { MobileActionBar } from "@/components/mobile-action-bar";
+
+// Usado no layout.tsx (ja integrado)
+<MobileActionBar />
+```
+
+Nao precisa de props — autocontido com estado interno e custom events.
+
+---
+
 ## Componentes de Interacao
 
 ### `AnimatedSection`
@@ -306,7 +388,7 @@ navbar/
 
 **Diretorio:** `src/components/chat/`
 
-Widget de chat IA flutuante com streaming.
+Widget de chat IA flutuante com streaming. Inclui focus trap e `role="dialog"` para acessibilidade.
 
 ---
 
@@ -314,15 +396,16 @@ Widget de chat IA flutuante com streaming.
 
 **Diretorio:** `src/components/terminal/`
 
-Terminal interativo ativado com `~`. Composto por:
+Terminal interativo ativado com `~`. Inclui focus trap e `role="dialog"`. Composto por:
 
 ```
 terminal/
 ├── index.tsx            # Composicao principal
 ├── terminal-hint.tsx    # Badge "Pressione ~"
-├── terminal-window.tsx  # Janela do terminal
+├── terminal-window.tsx  # Janela do terminal (focus trap, a11y)
 ├── use-terminal.ts      # Hook com logica
-└── constants.ts         # Temas e comandos
+├── commands.ts          # Registro de comandos disponiveis
+└── constants.ts         # Temas e config
 ```
 
 ---
@@ -337,9 +420,11 @@ Busca global fuzzy com Fuse.js:
 global-search/
 ├── global-search.tsx    # Dialog principal
 ├── search-trigger.tsx   # Botao trigger (Ctrl+K)
-├── search-results.tsx   # Lista de resultados
+├── search-results.tsx   # Lista de resultados (role="listbox")
 ├── search-empty.tsx     # Estado vazio
-└── search-footer.tsx    # Atalhos de teclado
+├── search-footer.tsx    # Atalhos de teclado
+├── search-data.ts       # Dados de busca (todas as paginas)
+└── use-global-search.ts # Hook com logica Fuse.js
 ```
 
 ---
@@ -368,13 +453,12 @@ Primitivos em `src/components/ui/`:
 
 Localizados em `src/hooks/`:
 
-| Hook                 | Descricao                               |
-| -------------------- | --------------------------------------- |
-| `useCopyToClipboard` | Copia texto para clipboard com feedback |
-| `useMobile`          | Detecta se e dispositivo mobile         |
-| `useQueryParams`     | Leitura/escrita de query params         |
-| `useSectionInView`   | Detecta secao visivel no viewport       |
-| `useToast`           | Dispara notificacoes toast              |
+| Hook                 | Descricao                                        |
+| -------------------- | ------------------------------------------------ |
+| `useCopyToClipboard` | Copia texto para clipboard com feedback          |
+| `useQueryParams`     | Leitura/escrita de query params                  |
+| `useScrollLock`      | Trava scroll do body (usado em modals/overlays)  |
+| `useSectionInView`   | Detecta secao visivel no viewport                |
 
 ---
 

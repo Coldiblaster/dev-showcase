@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 const ROOT = path.resolve(__dirname, "..");
 const LOCALES_DIR = path.join(ROOT, "messages");
 const SOURCE = "pt-BR";
-const TARGETS = ["en", "es"];
+const TARGETS = ["en", "es", "de"];
 
 async function readJson(filePath: string) {
   try {
