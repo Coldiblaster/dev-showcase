@@ -1,14 +1,62 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Fragment } from "react";
 
+import type { NavCategory } from "./nav-data";
 import { navGroups } from "./nav-data";
 import { NavSubmenu } from "./nav-submenu";
 import { SubmenuItem } from "./submenu-item";
+
+function CategoryColumn({
+  category,
+  t,
+  pathname,
+}: {
+  category: NavCategory;
+  t: ReturnType<typeof useTranslations<"nav">>;
+  pathname: string;
+}) {
+  const Icon = category.icon;
+
+  return (
+    <div className="flex flex-col">
+      <div className="mb-2 flex items-center gap-2 px-2">
+        <Icon className="h-3.5 w-3.5 text-primary" />
+        <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60">
+          {t(category.labelKey)}
+        </p>
+      </div>
+
+      <div className="flex-1 space-y-0.5">
+        {category.featured.map((item) => (
+          <SubmenuItem
+            key={item.href}
+            icon={item.icon}
+            label={t(item.labelKey)}
+            sublabel={item.sublabelKey ? t(item.sublabelKey) : undefined}
+            href={item.href}
+            isActive={pathname === item.href}
+          />
+        ))}
+      </div>
+
+      <Link
+        href={category.href}
+        role="menuitem"
+        tabIndex={-1}
+        className="mt-2 flex items-center gap-1.5 rounded-lg px-2.5 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-primary"
+      >
+        <span>{t("viewAll", { count: category.totalItems })}</span>
+        <ArrowRight className="h-3 w-3" />
+      </Link>
+    </div>
+  );
+}
 
 export function DesktopNav() {
   const t = useTranslations("nav");
@@ -34,6 +82,8 @@ export function DesktopNav() {
       {navGroups.map((group) => {
         if (group.showOnlyOn === "home" && !isHome) return null;
 
+        const hasCategories = !!group.categories?.length;
+
         return (
           <NavSubmenu
             key={group.id}
@@ -43,6 +93,7 @@ export function DesktopNav() {
             description={
               group.descriptionKey ? t(group.descriptionKey) : undefined
             }
+            wide={hasCategories}
           >
             {/* Flat items (portfolio) */}
             {group.items?.map((item) => (
@@ -56,29 +107,19 @@ export function DesktopNav() {
               />
             ))}
 
-            {/* Sectioned items (content) */}
-            {group.sections?.map((section, idx) => (
-              <Fragment key={section.labelKey}>
-                {idx > 0 && (
-                  <div className="mx-2 my-1.5 border-t border-border/50" />
-                )}
-                <p className="px-2.5 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60">
-                  {t(section.labelKey)}
-                </p>
-                {section.items.map((item) => (
-                  <SubmenuItem
-                    key={item.href}
-                    icon={item.icon}
-                    label={t(item.labelKey)}
-                    sublabel={
-                      item.sublabelKey ? t(item.sublabelKey) : undefined
-                    }
-                    href={item.href}
-                    isActive={pathname === item.href}
+            {/* Category columns (content) */}
+            {hasCategories && (
+              <div className="grid grid-cols-3 gap-3">
+                {group.categories!.map((category) => (
+                  <CategoryColumn
+                    key={category.id}
+                    category={category}
+                    t={t}
+                    pathname={pathname}
                   />
                 ))}
-              </Fragment>
-            ))}
+              </div>
+            )}
           </NavSubmenu>
         );
       })}

@@ -3,20 +3,19 @@ import {
   Bot,
   Briefcase,
   Code2,
-  Database,
   FolderKanban,
   Globe,
   Layers,
   Mail,
-  Palette,
   Search,
-  Shield,
   Sparkles,
   User,
   Wrench,
 } from "lucide-react";
 
-type NavKey =
+import { getContentByCategory } from "@/data/content";
+
+export type NavKey =
   | "about"
   | "projects"
   | "experience"
@@ -53,7 +52,8 @@ type NavKey =
   | "codeReview"
   | "codeReviewDesc"
   | "openMenu"
-  | "closeMenu";
+  | "closeMenu"
+  | "viewAll";
 
 export interface NavItem {
   icon: LucideIcon;
@@ -62,9 +62,13 @@ export interface NavItem {
   href: string;
 }
 
-export interface NavSection {
+export interface NavCategory {
+  id: string;
   labelKey: NavKey;
-  items: NavItem[];
+  icon: LucideIcon;
+  href: string;
+  featured: NavItem[];
+  totalItems: number;
 }
 
 export interface NavGroup {
@@ -73,7 +77,7 @@ export interface NavGroup {
   descriptionKey?: NavKey;
   icon: LucideIcon;
   items?: NavItem[];
-  sections?: NavSection[];
+  categories?: NavCategory[];
   activeCheck: (pathname: string) => boolean;
   showOnlyOn?: "home";
 }
@@ -102,10 +106,14 @@ export const contentGroup: NavGroup = {
     pathname.startsWith("/implementacoes") ||
     pathname.startsWith("/dicas") ||
     pathname.startsWith("/ferramentas"),
-  sections: [
+  categories: [
     {
+      id: "implementations",
       labelKey: "sectionImplementations",
-      items: [
+      icon: Globe,
+      href: "/implementacoes",
+      totalItems: getContentByCategory("implementation").length,
+      featured: [
         {
           icon: Globe,
           labelKey: "i18nShowcase",
@@ -118,28 +126,15 @@ export const contentGroup: NavGroup = {
           sublabelKey: "seoShowcaseDesc",
           href: "/implementacoes/seo",
         },
-        {
-          icon: Bot,
-          labelKey: "aiChatbot",
-          sublabelKey: "aiChatbotDesc",
-          href: "/implementacoes/ai-chatbot",
-        },
       ],
     },
     {
-      labelKey: "sectionTools",
-      items: [
-        {
-          icon: Code2,
-          labelKey: "codeReview",
-          sublabelKey: "codeReviewDesc",
-          href: "/ferramentas/code-review",
-        },
-      ],
-    },
-    {
+      id: "tips",
       labelKey: "sectionTips",
-      items: [
+      icon: Sparkles,
+      href: "/dicas",
+      totalItems: getContentByCategory("guide").length,
+      featured: [
         {
           icon: Sparkles,
           labelKey: "aiTips",
@@ -147,28 +142,25 @@ export const contentGroup: NavGroup = {
           href: "/dicas/ai-tips",
         },
         {
-          icon: Palette,
-          labelKey: "tailwindTips",
-          sublabelKey: "tailwindTipsDesc",
-          href: "/dicas/tailwind-tips",
-        },
-        {
-          icon: Database,
-          labelKey: "reactQueryTips",
-          sublabelKey: "reactQueryTipsDesc",
-          href: "/dicas/react-query-tips",
-        },
-        {
           icon: Wrench,
           labelKey: "devResources",
           sublabelKey: "devResourcesDesc",
           href: "/dicas/dev-resources",
         },
+      ],
+    },
+    {
+      id: "tools",
+      labelKey: "sectionTools",
+      icon: Code2,
+      href: "/ferramentas",
+      totalItems: getContentByCategory("tool").length,
+      featured: [
         {
-          icon: Shield,
-          labelKey: "securityTips",
-          sublabelKey: "securityTipsDesc",
-          href: "/dicas/security-tips",
+          icon: Code2,
+          labelKey: "codeReview",
+          sublabelKey: "codeReviewDesc",
+          href: "/ferramentas/code-review",
         },
       ],
     },

@@ -37,5 +37,6 @@
   "home": "Startseite",
   "mainMenu": "Hauptmenü",
   "openMenu": "Menü öffnen",
-  "closeMenu": "Menü schließen"
+  "closeMenu": "Menü schließen",
+  "viewAll": "Alle anzeigen ({count})"
 }

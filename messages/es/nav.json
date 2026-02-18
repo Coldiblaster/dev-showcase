@@ -37,5 +37,6 @@
   "home": "Inicio",
   "mainMenu": "Menú principal",
   "openMenu": "Abrir menú",
-  "closeMenu": "Cerrar menú"
+  "closeMenu": "Cerrar menú",
+  "viewAll": "Ver todos ({count})"
 }

@@ -4,11 +4,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { cn } from "@/lib/utils";
+
 interface NavSubmenuProps {
   label: string;
   icon: React.ElementType;
   isActive?: boolean;
   description?: string;
+  wide?: boolean;
   children: React.ReactNode;
 }
 
@@ -17,6 +20,7 @@ export function NavSubmenu({
   icon: Icon,
   isActive,
   description,
+  wide,
   children,
 }: NavSubmenuProps) {
   const [open, setOpen] = useState(false);
@@ -122,14 +126,17 @@ export function NavSubmenu({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 4, scale: 0.96 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="absolute left-0 top-full z-50 mt-1 min-w-70 overflow-hidden rounded-xl border border-border bg-card/95 shadow-xl backdrop-blur-lg"
+            className={cn(
+              "absolute top-full z-50 mt-1 overflow-hidden rounded-xl border border-border bg-card/95 shadow-xl backdrop-blur-lg",
+              wide ? "right-0 w-[660px]" : "left-0 min-w-70",
+            )}
           >
             {description && (
-              <div className="border-b border-border/50 px-3.5 py-2.5">
+              <div className="border-b border-border/50 px-4 py-2.5">
                 <p className="text-xs text-muted-foreground">{description}</p>
               </div>
             )}
-            <div className="p-1.5">{children}</div>
+            <div className={wide ? "p-3" : "p-1.5"}>{children}</div>
           </motion.div>
         )}
       </AnimatePresence>

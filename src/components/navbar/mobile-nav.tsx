@@ -1,10 +1,10 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Fragment } from "react";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
@@ -80,27 +80,47 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                       </>
                     )}
 
-                    {/* Sectioned items (content) */}
-                    {group.sections?.map((section) => (
-                      <Fragment key={section.labelKey}>
-                        <p className="mt-3 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground/50">
-                          {t(section.labelKey)}
-                        </p>
-                        {section.items.map((item) => (
-                          <MobileMenuItem
-                            key={item.href}
-                            icon={item.icon}
-                            label={t(item.labelKey)}
-                            sublabel={
-                              item.sublabelKey ? t(item.sublabelKey) : undefined
-                            }
-                            href={item.href}
-                            isActive={pathname === item.href}
+                    {/* Category sections (content) */}
+                    {group.categories?.map((category) => {
+                      const CategoryIcon = category.icon;
+                      return (
+                        <div key={category.id}>
+                          <div className="mt-4 flex items-center gap-2 px-3 py-1">
+                            <CategoryIcon className="h-3.5 w-3.5 text-primary" />
+                            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/50">
+                              {t(category.labelKey)}
+                            </p>
+                          </div>
+
+                          {category.featured.map((item) => (
+                            <MobileMenuItem
+                              key={item.href}
+                              icon={item.icon}
+                              label={t(item.labelKey)}
+                              sublabel={
+                                item.sublabelKey
+                                  ? t(item.sublabelKey)
+                                  : undefined
+                              }
+                              href={item.href}
+                              isActive={pathname === item.href}
+                              onClick={onClose}
+                            />
+                          ))}
+
+                          <Link
+                            href={category.href}
                             onClick={onClose}
-                          />
-                        ))}
-                      </Fragment>
-                    ))}
+                            className="mx-1 mt-1 flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-primary"
+                          >
+                            <span>
+                              {t("viewAll", { count: category.totalItems })}
+                            </span>
+                            <ArrowRight className="h-3 w-3" />
+                          </Link>
+                        </div>
+                      );
+                    })}
                   </div>
                 );
               })}
