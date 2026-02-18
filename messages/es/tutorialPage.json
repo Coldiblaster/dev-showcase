@@ -1,0 +1,298 @@
+{
+  "meta": {
+    "title": "Tutorial de Desarrollo",
+    "description": "Guía interactiva paso a paso para crear features y contribuir al Dev Showcase."
+  },
+  "hero": {
+    "badge": "Paso a Paso",
+    "title": "Aprende haciendo",
+    "description": "Una guía interactiva que te acompaña desde el setup hasta el Pull Request. Elige tu ruta y sigue el paso a paso.",
+    "trackNew": "Crear feature nueva",
+    "trackNewDesc": "Crea una nueva página, guía o herramienta desde cero.",
+    "trackImprove": "Mejorar existente",
+    "trackImproveDesc": "Corrige bugs, mejora traducciones o refactoriza código."
+  },
+  "faq": {
+    "title": "Preguntas comunes"
+  },
+  "nav": {
+    "next": "Siguiente: {step}"
+  },
+  "sectionNav": {
+    "environment": "Entorno",
+    "structure": "Estructura",
+    "creating": "Creando",
+    "registration": "Registro",
+    "developing": "Código",
+    "i18n": "Traducciones",
+    "a11y": "Accesibilidad",
+    "quality": "Calidad",
+    "pr": "Pull Request"
+  },
+  "steps": {
+    "environment": {
+      "title": "Preparando el entorno",
+      "description": "Fork, clone e instala las dependencias para empezar a desarrollar.",
+      "forkIntro": "Accede al repositorio en GitHub y haz clic en 'Fork' (esquina superior derecha). Luego clona tu fork:",
+      "install": "Instala las dependencias e inicia el servidor de desarrollo:",
+      "branch": "Crea una branch desde develop:",
+      "branchNew": "feature/nombre-de-feature",
+      "branchImprove": "fix/descripcion-del-fix",
+      "faq": {
+        "q1": "¿Cómo hago el fork en GitHub?",
+        "a1": "Accede al repositorio original, haz clic en 'Fork' en la parte superior de la página. Esto crea una copia en tu perfil. Luego clona desde TU repositorio (github.com/TU-USER/dev-showcase).",
+        "q2": "¿Qué versión de Node.js necesito?",
+        "a2": "Se requiere Node.js 18+. Recomendamos usar nvm para gestionar versiones. Verifica con node --version.",
+        "q3": "¿Puedo usar npm o yarn?",
+        "a3": "El proyecto usa pnpm como gestor de paquetes. Instálalo con npm install -g pnpm.",
+        "q4": "¿Qué es la branch develop?",
+        "a4": "Es la branch de integración. Toda feature nueva sale de ella y todo PR vuelve a ella antes de ir a main.",
+        "q5": "pnpm install dio error, ¿qué hacer?",
+        "a5": "Asegúrate de usar Node.js 18+ y pnpm 8+. Intenta borrar node_modules y pnpm-lock.yaml y ejecuta pnpm install de nuevo."
+      }
+    },
+    "structure": {
+      "title": "Entendiendo la estructura",
+      "description": "Conoce las carpetas principales y dónde vive cada tipo de código.",
+      "intro": "Haz clic en las carpetas para explorar la estructura del proyecto:",
+      "tree": {
+        "src": "Código fuente principal de la aplicación",
+        "app": "Rutas de Next.js (App Router) — cada carpeta = una URL",
+        "components": "Componentes reutilizables (UI, navbar, footer...)",
+        "ui": "Primitivos de UI: Button, Card, Badge, Input, Tabs...",
+        "features": "Dominios de negocio — cada feature en su carpeta",
+        "contribute": "Todas las páginas de /contribua viven aquí",
+        "lib": "Utilidades, helpers, configuraciones",
+        "hooks": "Custom React hooks",
+        "data": "Datos estáticos — content.ts registra todas las páginas dinámicas",
+        "dynamicHelper": "Sistema de páginas dinámicas — conecta slugs a componentes",
+        "messages": "Archivos de traducción por idioma (pt-BR, en, es, de)",
+        "public": "Assets estáticos (imágenes, fuentes, íconos)"
+      },
+      "faq": {
+        "q1": "¿Dónde creo mi componente?",
+        "a1": "Si es reutilizable (ej: botón, card), en src/components/. Si es específico de una feature, en src/features/nombre-de-feature/.",
+        "q2": "¿Qué es la carpeta features/?",
+        "a2": "Cada dominio de negocio tiene su carpeta. Ej: contribute/, implementations/, guides/. Componentes, hooks y datos específicos van ahí.",
+        "q3": "¿Dónde están los estilos?",
+        "a3": "Usamos Tailwind CSS directamente en los componentes. Estilos globales están en src/app/globals.css.",
+        "q4": "¿Qué son content.ts y dynamic-page-helper.tsx?",
+        "a4": "content.ts es el registro central de todas las páginas de contenido (guías, implementaciones, herramientas). dynamic-page-helper.tsx conecta cada slug al componente real via lazy loading. Juntos, hacen que la página aparezca automáticamente en la URL correcta.",
+        "q5": "¿Necesito crear una carpeta para cada feature nueva?",
+        "a5": "¡Sí! Sigue el patrón: src/features/guides/mi-feature/ para guías, src/features/implementations/mi-feature/ para implementaciones. El archivo principal es siempre index.tsx."
+      }
+    },
+    "creating": {
+      "title": "Creando la feature",
+      "titleImprove": "Encontrando el código",
+      "description": "Crea el componente principal. El proyecto tiene dos caminos: páginas dinámicas (guías/implementaciones) y standalone.",
+      "descriptionImprove": "Localiza el código que necesitas cambiar en el proyecto.",
+      "newFeature": {
+        "choiceTitle": "¿Qué tipo de página quieres crear?",
+        "choiceDesc": "El proyecto tiene dos caminos: páginas dinámicas (que aparecen en /dicas, /implementacoes o /ferramentas automáticamente) y páginas standalone (como las secciones de /contribua). Elige el camino correcto para tu feature.",
+        "dynamicTitle": "Página dinámica (guía, implementación o herramienta)",
+        "dynamicDesc": "Las páginas dinámicas se enrutan automáticamente via slug. Solo necesitas crear el componente — la ruta ya existe en /dicas/[slug], /implementacoes/[slug] o /ferramentas/[slug].",
+        "dynamicStep1": "1. Crea el componente (named export obligatorio)",
+        "dynamicNote": "Las páginas dinámicas NO necesitan su propio page.tsx o loading.tsx — la ruta dinámica [slug]/page.tsx ya existe. El siguiente paso (Registro) muestra cómo conectar tu componente al sistema.",
+        "standaloneTitle": "Página standalone (/contribua/...)",
+        "standaloneDesc": "Para páginas fuera del sistema dinámico (ej: secciones de /contribua), necesitas crear la ruta manualmente:",
+        "componentTitle": "1. Crea el componente de la feature",
+        "componentPath": "src/features/contribute/mi-feature/index.tsx",
+        "routeTitle": "2. Registra la ruta (page.tsx)",
+        "routePath": "src/app/contribua/mi-feature/page.tsx",
+        "loadingTitle": "3. Agrega el loading skeleton",
+        "loadingPath": "src/app/contribua/mi-feature/loading.tsx"
+      },
+      "improve": {
+        "searchTitle": "Encuentra el código relevante",
+        "searchTip": "Usa la búsqueda global (Ctrl+K) o grep para localizar el archivo. La estructura de carpetas sigue este patrón:",
+        "pattern1": "Componentes de UI → src/components/",
+        "pattern2": "Específico de feature → src/features/[dominio]/",
+        "pattern3": "Traducciones → messages/[locale]/",
+        "pattern4": "Rutas/páginas → src/app/[ruta]/"
+      },
+      "faq": {
+        "q1": "¿Client o Server Component?",
+        "a1": "Usa Server Component por defecto (sin 'use client'). Agrega 'use client' solo si necesitas hooks, eventos o estado del browser.",
+        "q2": "¿Qué camino elegir: dinámico o standalone?",
+        "a2": "Si es una guía, implementación o herramienta, usa el sistema dinámico — es más simple y estandarizado. Usa standalone solo para secciones especiales como /contribua.",
+        "q3": "¿Necesito crear page.tsx para páginas dinámicas?",
+        "a3": "¡No! Las rutas [slug]/page.tsx ya existen para cada categoría. Solo crea el componente y regístralo en el siguiente paso."
+      }
+    },
+    "registration": {
+      "title": "Registro e Integración",
+      "description": "Conecta tu componente al sistema de rutas, búsqueda y navegación del proyecto.",
+      "descriptionImprove": "Verifica que las integraciones existentes sigan funcionando después de tus cambios.",
+      "dynamicIntro": "Sistema de páginas dinámicas",
+      "dynamicIntroDesc": "El proyecto usa un sistema centralizado: el componente se registra una vez y automáticamente obtiene ruta, SEO, búsqueda y listado.",
+      "contentTs": "Registra en content.ts",
+      "contentTsDesc": "Agrega tu contenido al array CONTENT_ITEMS. El slug se convierte en la URL, la category define en qué sección aparece.",
+      "componentMap": "Agrega al COMPONENT_MAP",
+      "componentMapDesc": "Conecta el nombre del componente (string del content.ts) al import dinámico real. Usa lazy loading con next/dynamic.",
+      "searchIntegration": "Integra con la búsqueda global",
+      "searchIntegrationDesc": "Para que tu página aparezca en la búsqueda (Ctrl+K), agrega en ambos lugares:",
+      "listingPage": "Agrega ícono al listado",
+      "listingPageDesc": "Cada página de listado (/dicas, /implementacoes) usa un iconMap para mostrar íconos. Agrega el slug y un ícono de Lucide.",
+      "categoryTitle": "Categorías disponibles",
+      "categories": {
+        "catGuide": {
+          "slug": "guide",
+          "desc": "Guías y tips → aparece en /dicas/[slug]"
+        },
+        "catImpl": {
+          "slug": "implementation",
+          "desc": "Implementaciones reales → aparece en /implementacoes/[slug]"
+        },
+        "catTool": {
+          "slug": "tool",
+          "desc": "Herramientas interactivas → aparece en /ferramentas/[slug]"
+        }
+      },
+      "improveIntro": "Al mejorar código existente, verifica que estas integraciones sigan funcionando:",
+      "improveChecklist": {
+        "r1": "La búsqueda global (Ctrl+K) encuentra la página normalmente",
+        "r2": "El listado de la categoría muestra la página con ícono correcto",
+        "r3": "Los metadata (título y descripción) se renderizan correctamente",
+        "r4": "Las traducciones del search.json están actualizadas en los 4 idiomas",
+        "r5": "El build (pnpm build) pasa sin errores de tipo"
+      },
+      "faq": {
+        "q1": "¿Qué pasa si olvido el COMPONENT_MAP?",
+        "a1": "La página retornará 404. COMPONENT_MAP es el enlace entre el slug (URL) y el componente real. Sin él, el sistema no sabe qué componente renderizar.",
+        "q2": "¿Necesito agregar al nav (menú de navegación)?",
+        "a2": "No es obligatorio. El menú de navegación muestra solo los ítems featured configurados en nav-data.ts. Tu página ya aparecerá en el listado y la búsqueda.",
+        "q3": "¿Cómo funciona el SEO automático?",
+        "a3": "El sistema genera metadata (título, descripción, Open Graph) automáticamente usando las traducciones del search.json y la función buildPageMetadata. La URL se genera a partir del slug y la categoría.",
+        "q4": "¿Cómo pruebo si el registro funcionó?",
+        "a4": "Ejecuta pnpm dev y visita la URL de tu página (ej: /dicas/graphql-tips). Prueba también la búsqueda global (Ctrl+K) y el listado de la categoría. Si da 404, verifica COMPONENT_MAP y content.ts.",
+        "q5": "¿Y para páginas standalone (/contribua)?",
+        "a5": "Las páginas standalone no usan content.ts ni COMPONENT_MAP. Pero aún necesitan entrada en search-data.ts (array STANDALONE_PAGES) y traducciones en search.json para aparecer en la búsqueda global."
+      }
+    },
+    "developing": {
+      "title": "Desarrollando",
+      "description": "Patrones de código, componentes disponibles y buenas prácticas del proyecto.",
+      "patternsTitle": "Patrones que seguimos",
+      "patterns": {
+        "p1": "TypeScript strict — nada de any, tipos explícitos",
+        "p2": "Componentes funcionales con arrow functions o function declarations",
+        "p3": "Imports con alias @/ (ej: @/components/ui/button)",
+        "p4": "Todo texto visible usa i18n (next-intl) — nunca hardcode",
+        "p5": "Accesibilidad: aria-labels, roles semánticos, navegación por teclado",
+        "p6": "Framer Motion para animaciones de entrada (AnimatedSection)"
+      },
+      "componentsTitle": "Componentes disponibles",
+      "componentsDesc": "Reutiliza los componentes del Design System. Consulta el catálogo completo en /contribua/design-system.",
+      "faq": {
+        "q1": "¿Puedo instalar nuevas dependencias?",
+        "a1": "Sí, pero con moderación. Prefiere libs ya usadas en el proyecto. Agrega con pnpm add nombre-del-paquete.",
+        "q2": "¿Cómo uso animaciones?",
+        "a2": "Envuelve tu contenido con el componente AnimatedSection (ej: delay 0.1). Para animaciones más complejas, usa framer-motion directamente.",
+        "q3": "¿Dónde veo los componentes disponibles?",
+        "a3": "Visita /contribua/design-system para ver el catálogo completo con previews interactivos y código de cada componente."
+      }
+    },
+    "i18n": {
+      "title": "Traducciones (i18n)",
+      "description": "Todo texto visible debe ser traducido. pt-BR es la fuente de verdad.",
+      "workflowTitle": "Flujo de traducción",
+      "workflow": {
+        "w1": "Crea las claves en messages/pt-BR/tuNamespace.json",
+        "w2": "Registra el namespace en messages/pt-BR/index.ts (y otros idiomas)",
+        "w3": "Agrega el tipo en src/lib/i18n/types.d.ts",
+        "w4": "Agrega título y descripción en messages/*/search.json (para búsqueda global)",
+        "w5": "Si agregaste al nav, actualiza messages/*/nav.json con label y descripción",
+        "w6": "Crea los archivos en los otros 3 idiomas (en, es, de) o usa pnpm translate",
+        "w7": "Usa useTranslations('tuNamespace') en el componente"
+      },
+      "exampleTitle": "Ejemplo de uso",
+      "tipTitle": "Consejo",
+      "tip": "El script pnpm translate puede ayudar a generar traducciones automáticas via DeepL para otros idiomas.",
+      "faq": {
+        "q1": "¿Puedo contribuir solo en pt-BR?",
+        "a1": "¡Sí! Crea las claves en pt-BR y usa el script de traducción o pide ayuda en el PR para otros idiomas.",
+        "q2": "¿Qué es un namespace?",
+        "a2": "Es el nombre del archivo JSON de traducción. Cada página/feature tiene el suyo (ej: tutorialPage, contributePage).",
+        "q3": "¿Cómo uso traducciones en Server Components?",
+        "a3": "Usa getTranslations('namespace') de next-intl/server en lugar de useTranslations."
+      }
+    },
+    "a11y": {
+      "title": "Accesibilidad",
+      "description": "Garantizar que todos puedan usar la plataforma es prioridad.",
+      "checklistTitle": "Checklist de accesibilidad",
+      "checklist": {
+        "c1": "Las imágenes tienen alt text descriptivo",
+        "c2": "Los elementos interactivos tienen aria-label",
+        "c3": "La navegación funciona 100% por teclado (Tab, Enter, Escape)",
+        "c4": "El contraste de colores cumple WCAG AA (4.5:1 para texto)",
+        "c5": "La estructura de headings es jerárquica (h1 → h2 → h3)",
+        "c6": "Los formularios tienen labels asociados",
+        "c7": "Los estados de foco son visibles",
+        "c8": "El contenido dinámico usa aria-live o role='status'"
+      },
+      "faq": {
+        "q1": "¿Qué es ARIA?",
+        "a1": "Accessible Rich Internet Applications — atributos HTML que agregan significado semántico para lectores de pantalla.",
+        "q2": "¿Cómo pruebo la accesibilidad?",
+        "a2": "Navega usando solo teclado (Tab/Enter). Usa la extensión axe DevTools en Chrome. Prueba con un lector de pantalla si es posible.",
+        "q3": "¿Necesito agregar skip links?",
+        "a3": "El proyecto ya tiene skip links globales. Pero si creas una página con mucha navegación, considera agregarlos."
+      }
+    },
+    "quality": {
+      "title": "Calidad",
+      "description": "Lint, tests y build deben pasar antes de abrir el PR.",
+      "commandsTitle": "Comandos esenciales",
+      "lint": "Verifica estándares de código e imports",
+      "test": "Ejecuta tests unitarios y de componentes",
+      "build": "Build completa — valida TypeScript y SSR",
+      "allGreen": "Todos deben pasar sin errores antes del PR.",
+      "faq": {
+        "q1": "El lint falló, ¿y ahora?",
+        "a1": "Ejecuta pnpm lint --fix para corregir automáticamente. Errores de tipo (TypeScript) deben corregirse manualmente.",
+        "q2": "¿Necesito agregar tests?",
+        "a2": "Recomendado pero no obligatorio para toda contribución. Si agregas lógica compleja, un test es bienvenido.",
+        "q3": "El build dio error de tipo, ¿qué hacer?",
+        "a3": "Verifica que todos los imports estén correctos y que los tipos sean coherentes. El error generalmente indica la línea y archivo exactos.",
+        "q4": "El test falló en algo que no toqué, ¿qué hacer?",
+        "a4": "Esto puede pasar si un test dependía de algo que cambió indirectamente. Ejecuta pnpm test -- --verbose para ver detalles. Si no es tu cambio, menciónalo en el PR.",
+        "q5": "¿Necesito ejecutar los 3 comandos cada vez?",
+        "a5": "¡Sí! Antes de abrir el PR, lint + test + build deben pasar. El CI (GitHub Actions) ejecutará los mismos checks automáticamente."
+      }
+    },
+    "pr": {
+      "title": "Pull Request",
+      "description": "¡Hora de enviar tu contribución para review!",
+      "commitTitle": "Commit con Conventional Commits",
+      "commitDesc": "Usa el formato estándar. Ejemplos:",
+      "commits": {
+        "feat": "feat: add tutorial page",
+        "fix": "fix: correct translation key for navbar",
+        "docs": "docs: update README with setup instructions"
+      },
+      "pushTitle": "Push y PR",
+      "prTemplate": "El PR debe incluir:",
+      "prItems": {
+        "i1": "Título claro describiendo el cambio",
+        "i2": "Descripción de lo que se hizo y por qué",
+        "i3": "Screenshots si hay cambios visuales",
+        "i4": "Checklist de pruebas realizadas"
+      },
+      "done": "¡Felicidades! Tu contribución está en camino. Después del review, tu código entra en la plataforma.",
+      "faq": {
+        "q1": "¿Cuál es el formato del título del commit?",
+        "a1": "tipo(alcance): descripción — Ej: feat(tutorial): add interactive file tree. Tipos: feat, fix, docs, style, refactor, test, chore.",
+        "q2": "¿Quién revisa mi PR?",
+        "a2": "Los mantenedores del proyecto. Pueden pedir ajustes — ¡eso es normal y parte del proceso!",
+        "q3": "¿Puedo hacer más de un commit en el PR?",
+        "a3": "¡Sí! Múltiples commits organizados son bienvenidos. Mantén cada commit enfocado en un solo cambio.",
+        "q4": "¿Y si mi PR tiene conflictos?",
+        "a4": "Actualiza tu branch con develop: git checkout develop && git pull && git checkout tu-branch && git merge develop. Resuelve los conflictos en los archivos marcados y haz un nuevo commit.",
+        "q5": "¿Cuánto tiempo tarda el review?",
+        "a5": "Depende de la complejidad, pero generalmente entre 1-3 días. Mantén el PR pequeño y enfocado para reviews más rápidos. PRs con más de 500 líneas tardan más."
+      }
+    }
+  }
+}

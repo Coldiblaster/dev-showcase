@@ -5,6 +5,7 @@ import {
   Accessibility,
   ArrowRight,
   Blocks,
+  BookOpen,
   Component,
   FileCode,
   Layers,
@@ -27,6 +28,12 @@ interface SubPage {
 }
 
 const SUB_PAGES: SubPage[] = [
+  {
+    icon: BookOpen,
+    labelKey: "tutorial",
+    descKey: "tutorialDesc",
+    href: "/contribua/tutorial",
+  },
   {
     icon: Layers,
     labelKey: "architecture",

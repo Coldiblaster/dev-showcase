@@ -192,6 +192,24 @@ const STANDALONE_PAGES: SearchResult[] = [
       "teclado",
     ],
   },
+  {
+    id: "page-tutorial",
+    titleKey: "items.tutorial.title",
+    descriptionKey: "items.tutorial.description",
+    type: "page",
+    url: "/contribua/tutorial",
+    tags: [
+      "tutorial",
+      "guia",
+      "passo a passo",
+      "como contribuir",
+      "iniciante",
+      "setup",
+      "fork",
+      "pr",
+      "pull request",
+    ],
+  },
 ];
 
 const LISTING_PAGES: SearchResult[] = [

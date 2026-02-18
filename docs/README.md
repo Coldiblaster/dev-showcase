@@ -13,6 +13,7 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 | [Contribuicao](./CONTRIBUTING.md)                           | Como contribuir, fluxo de PR, convencoes de commit  | Todos        |
 | [Branch Protection](./BRANCH_PROTECTION.md)                 | Protecao da main, CI obrigatoria, fluxo de PR       | Todos        |
 | [Seguranca das APIs](./api/SECURITY.md)                     | Rate limiting, sanitizacao, anti prompt injection   | Pleno/Senior |
+| [Analytics](./analytics/ANALYTICS.md)                       | Metricas ao vivo com Upstash Redis                  | Todos        |
 | [Componentes Reutilizaveis](./architecture/COMPONENTS.md)   | Catalogo de componentes compartilhados              | Todos        |
 | [Adicionando Paginas](./content-management/ADDING_PAGES.md) | Como criar novas paginas de implementacoes ou guias | Todos        |
 | [Internacionalizacao (i18n)](./i18n/INDEX.md)               | Sistema de traducao, scripts, boas praticas         | Todos        |
@@ -30,6 +31,8 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 │  /dicas      │  /api/code-review│   robots.ts            │
 │  /impl.      │  /api/contact    │   opengraph-image.tsx  │
 │  /ferramentas│  /api/github     │   icon.tsx             │
+│  /contribua  │  /api/stats      │                        │
+│              │  /api/stats/track│                        │
 ├──────────────┴──────────────────┴────────────────────────┤
 │                       Features                            │
 │  home/ ─── hero, about, stack, github-stats, projects,   │
@@ -52,6 +55,7 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 │                    Infraestrutura                         │
 │  lib/api-security.ts (sanitizacao, headers, validacao)   │
 │  lib/rate-limit.ts (rate limiting in-memory)             │
+│  lib/redis.ts (cliente Upstash Redis)                    │
 │  lib/chat/system-prompt.ts (prompt do assistente IA)     │
 │  lib/i18n/ (next-intl, load-messages, routing)           │
 │  lib/seo.ts (buildPageMetadata, constantes)              │

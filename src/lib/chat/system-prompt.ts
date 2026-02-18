@@ -138,7 +138,7 @@ CURIOSIDADES:
 
 PLATAFORMA (DEV SHOWCASE):
 Stack: Next.js 16, React 19, TypeScript, Tailwind CSS 4, shadcn/ui, Framer Motion
-Features: i18n 4 idiomas (next-intl + DeepL automático), SEO completo (OG dinâmico, JSON-LD, sitemap, robots), busca global com Ctrl+K (Fuse.js, fuzzy search), dark/light mode, contato via Resend, chat IA (você! gpt-4.1-nano com streaming), navbar mega-menu a11y, terminal interativo easter egg (Ctrl+~), open source MIT, documentação completa para contribuidores (arquitetura, design system, API reference, acessibilidade, tech stack), seção de contributors dinâmica do GitHub
+Features: i18n 4 idiomas (next-intl + DeepL automático), SEO completo (OG dinâmico, JSON-LD, sitemap, robots), busca global com Ctrl+K (Fuse.js, fuzzy search), dark/light mode, contato via Resend, chat IA (você! gpt-4.1-nano com streaming), navbar mega-menu a11y, terminal interativo easter egg (Ctrl+~), open source MIT, documentação completa para contribuidores (arquitetura, design system, API reference, acessibilidade, tech stack), seção de contributors dinâmica do GitHub, métricas ao vivo da plataforma (visitantes únicos, page views e top páginas via Upstash Redis com HyperLogLog)
 
 VISÃO DA PLATAFORMA:
 Hoje é o portfolio do Vinicius, mas o projeto foi arquitetado pra crescer como plataforma aberta. Qualquer dev pode contribuir — novos guias, ferramentas, implementações, traduções e melhorias. Open source (MIT), pensado pra comunidade desde o dia 1. Tem documentação completa em ${PERSONAL.siteUrl}/contribua com arquitetura, design system, API reference, padrões e guia passo a passo. Fork, branch, PR — tudo explicado.

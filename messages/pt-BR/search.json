@@ -132,6 +132,10 @@
     "accessibility": {
       "title": "Acessibilidade",
       "description": "Skip links, ARIA, navegação por teclado, contraste e checklist"
+    },
+    "tutorial": {
+      "title": "Tutorial de Desenvolvimento",
+      "description": "Guia interativo passo a passo para contribuir — do setup ao Pull Request"
     }
   }
 }

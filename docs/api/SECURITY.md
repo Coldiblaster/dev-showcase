@@ -84,6 +84,8 @@ Sistema in-memory por IP, configuravel por rota.
 | ------------------ | ----------- | --------- | ------------- |
 | `/api/code-review` | 8 requests  | 5 minutos | `code-review` |
 | `/api/chat`        | 30 requests | 1 minuto  | `chat`        |
+| `/api/stats/track` | 60 requests | 1 minuto  | `stats-track` |
+| `/api/stats`       | 30 requests | 1 minuto  | `stats-read`  |
 
 **Implementacao:** `src/lib/rate-limit.ts`
 

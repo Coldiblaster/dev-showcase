@@ -14,7 +14,9 @@
   "stats": {
     "impact": "Über 8 Jahre Erfahrung",
     "implementations": "Echte Projekte, keine Tutorials",
-    "opensource": "Von Dev zu Devs"
+    "opensource": "Von Dev zu Devs",
+    "visitors": "{count} Besucher",
+    "pageViews": "{count} Seitenaufrufe"
   },
   "meta": {
     "description": "Portfolio von Vinicius Bastazin. 8+ Jahre mit React, Next.js und TypeScript. Spezialist für Frontend, Design-Systeme, Performance und Barrierefreiheit.",

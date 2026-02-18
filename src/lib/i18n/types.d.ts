@@ -43,6 +43,7 @@ import type terminal from "../../../messages/pt-BR/terminal.json";
 import type tips from "../../../messages/pt-BR/tips.json";
 import type tipsPage from "../../../messages/pt-BR/tipsPage.json";
 import type tsPatterns from "../../../messages/pt-BR/tsPatterns.json";
+import type tutorialPage from "../../../messages/pt-BR/tutorialPage.json";
 import type viewSource from "../../../messages/pt-BR/viewSource.json";
 
 export type Messages = {
@@ -85,6 +86,7 @@ export type Messages = {
   tips: typeof tips;
   tipsPage: typeof tipsPage;
   tsPatterns: typeof tsPatterns;
+  tutorialPage: typeof tutorialPage;
   viewSource: typeof viewSource;
   search: typeof search;
   securityPage: typeof securityPage;

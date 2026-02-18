@@ -28,6 +28,7 @@ Mais do que um portfolio, o **Dev Showcase** e uma plataforma open source que co
 - **Internacionalizacao completa** — 4 idiomas (pt-BR, en, es, de) com traducao automatizada
 - **SEO de producao** — OG images dinamicas, JSON-LD, sitemap, robots
 - **Busca global** — pesquisa fuzzy em todo o conteudo da plataforma
+- **Analytics proprio** — metricas ao vivo (visitantes, page views, top pages) com Upstash Redis
 - **Easter eggs** — terminal interativo com comandos (pressione `~`)
 
 O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto como vitrine profissional quanto como referencia tecnica para a comunidade.
@@ -48,6 +49,7 @@ O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto c
 | **IA**        | OpenAI (GPT-4o Mini para code review, GPT-4.1 Nano para chat)        |
 | **Validacao** | Zod (schema validation)                                              |
 | **Busca**     | Fuse.js (busca global fuzzy)                                         |
+| **Analytics** | Upstash Redis (page views, visitors via HyperLogLog, top pages)      |
 | **Email**     | Resend (formulario de contato)                                       |
 | **Seguranca** | Rate limiting, sanitizacao I/O, anti prompt injection, Zod schemas   |
 | **Testes**    | Vitest + Testing Library                                             |
@@ -106,6 +108,8 @@ O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto c
 | `/api/code-review` | Revisao de codigo com IA (GPT-4o Mini) |
 | `/api/contact`     | Envio de email via Resend              |
 | `/api/github`      | Estatisticas do GitHub com cache       |
+| `/api/stats`       | Metricas da plataforma (Redis + cache) |
+| `/api/stats/track` | Tracking de page view (bot filter)     |
 
 ---
 
@@ -118,7 +122,10 @@ src/
 │   │   ├── chat/route.ts             #   Chat IA (streaming)
 │   │   ├── code-review/route.ts      #   Code Review IA
 │   │   ├── contact/route.ts          #   Envio de email
-│   │   └── github/route.ts           #   GitHub stats
+│   │   ├── github/route.ts           #   GitHub stats
+│   │   └── stats/                    #   Analytics proprio
+│   │       ├── route.ts              #     GET — metricas agregadas
+│   │       └── track/route.ts        #     POST — registra page view
 │   ├── dicas/[slug]/                 # Guias dinamicos (8 guias)
 │   ├── ferramentas/[slug]/           # Ferramentas dinamicas (code-review, regex)
 │   ├── implementacoes/[slug]/        # Implementacoes dinamicas (i18n, seo, ai-chatbot)
@@ -132,6 +139,7 @@ src/
 │   ├── navbar/                       # Navbar modular (9 componentes)
 │   ├── terminal/                     # Terminal Easter Egg (focus trap)
 │   ├── ui/                           # Primitivos shadcn/ui
+│   ├── view-tracker.tsx              # Tracking de page view (sendBeacon)
 │   ├── skip-link.tsx                 # Skip to content (acessibilidade)
 │   ├── page-skeleton.tsx             # Loading skeletons por tipo de pagina
 │   ├── section-nav.tsx               # Navegacao entre secoes
@@ -160,6 +168,7 @@ src/
 └── lib/
     ├── api-security.ts               # Seguranca compartilhada para APIs
     ├── rate-limit.ts                 # Rate limiting in-memory
+    ├── redis.ts                      # Cliente Upstash Redis (graceful degradation)
     ├── chat/                         # System prompt do chat IA
     ├── email/                        # Template de email (Resend)
     ├── i18n/                         # Configuracao de internacionalizacao
@@ -201,14 +210,16 @@ pnpm dev
 
 Copie `.env.example` para `.env.local` e preencha:
 
-| Variavel                         |  Obrigatoria  | Descricao                     |
-| -------------------------------- | :-----------: | ----------------------------- |
-| `OPENAI_API_KEY`                 |    Para IA    | Chat e Code Review            |
-| `RESEND_API_KEY`                 |  Para email   | Formulario de contato         |
-| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` | Para contato  | reCAPTCHA v3 (client)         |
-| `RECAPTCHA_SECRET_KEY`           | Para contato  | reCAPTCHA v3 (server)         |
-| `DEEPL_API_KEY`                  | Para traducao | Traducao automatica (DeepL)   |
-| `GOOGLE_CLOUD_API_KEY`           | Para traducao | Fallback de traducao (Google) |
+| Variavel                         |  Obrigatoria   | Descricao                     |
+| -------------------------------- | :------------: | ----------------------------- |
+| `OPENAI_API_KEY`                 |    Para IA     | Chat e Code Review            |
+| `RESEND_API_KEY`                 |   Para email   | Formulario de contato         |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` |  Para contato  | reCAPTCHA v3 (client)         |
+| `RECAPTCHA_SECRET_KEY`           |  Para contato  | reCAPTCHA v3 (server)         |
+| `UPSTASH_REDIS_REST_URL`         | Para analytics | Metricas ao vivo (Upstash)    |
+| `UPSTASH_REDIS_REST_TOKEN`       | Para analytics | Token do Upstash Redis        |
+| `DEEPL_API_KEY`                  | Para traducao  | Traducao automatica (DeepL)   |
+| `GOOGLE_CLOUD_API_KEY`           | Para traducao  | Fallback de traducao (Google) |
 
 > A plataforma funciona sem essas chaves — os recursos que dependem delas ficam desabilitados graciosamente.
 
@@ -261,6 +272,7 @@ O projeto esta configurado para deploy na **Vercel** com zero configuracao:
 | [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md)                                       | Guia de contribuicao                           |
 | [docs/BRANCH_PROTECTION.md](./docs/BRANCH_PROTECTION.md)                             | CI, branch protection e fluxo de PR            |
 | [docs/api/SECURITY.md](./docs/api/SECURITY.md)                                       | Seguranca das API Routes                       |
+| [docs/analytics/ANALYTICS.md](./docs/analytics/ANALYTICS.md)                         | Sistema de analytics proprio (Upstash Redis)   |
 | [docs/architecture/COMPONENTS.md](./docs/architecture/COMPONENTS.md)                 | Catalogo de componentes reutilizaveis          |
 | [docs/content-management/ADDING_PAGES.md](./docs/content-management/ADDING_PAGES.md) | Como criar novas paginas                       |
 | [docs/i18n/INDEX.md](./docs/i18n/INDEX.md)                                           | Sistema de internacionalizacao                 |

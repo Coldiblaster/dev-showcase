@@ -40,6 +40,7 @@ import terminal from "./terminal.json";
 import tips from "./tips.json";
 import tipsPage from "./tipsPage.json";
 import tsPatterns from "./tsPatterns.json";
+import tutorialPage from "./tutorialPage.json";
 import viewSource from "./viewSource.json";
 
 export default {
@@ -82,6 +83,7 @@ export default {
   tips,
   tipsPage,
   tsPatterns,
+  tutorialPage,
   viewSource,
   search,
   securityPage,

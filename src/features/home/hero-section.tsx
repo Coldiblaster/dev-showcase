@@ -4,20 +4,25 @@ import { motion } from "framer-motion";
 import {
   ArrowDown,
   Download,
+  Eye,
   Github,
   Linkedin,
   Mail,
   User,
+  Users,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { HeroSection } from "@/components/hero-section";
 import { Button } from "@/components/ui/button";
+import { useSiteStats } from "@/hooks/use-site-stats";
 import { PERSONAL } from "@/lib/constants";
 
 /** Hero da página inicial com nome, CTA e redes sociais. */
 export function HomeHeroSection() {
   const t = useTranslations("hero");
+  const { stats, loading: statsLoading } = useSiteStats();
+  const hasStats = !statsLoading && (stats.visitors > 0 || stats.views > 0);
   return (
     <>
       <HeroSection
@@ -117,18 +122,52 @@ export function HomeHeroSection() {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="mb-4 flex flex-wrap items-center justify-center gap-3 text-[11px] text-muted-foreground md:mb-8 md:gap-6 md:text-sm"
           >
+            {hasStats && (
+              <>
+                <span className="flex items-center gap-1.5">
+                  <Users
+                    className="h-3 w-3 text-primary md:h-3.5 md:w-3.5"
+                    aria-hidden="true"
+                  />
+                  {t("stats.visitors", { count: stats.visitors })}
+                </span>
+                <span className="text-border" aria-hidden="true">
+                  •
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Eye
+                    className="h-3 w-3 text-primary md:h-3.5 md:w-3.5"
+                    aria-hidden="true"
+                  />
+                  {t("stats.pageViews", { count: stats.views })}
+                </span>
+                <span className="text-border" aria-hidden="true">
+                  •
+                </span>
+              </>
+            )}
             <span className="flex items-center gap-1.5">
-              <span className="text-primary">✓</span>
+              <span className="text-primary" aria-hidden="true">
+                ✓
+              </span>
               {t("stats.impact")}
             </span>
-            <span className="text-border">•</span>
+            <span className="text-border" aria-hidden="true">
+              •
+            </span>
             <span className="flex items-center gap-1.5">
-              <span className="text-primary">✓</span>
+              <span className="text-primary" aria-hidden="true">
+                ✓
+              </span>
               {t("stats.implementations")}
             </span>
-            <span className="text-border">•</span>
+            <span className="text-border" aria-hidden="true">
+              •
+            </span>
             <span className="flex items-center gap-1.5">
-              <span className="text-primary">✓</span>
+              <span className="text-primary" aria-hidden="true">
+                ✓
+              </span>
               {t("stats.opensource")}
             </span>
           </motion.div>

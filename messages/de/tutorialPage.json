@@ -1,0 +1,298 @@
+{
+  "meta": {
+    "title": "Entwicklungs-Tutorial",
+    "description": "Interaktive Schritt-für-Schritt-Anleitung zum Erstellen von Features und Beitragen zum Dev Showcase."
+  },
+  "hero": {
+    "badge": "Schritt für Schritt",
+    "title": "Lernen durch Machen",
+    "description": "Ein interaktiver Leitfaden, der Sie vom Setup bis zum Pull Request begleitet. Wählen Sie Ihren Pfad und folgen Sie der Anleitung.",
+    "trackNew": "Neues Feature erstellen",
+    "trackNewDesc": "Erstellen Sie eine neue Seite, Anleitung oder ein Tool von Grund auf.",
+    "trackImprove": "Bestehendes verbessern",
+    "trackImproveDesc": "Bugs beheben, Übersetzungen verbessern oder Code refaktorieren."
+  },
+  "faq": {
+    "title": "Häufige Fragen"
+  },
+  "nav": {
+    "next": "Weiter: {step}"
+  },
+  "sectionNav": {
+    "environment": "Umgebung",
+    "structure": "Struktur",
+    "creating": "Erstellen",
+    "registration": "Registrierung",
+    "developing": "Code",
+    "i18n": "Übersetzungen",
+    "a11y": "Barrierefreiheit",
+    "quality": "Qualität",
+    "pr": "Pull Request"
+  },
+  "steps": {
+    "environment": {
+      "title": "Umgebung einrichten",
+      "description": "Fork, Clone und Abhängigkeiten installieren, um mit der Entwicklung zu beginnen.",
+      "forkIntro": "Gehen Sie zum Repository auf GitHub und klicken Sie auf 'Fork' (obere rechte Ecke). Klonen Sie dann Ihren Fork:",
+      "install": "Installieren Sie die Abhängigkeiten und starten Sie den Entwicklungsserver:",
+      "branch": "Erstellen Sie einen Branch von develop:",
+      "branchNew": "feature/feature-name",
+      "branchImprove": "fix/fix-beschreibung",
+      "faq": {
+        "q1": "Wie mache ich einen Fork auf GitHub?",
+        "a1": "Gehen Sie zum Original-Repository, klicken Sie oben auf 'Fork'. Dies erstellt eine Kopie in Ihrem Profil. Klonen Sie dann von IHREM Repository (github.com/IHR-USER/dev-showcase).",
+        "q2": "Welche Node.js-Version brauche ich?",
+        "a2": "Node.js 18+ ist erforderlich. Wir empfehlen nvm zur Versionsverwaltung. Prüfen Sie mit node --version.",
+        "q3": "Kann ich npm oder yarn verwenden?",
+        "a3": "Das Projekt verwendet pnpm als Paketmanager. Installieren Sie es mit npm install -g pnpm.",
+        "q4": "Was ist der develop-Branch?",
+        "a4": "Es ist der Integrations-Branch. Jedes neue Feature zweigt davon ab und jeder PR wird dort zusammengeführt, bevor er zu main geht.",
+        "q5": "pnpm install hat einen Fehler, was tun?",
+        "a5": "Stellen Sie sicher, dass Sie Node.js 18+ und pnpm 8+ verwenden. Versuchen Sie, node_modules und pnpm-lock.yaml zu löschen und pnpm install erneut auszuführen."
+      }
+    },
+    "structure": {
+      "title": "Die Struktur verstehen",
+      "description": "Lernen Sie die Hauptordner kennen und wo welcher Code lebt.",
+      "intro": "Klicken Sie auf Ordner, um die Projektstruktur zu erkunden:",
+      "tree": {
+        "src": "Hauptquellcode der Anwendung",
+        "app": "Next.js-Routen (App Router) — jeder Ordner = eine URL",
+        "components": "Wiederverwendbare Komponenten (UI, Navbar, Footer...)",
+        "ui": "UI-Primitive: Button, Card, Badge, Input, Tabs...",
+        "features": "Geschäftsdomänen — jedes Feature in eigenem Ordner",
+        "contribute": "Alle /contribua-Seiten leben hier",
+        "lib": "Hilfsprogramme, Helfer, Konfigurationen",
+        "hooks": "Custom React Hooks",
+        "data": "Statische Daten — content.ts registriert alle dynamischen Seiten",
+        "dynamicHelper": "Dynamisches Seitensystem — verbindet Slugs mit Komponenten",
+        "messages": "Übersetzungsdateien nach Sprache (pt-BR, en, es, de)",
+        "public": "Statische Assets (Bilder, Schriften, Icons)"
+      },
+      "faq": {
+        "q1": "Wo erstelle ich meine Komponente?",
+        "a1": "Wenn wiederverwendbar (z.B. Button, Card), in src/components/. Wenn feature-spezifisch, in src/features/feature-name/.",
+        "q2": "Was ist der features/-Ordner?",
+        "a2": "Jede Geschäftsdomäne hat ihren Ordner. Z.B. contribute/, implementations/, guides/. Spezifische Komponenten, Hooks und Daten kommen dort hin.",
+        "q3": "Wo sind die Styles?",
+        "a3": "Wir verwenden Tailwind CSS direkt in Komponenten. Globale Styles sind in src/app/globals.css.",
+        "q4": "Was sind content.ts und dynamic-page-helper.tsx?",
+        "a4": "content.ts ist das zentrale Register aller Inhaltsseiten (Guides, Implementierungen, Tools). dynamic-page-helper.tsx verbindet jeden Slug via Lazy Loading mit der tatsächlichen Komponente. Zusammen sorgen sie dafür, dass die Seite automatisch unter der richtigen URL erscheint.",
+        "q5": "Muss ich für jedes neue Feature einen Ordner erstellen?",
+        "a5": "Ja! Folgen Sie dem Muster: src/features/guides/mein-feature/ für Guides, src/features/implementations/mein-feature/ für Implementierungen. Die Hauptdatei ist immer index.tsx."
+      }
+    },
+    "creating": {
+      "title": "Das Feature erstellen",
+      "titleImprove": "Den Code finden",
+      "description": "Erstellen Sie die Hauptkomponente. Das Projekt hat zwei Wege: dynamische Seiten (Guides/Implementierungen) und Standalone.",
+      "descriptionImprove": "Finden Sie den Code, den Sie im Projekt ändern müssen.",
+      "newFeature": {
+        "choiceTitle": "Welche Art von Seite möchten Sie erstellen?",
+        "choiceDesc": "Das Projekt hat zwei Wege: dynamische Seiten (die automatisch in /dicas, /implementacoes oder /ferramentas erscheinen) und Standalone-Seiten (wie /contribua-Bereiche). Wählen Sie den richtigen Weg für Ihr Feature.",
+        "dynamicTitle": "Dynamische Seite (Guide, Implementierung oder Tool)",
+        "dynamicDesc": "Dynamische Seiten werden automatisch über Slug geroutet. Sie müssen nur die Komponente erstellen — die Route existiert bereits bei /dicas/[slug], /implementacoes/[slug] oder /ferramentas/[slug].",
+        "dynamicStep1": "1. Komponente erstellen (Named Export erforderlich)",
+        "dynamicNote": "Dynamische Seiten brauchen KEINE eigene page.tsx oder loading.tsx — die dynamische [slug]/page.tsx-Route existiert bereits. Der nächste Schritt (Registrierung) zeigt, wie Sie Ihre Komponente mit dem System verbinden.",
+        "standaloneTitle": "Standalone-Seite (/contribua/...)",
+        "standaloneDesc": "Für Seiten außerhalb des dynamischen Systems (z.B. /contribua-Bereiche) müssen Sie die Route manuell erstellen:",
+        "componentTitle": "1. Feature-Komponente erstellen",
+        "componentPath": "src/features/contribute/mein-feature/index.tsx",
+        "routeTitle": "2. Route registrieren (page.tsx)",
+        "routePath": "src/app/contribua/mein-feature/page.tsx",
+        "loadingTitle": "3. Loading-Skeleton hinzufügen",
+        "loadingPath": "src/app/contribua/mein-feature/loading.tsx"
+      },
+      "improve": {
+        "searchTitle": "Relevanten Code finden",
+        "searchTip": "Verwenden Sie die globale Suche (Ctrl+K) oder grep, um die Datei zu finden. Die Ordnerstruktur folgt diesem Muster:",
+        "pattern1": "UI-Komponenten → src/components/",
+        "pattern2": "Feature-spezifisch → src/features/[domäne]/",
+        "pattern3": "Übersetzungen → messages/[locale]/",
+        "pattern4": "Routen/Seiten → src/app/[route]/"
+      },
+      "faq": {
+        "q1": "Client oder Server Component?",
+        "a1": "Verwenden Sie standardmäßig Server Component (kein 'use client'). Fügen Sie 'use client' nur hinzu, wenn Sie Hooks, Events oder Browser-State benötigen.",
+        "q2": "Welchen Weg wählen: dynamisch oder standalone?",
+        "a2": "Wenn es ein Guide, eine Implementierung oder ein Tool ist, verwenden Sie das dynamische System — es ist einfacher und standardisiert. Standalone nur für spezielle Bereiche wie /contribua.",
+        "q3": "Muss ich page.tsx für dynamische Seiten erstellen?",
+        "a3": "Nein! Die [slug]/page.tsx-Routen existieren bereits für jede Kategorie. Erstellen Sie einfach die Komponente und registrieren Sie sie im nächsten Schritt."
+      }
+    },
+    "registration": {
+      "title": "Registrierung & Integration",
+      "description": "Verbinden Sie Ihre Komponente mit dem Routing-, Such- und Navigationssystem des Projekts.",
+      "descriptionImprove": "Überprüfen Sie, ob bestehende Integrationen nach Ihren Änderungen weiterhin funktionieren.",
+      "dynamicIntro": "Dynamisches Seitensystem",
+      "dynamicIntroDesc": "Das Projekt verwendet ein zentralisiertes System: Die Komponente wird einmal registriert und erhält automatisch Routing, SEO, Suche und Auflistung.",
+      "contentTs": "In content.ts registrieren",
+      "contentTsDesc": "Fügen Sie Ihren Inhalt zum CONTENT_ITEMS-Array hinzu. Der Slug wird zur URL, die Kategorie bestimmt, in welchem Bereich er erscheint.",
+      "componentMap": "Zum COMPONENT_MAP hinzufügen",
+      "componentMapDesc": "Verbinden Sie den Komponentennamen (String aus content.ts) mit dem tatsächlichen dynamischen Import. Verwenden Sie Lazy Loading mit next/dynamic.",
+      "searchIntegration": "In globale Suche integrieren",
+      "searchIntegrationDesc": "Damit Ihre Seite in der Suche (Ctrl+K) erscheint, fügen Sie an beiden Stellen hinzu:",
+      "listingPage": "Icon zur Auflistung hinzufügen",
+      "listingPageDesc": "Jede Auflistungsseite (/dicas, /implementacoes) verwendet eine iconMap zur Anzeige von Icons. Fügen Sie den Slug und ein Lucide-Icon hinzu.",
+      "categoryTitle": "Verfügbare Kategorien",
+      "categories": {
+        "catGuide": {
+          "slug": "guide",
+          "desc": "Guides und Tipps → erscheint unter /dicas/[slug]"
+        },
+        "catImpl": {
+          "slug": "implementation",
+          "desc": "Echte Implementierungen → erscheint unter /implementacoes/[slug]"
+        },
+        "catTool": {
+          "slug": "tool",
+          "desc": "Interaktive Tools → erscheint unter /ferramentas/[slug]"
+        }
+      },
+      "improveIntro": "Beim Verbessern von bestehendem Code überprüfen Sie, ob diese Integrationen weiterhin funktionieren:",
+      "improveChecklist": {
+        "r1": "Globale Suche (Ctrl+K) findet die Seite normal",
+        "r2": "Kategorieauflistung zeigt die Seite mit korrektem Icon",
+        "r3": "Metadata (Titel und Beschreibung) werden korrekt gerendert",
+        "r4": "search.json-Übersetzungen sind in allen 4 Sprachen aktualisiert",
+        "r5": "Build (pnpm build) besteht ohne Typfehler"
+      },
+      "faq": {
+        "q1": "Was passiert, wenn ich COMPONENT_MAP vergesse?",
+        "a1": "Die Seite gibt 404 zurück. COMPONENT_MAP ist die Verbindung zwischen Slug (URL) und der tatsächlichen Komponente. Ohne ihn weiß das System nicht, welche Komponente gerendert werden soll.",
+        "q2": "Muss ich zum Nav (Navigationsmenü) hinzufügen?",
+        "a2": "Nicht erforderlich. Das Navigationsmenü zeigt nur Featured-Items, die in nav-data.ts konfiguriert sind. Ihre Seite erscheint bereits in der Auflistung und Suche.",
+        "q3": "Wie funktioniert automatisches SEO?",
+        "a3": "Das System generiert Metadata (Titel, Beschreibung, Open Graph) automatisch unter Verwendung der search.json-Übersetzungen und der buildPageMetadata-Funktion. Die URL wird aus Slug und Kategorie generiert.",
+        "q4": "Wie teste ich, ob die Registrierung funktioniert hat?",
+        "a4": "Starten Sie pnpm dev und besuchen Sie die URL Ihrer Seite (z.B. /dicas/graphql-tips). Testen Sie auch die globale Suche (Ctrl+K) und die Kategorieliste. Bei 404 überprüfen Sie COMPONENT_MAP und content.ts.",
+        "q5": "Was ist mit Standalone-Seiten (/contribua)?",
+        "a5": "Standalone-Seiten verwenden weder content.ts noch COMPONENT_MAP. Sie brauchen aber dennoch einen Eintrag in search-data.ts (STANDALONE_PAGES-Array) und Übersetzungen in search.json, um in der globalen Suche zu erscheinen."
+      }
+    },
+    "developing": {
+      "title": "Entwickeln",
+      "description": "Code-Muster, verfügbare Komponenten und Best Practices des Projekts.",
+      "patternsTitle": "Muster, denen wir folgen",
+      "patterns": {
+        "p1": "Striktes TypeScript — kein any, explizite Typen",
+        "p2": "Funktionale Komponenten mit Arrow Functions oder Funktionsdeklarationen",
+        "p3": "Imports mit @/-Alias (z.B. @/components/ui/button)",
+        "p4": "Jeder sichtbare Text verwendet i18n (next-intl) — nie Hardcode",
+        "p5": "Barrierefreiheit: aria-labels, semantische Rollen, Tastaturnavigation",
+        "p6": "Framer Motion für Eingangsanimationen (AnimatedSection)"
+      },
+      "componentsTitle": "Verfügbare Komponenten",
+      "componentsDesc": "Verwenden Sie Design-System-Komponenten wieder. Den vollständigen Katalog finden Sie unter /contribua/design-system.",
+      "faq": {
+        "q1": "Kann ich neue Abhängigkeiten installieren?",
+        "a1": "Ja, aber sparsam. Bevorzugen Sie bereits im Projekt verwendete Libs. Fügen Sie mit pnpm add paketname hinzu.",
+        "q2": "Wie verwende ich Animationen?",
+        "a2": "Umschließen Sie Ihren Inhalt mit der AnimatedSection-Komponente (z.B. delay 0.1). Für komplexere Animationen verwenden Sie framer-motion direkt.",
+        "q3": "Wo sehe ich verfügbare Komponenten?",
+        "a3": "Besuchen Sie /contribua/design-system für den vollständigen Katalog mit interaktiven Previews und Code für jede Komponente."
+      }
+    },
+    "i18n": {
+      "title": "Übersetzungen (i18n)",
+      "description": "Jeder sichtbare Text muss übersetzt werden. pt-BR ist die Quelle der Wahrheit.",
+      "workflowTitle": "Übersetzungs-Workflow",
+      "workflow": {
+        "w1": "Schlüssel in messages/pt-BR/ihrNamespace.json erstellen",
+        "w2": "Namespace in messages/pt-BR/index.ts registrieren (und andere Sprachen)",
+        "w3": "Typ in src/lib/i18n/types.d.ts hinzufügen",
+        "w4": "Titel und Beschreibung in messages/*/search.json hinzufügen (für globale Suche)",
+        "w5": "Wenn zum Nav hinzugefügt, messages/*/nav.json mit Label und Beschreibung aktualisieren",
+        "w6": "Dateien für die anderen 3 Sprachen erstellen (en, es, de) oder pnpm translate verwenden",
+        "w7": "useTranslations('ihrNamespace') in der Komponente verwenden"
+      },
+      "exampleTitle": "Verwendungsbeispiel",
+      "tipTitle": "Tipp",
+      "tip": "Das Skript pnpm translate kann helfen, automatische Übersetzungen via DeepL für andere Sprachen zu generieren.",
+      "faq": {
+        "q1": "Kann ich nur in pt-BR beitragen?",
+        "a1": "Ja! Erstellen Sie die Schlüssel in pt-BR und verwenden Sie das Übersetzungsskript oder bitten Sie im PR um Hilfe für andere Sprachen.",
+        "q2": "Was ist ein Namespace?",
+        "a2": "Es ist der Name der Übersetzungs-JSON-Datei. Jede Seite/Feature hat ihren eigenen (z.B. tutorialPage, contributePage).",
+        "q3": "Wie verwende ich Übersetzungen in Server Components?",
+        "a3": "Verwenden Sie getTranslations('namespace') von next-intl/server anstatt useTranslations."
+      }
+    },
+    "a11y": {
+      "title": "Barrierefreiheit",
+      "description": "Sicherzustellen, dass alle die Plattform nutzen können, hat Priorität.",
+      "checklistTitle": "Barrierefreiheits-Checkliste",
+      "checklist": {
+        "c1": "Bilder haben beschreibenden Alt-Text",
+        "c2": "Interaktive Elemente haben aria-label",
+        "c3": "Navigation funktioniert 100% per Tastatur (Tab, Enter, Escape)",
+        "c4": "Farbkontrast erfüllt WCAG AA (4,5:1 für Text)",
+        "c5": "Überschriftenstruktur ist hierarchisch (h1 → h2 → h3)",
+        "c6": "Formulare haben zugeordnete Labels",
+        "c7": "Fokus-Zustände sind sichtbar",
+        "c8": "Dynamischer Inhalt verwendet aria-live oder role='status'"
+      },
+      "faq": {
+        "q1": "Was ist ARIA?",
+        "a1": "Accessible Rich Internet Applications — HTML-Attribute, die semantische Bedeutung für Screenreader hinzufügen.",
+        "q2": "Wie teste ich Barrierefreiheit?",
+        "a2": "Navigieren Sie nur mit der Tastatur (Tab/Enter). Verwenden Sie die axe DevTools-Erweiterung in Chrome. Testen Sie wenn möglich mit einem Screenreader.",
+        "q3": "Muss ich Skip-Links hinzufügen?",
+        "a3": "Das Projekt hat bereits globale Skip-Links. Aber wenn Sie eine Seite mit viel Navigation erstellen, erwägen Sie, sie hinzuzufügen."
+      }
+    },
+    "quality": {
+      "title": "Qualität",
+      "description": "Lint, Tests und Build müssen bestehen, bevor der PR eröffnet wird.",
+      "commandsTitle": "Wesentliche Befehle",
+      "lint": "Prüft Code-Standards und Imports",
+      "test": "Führt Unit- und Komponententests aus",
+      "build": "Vollständiger Build — validiert TypeScript und SSR",
+      "allGreen": "Alle müssen fehlerfrei bestehen vor dem PR.",
+      "faq": {
+        "q1": "Lint ist fehlgeschlagen, was nun?",
+        "a1": "Führen Sie pnpm lint --fix aus, um automatisch zu korrigieren. Typfehler (TypeScript) müssen manuell behoben werden.",
+        "q2": "Muss ich Tests hinzufügen?",
+        "a2": "Empfohlen, aber nicht für jeden Beitrag obligatorisch. Wenn Sie komplexe Logik hinzufügen, ist ein Test willkommen.",
+        "q3": "Build hat einen Typfehler, was tun?",
+        "a3": "Überprüfen Sie, ob alle Imports korrekt sind und Typen konsistent sind. Der Fehler zeigt normalerweise die genaue Zeile und Datei an.",
+        "q4": "Ein Test ist bei etwas fehlgeschlagen, das ich nicht geändert habe, was tun?",
+        "a4": "Das kann passieren, wenn ein Test indirekt von einer Änderung abhängt. Führen Sie pnpm test -- --verbose für Details aus. Wenn es nicht Ihre Änderung ist, erwähnen Sie es im PR.",
+        "q5": "Muss ich alle 3 Befehle jedes Mal ausführen?",
+        "a5": "Ja! Vor dem PR müssen Lint + Test + Build bestehen. CI (GitHub Actions) führt dieselben Checks automatisch aus."
+      }
+    },
+    "pr": {
+      "title": "Pull Request",
+      "description": "Zeit, Ihren Beitrag zum Review einzureichen!",
+      "commitTitle": "Commit mit Conventional Commits",
+      "commitDesc": "Verwenden Sie das Standardformat. Beispiele:",
+      "commits": {
+        "feat": "feat: add tutorial page",
+        "fix": "fix: correct translation key for navbar",
+        "docs": "docs: update README with setup instructions"
+      },
+      "pushTitle": "Push und PR",
+      "prTemplate": "Der PR sollte enthalten:",
+      "prItems": {
+        "i1": "Klarer Titel, der die Änderung beschreibt",
+        "i2": "Beschreibung, was gemacht wurde und warum",
+        "i3": "Screenshots bei visuellen Änderungen",
+        "i4": "Checkliste der durchgeführten Tests"
+      },
+      "done": "Herzlichen Glückwunsch! Ihr Beitrag ist auf dem Weg. Nach dem Review geht Ihr Code auf der Plattform live.",
+      "faq": {
+        "q1": "Wie lautet das Commit-Titel-Format?",
+        "a1": "typ(bereich): beschreibung — Z.B. feat(tutorial): add interactive file tree. Typen: feat, fix, docs, style, refactor, test, chore.",
+        "q2": "Wer überprüft meinen PR?",
+        "a2": "Die Projektbetreuer. Sie können Anpassungen anfordern — das ist normal und Teil des Prozesses!",
+        "q3": "Kann ich mehrere Commits im PR machen?",
+        "a3": "Ja! Mehrere organisierte Commits sind willkommen. Halten Sie jeden Commit auf eine einzelne Änderung fokussiert.",
+        "q4": "Was wenn mein PR Konflikte hat?",
+        "a4": "Aktualisieren Sie Ihren Branch mit develop: git checkout develop && git pull && git checkout ihr-branch && git merge develop. Lösen Sie die Konflikte in den markierten Dateien und machen Sie einen neuen Commit.",
+        "q5": "Wie lange dauert das Review?",
+        "a5": "Hängt von der Komplexität ab, aber normalerweise 1-3 Tage. Halten Sie den PR klein und fokussiert für schnellere Reviews. PRs mit mehr als 500 Zeilen dauern länger."
+      }
+    }
+  }
+}

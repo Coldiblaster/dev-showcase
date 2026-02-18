@@ -2,6 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import {
   Accessibility,
   Blocks,
+  BookOpen,
   Bot,
   Briefcase,
   Code2,
@@ -89,6 +90,8 @@ export type NavKey =
   | "apiReferenceDesc"
   | "a11y"
   | "a11yDesc"
+  | "tutorial"
+  | "tutorialDesc"
   | "openMenu"
   | "closeMenu"
   | "viewAll";
@@ -118,6 +121,9 @@ export interface NavGroup {
   href?: string;
   items?: NavItem[];
   categories?: NavCategory[];
+  /** Link único "Ver todos" no rodapé do submenu (para grupos com items flat). */
+  viewAllHref?: string;
+  viewAllCount?: number;
   activeCheck: (pathname: string) => boolean;
   showOnlyOn?: "home";
 }
@@ -263,60 +269,50 @@ export const contributeGroup: NavGroup = {
   descriptionKey: "contributeDesc",
   icon: Heart,
   activeCheck: (pathname) => pathname.startsWith("/contribua"),
-  categories: [
+  viewAllHref: "/contribua#explore",
+  viewAllCount: 7,
+  items: [
     {
-      id: "project",
-      labelKey: "sectionProject",
-      icon: FolderKanban,
-      href: "/contribua#explore",
-      totalItems: 3,
-      featured: [
-        {
-          icon: Heart,
-          labelKey: "overview",
-          sublabelKey: "overviewDesc",
-          href: "/contribua",
-        },
-        {
-          icon: Layers,
-          labelKey: "architecture",
-          sublabelKey: "architectureDesc",
-          href: "/contribua/arquitetura",
-        },
-        {
-          icon: Blocks,
-          labelKey: "contribTechStack",
-          sublabelKey: "contribTechStackDesc",
-          href: "/contribua/tech-stack",
-        },
-      ],
+      icon: Heart,
+      labelKey: "overview",
+      sublabelKey: "overviewDesc",
+      href: "/contribua",
     },
     {
-      id: "reference",
-      labelKey: "sectionReference",
-      icon: Code2,
-      href: "/contribua#explore",
-      totalItems: 3,
-      featured: [
-        {
-          icon: Component,
-          labelKey: "designSystem",
-          sublabelKey: "designSystemDesc",
-          href: "/contribua/design-system",
-        },
-        {
-          icon: FileCode,
-          labelKey: "apiReference",
-          sublabelKey: "apiReferenceDesc",
-          href: "/contribua/api",
-        },
-        {
-          icon: Accessibility,
-          labelKey: "a11y",
-          sublabelKey: "a11yDesc",
-          href: "/contribua/acessibilidade",
-        },
-      ],
+      icon: BookOpen,
+      labelKey: "tutorial",
+      sublabelKey: "tutorialDesc",
+      href: "/contribua/tutorial",
+    },
+    {
+      icon: Layers,
+      labelKey: "architecture",
+      sublabelKey: "architectureDesc",
+      href: "/contribua/arquitetura",
+    },
+    {
+      icon: Blocks,
+      labelKey: "contribTechStack",
+      sublabelKey: "contribTechStackDesc",
+      href: "/contribua/tech-stack",
+    },
+    {
+      icon: Component,
+      labelKey: "designSystem",
+      sublabelKey: "designSystemDesc",
+      href: "/contribua/design-system",
+    },
+    {
+      icon: FileCode,
+      labelKey: "apiReference",
+      sublabelKey: "apiReferenceDesc",
+      href: "/contribua/api",
+    },
+    {
+      icon: Accessibility,
+      labelKey: "a11y",
+      sublabelKey: "a11yDesc",
+      href: "/contribua/acessibilidade",
     },
   ],
 };

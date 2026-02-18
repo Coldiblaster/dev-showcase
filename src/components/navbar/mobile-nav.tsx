@@ -79,7 +79,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
 
                 return (
                   <div key={group.id}>
-                    {/* Flat items (portfolio) */}
+                    {/* Flat items (portfolio, contribute) */}
                     {group.items && (
                       <>
                         <p className="mt-3 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground/50">
@@ -98,6 +98,21 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                             onClick={onClose}
                           />
                         ))}
+
+                        {group.viewAllHref && (
+                          <Link
+                            href={group.viewAllHref}
+                            onClick={onClose}
+                            className="mx-1 mt-1 flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-primary"
+                          >
+                            <span>
+                              {t("viewAll", {
+                                count: group.viewAllCount ?? 0,
+                              })}
+                            </span>
+                            <ArrowRight className="h-3 w-3" />
+                          </Link>
+                        )}
                       </>
                     )}
 

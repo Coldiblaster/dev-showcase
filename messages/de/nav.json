@@ -60,6 +60,8 @@
   "apiReferenceDesc": "Endpunkte, Rate Limiting und Sicherheit",
   "a11y": "Barrierefreiheit",
   "a11yDesc": "Skip-Links, ARIA, Tastatur und Kontrast",
+  "tutorial": "Tutorial",
+  "tutorialDesc": "Interaktive Schritt-für-Schritt-Anleitung zum Beitragen",
   "home": "Startseite",
   "mainMenu": "Hauptmenü",
   "openMenu": "Menü öffnen",

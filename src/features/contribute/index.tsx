@@ -11,6 +11,7 @@ import { ExploreSection } from "./explore-section";
 import { ContributeHero } from "./hero-section";
 import { HistorySection } from "./history-section";
 import { HowItWorksSection } from "./how-it-works-section";
+import { PlatformStatsSection } from "./platform-stats-section";
 import { StandardsSection } from "./standards-section";
 import { WhatYouCanDoSection } from "./what-you-can-do-section";
 
@@ -24,6 +25,7 @@ export function ContributePage() {
     { id: "what-you-can-do", label: t("whatYouCanDo") },
     { id: "how-it-works", label: t("howItWorks") },
     { id: "standards", label: t("standards") },
+    { id: "platform-stats", label: t("platformStats") },
     { id: "contributors", label: t("contributors") },
     { id: "cta", label: t("cta") },
   ];
@@ -41,6 +43,8 @@ export function ContributePage() {
       <HowItWorksSection />
       <SectionDivider />
       <StandardsSection />
+      <SectionDivider />
+      <PlatformStatsSection />
       <SectionDivider />
       <ContributorsSection />
       <SectionDivider />

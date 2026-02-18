@@ -115,7 +115,7 @@ export function DesktopNav() {
             }
             wide={hasCategories}
           >
-            {/* Flat items (portfolio) */}
+            {/* Flat items (portfolio, contribute) */}
             {group.items?.map((item) => (
               <SubmenuItem
                 key={item.href}
@@ -126,6 +126,18 @@ export function DesktopNav() {
                 isActive={pathname === item.href}
               />
             ))}
+
+            {group.viewAllHref && (
+              <Link
+                href={group.viewAllHref}
+                role="menuitem"
+                tabIndex={-1}
+                className="mt-2 flex items-center gap-1.5 rounded-lg px-2.5 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-primary"
+              >
+                <span>{t("viewAll", { count: group.viewAllCount ?? 0 })}</span>
+                <ArrowRight className="h-3 w-3" />
+              </Link>
+            )}
 
             {/* Category columns (content) */}
             {hasCategories && (

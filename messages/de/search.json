@@ -132,6 +132,10 @@
     "accessibility": {
       "title": "Barrierefreiheit",
       "description": "Skip-Links, ARIA, Tastaturnavigation, Kontrast und Checkliste"
+    },
+    "tutorial": {
+      "title": "Entwicklungs-Tutorial",
+      "description": "Interaktive Schritt-für-Schritt-Anleitung zum Beitragen — vom Setup bis zum Pull Request"
     }
   }
 }

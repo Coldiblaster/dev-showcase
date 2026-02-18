@@ -14,7 +14,9 @@
   "stats": {
     "impact": "8+ years of experience",
     "implementations": "Real projects, not tutorials",
-    "opensource": "From dev to devs"
+    "opensource": "From dev to devs",
+    "visitors": "{count} visitors",
+    "pageViews": "{count} page views"
   },
   "meta": {
     "description": "Portfolio of Vinicius Bastazin. Senior Frontend Developer. 8+ years with React, Next.js & TypeScript. Expert in frontend architecture, design systems, and performance.",

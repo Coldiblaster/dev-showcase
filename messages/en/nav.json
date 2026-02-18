@@ -60,6 +60,8 @@
   "apiReferenceDesc": "Endpoints, rate limiting and security",
   "a11y": "Accessibility",
   "a11yDesc": "Skip links, ARIA, keyboard and contrast",
+  "tutorial": "Tutorial",
+  "tutorialDesc": "Interactive step-by-step guide to contribute",
   "home": "Home",
   "mainMenu": "Main menu",
   "openMenu": "Open menu",
