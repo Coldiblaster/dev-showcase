@@ -100,6 +100,18 @@ O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto c
 | `/dicas/git-workflow`        | Branching, commits, workflows e cheat sheet             |
 | `/dicas/react-patterns`      | Composicao, hooks customizados, state e performance     |
 
+### Contribuicao (`/contribua`)
+
+| Rota                        | Descricao                                                   |
+| --------------------------- | ----------------------------------------------------------- |
+| `/contribua`                | Hub de contribuicao com visao geral de todas as sub-paginas |
+| `/contribua/tutorial`       | Tutorial interativo passo a passo para novos contribuidores |
+| `/contribua/arquitetura`    | Visao geral da arquitetura tecnica do projeto               |
+| `/contribua/tech-stack`     | Stack de tecnologias com detalhes de cada ferramenta        |
+| `/contribua/design-system`  | Catalogo interativo de componentes (previews + codigo)      |
+| `/contribua/api`            | Documentacao das API Routes com exemplos de requests        |
+| `/contribua/acessibilidade` | Guia de acessibilidade — padrao do projeto                  |
+
 ### API Routes
 
 | Rota               | Descricao                              |
@@ -162,13 +174,21 @@ src/
 │   │   ├── security-tips/            # Seguranca Frontend & Backend
 │   │   ├── tailwind-tips/            # Tailwind CSS + shadcn/ui
 │   │   └── ts-patterns/              # TypeScript Patterns
+│   ├── contribute/
+│   │   ├── tutorial/                 # Tutorial interativo (9 steps + trilhas)
+│   │   ├── design-system/            # Catalogo de componentes com previews
+│   │   ├── architecture/             # Arquitetura tecnica
+│   │   ├── tech-stack/               # Stack de tecnologias
+│   │   ├── api/                      # Documentacao das APIs
+│   │   └── accessibility/            # Guia de acessibilidade
 │   └── not-found/                    # Pagina 404
-├── data/                             # Registro de conteudo e dados estaticos
+├── data/                             # Registro de conteudo (content.ts) e dados estaticos
 ├── hooks/                            # Hooks customizados
 └── lib/
     ├── api-security.ts               # Seguranca compartilhada para APIs
     ├── rate-limit.ts                 # Rate limiting in-memory
     ├── redis.ts                      # Cliente Upstash Redis (graceful degradation)
+    ├── dynamic-page-helper.tsx       # Mapa componente ↔ slug (COMPONENT_MAP)
     ├── chat/                         # System prompt do chat IA
     ├── email/                        # Template de email (Resend)
     ├── i18n/                         # Configuracao de internacionalizacao
@@ -274,8 +294,10 @@ O projeto esta configurado para deploy na **Vercel** com zero configuracao:
 | [docs/api/SECURITY.md](./docs/api/SECURITY.md)                                       | Seguranca das API Routes                       |
 | [docs/analytics/ANALYTICS.md](./docs/analytics/ANALYTICS.md)                         | Sistema de analytics proprio (Upstash Redis)   |
 | [docs/architecture/COMPONENTS.md](./docs/architecture/COMPONENTS.md)                 | Catalogo de componentes reutilizaveis          |
-| [docs/content-management/ADDING_PAGES.md](./docs/content-management/ADDING_PAGES.md) | Como criar novas paginas                       |
+| [docs/content-management/ADDING_PAGES.md](./docs/content-management/ADDING_PAGES.md) | Como criar novas paginas (guias, impl., tools) |
 | [docs/i18n/INDEX.md](./docs/i18n/INDEX.md)                                           | Sistema de internacionalizacao                 |
+
+> **Tutorial interativo** para novos contribuidores: [`/contribua/tutorial`](https://viniciusbastazin.vercel.app/contribua/tutorial) — passo a passo com trilhas para "nova feature" e "melhorar existente".
 
 ---
 

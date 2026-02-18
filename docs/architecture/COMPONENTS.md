@@ -198,6 +198,33 @@ import { ScoreGauge } from "@/components/score-gauge";
 
 ---
 
+### `Accordion`
+
+**Arquivo:** `src/components/ui/accordion.tsx`
+
+Acordeao expansivel para listas de FAQs e conteudo colapsavel.
+
+```tsx
+import { Accordion, AccordionItem } from "@/components/ui/accordion";
+
+const items = [
+  { id: "1", question: "Como funciona?", answer: "Funciona assim..." },
+];
+
+<Accordion items={items} />;
+```
+
+**Props de `Accordion`:**
+
+- `items` — array de `{ id, question, answer }`
+
+**Props de `AccordionItem`:**
+
+- `question` — texto do cabecalho colapsavel
+- `answer` — conteudo expandido (string)
+
+---
+
 ### `FeatureCard`
 
 **Arquivo:** `src/components/feature-card.tsx`
@@ -248,7 +275,7 @@ Link de acessibilidade "Pular para o conteudo". Fica invisivel ate receber foco 
 import { SkipLink } from "@/components/skip-link";
 
 // Usado no layout.tsx (ja integrado)
-<SkipLink />
+<SkipLink />;
 ```
 
 Nao precisa de props — usa `useTranslations("global")` para o texto traduzido.
@@ -292,7 +319,7 @@ const sections: SectionNavItem[] = [
   { id: "examples", label: t("sectionNav.examples") },
 ];
 
-<SectionNav sections={sections} />
+<SectionNav sections={sections} />;
 ```
 
 **Props:**
@@ -313,7 +340,7 @@ Barra fixa no rodape, visivel apenas no mobile. Acesso rapido a busca, idioma, v
 import { MobileActionBar } from "@/components/mobile-action-bar";
 
 // Usado no layout.tsx (ja integrado)
-<MobileActionBar />
+<MobileActionBar />;
 ```
 
 Nao precisa de props — autocontido com estado interno e custom events.
@@ -453,12 +480,13 @@ Primitivos em `src/components/ui/`:
 
 Localizados em `src/hooks/`:
 
-| Hook                 | Descricao                                        |
-| -------------------- | ------------------------------------------------ |
-| `useCopyToClipboard` | Copia texto para clipboard com feedback          |
-| `useQueryParams`     | Leitura/escrita de query params                  |
-| `useScrollLock`      | Trava scroll do body (usado em modals/overlays)  |
-| `useSectionInView`   | Detecta secao visivel no viewport                |
+| Hook                 | Descricao                                                     |
+| -------------------- | ------------------------------------------------------------- |
+| `useCopyToClipboard` | Copia texto para clipboard com feedback visual                |
+| `useQueryParams`     | Leitura/escrita de query params                               |
+| `useScrollLock`      | Trava scroll do body (usado em modals/overlays)               |
+| `useSectionInView`   | Detecta secao visivel no viewport                             |
+| `useSiteStats`       | Busca metricas ao vivo da plataforma via `/api/stats` (Redis) |
 
 ---
 

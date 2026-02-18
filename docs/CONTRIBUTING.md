@@ -15,6 +15,8 @@ Obrigado pelo interesse em contribuir com o **Dev Showcase**! Este guia explica 
 
 ---
 
+> **Prefere aprender de forma interativa?** Acesse o **Tutorial em `/contribua/tutorial`** — ele cobre todo este fluxo passo a passo com exemplos de codigo, FAQs e duas trilhas: "criar feature nova" e "melhorar existente".
+
 ## Configuracao do ambiente
 
 ### Pre-requisitos
@@ -275,16 +277,18 @@ docs/             # Documentacao tecnica
 ### Se adicionou pagina
 
 - [ ] Registrada em `data/content.ts` (category: `"guide"`, `"implementation"` ou `"tool"`)
-- [ ] Mapeada em `data/dynamic-page-helper.tsx`
-- [ ] Adicionada ao menu em `navbar/nav-data.ts`
-- [ ] Adicionada a busca em `global-search/search-data.ts`
+- [ ] Mapeada em `lib/dynamic-page-helper.tsx` (COMPONENT_MAP)
+- [ ] Icone adicionado em `src/app/<categoria>/page.tsx` (iconMap)
+- [ ] Adicionada ao menu em `navbar/nav-data.ts` (+ `nav.json` com traducoes do item)
+- [ ] Adicionada a busca em `global-search/search-data.ts` (+ `messages/*/search.json`)
 - [ ] `loading.tsx` criado com `PageSkeleton` (variant: `guide`, `implementation` ou `tool`)
-- [ ] Traducoes criadas
+- [ ] Traducoes criadas e `pnpm translate` executado
 
 ---
 
 ## Duvidas?
 
+- **Tutorial interativo:** `/contribua/tutorial` — fluxo completo com FAQs
 - Consulte a [documentacao](./README.md)
 - Abra uma [issue](https://github.com/Coldiblaster/dev-showcase/issues)
-- Veja as paginas existentes como referencia
+- Veja as paginas existentes como referencia (ex: `src/features/guides/react-patterns/`)

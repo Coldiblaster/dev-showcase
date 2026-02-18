@@ -8,15 +8,17 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 
 ## Guias disponiveis
 
-| Documento                                                   | Descricao                                           | Para quem    |
-| ----------------------------------------------------------- | --------------------------------------------------- | ------------ |
-| [Contribuicao](./CONTRIBUTING.md)                           | Como contribuir, fluxo de PR, convencoes de commit  | Todos        |
-| [Branch Protection](./BRANCH_PROTECTION.md)                 | Protecao da main, CI obrigatoria, fluxo de PR       | Todos        |
-| [Seguranca das APIs](./api/SECURITY.md)                     | Rate limiting, sanitizacao, anti prompt injection   | Pleno/Senior |
-| [Analytics](./analytics/ANALYTICS.md)                       | Metricas ao vivo com Upstash Redis                  | Todos        |
-| [Componentes Reutilizaveis](./architecture/COMPONENTS.md)   | Catalogo de componentes compartilhados              | Todos        |
-| [Adicionando Paginas](./content-management/ADDING_PAGES.md) | Como criar novas paginas de implementacoes ou guias | Todos        |
-| [Internacionalizacao (i18n)](./i18n/INDEX.md)               | Sistema de traducao, scripts, boas praticas         | Todos        |
+| Documento                                                   | Descricao                                                     | Para quem    |
+| ----------------------------------------------------------- | ------------------------------------------------------------- | ------------ |
+| [Contribuicao](./CONTRIBUTING.md)                           | Como contribuir, fluxo de PR, convencoes de commit            | Todos        |
+| [Branch Protection](./BRANCH_PROTECTION.md)                 | Protecao da main, CI obrigatoria, fluxo de PR                 | Todos        |
+| [Seguranca das APIs](./api/SECURITY.md)                     | Rate limiting, sanitizacao, anti prompt injection             | Pleno/Senior |
+| [Analytics](./analytics/ANALYTICS.md)                       | Metricas ao vivo com Upstash Redis                            | Todos        |
+| [Componentes Reutilizaveis](./architecture/COMPONENTS.md)   | Catalogo de componentes compartilhados                        | Todos        |
+| [Adicionando Paginas](./content-management/ADDING_PAGES.md) | Como criar novas paginas (guias, implementacoes, ferramentas) | Todos        |
+| [Internacionalizacao (i18n)](./i18n/INDEX.md)               | Sistema de traducao, scripts, boas praticas                   | Todos        |
+
+> **Novo no projeto?** Use o **Tutorial Interativo** em `/contribua/tutorial` — cobre o fluxo completo com duas trilhas: criar uma feature nova ou melhorar uma existente.
 
 ---
 
@@ -41,6 +43,8 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 │  implementations/ ─── code-review, regex-playground       │
 │  guides/ ─── ai-tips, tailwind, react-query, security,   │
 │     dev-resources, ts-patterns, git-workflow, react-patt. │
+│  contribute/ ─── tutorial, design-system, arquitetura,   │
+│     tech-stack, api, accessibility                        │
 ├──────────────────────────────────────────────────────────┤
 │                  Componentes Globais                      │
 │  navbar/ (modular, 9 componentes)                        │
@@ -64,7 +68,7 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 ├──────────────────────────────────────────────────────────┤
 │                       Dados                               │
 │  data/content.ts (registro de paginas dinamicas)         │
-│  data/dynamic-page-helper.tsx (mapa componente ↔ slug)   │
+│  lib/dynamic-page-helper.tsx (COMPONENT_MAP)             │
 │  data/demo-messages.ts (mensagens demo do chat)          │
 │  messages/ (pt-BR, en, es, de — 37 namespaces)           │
 ├──────────────────────────────────────────────────────────┤
@@ -85,20 +89,23 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
         ↓
 2. Criar feature em src/features/<categoria>/<nome>/
         ↓
-3. Mapear componente em data/dynamic-page-helper.tsx
+3. Mapear componente em lib/dynamic-page-helper.tsx (COMPONENT_MAP)
         ↓
-4. Criar traducoes em messages/pt-BR/<namespace>.json
+4. Adicionar icone em src/app/<categoria>/page.tsx (iconMap)
         ↓
-5. Registrar namespace em messages/pt-BR/index.ts + types.d.ts
+5. Criar traducoes em messages/pt-BR/<namespace>.json
         ↓
-6. Adicionar ao menu em components/navbar/nav-data.ts
+6. Registrar namespace em messages/pt-BR/index.ts + lib/i18n/types.d.ts
         ↓
-7. Rodar pnpm translate && pnpm validate:i18n
+7. Adicionar ao menu (navbar/nav-data.ts) e busca (search-data.ts + search.json)
         ↓
-8. Testar build: pnpm build
+8. Rodar pnpm translate && pnpm validate:i18n
+        ↓
+9. Testar build: pnpm build
 ```
 
 > Guia detalhado: [Adicionando Paginas](./content-management/ADDING_PAGES.md)
+> Tutorial interativo para contribuidores: `/contribua/tutorial`
 
 ---
 
