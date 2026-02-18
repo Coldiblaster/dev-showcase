@@ -16,7 +16,10 @@ export function GenericsSection() {
   const t = useTranslations("tsPatterns");
 
   return (
-    <section id="generics" className="bg-secondary/20 px-4 py-12 md:px-6 md:py-20">
+    <section
+      id="generics"
+      className="bg-secondary/20 px-4 py-12 md:px-6 md:py-20"
+    >
       <div className="mx-auto max-w-5xl">
         <AnimatedSection>
           <div className="mb-8 flex items-center gap-3 md:mb-12">

@@ -13,6 +13,7 @@ import type devResourcesPage from "../../../messages/pt-BR/devResourcesPage.json
 import type experience from "../../../messages/pt-BR/experience.json";
 import type footer from "../../../messages/pt-BR/footer.json";
 import type githubStats from "../../../messages/pt-BR/githubStats.json";
+import type gitWorkflow from "../../../messages/pt-BR/gitWorkflow.json";
 import type global from "../../../messages/pt-BR/global.json";
 import type hero from "../../../messages/pt-BR/hero.json";
 import type homeStack from "../../../messages/pt-BR/homeStack.json";
@@ -24,7 +25,9 @@ import type nav from "../../../messages/pt-BR/nav.json";
 import type notFound from "../../../messages/pt-BR/notFound.json";
 import type portfolio from "../../../messages/pt-BR/portfolio.json";
 import type projects from "../../../messages/pt-BR/projects.json";
+import type reactPatterns from "../../../messages/pt-BR/reactPatterns.json";
 import type reactQueryTipsPage from "../../../messages/pt-BR/reactQueryTipsPage.json";
+import type regexPage from "../../../messages/pt-BR/regexPage.json";
 import type search from "../../../messages/pt-BR/search.json";
 import type securityPage from "../../../messages/pt-BR/securityPage.json";
 import type seoPage from "../../../messages/pt-BR/seoPage.json";
@@ -33,9 +36,6 @@ import type tailwindTipsPage from "../../../messages/pt-BR/tailwindTipsPage.json
 import type terminal from "../../../messages/pt-BR/terminal.json";
 import type tips from "../../../messages/pt-BR/tips.json";
 import type tipsPage from "../../../messages/pt-BR/tipsPage.json";
-import type gitWorkflow from "../../../messages/pt-BR/gitWorkflow.json";
-import type reactPatterns from "../../../messages/pt-BR/reactPatterns.json";
-import type regexPage from "../../../messages/pt-BR/regexPage.json";
 import type tsPatterns from "../../../messages/pt-BR/tsPatterns.json";
 import type viewSource from "../../../messages/pt-BR/viewSource.json";
 

@@ -18,11 +18,9 @@ describe("DeepLTranslator", () => {
     }));
 
     vi.doMock("deepl-node", () => ({
-      default: {
-        Translator: vi.fn(() => ({
-          translateText: mockTranslateText,
-        })),
-      },
+      Translator: vi.fn(() => ({
+        translateText: mockTranslateText,
+      })),
     }));
 
     const mod = await import("../deepl.translator");

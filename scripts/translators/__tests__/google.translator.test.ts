@@ -18,8 +18,8 @@ describe("GoogleTranslator", () => {
       data: { translations: [{ translatedText: "Olá traduzido" }] },
     });
 
-    // set up mock response
-    global.fetch.mockResolvedValueOnce({
+    const mockFetch = global.fetch as ReturnType<typeof vi.fn>;
+    mockFetch.mockResolvedValueOnce({
       ok: true,
       json: async () => JSON.parse(body),
     });

@@ -1,7 +1,8 @@
 "use client";
 
-import { SectionNav } from "@/components/section-nav";
 import { useTranslations } from "next-intl";
+
+import { SectionNav } from "@/components/section-nav";
 
 import { ChecklistSection } from "./checklist-section";
 import { ComparisonSection } from "./comparison-section";

@@ -1,31 +1,55 @@
 /**
  * Namespaces usados pelo NextIntl.
- *
- * Arquivos diretos: auth, global, components, errors, welcome
- * Módulos (pastas): admin, consultor, cockpit, auditor, governance, etc
+ * Correspondem aos arquivos JSON em messages/pt-BR/.
  */
-// Atualize os namespaces conforme os arquivos em messages/pt/
 const NAMESPACES = [
-  "nav",
-  "contact",
-  "hero",
   "about",
-  "projects",
-  "experience",
   "ai",
+  "aiChatbotPage",
+  "aiInnovation",
+  "chat",
+  "codeReviewPage",
+  "contact",
+  "devResourcesData",
+  "devResourcesPage",
+  "experience",
   "footer",
+  "githubStats",
+  "gitWorkflow",
+  "global",
+  "hero",
+  "homeStack",
+  "homeStats",
   "i18nPage",
-  "tailwindTipsPage",
+  "i18nShowcase",
+  "implementations",
+  "nav",
+  "notFound",
+  "portfolio",
+  "projects",
+  "reactPatterns",
+  "reactQueryTipsPage",
+  "regexPage",
   "search",
+  "securityPage",
+  "seoPage",
+  "tailwindTips",
+  "tailwindTipsPage",
+  "terminal",
+  "tips",
+  "tipsPage",
+  "tsPatterns",
+  "viewSource",
 ] as const;
 
 /**
  * Carrega todos os arquivos JSON de namespace para a localidade informada.
  *
  * Para adicionar um novo namespace:
- * 1. Crie os arquivos JSON em messages/{locale}/{namespace}.json
+ * 1. Crie o JSON em messages/pt-BR/{namespace}.json
  * 2. Adicione o namespace em NAMESPACES acima
  * 3. Adicione a importação em messages/{locale}/index.ts
+ * 4. Registre em src/lib/i18n/types.d.ts
  *
  * @param locale Identificador de localidade, ex: 'pt-BR' ou 'en'
  */
@@ -33,12 +57,9 @@ export async function loadMessages(
   locale: string,
 ): Promise<Record<string, unknown>> {
   try {
-    // Dynamic import do barrel file por locale
-    // Suporta pt, en, etc. (não mais pt-BR)
     const messages = await import(`@/../messages/${locale}/index`);
     return messages.default;
   } catch {
-    // Fallback para pt se o locale não existir
     const fallback = await import("@/../messages/pt-BR/index");
     return fallback.default;
   }

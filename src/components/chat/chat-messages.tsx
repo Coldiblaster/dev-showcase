@@ -27,7 +27,11 @@ export function ChatMessages({
 
   return (
     <ScrollArea ref={scrollAreaRef} className="min-h-0 flex-1 overflow-hidden">
-      <div role="log" aria-live="polite" className="flex flex-col gap-3 px-4 py-4">
+      <div
+        role="log"
+        aria-live="polite"
+        className="flex flex-col gap-3 px-4 py-4"
+      >
         {messages.length === 0 && (
           <div className="flex flex-1 flex-col items-center justify-center gap-4 px-2">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
