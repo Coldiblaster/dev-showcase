@@ -33,6 +33,7 @@ export function ViewSource({ children, code, filePath }: ViewSourceProps) {
           variant="outline"
           size="sm"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? t("hide") : t("toggle")}
           className="gap-2 border-border/40 bg-background/80 text-xs backdrop-blur-sm hover:bg-muted/80"
         >
           <Code2 className="h-3.5 w-3.5" />

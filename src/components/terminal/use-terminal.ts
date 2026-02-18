@@ -1,175 +1,164 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { CONTENT_ITEMS } from "@/data/content";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 
+import { executeCommand, type TranslationFn } from "./commands";
 import {
   AVAILABLE_COMMANDS,
-  COMMAND_OUTPUT_MAP,
   type TerminalLine,
   type Theme,
   THEME_COLORS,
 } from "./constants";
 
-/** Hook que gerencia o estado e lógica do terminal (tecla ~, comandos, temas). */
+/**
+ * Posições físicas (e.code) e caracteres (e.key) que ativam o terminal.
+ * Cobre múltiplos layouts: US, UK, ABNT2, ISO europeus, etc.
+ */
+const TRIGGER_CODES = new Set(["Backquote", "Quote"]);
+const TRIGGER_KEYS = new Set(["`", "~"]);
+
+/** Hook que gerencia estado, atalhos e lógica do terminal easter egg. */
 export function useTerminal() {
   const t = useTranslations("terminal");
   const [isOpen, setIsOpen] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMaximized, setIsMaximized] = useState(false);
   const [lines, setLines] = useState<TerminalLine[]>([]);
   const [input, setInput] = useState("");
   const [theme, setTheme] = useState<Theme>("matrix");
   const [history, setHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  const greetingLines = useMemo<TerminalLine[]>(
+    () => [
+      { type: "system", content: t("greeting") },
+      { type: "system", content: t("hint") },
+      { type: "system", content: "" },
+    ],
+    [t],
+  );
+
+  // --- Ações ---
+
+  const close = useCallback(() => {
+    setIsOpen(false);
+    setIsMinimized(false);
+    setIsMaximized(false);
+  }, []);
+
+  const open = useCallback(() => {
+    setIsOpen(true);
+    setIsMinimized(false);
+    setLines(greetingLines);
+  }, [greetingLines]);
+
+  const toggleMinimize = useCallback(() => {
+    setIsMinimized((prev) => {
+      if (prev) setTimeout(() => inputRef.current?.focus(), 100);
+      return !prev;
+    });
+  }, []);
+
+  const toggleMaximize = useCallback(() => {
+    setIsMaximized((prev) => !prev);
+    setIsMinimized(false);
+  }, []);
+
+  // --- Atalho de teclado (Ctrl/Cmd + ~) ---
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape" && isOpen) {
-        setIsOpen(false);
+      if (e.key === "Escape" && isOpen && !isMinimized) {
+        close();
         return;
       }
 
       const isTerminalShortcut =
-        (e.ctrlKey || e.metaKey) && e.code === "Backquote";
+        (e.ctrlKey || e.metaKey) &&
+        !e.altKey &&
+        (TRIGGER_CODES.has(e.code) || TRIGGER_KEYS.has(e.key));
 
       if (isTerminalShortcut) {
         e.preventDefault();
         setIsOpen((prev) => {
-          if (!prev) {
-            setLines([
-              { type: "system", content: t("greeting") },
-              { type: "system", content: t("hint") },
-              { type: "system", content: "" },
-            ]);
-          }
+          if (!prev) setLines(greetingLines);
           return !prev;
         });
       }
     }
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, t]);
+  }, [isOpen, isMinimized, close, greetingLines]);
 
-  useScrollLock(isOpen);
-
-  useEffect(() => {
-    if (isOpen) setTimeout(() => inputRef.current?.focus(), 100);
-  }, [isOpen]);
+  // --- Evento customizado (open-terminal) ---
 
   useEffect(() => {
     const onOpenTerminal = () => {
       setIsOpen(true);
-      setLines([
-        { type: "system", content: t("greeting") },
-        { type: "system", content: t("hint") },
-        { type: "system", content: "" },
-      ]);
+      setLines(greetingLines);
     };
     window.addEventListener("open-terminal", onOpenTerminal);
     return () => window.removeEventListener("open-terminal", onOpenTerminal);
-  }, [t]);
+  }, [greetingLines]);
+
+  useScrollLock(isOpen && !isMinimized);
 
   useEffect(() => {
-    scrollRef.current?.scrollTo({
-      top: scrollRef.current.scrollHeight,
-      behavior: "smooth",
-    });
+    if (isOpen && !isMinimized) {
+      setTimeout(() => inputRef.current?.focus(), 100);
+    }
+  }, [isOpen, isMinimized]);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [lines]);
 
-  const autocomplete = useCallback((currentInput: string) => {
-    const matches = AVAILABLE_COMMANDS.filter((cmd) =>
-      cmd.startsWith(currentInput.toLowerCase()),
-    );
-    if (matches.length === 1) setInput(matches[0]);
-  }, []);
+  // --- Execução de comandos ---
 
-  const executeCommand = useCallback(
+  const runCommand = useCallback(
     (cmd: string) => {
-      const trimmed = cmd.trim().toLowerCase();
-      const newLines: TerminalLine[] = [
-        ...lines,
-        { type: "input", content: `${t("prompt")}:~$ ${cmd}` },
-      ];
+      const inputLine: TerminalLine = {
+        type: "input",
+        content: `${t("prompt")}:~$ ${cmd}`,
+      };
 
-      if (trimmed === "clear") {
-        setLines([{ type: "system", content: t("clearMessage") }]);
-        return;
-      }
-      if (trimmed === "exit") {
-        setLines([...newLines, { type: "system", content: t("exitMessage") }]);
-        setTimeout(() => setIsOpen(false), 1000);
+      const result = executeCommand(cmd, t as TranslationFn);
+
+      if (result.action?.type === "clear") {
+        setLines(result.lines);
         return;
       }
 
-      if (trimmed.startsWith("theme")) {
-        const newTheme = trimmed.split(" ")[1] as Theme;
-        if (newTheme && THEME_COLORS[newTheme]) {
-          setTheme(newTheme);
-          setLines([
-            ...newLines,
-            { type: "system", content: t("themeChanged", { theme: newTheme }) },
-          ]);
-        } else {
-          setLines([
-            ...newLines,
-            { type: "system", content: t("themeInvalid") },
-          ]);
-        }
-        return;
+      setLines((prev) => [...prev, inputLine, ...result.lines]);
+
+      if (result.action?.type === "setTheme") {
+        setTheme(result.action.theme);
       }
 
-      if (trimmed === "projects") {
-        const projectLines = CONTENT_ITEMS.map((item) => {
-          const prefix =
-            item.category === "implementation" ? "/implementacoes" : "/dicas";
-          return `  ${item.slug.padEnd(20)} → ${prefix}/${item.slug}`;
-        });
-        setLines([
-          ...newLines,
-          { type: "output", content: "" },
-          ...projectLines.map((l) => ({ type: "output" as const, content: l })),
-          { type: "output", content: "" },
-        ]);
-        return;
+      if (result.action?.type === "exit") {
+        setTimeout(close, 1000);
       }
-
-      if (trimmed in COMMAND_OUTPUT_MAP) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const output = (t as any).raw(COMMAND_OUTPUT_MAP[trimmed]) as string[];
-        if (Array.isArray(output)) {
-          setLines([
-            ...newLines,
-            ...output.map((line) => ({
-              type: "output" as const,
-              content: line,
-            })),
-            { type: "output", content: "" },
-          ]);
-        }
-        return;
-      }
-
-      setLines([
-        ...newLines,
-        { type: "output", content: t("unknownCommand", { command: cmd }) },
-        { type: "output", content: "" },
-      ]);
     },
-    [lines, t],
+    [t, close],
   );
+
+  // --- Submit do formulário ---
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
     setHistory((prev) => [...prev, input]);
     setHistoryIndex(-1);
-    executeCommand(input);
+    runCommand(input);
     setInput("");
   };
+
+  // --- Teclado do input (histórico + autocomplete) ---
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "ArrowUp") {
@@ -189,31 +178,27 @@ export function useTerminal() {
     }
     if (e.key === "Tab") {
       e.preventDefault();
-      autocomplete(input);
+      const matches = AVAILABLE_COMMANDS.filter((cmd) =>
+        cmd.startsWith(input.toLowerCase()),
+      );
+      if (matches.length === 1) setInput(matches[0]);
     }
   };
 
-  const open = useCallback(() => {
-    setIsOpen(true);
-    setLines([
-      { type: "system", content: t("greeting") },
-      { type: "system", content: t("hint") },
-      { type: "system", content: "" },
-    ]);
-  }, [t]);
-
-  const colors = THEME_COLORS[theme];
-
   return {
     isOpen,
+    isMinimized,
+    isMaximized,
     open,
-    setIsOpen,
+    close,
+    toggleMinimize,
+    toggleMaximize,
     lines,
     input,
     setInput,
-    colors,
+    colors: THEME_COLORS[theme],
     inputRef,
-    scrollRef,
+    bottomRef,
     handleSubmit,
     handleKeyDown,
     t,

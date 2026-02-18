@@ -14,12 +14,6 @@ import { CheatSheet } from "./cheat-sheet";
 import { PatternsLibrary } from "./patterns-library";
 import { RegexEditor } from "./regex-editor";
 
-const SECTIONS = [
-  { id: "editor", label: "Editor" },
-  { id: "patterns", label: "Patterns" },
-  { id: "cheat-sheet", label: "Cheat Sheet" },
-];
-
 export function RegexPlayground() {
   const t = useTranslations("regexPage");
   const [injection, setInjection] = useState<{
@@ -43,7 +37,14 @@ export function RegexPlayground() {
         backHref="/ferramentas"
       />
 
-      <SectionNav sections={SECTIONS} triggerId="editor" />
+      <SectionNav
+        sections={[
+          { id: "editor", label: t("sectionNav.editor") },
+          { id: "patterns", label: t("sectionNav.patterns") },
+          { id: "cheat-sheet", label: t("sectionNav.cheatSheet") },
+        ]}
+        triggerId="editor"
+      />
 
       <RegexEditor
         injection={injection}

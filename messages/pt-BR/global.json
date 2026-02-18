@@ -28,5 +28,11 @@
 	"mobileTop": "Topo",
 	"mobileChat": "Chat",
 	"mobileTerminal": "Terminal",
-	"mobileActions": "Ações rápidas"
+	"mobileActions": "Ações rápidas",
+	"sectionNavigation": "Navegação por seções",
+	"skipToContent": "Pular para o conteúdo",
+	"close": "Fechar",
+	"terminal": "Terminal",
+	"closeTerminal": "Fechar terminal",
+	"terminalInput": "Entrada do terminal"
 }

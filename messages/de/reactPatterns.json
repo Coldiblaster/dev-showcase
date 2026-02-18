@@ -35,7 +35,8 @@
         "useCases": ["Trennung von Zuständigkeiten", "Testbare Komponenten", "Wiederverwendung der Darstellungsschicht"]
       }
     ],
-    "useCasesLabel": "Wann verwenden"
+    "useCasesLabel": "Wann verwenden",
+    "codeLabel": "React / TypeScript"
   },
   "hooks": {
     "title": "Custom Hooks",
@@ -62,7 +63,8 @@
         "description": "Erkennt Klicks außerhalb eines Elements — perfekt für Modals und Dropdowns.",
         "code": "function useClickOutside(\n  ref: RefObject<HTMLElement | null>,\n  handler: () => void\n) {\n  useEffect(() => {\n    const listener = (e: MouseEvent | TouchEvent) => {\n      if (!ref.current?.contains(e.target as Node)) {\n        handler();\n      }\n    };\n    document.addEventListener('mousedown', listener);\n    document.addEventListener('touchstart', listener);\n    return () => {\n      document.removeEventListener('mousedown', listener);\n      document.removeEventListener('touchstart', listener);\n    };\n  }, [ref, handler]);\n}\n\n// Verwendung\nconst ref = useRef<HTMLDivElement>(null);\nuseClickOutside(ref, () => setOpen(false));"
       }
-    ]
+    ],
+    "codeLabel": "Hook"
   },
   "statePatterns": {
     "title": "Zustands-Patterns",
@@ -107,7 +109,8 @@
         "description": "Lade schwere Komponenten on-demand, um die initiale Bundle-Größe zu reduzieren.",
         "code": "import { lazy, Suspense } from 'react';\n\n// Nur bei Bedarf geladen\nconst HeavyChart = lazy(() => import('./HeavyChart'));\nconst MarkdownEditor = lazy(() => import('./MarkdownEditor'));\n\nfunction App() {\n  const [showChart, setShowChart] = useState(false);\n\n  return (\n    <div>\n      <button onClick={() => setShowChart(true)}>\n        Diagramm anzeigen\n      </button>\n\n      {showChart && (\n        <Suspense fallback={<Skeleton className=\"h-64\" />}>\n          <HeavyChart data={data} />\n        </Suspense>\n      )}\n    </div>\n  );\n}"
       }
-    ]
+    ],
+    "codeLabel": "React"
   },
   "cta": {
     "title": "Bereit für fortgeschrittenes React?",

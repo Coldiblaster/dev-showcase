@@ -76,6 +76,7 @@ export function GlobalSearch() {
             <Search className="h-5 w-5 shrink-0 text-muted-foreground" />
             <Input
               placeholder={t("inputPlaceholder")}
+              aria-label={t("inputPlaceholder")}
               className="h-10 flex-1 border-0 bg-transparent p-0 text-base placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 md:h-11"
               value={query}
               onChange={(e) => setQuery(e.target.value)}

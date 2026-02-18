@@ -48,7 +48,7 @@ export function DevResourcesPage() {
   }, []);
 
   return (
-    <main className="min-h-screen">
+    <div className="min-h-screen">
       <HeroSection
         badge={t("hero.badge")}
         badgeIcon={BookOpen}
@@ -99,6 +99,6 @@ export function DevResourcesPage() {
           </Button>
         }
       />
-    </main>
+    </div>
   );
 }

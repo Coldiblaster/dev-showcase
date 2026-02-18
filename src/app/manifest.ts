@@ -4,9 +4,9 @@ import { PERSONAL } from "@/lib/constants";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${PERSONAL.name} — Portfolio`,
+    name: `${PERSONAL.name} — Developer Portfolio`,
     short_name: "VB Portfolio",
-    description: `Portfolio de ${PERSONAL.name}. ${PERSONAL.role} especializado em React, Next.js e React Native.`,
+    description: `${PERSONAL.name}'s developer portfolio. ${PERSONAL.role} specialized in React, Next.js & React Native.`,
     start_url: "/",
     display: "standalone",
     background_color: "#0a0f1a",

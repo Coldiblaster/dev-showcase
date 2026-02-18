@@ -197,6 +197,7 @@
       { "alias": "git st", "command": "git config --global alias.st status", "description": "Atalho para status" },
       { "alias": "git lg", "command": "git config --global alias.lg \"log --oneline --graph --all\"", "description": "Log visual compacto" }
     ],
+    "aliasesTitle": "Git Aliases",
     "usefulTitle": "Comandos Úteis",
     "useful": [
       { "command": "git commit --amend", "description": "Edita o último commit" },

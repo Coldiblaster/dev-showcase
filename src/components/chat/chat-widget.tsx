@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { MessageCircle, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
 
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 
@@ -129,6 +129,30 @@ export function ChatWidget() {
 
   const suggestions = t.raw("suggestions") as string[];
 
+  const handlePanelKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const focusable = e.currentTarget.querySelectorAll<HTMLElement>(
+        'button, input, a, [tabindex]:not([tabindex="-1"])',
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    },
+    [setOpen],
+  );
+
   return (
     <>
       {/* FAB button */}
@@ -172,6 +196,10 @@ export function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
+            role="dialog"
+            aria-modal="true"
+            aria-label={t("title")}
+            onKeyDown={handlePanelKeyDown}
             className="fixed bottom-24 right-6 z-60 flex h-[500px] w-[380px] flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-2xl max-[420px]:inset-0 max-[420px]:bottom-0 max-[420px]:right-0 max-[420px]:h-full max-[420px]:w-full max-[420px]:rounded-none"
           >
             <ChatHeader

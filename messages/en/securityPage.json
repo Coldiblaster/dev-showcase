@@ -132,6 +132,10 @@
     "github": "View on GitHub"
   },
   "sectionNav": {
-    "overview": "Overview"
+    "overview": "Overview",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "ai": "AI",
+    "checklist": "Checklist"
   }
 }

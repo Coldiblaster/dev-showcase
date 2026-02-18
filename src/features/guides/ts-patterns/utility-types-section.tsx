@@ -51,7 +51,7 @@ export function UtilityTypesSection() {
                 <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
                   {item.description}
                 </p>
-                <CodeBlock code={item.code} highlight={item.highlight} label="TypeScript" />
+                <CodeBlock code={item.code} highlight={item.highlight} label={t("codeLabel")} />
               </CardBlur>
             </AnimatedSection>
           ))}

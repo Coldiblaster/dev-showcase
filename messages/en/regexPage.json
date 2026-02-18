@@ -5,6 +5,11 @@
     "subtitle": "// test, learn and master regular expressions",
     "description": "Interactive regex editor with real-time highlighting, library of ready-to-use patterns and complete cheat sheet. All in the browser, no dependencies."
   },
+  "sectionNav": {
+    "editor": "Editor",
+    "patterns": "Patterns",
+    "cheatSheet": "Cheat Sheet"
+  },
   "editor": {
     "title": "Editor",
     "regexLabel": "Regular Expression",

@@ -15,6 +15,7 @@ import { MobileActionBar } from "@/components/mobile-action-bar";
 import { Navbar } from "@/components/navbar";
 import { RecaptchaProvider } from "@/components/recaptcha-provider";
 import { ScrollTopButton } from "@/components/scroll-top";
+import { SkipLink } from "@/components/skip-link";
 import { PERSONAL } from "@/lib/constants";
 import { resolveLocale } from "@/lib/i18n/request";
 import { SITE_AUTHOR, SITE_NAME, SITE_URL } from "@/lib/seo";
@@ -113,8 +114,11 @@ export default async function RootLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           <RecaptchaProvider>
             <CopyFeedbackProvider>
+              <SkipLink />
               <Navbar />
-              {children}
+              <main id="main" tabIndex={-1} className="outline-none">
+                {children}
+              </main>
               <ScrollTopButton />
               <ChatWidget />
               <Footer />

@@ -35,7 +35,8 @@
         "useCases": ["Separação de responsabilidades", "Componentes testáveis", "Reuso da camada visual"]
       }
     ],
-    "useCasesLabel": "Quando usar"
+    "useCasesLabel": "Quando usar",
+    "codeLabel": "React / TypeScript"
   },
   "hooks": {
     "title": "Custom Hooks",
@@ -62,7 +63,8 @@
         "description": "Detecta cliques fora de um elemento — perfeito para modais e dropdowns.",
         "code": "function useClickOutside(\n  ref: RefObject<HTMLElement | null>,\n  handler: () => void\n) {\n  useEffect(() => {\n    const listener = (e: MouseEvent | TouchEvent) => {\n      if (!ref.current?.contains(e.target as Node)) {\n        handler();\n      }\n    };\n    document.addEventListener('mousedown', listener);\n    document.addEventListener('touchstart', listener);\n    return () => {\n      document.removeEventListener('mousedown', listener);\n      document.removeEventListener('touchstart', listener);\n    };\n  }, [ref, handler]);\n}\n\n// Uso\nconst ref = useRef<HTMLDivElement>(null);\nuseClickOutside(ref, () => setOpen(false));"
       }
-    ]
+    ],
+    "codeLabel": "Hook"
   },
   "statePatterns": {
     "title": "Patterns de Estado",
@@ -107,7 +109,8 @@
         "description": "Carregue componentes pesados sob demanda para reduzir o bundle inicial.",
         "code": "import { lazy, Suspense } from 'react';\n\n// Carregado apenas quando necessário\nconst HeavyChart = lazy(() => import('./HeavyChart'));\nconst MarkdownEditor = lazy(() => import('./MarkdownEditor'));\n\nfunction App() {\n  const [showChart, setShowChart] = useState(false);\n\n  return (\n    <div>\n      <button onClick={() => setShowChart(true)}>\n        Mostrar Gráfico\n      </button>\n\n      {showChart && (\n        <Suspense fallback={<Skeleton className=\"h-64\" />}>\n          <HeavyChart data={data} />\n        </Suspense>\n      )}\n    </div>\n  );\n}"
       }
-    ]
+    ],
+    "codeLabel": "React"
   },
   "cta": {
     "title": "Pronto para React avançado?",

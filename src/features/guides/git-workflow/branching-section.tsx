@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, GitBranch, X } from "lucide-react";
+import { Check, ChevronDown, GitBranch, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
@@ -92,7 +92,7 @@ function StrategyCard({
             animate={{ rotate: expanded ? 180 : 0 }}
             className="text-muted-foreground"
           >
-            ▾
+            <ChevronDown className="h-4 w-4" />
           </motion.span>
         </div>
         <p className="mb-3 text-sm text-muted-foreground">

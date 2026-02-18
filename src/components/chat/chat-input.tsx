@@ -72,7 +72,7 @@ export function ChatInput({
         </div>
       )}
       <a
-        href="#contact"
+        href="/#contact"
         onClick={onClose}
         className="mt-2 flex items-center justify-center gap-1.5 text-[10px] text-muted-foreground/60 transition-colors hover:text-primary"
         aria-label={contactText}

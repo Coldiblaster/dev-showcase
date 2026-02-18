@@ -1,14 +1,16 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Check, ClipboardCopy, RotateCcw, X } from "lucide-react";
+import { Check, Copy, RotateCcw, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { AnimatedSection } from "@/components/animated-section";
+import { useCopyFeedback } from "@/components/copy-feedback";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CardBlur } from "@/components/ui/card-blur";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 
 type Flag = "g" | "i" | "m" | "s";
 const ALL_FLAGS: Flag[] = ["g", "i", "m", "s"];
@@ -32,10 +34,12 @@ export function RegexEditor({
   const t = useTranslations("regexPage.editor");
   const tFlags = useTranslations("regexPage.editor.flags");
 
+  const { copied, copy } = useCopyToClipboard();
+  const { showFeedback } = useCopyFeedback();
+
   const [regex, setRegex] = useState("");
   const [testString, setTestString] = useState("");
   const [flags, setFlags] = useState<Set<Flag>>(new Set(["g"]));
-  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (injection) {
@@ -108,10 +112,9 @@ export function RegexEditor({
 
   const handleCopy = useCallback(() => {
     const full = `/${regex}/${flagString}`;
-    navigator.clipboard.writeText(full);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  }, [regex, flagString]);
+    copy(full);
+    showFeedback();
+  }, [regex, flagString, copy, showFeedback]);
 
   const handleClear = useCallback(() => {
     setRegex("");
@@ -205,12 +208,12 @@ export function RegexEditor({
                   >
                     {copied ? (
                       <>
-                        <Check className="h-3.5 w-3.5" />
+                        <Check className="h-3.5 w-3.5 text-primary" />
                         {t("copied")}
                       </>
                     ) : (
                       <>
-                        <ClipboardCopy className="h-3.5 w-3.5" />
+                        <Copy className="h-3.5 w-3.5" />
                         {t("copyRegex")}
                       </>
                     )}

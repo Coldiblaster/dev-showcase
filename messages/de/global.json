@@ -27,5 +27,11 @@
   "mobileTop": "Oben",
   "mobileChat": "Chat",
   "mobileTerminal": "Terminal",
-  "mobileActions": "Schnellaktionen"
+  "mobileActions": "Schnellaktionen",
+  "sectionNavigation": "Abschnittsnavigation",
+  "skipToContent": "Zum Inhalt springen",
+  "close": "Schließen",
+  "terminal": "Terminal",
+  "closeTerminal": "Terminal schließen",
+  "terminalInput": "Terminaleingabe"
 }

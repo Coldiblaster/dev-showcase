@@ -35,10 +35,10 @@ export function SecurityTips() {
       <SectionNav
         sections={[
           { id: "overview", label: t("sectionNav.overview") },
-          { id: "frontend", label: "Frontend" },
-          { id: "backend", label: "Backend" },
-          { id: "ai-security", label: "IA" },
-          { id: "checklist", label: "Checklist" },
+          { id: "frontend", label: t("sectionNav.frontend") },
+          { id: "backend", label: t("sectionNav.backend") },
+          { id: "ai-security", label: t("sectionNav.ai") },
+          { id: "checklist", label: t("sectionNav.checklist") },
         ]}
       />
 

@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, ClipboardCopy } from "lucide-react";
-import { useCallback, useState } from "react";
+import { Check, Copy } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+import { useCopyFeedback } from "@/components/copy-feedback";
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
 
 interface CodeBlockProps {
   code: string;
@@ -11,60 +14,48 @@ interface CodeBlockProps {
 }
 
 export function CodeBlock({ code, highlight, label }: CodeBlockProps) {
-  const [copied, setCopied] = useState(false);
+  const t = useTranslations("global");
+  const { copied, copy } = useCopyToClipboard();
+  const { showFeedback } = useCopyFeedback();
 
-  const handleCopy = useCallback(() => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  }, [code]);
+  const handleCopy = () => {
+    copy(code);
+    showFeedback();
+  };
 
   const lines = code.split("\n");
 
   return (
-    <div className="group relative overflow-hidden rounded-xl border border-border/50 bg-secondary/30">
+    <div className="overflow-hidden rounded-xl border border-border bg-[hsl(220,40%,6%)]">
       {label && (
-        <div className="flex items-center justify-between border-b border-border/30 px-4 py-2">
-          <span className="font-mono text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-            {label}
-          </span>
+        <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
+          <div className="flex items-center gap-2">
+            <div className="flex gap-1.5">
+              <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+            </div>
+            <span className="font-mono text-xs text-muted-foreground">
+              {label}
+            </span>
+          </div>
           <button
             onClick={handleCopy}
-            className="flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] text-muted-foreground transition-colors hover:text-foreground"
+            className="rounded-md p-1.5 text-muted-foreground/50 transition-colors hover:bg-secondary hover:text-foreground"
+            aria-label={copied ? t("codeCopied") : t("copyCode")}
           >
             {copied ? (
-              <>
-                <Check className="h-3 w-3 text-green-400" />
-                <span className="text-green-400">Copiado</span>
-              </>
+              <Check className="h-3.5 w-3.5 text-primary" />
             ) : (
-              <>
-                <ClipboardCopy className="h-3 w-3" />
-                <span className="opacity-0 transition-opacity group-hover:opacity-100">
-                  Copiar
-                </span>
-              </>
+              <Copy className="h-3.5 w-3.5" />
             )}
           </button>
         </div>
       )}
-      {!label && (
-        <button
-          onClick={handleCopy}
-          className="absolute right-2 top-2 z-10 rounded-md p-1.5 text-muted-foreground opacity-0 transition-all hover:bg-secondary/50 hover:text-foreground group-hover:opacity-100"
-        >
-          {copied ? (
-            <Check className="h-3.5 w-3.5 text-green-400" />
-          ) : (
-            <ClipboardCopy className="h-3.5 w-3.5" />
-          )}
-        </button>
-      )}
-      <div className="overflow-x-auto p-4">
-        <pre className="font-mono text-xs leading-relaxed">
+      <div className="overflow-x-auto p-3 md:p-4">
+        <pre className="font-mono text-xs leading-relaxed md:text-sm">
           {lines.map((line, i) => {
-            const isHighlighted =
-              highlight && line.includes(highlight);
+            const isHighlighted = highlight && line.includes(highlight);
             return (
               <motion.div
                 key={i}

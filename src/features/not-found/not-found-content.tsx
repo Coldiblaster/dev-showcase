@@ -201,7 +201,7 @@ export function NotFoundContent() {
   }, [funFacts.length]);
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-24">
+    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-24">
       {/* Grid background */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.3)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.3)_1px,transparent_1px)] bg-size-[60px_60px]" />
@@ -343,6 +343,6 @@ export function NotFoundContent() {
           </Link>
         </motion.div>
       </div>
-    </main>
+    </div>
   );
 }

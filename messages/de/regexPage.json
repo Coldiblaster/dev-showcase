@@ -5,6 +5,11 @@
     "subtitle": "// testen, lernen und reguläre Ausdrücke beherrschen",
     "description": "Interaktiver Regex-Editor mit Echtzeit-Hervorhebung, Bibliothek fertiger Patterns und komplettem Cheat Sheet. Alles im Browser, keine Abhängigkeiten."
   },
+  "sectionNav": {
+    "editor": "Editor",
+    "patterns": "Muster",
+    "cheatSheet": "Kurzreferenz"
+  },
   "editor": {
     "title": "Editor",
     "regexLabel": "Regulärer Ausdruck",

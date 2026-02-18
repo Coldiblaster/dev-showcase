@@ -7,6 +7,16 @@
     "ctaInspect": "Live inspizieren",
     "ctaDocs": "Next.js Docs"
   },
+  "sectionNav": {
+    "overview": "Überblick",
+    "metadata": "Metadata",
+    "ogImage": "OG Image",
+    "jsonLd": "JSON-LD",
+    "sitemap": "Sitemap",
+    "webVitals": "Web Vitals",
+    "comparison": "Next vs Vite",
+    "checklist": "Checklist"
+  },
   "overview": {
     "title": "Was implementiert wurde",
     "description": "Vollständige SEO-Infrastruktur mit Beispielen für Next.js (native APIs) und React + Vite (Community-Bibliotheken).",

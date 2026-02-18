@@ -5,6 +5,11 @@
     "subtitle": "// prueba, aprende y domina expresiones regulares",
     "description": "Editor interactivo de regex con resaltado en tiempo real, biblioteca de patterns listos y cheat sheet completo. Todo en el navegador, sin dependencias."
   },
+  "sectionNav": {
+    "editor": "Editor",
+    "patterns": "Patrones",
+    "cheatSheet": "Referencia Rápida"
+  },
   "editor": {
     "title": "Editor",
     "regexLabel": "Expresión Regular",

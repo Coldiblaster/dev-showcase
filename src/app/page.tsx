@@ -10,7 +10,7 @@ import { StatsSection } from "@/features/home/stats-section";
 
 export default function Page() {
   return (
-    <main>
+    <>
       <HomeHeroSection />
       <StatsSection />
       <AboutSection />
@@ -20,6 +20,6 @@ export default function Page() {
       <ExperienceSection />
       <AISection />
       <ContactSection />
-    </main>
+    </>
   );
 }

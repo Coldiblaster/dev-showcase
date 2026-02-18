@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export interface SectionNavItem {
@@ -26,6 +27,7 @@ export function SectionNav({
   triggerId,
   hideDelay = 2000,
 }: SectionNavProps) {
+  const tGlobal = useTranslations("global");
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [inRange, setInRange] = useState(false);
   const [revealed, setRevealed] = useState(false);
@@ -98,7 +100,7 @@ export function SectionNav({
     <AnimatePresence>
       {show && (
         <motion.nav
-          aria-label="Section navigation"
+          aria-label={tGlobal("sectionNavigation")}
           initial={{ opacity: 0, y: -12 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -12 }}

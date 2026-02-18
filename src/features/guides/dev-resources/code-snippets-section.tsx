@@ -121,7 +121,7 @@ export function CodeSnippetsSection({ level }: CodeSnippetsSectionProps) {
             <div
               className="flex flex-wrap gap-1.5 md:gap-2"
               role="group"
-              aria-label="Filtrar por tag"
+              aria-label={t("filterByTag")}
             >
               {allTags.map((tag) => (
                 <button

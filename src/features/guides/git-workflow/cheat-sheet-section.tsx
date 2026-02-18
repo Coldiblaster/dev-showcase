@@ -51,7 +51,7 @@ export function CheatSheetSection() {
           <AnimatedSection delay={0.1}>
             <CardBlur className="h-full">
               <h3 className="mb-4 text-sm font-semibold text-foreground">
-                Git Aliases
+                {t("aliasesTitle")}
               </h3>
               <div className="flex flex-col gap-3">
                 {aliases.map((item) => (

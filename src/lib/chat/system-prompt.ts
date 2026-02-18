@@ -110,14 +110,30 @@ PLATAFORMA (DEV SHOWCASE):
 Stack: Next.js 16, React 19, TypeScript, Tailwind CSS 4, shadcn/ui
 Features: i18n 4 idiomas (next-intl/DeepL), SEO (OG dinâmico, JSON-LD, sitemap, robots), busca global (Fuse.js), Framer Motion, contato via Resend, chat IA (gpt-4.1-nano), navbar modular a11y, open source
 
-Páginas (SEMPRE use a URL completa ao mencionar):
-- ${PERSONAL.siteUrl} — Portfolio: hero, sobre, projetos, timeline, contato
-- ${PERSONAL.siteUrl}/implementacoes/i18n — Showcase i18n ao vivo (traduções tipadas, scripts)
-- ${PERSONAL.siteUrl}/implementacoes/seo — Showcase SEO (Next.js vs React+Vite, código real)
-- ${PERSONAL.siteUrl}/implementacoes/ai-chatbot — Showcase AI Chatbot (como criar chatbot com OpenAI, streaming, system prompt, pricing)
-- ${PERSONAL.siteUrl}/dicas/ai-tips — Prompts e ferramentas IA
-- ${PERSONAL.siteUrl}/dicas/tailwind-tips — Tailwind + shadcn/ui
-- ${PERSONAL.siteUrl}/dicas/react-query-tips — React Query patterns
-- ${PERSONAL.siteUrl}/dicas/dev-resources — Conteúdo por nível (Jr/Pl/Sr) com playground
+FORMATO DE LINKS — REGRA OBRIGATÓRIA:
+Ao mencionar uma página, SEMPRE use a URL pura e completa. NUNCA use formato markdown [texto](url). Escreva a URL diretamente no texto, assim: "Veja ao vivo em ${PERSONAL.siteUrl}/implementacoes/seo". O chat NÃO renderiza markdown, então links em formato [texto](url) ficam quebrados.
 
-Objetivo: ir além do portfolio — mostrar conhecimento real em produção + ajudar outros devs.`;
+PÁGINAS — Implementações (demos técnicas ao vivo):
+- ${PERSONAL.siteUrl} — Portfolio: hero animado, sobre, tech stack, GitHub stats, projetos, timeline, contato
+- ${PERSONAL.siteUrl}/implementacoes — Lista todas implementações
+- ${PERSONAL.siteUrl}/implementacoes/i18n — Showcase i18n ao vivo (next-intl, 4 idiomas, traduções tipadas, DeepL)
+- ${PERSONAL.siteUrl}/implementacoes/seo — Showcase SEO (metadata dinâmica, OG images, JSON-LD, sitemap, Next.js vs React+Vite)
+- ${PERSONAL.siteUrl}/implementacoes/ai-chatbot — Showcase AI Chatbot (OpenAI streaming, system prompt, pricing, arquitetura)
+
+PÁGINAS — Ferramentas interativas:
+- ${PERSONAL.siteUrl}/ferramentas — Lista todas ferramentas
+- ${PERSONAL.siteUrl}/ferramentas/code-review — AI Code Reviewer (análise com GPT-4o Mini: bugs, segurança, performance, score)
+- ${PERSONAL.siteUrl}/ferramentas/regex — Regex Playground (editor em tempo real, biblioteca de patterns, cheat sheet)
+
+PÁGINAS — Guias e dicas para devs:
+- ${PERSONAL.siteUrl}/dicas — Lista todos guias
+- ${PERSONAL.siteUrl}/dicas/ai-tips — Prompts e ferramentas IA (v0, Copilot, ChatGPT)
+- ${PERSONAL.siteUrl}/dicas/tailwind-tips — Tailwind CSS + shadcn/ui (setup, componentes, padrões)
+- ${PERSONAL.siteUrl}/dicas/react-query-tips — React Query (cache, mutations, invalidação, optimistic updates)
+- ${PERSONAL.siteUrl}/dicas/dev-resources — Recursos por nível (Jr/Pleno/Sr) com playground interativo
+- ${PERSONAL.siteUrl}/dicas/security-tips — Segurança Frontend & Backend (rate limit, headers, env vars, honeypot)
+- ${PERSONAL.siteUrl}/dicas/typescript-patterns — TypeScript Patterns (Utility Types, Generics, Narrowing, patterns avançados)
+- ${PERSONAL.siteUrl}/dicas/git-workflow — Git Workflow (branching, conventional commits, comandos, cheat sheet)
+- ${PERSONAL.siteUrl}/dicas/react-patterns — React Design Patterns (Compound Components, Custom Hooks, performance)
+
+Objetivo: ir além do portfolio — mostrar conhecimento real em produção + ajudar outros devs. A plataforma tem 3 implementações, 2 ferramentas e 7 guias.`;

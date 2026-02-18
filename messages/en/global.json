@@ -27,5 +27,11 @@
   "mobileTop": "Top",
   "mobileChat": "Chat",
   "mobileTerminal": "Terminal",
-  "mobileActions": "Quick actions"
+  "mobileActions": "Quick actions",
+  "sectionNavigation": "Section navigation",
+  "skipToContent": "Skip to content",
+  "close": "Close",
+  "terminal": "Terminal",
+  "closeTerminal": "Close terminal",
+  "terminalInput": "Terminal input"
 }

@@ -94,8 +94,8 @@ export async function POST(request: Request) {
 
     const stream = await openai.chat.completions.create({
       model: "gpt-4.1-nano",
-      max_tokens: 300,
-      temperature: 0.9,
+      max_tokens: 400,
+      temperature: 0.8,
       stream: true,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },
@@ -117,7 +117,7 @@ export async function POST(request: Request) {
         } catch (streamErr) {
           console.error("[Chat API] Stream error:", streamErr);
           controller.enqueue(
-            encoder.encode("\n\n[Erro na resposta. Tente novamente.]"),
+            encoder.encode("\n\n⚠️"),
           );
         } finally {
           controller.close();

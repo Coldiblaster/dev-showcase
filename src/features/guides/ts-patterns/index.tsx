@@ -29,7 +29,7 @@ export function TsPatterns() {
       <SectionNav
         sections={[
           { id: "utility-types", label: t("sectionNav.utilityTypes") },
-          { id: "generics", label: "Generics" },
+          { id: "generics", label: t("sectionNav.generics") },
           { id: "narrowing", label: t("sectionNav.narrowing") },
           { id: "advanced", label: t("sectionNav.advanced") },
         ]}

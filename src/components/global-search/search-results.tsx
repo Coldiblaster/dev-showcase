@@ -19,7 +19,7 @@ export function SearchResults({
 }: SearchResultsProps) {
   return (
     <ScrollArea className="h-full px-3 py-2 scrollbar-none md:px-4 md:py-3">
-      <div className="flex-1 space-y-0.5 md:space-y-1">
+      <div role="listbox" className="flex-1 space-y-0.5 md:space-y-1">
         {results.map((result, idx) => {
           const config = typeConfig[result.type];
           const Icon = config.icon;
@@ -28,6 +28,7 @@ export function SearchResults({
           return (
             <button
               key={result.id}
+              role="option"
               onClick={() => onSelect(result)}
               className={`group flex w-full items-start gap-3 rounded-lg border border-transparent p-2.5 text-left transition-all hover:border-border hover:bg-muted/50 md:gap-4 md:rounded-xl md:p-3 ${
                 isSelected ? "border-primary bg-primary/10" : ""

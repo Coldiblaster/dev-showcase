@@ -7,9 +7,11 @@
   },
   "sectionNav": {
     "utilityTypes": "Utility Types",
+    "generics": "Generics",
     "narrowing": "Narrowing",
     "advanced": "Avanzado"
   },
+  "codeLabel": "TypeScript",
   "utilityTypes": {
     "title": "Utility Types",
     "subtitle": "// tipos built-in que todo dev necesita conocer",

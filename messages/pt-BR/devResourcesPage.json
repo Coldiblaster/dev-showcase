@@ -41,7 +41,8 @@
     },
     "copy": "Copiar",
     "copied": "Copiado",
-    "emptyState": "Nenhum snippet encontrado. Tente outro termo de busca."
+    "emptyState": "Nenhum snippet encontrado. Tente outro termo de busca.",
+    "filterByTag": "Filtrar por tag"
   },
   "beforeAfter": {
     "badge": "Code Refactoring",
@@ -56,7 +57,8 @@
     "afterImprovements": "Depois - Melhorias",
     "nav": {
       "prev": "Anterior",
-      "next": "Próximo"
+      "next": "Próximo",
+      "label": "Navegação"
     }
   },
   "quickTips": {

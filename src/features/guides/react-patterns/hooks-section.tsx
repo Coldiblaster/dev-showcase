@@ -49,7 +49,7 @@ export function HooksSection() {
                 <p className="mb-4 text-xs leading-relaxed text-muted-foreground">
                   {item.description}
                 </p>
-                <CodeBlock code={item.code} label="Hook" />
+                <CodeBlock code={item.code} label={t("codeLabel")} />
               </CardBlur>
             </AnimatedSection>
           ))}

@@ -100,7 +100,7 @@ export function BeforeAfterSection({ level }: BeforeAfterSectionProps) {
             <div
               className="flex items-center gap-1.5 md:gap-2"
               role="tablist"
-              aria-label="Navigation"
+              aria-label={t("nav.label")}
             >
               {filteredComparisons.map((comp, index) => (
                 <button

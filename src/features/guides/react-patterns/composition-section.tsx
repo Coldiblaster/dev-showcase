@@ -50,7 +50,7 @@ export function CompositionSection() {
                 <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
                   {item.description}
                 </p>
-                <CodeBlock code={item.code} label="React / TypeScript" />
+                <CodeBlock code={item.code} label={t("codeLabel")} />
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   <span className="text-[10px] font-medium text-muted-foreground">
                     {t("useCasesLabel")}:

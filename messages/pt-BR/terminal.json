@@ -13,7 +13,7 @@
         "  projects   — Ver projetos / páginas",
         "  contact    — Informações de contato",
         "  social     — Links de redes sociais",
-        "  theme      — Mudar tema do terminal (matrix, amber, green, blue)",
+        "  theme      — Mudar tema. Ex: theme matrix | amber | green | blue",
         "  clear      — Limpar terminal",
         "  exit       — Fechar terminal",
         "  whoami     — Quem é você?",
@@ -107,10 +107,10 @@
       "description": "Projetos"
     }
   },
-  "unknownCommand": "Comando não encontrado: '{command}'. Digite 'help' para ajuda.",
-  "exitMessage": "Até mais! Pressione Ctrl+` para voltar.",
+  "unknownCommand": "Comando não encontrado: {command}. Digite ''help'' para ajuda.",
+  "exitMessage": "Até mais! Pressione Ctrl+~ para voltar.",
   "clearMessage": "Terminal limpo.",
   "themeChanged": "Tema alterado para: {theme}",
-  "themeInvalid": "Temas disponíveis: matrix, amber, green, blue",
+  "themeInvalid": "Uso: theme <nome>. Opções: matrix, amber, green, blue",
   "tabHint": "Pressione Tab para autocompletar"
 }
