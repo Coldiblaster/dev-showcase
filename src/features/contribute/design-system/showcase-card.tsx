@@ -3,7 +3,12 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Code2 } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { type ReactNode, useState } from "react";
+import {
+  type ComponentType,
+  createElement,
+  type ReactNode,
+  useState,
+} from "react";
 
 import { CodeBlock } from "@/components/code-block";
 import { Button } from "@/components/ui/button";
@@ -12,7 +17,7 @@ interface ComponentShowcaseProps {
   name: string;
   path: string;
   description: string;
-  preview?: ReactNode;
+  preview?: ReactNode | ComponentType;
   code?: string;
 }
 
@@ -38,9 +43,11 @@ export function ComponentShowcase({
       {preview && (
         <div
           className="flex min-h-[120px] items-center justify-center overflow-x-auto border-b border-border/50 bg-background/30 p-6"
-          aria-label={`${name} preview`}
+          aria-label={`${name} ${t("preview")}`}
         >
-          <div className="w-full">{preview}</div>
+          <div className="w-full">
+            {typeof preview === "function" ? createElement(preview) : preview}
+          </div>
         </div>
       )}
 

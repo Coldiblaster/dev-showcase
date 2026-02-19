@@ -1,6 +1,7 @@
 "use client";
 
 import { Check, Copy, Terminal } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { useCopyFeedback } from "@/components/copy-feedback";
 import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
@@ -13,6 +14,7 @@ interface CommandBlockProps {
 
 /** Bloco estilo terminal com prompt $, botão copy e output opcional. */
 export function CommandBlock({ command, output, title }: CommandBlockProps) {
+  const t = useTranslations("global");
   const { copied, copy } = useCopyToClipboard();
   const { showFeedback } = useCopyFeedback();
 
@@ -27,13 +29,13 @@ export function CommandBlock({ command, output, title }: CommandBlockProps) {
         <div className="flex items-center gap-2">
           <Terminal className="h-3.5 w-3.5 text-primary/60" />
           <span className="font-mono text-xs text-muted-foreground">
-            {title ?? "terminal"}
+            {title ?? t("terminal")}
           </span>
         </div>
         <button
           onClick={handleCopy}
           className="rounded-md p-1.5 text-muted-foreground/50 transition-colors hover:bg-secondary hover:text-foreground"
-          aria-label={copied ? "Copiado" : "Copiar comando"}
+          aria-label={copied ? t("copied") : t("copyCode")}
         >
           {copied ? (
             <Check className="h-3.5 w-3.5 text-primary" />

@@ -15,6 +15,7 @@
   "faq": {
     "title": "Häufige Fragen"
   },
+  "fileTreeAriaLabel": "Projekt-Dateibaum",
   "nav": {
     "next": "Weiter: {step}"
   },

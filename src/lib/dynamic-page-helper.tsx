@@ -30,6 +30,11 @@ const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
       (m) => m.AiChatbotShowcase,
     ),
   ),
+  AnalyticsShowcase: dynamic(() =>
+    import("@/features/implementations/analytics-showcase").then(
+      (m) => m.AnalyticsShowcase,
+    ),
+  ),
   CodeReviewShowcase: dynamic(() =>
     import("@/features/implementations/code-review").then(
       (m) => m.CodeReviewShowcase,

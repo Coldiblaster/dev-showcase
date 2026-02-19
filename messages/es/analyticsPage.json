@@ -1,0 +1,203 @@
+{
+  "hero": {
+    "badge": "Implementación",
+    "title": "Analytics com Upstash Redis",
+    "subtitle": "Métricas en vivo sin Google Analytics",
+    "description": "Cómo implementamos el recuento de visitas a la página y visitantes únicos en esta plataforma: ViewTracker en el cliente, API de seguimiento y lectura, Redis con HyperLogLog y Sorted Set, limitación de velocidad y filtro de bots. Todo lo que el desarrollador necesita para replicar.",
+    "ctaMetrics": "Ver métricas en vivo",
+    "ctaDocs": "Docs Upstash",
+    "ctaMetricsAriaLabel": "Ir a la sección Métricas en vivo en esta página",
+    "ctaDocsAriaLabel": "Abrir documentación de Upstash en una nueva pestaña"
+  },
+  "sectionNav": {
+    "overview": "Descripción general",
+    "flow": "Flujo",
+    "track": "API Track",
+    "statsApi": "Estadísticas API",
+    "redis": "Redis",
+    "client": "Cliente",
+    "liveMetrics": "Métricas en vivo",
+    "checklist": "Lista de verificación"
+  },
+  "overview": {
+    "title": "Lo que se ha implementado",
+    "description": "Sistema ligero y respetuoso con la privacidad: sin cookies, solo IP en hash, datos agregados en tiempo real. Ideal para carteras o sitios web que quieran mostrar cifras reales sin depender de terceros.",
+    "items": [
+      {
+        "icon": "Gráfico de barras 3",
+        "title": "Páginas vistas y visitantes",
+        "description": "Total de visitas (INCR) y visitantes únicos a través de HyperLogLog en Redis."
+      },
+      {
+        "icon": "Base de datos",
+        "title": "Upstash Redis",
+        "description": "REST API sin servidor, generoso nivel gratuito. Compatible con Vercel y edge."
+      },
+      {
+        "icon": "Escudo",
+        "title": "Seguridad y privacidad",
+        "description": "Filtro de bots, limitación de velocidad, IP hash con salt. No se almacena ningún dato personal."
+      },
+      {
+        "icon": "Zap",
+        "title": "Rendimiento",
+        "description": "Pipeline Redis (1 ida y vuelta), caché en memoria y CDN. sendBeacon sin cliente."
+      }
+    ]
+  },
+  "flow": {
+    "title": "Flujo de implementación",
+    "description": "Desde el clic del usuario hasta los números en la pantalla: cómo lo implementa el desarrollador paso a paso.",
+    "steps": [
+      {
+        "title": "ViewTracker sin diseño",
+        "detail": "Componente cliente que utiliza usePathname y useEffect. Cada vez que cambia la ruta, envía un POST a /api/stats/track con { path }. Utiliza sessionStorage para no contar dos veces la misma página en la misma sesión."
+      },
+      {
+        "title": "POST /api/stats/track",
+        "detail": "Valida el cuerpo con Zod (cadena de ruta de 1 a 200 caracteres). Filtra los bots por User-Agent. Aplica un límite de velocidad por IP. Realiza un hash de la IP con SHA256 + salt (token Redis). Ejecuta el pipeline: INCR stats:views, PFADD stats:visitors, ZINCRBY stats:pages."
+      },
+      {
+        "title": "GET /api/stats",
+        "detail": "Límite de velocidad de lectura. Caché en memoria 60 s. Si falla, canalización Redis: GET vistas, PFCOUNT visitantes, ZRANGE páginas 0 4 REV WITHSCORES. Monta JSON y devuelve con Cache-Control para CDN."
+      },
+      {
+        "title": "useSiteStats sin interfaz de usuario",
+        "detail": "El hook que recupera /api/stats expone stats, loading, error y retry. Hero y la página Contribuir consumen el hook y muestran visitantes, visualizaciones y las 5 páginas principales."
+      }
+    ]
+  },
+  "track": {
+    "title": "API de seguimiento",
+    "description": "Punto final POST que recibe la ruta de la página y persiste en Redis. Se ignoran los bots; la IP se convierte en hash para garantizar la privacidad.",
+    "codeTitle": "app/api/estadísticas/seguimiento/ruta.ts",
+    "highlights": [
+      "Filtro de bots por regex en User-Agent (Google, Bing, Selenium, etc.).",
+      "Límite de velocidad: 60 solicitudes/minuto por IP para evitar abusos.",
+      "Zod valida ruta (obligatorio, máximo 200 caracteres).",
+      "La IP se hash con SHA256(ip + REDIS_TOKEN).slice(0,16) — no almacena la IP real.",
+      "Pipeline: una única llamada de red para INCR, PFADD y ZINCRBY."
+    ]
+  },
+  "statsApi": {
+    "title": "API de lectura",
+    "description": "GET que devuelve visitas, visitantes y las 5 páginas más visitadas. La caché en memoria (60 s) y los encabezados para CDN reducen la carga en Redis.",
+    "highlights": [
+      "Caché en memoria con TTL de 60 segundos: varias solicitudes atendidas sin afectar a Redis.",
+      "Control de caché: s-maxage=60, stale-while-revalidate=300 para edge.",
+      "En caso de error, devuelve la caché antigua (X-Cache: STALE) si existe.",
+      "ZRANGE ... REV WITHSCORES devuelve la clasificación ya ordenada; análisis sintáctico en el bucle i += 2."
+    ]
+  },
+  "redis": {
+    "title": "Cliente Redis y modelo de datos",
+    "description": "Upstash Redis vía REST. Si las variables de entorno no existen, redis es nulo y las rutas realizan una degradación elegante (devuelven ok o ceros).",
+    "keys": [
+      {
+        "key": "estadísticas: visitas",
+        "type": "Cadena (INCR)",
+        "desc": "Contador global de visitas a la página. Cada seguimiento aumenta en 1."
+      },
+      {
+        "key": "estadísticas: visitantes",
+        "type": "HyperLogLog",
+        "desc": "Estimación de visitantes únicos. PFADD con hash de IP; PFCOUNT devuelve el cardinal aproximado (~12 KB fijos)."
+      },
+      {
+        "key": "Estadísticas: Páginas",
+        "type": "Conjunto ordenado",
+        "desc": "Clasificación de páginas. Miembro = ruta, puntuación = número de visitas. ZINCRBY sin seguimiento; ZRANGE 0 4 REV WITHSCORES sin GET."
+      }
+    ]
+  },
+  "client": {
+    "title": "Cliente: ViewTracker y useSiteStats",
+    "description": "ViewTracker inicia el seguimiento con sendBeacon (o fetch keepalive). useSiteStats busca los datos para mostrarlos en la interfaz de usuario.",
+    "highlights": [
+      "sendBeacon no bloquea la navegación y garantiza el envío incluso si el usuario cierra la pestaña.",
+      "sessionStorage evita contar la misma página dos veces en la misma sesión (por ruta).",
+      "Ruta normalizada: elimina el prefijo de locale (pt-BR, en, es, de) para mantener las claves consistentes.",
+      "Hook devuelve loading, error y retry — La interfaz de usuario puede mostrar un esqueleto, un mensaje de error o un botón para volver a intentarlo."
+    ]
+  },
+  "checklist": {
+    "title": "Lista de verificación para el desarrollador",
+    "description": "Pasos para replicar la implementación en su proyecto.",
+    "items": [
+      {
+        "label": "Crear cuenta Upstash y banco Redis",
+        "done": true
+      },
+      {
+        "label": "Configurar UPSTASH_REDIS_REST_URL y TOKEN",
+        "done": true
+      },
+      {
+        "label": "Implementar lib/redis.ts con degradación gradual",
+        "done": true
+      },
+      {
+        "label": "Crear POST /api/stats/track (Zod, filtro de bot, límite de velocidad)",
+        "done": true
+      },
+      {
+        "label": "Crear GET /api/stats (caché + canalización)",
+        "done": true
+      },
+      {
+        "label": "ViewTracker sin diseño + useSiteStats sin gancho",
+        "done": true
+      },
+      {
+        "label": "Mostrar métricas en la página de inicio y/o en la página de contribución.",
+        "done": true
+      }
+    ]
+  },
+  "liveMetrics": {
+    "badge": "Métricas en vivo",
+    "title": "Números en tiempo real",
+    "description": "Los mismos datos que entrega la API: visitantes únicos, vistas de página y páginas más visitadas. Demo en vivo de esta implementación.",
+    "visitors": "Visitantes únicos",
+    "pageViews": "Vistas",
+    "topPages": "Páginas más visitadas",
+    "viewCount": "{count} vistas",
+    "loading": "Cargando métricas...",
+    "error": "No se pudieron cargar las métricas.",
+    "retry": "Reintentar",
+    "noData": "Las métricas aparecerán con las primeras visitas.",
+    "pageNames": {
+      "/": "Inicio",
+      "/implementacoes": "Implementaciones",
+      "/implementacoes/i18n": "i18n Showcase",
+      "/implementacoes/seo": "SEO Showcase",
+      "/implementacoes/ai-chatbot": "AI Chatbot",
+      "/implementacoes/analytics": "Analytics Redis",
+      "/dicas": "Consejos y guías",
+      "/dicas/ai-tips": "Consejos de IA",
+      "/dicas/tailwind-tips": "Tailwind CSS",
+      "/dicas/react-query-tips": "React Query",
+      "/dicas/dev-resources": "Recursos para devs",
+      "/dicas/security-tips": "Seguridad",
+      "/dicas/typescript-patterns": "TypeScript Patterns",
+      "/dicas/git-workflow": "Git Workflow",
+      "/dicas/react-patterns": "React Patterns",
+      "/ferramentas": "Herramientas",
+      "/ferramentas/code-review": "AI Code Reviewer",
+      "/ferramentas/regex": "Regex Playground",
+      "/contribua": "Contribuir",
+      "/contribua/arquitetura": "Arquitectura",
+      "/contribua/tech-stack": "Tech Stack",
+      "/contribua/design-system": "Design System",
+      "/contribua/api": "API Reference",
+      "/contribua/acessibilidade": "Accesibilidad",
+      "/contribua/tutorial": "Tutorial"
+    }
+  },
+  "cta": {
+    "title": "Ver métricas en vivo",
+    "description": "Las métricas están en la home (insignias), en la página Contribuir y en esta página (sección Métricas en vivo arriba).",
+    "button": "Ver implementaciones",
+    "buttonLink": "/implementacoes"
+  }
+}

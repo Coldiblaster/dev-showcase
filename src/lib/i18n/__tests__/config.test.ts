@@ -42,8 +42,8 @@ describe("i18n/config", () => {
   });
 
   describe("COOKIE_NAME", () => {
-    it("deve ser safer_locale", () => {
-      expect(COOKIE_NAME).toBe("safer_locale");
+    it("deve ser devshowcase_locale", () => {
+      expect(COOKIE_NAME).toBe("devshowcase_locale");
     });
   });
 
@@ -93,7 +93,7 @@ describe("i18n/config", () => {
 
   describe("getCookieName()", () => {
     it("deve retornar o nome correto do cookie", () => {
-      expect(getCookieName()).toBe("safer_locale");
+      expect(getCookieName()).toBe("devshowcase_locale");
     });
 
     it("deve retornar o mesmo valor de COOKIE_NAME", () => {

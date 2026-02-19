@@ -69,6 +69,10 @@
       "title": "KI-Chatbot mit OpenAI",
       "description": "KI-Chatbot mit Streaming, System-Prompt und Next.js App Router"
     },
+    "analytics": {
+      "title": "Analytics com Upstash Redis",
+      "description": "Seitenaufrufe, einzelne Besucher und Top-Seiten – Redis, Bot-Filter und Ratenbegrenzung"
+    },
     "ai-tips": {
       "title": "KI-Tipps",
       "description": "Prompts, Workflows und KI-Tools für Entwickler"

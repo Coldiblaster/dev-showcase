@@ -15,6 +15,7 @@
   "faq": {
     "title": "Dúvidas comuns"
   },
+  "fileTreeAriaLabel": "Árvore de arquivos do projeto",
   "nav": {
     "next": "Próximo: {step}"
   },

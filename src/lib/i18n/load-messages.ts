@@ -5,6 +5,7 @@
 const NAMESPACES = [
   "about",
   "ai",
+  "analyticsPage",
   "aiChatbotPage",
   "aiInnovation",
   "chat",

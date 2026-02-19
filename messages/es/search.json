@@ -69,6 +69,10 @@
       "title": "AI Chatbot con OpenAI",
       "description": "Chatbot IA con streaming, system prompt y Next.js App Router"
     },
+    "analytics": {
+      "title": "Analytics com Upstash Redis",
+      "description": "Páginas vistas, visitantes únicos y páginas más visitadas — Redis, filtro de bots y limitación de velocidad"
+    },
     "ai-tips": {
       "title": "Consejos de IA",
       "description": "Prompts, workflows y herramientas de IA para desarrolladores"

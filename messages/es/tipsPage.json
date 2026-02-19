@@ -208,12 +208,67 @@
       }
     ]
   },
+  "efficientUse": {
+    "intro": {
+      "title": "Uso eficiente y económico de la IA",
+      "purpose": "Esta sección explica buenas prácticas para usar la IA de forma productiva sin desperdiciar tokens ni costes innecesarios — en la aplicación y en el día a día."
+    },
+    "sections": {
+      "consciousUse": {
+        "title": "Uso consciente de modelos",
+        "description": "Elige el modelo adecuado para la tarea: modelos más pequeños (ej. GPT-4o Mini, Claude Haiku) para tareas simples como revisión de código, formato o sugerencias. Reserva modelos premium (GPT-4o, Claude Opus) para razonamiento complejo, arquitectura o análisis largos. Consulta la documentación de coste por token de tu proveedor."
+      },
+      "reduceTokens": {
+        "title": "Cómo reducir el consumo de tokens",
+        "description": "Envía solo el contexto necesario: fragmentos relevantes en lugar del archivo completo; resume el error en lugar de pegar logs enormes. Usa system prompts cortos y reutiliza instrucciones. Para análisis de código, envía funciones aisladas. Limita el historial de conversación (ej. últimas N mensajes) en chats largos."
+      },
+      "structuredPrompts": {
+        "title": "Estrategia de prompts estructurados",
+        "description": "Estructura el prompt en: (1) contexto en una frase, (2) tarea clara, (3) restricciones o formato deseado. Ejemplo: 'Contexto: componente React con estado local. Tarea: convertir a useReducer manteniendo el mismo comportamiento. Restricción: no usar librerías externas.' Los prompts estructurados dan mejores respuestas y evitan idas y venidas."
+      },
+      "premiumModels": {
+        "title": "Cuándo usar modelos premium",
+        "description": "Usa modelos premium cuando: refactorización arquitectónica de un módulo entero, revisión de seguridad en código sensible, generación de documentación larga y coherente, o cuando el modelo pequeño ya falló dos veces en la misma tarea. Para bugs aislados, tests unitarios y consejos rápidos, los modelos pequeños suelen bastar."
+      },
+      "commonErrors": {
+        "title": "Errores comunes",
+        "description": "Evita prácticas que disparan coste y tiempo sin necesidad:",
+        "examples": [
+          "Analizar el repositorio entero de una vez — elige un módulo o flujo y envía solo lo necesario.",
+          "Enviar miles de líneas de log — extrae el stack trace y el mensaje relevante.",
+          "Repetir el mismo prompt en bucle — refina el prompt o cambia de modelo/herramienta.",
+          "Usar modelo premium para tareas triviales (ej. corregir typo, generar comentario)."
+        ]
+      }
+    },
+    "practices": {
+      "title": "Lista de buenas prácticas",
+      "items": [
+        "Define un presupuesto o límite de uso (mensual o por proyecto) y monitóralo.",
+        "Prefiere prompts cortos e iterativos a un único prompt gigante.",
+        "Usa caché o respuestas predefinidas para preguntas frecuentes en tu aplicación.",
+        "Documenta los prompts que funcionan bien para reutilizar en el equipo.",
+        "Revisa las respuestas antes de aplicar en producción; evita copiar y pegar sin criterio."
+      ]
+    },
+    "alerts": {
+      "excessiveUse": {
+        "title": "Cuidado con el uso excesivo",
+        "description": "El uso excesivo de IA puede aumentar los costes rápidamente y crear dependencia de modelos que cambian de precio o disponibilidad. Usa con criterio: automatiza lo repetitivo, piensa en lo único."
+      }
+    },
+    "cta": {
+      "title": "Usa la IA con responsabilidad",
+      "description": "Aplicar estas prácticas ayuda a mantener costes predecibles y a sacar el máximo partido de la herramienta sin abusar. En tu código, implementa rate limiting, monitoriza el consumo y elige modelos adecuados por endpoint."
+    }
+  },
   "cta": {
     "title": "¿Quieres intercambiar ideas?",
     "description": "Si te han gustado estos consejos, hablemos sobre cómo aplicar la IA en tu flujo de desarrollo.",
     "button": "Volver a los Consejos"
   },
   "sectionNav": {
-    "tools": "Herramientas"
+    "tools": "Herramientas",
+    "efficientUse": "Uso eficiente"
   }
 }

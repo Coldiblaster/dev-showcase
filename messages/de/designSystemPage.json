@@ -1,5 +1,9 @@
 {
-  "showcase": { "viewCode": "Code anzeigen", "hideCode": "Code ausblenden" },
+  "showcase": {
+    "viewCode": "Code anzeigen",
+    "hideCode": "Code ausblenden",
+    "preview": "Vorschau"
+  },
   "meta": {
     "title": "Design System | Dev Showcase",
     "description": "Vollständiger Komponentenkatalog des Dev Showcase — Live-Preview, Props, Varianten und Verwendungsbeispiele."
@@ -160,6 +164,74 @@
         "description": "Erweiterbarer Link zur Anzeige des Quellcodes der Komponente.",
         "path": "src/components/view-source.tsx"
       }
+    }
+  },
+  "previews": {
+    "layout": {
+      "badge": "Badge",
+      "heroTitle": "Hero-Titel",
+      "descriptionText": "Beschreibungstext hier",
+      "callToAction": "Call to Action",
+      "variantDefault": "variant=\"default\"",
+      "variantAlternate": "variant=\"alternate\"",
+      "section1": "Abschnitt 1",
+      "section2": "Abschnitt 2",
+      "section3": "Abschnitt 3",
+      "intro": "Intro",
+      "features": "Features",
+      "docs": "Docs"
+    },
+    "feedback": {
+      "fadeUp": "fade up",
+      "delay03": "delay=0.3",
+      "replay": "Wiederholen",
+      "copied": "Kopiert!",
+      "copyToClipboard": "In Zwischenablage kopieren",
+      "animatedViewport": "Animiert beim Viewport-Eintritt",
+      "delayedAnimation": "Verzögerte Animation"
+    },
+    "primitives": {
+      "default": "Default",
+      "destructive": "Destructive",
+      "outline": "Outline",
+      "secondary": "Secondary",
+      "ghost": "Ghost",
+      "link": "Link",
+      "small": "Small",
+      "large": "Large",
+      "typeSomething": "Tippen Sie etwas...",
+      "disabled": "Deaktiviert",
+      "cardTitle": "Karten-Titel",
+      "cardDescription": "Karten-Beschreibung",
+      "contentGoesHere": "Inhalt hier.",
+      "action": "Aktion",
+      "sectionA": "Abschnitt A",
+      "sectionB": "Abschnitt B",
+      "sectionC": "Abschnitt C",
+      "preview": "Vorschau",
+      "code": "Code",
+      "docs": "Docs",
+      "previewContent": "Vorschau-Inhalt",
+      "codeContent": "Code-Inhalt",
+      "docsContent": "Dokumentations-Inhalt"
+    },
+    "content": {
+      "feature": "Feature",
+      "description": "Beschreibung",
+      "deploy": "Deploy",
+      "shipFast": "Schnell ausliefern",
+      "fork": "Fork",
+      "cloneRepo": "Repo klonen",
+      "shipToProd": "In Produktion ausliefern",
+      "exampleTsfx": "example.tsx",
+      "renderedContent": "Gerenderter Inhalt",
+      "source": "Quellcode"
+    },
+    "navigation": {
+      "home": "Home",
+      "content": "Content",
+      "search": "Suchen...",
+      "skipToContent": "Zum Inhalt springen"
     }
   }
 }

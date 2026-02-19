@@ -191,9 +191,11 @@ PÁGINAS — Guias e dicas para devs (8):
 - ${PERSONAL.siteUrl}/dicas/git-workflow — Git Workflow (branching, conventional commits, comandos, cheat sheet)
 - ${PERSONAL.siteUrl}/dicas/react-patterns — React Design Patterns (Compound Components, Custom Hooks, performance)
 
-PÁGINAS — Contribua / Documentação (6 páginas para contribuidores):
+PÁGINAS — Contribua / Documentação (7 páginas para contribuidores):
 
-- ${PERSONAL.siteUrl}/contribua — Hub principal de contribuição. Seções: História (timeline 13-17/Fev), O que pode fazer (guias, ferramentas, melhorar existentes, traduções, docs), Como funciona (Git Flow em 5 passos), Padrões (Conventional Commits, estrutura de pastas, i18n, a11y, qualidade), Contributors dinâmicos do GitHub.
+- ${PERSONAL.siteUrl}/contribua — Hub principal de contribuição. Seções: História (timeline 13-17/Fev), O que pode fazer (guias, ferramentas, melhorar existentes, traduções, docs), Como funciona (Git Flow em 5 passos), Padrões (Conventional Commits, estrutura de pastas, i18n, a11y, qualidade), Contributors dinâmicos do GitHub, métricas ao vivo.
+
+- ${PERSONAL.siteUrl}/contribua/tutorial — Tutorial interativo passo a passo para contribuir. Duas trilhas: criar feature nova (página dinâmica ou standalone) ou melhorar existente. 9 passos: ambiente (fork, clone, branch), estrutura do projeto, criar/registrar conteúdo (content.ts, dynamic-page-helper, search, iconMap), desenvolver, i18n, acessibilidade, qualidade (lint/test/build), Pull Request. FAQs em cada etapa.
 
 - ${PERSONAL.siteUrl}/contribua/arquitetura — Estrutura: src/app/ (rotas App Router), src/features/ (domínios isolados), src/components/ (reutilizáveis), src/lib/ (utilitários), messages/ (i18n JSONs), src/hooks/ (custom hooks). Padrões: Feature Slices (cada feature isolada com index.tsx), Barrel Exports, Server por padrão (use client só quando necessário), namespaces i18n por página. Fluxo de dados: i18n (cookie → load-messages → provider → useTranslations), APIs (fetch → rate limit → handler → cache), conteúdo (content.ts → filter → generateStaticParams → render). Decisões: App Router (Server Components nativos, streaming), next-intl (tipagem forte, sem rewrites), Tailwind v4 (engine novo, dark mode nativo), Framer Motion (variants reutilizáveis, viewport), Single repo (simplicidade pra contribuidores).
 
@@ -205,6 +207,6 @@ PÁGINAS — Contribua / Documentação (6 páginas para contribuidores):
 
 - ${PERSONAL.siteUrl}/contribua/acessibilidade — 8 recursos: Skip Link (Tab no topo), HTML semântico (header/main/nav/section/footer, hierarquia h1→h2→h3), ARIA (roles, labels, aria-live para dinâmicos), navegação por teclado (Tab/Enter/Escape, foco visível), focus management (traps em modais/menus, retorno ao elemento de origem), contraste WCAG AA, texto responsivo (rem/em, zoom 200%), reduced motion (Framer Motion respeita prefers-reduced-motion). Checklist 10 itens para PRs. Ferramentas: Lighthouse, axe DevTools, screen readers (NVDA/VoiceOver/Orca), teste de Tab, contrast checker. Padrões: WCAG 2.1 AA, WAI-ARIA 1.2.
 
-NÚMEROS: 3 implementações + 2 ferramentas + 8 guias + 6 páginas de documentação/contribuição = 19 conteúdos técnicos, 4 idiomas.
+NÚMEROS: 3 implementações + 2 ferramentas + 8 guias + 7 páginas de documentação/contribuição = 20 conteúdos técnicos, 4 idiomas.
 Objetivo: ir além do portfolio — mostrar conhecimento real em produção + ajudar outros devs + ser uma plataforma comunitária open source com documentação completa pra qualquer dev contribuir.`;
 }

@@ -9,6 +9,7 @@ import { SectionDivider } from "@/components/section-divider";
 import { SectionNav } from "@/components/section-nav";
 
 import { CopilotSection } from "./copilot-section";
+import { EfficientUseSection } from "./efficient-use-section";
 import { MindsetSection } from "./mindset-section";
 import { PromptsSection } from "./prompts-section";
 import { ToolsSection } from "./tools-section";
@@ -37,6 +38,7 @@ export function AITips() {
           { id: "prompts", label: "Prompts" },
           { id: "tools", label: t("sectionNav.tools") },
           { id: "mindset", label: "Mindset" },
+          { id: "efficient-use", label: t("sectionNav.efficientUse") },
         ]}
       />
 
@@ -49,6 +51,8 @@ export function AITips() {
       <ToolsSection />
       <SectionDivider />
       <MindsetSection />
+      <SectionDivider />
+      <EfficientUseSection />
 
       <CTASection
         icon={BookOpen}

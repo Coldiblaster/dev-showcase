@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { BarChart3, Eye, RefreshCw, TrendingUp, Users } from "lucide-react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { AnimatedSection } from "@/components/animated-section";
 import { SectionWrapper } from "@/components/section-wrapper";
@@ -12,16 +12,45 @@ import { Button } from "@/components/ui/button";
 import { useSiteStats } from "@/hooks/use-site-stats";
 import { fadeUp, stagger } from "@/lib/animation-variants";
 
-/** Seção com stats ao vivo da plataforma (visitantes, page views, top pages). */
-export function PlatformStatsSection() {
-  const t = useTranslations("contributePage.platformStats");
-  const tp = useTranslations("contributePage.platformStats.pageNames");
+/** Namespaces que possuem a estrutura liveMetrics (badge, title, visitors, pageViews, pageNames, etc.). */
+export type LiveMetricsTranslationNamespace =
+  | "contributePage.platformStats"
+  | "analyticsPage.liveMetrics";
+
+export interface LiveMetricsSectionProps {
+  /** Namespace das traduções. */
+  translationNamespace: LiveMetricsTranslationNamespace;
+  /** Id da seção para âncora e SectionWrapper. */
+  sectionId?: string;
+  /** Se true, envolve o conteúdo em SectionWrapper. Default: true. */
+  wrapWithSectionWrapper?: boolean;
+}
+
+/**
+ * Seção reutilizável com métricas ao vivo: visitantes, page views e top páginas.
+ *
+ * Usa useSiteStats() e exibe loading, erro, estado vazio ou os dados.
+ * Traduções vêm do namespace informado (mesma estrutura: badge, title, description,
+ * visitors, pageViews, topPages, viewCount, loading, error, retry, noData, pageNames).
+ */
+export function LiveMetricsSection({
+  translationNamespace,
+  sectionId = "live-metrics",
+  wrapWithSectionWrapper = true,
+}: LiveMetricsSectionProps) {
+  const t = useTranslations(translationNamespace);
+  const tp = useTranslations(
+    `${translationNamespace}.pageNames` as
+      | "contributePage.platformStats.pageNames"
+      | "analyticsPage.liveMetrics.pageNames",
+  );
+  const locale = useLocale();
   const { stats, loading, error, retry } = useSiteStats();
 
   const hasData = stats.visitors > 0 || stats.views > 0;
 
-  return (
-    <SectionWrapper id="platform-stats">
+  const content = (
+    <>
       <AnimatedSection>
         <div className="mx-auto mb-12 max-w-2xl text-center">
           <Badge
@@ -84,14 +113,14 @@ export function PlatformStatsSection() {
           >
             <div
               className="rounded-2xl border border-border bg-card/50 p-6 text-center"
-              aria-label={`${stats.visitors.toLocaleString()} ${t("visitors")}`}
+              aria-label={`${stats.visitors.toLocaleString(locale)} ${t("visitors")}`}
             >
               <Users
                 className="mx-auto mb-2 h-6 w-6 text-primary"
                 aria-hidden="true"
               />
               <p className="text-3xl font-bold tabular-nums md:text-4xl">
-                {stats.visitors.toLocaleString()}
+                {stats.visitors.toLocaleString(locale)}
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
                 {t("visitors")}
@@ -99,14 +128,14 @@ export function PlatformStatsSection() {
             </div>
             <div
               className="rounded-2xl border border-border bg-card/50 p-6 text-center"
-              aria-label={`${stats.views.toLocaleString()} ${t("pageViews")}`}
+              aria-label={`${stats.views.toLocaleString(locale)} ${t("pageViews")}`}
             >
               <Eye
                 className="mx-auto mb-2 h-6 w-6 text-primary"
                 aria-hidden="true"
               />
               <p className="text-3xl font-bold tabular-nums md:text-4xl">
-                {stats.views.toLocaleString()}
+                {stats.views.toLocaleString(locale)}
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
                 {t("pageViews")}
@@ -136,13 +165,13 @@ export function PlatformStatsSection() {
                         {i + 1}
                       </span>
                       <span className="text-sm font-medium">
-                        {tp.has(page.path as never)
-                          ? tp(page.path as never)
-                          : page.path}
+                        {tp(page.path as never) || page.path}
                       </span>
                     </span>
                     <span className="text-sm tabular-nums text-muted-foreground">
-                      {t("viewCount", { count: page.views.toLocaleString() })}
+                      {t("viewCount", {
+                        count: page.views.toLocaleString(locale),
+                      })}
                     </span>
                   </Link>
                 ))}
@@ -151,6 +180,16 @@ export function PlatformStatsSection() {
           )}
         </motion.div>
       )}
-    </SectionWrapper>
+    </>
+  );
+
+  if (wrapWithSectionWrapper) {
+    return <SectionWrapper id={sectionId}>{content}</SectionWrapper>;
+  }
+
+  return (
+    <section id={sectionId} className="px-6 py-12 md:py-20">
+      <div className="mx-auto max-w-5xl">{content}</div>
+    </section>
   );
 }

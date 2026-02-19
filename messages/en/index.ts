@@ -3,6 +3,7 @@ import accessibilityPage from "./accessibilityPage.json";
 import ai from "./ai.json";
 import aiChatbotPage from "./aiChatbotPage.json";
 import aiInnovation from "./aiInnovation.json";
+import analyticsPage from "./analyticsPage.json";
 import apiDocsPage from "./apiDocsPage.json";
 import architecturePage from "./architecturePage.json";
 import chat from "./chat.json";
@@ -47,6 +48,7 @@ export default {
   global,
   about,
   accessibilityPage,
+  analyticsPage,
   aiChatbotPage,
   nav,
   ai,

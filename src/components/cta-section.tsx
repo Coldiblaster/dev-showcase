@@ -66,7 +66,10 @@ export function CTASection({
       <div className="mx-auto max-w-3xl">
         <AnimatedSection>
           <div className="rounded-2xl border border-primary/20 bg-primary/5 p-8 text-center md:p-12">
-            <Icon className="mx-auto mb-4 h-8 w-8 text-primary" />
+            <Icon
+              className="mx-auto mb-4 h-8 w-8 text-primary"
+              aria-hidden="true"
+            />
             <h2 className="mb-3 text-xl font-bold text-foreground md:text-2xl">
               {title}
             </h2>

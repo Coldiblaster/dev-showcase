@@ -1,0 +1,203 @@
+{
+  "hero": {
+    "badge": "Implementation",
+    "title": "Analytics with Upstash Redis",
+    "subtitle": "Live metrics without Google Analytics",
+    "description": "How we implement page view and unique visitor counting on this platform: ViewTracker on the client, track and read APIs, Redis with HyperLogLog and Sorted Set, rate limiting, and bot filtering. Everything a developer needs to replicate.",
+    "ctaMetrics": "View live metrics",
+    "ctaDocs": "Docs Upstash",
+    "ctaMetricsAriaLabel": "Go to Live metrics section on this page",
+    "ctaDocsAriaLabel": "Open Upstash documentation in a new tab"
+  },
+  "sectionNav": {
+    "overview": "Overview",
+    "flow": "Flow",
+    "track": "API Track",
+    "statsApi": "API Stats",
+    "redis": "Redis",
+    "client": "Client",
+    "liveMetrics": "Live metrics",
+    "checklist": "Checklist"
+  },
+  "overview": {
+    "title": "What has been implemented",
+    "description": "Lightweight and privacy-friendly system: no cookies, only hashed IP addresses, real-time aggregated data. Ideal for portfolios or websites that want to show real numbers without relying on third parties.",
+    "items": [
+      {
+        "icon": "BarChart3",
+        "title": "Page views and visitors",
+        "description": "Total views (INCR) and unique visitors via HyperLogLog in Redis."
+      },
+      {
+        "icon": "Database",
+        "title": "Upstash Redis",
+        "description": "Serverless REST API, generous free tier. Compatible with Vercel and edge."
+      },
+      {
+        "icon": "Shield",
+        "title": "Security and privacy",
+        "description": "Bot filter, rate limiting, salted IP hashing. No personal data stored."
+      },
+      {
+        "icon": "Zap",
+        "title": "Performance",
+        "description": "Pipeline Redis (1 round-trip), cache in-memory e CDN. sendBeacon no client."
+      }
+    ]
+  },
+  "flow": {
+    "title": "Implementation flow",
+    "description": "From the user's click to the numbers on the screen: how the developer implements it step by step.",
+    "steps": [
+      {
+        "title": "ViewTracker no layout",
+        "detail": "Client component that uses usePathname and useEffect. Each time the path changes, it sends a POST to /api/stats/track with { path }. It uses sessionStorage to avoid counting the same page twice in the same session."
+      },
+      {
+        "title": "POST /api/stats/track",
+        "detail": "Valida body com Zod (path string 1–200 chars). Filtra bots por User-Agent. Aplica rate limit por IP. Faz hash do IP com SHA256 + salt (token Redis). Executa pipeline: INCR stats:views, PFADD stats:visitors, ZINCRBY stats:pages."
+      },
+      {
+        "title": "GET /api/stats",
+        "detail": "Rate limit de leitura. Cache in-memory 60s. Se miss, pipeline Redis: GET views, PFCOUNT visitors, ZRANGE pages 0 4 REV WITHSCORES. Monta JSON e retorna com Cache-Control para CDN."
+      },
+      {
+        "title": "useSiteStats no UI",
+        "detail": "Hook that fetches /api/stats, exposes stats, loading, error, and retry. Hero and Contribute pages consume the hook and display visitors, views, and top 5 pages."
+      }
+    ]
+  },
+  "track": {
+    "title": "Tracking API",
+    "description": "POST endpoint that receives the page path and persists in Redis. Bots are ignored; IP is hashed for privacy.",
+    "codeTitle": "app/api/stats/track/route.ts",
+    "highlights": [
+      "Bot filter by regex in User-Agent (Google, Bing, Selenium, etc.).",
+      "Rate limit: 60 requests per minute per IP address to prevent abuse.",
+      "Zod validates path (required, max 200 characters).",
+      "IP is hashed with SHA256(ip + REDIS_TOKEN).slice(0,16) — does not store the actual IP.",
+      "Pipeline: a single network call for INCR, PFADD, and ZINCRBY."
+    ]
+  },
+  "statsApi": {
+    "title": "Read API",
+    "description": "GET that returns views, visitors, and top 5 pages. In-memory cache (60s) and headers for CDN reduce load on Redis.",
+    "highlights": [
+      "In-memory cache with 60-second TTL — multiple requests served without hitting Redis.",
+      "Cache-Control: s-maxage=60, stale-while-revalidate=300 para edge.",
+      "In case of error, returns old cache (X-Cache: STALE) if it exists.",
+      "ZRANGE ... REV WITHSCORES returns the ranking already sorted; parsing in the loop i += 2."
+    ]
+  },
+  "redis": {
+    "title": "Redis client and data model",
+    "description": "Upstash Redis via REST. If the env vars do not exist, redis is null and the routes perform graceful degradation (return ok or zeros).",
+    "keys": [
+      {
+        "key": "stats:views",
+        "type": "String (INCR)",
+        "desc": "Global page view counter. Each track increments by 1."
+      },
+      {
+        "key": "stats:visitors",
+        "type": "HyperLogLog",
+        "desc": "Estimated unique visitors. PFADD with IP hash; PFCOUNT returns the approximate cardinality (~12 KB fixed)."
+      },
+      {
+        "key": "Statistics: Pages",
+        "type": "Sorted Set",
+        "desc": "Ranking de páginas. Member = path, score = número de views. ZINCRBY no track; ZRANGE 0 4 REV WITHSCORES no GET."
+      }
+    ]
+  },
+  "client": {
+    "title": "Client: ViewTracker and useSiteStats",
+    "description": "ViewTracker triggers tracking with sendBeacon (or fetch keepalive). useSiteStats fetches the data to display in the UI.",
+    "highlights": [
+      "sendBeacon does not block navigation and guarantees delivery even if the user closes the tab.",
+      "sessionStorage prevents counting the same page twice in the same session (by path).",
+      "Normalized path: removes locale prefix (pt-BR, en, es, de) to maintain consistent keys.",
+      "Hook returns loading, error, and retry — UI can display skeleton, error message, or retry button."
+    ]
+  },
+  "checklist": {
+    "title": "Checklist for the developer",
+    "description": "Steps to replicate the implementation in your project.",
+    "items": [
+      {
+        "label": "Create Upstash account and Redis database",
+        "done": true
+      },
+      {
+        "label": "Configure UPSTASH_REDIS_REST_URL and TOKEN",
+        "done": true
+      },
+      {
+        "label": "Implementar lib/redis.ts com graceful degradation",
+        "done": true
+      },
+      {
+        "label": "Criar POST /api/stats/track (Zod, bot filter, rate limit)",
+        "done": true
+      },
+      {
+        "label": "Create GET /api/stats (cache + pipeline)",
+        "done": true
+      },
+      {
+        "label": "ViewTracker no layout + useSiteStats no hook",
+        "done": true
+      },
+      {
+        "label": "Display metrics on the home and/or contribution page",
+        "done": true
+      }
+    ]
+  },
+  "liveMetrics": {
+    "badge": "Live metrics",
+    "title": "Real-time numbers",
+    "description": "The same data the API serves: unique visitors, page views, and top pages. Live demo of this implementation.",
+    "visitors": "Unique visitors",
+    "pageViews": "Page views",
+    "topPages": "Most visited pages",
+    "viewCount": "{count} views",
+    "loading": "Loading metrics...",
+    "error": "Could not load metrics.",
+    "retry": "Try again",
+    "noData": "Metrics will appear with the first visits.",
+    "pageNames": {
+      "/": "Home",
+      "/implementacoes": "Implementations",
+      "/implementacoes/i18n": "i18n Showcase",
+      "/implementacoes/seo": "SEO Showcase",
+      "/implementacoes/ai-chatbot": "AI Chatbot",
+      "/implementacoes/analytics": "Analytics Redis",
+      "/dicas": "Tips & Guides",
+      "/dicas/ai-tips": "AI Tips",
+      "/dicas/tailwind-tips": "Tailwind CSS",
+      "/dicas/react-query-tips": "React Query",
+      "/dicas/dev-resources": "Dev Resources",
+      "/dicas/security-tips": "Security",
+      "/dicas/typescript-patterns": "TypeScript Patterns",
+      "/dicas/git-workflow": "Git Workflow",
+      "/dicas/react-patterns": "React Patterns",
+      "/ferramentas": "Tools",
+      "/ferramentas/code-review": "AI Code Reviewer",
+      "/ferramentas/regex": "Regex Playground",
+      "/contribua": "Contribute",
+      "/contribua/arquitetura": "Architecture",
+      "/contribua/tech-stack": "Tech Stack",
+      "/contribua/design-system": "Design System",
+      "/contribua/api": "API Reference",
+      "/contribua/acessibilidade": "Accessibility",
+      "/contribua/tutorial": "Tutorial"
+    }
+  },
+  "cta": {
+    "title": "View live metrics",
+    "description": "Metrics are on the home (badges), the Contribute page, and on this page (Live metrics section above).",
+    "button": "View implementations",
+    "buttonLink": "/implementacoes"
+  }
+}

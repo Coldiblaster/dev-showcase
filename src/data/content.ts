@@ -34,6 +34,14 @@ export const CONTENT_ITEMS: ContentItem[] = [
     category: "implementation",
   },
   {
+    slug: "analytics",
+    title: "Analytics com Upstash Redis — Métricas ao vivo",
+    description:
+      "Como implementar contagem de page views e visitantes únicos com Upstash Redis, HyperLogLog, rate limiting e filtro de bots. Passo a passo para o dev.",
+    component: "AnalyticsShowcase",
+    category: "implementation",
+  },
+  {
     slug: "code-review",
     title: "AI Code Reviewer — Análise de Código com IA",
     description:
@@ -53,7 +61,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
     slug: "ai-tips",
     title: "Dicas de IA para Desenvolvedores",
     description:
-      "Guia prático de ferramentas IA: v0 by Vercel, GitHub Copilot, prompt engineering e ferramentas essenciais para produtividade dev.",
+      "Guia prático de ferramentas IA, uso consciente de tokens e modelos: v0, Copilot, prompt engineering, boas práticas e ferramentas para produtividade dev.",
     component: "AITips",
     category: "guide",
   },

@@ -59,7 +59,7 @@ export const formats = {
 
 /**
  * Resolve o locale do usuário seguindo a ordem de prioridade:
- * 1. Cookie `safer_locale` (escolha explícita do usuário)
+ * 1. Cookie `devshowcase_locale` (escolha explícita do usuário)
  * 2. Idioma do navegador via header `Accept-Language`
  * 3. Fallback para `pt-BR` (padrão)
  *

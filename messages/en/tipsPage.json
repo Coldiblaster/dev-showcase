@@ -208,12 +208,67 @@
       }
     ]
   },
+  "efficientUse": {
+    "intro": {
+      "title": "Efficient and cost-effective use of AI",
+      "purpose": "This section explains best practices for using AI productively without wasting tokens or incurring unnecessary costs — in the app and in daily use."
+    },
+    "sections": {
+      "consciousUse": {
+        "title": "Conscious use of models",
+        "description": "Choose the right model for the task: smaller models (e.g. GPT-4o Mini, Claude Haiku) for simple tasks like code review, formatting, or suggestions. Reserve premium models (GPT-4o, Claude Opus) for complex reasoning, architecture, or long analyses. Check your provider's per-token cost documentation."
+      },
+      "reduceTokens": {
+        "title": "How to reduce token consumption",
+        "description": "Send only the context you need: relevant snippets instead of the whole file; summarize the error instead of pasting huge logs. Use short system prompts and reuse instructions. For code analysis, send isolated functions. Limit conversation history (e.g. last N messages) in long chats."
+      },
+      "structuredPrompts": {
+        "title": "Structured prompt strategy",
+        "description": "Structure your prompt as: (1) context in one sentence, (2) clear task, (3) constraints or desired format. Example: 'Context: React component with local state. Task: convert to useReducer keeping the same behavior. Constraint: no external libs.' Structured prompts yield better answers and avoid back-and-forth."
+      },
+      "premiumModels": {
+        "title": "When to use premium models",
+        "description": "Use premium models when: architectural refactoring of a whole module, security review of sensitive code, generating long and coherent documentation, or when the smaller model has already failed twice on the same task. For isolated bugs, unit tests, and quick tips, smaller models are usually enough."
+      },
+      "commonErrors": {
+        "title": "Common mistakes",
+        "description": "Avoid practices that drive cost and time without need:",
+        "examples": [
+          "Analyzing the entire repository at once — pick one module or flow and send only what's needed.",
+          "Sending thousands of lines of logs — extract the stack trace and relevant message.",
+          "Repeating the same prompt in a loop — refine the prompt or switch model/tool.",
+          "Using a premium model for trivial tasks (e.g. fix typo, generate comment)."
+        ]
+      }
+    },
+    "practices": {
+      "title": "Best practices list",
+      "items": [
+        "Set a budget or usage limit (monthly or per project) and monitor it.",
+        "Prefer short, iterative prompts over one huge prompt.",
+        "Use cache or pre-defined answers for frequent questions in your app.",
+        "Document prompts that work well so the team can reuse them.",
+        "Review answers before applying to production; avoid copy-paste without critical thought."
+      ]
+    },
+    "alerts": {
+      "excessiveUse": {
+        "title": "Beware of excessive use",
+        "description": "Excessive AI use can drive costs up quickly and create dependency on models that change in price or availability. Use with judgment: automate the repetitive, think about what's unique."
+      }
+    },
+    "cta": {
+      "title": "Use AI responsibly",
+      "description": "Applying these practices helps keep costs predictable and get the most out of the tool without overuse. In your code, implement rate limiting, monitor usage, and choose the right model per endpoint."
+    }
+  },
   "cta": {
     "title": "Would you like to exchange ideas?",
     "description": "If you enjoyed these tips, let's talk about how to apply AI to your development workflow.",
     "button": "Back to Tips"
   },
   "sectionNav": {
-    "tools": "Tools"
+    "tools": "Tools",
+    "efficientUse": "Efficient use"
   }
 }

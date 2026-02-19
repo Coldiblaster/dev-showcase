@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
+import { LiveMetricsSection } from "@/components/live-metrics-section";
 import { SectionDivider } from "@/components/section-divider";
 import { SectionNav } from "@/components/section-nav";
 
@@ -11,7 +12,6 @@ import { ExploreSection } from "./explore-section";
 import { ContributeHero } from "./hero-section";
 import { HistorySection } from "./history-section";
 import { HowItWorksSection } from "./how-it-works-section";
-import { PlatformStatsSection } from "./platform-stats-section";
 import { StandardsSection } from "./standards-section";
 import { WhatYouCanDoSection } from "./what-you-can-do-section";
 
@@ -44,7 +44,10 @@ export function ContributePage() {
       <SectionDivider />
       <StandardsSection />
       <SectionDivider />
-      <PlatformStatsSection />
+      <LiveMetricsSection
+        translationNamespace="contributePage.platformStats"
+        sectionId="platform-stats"
+      />
       <SectionDivider />
       <ContributorsSection />
       <SectionDivider />

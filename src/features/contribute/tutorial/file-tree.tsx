@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronRight, File, Folder, FolderOpen } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
 
 import { cn } from "@/lib/utils";
@@ -111,6 +112,7 @@ function TreeItem({ node, depth = 0 }: { node: TreeNode; depth?: number }) {
 
 /** Árvore de arquivos interativa com expand/collapse e descrições. */
 export function FileTree({ nodes, className }: FileTreeProps) {
+  const t = useTranslations("tutorialPage");
   return (
     <div
       className={cn(
@@ -118,7 +120,7 @@ export function FileTree({ nodes, className }: FileTreeProps) {
         className,
       )}
       role="tree"
-      aria-label="Project file tree"
+      aria-label={t("fileTreeAriaLabel")}
     >
       {nodes.map((node) => (
         <TreeItem key={node.name} node={node} depth={0} />

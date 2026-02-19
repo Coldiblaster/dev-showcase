@@ -1,7 +1,8 @@
 {
   "showcase": {
     "viewCode": "Ver código",
-    "hideCode": "Ocultar código"
+    "hideCode": "Ocultar código",
+    "preview": "Preview"
   },
   "meta": {
     "title": "Design System | Dev Showcase",
@@ -163,6 +164,74 @@
         "description": "Link expandível para visualizar código-fonte do componente.",
         "path": "src/components/view-source.tsx"
       }
+    }
+  },
+  "previews": {
+    "layout": {
+      "badge": "Badge",
+      "heroTitle": "Título do hero",
+      "descriptionText": "Texto de descrição aqui",
+      "callToAction": "Call to Action",
+      "variantDefault": "variant=\"default\"",
+      "variantAlternate": "variant=\"alternate\"",
+      "section1": "Seção 1",
+      "section2": "Seção 2",
+      "section3": "Seção 3",
+      "intro": "Intro",
+      "features": "Features",
+      "docs": "Docs"
+    },
+    "feedback": {
+      "fadeUp": "fade up",
+      "delay03": "delay=0.3",
+      "replay": "Replay",
+      "copied": "Copiado!",
+      "copyToClipboard": "Copiar para área de transferência",
+      "animatedViewport": "Animado ao entrar no viewport",
+      "delayedAnimation": "Animação com atraso"
+    },
+    "primitives": {
+      "default": "Default",
+      "destructive": "Destructive",
+      "outline": "Outline",
+      "secondary": "Secondary",
+      "ghost": "Ghost",
+      "link": "Link",
+      "small": "Small",
+      "large": "Large",
+      "typeSomething": "Digite algo...",
+      "disabled": "Desativado",
+      "cardTitle": "Título do card",
+      "cardDescription": "Descrição do card",
+      "contentGoesHere": "Conteúdo aqui.",
+      "action": "Ação",
+      "sectionA": "Seção A",
+      "sectionB": "Seção B",
+      "sectionC": "Seção C",
+      "preview": "Preview",
+      "code": "Código",
+      "docs": "Docs",
+      "previewContent": "Conteúdo do preview",
+      "codeContent": "Conteúdo do código",
+      "docsContent": "Conteúdo da documentação"
+    },
+    "content": {
+      "feature": "Feature",
+      "description": "Descrição",
+      "deploy": "Deploy",
+      "shipFast": "Publicar rápido",
+      "fork": "Fork",
+      "cloneRepo": "Clonar o repositório",
+      "shipToProd": "Publicar em produção",
+      "exampleTsfx": "example.tsx",
+      "renderedContent": "Conteúdo renderizado",
+      "source": "Código-fonte"
+    },
+    "navigation": {
+      "home": "Home",
+      "content": "Content",
+      "search": "Buscar...",
+      "skipToContent": "Pular para o conteúdo"
     }
   }
 }

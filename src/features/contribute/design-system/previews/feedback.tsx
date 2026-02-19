@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Copy, RotateCcw } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { type ReactNode, useCallback, useRef, useState } from "react";
 
 import { ScoreGauge } from "@/components/score-gauge";
@@ -16,6 +17,7 @@ function SkeletonBlock({ className }: { className?: string }) {
 }
 
 function AnimatedSectionPreview() {
+  const t = useTranslations("designSystemPage.previews.feedback");
   const [key, setKey] = useState(0);
 
   return (
@@ -28,7 +30,7 @@ function AnimatedSectionPreview() {
           transition={{ duration: 0.6 }}
           className="rounded-lg border border-primary/30 bg-primary/10 px-4 py-3 text-sm font-medium text-primary"
         >
-          fade up
+          {t("fadeUp")}
         </motion.div>
         <motion.div
           key={`b-${key}`}
@@ -37,7 +39,7 @@ function AnimatedSectionPreview() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="rounded-lg border border-border bg-card/50 px-4 py-3 text-sm text-muted-foreground"
         >
-          delay=0.3
+          {t("delay03")}
         </motion.div>
       </div>
       <Button
@@ -47,13 +49,14 @@ function AnimatedSectionPreview() {
         className="gap-1.5 text-xs text-muted-foreground"
       >
         <RotateCcw className="h-3 w-3" />
-        Replay
+        {t("replay")}
       </Button>
     </div>
   );
 }
 
 function CopyFeedbackPreview() {
+  const t = useTranslations("designSystemPage.previews.feedback");
   const [copied, setCopied] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
@@ -77,7 +80,7 @@ function CopyFeedbackPreview() {
         ) : (
           <Copy className="h-3.5 w-3.5" />
         )}
-        {copied ? "Copied!" : "Copy to clipboard"}
+        {copied ? t("copied") : t("copyToClipboard")}
       </Button>
       <AnimatePresence>
         {copied && (
@@ -92,7 +95,9 @@ function CopyFeedbackPreview() {
             <div className="flex h-4 w-4 items-center justify-center rounded-full bg-primary/15">
               <Check className="h-2.5 w-2.5 text-primary" />
             </div>
-            <span className="text-xs font-medium text-foreground">Copied!</span>
+            <span className="text-xs font-medium text-foreground">
+              {t("copied")}
+            </span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -114,7 +119,6 @@ export const feedbackPreviews: Record<
   <p>Delayed animation</p>
 </AnimatedSection>`,
   },
-
   pageSkeleton: {
     preview: (
       <div className="mx-auto w-full max-w-xs space-y-3 rounded-xl border border-border bg-background/50 p-4">
@@ -131,7 +135,6 @@ export const feedbackPreviews: Record<
 <PageSkeleton variant="implementation" />
 <PageSkeleton variant="tool" />`,
   },
-
   scoreGauge: {
     preview: (
       <div className="flex flex-wrap items-center justify-center gap-2">
@@ -150,7 +153,6 @@ export const feedbackPreviews: Record<
 <ScoreGauge score={65} />
 <ScoreGauge score={35} label="/100" />`,
   },
-
   copyFeedback: {
     preview: <CopyFeedbackPreview />,
     code: `const { showFeedback } = useCopyFeedback();

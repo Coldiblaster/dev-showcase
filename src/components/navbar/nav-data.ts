@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Accessibility,
+  BarChart3,
   Blocks,
   BookOpen,
   Bot,
@@ -57,6 +58,8 @@ export type NavKey =
   | "seoShowcaseDesc"
   | "aiChatbot"
   | "aiChatbotDesc"
+  | "analyticsShowcase"
+  | "analyticsShowcaseDesc"
   | "sectionImplementations"
   | "sectionTips"
   | "sectionTools"
@@ -179,6 +182,12 @@ export const contentGroup: NavGroup = {
           labelKey: "aiChatbot",
           sublabelKey: "aiChatbotDesc",
           href: "/implementacoes/ai-chatbot",
+        },
+        {
+          icon: BarChart3,
+          labelKey: "analyticsShowcase",
+          sublabelKey: "analyticsShowcaseDesc",
+          href: "/implementacoes/analytics",
         },
       ],
     },

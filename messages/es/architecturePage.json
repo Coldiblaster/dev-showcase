@@ -81,7 +81,7 @@
       "i18n": {
         "title": "Internacionalización",
         "steps": [
-          "La cookie safer_locale define el idioma",
+          "La cookie devshowcase_locale define el idioma",
           "load-messages.ts carga los JSONs del idioma",
           "next-intl inyecta en el provider global",
           "useTranslations('namespace') en los componentes"

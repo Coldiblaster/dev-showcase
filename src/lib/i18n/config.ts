@@ -57,7 +57,7 @@ export const DEFAULT_LOCALE: Locale = "pt-BR";
 /**
  * Nome do cookie usado para persistir o locale escolhido.
  */
-export const COOKIE_NAME = "safer_locale";
+export const COOKIE_NAME = "devshowcase_locale";
 
 /**
  * Valida se um valor é um locale suportado pela aplicação.
@@ -70,7 +70,7 @@ export function isSupportedLocale(v?: string): v is Locale {
 
 /**
  * Retorna o nome do cookie usado para persistir o locale escolhido.
- * @returns Nome do cookie (safer_locale)
+ * @returns Nome do cookie (devshowcase_locale)
  */
 export function getCookieName(): string {
   return COOKIE_NAME;

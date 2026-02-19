@@ -6,6 +6,7 @@ import type accessibilityPage from "../../../messages/pt-BR/accessibilityPage.js
 import type ai from "../../../messages/pt-BR/ai.json";
 import type aiChatbotPage from "../../../messages/pt-BR/aiChatbotPage.json";
 import type aiInnovation from "../../../messages/pt-BR/aiInnovation.json";
+import type analyticsPage from "../../../messages/pt-BR/analyticsPage.json";
 import type apiDocsPage from "../../../messages/pt-BR/apiDocsPage.json";
 import type architecturePage from "../../../messages/pt-BR/architecturePage.json";
 import type chat from "../../../messages/pt-BR/chat.json";
@@ -50,6 +51,7 @@ export type Messages = {
   global: typeof global;
   about: typeof about;
   accessibilityPage: typeof accessibilityPage;
+  analyticsPage: typeof analyticsPage;
   aiChatbotPage: typeof aiChatbotPage;
   nav: typeof nav;
   ai: typeof ai;

@@ -208,12 +208,67 @@
       }
     ]
   },
+  "efficientUse": {
+    "intro": {
+      "title": "Effiziente und kostengünstige Nutzung von KI",
+      "purpose": "Dieser Abschnitt erklärt Best Practices, um KI produktiv zu nutzen, ohne Tokens oder unnötige Kosten zu verschwenden — in der Anwendung und im Alltag."
+    },
+    "sections": {
+      "consciousUse": {
+        "title": "Bewusste Modellnutzung",
+        "description": "Wählen Sie das richtige Modell für die Aufgabe: kleinere Modelle (z. B. GPT-4o Mini, Claude Haiku) für einfache Aufgaben wie Code-Review, Formatierung oder Vorschläge. Reservieren Sie Premium-Modelle (GPT-4o, Claude Opus) für komplexe Schlussfolgerungen, Architektur oder längere Analysen. Prüfen Sie die Token-Kostendokumentation Ihres Anbieters."
+      },
+      "reduceTokens": {
+        "title": "So reduzieren Sie den Token-Verbrauch",
+        "description": "Senden Sie nur den nötigen Kontext: relevante Ausschnitte statt der ganzen Datei; fassen Sie den Fehler zusammen statt riesige Logs einzufügen. Verwenden Sie kurze System-Prompts und wiederverwenden Sie Anweisungen. Für Code-Analyse senden Sie isolierte Funktionen. Begrenzen Sie den Chat-Verlauf (z. B. letzte N Nachrichten) bei langen Chats."
+      },
+      "structuredPrompts": {
+        "title": "Strategie für strukturierte Prompts",
+        "description": "Strukturieren Sie den Prompt in: (1) Kontext in einem Satz, (2) klare Aufgabe, (3) Einschränkungen oder gewünschtes Format. Beispiel: 'Kontext: React-Komponente mit lokalem State. Aufgabe: Umstellung auf useReducer bei gleichem Verhalten. Einschränkung: keine externen Bibliotheken.' Strukturierte Prompts liefern bessere Antworten und vermeiden Hin und Her."
+      },
+      "premiumModels": {
+        "title": "Wann Premium-Modelle nutzen",
+        "description": "Nutzen Sie Premium-Modelle bei: architektonischer Refaktorierung eines ganzen Moduls, Sicherheitsreview sensiblen Codes, Erstellung langer kohärenter Dokumentation oder wenn das kleinere Modell bei derselben Aufgabe bereits zweimal versagt hat. Für einzelne Bugs, Unit-Tests und schnelle Tipps reichen kleinere Modelle meist aus."
+      },
+      "commonErrors": {
+        "title": "Häufige Fehler",
+        "description": "Vermeiden Sie Praktiken, die Kosten und Zeit ohne Nutzen verursachen:",
+        "examples": [
+          "Das gesamte Repository auf einmal analysieren — wählen Sie ein Modul oder einen Ablauf und senden Sie nur das Nötige.",
+          "Tausende Zeilen Log senden — extrahieren Sie den Stack-Trace und die relevante Meldung.",
+          "Denselben Prompt in Schleife wiederholen — verfeinern Sie den Prompt oder wechseln Sie Modell/Tool.",
+          "Premium-Modell für triviale Aufgaben nutzen (z. B. Tippfehler korrigieren, Kommentar erzeugen)."
+        ]
+      }
+    },
+    "practices": {
+      "title": "Liste der Best Practices",
+      "items": [
+        "Legen Sie ein Budget oder Nutzungslimit (monatlich oder pro Projekt) fest und überwachen Sie es.",
+        "Bevorzugen Sie kurze, iterative Prompts statt eines einzigen riesigen Prompts.",
+        "Nutzen Sie Cache oder vordefinierte Antworten für häufige Fragen in Ihrer App.",
+        "Dokumentieren Sie gut funktionierende Prompts zur Wiederverwendung im Team.",
+        "Prüfen Sie Antworten vor dem Einsatz in Produktion; vermeiden Sie blindes Kopieren."
+      ]
+    },
+    "alerts": {
+      "excessiveUse": {
+        "title": "Vorsicht bei übermäßiger Nutzung",
+        "description": "Übermäßige KI-Nutzung kann die Kosten schnell in die Höhe treiben und Abhängigkeit von Modellen schaffen, die sich in Preis oder Verfügbarkeit ändern. Nutzen Sie mit Bedacht: automatisieren Sie Wiederholungen, denken Sie über das Einzigartige nach."
+      }
+    },
+    "cta": {
+      "title": "KI verantwortungsvoll nutzen",
+      "description": "Diese Praktiken helfen, Kosten kalkulierbar zu halten und das Maximum aus dem Tool herauszuholen ohne Übernutzung. Implementieren Sie in Ihrem Code Rate Limiting, überwachen Sie den Verbrauch und wählen Sie pro Endpoint passende Modelle."
+    }
+  },
   "cta": {
     "title": "Möchten Sie sich austauschen?",
     "description": "Wenn Ihnen diese Tipps gefallen haben, lassen Sie uns darüber sprechen, wie Sie KI in Ihrem Entwicklungsprozess einsetzen können.",
     "button": "Zurück zu den Tipps"
   },
   "sectionNav": {
-    "tools": "Werkzeuge"
+    "tools": "Werkzeuge",
+    "efficientUse": "Effiziente Nutzung"
   }
 }

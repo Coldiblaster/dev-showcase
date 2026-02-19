@@ -23,6 +23,8 @@
   "seoShowcaseDesc": "Meta tags, Open Graph, JSON-LD e Sitemap",
   "aiChatbot": "AI Chatbot",
   "aiChatbotDesc": "Chatbot IA com OpenAI, streaming e Next.js",
+  "analyticsShowcase": "Analytics Redis",
+  "analyticsShowcaseDesc": "Page views e visitantes únicos com Upstash Redis",
   "content": "Conteúdo",
   "contentDesc": "Implementações técnicas e guias para devs",
   "sectionImplementations": "Implementações",
