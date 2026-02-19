@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "title": "Privacy",
+    "description": "Privacy policy and cookie use for this site: what we collect, how we use it, and your rights."
+  },
+  "hero": {
+    "title": "Privacy and Cookies",
+    "subtitle": "Transparency about the data we collect and how we use it."
+  },
+  "intro": {
+    "title": "Introduction",
+    "body": "This page describes how we handle personal data and technical information on this site (portfolio and guides). We comply with GDPR-style practices: we only collect what is necessary, we state the purpose, and we respect your rights."
+  },
+  "sections": {
+    "whatWeCollect": {
+      "title": "What we collect",
+      "items": [
+        {
+          "title": "Language cookie",
+          "description": "A technical cookie (devshowcase_locale) to remember your language choice (pt-BR, en, es, de). It does not identify you personally and is essential for the site to work."
+        },
+        {
+          "title": "Local preferences",
+          "description": "In the \"Dev Resources\" feature, the favorites list is stored only in your browser (localStorage). Nothing is sent to servers."
+        },
+        {
+          "title": "View data (own analytics)",
+          "description": "When you browse, we may record the page path and an anonymous identifier (hash of your IP address) for unique visitor counts and top pages. The IP is never stored in plain text. This data is stored on our own infrastructure (Upstash Redis) and is aggregated."
+        },
+        {
+          "title": "Third-party analytics",
+          "description": "We use Vercel Analytics for performance metrics (Web Vitals) and site usage. Vercel may process data under their policy. You can refuse analytics via the cookie banner."
+        },
+        {
+          "title": "Contact form",
+          "description": "Name, email, and message you send via the form are used only to respond. We use reCAPTCHA (Google) for spam protection; Google's use of data is subject to Google's Privacy Policy."
+        },
+        {
+          "title": "Chat / AI",
+          "description": "Messages sent in the site chat are processed to generate replies (via AI API). We do not use this content to train models; the flow is on-demand for your session."
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Cookies and similar technologies",
+      "body": "We use cookies and local storage only as described below.",
+      "table": {
+        "name": "Name",
+        "purpose": "Purpose",
+        "duration": "Duration",
+        "type": "Type"
+      },
+      "rows": [
+        {
+          "name": "devshowcase_locale",
+          "purpose": "Store your chosen language (pt-BR, en, es, de).",
+          "duration": "1 year",
+          "type": "Essential"
+        },
+        {
+          "name": "devshowcase_cookie_consent",
+          "purpose": "Store your choice about analytics (accept or reject).",
+          "duration": "1 year",
+          "type": "Preference"
+        }
+      ],
+      "storage": "We also use sessionStorage to avoid duplicate page counts in the same session and localStorage only for the favorites list in \"Dev Resources\", with no data sent to the server.",
+      "revokeHint": "You may revoke consent at any time by deleting the consent cookie in your browser settings; the cookie notice will be shown again on your next visit."
+    },
+    "analytics": {
+      "title": "Analytics and metrics",
+      "body": "Our own analytics (Redis) does not use cookies: the page path and a hash of the IP are sent at view time. Bots are filtered. Data is used only for aggregated metrics (total views, unique visitors, top pages). Vercel Analytics is used only after your consent in the cookie banner."
+    },
+    "thirdParties": {
+      "title": "Third parties and sharing",
+      "body": "We do not sell or rent your data. Data may be processed by: Vercel (hosting and analytics, if you accept); Google (reCAPTCHA on the contact form); AI API provider (for chat). Each has its own privacy policy. Our own analytics (Redis) stays on controlled infrastructure (Upstash)."
+    },
+    "rights": {
+      "title": "Your rights",
+      "body": "You may, at any time: request access to data we hold about you; request correction or deletion; withdraw consent (e.g. by changing your cookie preferences). To exercise these rights or ask about privacy, use the contact form or the site email."
+    },
+    "updates": {
+      "title": "Updates",
+      "body": "This page may be updated to reflect changes to the site or the law. The date of the last relevant change will be shown below when applicable. Continued use of the site after changes may be taken as acceptance of the new terms."
+    }
+  },
+  "lastUpdated": "Last updated",
+  "backHome": "Back to home"
+}

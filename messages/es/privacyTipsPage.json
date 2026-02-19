@@ -1,0 +1,121 @@
+{
+  "hero": {
+    "badge": "Privacidad y cookies",
+    "title": "Privacidad y cookies — Guía para desarrolladores",
+    "subtitle": "Consentimiento tipo GDPR, banner y política de privacidad",
+    "description": "Guía práctica para implementar privacidad y cookies correctamente: consentimiento antes de analíticas, banner accesible, política clara y respeto por la elección del usuario. Este sitio aplica estas prácticas; aquí verás qué considerar para tu proyecto.",
+    "warning": "Esta guía no es asesoramiento legal. Para cumplimiento legal completo, consulta a un abogado o DPO en tu jurisdicción."
+  },
+  "sectionNav": {
+    "overview": "Resumen",
+    "consent": "Consentimiento",
+    "implementation": "Implementación",
+    "checklist": "Lista de verificación",
+    "resources": "Recursos"
+  },
+  "overview": {
+    "title": "Resumen",
+    "subtitle": "Por qué importa",
+    "description": "La privacidad y las cookies no son solo burocracia: generan confianza, reducen el riesgo legal y mejoran la experiencia cuando el usuario tiene control. En la UE, el GDPR exige consentimiento explícito para cookies no esenciales; principios similares aplican en Brasil (LGPD) y otros lugares.",
+    "items": [
+      {
+        "title": "Confianza",
+        "description": "Los usuarios que ven un aviso claro y opción (aceptar/rechazar) suelen confiar más en el sitio."
+      },
+      {
+        "title": "Cumplimiento",
+        "description": "GDPR y LGPD exigen información clara, consentimiento cuando aplique y derecho a retirarlo."
+      },
+      {
+        "title": "Cookies esenciales vs no esenciales",
+        "description": "Las cookies esenciales (p. ej. idioma, sesión) normalmente no requieren consentimiento previo; analíticas y marketing sí."
+      },
+      {
+        "title": "Datos mínimos",
+        "description": "Recoge solo lo necesario. IP hasheada, sin cookie de terceros, es más respetuoso con la privacidad que cookies de seguimiento."
+      }
+    ]
+  },
+  "consent": {
+    "title": "Consentimiento",
+    "subtitle": "Reglas de oro",
+    "description": "El consentimiento debe ser libre, informado e inequívoco. Rechazar debe ser tan fácil como aceptar.",
+    "tips": [
+      {
+        "title": "Banner antes de scripts no esenciales",
+        "description": "No cargues analíticas (Google, Vercel, etc.) hasta que el usuario acepte. Sin cookie = no rastrear."
+      },
+      {
+        "title": "Dos botones igual de visibles",
+        "description": "Aceptar y Rechazar (o Solo esenciales) ambos visibles y accesibles. Evita patrones oscuros."
+      },
+      {
+        "title": "Enlace a la política",
+        "description": "Saber más debe llevar a la página de privacidad con qué se recoge, por qué y cómo revocar."
+      },
+      {
+        "title": "Persistir la elección",
+        "description": "Guarda en una cookie (p. ej. 1 año) para no mostrar el banner en cada visita. Incluye esta cookie en la tabla de tu política."
+      }
+    ]
+  },
+  "implementation": {
+    "title": "Implementación",
+    "subtitle": "Qué hace este sitio",
+    "description": "En este portfolio: banner de cookies con Aceptar / Solo esenciales; cookie de consentimiento; Vercel Analytics y seguimiento propio (Redis) solo tras aceptar; política de privacidad en /privacidade; revocación explicada (borrar cookie). Puedes revisar el código en el repo abierto.",
+    "points": [
+      {
+        "title": "Cookie de consentimiento",
+        "description": "Nombre y valores fijos (accepted/rejected). Sin datos personales. Secure en HTTPS, SameSite=Lax."
+      },
+      {
+        "title": "Scripts condicionales",
+        "description": "Componente que solo renderiza analíticas cuando hasAnalyticsConsent() === true. Igual para ViewTracker."
+      },
+      {
+        "title": "Página de privacidad",
+        "description": "Secciones: qué recogemos, tabla de cookies, analíticas, terceros, derechos, cómo revocar."
+      }
+    ]
+  },
+  "checklist": {
+    "title": "Lista de verificación",
+    "subtitle": "Puntos para tu sitio",
+    "items": [
+      "Mostrar aviso de cookies en la primera visita (o hasta que se dé el consentimiento).",
+      "No cargar analíticas/marketing antes de la aceptación.",
+      "Ofrecer opción explícita de rechazar (Solo esenciales o similar).",
+      "Mantener la política de privacidad actualizada y enlazada en el pie y el banner.",
+      "Explicar cómo revocar (p. ej. borrar cookie o enlace que limpia y redirige).",
+      "Usar cookie Secure en producción (HTTPS) y SameSite apropiado.",
+      "Validar y sanitizar cualquier dato que almacenes (p. ej. ruta en analíticas) para evitar XSS/redirect."
+    ]
+  },
+  "resources": {
+    "title": "Recursos",
+    "subtitle": "Dónde profundizar",
+    "links": [
+      {
+        "label": "Página de privacidad de este sitio",
+        "href": "/privacidade",
+        "description": "Ejemplo de política y tabla de cookies."
+      },
+      {
+        "label": "LGPD (Brasil)",
+        "href": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "description": "Ley brasileña de protección de datos."
+      },
+      {
+        "label": "GDPR (UE)",
+        "href": "https://gdpr.eu/",
+        "description": "Referencia del reglamento europeo."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Próximos pasos",
+    "description": "Revisa tu proyecto con la lista de verificación anterior y asegura una política de privacidad clara. Para ver la implementación en acción, usa el banner y la página de privacidad de este sitio como referencia.",
+    "button": "Volver a consejos",
+    "privacyLink": "Ver política de privacidad"
+  }
+}

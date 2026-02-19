@@ -36,6 +36,8 @@
   "devResourcesDesc": "Componentes, fragmentos, refactorización y área de pruebas",
   "securityTips": "Seguridad Web",
   "securityTipsDesc": "Rate Limiting, reCAPTCHA, Headers y Validación",
+  "privacyTips": "Privacidad y Cookies",
+  "privacyTipsDesc": "RGPD, consentimiento, banner y política de privacidad",
   "codeReview": "AI Code Reviewer",
   "codeReviewDesc": "Análisis de código con IA — bugs y buenas prácticas",
   "regexPlayground": "Regex Playground",

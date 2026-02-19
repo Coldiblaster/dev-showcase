@@ -36,6 +36,8 @@
   "devResourcesDesc": "Komponenten, Snippets, Refactoring und Playground",
   "securityTips": "Web-Sicherheit",
   "securityTipsDesc": "Rate Limiting, reCAPTCHA, Headers und Validierung",
+  "privacyTips": "Datenschutz und Cookies",
+  "privacyTipsDesc": "DSGVO, Einwilligung, Banner und Datenschutzrichtlinie",
   "codeReview": "KI Code Reviewer",
   "codeReviewDesc": "KI-gestützte Code-Analyse — Bugs und Best Practices",
   "regexPlayground": "Regex Playground",

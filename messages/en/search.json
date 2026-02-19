@@ -93,6 +93,10 @@
       "title": "Frontend & Backend Security",
       "description": "Rate Limiting, reCAPTCHA, Honeypot, Zod, Security Headers and secure environment variables"
     },
+    "privacy-tips": {
+      "title": "Privacy and Cookies",
+      "description": "GDPR-style consent, cookie banner and privacy policy for developers"
+    },
     "code-review": {
       "title": "AI Code Reviewer",
       "description": "Paste your code and get a professional AI review — bugs, performance and best practices"

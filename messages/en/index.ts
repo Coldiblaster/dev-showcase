@@ -10,6 +10,7 @@ import chat from "./chat.json";
 import codeReviewPage from "./codeReviewPage.json";
 import contact from "./contact.json";
 import contributePage from "./contributePage.json";
+import cookieBanner from "./cookieBanner.json";
 import designSystemPage from "./designSystemPage.json";
 import devResourcesData from "./devResourcesData.json";
 import devResourcesPage from "./devResourcesPage.json";
@@ -27,6 +28,8 @@ import implementations from "./implementations.json";
 import nav from "./nav.json";
 import notFound from "./notFound.json";
 import portfolio from "./portfolio.json";
+import privacyPage from "./privacyPage.json";
+import privacyTipsPage from "./privacyTipsPage.json";
 import projects from "./projects.json";
 import reactPatterns from "./reactPatterns.json";
 import reactQueryTipsPage from "./reactQueryTipsPage.json";
@@ -59,6 +62,7 @@ export default {
   codeReviewPage,
   contact,
   contributePage,
+  cookieBanner,
   designSystemPage,
   devResourcesData,
   devResourcesPage,
@@ -74,6 +78,8 @@ export default {
   implementations,
   notFound,
   portfolio,
+  privacyPage,
+  privacyTipsPage,
   projects,
   reactPatterns,
   reactQueryTipsPage,

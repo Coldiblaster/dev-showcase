@@ -21,6 +21,7 @@ import {
   Regex,
   Search,
   Shield,
+  ShieldCheck,
   Sparkles,
   SquareStack,
   User,
@@ -67,6 +68,8 @@ export type NavKey =
   | "devResourcesDesc"
   | "securityTips"
   | "securityTipsDesc"
+  | "privacyTips"
+  | "privacyTipsDesc"
   | "codeReview"
   | "codeReviewDesc"
   | "regexPlayground"
@@ -245,6 +248,12 @@ export const contentGroup: NavGroup = {
           labelKey: "securityTips",
           sublabelKey: "securityTipsDesc",
           href: "/dicas/security-tips",
+        },
+        {
+          icon: ShieldCheck,
+          labelKey: "privacyTips",
+          sublabelKey: "privacyTipsDesc",
+          href: "/dicas/privacy-tips",
         },
       ],
     },

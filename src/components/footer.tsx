@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { Code2, Github, Linkedin, Mail } from "lucide-react";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
 
@@ -81,9 +82,18 @@ export function Footer() {
           <p className="font-mono text-xs text-muted-foreground">
             {t("built")}
           </p>
-          <p className="font-mono text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} {PERSONAL.fullName}. {t("rights")}
-          </p>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/privacidade"
+              className="font-mono text-xs text-muted-foreground underline-offset-2 outline-none hover:text-foreground hover:underline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            >
+              {t("privacy")}
+            </Link>
+            <p className="font-mono text-xs text-muted-foreground">
+              &copy; {new Date().getFullYear()} {PERSONAL.fullName}.{" "}
+              {t("rights")}
+            </p>
+          </div>
         </motion.div>
       </div>
     </footer>

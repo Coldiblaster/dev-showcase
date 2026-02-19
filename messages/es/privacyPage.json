@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "title": "Privacidad",
+    "description": "Política de privacidad y uso de cookies de este sitio: qué recogemos, para qué y tus derechos."
+  },
+  "hero": {
+    "title": "Privacidad y Cookies",
+    "subtitle": "Transparencia sobre los datos que recogemos y cómo los utilizamos."
+  },
+  "intro": {
+    "title": "Introducción",
+    "body": "Esta página describe cómo tratamos los datos personales y la información técnica en este sitio (portfolio y guías). Respetamos el RGPD y las buenas prácticas: solo recogemos lo necesario, informamos la finalidad y garantizamos tus derechos."
+  },
+  "sections": {
+    "whatWeCollect": {
+      "title": "Qué recogemos",
+      "items": [
+        {
+          "title": "Cookie de idioma",
+          "description": "Una cookie técnica (devshowcase_locale) para recordar tu idioma (pt-BR, en, es, de). No te identifica personalmente y es esencial para el funcionamiento del sitio."
+        },
+        {
+          "title": "Preferencias locales",
+          "description": "En \"Recursos para Devs\", la lista de favoritos se guarda solo en tu navegador (localStorage). No se envía nada a servidores."
+        },
+        {
+          "title": "Datos de visualización (analytics propio)",
+          "description": "Al navegar, podemos registrar la ruta de la página y un identificador anónimo (hash de la IP) para visitantes únicos y páginas más vistas. La IP no se almacena en texto claro. Los datos están en nuestro servidor (Upstash Redis) y son agregados."
+        },
+        {
+          "title": "Analytics de terceros",
+          "description": "Usamos Vercel Analytics para métricas de rendimiento (Web Vitals) y uso del sitio. Vercel puede procesar datos según su política. Puedes rechazar cookies/analytics desde el banner de cookies."
+        },
+        {
+          "title": "Formulario de contacto",
+          "description": "Nombre, email y mensaje que envías por el formulario se usan solo para responder. Usamos reCAPTCHA (Google) contra spam; el uso de datos por Google sigue la Política de Privacidad de Google."
+        },
+        {
+          "title": "Chat / IA",
+          "description": "Los mensajes del chat se procesan para generar respuestas (API de IA). No usamos ese contenido para entrenar modelos; el flujo es bajo demanda para tu sesión."
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Cookies y tecnologías similares",
+      "body": "Usamos cookies y almacenamiento local solo como se describe a continuación.",
+      "table": {
+        "name": "Nombre",
+        "purpose": "Finalidad",
+        "duration": "Duración",
+        "type": "Tipo"
+      },
+      "rows": [
+        {
+          "name": "devshowcase_locale",
+          "purpose": "Guardar idioma elegido (pt-BR, en, es, de).",
+          "duration": "1 año",
+          "type": "Esencial"
+        },
+        {
+          "name": "devshowcase_cookie_consent",
+          "purpose": "Guardar tu elección sobre analytics (aceptar o rechazar).",
+          "duration": "1 año",
+          "type": "Preferencia"
+        }
+      ],
+      "storage": "También usamos sessionStorage para evitar conteo duplicado en la misma sesión y localStorage solo para la lista de favoritos en \"Recursos para Devs\", sin envío a servidor.",
+      "revokeHint": "Puede revocar el consentimiento en cualquier momento borrando la cookie de consentimiento en la configuración del navegador; el aviso de cookies se mostrará de nuevo en la próxima visita."
+    },
+    "analytics": {
+      "title": "Analytics y métricas",
+      "body": "Nuestro analytics (Redis) no usa cookies: la ruta de la página y un hash de la IP se envían al visualizar. Los bots se filtran. Los datos sirven solo para métricas agregadas. Vercel Analytics se usa solo tras tu consentimiento en el banner de cookies."
+    },
+    "thirdParties": {
+      "title": "Terceros y compartir",
+      "body": "No vendemos ni alquilamos tus datos. Los datos pueden ser procesados por: Vercel (hosting y analytics si aceptas); Google (reCAPTCHA en contacto); proveedor de API de IA (chat). Cada uno tiene su política. El analytics propio (Redis) permanece en infraestructura controlada (Upstash)."
+    },
+    "rights": {
+      "title": "Tus derechos",
+      "body": "Puedes, en cualquier momento: solicitar acceso a los datos que tenemos; pedir corrección o supresión; revocar el consentimiento (p. ej. cambiando preferencias de cookies). Para ejercer estos derechos o dudas sobre privacidad, usa el formulario de contacto o el email del sitio."
+    },
+    "updates": {
+      "title": "Actualizaciones",
+      "body": "Esta página puede actualizarse por cambios en el sitio o en la ley. La fecha de la última modificación relevante se indicará abajo cuando corresponda. El uso continuado del sitio tras cambios puede considerarse aceptación de las nuevas condiciones."
+    }
+  },
+  "lastUpdated": "Última actualización",
+  "backHome": "Volver al inicio"
+}

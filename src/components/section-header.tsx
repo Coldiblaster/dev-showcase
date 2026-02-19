@@ -38,6 +38,7 @@ export function SectionHeader({
     <div className="mb-8 flex items-center gap-3 md:mb-12">
       <div
         className={`flex h-10 w-10 items-center justify-center rounded-xl ${iconBgColor}`}
+        aria-hidden
       >
         <Icon className={`h-5 w-5 ${iconColor}`} />
       </div>

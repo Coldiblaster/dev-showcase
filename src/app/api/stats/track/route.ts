@@ -16,8 +16,15 @@ import { redis } from "@/lib/redis";
 const BOT_PATTERN =
   /bot|crawl|spider|slurp|facebookexternalhit|mediapartners|google|bing|yandex|baidu|duckduck|semrush|ahrefs|mj12bot|dotbot|petalbot|bytespider|gptbot|claude|headless|phantom|selenium|puppeteer|playwright|lighthouse|pagespeed|pingdom|uptimerobot/i;
 
+/** Apenas paths relativos seguros para armazenar e exibir (evita XSS/redirect via javascript:, data:, //). */
+const SAFE_PATH_REGEX = /^\/[a-zA-Z0-9\-/_]*$/;
+
 const bodySchema = z.object({
-  path: z.string().min(1).max(200),
+  path: z
+    .string()
+    .min(1)
+    .max(200)
+    .refine((p) => SAFE_PATH_REGEX.test(p), { message: "Invalid path format" }),
 });
 
 function isBot(request: Request): boolean {

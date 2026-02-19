@@ -98,6 +98,14 @@ export const CONTENT_ITEMS: ContentItem[] = [
     category: "guide",
   },
   {
+    slug: "privacy-tips",
+    title: "Privacidade e Cookies — Guia para Devs",
+    description:
+      "LGPD, consentimento de cookies, banner no padrão mercado, política de privacidade e boas práticas para proteger o usuário e estar em conformidade.",
+    component: "PrivacyTips",
+    category: "guide",
+  },
+  {
     slug: "typescript-patterns",
     title: "TypeScript Patterns — Utility Types, Generics e Mais",
     description:

@@ -1,0 +1,121 @@
+{
+  "hero": {
+    "badge": "Privacy & Cookies",
+    "title": "Privacy and Cookies — Guide for Devs",
+    "subtitle": "GDPR-style consent, banner, and privacy policy",
+    "description": "Practical guide to implementing privacy and cookies the right way: consent before analytics, accessible banner, clear policy, and respect for user choice. This site applies these practices; here you see what to consider for your project.",
+    "warning": "This guide is not legal advice. For full legal compliance, consult a lawyer or DPO in your jurisdiction."
+  },
+  "sectionNav": {
+    "overview": "Overview",
+    "consent": "Consent",
+    "implementation": "Implementation",
+    "checklist": "Checklist",
+    "resources": "Resources"
+  },
+  "overview": {
+    "title": "Overview",
+    "subtitle": "Why it matters",
+    "description": "Privacy and cookies aren't just red tape: they build trust, reduce legal risk, and improve experience when users have control. In the EU, GDPR requires explicit consent for non-essential cookies; similar principles apply in Brazil (LGPD) and elsewhere.",
+    "items": [
+      {
+        "title": "Trust",
+        "description": "Users who see a clear notice and choice (accept/reject) tend to trust the site more."
+      },
+      {
+        "title": "Compliance",
+        "description": "GDPR and LGPD require clear information, consent where applicable, and the right to withdraw."
+      },
+      {
+        "title": "Essential vs non-essential cookies",
+        "description": "Essential cookies (e.g. language, session) usually don't need prior consent; analytics and marketing do."
+      },
+      {
+        "title": "Minimal data",
+        "description": "Collect only what you need. Hashed IP, no third-party cookie, is more privacy-friendly than tracking cookies."
+      }
+    ]
+  },
+  "consent": {
+    "title": "Consent",
+    "subtitle": "Golden rules",
+    "description": "Consent must be free, informed, and unambiguous. Refusing must be as easy as accepting.",
+    "tips": [
+      {
+        "title": "Banner before non-essential scripts",
+        "description": "Don't load analytics (Google, Vercel, etc.) until the user accepts. No cookie = don't track."
+      },
+      {
+        "title": "Two equally visible buttons",
+        "description": "Accept and Reject (or Essential only) both visible and accessible. Avoid dark patterns."
+      },
+      {
+        "title": "Link to policy",
+        "description": "Learn more should go to the privacy page with what's collected, why, and how to revoke."
+      },
+      {
+        "title": "Persist the choice",
+        "description": "Store in a cookie (e.g. 1 year) so you don't show the banner every visit. List this cookie in your policy table."
+      }
+    ]
+  },
+  "implementation": {
+    "title": "Implementation",
+    "subtitle": "What this site does",
+    "description": "On this portfolio: cookie banner with Accept / Essential only; consent cookie; Vercel Analytics and own tracking (Redis) only after accept; privacy policy at /privacidade; revocation explained (delete cookie). You can inspect the code in the open repo.",
+    "points": [
+      {
+        "title": "Consent cookie",
+        "description": "Fixed name and values (accepted/rejected). No personal data. Secure on HTTPS, SameSite=Lax."
+      },
+      {
+        "title": "Conditional scripts",
+        "description": "Component that only renders analytics when hasAnalyticsConsent() === true. Same for ViewTracker."
+      },
+      {
+        "title": "Privacy page",
+        "description": "Sections: what we collect, cookie table, analytics, third parties, rights, how to revoke."
+      }
+    ]
+  },
+  "checklist": {
+    "title": "Checklist",
+    "subtitle": "Items for your site",
+    "items": [
+      "Show a cookie notice on first visit (or until consent is given).",
+      "Don't load analytics/marketing before acceptance.",
+      "Offer explicit reject option (Essential only or similar).",
+      "Keep privacy policy up to date and linked in footer and banner.",
+      "Explain how to revoke (e.g. delete cookie, or link that clears and redirects).",
+      "Use Secure cookie in production (HTTPS) and appropriate SameSite.",
+      "Validate and sanitize any data you store (e.g. path in analytics) to avoid XSS/redirect."
+    ]
+  },
+  "resources": {
+    "title": "Resources",
+    "subtitle": "Where to go further",
+    "links": [
+      {
+        "label": "This site's privacy page",
+        "href": "/privacidade",
+        "description": "Example policy and cookie table."
+      },
+      {
+        "label": "LGPD (Brazil)",
+        "href": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "description": "Brazilian data protection law."
+      },
+      {
+        "label": "GDPR (EU)",
+        "href": "https://gdpr.eu/",
+        "description": "European regulation reference."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Next steps",
+    "description": "Review your project with the checklist above and ensure a clear privacy policy. To see the implementation in action, use this site's banner and privacy page as reference.",
+    "button": "Back to Tips",
+    "privacyLink": "View privacy policy"
+  }
+}

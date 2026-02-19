@@ -3,14 +3,18 @@
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
+import { hasAnalyticsConsent } from "@/lib/cookie-consent";
+
 /**
- * Dispara tracking de page view para /api/stats/track.
+ * Dispara tracking de page view para /api/stats/track quando o usuário aceitou cookies.
  * Usa sessionStorage para evitar contagem duplicada na mesma sessão/path.
  */
 export function ViewTracker() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (!hasAnalyticsConsent()) return;
+
     const path = pathname.replace(/^\/(pt-BR|en|es|de)/, "") || "/";
     const storageKey = `tracked:${path}`;
 

@@ -1,6 +1,5 @@
 import "./globals.css";
 
-import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
 import dynamic from "next/dynamic";
@@ -8,6 +7,8 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 
+import { AnalyticsGate } from "@/components/cookie-banner";
+import { CookieBanner } from "@/components/cookie-banner";
 import { CopyFeedbackProvider } from "@/components/copy-feedback";
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
@@ -125,11 +126,12 @@ export default async function RootLayout({
               <Footer />
               <MobileActionBar />
               <TerminalEasterEgg />
+              <CookieBanner />
             </CopyFeedbackProvider>
           </RecaptchaProvider>
         </NextIntlClientProvider>
         <ViewTracker />
-        <Analytics />
+        <AnalyticsGate />
         <SpeedInsights />
       </body>
     </html>

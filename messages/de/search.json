@@ -93,6 +93,10 @@
       "title": "Frontend- & Backend-Sicherheit",
       "description": "Rate Limiting, reCAPTCHA, Honeypot, Zod, Security Headers und sichere Umgebungsvariablen"
     },
+    "privacy-tips": {
+      "title": "Datenschutz und Cookies",
+      "description": "DSGVO, Cookie-Einwilligung, Banner und Datenschutzrichtlinie für Entwickler"
+    },
     "code-review": {
       "title": "KI Code Reviewer",
       "description": "Code einfügen und professionelle KI-Analyse erhalten — Bugs, Performance und Best Practices"

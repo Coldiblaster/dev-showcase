@@ -12,6 +12,19 @@ import { Button } from "@/components/ui/button";
 import { useSiteStats } from "@/hooks/use-site-stats";
 import { fadeUp, stagger } from "@/lib/animation-variants";
 
+/** Path seguro para uso em href (evita javascript:, data:, //). */
+function safePathForHref(path: string): string {
+  if (
+    typeof path !== "string" ||
+    !path.startsWith("/") ||
+    path.includes(":") ||
+    path.startsWith("//")
+  ) {
+    return "/";
+  }
+  return path;
+}
+
 /** Namespaces que possuem a estrutura liveMetrics (badge, title, visitors, pageViews, pageNames, etc.). */
 export type LiveMetricsTranslationNamespace =
   | "contributePage.platformStats"
@@ -153,7 +166,7 @@ export function LiveMetricsSection({
                 {stats.topPages.map((page, i) => (
                   <Link
                     key={page.path}
-                    href={page.path}
+                    href={safePathForHref(page.path)}
                     role="listitem"
                     className="flex items-center justify-between rounded-xl border border-border bg-card/30 px-4 py-3 transition-colors hover:border-primary/30 hover:bg-card/60"
                   >

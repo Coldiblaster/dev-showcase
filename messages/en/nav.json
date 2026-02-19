@@ -36,6 +36,8 @@
   "devResourcesDesc": "Tips, snippets, patterns and refactoring by level",
   "securityTips": "Web Security",
   "securityTipsDesc": "Rate Limiting, reCAPTCHA, Headers and Validation",
+  "privacyTips": "Privacy and Cookies",
+  "privacyTipsDesc": "GDPR-style consent, banner and privacy policy",
   "codeReview": "AI Code Reviewer",
   "codeReviewDesc": "AI-powered code analysis — bugs and best practices",
   "regexPlayground": "Regex Playground",

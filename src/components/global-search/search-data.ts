@@ -68,6 +68,18 @@ function buildTags(slug: string): string[] {
       "xss",
       "csrf",
     ],
+    "privacy-tips": [
+      "privacidade",
+      "privacy",
+      "cookies",
+      "lgpd",
+      "gdpr",
+      "consentimento",
+      "consent",
+      "banner",
+      "política",
+      "policy",
+    ],
     "code-review": [
       "code review",
       "ai",

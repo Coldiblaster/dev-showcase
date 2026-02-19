@@ -6,6 +6,7 @@ import {
   GitBranch,
   Palette,
   Shield,
+  ShieldCheck,
   Sparkles,
   Wrench,
 } from "lucide-react";
@@ -21,6 +22,7 @@ const iconMap = {
   "react-query-tips": Database,
   "dev-resources": Wrench,
   "security-tips": Shield,
+  "privacy-tips": ShieldCheck,
   "typescript-patterns": FileCode,
   "git-workflow": GitBranch,
   "react-patterns": Component,

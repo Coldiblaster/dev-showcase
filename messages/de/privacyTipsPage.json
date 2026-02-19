@@ -1,0 +1,121 @@
+{
+  "hero": {
+    "badge": "Datenschutz & Cookies",
+    "title": "Datenschutz und Cookies — Leitfaden für Entwickler",
+    "subtitle": "GDPR-konforme Einwilligung, Banner und Datenschutzerklärung",
+    "description": "Praktischer Leitfaden zur richtigen Umsetzung von Datenschutz und Cookies: Einwilligung vor Analytics, zugängliches Banner, klare Datenschutzerklärung und Respekt vor der Nutzerwahl. Diese Seite wendet diese Praktiken an; hier siehst du, was du für dein Projekt beachten solltest.",
+    "warning": "Dieser Leitfaden ist keine Rechtsberatung. Für volle rechtliche Konformität konsultiere einen Anwalt oder DSB in deiner Rechtsordnung."
+  },
+  "sectionNav": {
+    "overview": "Überblick",
+    "consent": "Einwilligung",
+    "implementation": "Umsetzung",
+    "checklist": "Checkliste",
+    "resources": "Ressourcen"
+  },
+  "overview": {
+    "title": "Überblick",
+    "subtitle": "Warum es wichtig ist",
+    "description": "Datenschutz und Cookies sind nicht nur Bürokratie: Sie schaffen Vertrauen, mindern rechtliche Risiken und verbessern die Nutzererfahrung, wenn Nutzer die Kontrolle haben. In der EU verlangt die DSGVO ausdrückliche Einwilligung für nicht wesentliche Cookies; ähnliche Grundsätze gelten in Brasilien (LGPD) und anderswo.",
+    "items": [
+      {
+        "title": "Vertrauen",
+        "description": "Nutzer, die einen klaren Hinweis und Wahl (Annehmen/Ablehnen) sehen, vertrauen der Seite tendenziell mehr."
+      },
+      {
+        "title": "Compliance",
+        "description": "DSGVO und LGPD verlangen klare Information, Einwilligung wo anwendbar und das Recht auf Widerruf."
+      },
+      {
+        "title": "Wesentliche vs. nicht wesentliche Cookies",
+        "description": "Wesentliche Cookies (z. B. Sprache, Sitzung) brauchen meist keine vorherige Einwilligung; Analytics und Marketing schon."
+      },
+      {
+        "title": "Minimale Daten",
+        "description": "Sammle nur, was du brauchst. Gehashte IP, kein Third-Party-Cookie, ist datenschutzfreundlicher als Tracking-Cookies."
+      }
+    ]
+  },
+  "consent": {
+    "title": "Einwilligung",
+    "subtitle": "Goldene Regeln",
+    "description": "Einwilligung muss frei, informiert und eindeutig sein. Ablehnen muss genauso einfach sein wie Annehmen.",
+    "tips": [
+      {
+        "title": "Banner vor nicht wesentlichen Skripten",
+        "description": "Lade Analytics (Google, Vercel usw.) erst, wenn der Nutzer zustimmt. Kein Cookie = kein Tracking."
+      },
+      {
+        "title": "Zwei gleich sichtbare Buttons",
+        "description": "Annehmen und Ablehnen (oder Nur wesentlich) beide sichtbar und zugänglich. Vermeide Dark Patterns."
+      },
+      {
+        "title": "Link zur Datenschutzerklärung",
+        "description": "Mehr erfahren soll zur Datenschutzseite führen mit Angaben zu Erhobenen, Zweck und Widerruf."
+      },
+      {
+        "title": "Wahl speichern",
+        "description": "Speichere in einem Cookie (z. B. 1 Jahr), damit du das Banner nicht bei jedem Besuch zeigst. Führe dieses Cookie in deiner Cookie-Tabelle auf."
+      }
+    ]
+  },
+  "implementation": {
+    "title": "Umsetzung",
+    "subtitle": "Was diese Seite macht",
+    "description": "Auf diesem Portfolio: Cookie-Banner mit Annehmen / Nur wesentlich; Einwilligungs-Cookie; Vercel Analytics und eigenes Tracking (Redis) erst nach Zustimmung; Datenschutzerklärung unter /privacidade; Widerruf erklärt (Cookie löschen). Du kannst den Code im offenen Repo einsehen.",
+    "points": [
+      {
+        "title": "Einwilligungs-Cookie",
+        "description": "Fester Name und Werte (accepted/rejected). Keine personenbezogenen Daten. Secure über HTTPS, SameSite=Lax."
+      },
+      {
+        "title": "Bedingte Skripte",
+        "description": "Komponente, die Analytics nur rendert, wenn hasAnalyticsConsent() === true. Ebenso für ViewTracker."
+      },
+      {
+        "title": "Datenschutzseite",
+        "description": "Abschnitte: was wir erheben, Cookie-Tabelle, Analytics, Dritte, Rechte, wie widerrufen."
+      }
+    ]
+  },
+  "checklist": {
+    "title": "Checkliste",
+    "subtitle": "Punkte für deine Seite",
+    "items": [
+      "Zeige einen Cookie-Hinweis beim ersten Besuch (oder bis Einwilligung erteilt wurde).",
+      "Lade Analytics/Marketing nicht vor Zustimmung.",
+      "Biete eine explizite Ablehn-Option (Nur wesentlich o. Ä.).",
+      "Halte die Datenschutzerklärung aktuell und im Footer sowie Banner verlinkt.",
+      "Erkläre, wie man widerruft (z. B. Cookie löschen oder Link, der löscht und weiterleitet).",
+      "Nutze Secure-Cookie in Produktion (HTTPS) und passendes SameSite.",
+      "Validiere und bereinige alle gespeicherten Daten (z. B. Pfad in Analytics), um XSS/Redirect zu vermeiden."
+    ]
+  },
+  "resources": {
+    "title": "Ressourcen",
+    "subtitle": "Weiterführende Links",
+    "links": [
+      {
+        "label": "Datenschutzseite dieser Website",
+        "href": "/privacidade",
+        "description": "Beispiel-Datenschutzerklärung und Cookie-Tabelle."
+      },
+      {
+        "label": "LGPD (Brasilien)",
+        "href": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+        "description": "Brasilianisches Datenschutzgesetz."
+      },
+      {
+        "label": "DSGVO (EU)",
+        "href": "https://gdpr.eu/",
+        "description": "Europäische Verordnung als Referenz."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Nächste Schritte",
+    "description": "Gehe die Checkliste oben für dein Projekt durch und sorge für eine klare Datenschutzerklärung. Um die Umsetzung in Aktion zu sehen, nutze Banner und Datenschutzseite dieser Website als Referenz.",
+    "button": "Zurück zu Tipps",
+    "privacyLink": "Datenschutzerklärung anzeigen"
+  }
+}

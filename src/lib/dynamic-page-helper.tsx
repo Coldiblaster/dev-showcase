@@ -55,6 +55,9 @@ const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
   SecurityTips: dynamic(() =>
     import("@/features/guides/security-tips").then((m) => m.SecurityTips),
   ),
+  PrivacyTips: dynamic(() =>
+    import("@/features/guides/privacy-tips").then((m) => m.PrivacyTips),
+  ),
   RegexPlayground: dynamic(() =>
     import("@/features/implementations/regex-playground").then(
       (m) => m.RegexPlayground,

@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "title": "Datenschutz",
+    "description": "Datenschutzrichtlinie und Cookie-Nutzung dieser Website: Was wir erfassen, wofür wir es nutzen und Ihre Rechte."
+  },
+  "hero": {
+    "title": "Datenschutz und Cookies",
+    "subtitle": "Transparenz über die von uns erfassten Daten und deren Nutzung."
+  },
+  "intro": {
+    "title": "Einführung",
+    "body": "Diese Seite beschreibt, wie wir personenbezogene Daten und technische Informationen auf dieser Website (Portfolio und Anleitungen) verarbeiten. Wir orientieren uns an der DSGVO und guten Datenschutzpraktiken: Wir erfassen nur das Nötige, nennen den Zweck und respektieren Ihre Rechte."
+  },
+  "sections": {
+    "whatWeCollect": {
+      "title": "Was wir erfassen",
+      "items": [
+        {
+          "title": "Sprachen-Cookie",
+          "description": "Ein technisches Cookie (devshowcase_locale) speichert Ihre Sprachwahl (pt-BR, en, es, de). Es identifiziert Sie nicht persönlich und ist für den Betrieb der Website erforderlich."
+        },
+        {
+          "title": "Lokale Einstellungen",
+          "description": "Bei \"Dev Resources\" wird die Favoritenliste nur in Ihrem Browser (localStorage) gespeichert. Es werden keine Daten an Server gesendet."
+        },
+        {
+          "title": "Aufrufdaten (eigenes Analytics)",
+          "description": "Beim Besuch können wir den Seitenpfad und einen anonymen Bezeichner (Hash der IP-Adresse) für eindeutige Besucher und meistaufgerufene Seiten speichern. Die IP wird nie im Klartext gespeichert. Die Daten liegen auf unserer Infrastruktur (Upstash Redis) und sind aggregiert."
+        },
+        {
+          "title": "Analytics von Dritten",
+          "description": "Wir nutzen Vercel Analytics für Leistungsmetriken (Web Vitals) und Nutzungsstatistiken. Vercel kann Daten gemäß deren Richtlinie verarbeiten. Sie können Analytics über das Cookie-Banner ablehnen."
+        },
+        {
+          "title": "Kontaktformular",
+          "description": "Name, E-Mail und Nachricht werden nur zur Beantwortung verwendet. Wir setzen reCAPTCHA (Google) gegen Spam ein; die Datennutzung durch Google unterliegt der Google-Datenschutzrichtlinie."
+        },
+        {
+          "title": "Chat / KI",
+          "description": "Im Chat gesendete Nachrichten werden zur Antwortgenerierung verarbeitet (über KI-API). Wir nutzen den Inhalt nicht zum Trainieren von Modellen; der Ablauf erfolgt auf Anfrage für Ihre Sitzung."
+        }
+      ]
+    },
+    "cookies": {
+      "title": "Cookies und ähnliche Technologien",
+      "body": "Wir setzen Cookies und lokale Speicher nur wie unten beschrieben ein.",
+      "table": {
+        "name": "Name",
+        "purpose": "Zweck",
+        "duration": "Dauer",
+        "type": "Typ"
+      },
+      "rows": [
+        {
+          "name": "devshowcase_locale",
+          "purpose": "Speichert Ihre Sprachwahl (pt-BR, en, es, de).",
+          "duration": "1 Jahr",
+          "type": "Erforderlich"
+        },
+        {
+          "name": "devshowcase_cookie_consent",
+          "purpose": "Speichert Ihre Wahl zu Analytics (annehmen oder ablehnen).",
+          "duration": "1 Jahr",
+          "type": "Präferenz"
+        }
+      ],
+      "storage": "Zusätzlich nutzen wir sessionStorage, um doppelte Seitenaufrufe in derselben Sitzung zu vermeiden, und localStorage nur für die Favoritenliste unter \"Dev Resources\" ohne Übertragung an Server.",
+      "revokeHint": "Sie können die Einwilligung jederzeit widerrufen, indem Sie das Consent-Cookie in den Browsereinstellungen löschen; der Cookie-Hinweis wird beim nächsten Besuch erneut angezeigt."
+    },
+    "analytics": {
+      "title": "Analytics und Metriken",
+      "body": "Unser eigenes Analytics (Redis) verwendet keine Cookies: Seitenpfad und ein Hash der IP werden beim Aufruf übermittelt. Bots werden gefiltert. Die Daten dienen nur aggregierten Metriken. Vercel Analytics wird nur nach Ihrer Zustimmung im Cookie-Banner genutzt."
+    },
+    "thirdParties": {
+      "title": "Dritte und Weitergabe",
+      "body": "Wir verkaufen oder vermieten Ihre Daten nicht. Daten können verarbeitet werden von: Vercel (Hosting und Analytics bei Zustimmung); Google (reCAPTCHA im Kontaktformular); KI-API-Anbieter (Chat). Jeder hat seine eigene Datenschutzrichtlinie. Unser Analytics (Redis) verbleibt auf kontrollierter Infrastruktur (Upstash)."
+    },
+    "rights": {
+      "title": "Ihre Rechte",
+      "body": "Sie können jederzeit: Zugang zu den von uns gespeicherten Daten verlangen; Berichtigung oder Löschung verlangen; die Einwilligung widerrufen (z. B. über Cookie-Einstellungen). Nutzen Sie das Kontaktformular oder die E-Mail der Website, um diese Rechte auszuüben oder Fragen zum Datenschutz zu stellen."
+    },
+    "updates": {
+      "title": "Aktualisierungen",
+      "body": "Diese Seite kann bei Änderungen der Website oder der Rechtslage aktualisiert werden. Das Datum der letzten relevanten Änderung wird bei Bedarf unten angegeben. Die weitere Nutzung der Website nach Änderungen kann als Zustimmung zu den neuen Bedingungen gelten."
+    }
+  },
+  "lastUpdated": "Zuletzt aktualisiert",
+  "backHome": "Zurück zur Startseite"
+}
