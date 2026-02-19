@@ -31,6 +31,7 @@ export function SeoHero() {
             title={t("hero.title")}
             subtitle={t("hero.subtitle")}
             description={t("hero.description")}
+            backHref="/implementacoes"
             badgeSlot={
               <motion.div variants={fadeUp} transition={{ duration: 0.5 }}>
                 <span className="mb-6 inline-flex items-center gap-1.5 rounded-lg border border-primary/30 bg-primary/10 px-3 py-1 text-primary">

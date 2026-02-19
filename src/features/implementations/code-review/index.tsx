@@ -67,6 +67,7 @@ export function CodeReviewShowcase() {
         title={t("hero.title")}
         subtitle={t("hero.subtitle")}
         description={t("hero.description")}
+        backHref="/ferramentas"
       />
 
       <section className="px-4 py-12 md:px-6 md:py-20">

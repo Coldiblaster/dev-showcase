@@ -26,6 +26,7 @@ export function AITips() {
         title={t("hero.title")}
         subtitle={t("hero.subtitle")}
         description={t("hero.description")}
+        backHref="/dicas"
         warning={t("hero.warning")}
       />
 

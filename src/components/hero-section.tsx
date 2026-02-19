@@ -1,9 +1,9 @@
-import { AlertTriangle, ArrowLeft, LucideIcon } from "lucide-react";
-import Link from "next/link";
+import { AlertTriangle, LucideIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { ReactNode } from "react";
 
 import { AnimatedSection } from "@/components/animated-section";
+import { BackLink } from "@/components/back-link";
 import { Badge } from "@/components/ui/badge";
 
 /**
@@ -64,13 +64,7 @@ export function HeroSection({
         <div className="relative mx-auto max-w-4xl text-center">
           {showBackLink && (
             <AnimatedSection>
-              <Link
-                href={backHref}
-                className="mb-8 inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <ArrowLeft className="h-3.5 w-3.5" />
-                {t("back")}
-              </Link>
+              <BackLink href={backHref} label={t("back")} />
             </AnimatedSection>
           )}
           <AnimatedSection delay={0.1}>

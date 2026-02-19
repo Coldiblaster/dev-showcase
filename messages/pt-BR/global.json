@@ -1,38 +1,37 @@
-
 {
-	"home": {
-		"title": "Bem-vindo ao Starter Next.js i18n!",
-		"editFile": "Para começar, edite o arquivo page.tsx.",
-		"description": "Procure um ponto de partida ou mais instruções? Acesse <templatesLink>Templates</templatesLink> ou o <learningCenterLink>Learning</learningCenterLink>.",
-		"deployNow": "Deploy agora",
-		"documentation": "Documentação"
-	},
-	"cta": {
-		"backToPortfolio": "Voltar ao Portfolio"
-	},
-	"pageHero": {
-		"back": "Portfolio"
-	},
-	"copied": "Copiado!",
-	"codeCopied": "Código copiado",
-	"copyCode": "Copiar código",
-	"scrollToTop": "Voltar ao topo",
-	"changeLanguage": "Trocar idioma",
-	"goHome": "Ir para a página inicial",
-	"mainMenu": "Menu principal",
-	"terminalPress": "Pressione",
-	"terminalFor": "para terminal",
-	"tip": "Dica:",
-	"mobileSearch": "Busca",
-	"mobileLanguage": "Idioma",
-	"mobileTop": "Topo",
-	"mobileChat": "Chat",
-	"mobileTerminal": "Terminal",
-	"mobileActions": "Ações rápidas",
-	"sectionNavigation": "Navegação por seções",
-	"skipToContent": "Pular para o conteúdo",
-	"close": "Fechar",
-	"terminal": "Terminal",
-	"closeTerminal": "Fechar terminal",
-	"terminalInput": "Entrada do terminal"
+  "home": {
+    "title": "Bem-vindo ao Starter Next.js i18n!",
+    "editFile": "Para começar, edite o arquivo page.tsx.",
+    "description": "Procure um ponto de partida ou mais instruções? Acesse <templatesLink>Templates</templatesLink> ou o <learningCenterLink>Learning</learningCenterLink>.",
+    "deployNow": "Deploy agora",
+    "documentation": "Documentação"
+  },
+  "cta": {
+    "backToPortfolio": "Voltar ao Portfolio"
+  },
+  "pageHero": {
+    "back": "Voltar"
+  },
+  "copied": "Copiado!",
+  "codeCopied": "Código copiado",
+  "copyCode": "Copiar código",
+  "scrollToTop": "Voltar ao topo",
+  "changeLanguage": "Trocar idioma",
+  "goHome": "Ir para a página inicial",
+  "mainMenu": "Menu principal",
+  "terminalPress": "Pressione",
+  "terminalFor": "para terminal",
+  "tip": "Dica:",
+  "mobileSearch": "Busca",
+  "mobileLanguage": "Idioma",
+  "mobileTop": "Topo",
+  "mobileChat": "Chat",
+  "mobileTerminal": "Terminal",
+  "mobileActions": "Ações rápidas",
+  "sectionNavigation": "Navegação por seções",
+  "skipToContent": "Pular para o conteúdo",
+  "close": "Fechar",
+  "terminal": "Terminal",
+  "closeTerminal": "Fechar terminal",
+  "terminalInput": "Entrada do terminal"
 }
