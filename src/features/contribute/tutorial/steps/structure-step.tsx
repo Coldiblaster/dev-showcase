@@ -3,8 +3,9 @@
 import { FolderTree } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+import { FileTree, type TreeNode } from "@/components/file-tree";
+
 import { FaqSection } from "../faq-section";
-import { FileTree, type TreeNode } from "../file-tree";
 import { TutorialStep } from "../tutorial-step";
 
 interface StepNavProps {
@@ -14,6 +15,7 @@ interface StepNavProps {
 
 export function StructureStep({ nextStepId, nextStepLabel }: StepNavProps) {
   const t = useTranslations("tutorialPage.steps.structure");
+  const tPage = useTranslations("tutorialPage");
 
   const tree: TreeNode[] = [
     {
@@ -106,7 +108,7 @@ export function StructureStep({ nextStepId, nextStepLabel }: StepNavProps) {
       nextStepLabel={nextStepLabel}
     >
       <p className="mb-4 text-sm text-muted-foreground">{t("intro")}</p>
-      <FileTree nodes={tree} />
+      <FileTree nodes={tree} ariaLabel={tPage("fileTreeAriaLabel")} />
     </TutorialStep>
   );
 }

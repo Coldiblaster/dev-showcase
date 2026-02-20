@@ -30,6 +30,7 @@ const NAMESPACES = [
   "i18nShowcase",
   "implementations",
   "nav",
+  "nextjsAppRouterPage",
   "notFound",
   "cookieBanner",
   "portfolio",

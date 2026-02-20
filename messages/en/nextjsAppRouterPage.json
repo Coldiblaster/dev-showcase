@@ -1,0 +1,84 @@
+{
+  "hero": {
+    "badge": "Practical Guide",
+    "title": "Next.js App Router",
+    "subtitle": "// rotas, Server Components e data fetching",
+    "description": "App Router is here to stay: folders become routes, shared layouts, automatic loading and error handling. This guide covers basics to best practices — whether you're new to App Router or mid/senior consolidating architecture decisions. Ready-to-use examples to copy and paste.",
+    "ctaDocs": "Next.js Documentation"
+  },
+  "sectionNav": {
+    "routing": "Routing",
+    "structure": "Structure & layout",
+    "serverClient": "Server vs. Client",
+    "dataFetching": "Data Fetching",
+    "loadingError": "Loading e Error"
+  },
+  "routing": {
+    "title": "Folder-based routing",
+    "subtitle": "// finally a router that doesn't hide folders",
+    "description": "In App Router, the folder structure in app/ defines the routes: each folder becomes a URL segment (e.g. app/dashboard becomes /dashboard). layout.tsx wraps the route and its children — the \"shell\" of the page (sidebar, header). page.tsx is the content for that path.",
+    "inPractice": "Think of layout as the template repeated for all pages in that segment; page is what changes from route to route.",
+    "exampleLayoutTitle": "app/dashboard/layout.tsx",
+    "examplePageTitle": "app/dashboard/page.tsx",
+    "tip": "A folder in parentheses (e.g. (auth)) does not become a URL segment — useful for grouping login and signup under the same layout without polluting the URL. Conventions: layout.tsx and page.tsx are reserved; only one page per folder."
+  },
+  "structure": {
+    "title": "Global and segment layouts",
+    "subtitle": "// one layout for everything or one per segment",
+    "description": "app/layout.tsx wraps the entire app (html, body, providers). You can add layout.tsx inside any folder (e.g. app/dashboard/layout.tsx): that layout only applies to that segment's routes. So you control what is global (root header/footer) and what changes per area (sidebar only in dashboard).",
+    "inPractice": "Use a layout per folder when an area has its own UI: dashboard with sidebar, logged-in area with different menu, blog with just a header. Layouts nest: the root layout wraps the dashboard layout, which wraps the page.",
+    "introTree": "Click items to see descriptions:",
+    "fileTreeAriaLabel": "App Router folder structure (global and segment layouts)",
+    "tip": "Each layout.tsx only wraps the page.tsx in its folder and subfolders. The root layout always wraps the others (you can't \"skip\" the global layout). Change layout by changing route.",
+    "tree": {
+      "app": "Root folder for routes",
+      "layoutGlobal": "Global layout — wraps the entire app",
+      "pageRoot": "Home page (/)",
+      "dashboardFolder": "Routes /dashboard/*",
+      "layoutSegment": "Layout only for /dashboard/* routes",
+      "pageDashboard": "Page /dashboard",
+      "blogFolder": "Routes /blog/* (no own layout)",
+      "pageBlog": "Page /blog — uses only the global layout"
+    }
+  },
+  "serverClient": {
+    "title": "Server Components vs Client Components",
+    "subtitle": "// use client only when you need interactivity",
+    "description": "By default, every component in App Router is a Server Component: it runs on the server, does not increase the client bundle, and can access data directly (DB, internal APIs). Use \"use client\" at the top of the file when you need useState, useEffect, event handlers, or browser APIs (localStorage, window).",
+    "inPractice": "Less \"use client\" = less JavaScript on the client = faster page and better SEO. Use Server for lists, data, and structure; Client only for what reacts to click, time, or user input. You can import a Client Component inside a Server Component — the Server renders the shell and the Client hydrates where there's interactivity.",
+    "exampleServerTitle": "app/posts/PostList.tsx (Server)",
+    "exampleClientTitle": "components/LikeButton.tsx (Client)",
+    "rule": "Golden rule: start as Server; add \"use client\" only to components that really need interactivity. Avoid \"use client\" at the page root — keep it on the smallest component possible (e.g. only the like button, not the whole list)."
+  },
+  "dataFetching": {
+    "title": "Data fetching em Server Components",
+    "subtitle": "// fetch with cache and revalidation",
+    "description": "In Server Components you can use fetch directly — no useEffect or external lib. Next.js extends fetch with caching: by default requests are cached, which avoids duplicate calls and makes navigation between routes faster when data was already fetched.",
+    "inPractice": "Choose strategy by data type: revalidate in seconds for data that can be slightly stale (listings, catalog); cache: 'no-store' for real-time data (cart, balance). In development (npm run dev) cache may behave differently; in production revalidate works as expected.",
+    "exampleTitle": "app/products/page.tsx",
+    "tip": "next: '{' revalidate: 60 '}' revalidates the response every 60 seconds. For data that changes every request (or must not be cached), use cache: 'no-store'. fetch() in Server Components is automatic per request in dynamic routes."
+  },
+  "loadingError": {
+    "title": "Loading e Error boundaries",
+    "subtitle": "// UX without blank screen",
+    "description": "loading.tsx displays a fallback while the route content loads (Streaming): the user sees that segment's loading state and the rest of the page can already be visible. error.tsx captures errors in that segment and below, and lets you show an error UI instead of breaking the whole page. These are conventions: just create the files at the desired route level.",
+    "inPractice": "The user can try again without reloading: error.tsx receives reset() and you call it from a \"Try again\" button. Because reset is used in onClick, error.tsx must be a Client Component. Put loading.tsx and error.tsx in the folder of the route you want to protect (e.g. app/dashboard/).",
+    "exampleLoadingTitle": "app/dashboard/loading.tsx",
+    "exampleErrorTitle": "app/dashboard/error.tsx",
+    "tip": "error.tsx must be a Client Component because it uses onClick in reset. The boundary only catches errors in its segment and children — errors in the root layout.tsx are not caught by app/dashboard/error.tsx."
+  },
+  "cta": {
+    "title": "Want to see more guides?",
+    "description": "We have TypeScript, React Patterns, Git Workflow, and other practical guides in the Tips section.",
+    "button": "See all tips"
+  },
+  "code": {
+    "sidebarLabel": "Sidebar",
+    "likedLabel": "Liked",
+    "likeLabel": "Like",
+    "loadingText": "Loading dashboard...",
+    "errorMessage": "Something went wrong.",
+    "retryButton": "Try again"
+  },
+  "codeLabel": "Code"
+}

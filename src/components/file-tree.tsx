@@ -2,7 +2,6 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronRight, File, Folder, FolderOpen } from "lucide-react";
-import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
 
 import { cn } from "@/lib/utils";
@@ -13,9 +12,11 @@ export interface TreeNode {
   children?: TreeNode[];
 }
 
-interface FileTreeProps {
+export interface FileTreeProps {
   nodes: TreeNode[];
   className?: string;
+  /** Acessibilidade: rótulo da árvore (ex.: "Estrutura de pastas do projeto"). */
+  ariaLabel?: string;
 }
 
 function TreeItem({ node, depth = 0 }: { node: TreeNode; depth?: number }) {
@@ -32,6 +33,7 @@ function TreeItem({ node, depth = 0 }: { node: TreeNode; depth?: number }) {
     <div>
       <button
         onClick={toggle}
+        type="button"
         className={cn(
           "group flex w-full items-center gap-1.5 rounded-md px-2 py-1 text-left text-sm transition-colors hover:bg-primary/5",
           showDesc && !isFolder && "bg-primary/5",
@@ -46,17 +48,27 @@ function TreeItem({ node, depth = 0 }: { node: TreeNode; depth?: number }) {
                 "h-3 w-3 shrink-0 text-muted-foreground/50 transition-transform duration-200",
                 open && "rotate-90",
               )}
+              aria-hidden
             />
             {open ? (
-              <FolderOpen className="h-4 w-4 shrink-0 text-primary/70" />
+              <FolderOpen
+                className="h-4 w-4 shrink-0 text-primary/70"
+                aria-hidden
+              />
             ) : (
-              <Folder className="h-4 w-4 shrink-0 text-primary/70" />
+              <Folder
+                className="h-4 w-4 shrink-0 text-primary/70"
+                aria-hidden
+              />
             )}
           </>
         ) : (
           <>
-            <span className="w-3" />
-            <File className="h-4 w-4 shrink-0 text-muted-foreground/50" />
+            <span className="w-3" aria-hidden />
+            <File
+              className="h-4 w-4 shrink-0 text-muted-foreground/50"
+              aria-hidden
+            />
           </>
         )}
         <span className="truncate font-mono text-xs text-foreground/80 group-hover:text-foreground">
@@ -110,9 +122,11 @@ function TreeItem({ node, depth = 0 }: { node: TreeNode; depth?: number }) {
   );
 }
 
-/** Árvore de arquivos interativa com expand/collapse e descrições. */
-export function FileTree({ nodes, className }: FileTreeProps) {
-  const t = useTranslations("tutorialPage");
+/**
+ * Árvore de arquivos/pastas interativa com expand/collapse e descrições opcionais.
+ * Reutilizável no tutorial, guias (ex.: App Router) e documentação de arquitetura.
+ */
+export function FileTree({ nodes, className, ariaLabel }: FileTreeProps) {
   return (
     <div
       className={cn(
@@ -120,7 +134,7 @@ export function FileTree({ nodes, className }: FileTreeProps) {
         className,
       )}
       role="tree"
-      aria-label={t("fileTreeAriaLabel")}
+      aria-label={ariaLabel}
     >
       {nodes.map((node) => (
         <TreeItem key={node.name} node={node} depth={0} />

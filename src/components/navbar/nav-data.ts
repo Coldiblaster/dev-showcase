@@ -19,6 +19,7 @@ import {
   Mail,
   Paintbrush,
   Regex,
+  Route,
   Search,
   Shield,
   ShieldCheck,
@@ -80,6 +81,8 @@ export type NavKey =
   | "gitWorkflowDesc"
   | "reactPatterns"
   | "reactPatternsDesc"
+  | "nextjsAppRouter"
+  | "nextjsAppRouterDesc"
   | "contribute"
   | "contributeDesc"
   | "sectionProject"
@@ -218,6 +221,12 @@ export const contentGroup: NavGroup = {
           labelKey: "tsPatterns",
           sublabelKey: "tsPatternsDesc",
           href: "/dicas/typescript-patterns",
+        },
+        {
+          icon: Route,
+          labelKey: "nextjsAppRouter",
+          sublabelKey: "nextjsAppRouterDesc",
+          href: "/dicas/nextjs-app-router",
         },
         {
           icon: GitBranch,

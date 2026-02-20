@@ -48,6 +48,8 @@
   "gitWorkflowDesc": "Branching, commits e comandos essenciais",
   "reactPatterns": "React Patterns",
   "reactPatternsDesc": "Composição, Custom Hooks e performance",
+  "nextjsAppRouter": "Next.js App Router",
+  "nextjsAppRouterDesc": "Routing, Server Components e data fetching",
   "contribute": "Contribua",
   "contributeDesc": "História do projeto, padrões e como contribuir",
   "sectionProject": "Projeto",

@@ -72,6 +72,11 @@ const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
   ReactPatterns: dynamic(() =>
     import("@/features/guides/react-patterns").then((m) => m.ReactPatterns),
   ),
+  NextjsAppRouter: dynamic(() =>
+    import("@/features/guides/nextjs-app-router").then(
+      (m) => m.NextjsAppRouter,
+    ),
+  ),
 };
 
 /**

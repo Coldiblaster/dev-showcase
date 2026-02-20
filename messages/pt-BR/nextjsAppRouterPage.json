@@ -1,0 +1,84 @@
+{
+  "hero": {
+    "badge": "Guia Prático",
+    "title": "Next.js App Router",
+    "subtitle": "// rotas, Server Components e data fetching",
+    "description": "O App Router veio para ficar: pastas viram rotas, layouts compartilhados, loading e error automáticos. Este guia cobre do básico às boas práticas — seja você júnior entrando no App Router ou pleno/sênior consolidando decisões de arquitetura. Exemplos prontos para copiar e colar.",
+    "ctaDocs": "Documentação Next.js"
+  },
+  "sectionNav": {
+    "routing": "Routing",
+    "structure": "Estrutura e layout",
+    "serverClient": "Server vs Client",
+    "dataFetching": "Data Fetching",
+    "loadingError": "Loading e Error"
+  },
+  "routing": {
+    "title": "Routing baseado em pastas",
+    "subtitle": "// finalmente um router que não esconde as pastas",
+    "description": "No App Router, a estrutura de pastas em app/ define as rotas: cada pasta vira um segmento da URL (ex.: app/dashboard vira /dashboard). O layout.tsx envolve a rota e seus filhos — define o \"casco\" da página (sidebar, header). O page.tsx é o conteúdo que aparece naquele path.",
+    "inPractice": "Pense em layout como o template que se repete em todas as páginas daquele segmento; page é o que muda de rota para rota.",
+    "exampleLayoutTitle": "app/dashboard/layout.tsx",
+    "examplePageTitle": "app/dashboard/page.tsx",
+    "tip": "Pasta entre parênteses (ex.: (auth)) não vira segmento na URL — útil para agrupar login e cadastro sob o mesmo layout sem poluir a URL. Convenções: layout.tsx e page.tsx são nomes reservados; só um page por pasta."
+  },
+  "structure": {
+    "title": "Layout global e por pasta",
+    "subtitle": "// um layout para tudo ou um por segmento",
+    "description": "O app/layout.tsx envolve toda a aplicação (html, body, providers). Você pode criar layout.tsx dentro de qualquer pasta (ex.: app/dashboard/layout.tsx): esse layout vale só para as rotas daquele segmento. Assim você controla o que é global (header/footer da raiz) e o que muda por área (sidebar só no dashboard).",
+    "inPractice": "Use layout por pasta quando uma área tiver UI própria: dashboard com sidebar, área logada com menu diferente, blog só com header. Layouts são aninhados: o da raiz envolve o do dashboard, que por sua vez envolve a page.",
+    "introTree": "Clique nos itens para ver as descrições:",
+    "fileTreeAriaLabel": "Estrutura de pastas do App Router (layout global e por segmento)",
+    "tip": "Cada layout.tsx envolve apenas as page.tsx da sua pasta e subpastas. O layout da raiz sempre envolve os outros (não dá para \"pular\" o layout global). Troque de layout trocando de rota.",
+    "tree": {
+      "app": "Pasta raiz das rotas",
+      "layoutGlobal": "Layout global — envolve toda a aplicação",
+      "pageRoot": "Página inicial (/)",
+      "dashboardFolder": "Rotas /dashboard/*",
+      "layoutSegment": "Layout só das rotas /dashboard/*",
+      "pageDashboard": "Página /dashboard",
+      "blogFolder": "Rotas /blog/* (sem layout próprio)",
+      "pageBlog": "Página /blog — usa só o layout global"
+    }
+  },
+  "serverClient": {
+    "title": "Server Components vs Client Components",
+    "subtitle": "// use client só quando precisar de interatividade",
+    "description": "Por padrão, todo componente no App Router é um Server Component: roda no servidor, não aumenta o bundle do cliente e pode acessar dados direto (DB, APIs internas). Use \"use client\" no topo do arquivo quando precisar de useState, useEffect, event handlers ou browser APIs (localStorage, window).",
+    "inPractice": "Menos \"use client\" = menos JavaScript no cliente = página mais rápida e melhor para SEO. Use Server para listagens, dados e estrutura; Client só para o que reage a clique, tempo ou input do usuário. Você pode importar um Client Component dentro de um Server Component — o Server renderiza o casco e o Client hidrata onde há interatividade.",
+    "exampleServerTitle": "app/posts/PostList.tsx (Server)",
+    "exampleClientTitle": "components/LikeButton.tsx (Client)",
+    "rule": "Regra de ouro: comece como Server; adicione \"use client\" só nos componentes que realmente precisam de interatividade. Evite \"use client\" na raiz da página — deixe no menor componente possível (ex.: só no botão de like, não na lista inteira)."
+  },
+  "dataFetching": {
+    "title": "Data fetching em Server Components",
+    "subtitle": "// fetch com cache e revalidação",
+    "description": "Em Server Components você pode usar fetch direto — sem useEffect nem lib externa. O Next.js estende o fetch com cache: por padrão as requisições são cacheadas, o que evita chamadas repetidas e deixa a navegação entre rotas mais rápida quando os dados já foram buscados.",
+    "inPractice": "Escolha a estratégia pelo tipo de dado: revalidate em segundos para dados que podem ficar um pouco desatualizados (listagens, catálogo); cache: 'no-store' para dados em tempo real (carrinho, saldo). Em desenvolvimento (npm run dev) o cache pode se comportar diferente; em produção o revalidate funciona como esperado.",
+    "exampleTitle": "app/produtos/page.tsx",
+    "tip": "next: '{' revalidate: 60 '}' revalida a resposta a cada 60 segundos. Para dados que mudam a cada request (ou não devem ser cacheados), use cache: 'no-store'. fetch() em Server Components é automático por request em rotas dinâmicas."
+  },
+  "loadingError": {
+    "title": "Loading e Error boundaries",
+    "subtitle": "// UX sem tela em branco",
+    "description": "loading.tsx mostra um fallback enquanto o conteúdo da rota carrega (Streaming): o usuário vê o loading daquele segmento e o resto da página pode já estar visível. error.tsx captura erros naquele segmento e abaixo, e permite mostrar uma UI de erro em vez de quebrar a página inteira. São convenções: basta criar os arquivos no nível da rota desejada.",
+    "inPractice": "O usuário pode tentar de novo sem recarregar a página: error.tsx recebe reset() e você chama no botão \"Tentar de novo\". Como reset é usado em onClick, error.tsx precisa ser Client Component. Coloque loading.tsx e error.tsx na pasta da rota que você quer proteger (ex.: app/dashboard/).",
+    "exampleLoadingTitle": "app/dashboard/loading.tsx",
+    "exampleErrorTitle": "app/dashboard/error.tsx",
+    "tip": "error.tsx precisa ser Client Component porque usa onClick no reset. O boundary captura erros apenas no segmento onde está e nos filhos — erros em layout.tsx da raiz não são capturados por app/dashboard/error.tsx."
+  },
+  "cta": {
+    "title": "Quer ver mais guias?",
+    "description": "Temos TypeScript, React Patterns, Git Workflow e outros guias práticos na seção Dicas.",
+    "button": "Ver todas as dicas"
+  },
+  "code": {
+    "sidebarLabel": "Menu lateral",
+    "likedLabel": "Curtido",
+    "likeLabel": "Curtir",
+    "loadingText": "Carregando dashboard...",
+    "errorMessage": "Algo deu errado.",
+    "retryButton": "Tentar de novo"
+  },
+  "codeLabel": "Código"
+}

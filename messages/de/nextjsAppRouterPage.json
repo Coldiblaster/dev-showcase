@@ -1,0 +1,84 @@
+{
+  "hero": {
+    "badge": "Praktischer Leitfaden",
+    "title": "Next.js App-Router",
+    "subtitle": "// Rotas, Serverkomponenten und Datenabruf",
+    "description": "Der App Router ist gekommen, um zu bleiben: Ordner werden zu Routen, gemeinsame Layouts, automatisches Laden und Fehlerbehandlung. Dieser Leitfaden deckt Grundlagen bis Best Practices ab — ob Sie neu im App Router sind oder als erfahrener Entwickler Architekturentscheidungen festigen. Beispiele zum Kopieren und Einfügen.",
+    "ctaDocs": "Next.js-Dokumentation"
+  },
+  "sectionNav": {
+    "routing": "Routing",
+    "structure": "Struktur & Layout",
+    "serverClient": "Server vs. Client",
+    "dataFetching": "Datenabruf",
+    "loadingError": "Laden und Fehler"
+  },
+  "routing": {
+    "title": "Ordnerbasiertes Routing",
+    "subtitle": "// Endlich ein Router, der die Ordner nicht versteckt.",
+    "description": "Im App Router definiert die Ordnerstruktur in app/ die Routen: Jeder Ordner wird zu einem URL-Segment (z. B. app/dashboard wird /dashboard). layout.tsx umschließt die Route und ihre Kinder — die \"Hülle\" der Seite (Sidebar, Header). page.tsx ist der Inhalt für diesen Pfad.",
+    "inPractice": "Layout ist die Vorlage, die sich für alle Seiten dieses Segments wiederholt; page ist das, was sich von Route zu Route ändert.",
+    "exampleLayoutTitle": "app/Dashboard/Layout.tsx",
+    "examplePageTitle": "app/Dashboard/Seite.tsx",
+    "tip": "Ein Ordner in Klammern (z. B. (auth)) wird kein URL-Segment — nützlich, um Login und Registrierung unter demselben Layout zu gruppieren, ohne die URL zu verändern. Konventionen: layout.tsx und page.tsx sind reserviert; nur eine page pro Ordner."
+  },
+  "structure": {
+    "title": "Globales und segmentweites Layout",
+    "subtitle": "// ein Layout für alles oder eines pro Segment",
+    "description": "app/layout.tsx umschließt die gesamte App (html, body, providers). Sie können layout.tsx in jedem Ordner anlegen (z. B. app/dashboard/layout.tsx): Dieses Layout gilt nur für die Routen dieses Segments. So steuern Sie, was global (Header/Footer der Wurzel) und was pro Bereich (Sidebar nur im Dashboard) ist.",
+    "inPractice": "Verwenden Sie ein Layout pro Ordner, wenn ein Bereich eigene UI hat: Dashboard mit Sidebar, eingeloggter Bereich mit anderem Menü, Blog nur mit Header. Layouts verschachteln sich: das Wurzel-Layout umschließt das Dashboard-Layout, das die page umschließt.",
+    "introTree": "Klicken Sie auf Einträge, um Beschreibungen zu sehen:",
+    "fileTreeAriaLabel": "App-Router-Ordnerstruktur (globales und segmentweites Layout)",
+    "tip": "Jedes layout.tsx umschließt nur die page.tsx in seinem Ordner und Unterordnern. Das Stamm-Layout umschließt immer die anderen (Sie können das globale Layout nicht \"überspringen\"). Layout wechseln durch Routenwechsel.",
+    "tree": {
+      "app": "Stammordner für Routen",
+      "layoutGlobal": "Globales Layout — umschließt die gesamte App",
+      "pageRoot": "Startseite (/)",
+      "dashboardFolder": "Routen /dashboard/*",
+      "layoutSegment": "Layout nur für /dashboard/*-Routen",
+      "pageDashboard": "Seite /dashboard",
+      "blogFolder": "Routen /blog/* (ohne eigenes Layout)",
+      "pageBlog": "Seite /blog — nutzt nur das globale Layout"
+    }
+  },
+  "serverClient": {
+    "title": "Serverkomponenten vs. Clientkomponenten",
+    "subtitle": "// Verwenden Sie den Client nur, wenn Sie Interaktivität benötigen.",
+    "description": "Standardmäßig ist jede Komponente im App Router eine Serverkomponente: Sie läuft auf dem Server, vergrößert das Client-Bundle nicht und kann direkt auf Daten zugreifen (DB, interne APIs). Verwenden Sie „use client” am Anfang der Datei, wenn Sie useState, useEffect, Event-Handler oder Browser-APIs (localStorage, window) benötigen.",
+    "inPractice": "Weniger „use client” = weniger JavaScript im Client = schnellere Seite und besseres SEO. Server für Listen, Daten und Struktur; Client nur für das, was auf Klick, Zeit oder Nutzereingabe reagiert. Sie können eine Client-Komponente in eine Server-Komponente importieren — der Server rendert die Hülle, der Client hydratisiert, wo Interaktivität nötig ist.",
+    "exampleServerTitle": "app/posts/PostList.tsx (Server)",
+    "exampleClientTitle": "Komponenten/LikeButton.tsx (Client)",
+    "rule": "Goldene Regel: Beginnen Sie als Server; fügen Sie „use client” nur bei Komponenten hinzu, die wirklich Interaktivität benötigen. Vermeiden Sie „use client” in der Seitenwurzel — beschränken Sie es auf die kleinste nötige Komponente (z. B. nur den Like-Button, nicht die ganze Liste)."
+  },
+  "dataFetching": {
+    "title": "Datenabruf in Serverkomponenten",
+    "subtitle": "// Fetch mit Cache und erneuter Validierung",
+    "description": "In Server Components können Sie fetch direkt verwenden — ohne useEffect oder externe Lib. Next.js erweitert fetch um Cache: Standardmäßig werden Anfragen gecacht, was doppelte Aufrufe vermeidet und die Navigation zwischen Routen schneller macht, wenn Daten bereits geladen wurden.",
+    "inPractice": "Wählen Sie die Strategie nach Datentyp: revalidate in Sekunden für Daten, die etwas veraltet sein dürfen (Listen, Katalog); cache: 'no-store' für Echtzeitdaten (Warenkorb, Kontostand). In der Entwicklung (npm run dev) kann der Cache anders wirken; in Produktion funktioniert revalidate wie erwartet.",
+    "exampleTitle": "app/produkte/page.tsx",
+    "tip": "next: '{' revalidate: 60 '}' revalidiert die Antwort alle 60 Sekunden. Für Daten, die bei jedem Request wechseln (oder nicht gecacht werden dürfen), verwenden Sie cache: 'no-store'. fetch() in Server Components ist in dynamischen Routen automatisch pro Request."
+  },
+  "loadingError": {
+    "title": "Laden und Fehlergrenzen",
+    "subtitle": "// UX ohne leeren Bildschirm",
+    "description": "loading.tsx zeigt einen Fallback, während der Inhalt der Route geladen wird (Streaming): Der Nutzer sieht den Ladezustand dieses Segments, der Rest der Seite kann bereits sichtbar sein. error.tsx erfasst Fehler in diesem Segment und darunter und ermöglicht eine Fehler-UI statt eines kompletten Seitenabsturzes. Konventionen: Erstellen Sie die Dateien auf der gewünschten Routenebene.",
+    "inPractice": "Der Nutzer kann erneut versuchen ohne Neuladen: error.tsx erhält reset() und Sie rufen es in einem \"Erneut versuchen\"-Button auf. Da reset in onClick genutzt wird, muss error.tsx eine Client-Komponente sein. Legen Sie loading.tsx und error.tsx im Ordner der zu schützenden Route ab (z. B. app/dashboard/).",
+    "exampleLoadingTitle": "app/dashboard/loading.tsx",
+    "exampleErrorTitle": "app/Dashboard/Fehler.tsx",
+    "tip": "error.tsx muss eine Client-Komponente sein, da es onClick in reset verwendet. Der Boundary fängt nur Fehler in seinem Segment und Kindern — Fehler im Stamm-layout.tsx werden nicht von app/dashboard/error.tsx gefangen."
+  },
+  "cta": {
+    "title": "Möchten Sie weitere Reiseführer sehen?",
+    "description": "Wir haben TypeScript, React Patterns, Git Workflow und andere praktische Anleitungen im Abschnitt Tipps.",
+    "button": "Alle Tipps anzeigen"
+  },
+  "code": {
+    "sidebarLabel": "Seitenleiste",
+    "likedLabel": "Gefällt mir",
+    "likeLabel": "Gefällt mir",
+    "loadingText": "Dashboard wird geladen...",
+    "errorMessage": "Etwas ist schiefgelaufen.",
+    "retryButton": "Erneut versuchen"
+  },
+  "codeLabel": "Code"
+}

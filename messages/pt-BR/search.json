@@ -117,6 +117,10 @@
       "title": "React Design Patterns",
       "description": "Compound Components, Custom Hooks, Render Props e patterns de performance"
     },
+    "nextjs-app-router": {
+      "title": "Next.js App Router",
+      "description": "Routing, Server vs Client Components, data fetching e loading/error boundaries — guia com exemplos replicáveis"
+    },
     "contribute": {
       "title": "Contribua",
       "description": "História do projeto, padrões, fluxo de contribuição e contribuidores"

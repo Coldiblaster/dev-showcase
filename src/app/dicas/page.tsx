@@ -5,6 +5,7 @@ import {
   FileCode,
   GitBranch,
   Palette,
+  Route,
   Shield,
   ShieldCheck,
   Sparkles,
@@ -26,6 +27,7 @@ const iconMap = {
   "typescript-patterns": FileCode,
   "git-workflow": GitBranch,
   "react-patterns": Component,
+  "nextjs-app-router": Route,
 };
 
 export async function generateMetadata(): Promise<Metadata> {

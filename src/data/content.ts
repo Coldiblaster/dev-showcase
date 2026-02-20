@@ -129,6 +129,14 @@ export const CONTENT_ITEMS: ContentItem[] = [
     component: "ReactPatterns",
     category: "guide",
   },
+  {
+    slug: "nextjs-app-router",
+    title: "Next.js App Router — Routing, Server Components e Data Fetching",
+    description:
+      "Guia prático do App Router: pastas como rotas, layouts, Server vs Client Components, data fetching e loading/error boundaries. Exemplos replicáveis.",
+    component: "NextjsAppRouter",
+    category: "guide",
+  },
 ];
 
 export function getContentBySlug(slug: string) {

@@ -135,6 +135,19 @@ function buildTags(slug: string): string[] {
       "context",
       "reducer",
     ],
+    "nextjs-app-router": [
+      "next.js",
+      "nextjs",
+      "app router",
+      "routing",
+      "server components",
+      "client components",
+      "data fetching",
+      "loading",
+      "error boundary",
+      "layout",
+      "page",
+    ],
   };
   return tagMap[slug] ?? [slug];
 }

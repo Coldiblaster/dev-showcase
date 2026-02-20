@@ -29,6 +29,7 @@ import type i18nPage from "../../../messages/pt-BR/i18nPage.json";
 import type i18nShowcase from "../../../messages/pt-BR/i18nShowcase.json";
 import type implementations from "../../../messages/pt-BR/implementations.json";
 import type nav from "../../../messages/pt-BR/nav.json";
+import type nextjsAppRouterPage from "../../../messages/pt-BR/nextjsAppRouterPage.json";
 import type notFound from "../../../messages/pt-BR/notFound.json";
 import type portfolio from "../../../messages/pt-BR/portfolio.json";
 import type privacyPage from "../../../messages/pt-BR/privacyPage.json";
@@ -79,6 +80,7 @@ export type Messages = {
   i18nPage: typeof i18nPage;
   i18nShowcase: typeof i18nShowcase;
   implementations: typeof implementations;
+  nextjsAppRouterPage: typeof nextjsAppRouterPage;
   notFound: typeof notFound;
   portfolio: typeof portfolio;
   privacyPage: typeof privacyPage;
