@@ -120,51 +120,51 @@ export function HomeHeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.8 }}
-            className="mb-4 flex flex-wrap items-center justify-center gap-3 text-[11px] text-muted-foreground md:mb-8 md:gap-6 md:text-sm"
+            className="mb-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-1.5 text-[11px] text-muted-foreground sm:gap-x-3 sm:gap-y-0 md:mb-8 md:gap-x-5 md:text-sm"
           >
             {hasStats && (
               <>
-                <span className="flex items-center gap-1.5">
+                <span className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap">
                   <Users
-                    className="h-3 w-3 text-primary md:h-3.5 md:w-3.5"
+                    className="h-3 w-3 shrink-0 text-primary md:h-3.5 md:w-3.5"
                     aria-hidden="true"
                   />
                   {t("stats.visitors", { count: stats.visitors })}
                 </span>
-                <span className="text-border" aria-hidden="true">
+                <span className="shrink-0 text-border" aria-hidden="true">
                   •
                 </span>
-                <span className="flex items-center gap-1.5">
+                <span className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap">
                   <Eye
-                    className="h-3 w-3 text-primary md:h-3.5 md:w-3.5"
+                    className="h-3 w-3 shrink-0 text-primary md:h-3.5 md:w-3.5"
                     aria-hidden="true"
                   />
                   {t("stats.pageViews", { count: stats.views })}
                 </span>
-                <span className="text-border" aria-hidden="true">
+                <span className="shrink-0 text-border" aria-hidden="true">
                   •
                 </span>
               </>
             )}
-            <span className="flex items-center gap-1.5">
+            <span className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap">
               <span className="text-primary" aria-hidden="true">
                 ✓
               </span>
               {t("stats.impact")}
             </span>
-            <span className="text-border" aria-hidden="true">
+            <span className="shrink-0 text-border" aria-hidden="true">
               •
             </span>
-            <span className="flex items-center gap-1.5">
+            <span className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap">
               <span className="text-primary" aria-hidden="true">
                 ✓
               </span>
               {t("stats.implementations")}
             </span>
-            <span className="text-border" aria-hidden="true">
+            <span className="shrink-0 text-border" aria-hidden="true">
               •
             </span>
-            <span className="flex items-center gap-1.5">
+            <span className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap">
               <span className="text-primary" aria-hidden="true">
                 ✓
               </span>
