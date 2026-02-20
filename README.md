@@ -23,8 +23,8 @@ Mais do que um portfolio, o **Dev Showcase** e uma plataforma open source que co
 
 - **Portfolio profissional** — hero, sobre, projetos, experiencia, estatisticas GitHub e contato
 - **IA integrada** — chat assistente (GPT-4.1 Nano) e revisor de codigo com IA (GPT-4o Mini)
-- **Implementacoes reais** — showcases tecnicos rodando em producao (i18n, SEO, AI Chatbot, Code Review)
-- **Guias para devs** — dicas praticas de IA, Tailwind, React Query, seguranca e recursos por nivel
+- **Implementacoes reais** — showcases tecnicos em producao (i18n, SEO, AI Chatbot, Analytics, Testing, Formulario de Contato)
+- **Guias para devs** — Estado no React, Next.js App Router, IA, Tailwind, React Query, seguranca, privacidade e recursos por nivel
 - **Internacionalizacao completa** — 4 idiomas (pt-BR, en, es, de) com traducao automatizada
 - **SEO de producao** — OG images dinamicas, JSON-LD, sitemap, robots
 - **Busca global** — pesquisa fuzzy em todo o conteudo da plataforma
@@ -74,31 +74,38 @@ O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto c
 
 ### Implementacoes
 
-| Rota                         | Descricao                                                               |
-| ---------------------------- | ----------------------------------------------------------------------- |
-| `/implementacoes/i18n`       | Showcase de internacionalizacao com next-intl                           |
-| `/implementacoes/seo`        | SEO completo — Next.js vs React + Vite                                  |
-| `/implementacoes/ai-chatbot` | Showcase de AI Chatbot (arquitetura, streaming, system prompt, pricing) |
+| Rota                           | Descricao                                                                |
+| ------------------------------ | ------------------------------------------------------------------------ |
+| `/implementacoes/i18n`         | Showcase de internacionalizacao com next-intl                            |
+| `/implementacoes/seo`          | SEO completo — Next.js vs React + Vite                                   |
+| `/implementacoes/ai-chatbot`   | Showcase de AI Chatbot (arquitetura, streaming, system prompt, pricing)  |
+| `/implementacoes/analytics`    | Analytics com Upstash Redis — page views, visitantes, top pages          |
+| `/implementacoes/testing`      | Testing com Vitest e Testing Library — estrutura, exemplos e checklist   |
+| `/implementacoes/contact-form` | Formulario de contato — API, Zod, Resend, Nodemailer e seção Bibliotecas |
 
 ### Ferramentas
 
-| Rota                       | Descricao                                                       |
-| -------------------------- | --------------------------------------------------------------- |
-| `/ferramentas/code-review` | Revisor de codigo com IA — analisa qualidade, bugs e seguranca  |
-| `/ferramentas/regex`       | Regex Playground — editor, biblioteca de patterns e cheat sheet |
+| Rota                       | Descricao                                                           |
+| -------------------------- | ------------------------------------------------------------------- |
+| `/ferramentas/code-review` | Revisor de codigo com IA — analisa qualidade, bugs e seguranca      |
+| `/ferramentas/regex`       | Regex Playground — editor, biblioteca de patterns e cheat sheet     |
+| `/ferramentas/json`        | JSON Formatter & Validator — pretty print, minify e erros por linha |
 
 ### Guias & Dicas
 
-| Rota                         | Descricao                                               |
-| ---------------------------- | ------------------------------------------------------- |
-| `/dicas/ai-tips`             | Prompts e workflows com IA para devs                    |
-| `/dicas/tailwind-tips`       | Dicas de Tailwind CSS + shadcn/ui                       |
-| `/dicas/react-query-tips`    | Patterns essenciais de React Query                      |
-| `/dicas/dev-resources`       | Snippets e recursos por nivel (Jr/Pleno/Sr)             |
-| `/dicas/security-tips`       | Seguranca web — frontend, backend, headers, env vars    |
-| `/dicas/typescript-patterns` | Utility types, generics, narrowing e patterns avancados |
-| `/dicas/git-workflow`        | Branching, commits, workflows e cheat sheet             |
-| `/dicas/react-patterns`      | Composicao, hooks customizados, state e performance     |
+| Rota                         | Descricao                                                         |
+| ---------------------------- | ----------------------------------------------------------------- |
+| `/dicas/ai-tips`             | Prompts e workflows com IA para devs                              |
+| `/dicas/tailwind-tips`       | Dicas de Tailwind CSS + shadcn/ui                                 |
+| `/dicas/react-query-tips`    | Patterns essenciais de React Query                                |
+| `/dicas/dev-resources`       | Snippets e recursos por nivel (Jr/Pleno/Sr)                       |
+| `/dicas/security-tips`       | Seguranca web — frontend, backend, headers, env vars              |
+| `/dicas/privacy-tips`        | Privacidade e cookies — LGPD, consentimento, politica             |
+| `/dicas/typescript-patterns` | Utility types, generics, narrowing e patterns avancados           |
+| `/dicas/git-workflow`        | Branching, commits, workflows e cheat sheet                       |
+| `/dicas/react-patterns`      | Composicao, hooks customizados, state e performance               |
+| `/dicas/nextjs-app-router`   | App Router — routing, Server/Client Components, data fetching     |
+| `/dicas/state-management`    | Estado no React — useState, Context, Zustand; comentarios em i18n |
 
 ### Contribuicao (`/contribua`)
 
@@ -138,9 +145,9 @@ src/
 │   │   └── stats/                    #   Analytics proprio
 │   │       ├── route.ts              #     GET — metricas agregadas
 │   │       └── track/route.ts        #     POST — registra page view
-│   ├── dicas/[slug]/                 # Guias dinamicos (8 guias)
-│   ├── ferramentas/[slug]/           # Ferramentas dinamicas (code-review, regex)
-│   ├── implementacoes/[slug]/        # Implementacoes dinamicas (i18n, seo, ai-chatbot)
+│   ├── dicas/[slug]/                 # Guias dinamicos (11 guias)
+│   ├── ferramentas/[slug]/           # Ferramentas dinamicas (code-review, regex, json)
+│   ├── implementacoes/[slug]/        # Implementacoes (i18n, seo, ai-chatbot, analytics, testing, contact-form)
 │   ├── icon.tsx                      # Favicon dinamico (VB)
 │   ├── opengraph-image.tsx           # OG image 1200x630
 │   ├── sitemap.ts                    # Sitemap automatico
@@ -161,17 +168,24 @@ src/
 │   │   └── github-stats/             # GitHub Stats (hook + sub-componentes)
 │   ├── implementations/
 │   │   ├── ai-chatbot-showcase/      # Showcase AI Chatbot
-│   │   ├── code-review/              # Revisor de Codigo IA
+│   │   ├── analytics-showcase/      # Analytics com Upstash Redis
+│   │   ├── code-review/              # Revisor de Codigo IA (ferramenta)
+│   │   ├── contact-showcase/         # Formulario de Contato (API, Resend, Bibliotecas)
 │   │   ├── i18n-showcase/            # Showcase i18n
-│   │   ├── regex-playground/         # Regex Playground
-│   │   └── seo-showcase/             # Showcase SEO
+│   │   ├── json-tool/                # JSON Formatter & Validator (ferramenta)
+│   │   ├── regex-playground/        # Regex Playground (ferramenta)
+│   │   ├── seo-showcase/             # Showcase SEO
+│   │   └── testing-showcase/        # Testing Vitest + Testing Library
 │   ├── guides/
 │   │   ├── ai-tips/                  # Dicas de IA
 │   │   ├── dev-resources/            # Recursos por nivel
 │   │   ├── git-workflow/             # Git Workflow & Cheat Sheet
+│   │   ├── nextjs-app-router/        # Next.js App Router
+│   │   ├── privacy-tips/             # Privacidade e Cookies
 │   │   ├── react-patterns/           # React Design Patterns
 │   │   ├── react-query-tips/         # React Query Essencial
 │   │   ├── security-tips/            # Seguranca Frontend & Backend
+│   │   ├── state-management/        # Estado no React (comentarios i18n)
 │   │   ├── tailwind-tips/            # Tailwind CSS + shadcn/ui
 │   │   └── ts-patterns/              # TypeScript Patterns
 │   ├── contribute/
@@ -195,7 +209,7 @@ src/
     ├── seo.ts                        # Helpers de SEO
     └── animation-variants.ts         # Variantes Framer Motion
 
-messages/                             # Traducoes por idioma (37 namespaces)
+messages/                             # Traducoes por idioma (pt-BR, en, es, de)
 ├── pt-BR/                            # Portugues (fonte de verdade)
 ├── en/                               # English (gerado)
 ├── es/                               # Espanol (gerado)
@@ -286,16 +300,17 @@ O projeto esta configurado para deploy na **Vercel** com zero configuracao:
 
 ## Documentacao
 
-| Documento                                                                            | Descricao                                      |
-| ------------------------------------------------------------------------------------ | ---------------------------------------------- |
-| [docs/README.md](./docs/README.md)                                                   | Hub da documentacao — arquitetura e convencoes |
-| [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md)                                       | Guia de contribuicao                           |
-| [docs/BRANCH_PROTECTION.md](./docs/BRANCH_PROTECTION.md)                             | CI, branch protection e fluxo de PR            |
-| [docs/api/SECURITY.md](./docs/api/SECURITY.md)                                       | Seguranca das API Routes                       |
-| [docs/analytics/ANALYTICS.md](./docs/analytics/ANALYTICS.md)                         | Sistema de analytics proprio (Upstash Redis)   |
-| [docs/architecture/COMPONENTS.md](./docs/architecture/COMPONENTS.md)                 | Catalogo de componentes reutilizaveis          |
-| [docs/content-management/ADDING_PAGES.md](./docs/content-management/ADDING_PAGES.md) | Como criar novas paginas (guias, impl., tools) |
-| [docs/i18n/INDEX.md](./docs/i18n/INDEX.md)                                           | Sistema de internacionalizacao                 |
+| Documento                                                                            | Descricao                                              |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------ |
+| [docs/README.md](./docs/README.md)                                                   | Hub da documentacao — arquitetura e convencoes         |
+| [docs/CONTRIBUTING.md](./docs/CONTRIBUTING.md)                                       | Guia de contribuicao                                   |
+| [docs/BRANCH_PROTECTION.md](./docs/BRANCH_PROTECTION.md)                             | CI, branch protection e fluxo de PR                    |
+| [docs/api/SECURITY.md](./docs/api/SECURITY.md)                                       | Seguranca das API Routes                               |
+| [docs/analytics/ANALYTICS.md](./docs/analytics/ANALYTICS.md)                         | Sistema de analytics proprio (Upstash Redis)           |
+| [docs/architecture/COMPONENTS.md](./docs/architecture/COMPONENTS.md)                 | Catalogo de componentes reutilizaveis                  |
+| [docs/content-management/ADDING_PAGES.md](./docs/content-management/ADDING_PAGES.md) | Como criar novas paginas (guias, impl., tools)         |
+| [docs/i18n/INDEX.md](./docs/i18n/INDEX.md)                                           | Sistema de internacionalizacao                         |
+| [docs/revisao-dev-senior-novidades.md](./docs/revisao-dev-senior-novidades.md)       | Revisao das novidades (Estado no React, Form. Contato) |
 
 > **Tutorial interativo** para novos contribuidores: [`/contribua/tutorial`](https://viniciusbastazin.vercel.app/contribua/tutorial) — passo a passo com trilhas para "nova feature" e "melhorar existente".
 

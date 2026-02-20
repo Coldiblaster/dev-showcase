@@ -39,10 +39,11 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 │                       Features                            │
 │  home/ ─── hero, about, stack, github-stats, projects,   │
 │            experience, ai-section, contact                │
-│  implementations/ ─── i18n, seo, ai-chatbot              │
-│  implementations/ ─── code-review, regex-playground       │
+│  implementations/ ─── i18n, seo, ai-chatbot, analytics,  │
+│     testing, contact-form; code-review, regex, json      │
 │  guides/ ─── ai-tips, tailwind, react-query, security,   │
-│     dev-resources, ts-patterns, git-workflow, react-patt. │
+│     privacy-tips, dev-resources, ts-patterns, git-workflow│
+│     react-patterns, nextjs-app-router, state-management  │
 │  contribute/ ─── tutorial, design-system, arquitetura,   │
 │     tech-stack, api, accessibility                        │
 ├──────────────────────────────────────────────────────────┤
@@ -70,7 +71,7 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 │  data/content.ts (registro de paginas dinamicas)         │
 │  lib/dynamic-page-helper.tsx (COMPONENT_MAP)             │
 │  data/demo-messages.ts (mensagens demo do chat)          │
-│  messages/ (pt-BR, en, es, de — 37 namespaces)           │
+│  messages/ (pt-BR, en, es, de — namespaces por pagina)   │
 ├──────────────────────────────────────────────────────────┤
 │                     Automacao                             │
 │  scripts/translate.ts (DeepL / Google)                   │
@@ -176,6 +177,15 @@ chore: tarefas de build/config
 
 ---
 
+## Outros documentos
+
+| Documento                                                                  | Descricao                                                                                                                      |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| [Revisao dev senior (novidades)](./revisao-dev-senior-novidades.md)        | Revisao tecnica: comentarios i18n (Estado no React) e seção Bibliotecas (Form. Contato). Ver tambem PLANO (Status — Lancados). |
+| [Post LinkedIn (lancamentos)](./linkedin-post-novidades-estado-contato.md) | Rascunhos de post para LinkedIn: 5 lancamentos (Next.js App Router, Testing, JSON Formatter, Estado no React, Form. Contato)   |
+
+---
+
 ## Links uteis
 
 - [Next.js App Router docs](https://nextjs.org/docs/app)
@@ -184,5 +194,7 @@ chore: tarefas de build/config
 - [Framer Motion](https://www.framer.com/motion/)
 - [OpenAI API docs](https://platform.openai.com/docs)
 - [Resend docs](https://resend.com/docs)
+- [Nodemailer](https://nodemailer.com/)
+- [React Email](https://react.email/)
 - [Schema.org (JSON-LD)](https://schema.org/)
 - [Zod](https://zod.dev/)
