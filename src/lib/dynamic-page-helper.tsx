@@ -35,6 +35,11 @@ const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
       (m) => m.AnalyticsShowcase,
     ),
   ),
+  TestingShowcase: dynamic(() =>
+    import("@/features/implementations/testing-showcase").then(
+      (m) => m.TestingShowcase,
+    ),
+  ),
   CodeReviewShowcase: dynamic(() =>
     import("@/features/implementations/code-review").then(
       (m) => m.CodeReviewShowcase,
@@ -75,6 +80,17 @@ const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
   NextjsAppRouter: dynamic(() =>
     import("@/features/guides/nextjs-app-router").then(
       (m) => m.NextjsAppRouter,
+    ),
+  ),
+  JsonTool: dynamic(() =>
+    import("@/features/implementations/json-tool").then((m) => m.JsonTool),
+  ),
+  StateManagement: dynamic(() =>
+    import("@/features/guides/state-management").then((m) => m.StateManagement),
+  ),
+  ContactFormShowcase: dynamic(() =>
+    import("@/features/implementations/contact-showcase").then(
+      (m) => m.ContactFormShowcase,
     ),
   ),
 };

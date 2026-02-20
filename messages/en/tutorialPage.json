@@ -131,8 +131,14 @@
       "contentTsDesc": "Add your content to the CONTENT_ITEMS array. The slug becomes the URL, the category defines which section it appears in.",
       "componentMap": "Add to COMPONENT_MAP",
       "componentMapDesc": "Connect the component name (string from content.ts) to the actual dynamic import. Use lazy loading with next/dynamic.",
-      "searchIntegration": "Integrate with global search",
-      "searchIntegrationDesc": "For your page to appear in search (Ctrl+K), add in both locations:",
+      "searchIntegration": "Link in site search",
+      "searchIntegrationDesc": "For your page to appear in global search (Ctrl+K), do both steps below. Otherwise, anyone using the site search won't find your page.",
+      "searchHowItWorks": "How it works: the system builds results from content.ts; title and description come from search.json (one per locale); keywords come from tagMap. That's why both files are required.",
+      "searchRequired": "Without search.json and tagMap, the page won't show in search results.",
+      "searchChecklistTitle": "Checklist — after editing, verify:",
+      "searchChecklist1": "search.json filled in all 4 locales (pt-BR, en, es, de) with items.'{slug'}'.title and .description",
+      "searchChecklist2": "tagMap in search-data.ts with your slug and tags (words users would type when searching)",
+      "searchChecklist3": "Test: open search (Ctrl+K) and type the page title or one of its tags",
       "listingPage": "Add icon to listing",
       "listingPageDesc": "Each listing page (/dicas, /implementacoes) uses an iconMap to display icons. Add the slug and a Lucide icon.",
       "categoryTitle": "Available categories",
@@ -168,7 +174,9 @@
         "q4": "How do I test if the registration worked?",
         "a4": "Run pnpm dev and visit your page URL (e.g. /dicas/graphql-tips). Also test global search (Ctrl+K) and the category listing. If you get 404, check COMPONENT_MAP and content.ts.",
         "q5": "What about standalone pages (/contribua)?",
-        "a5": "Standalone pages don't use content.ts or COMPONENT_MAP. But they still need an entry in search-data.ts (STANDALONE_PAGES array) and search.json translations to appear in global search."
+        "a5": "Standalone pages don't use content.ts or COMPONENT_MAP. But they still need an entry in search-data.ts (STANDALONE_PAGES array) and search.json translations to appear in global search.",
+        "q6": "I forgot to add search.json or tagMap. What happens?",
+        "a6": "The page is still reachable by URL and from the listing (/dicas, /implementacoes), but it won't show when someone uses global search (Ctrl+K). Just add items.'{slug'}' to all 4 search.json files and the slug to tagMap in search-data.ts."
       }
     },
     "developing": {

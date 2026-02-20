@@ -9,6 +9,7 @@ import architecturePage from "./architecturePage.json";
 import chat from "./chat.json";
 import codeReviewPage from "./codeReviewPage.json";
 import contact from "./contact.json";
+import contactFormPage from "./contactFormPage.json";
 import contributePage from "./contributePage.json";
 import cookieBanner from "./cookieBanner.json";
 import designSystemPage from "./designSystemPage.json";
@@ -25,6 +26,7 @@ import homeStats from "./homeStats.json";
 import i18nPage from "./i18nPage.json";
 import i18nShowcase from "./i18nShowcase.json";
 import implementations from "./implementations.json";
+import jsonPage from "./jsonPage.json";
 import nav from "./nav.json";
 import nextjsAppRouterPage from "./nextjsAppRouterPage.json";
 import notFound from "./notFound.json";
@@ -38,10 +40,12 @@ import regexPage from "./regexPage.json";
 import search from "./search.json";
 import securityPage from "./securityPage.json";
 import seoPage from "./seoPage.json";
+import stateManagementPage from "./stateManagementPage.json";
 import tailwindTips from "./tailwindTips.json";
 import tailwindTipsPage from "./tailwindTipsPage.json";
 import techStackPage from "./techStackPage.json";
 import terminal from "./terminal.json";
+import testingPage from "./testingPage.json";
 import tips from "./tips.json";
 import tipsPage from "./tipsPage.json";
 import tsPatterns from "./tsPatterns.json";
@@ -62,6 +66,7 @@ export default {
   aiInnovation,
   codeReviewPage,
   contact,
+  contactFormPage,
   contributePage,
   cookieBanner,
   designSystemPage,
@@ -77,6 +82,7 @@ export default {
   i18nPage,
   i18nShowcase,
   implementations,
+  jsonPage,
   nextjsAppRouterPage,
   notFound,
   portfolio,
@@ -86,10 +92,12 @@ export default {
   reactPatterns,
   reactQueryTipsPage,
   regexPage,
+  stateManagementPage,
   techStackPage,
   terminal,
   tailwindTips,
   tailwindTipsPage,
+  testingPage,
   tips,
   tipsPage,
   tsPatterns,

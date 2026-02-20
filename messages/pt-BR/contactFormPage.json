@@ -1,0 +1,57 @@
+{
+  "hero": {
+    "badge": "Implementação",
+    "title": "Formulário de Contato",
+    "subtitle": "// API, Resend, Zod e rate limit",
+    "description": "Como este projeto implementa o formulário de contato: validação com Zod, rate limit, reCAPTCHA e envio com Resend. Exemplos de código para replicar no seu projeto."
+  },
+  "sectionNav": {
+    "overview": "Visão geral",
+    "flow": "Fluxo",
+    "api": "API",
+    "libs": "Bibliotecas"
+  },
+  "overview": {
+    "title": "O que usamos",
+    "subtitle": "// stack do formulário de contato",
+    "description": "O formulário envia os dados para uma API route em Next.js. A rota valida o payload com Zod, aplica rate limit por IP, opcionalmente reCAPTCHA e envia o e-mail via Resend. Mensagens de erro vêm das traduções (i18n).",
+    "stack": "Resend (envio), Zod (validação), rate limit em memória ou Redis, reCAPTCHA v3. Código em src/app/api/contact e src/features/home/contact.",
+    "codeTitle": "Schema Zod para nome, e-mail e mensagem"
+  },
+  "flow": {
+    "title": "Fluxo da mensagem",
+    "subtitle": "// do formulário até o e-mail",
+    "description": "O usuário preenche nome, e-mail e mensagem no cliente. O front envia POST para /api/contact. A API valida com Zod, verifica rate limit e reCAPTCHA (se configurado), e chama o Resend para enviar o e-mail.",
+    "steps": "Em erro (validação, rate limit ou falha no envio), a API devolve mensagem clara; o front exibe sem expor detalhes internos. Labels e mensagens vêm das traduções (a11y e i18n).",
+    "codeTitle": "Cliente: fetch POST para /api/contact"
+  },
+  "libs": {
+    "title": "Bibliotecas de envio",
+    "subtitle": "// Resend, Nodemailer, React Email",
+    "description": "Algumas opções para enviar e-mail na API do Next: Resend (usado neste projeto), Nodemailer (SMTP direto), React Email (templates em React). Abaixo, como implementar na API route com Resend e com Nodemailer.",
+    "intro": "Libs que você pode usar:",
+    "resendName": "Resend",
+    "resendUrl": "https://resend.com/docs",
+    "resendDesc": "API moderna, ótima DX, usado neste projeto. Chave em RESEND_API_KEY.",
+    "nodemailerName": "Nodemailer",
+    "nodemailerUrl": "https://nodemailer.com/",
+    "nodemailerDesc": "Clássico para Node: envia via SMTP (Gmail, Outlook, seu servidor).",
+    "reactEmailName": "React Email",
+    "reactEmailUrl": "https://react.email/",
+    "reactEmailDesc": "Templates de e-mail em React; gera HTML e pode usar Resend ou Nodemailer para envio.",
+    "codeTitleResend": "Na API com Resend",
+    "codeTitleNodemailer": "Na API com Nodemailer"
+  },
+  "api": {
+    "title": "API route e segurança",
+    "subtitle": "// POST /api/contact",
+    "description": "A rota lê o body, valida com o schema Zod, aplica rate limit por IP e, se ok, chama o Resend com a chave em variável de ambiente. Nunca exponha RESEND_API_KEY no cliente.",
+    "tip": "Para replicar: crie a API route, defina o schema Zod, use rate limit (middleware ou lib) e configure RESEND_API_KEY no .env. Mensagens de sucesso e erro via traduções (i18n e a11y).",
+    "codeTitle": "Esqueleto da API route (validação + Resend)"
+  },
+  "cta": {
+    "title": "Ver outras implementações",
+    "description": "i18n, SEO, AI Chatbot, Analytics e Testing: todas com código aberto e documentação no repositório.",
+    "button": "Voltar às implementações"
+  }
+}

@@ -1,4 +1,4 @@
-import { Bot, Globe, Search } from "lucide-react";
+import { BarChart3, Bot, Globe, Mail, Search, TestTube } from "lucide-react";
 import { Metadata } from "next";
 import { getLocale, getTranslations } from "next-intl/server";
 
@@ -9,6 +9,9 @@ const iconMap = {
   i18n: Globe,
   seo: Search,
   "ai-chatbot": Bot,
+  analytics: BarChart3,
+  testing: TestTube,
+  "contact-form": Mail,
 };
 
 export async function generateMetadata(): Promise<Metadata> {

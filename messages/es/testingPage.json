@@ -1,0 +1,134 @@
+{
+  "hero": {
+    "badge": "Implementación",
+    "title": "Cómo implementar pruebas unitarias",
+    "subtitle": "// Vitest, Testing Library y alternativas",
+    "description": "Guía práctica para implementar pruebas unitarias en tu proyecto: stack que usamos aquí (Vitest, Testing Library, Playwright para e2e) y otras opciones como Jest y Cypress. Estructura de carpetas, ejemplos para copiar y checklist de qué testear primero."
+  },
+  "sectionNav": {
+    "overview": "Visión general",
+    "tools": "Herramientas",
+    "structure": "Estructura",
+    "examples": "Ejemplos",
+    "checklist": "Checklist"
+  },
+  "overview": {
+    "title": "Por qué esta stack",
+    "subtitle": "// pruebas unitarias en el día a día",
+    "description": "Para pruebas unitarias e de integración en el front, una combinación común es: un runner (Vitest o Jest), una lib para testear componentes y hooks como el usuario (Testing Library) y entorno DOM (jsdom). Para e2e, Playwright o Cypress. Aquí usamos Vitest + Testing Library + Playwright y mostramos alternativas.",
+    "items": [
+      {
+        "icon": "Beaker",
+        "title": "Runner: Vitest o Jest",
+        "description": "Vitest es rápido, ESM nativo y API similar a Jest. Jest es la opción más conocida; migrar entre ambos es sencillo. Comando: pnpm test (o test:watch)."
+      },
+      {
+        "icon": "FileCode",
+        "title": "Testing Library",
+        "description": "Queries por rol y texto accesible (getByRole, getByText). Prueba como el usuario usa la interfaz; evita detalles de implementación. Funciona con Vitest y Jest."
+      },
+      {
+        "icon": "Layers",
+        "title": "Carpetas __tests__",
+        "description": "Tests junto al código (ej.: src/lib/i18n/__tests__/config.test.ts). El patrón *.test.ts facilita watch y coverage en cualquier runner."
+      },
+      {
+        "icon": "Zap",
+        "title": "Mocks y coverage",
+        "description": "vi.mock() (Vitest) o jest.mock() (Jest) para aislar módulos. pnpm test:coverage (o equivalente) para informe de cobertura."
+      }
+    ]
+  },
+  "tools": {
+    "title": "Herramientas y alternativas",
+    "subtitle": "// qué usar para unit y e2e",
+    "description": "Stack que usa este proyecto y otras opciones consolidadas. Todas combinan bien con React y Next.js.",
+    "weUse": "En este proyecto",
+    "alternatives": "Otras opciones",
+    "items": [
+      {
+        "name": "Vitest",
+        "role": "Runner (unit)",
+        "description": "Rápido, ESM nativo, API estilo Jest. Watch y coverage integrados.",
+        "variant": "weUse"
+      },
+      {
+        "name": "Testing Library (React)",
+        "role": "Componentes y hooks",
+        "description": "render(), screen.getByRole/getByText, renderHook(). + @testing-library/jest-dom para matchers (toBeInTheDocument, etc.).",
+        "variant": "weUse"
+      },
+      {
+        "name": "Playwright",
+        "role": "Tests e2e",
+        "description": "Tests de punta a punta en el navegador. En este repo: pnpm test:e2e.",
+        "variant": "weUse"
+      },
+      {
+        "name": "Jest",
+        "role": "Runner (unit)",
+        "description": "Estándar de mercado, mucha documentación. Si ya usas Jest, puedes mantenerlo; para proyectos nuevos Vitest suele ser más rápido.",
+        "variant": "alternative"
+      },
+      {
+        "name": "Cypress",
+        "role": "Tests e2e",
+        "description": "Alternativa popular a Playwright. Buena DX y dashboard; Playwright suele ser más rápido y multi-navegador.",
+        "variant": "alternative"
+      }
+    ]
+  },
+  "structure": {
+    "title": "Estructura de carpetas",
+    "subtitle": "// dónde poner los tests",
+    "description": "Cada módulo puede tener una carpeta __tests__ con archivos .test.ts o .test.tsx. En lib/ testeamos config y utils; en scripts/ validadores y transformers. El mismo patrón sirve con Vitest o Jest.",
+    "introTree": "Haz clic en los items para explorar:",
+    "fileTreeAriaLabel": "Estructura de carpetas de tests del proyecto",
+    "tip": "Puedes copiar la carpeta __tests__ y vitest.config (o jest.config) a tu proyecto y adaptar. El patrón *.test.ts facilita watch y coverage.",
+    "tree": {
+      "src": "Código fuente de la aplicación",
+      "lib": "Utilidades y config compartidos",
+      "i18n": "Config i18n (locales, cookie, routing)",
+      "testsFolder": "Tests de este módulo (config, load-messages, routing)",
+      "configTs": "Archivo de config bajo test",
+      "components": "Componentes React (tests al lado o en __tests__)",
+      "hooks": "Hooks custom (tests en __tests__)",
+      "scripts": "Scripts de build y validación",
+      "scriptsTests": "Tests de scripts (validate-i18n, flatten, translators)",
+      "validateI18n": "Script de validación de claves i18n"
+    }
+  },
+  "examples": {
+    "title": "Ejemplos de tests",
+    "subtitle": "// config, util, hook, componente y Jest",
+    "description": "Cinco tipos de ejemplo que puedes copiar: config y constantes (Vitest), función pura/util (Vitest o Jest), hook con renderHook, componente con render + getByRole (Testing Library) y el mismo test de config con Jest. Pega en tu proyecto, ejecuta pnpm test (o npm test con Jest) y adapta nombres.",
+    "exampleStep": "Puedes pegar el código de abajo tal cual; solo ajusta la ruta del import y el nombre del archivo si hace falta.",
+    "configTest": { "title": "1. Config/constantes (Vitest)" },
+    "utilTest": { "title": "2. Función pura / util (Vitest o Jest)" },
+    "hookTest": {
+      "title": "3. Hook con renderHook (Vitest + Testing Library)"
+    },
+    "componentTest": {
+      "title": "4. Componente con render + getByRole (Vitest + Testing Library)"
+    },
+    "jestTest": { "title": "5. Mismo test de config con Jest" },
+    "tip": "Para componentes usa render() y screen.getByRole/getByText; para hooks renderHook. Con Jest usa jest.fn() en lugar de vi.fn() y jest.mock en lugar de vi.mock. Prefiere queries por rol (getByRole)."
+  },
+  "checklist": {
+    "title": "Qué testear primero",
+    "subtitle": "// prioridad para junior y mid",
+    "description": "Orden sugerido para empezar a cubrir el proyecto sin perderse. Enfócate en utils y config, luego hooks y por último componentes con lógica importante.",
+    "items": [
+      "Funciones puras y utils (formateadores, validadores, parsers).",
+      "Config y constantes (ej. i18n) que impactan la app.",
+      "Hooks custom que encapsulan lógica (estado, efectos, fetch).",
+      "Componentes con lógica de negocio o muchos branches (condicionales).",
+      "Integración de flujos críticos (envío de formulario, llamada API) con mocks."
+    ]
+  },
+  "cta": {
+    "title": "Ver otras implementaciones",
+    "description": "i18n, SEO, AI Chatbot y Analytics: todas con código abierto y documentación paso a paso.",
+    "button": "Volver a implementaciones"
+  }
+}

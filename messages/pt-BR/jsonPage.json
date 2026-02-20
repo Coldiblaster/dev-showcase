@@ -1,0 +1,65 @@
+{
+  "hero": {
+    "badge": "Ferramenta Interativa",
+    "title": "JSON Formatter & Validator",
+    "subtitle": "// formate e valide JSON no navegador",
+    "description": "Cole seu JSON e formate (pretty print), minifique ou apenas valide. Mensagens de erro claras para corrigir linha a linha. Útil para APIs e arquivos de configuração."
+  },
+  "sectionNav": {
+    "editor": "Editor",
+    "examples": "Exemplos"
+  },
+  "editor": {
+    "title": "Editor",
+    "ariaLabel": "Editor de JSON",
+    "inputLabel": "JSON de entrada",
+    "inputPlaceholder": "Cole ou digite seu JSON aqui...",
+    "outputLabel": "Resultado",
+    "format": "Formatar",
+    "minify": "Minificar",
+    "validate": "Validar",
+    "clear": "Limpar",
+    "hint": "Use Formatar para ver o JSON indentado; Validar só verifica se está correto."
+  },
+  "result": {
+    "valid": "JSON válido.",
+    "formatted": "JSON formatado com sucesso.",
+    "errors": {
+      "unexpectedEnd": "Fim inesperado da entrada JSON.",
+      "unexpectedToken": "Token inesperado na posição {position}.",
+      "generic": "Erro de sintaxe: {message}"
+    }
+  },
+  "examples": {
+    "title": "Exemplos prontos",
+    "description": "JSON de exemplo para testar. Clique para carregar no editor.",
+    "useExample": "Usar",
+    "items": {
+      "user": {
+        "name": "Objeto usuário",
+        "description": "Nome, e-mail, ativo e data."
+      },
+      "config": {
+        "name": "Configuração",
+        "description": "Env, debug, timeout e features."
+      },
+      "apiResponse": {
+        "name": "Resposta de API",
+        "description": "Lista paginada com data e total."
+      },
+      "array": {
+        "name": "Array misto",
+        "description": "Números, strings, boolean, null e objeto."
+      },
+      "nested": {
+        "name": "Objeto aninhado",
+        "description": "User com roles e settings."
+      }
+    }
+  },
+  "cta": {
+    "title": "Ver outras ferramentas",
+    "description": "Code Review com IA e Regex Playground: mais ferramentas para o dia a dia do dev.",
+    "back": "Voltar às ferramentas"
+  }
+}

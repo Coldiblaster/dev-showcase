@@ -1,0 +1,124 @@
+{
+  "hero": {
+    "badge": "Praktischer Leitfaden",
+    "title": "State in React",
+    "subtitle": "// useState, useCallback, useMemo, useRef, Context, Zustand",
+    "description": "Vollständiger Guide: lokaler State, Performance-Hooks (useCallback, useMemo, useRef), useReducer, Context und Store (Zustand). Echte kopierbare Beispiele und wann was nutzen.",
+    "docLink": "Offizielle React-Docs: State verwalten"
+  },
+  "sectionNav": {
+    "localState": "Lokaler State",
+    "hooks": "Hooks (useCallback, useMemo, useRef)",
+    "context": "Context",
+    "zustand": "Zustand",
+    "whenToUse": "Wann was nutzen"
+  },
+  "localState": {
+    "title": "Lokaler State (useState)",
+    "subtitle": "// der Einstieg",
+    "description": "useState ist der erste Schritt: State lebt in der Komponente und fließt per Props zu den Kindern. Für Formulare, Toggles und UI, die nicht über viele Ebenen geteilt werden muss.",
+    "inPractice": "State nur anheben, wenn zwei Geschwister dieselben Daten brauchen. Wenn Sie Props durch viele Ebenen reichen (Prop Drilling), Context oder Store erwägen.",
+    "codeTitle": "Beispiel: Zähler mit useState",
+    "codeTitleInput": "Beispiel: kontrolliertes Input (Formular)",
+    "codeComments": {
+      "0": "State lebt in der Komponente; Kinder erhalten per Props bei Bedarf."
+    },
+    "codeCommentsInput": {
+      "0": "Single Source of Truth; einfach validieren oder absenden."
+    }
+  },
+  "hooks": {
+    "title": "Performance-Hooks und Refs",
+    "subtitle": "// useCallback, useMemo, useRef, useReducer",
+    "description": "useCallback und useMemo vermeiden Neuerstellung von Funktionen und Werten zwischen Renders; useRef hält eine mutable Referenz (DOM, Timer, vorheriger Wert) ohne Re-Render. useReducer bündelt komplexe State-Logik.",
+    "inPractice": "useCallback: wenn Callback an memoisiertes Kind oder als useEffect-Dep übergeben wird. useMemo: gefilterte/sortierte Listen oder teure Berechnungen. useRef: Focus, intervalId, previous value. useReducer: State mit mehreren Aktionen oder nahe State Machine.",
+    "useCallbackTitle": "useCallback",
+    "useCallbackDesc": "Gibt dieselbe Funktion zwischen Renders zurück, solange sich deps nicht ändern. Wichtig für React.memo + Callback und stabile Deps in useEffect/useMemo.",
+    "useCallbackBasic": "Stabile Referenz für memoisiertes Kind",
+    "useCallbackDeps": "Deps: jeden aus Closure genutzten Wert angeben",
+    "useMemoTitle": "useMemo",
+    "useMemoDesc": "Memoisiert das Ergebnis einer Berechnung; nur Neuberechnung bei geänderten deps. Für abgeleitete Daten (filter, sort) oder teure Berechnungen.",
+    "useMemoFilter": "Gefilterte Liste (vermeidet Refilter pro Render)",
+    "useMemoExpensive": "Teure Berechnung oder sortierte Liste",
+    "useRefTitle": "useRef",
+    "useRefDesc": "Mutable Referenz, die über Renders bestehen bleibt und keinen Re-Render auslöst. Nutzen: DOM-Ref, intervalId/timeoutId speichern, \"previous value\"-Pattern.",
+    "useRefFocus": "Focus auf Input (DOM-Ref)",
+    "useRefPrevious": "Pattern: vorheriger Wert (z. B. für Diff)",
+    "useRefInterval": "setInterval-ID für Cleanup speichern",
+    "useReducerTitle": "useReducer",
+    "useReducerDesc": "State mit Updates via Actions; ideal wenn Übergangslogik komplex ist oder Sie Vorhersagbarkeit wollen (Reducer-Pattern).",
+    "useReducerExample": "Beispiel: Zähler mit increment/decrement",
+    "codeCommentsUseCallbackBasic": {
+      "0": "stabile Referenz: memoisiertes Kind re-rendert nicht"
+    },
+    "codeCommentsUseCallbackDeps": {
+      "0": "Deps: jeden aus Closure genutzten Wert angeben",
+      "1": "token aus Props/State muss in deps stehen"
+    },
+    "codeCommentsUseMemoExpensive": {
+      "0": "Teure Berechnung: nur neu, wenn Eingaben sich ändern"
+    },
+    "codeCommentsUseRefPrevious": {
+      "0": "Pattern: vorherigen Wert halten (z. B. für Diff)"
+    },
+    "codeCommentsUseRefInterval": {
+      "0": "Mutable Wert speichern, der keinen Re-Render auslöst (z. B. Interval-ID)"
+    }
+  },
+  "context": {
+    "title": "Context API",
+    "subtitle": "// teilen ohne Prop Drilling",
+    "description": "Context stellt einen Wert für einen ganzen Teilbaum bereit, ohne jede Ebene zu durchlaufen. Ideal für Theme, Sprache (i18n), eingeloggten User und Daten, die viele Screens nur lesen.",
+    "inPractice": "Context ist kein Cache: Jede Änderung re-rendert alle Consumer. Für selten wechselnde Daten; für oft aktualisierten State (z. B. Warenkorb) Zustand oder Ähnliches bevorzugen.",
+    "codeTitleProvider": "1. Provider: Wert erzeugen und bereitstellen",
+    "codeTitleConsumer": "2. Mit useContext konsumieren",
+    "codeComments": {
+      "0": "Kein Durchreichen von Props durch jede Ebene (vermeidet Prop Drilling)."
+    }
+  },
+  "zustand": {
+    "title": "Zustand (und Alternativen)",
+    "subtitle": "// schlanker Store außerhalb des Baums",
+    "description": "Zustand hält State außerhalb des Komponentenbaums. Abonnenten re-rendern nur, wenn sich der genutzte Slice ändert. Minimale API, kein Provider nötig, TypeScript-freundlich.",
+    "inPractice": "Nutzen, wenn Context zu viele Re-Renders verursacht oder State global und oft aktualisiert wird. Jotai und Redux sind Alternativen; Wahl nach Team- und App-Größe.",
+    "codeTitleStore": "Store: create + Slice (count + increment)",
+    "codeTitleUse": "Nutzung in Komponente: ohne Provider",
+    "codeComments": {
+      "0": "In beliebiger Komponente (kein Provider nötig)",
+      "1": "Re-rendert nur, wenn sich der genutzte Slice ändert."
+    }
+  },
+  "whenToUse": {
+    "title": "Wann was nutzen",
+    "subtitle": "// praktische Zusammenfassung",
+    "description": "Nicht jede App braucht Redux. Reihenfolge: useState → useCallback/useMemo/useRef bei Bedarf (Performance) → Context (über Ebenen teilen) → Zustand oder andere Store (wenn Context nicht reicht).",
+    "inPractice": "Einfachheit vorziehen: lokaler State > Performance-Hooks wenn gemessen > Context > Store. Schichten nur hinzufügen, wenn der Schmerz real ist (Performance, Wartung, Tests).",
+    "examplesIntro": "Beispiele nach Szenario:",
+    "codeTitleState": "Szenario 1: useState — State nur in dieser Komponente (z. B. Login-Formular)",
+    "codeTitleContext": "Szenario 2: Context — derselbe Wert auf vielen Ebenen (z. B. Theme, i18n)",
+    "codeTitleStore": "Szenario 3: Zustand — globaler State, der oft aktualisiert wird (z. B. Warenkorb)",
+    "whenStateComments": {
+      "0": "useState: State nur in dieser Komponente (oder 1–2 Ebenen per Props)",
+      "1": "Kein Teilen mit anderen Screens nötig → lokaler State reicht"
+    },
+    "whenContextComments": {
+      "0": "Context: derselbe Wert auf vielen Ebenen (vermeidet Prop Drilling)",
+      "1": "z. B. Theme, Sprache, eingeloggter User — ändern sich selten",
+      "2": "Wert für ganzen Baum verfügbar",
+      "3": "Sidebar und Page nutzen Theme ohne Props",
+      "4": "kein Prop Drilling"
+    },
+    "whenZustandComments": {
+      "0": "Zustand (oder Store): globaler State, der oft aktualisiert wird",
+      "1": "z. B. Warenkorb, Filter — viele Komponenten lesen und schreiben",
+      "2": "Jede Komponente re-rendert nur bei Änderung des genutzten Slice",
+      "3": "Re-render nur bei Längenänderung",
+      "4": "stabile Referenz"
+    }
+  },
+  "cta": {
+    "title": "Weitere Guides",
+    "description": "Next.js App Router, React Patterns, TypeScript und Git: weitere praktische Guides in der Tipps-Sektion.",
+    "button": "Alle Tipps anzeigen"
+  }
+}

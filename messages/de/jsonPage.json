@@ -1,0 +1,65 @@
+{
+  "hero": {
+    "badge": "Interaktives Tool",
+    "title": "JSON Formatter & Validator",
+    "subtitle": "// JSON im Browser formatieren und validieren",
+    "description": "JSON einfügen und formatieren (Pretty Print), minifizieren oder nur validieren. Klare Fehlermeldungen zur Zeilenkorrektur. Nützlich für APIs und Konfigurationsdateien."
+  },
+  "sectionNav": {
+    "editor": "Editor",
+    "examples": "Beispiele"
+  },
+  "editor": {
+    "title": "Editor",
+    "ariaLabel": "JSON-Editor",
+    "inputLabel": "JSON-Eingabe",
+    "inputPlaceholder": "JSON hier einfügen oder eingeben...",
+    "outputLabel": "Ergebnis",
+    "format": "Formatieren",
+    "minify": "Minifizieren",
+    "validate": "Validieren",
+    "clear": "Löschen",
+    "hint": "Formatieren zeigt das JSON eingerückt; Validieren prüft nur, ob es gültig ist."
+  },
+  "result": {
+    "valid": "Gültiges JSON.",
+    "formatted": "JSON erfolgreich formatiert.",
+    "errors": {
+      "unexpectedEnd": "Unerwartetes Ende der JSON-Eingabe.",
+      "unexpectedToken": "Unerwartetes Token an Position {position}.",
+      "generic": "Syntaxfehler: {message}"
+    }
+  },
+  "examples": {
+    "title": "Fertige Beispiele",
+    "description": "Beispiel-JSON zum Testen. Klicken, um im Editor zu laden.",
+    "useExample": "Verwenden",
+    "items": {
+      "user": {
+        "name": "Benutzerobjekt",
+        "description": "Name, E-Mail, aktiv und Datum."
+      },
+      "config": {
+        "name": "Konfiguration",
+        "description": "Env, Debug, Timeout und Features."
+      },
+      "apiResponse": {
+        "name": "API-Antwort",
+        "description": "Paginierte Liste mit data und total."
+      },
+      "array": {
+        "name": "Gemischtes Array",
+        "description": "Zahlen, Strings, Boolean, null und Objekt."
+      },
+      "nested": {
+        "name": "Verschachteltes Objekt",
+        "description": "User mit Rollen und Einstellungen."
+      }
+    }
+  },
+  "cta": {
+    "title": "Weitere Tools",
+    "description": "KI Code Review und Regex Playground: weitere Tools für den Entwickleralltag.",
+    "back": "Zurück zu Tools"
+  }
+}

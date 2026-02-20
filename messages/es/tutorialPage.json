@@ -131,8 +131,14 @@
       "contentTsDesc": "Agrega tu contenido al array CONTENT_ITEMS. El slug se convierte en la URL, la category define en qué sección aparece.",
       "componentMap": "Agrega al COMPONENT_MAP",
       "componentMapDesc": "Conecta el nombre del componente (string del content.ts) al import dinámico real. Usa lazy loading con next/dynamic.",
-      "searchIntegration": "Integra con la búsqueda global",
-      "searchIntegrationDesc": "Para que tu página aparezca en la búsqueda (Ctrl+K), agrega en ambos lugares:",
+      "searchIntegration": "Vincula en el buscador del sitio",
+      "searchIntegrationDesc": "Para que tu página aparezca en la búsqueda global (Ctrl+K), haz los dos pasos siguientes. Sin esto, quien use el buscador del sitio no encontrará tu página.",
+      "searchHowItWorks": "Cómo funciona: el sistema arma los resultados a partir de content.ts; el título y la descripción vienen de search.json (uno por idioma); las palabras clave vienen del tagMap. Por eso los dos archivos son obligatorios.",
+      "searchRequired": "Sin search.json y tagMap, la página no entra en los resultados de búsqueda.",
+      "searchChecklistTitle": "Checklist — después de editar, comprueba:",
+      "searchChecklist1": "search.json rellenado en los 4 idiomas (pt-BR, en, es, de) con items.'{slug'}'.title y .description",
+      "searchChecklist2": "tagMap en search-data.ts con el slug y las tags (palabras que el usuario escribiría al buscar)",
+      "searchChecklist3": "Probar: abre la búsqueda (Ctrl+K) y escribe el título de la página o una de sus tags",
       "listingPage": "Agrega ícono al listado",
       "listingPageDesc": "Cada página de listado (/dicas, /implementacoes) usa un iconMap para mostrar íconos. Agrega el slug y un ícono de Lucide.",
       "categoryTitle": "Categorías disponibles",
@@ -168,7 +174,9 @@
         "q4": "¿Cómo pruebo si el registro funcionó?",
         "a4": "Ejecuta pnpm dev y visita la URL de tu página (ej: /dicas/graphql-tips). Prueba también la búsqueda global (Ctrl+K) y el listado de la categoría. Si da 404, verifica COMPONENT_MAP y content.ts.",
         "q5": "¿Y para páginas standalone (/contribua)?",
-        "a5": "Las páginas standalone no usan content.ts ni COMPONENT_MAP. Pero aún necesitan entrada en search-data.ts (array STANDALONE_PAGES) y traducciones en search.json para aparecer en la búsqueda global."
+        "a5": "Las páginas standalone no usan content.ts ni COMPONENT_MAP. Pero aún necesitan entrada en search-data.ts (array STANDALONE_PAGES) y traducciones en search.json para aparecer en la búsqueda global.",
+        "q6": "Olvidé poner search.json o tagMap. ¿Qué pasa?",
+        "a6": "La página sigue siendo accesible por URL y por el listado (/dicas, /implementacoes), pero no aparecerá cuando alguien use la búsqueda global (Ctrl+K). Solo añade items.'{slug'}' en los 4 search.json y el slug en tagMap en search-data.ts."
       }
     },
     "developing": {

@@ -1,0 +1,65 @@
+{
+  "hero": {
+    "badge": "Interactive Tool",
+    "title": "JSON Formatter & Validator",
+    "subtitle": "// format and validate JSON in the browser",
+    "description": "Paste your JSON and format (pretty print), minify or just validate. Clear error messages to fix line by line. Useful for APIs and config files."
+  },
+  "sectionNav": {
+    "editor": "Editor",
+    "examples": "Examples"
+  },
+  "editor": {
+    "title": "Editor",
+    "ariaLabel": "JSON editor",
+    "inputLabel": "JSON input",
+    "inputPlaceholder": "Paste or type your JSON here...",
+    "outputLabel": "Result",
+    "format": "Format",
+    "minify": "Minify",
+    "validate": "Validate",
+    "clear": "Clear",
+    "hint": "Use Format to see JSON indented; Validate only checks if it is valid."
+  },
+  "result": {
+    "valid": "Valid JSON.",
+    "formatted": "JSON formatted successfully.",
+    "errors": {
+      "unexpectedEnd": "Unexpected end of JSON input.",
+      "unexpectedToken": "Unexpected token at position {position}.",
+      "generic": "Syntax error: {message}"
+    }
+  },
+  "examples": {
+    "title": "Ready examples",
+    "description": "Sample JSON to try. Click to load into the editor.",
+    "useExample": "Use",
+    "items": {
+      "user": {
+        "name": "User object",
+        "description": "Name, email, active and date."
+      },
+      "config": {
+        "name": "Configuration",
+        "description": "Env, debug, timeout and features."
+      },
+      "apiResponse": {
+        "name": "API response",
+        "description": "Paginated list with data and total."
+      },
+      "array": {
+        "name": "Mixed array",
+        "description": "Numbers, strings, boolean, null and object."
+      },
+      "nested": {
+        "name": "Nested object",
+        "description": "User with roles and settings."
+      }
+    }
+  },
+  "cta": {
+    "title": "See other tools",
+    "description": "AI Code Review and Regex Playground: more tools for the daily dev workflow.",
+    "back": "Back to tools"
+  }
+}

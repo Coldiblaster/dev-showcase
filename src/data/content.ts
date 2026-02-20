@@ -42,6 +42,14 @@ export const CONTENT_ITEMS: ContentItem[] = [
     category: "implementation",
   },
   {
+    slug: "testing",
+    title: "Testing Showcase — Vitest e Testing Library",
+    description:
+      "Como este projeto estrutura testes: pastas, exemplos de componente e hook, mocks e checklist do que testar primeiro. Para devs que querem replicar no próprio projeto.",
+    component: "TestingShowcase",
+    category: "implementation",
+  },
+  {
     slug: "code-review",
     title: "AI Code Reviewer — Análise de Código com IA",
     description:
@@ -136,6 +144,30 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Guia prático do App Router: pastas como rotas, layouts, Server vs Client Components, data fetching e loading/error boundaries. Exemplos replicáveis.",
     component: "NextjsAppRouter",
     category: "guide",
+  },
+  {
+    slug: "json",
+    title: "JSON Formatter & Validator",
+    description:
+      "Formate e valide JSON no navegador: pretty print, minify e mensagens de erro claras por linha. Útil para APIs e configs.",
+    component: "JsonTool",
+    category: "tool",
+  },
+  {
+    slug: "state-management",
+    title: "Estado no React — useState, Context e libs",
+    description:
+      "Quando usar estado local, Context ou Zustand/Redux. Fluxo de dados, prop drilling e exemplos replicáveis para dev júnior e pleno.",
+    component: "StateManagement",
+    category: "guide",
+  },
+  {
+    slug: "contact-form",
+    title: "Formulário de Contato — API, Resend e Validação",
+    description:
+      "Como este projeto implementa o formulário de contato: API route, validação com Zod, rate limit, reCAPTCHA e envio com Resend. Passo a passo para replicar.",
+    component: "ContactFormShowcase",
+    category: "implementation",
   },
 ];
 

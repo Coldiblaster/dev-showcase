@@ -131,8 +131,14 @@
       "contentTsDesc": "Fügen Sie Ihren Inhalt zum CONTENT_ITEMS-Array hinzu. Der Slug wird zur URL, die Kategorie bestimmt, in welchem Bereich er erscheint.",
       "componentMap": "Zum COMPONENT_MAP hinzufügen",
       "componentMapDesc": "Verbinden Sie den Komponentennamen (String aus content.ts) mit dem tatsächlichen dynamischen Import. Verwenden Sie Lazy Loading mit next/dynamic.",
-      "searchIntegration": "In globale Suche integrieren",
-      "searchIntegrationDesc": "Damit Ihre Seite in der Suche (Ctrl+K) erscheint, fügen Sie an beiden Stellen hinzu:",
+      "searchIntegration": "In der Seitensuche verlinken",
+      "searchIntegrationDesc": "Damit Ihre Seite in der globalen Suche (Strg+K) erscheint, führen Sie die beiden Schritte unten aus. Sonst finden Nutzer Ihre Seite nicht über die Seitensuche.",
+      "searchHowItWorks": "So funktioniert es: Das System baut die Ergebnisse aus content.ts; Titel und Beschreibung kommen aus search.json (je eine pro Sprache); die Suchbegriffe aus dem tagMap. Daher sind beide Dateien nötig.",
+      "searchRequired": "Ohne search.json und tagMap erscheint die Seite nicht in den Suchergebnissen.",
+      "searchChecklistTitle": "Checklist — nach dem Bearbeiten prüfen:",
+      "searchChecklist1": "search.json in allen 4 Sprachen (pt-BR, en, es, de) mit items.'{slug'}'.title und .description ausgefüllt",
+      "searchChecklist2": "tagMap in search-data.ts mit dem Slug und den Tags (Begriffe, die Nutzer beim Suchen eingeben würden)",
+      "searchChecklist3": "Testen: Suche öffnen (Strg+K) und Seitentitel oder eine Tag eingeben",
       "listingPage": "Icon zur Auflistung hinzufügen",
       "listingPageDesc": "Jede Auflistungsseite (/dicas, /implementacoes) verwendet eine iconMap zur Anzeige von Icons. Fügen Sie den Slug und ein Lucide-Icon hinzu.",
       "categoryTitle": "Verfügbare Kategorien",
@@ -168,7 +174,9 @@
         "q4": "Wie teste ich, ob die Registrierung funktioniert hat?",
         "a4": "Starten Sie pnpm dev und besuchen Sie die URL Ihrer Seite (z.B. /dicas/graphql-tips). Testen Sie auch die globale Suche (Ctrl+K) und die Kategorieliste. Bei 404 überprüfen Sie COMPONENT_MAP und content.ts.",
         "q5": "Was ist mit Standalone-Seiten (/contribua)?",
-        "a5": "Standalone-Seiten verwenden weder content.ts noch COMPONENT_MAP. Sie brauchen aber dennoch einen Eintrag in search-data.ts (STANDALONE_PAGES-Array) und Übersetzungen in search.json, um in der globalen Suche zu erscheinen."
+        "a5": "Standalone-Seiten verwenden weder content.ts noch COMPONENT_MAP. Sie brauchen aber dennoch einen Eintrag in search-data.ts (STANDALONE_PAGES-Array) und Übersetzungen in search.json, um in der globalen Suche zu erscheinen.",
+        "q6": "Ich habe search.json oder tagMap vergessen. Was passiert?",
+        "a6": "Die Seite ist weiterhin per URL und über die Auflistung erreichbar, erscheint aber nicht in der globalen Suche (Strg+K). Einfach items.'{slug'}' in allen 4 search.json und den Slug im tagMap in search-data.ts ergänzen."
       }
     },
     "developing": {

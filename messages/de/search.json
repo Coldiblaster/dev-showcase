@@ -73,6 +73,14 @@
       "title": "Analytics com Upstash Redis",
       "description": "Seitenaufrufe, einzelne Besucher und Top-Seiten – Redis, Bot-Filter und Ratenbegrenzung"
     },
+    "testing": {
+      "title": "Unit-Tests implementieren",
+      "description": "Praktischer Leitfaden: Vitest, Testing Library, Playwright und Alternativen (Jest, Cypress). Struktur, Beispiele und Checkliste, was zuerst testen"
+    },
+    "contact-form": {
+      "title": "Kontaktformular — API, Resend und Validierung",
+      "description": "Wie wir das Kontaktformular umsetzen: API-Route, Zod, Rate Limit, reCAPTCHA und Resend. Schritt für Schritt zum Replizieren."
+    },
     "ai-tips": {
       "title": "KI-Tipps",
       "description": "Prompts, Workflows und KI-Tools für Entwickler"
@@ -105,6 +113,10 @@
       "title": "Regex Playground",
       "description": "Interaktiver Regex-Editor mit Hervorhebung, fertigen Patterns und Cheat Sheet"
     },
+    "json": {
+      "title": "JSON Formatter & Validator",
+      "description": "JSON im Browser formatieren und validieren: Pretty Print, Minify und klare Fehlermeldungen"
+    },
     "typescript-patterns": {
       "title": "TypeScript Patterns",
       "description": "Utility Types, Generics, Type Narrowing und fortgeschrittene Patterns mit interaktiven Beispielen"
@@ -120,6 +132,10 @@
     "nextjs-app-router": {
       "title": "Next.js App Router",
       "description": "Routing, Server vs Client Components, Data Fetching und Loading/Error Boundaries — Anleitung mit reproduzierbaren Beispielen"
+    },
+    "state-management": {
+      "title": "State in React — useState, Context und Libs",
+      "description": "Wann lokaler State, Context oder Zustand. Datenfluss und Beispiele für Junior und Mid."
     },
     "contribute": {
       "title": "Mitwirken",

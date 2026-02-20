@@ -1,0 +1,65 @@
+{
+  "hero": {
+    "badge": "Herramienta interactiva",
+    "title": "JSON Formatter & Validator",
+    "subtitle": "// formatea y valida JSON en el navegador",
+    "description": "Pega tu JSON y formatea (pretty print), minifica o solo valida. Mensajes de error claros para corregir línea a línea. Útil para APIs y archivos de configuración."
+  },
+  "sectionNav": {
+    "editor": "Editor",
+    "examples": "Ejemplos"
+  },
+  "editor": {
+    "title": "Editor",
+    "ariaLabel": "Editor de JSON",
+    "inputLabel": "JSON de entrada",
+    "inputPlaceholder": "Pega o escribe tu JSON aquí...",
+    "outputLabel": "Resultado",
+    "format": "Formatear",
+    "minify": "Minificar",
+    "validate": "Validar",
+    "clear": "Limpiar",
+    "hint": "Usa Formatear para ver el JSON indentado; Validar solo comprueba si es válido."
+  },
+  "result": {
+    "valid": "JSON válido.",
+    "formatted": "JSON formateado correctamente.",
+    "errors": {
+      "unexpectedEnd": "Final inesperado de la entrada JSON.",
+      "unexpectedToken": "Token inesperado en la posición {position}.",
+      "generic": "Error de sintaxis: {message}"
+    }
+  },
+  "examples": {
+    "title": "Ejemplos listos",
+    "description": "JSON de ejemplo para probar. Haz clic para cargar en el editor.",
+    "useExample": "Usar",
+    "items": {
+      "user": {
+        "name": "Objeto usuario",
+        "description": "Nombre, email, activo y fecha."
+      },
+      "config": {
+        "name": "Configuración",
+        "description": "Env, debug, timeout y features."
+      },
+      "apiResponse": {
+        "name": "Respuesta de API",
+        "description": "Lista paginada con data y total."
+      },
+      "array": {
+        "name": "Array mixto",
+        "description": "Números, strings, boolean, null y objeto."
+      },
+      "nested": {
+        "name": "Objeto anidado",
+        "description": "Usuario con roles y settings."
+      }
+    }
+  },
+  "cta": {
+    "title": "Ver otras herramientas",
+    "description": "Code Review con IA y Regex Playground: más herramientas para el día a día del dev.",
+    "back": "Volver a herramientas"
+  }
+}

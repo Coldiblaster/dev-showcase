@@ -2,9 +2,11 @@ import type { LucideIcon } from "lucide-react";
 import {
   Accessibility,
   BarChart3,
+  Beaker,
   Blocks,
   BookOpen,
   Bot,
+  Braces,
   Briefcase,
   Code2,
   Component,
@@ -62,6 +64,10 @@ export type NavKey =
   | "aiChatbotDesc"
   | "analyticsShowcase"
   | "analyticsShowcaseDesc"
+  | "testingShowcase"
+  | "testingShowcaseDesc"
+  | "contactFormShowcase"
+  | "contactFormShowcaseDesc"
   | "sectionImplementations"
   | "sectionTips"
   | "sectionTools"
@@ -75,6 +81,8 @@ export type NavKey =
   | "codeReviewDesc"
   | "regexPlayground"
   | "regexPlaygroundDesc"
+  | "jsonTool"
+  | "jsonToolDesc"
   | "tsPatterns"
   | "tsPatternsDesc"
   | "gitWorkflow"
@@ -83,6 +91,8 @@ export type NavKey =
   | "reactPatternsDesc"
   | "nextjsAppRouter"
   | "nextjsAppRouterDesc"
+  | "stateManagement"
+  | "stateManagementDesc"
   | "contribute"
   | "contributeDesc"
   | "sectionProject"
@@ -195,6 +205,18 @@ export const contentGroup: NavGroup = {
           sublabelKey: "analyticsShowcaseDesc",
           href: "/implementacoes/analytics",
         },
+        {
+          icon: Beaker,
+          labelKey: "testingShowcase",
+          sublabelKey: "testingShowcaseDesc",
+          href: "/implementacoes/testing",
+        },
+        {
+          icon: Mail,
+          labelKey: "contactFormShowcase",
+          sublabelKey: "contactFormShowcaseDesc",
+          href: "/implementacoes/contact-form",
+        },
       ],
     },
     {
@@ -227,6 +249,12 @@ export const contentGroup: NavGroup = {
           labelKey: "nextjsAppRouter",
           sublabelKey: "nextjsAppRouterDesc",
           href: "/dicas/nextjs-app-router",
+        },
+        {
+          icon: Layers,
+          labelKey: "stateManagement",
+          sublabelKey: "stateManagementDesc",
+          href: "/dicas/state-management",
         },
         {
           icon: GitBranch,
@@ -284,6 +312,12 @@ export const contentGroup: NavGroup = {
           labelKey: "regexPlayground",
           sublabelKey: "regexPlaygroundDesc",
           href: "/ferramentas/regex",
+        },
+        {
+          icon: Braces,
+          labelKey: "jsonTool",
+          sublabelKey: "jsonToolDesc",
+          href: "/ferramentas/json",
         },
       ],
     },

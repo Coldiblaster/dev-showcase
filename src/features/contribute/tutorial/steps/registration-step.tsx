@@ -40,14 +40,11 @@ const SEARCH_JSON_SNIPPET = `// messages/pt-BR/search.json → items
   }
 }`;
 
-const SEARCH_DATA_SNIPPET = `// src/components/global-search/search-data.ts
-{
-  id: "page-graphql-tips",
-  titleKey: "items.graphql-tips.title",
-  descriptionKey: "items.graphql-tips.description",
-  url: "/dicas/graphql-tips",
-  tags: ["graphql", "api", "query"],
-}`;
+const SEARCH_DATA_SNIPPET = `// src/components/global-search/search-data.ts — tagMap (dentro de buildTags)
+const tagMap: Record<string, string[]> = {
+  // ... outros slugs ...
+  "graphql-tips": ["graphql", "api", "query", "guia"],
+};`;
 
 const ICON_MAP_SNIPPET = `// src/app/dicas/page.tsx
 const iconMap = {
@@ -70,6 +67,7 @@ export function RegistrationStep({ nextStepId, nextStepLabel }: StepNavProps) {
     { question: t("faq.q3"), answer: t("faq.a3") },
     { question: t("faq.q4"), answer: t("faq.a4") },
     { question: t("faq.q5"), answer: t("faq.a5") },
+    { question: t("faq.q6"), answer: t("faq.a6") },
   ];
 
   const isNew = track === "new";
@@ -148,15 +146,33 @@ export function RegistrationStep({ nextStepId, nextStepLabel }: StepNavProps) {
             <p className="mb-3 text-sm text-muted-foreground">
               {t("searchIntegrationDesc")}
             </p>
+            <div className="mb-4 rounded-xl border border-primary/20 bg-primary/5 p-4">
+              <p className="text-sm text-muted-foreground">
+                {t("searchHowItWorks")}
+              </p>
+            </div>
+            <p className="mb-3 text-xs text-muted-foreground/90">
+              {t("searchRequired")}
+            </p>
             <div className="space-y-3">
               <CodeBlock
-                title="messages/pt-BR/search.json"
+                title="messages/pt-BR/search.json (e en, es, de)"
                 code={SEARCH_JSON_SNIPPET}
               />
               <CodeBlock
-                title="src/components/global-search/search-data.ts"
+                title="src/components/global-search/search-data.ts (tagMap)"
                 code={SEARCH_DATA_SNIPPET}
               />
+            </div>
+            <div className="mt-4 rounded-xl border border-border bg-muted/30 p-4">
+              <h4 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                {t("searchChecklistTitle")}
+              </h4>
+              <ul className="list-inside list-disc space-y-1 text-sm text-muted-foreground">
+                <li>{t("searchChecklist1")}</li>
+                <li>{t("searchChecklist2")}</li>
+                <li>{t("searchChecklist3")}</li>
+              </ul>
             </div>
           </div>
 

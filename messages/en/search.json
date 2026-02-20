@@ -73,6 +73,14 @@
       "title": "Analytics com Upstash Redis",
       "description": "Page views, unique visitors, and top pages — Redis, bot filter, and rate limiting"
     },
+    "testing": {
+      "title": "How to implement unit tests",
+      "description": "Practical guide: Vitest, Testing Library, Playwright and alternatives (Jest, Cypress). Structure, examples and checklist of what to test first"
+    },
+    "contact-form": {
+      "title": "Contact Form — API, Resend and Validation",
+      "description": "How we implement the contact form: API route, Zod, rate limit, reCAPTCHA and Resend. Step-by-step to replicate."
+    },
     "ai-tips": {
       "title": "AI Tips",
       "description": "Prompts, workflows and AI tools for developers"
@@ -105,6 +113,10 @@
       "title": "Regex Playground",
       "description": "Interactive regex editor with highlighting, ready-to-use patterns and cheat sheet"
     },
+    "json": {
+      "title": "JSON Formatter & Validator",
+      "description": "Format and validate JSON in the browser: pretty print, minify and clear error messages"
+    },
     "typescript-patterns": {
       "title": "TypeScript Patterns",
       "description": "Utility Types, Generics, Type Narrowing and advanced patterns with interactive examples"
@@ -120,6 +132,10 @@
     "nextjs-app-router": {
       "title": "Next.js App Router",
       "description": "Routing, Server vs Client Components, data fetching and loading/error boundaries — guide with replicable examples"
+    },
+    "state-management": {
+      "title": "State in React — useState, Context and libs",
+      "description": "When to use local state, Context or Zustand. Data flow and examples for junior and mid devs."
     },
     "contribute": {
       "title": "Contribute",
