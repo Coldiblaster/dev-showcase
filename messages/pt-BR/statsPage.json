@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "title": "Métricas da Plataforma — Stats ao Vivo",
+    "description": "Dados reais da plataforma: page views, visitantes únicos, páginas mais acessadas, buscas populares e reações — tudo ao vivo via Redis."
+  },
+  "hero": {
+    "badge": "Stats ao vivo",
+    "title": "Métricas da Plataforma",
+    "description": "Dados reais coletados via Upstash Redis. Page views, visitantes únicos, conteúdos mais acessados e interações dos usuários."
+  },
+  "sectionNav": {
+    "overview": "Visão Geral",
+    "topPages": "Top Páginas",
+    "searches": "Buscas Populares",
+    "reactions": "Reações"
+  },
+  "overview": {
+    "badge": "Totais",
+    "title": "Visão Geral",
+    "views": "Page Views",
+    "viewsDesc": "Total de visualizações de página",
+    "visitors": "Visitantes Únicos",
+    "visitorsDesc": "Estimado via HyperLogLog",
+    "loading": "Carregando métricas...",
+    "error": "Não foi possível carregar os dados.",
+    "retry": "Tentar novamente"
+  },
+  "topPages": {
+    "badge": "Mais acessados",
+    "title": "Páginas Mais Visitadas",
+    "description": "Ranking baseado em page views acumulados desde o início da plataforma.",
+    "empty": "Nenhuma página registrada ainda.",
+    "views": "{count} views"
+  },
+  "searches": {
+    "badge": "Buscas",
+    "title": "Termos Mais Buscados",
+    "description": "Os termos mais digitados na busca global (Ctrl+K) pelos visitantes.",
+    "empty": "Nenhum termo registrado ainda.",
+    "loading": "Carregando buscas..."
+  },
+  "reactions": {
+    "badge": "Engajamento",
+    "title": "Reações por Conteúdo",
+    "description": "Quais conteúdos geraram mais reações dos visitantes.",
+    "heart": "Útil",
+    "fire": "Incrível",
+    "bulb": "Aprendi algo",
+    "empty": "Nenhuma reação registrada ainda.",
+    "loading": "Carregando reações..."
+  },
+  "poweredBy": "Dados em tempo real via Upstash Redis"
+}

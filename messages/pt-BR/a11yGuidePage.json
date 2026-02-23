@@ -1,0 +1,205 @@
+{
+  "meta": {
+    "title": "Acessibilidade na Prática — ARIA, Foco e Semântica",
+    "description": "Guia prático de a11y com exemplos de código reais: ARIA roles e labels, focus trap, skip links, HTML semântico, contraste WCAG e checklist interativo."
+  },
+  "hero": {
+    "badge": "Acessibilidade",
+    "title": "Acessibilidade na Prática",
+    "subtitle": "WCAG 2.1 AA no mundo real",
+    "description": "Guia prático com exemplos de código reais extraídos deste projeto: ARIA, foco, semântica HTML, contraste e um checklist para usar em todos os PRs.",
+    "warning": "Este guia foca em boas práticas de desenvolvimento. Para auditoria profissional de acessibilidade, consulte um especialista certificado em WCAG."
+  },
+  "sectionNav": {
+    "aria": "ARIA",
+    "focus": "Foco",
+    "semantics": "Semântica",
+    "contrast": "Contraste",
+    "checklist": "Checklist"
+  },
+  "aria": {
+    "badge": "ARIA",
+    "title": "ARIA Roles, Labels e Live Regions",
+    "description": "ARIA (Accessible Rich Internet Applications) completa o HTML onde a semântica nativa não é suficiente. Use apenas quando necessário — HTML semântico é sempre preferível.",
+    "rolesTitle": "Roles Comuns",
+    "labelsTitle": "Labels e Descriptions",
+    "liveTitle": "Live Regions",
+    "liveDesc": "Para conteúdo que atualiza dinamicamente sem reload de página:",
+    "roles": [
+      {
+        "role": "role=\"dialog\"",
+        "use": "Modais e dialogs",
+        "note": "Combine com aria-modal=\"true\" e focus trap"
+      },
+      {
+        "role": "role=\"alert\"",
+        "use": "Mensagens de erro urgentes",
+        "note": "Lido automaticamente por screen readers"
+      },
+      {
+        "role": "role=\"status\"",
+        "use": "Atualizações não urgentes",
+        "note": "Menos intrusivo que alert"
+      },
+      {
+        "role": "role=\"progressbar\"",
+        "use": "Barras de progresso",
+        "note": "Adicione aria-valuenow, aria-valuemin e aria-valuemax"
+      },
+      {
+        "role": "role=\"tablist\"",
+        "use": "Grupos de abas",
+        "note": "Combine com role=\"tab\" e role=\"tabpanel\""
+      }
+    ],
+    "liveRegions": [
+      {
+        "attr": "aria-live=\"polite\"",
+        "desc": "Lê quando o usuário para de digitar. Ideal para notificações."
+      },
+      {
+        "attr": "aria-live=\"assertive\"",
+        "desc": "Lê imediatamente. Apenas para erros críticos."
+      },
+      {
+        "attr": "aria-live=\"off\"",
+        "desc": "Desabilita atualizações dinâmicas (padrão)."
+      }
+    ]
+  },
+  "focus": {
+    "badge": "Foco",
+    "title": "Gerenciamento de Foco",
+    "description": "Usuários de teclado dependem do foco visível e previsível. Focus traps, skip links e retorno ao elemento de origem são essenciais.",
+    "skipLinkTitle": "Skip Link",
+    "skipLinkDesc": "O primeiro elemento focável da página — permite pular para o conteúdo principal sem navegar por toda a navegação.",
+    "trapTitle": "Focus Trap em Modais",
+    "trapDesc": "Enquanto um modal está aberto, Tab e Shift+Tab devem circular apenas dentro do modal.",
+    "visibleTitle": "Foco Visível",
+    "visibleDesc": "Nunca remova o outline de foco sem fornecer um substituto visível. Este projeto usa Tailwind focus-visible.",
+    "rules": [
+      "Ao abrir modal: mova o foco para o primeiro elemento interativo",
+      "Ao fechar modal: retorne o foco ao elemento que o abriu",
+      "Tab deve circular dentro do modal (focus trap)",
+      "Escape deve fechar e retornar o foco",
+      "Use focus-visible em vez de focus para não afetar mouse/touch"
+    ]
+  },
+  "semantics": {
+    "badge": "Semântica",
+    "title": "HTML Semântico",
+    "description": "O HTML semântico correto é a base da acessibilidade. Screen readers usam landmarks para navegação rápida.",
+    "landmarksTitle": "Landmarks e Hierarquia",
+    "landmarksDesc": "Cada landmark cria um ponto de navegação para screen readers.",
+    "headingsTitle": "Hierarquia de Headings",
+    "headingsDesc": "h1 por página, não pule níveis. Screen readers usam headings para navegar pelo conteúdo.",
+    "badExample": "Ruim — sem semântica",
+    "goodExample": "Bom — semântico",
+    "liveRegionTitle": "Live Region — Anúncios Dinâmicos",
+    "landmarks": [
+      {
+        "tag": "<header>",
+        "role": "banner",
+        "use": "Cabeçalho da página (logo, nav principal)"
+      },
+      {
+        "tag": "<nav>",
+        "role": "navigation",
+        "use": "Navegação principal ou secundária"
+      },
+      {
+        "tag": "<main>",
+        "role": "main",
+        "use": "Conteúdo principal — apenas 1 por página"
+      },
+      {
+        "tag": "<section>",
+        "role": "region",
+        "use": "Seção com aria-labelledby"
+      },
+      {
+        "tag": "<aside>",
+        "role": "complementary",
+        "use": "Conteúdo relacionado mas secundário"
+      },
+      { "tag": "<footer>", "role": "contentinfo", "use": "Rodapé da página" }
+    ]
+  },
+  "contrast": {
+    "badge": "Contraste",
+    "title": "Contraste de Cores — WCAG AA",
+    "description": "WCAG 2.1 AA exige contraste mínimo de 4.5:1 para texto normal e 3:1 para texto grande (18pt ou 14pt negrito).",
+    "requirementsTitle": "Requisitos WCAG 2.1 AA",
+    "toolsTitle": "Ferramentas de Verificação",
+    "requirements": [
+      { "type": "Texto normal (< 18pt)", "ratio": "4.5:1", "level": "AA" },
+      {
+        "type": "Texto grande (≥ 18pt ou 14pt bold)",
+        "ratio": "3:1",
+        "level": "AA"
+      },
+      { "type": "Componentes UI e gráficos", "ratio": "3:1", "level": "AA" },
+      { "type": "Texto normal", "ratio": "7:1", "level": "AAA" }
+    ],
+    "tools": [
+      {
+        "name": "WebAIM Contrast Checker",
+        "url": "https://webaim.org/resources/contrastchecker/",
+        "desc": "Verificador online simples e rápido"
+      },
+      {
+        "name": "axe DevTools",
+        "url": "https://www.deque.com/axe/devtools/",
+        "desc": "Extensão do browser — auditoria automática"
+      },
+      {
+        "name": "Lighthouse",
+        "url": "https://developers.google.com/web/tools/lighthouse",
+        "desc": "Auditoria integrada ao Chrome DevTools"
+      },
+      {
+        "name": "Color.review",
+        "url": "https://color.review/",
+        "desc": "Preview visual com foreground/background"
+      }
+    ]
+  },
+  "checklist": {
+    "badge": "Checklist",
+    "title": "Checklist de Acessibilidade para PRs",
+    "description": "Revise estes itens antes de abrir um Pull Request com qualquer mudança de interface.",
+    "items": [
+      {
+        "label": "Todos os botões têm texto ou aria-label descritivo",
+        "done": true
+      },
+      {
+        "label": "Imagens têm alt text (ou alt=\"\" se decorativas)",
+        "done": true
+      },
+      { "label": "Contraste de texto ≥ 4.5:1 (WCAG AA)", "done": true },
+      {
+        "label": "Foco visível em todos os elementos interativos",
+        "done": true
+      },
+      { "label": "Hierarquia de headings sem pular níveis", "done": true },
+      { "label": "Navegação por Tab funciona sem mouse", "done": true },
+      { "label": "Modais têm focus trap e fecham com Escape", "done": true },
+      {
+        "label": "Conteúdo dinâmico usa aria-live ou role=\"alert\"",
+        "done": true
+      },
+      { "label": "Skip link visível ao focar com Tab", "done": true },
+      {
+        "label": "Testado com screen reader (NVDA/VoiceOver/Orca)",
+        "done": false
+      }
+    ]
+  },
+  "cta": {
+    "title": "Acessibilidade é para Todos",
+    "description": "1 em cada 6 pessoas no mundo tem alguma deficiência. Código acessível não é opcional — é responsabilidade profissional.",
+    "button": "Ver mais guias",
+    "github": "Ver no GitHub"
+  }
+}

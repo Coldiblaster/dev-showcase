@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "title": "Design Patterns in TypeScript — Observer, Strategy, Factory und mehr",
+    "description": "Die 5 am häufigsten verwendeten GoF-Muster in der täglichen Entwicklung mit TypeScript: echte Beispiele, wann jedes zu verwenden ist und Vorher/Nachher-Vergleiche."
+  },
+  "hero": {
+    "badge": "Design Patterns",
+    "title": "Design Patterns in TypeScript",
+    "subtitle": "GoF auf die echte Welt angewendet",
+    "description": "Die 5 am häufigsten verwendeten Entwurfsmuster in der modernen Entwicklung, mit echten TypeScript-Beispielen, Vorher/Nachher-Vergleichen und einem Leitfaden, wann jedes zu verwenden ist."
+  },
+  "sectionNav": {
+    "overview": "Übersicht",
+    "patterns": "Die Muster",
+    "useCases": "Wann verwenden"
+  },
+  "overview": {
+    "badge": "Einführung",
+    "title": "Warum Design Patterns?",
+    "description": "Entwurfsmuster sind wiederverwendbare Lösungen für wiederkehrende Probleme in der Softwareentwicklung. Sie sind keine Bibliotheken — sie sind Vokabular und Struktur.",
+    "cards": [
+      {
+        "title": "Kommunikation",
+        "desc": "Teams, die die Muster kennen, sprechen dieselbe Sprache: 'verwende Strategy hier' ist präziser als 'erstelle eine Abstraktion'."
+      },
+      {
+        "title": "Wartbarkeit",
+        "desc": "Code, der bekannten Mustern folgt, ist einfacher zu erweitern, ohne das Bestehende zu brechen."
+      },
+      {
+        "title": "Interviews",
+        "desc": "GoF-Muster zu kennen wird in Senior-Interviews erwartet. Zu wissen, wann man sie NICHT verwendet, auch."
+      }
+    ]
+  },
+  "patterns": {
+    "badge": "Muster",
+    "title": "Die 5 wesentlichen Muster",
+    "before": "Vorher",
+    "realWorldLabel": "Im echten Einsatz:",
+    "after": "Nachher",
+    "whenToUse": "Wann verwenden",
+    "items": [
+      {
+        "id": "observer",
+        "name": "Observer",
+        "category": "Verhaltensmuster",
+        "tagline": "Benachrichtige mehrere Objekte, wenn sich ein Zustand ändert.",
+        "description": "Definiert eine Eins-zu-Viele-Abhängigkeit zwischen Objekten. Wenn ein Objekt seinen Zustand ändert, werden alle seine Abhängigen automatisch benachrichtigt.",
+        "realWorld": "DOM Event-Listener, useState + useEffect in React, Redux, Zustand.",
+        "whenToUse": "Wenn eine Änderung in einem Objekt andere aktualisieren muss, ohne zu wissen wie viele oder welche."
+      },
+      {
+        "id": "strategy",
+        "name": "Strategy",
+        "category": "Verhaltensmuster",
+        "tagline": "Tausche Algorithmen zur Laufzeit aus.",
+        "description": "Definiert eine Familie von Algorithmen, kapselt jeden ein und macht sie austauschbar. Der Client kann wählen, welchen Algorithmus er verwendet, ohne den Code zu ändern.",
+        "realWorld": "Konfigurierbare Sortierung, verschiedene Zahlungsmethoden, austauschbare Validatoren.",
+        "whenToUse": "Wenn Sie mehrere Variationen eines Algorithmus haben und einfach zwischen ihnen wechseln müssen."
+      },
+      {
+        "id": "factory",
+        "name": "Factory Method",
+        "category": "Erzeugungsmuster",
+        "tagline": "Delegiere die Objekterstellung an Unterklassen.",
+        "description": "Definiert eine Schnittstelle zum Erstellen von Objekten, lässt aber Unterklassen entscheiden, welche Klasse instanziiert werden soll.",
+        "realWorld": "React.createElement, document.createElement, Datenbankverbindungen erstellen.",
+        "whenToUse": "Wenn Sie im Voraus nicht wissen, welche Klasse instanziiert werden soll."
+      },
+      {
+        "id": "decorator",
+        "name": "Decorator",
+        "category": "Strukturmuster",
+        "tagline": "Füge Verantwortlichkeiten dynamisch zu Objekten hinzu.",
+        "description": "Fügt einem Objekt dynamisch zusätzliche Verantwortlichkeiten hinzu. Dekoratoren bieten eine flexible Alternative zur Vererbung.",
+        "realWorld": "HOCs in React, Middleware in Express/Next.js, TypeScript-Dekoratoren.",
+        "whenToUse": "Wenn Sie Verhalten zu einzelnen Objekten hinzufügen müssen, ohne andere desselben Typs zu beeinflussen."
+      },
+      {
+        "id": "command",
+        "name": "Command",
+        "category": "Verhaltensmuster",
+        "tagline": "Kapsele Aktionen als Objekte.",
+        "description": "Kapselt eine Anfrage als Objekt, ermöglicht das Parametrisieren von Clients und das Implementieren rückgängig machbarer Operationen.",
+        "realWorld": "Rückgängig/Wiederholen in Editoren, Aufgabenwarteschlangen, Datenbanktransaktionen.",
+        "whenToUse": "Wenn Sie Aktionsverlauf, Rückgängig-Operationen oder Aufgabenwarteschlangen benötigen."
+      }
+    ]
+  },
+  "useCases": {
+    "badge": "Verwendungsleitfaden",
+    "title": "Wann welches Muster verwenden",
+    "description": "Einer der häufigsten Fehler ist die unnötige Anwendung von Mustern. Lernen Sie, den richtigen Moment zu erkennen.",
+    "doTitle": "Verwenden wenn...",
+    "dontTitle": "Nicht verwenden wenn...",
+    "items": [
+      {
+        "pattern": "Observer",
+        "do": [
+          "Mehrere Komponenten auf dasselbe Ereignis reagieren müssen",
+          "Der Sender nicht weiß, wie viele Listener existieren",
+          "Sie lose Kopplung zwischen Sender und Empfänger benötigen"
+        ],
+        "dont": [
+          "Es nur 1-2 feste Listener gibt",
+          "Performance kritisch ist (viele Benachrichtigungen)",
+          "Die Reihenfolge der Benachrichtigungen sehr wichtig ist"
+        ]
+      },
+      {
+        "pattern": "Strategy",
+        "do": [
+          "Mehrere Algorithmenvariationen koexistieren",
+          "Sie den Algorithmus zur Laufzeit wechseln müssen",
+          "Wachsende if/else/switch-Bedingungen eliminiert werden sollen"
+        ],
+        "dont": [
+          "Es nur 2 einfache Algorithmen gibt",
+          "Algorithmen sich selten ändern",
+          "Die zusätzliche Abstraktion mehr verkompliziert als vereinfacht"
+        ]
+      },
+      {
+        "pattern": "Factory",
+        "do": [
+          "Die Erstellungslogik komplex oder bedingt ist",
+          "Client von konkreter Implementierung entkoppelt werden soll",
+          "Erstellung zentralisiert werden soll, um Tests zu erleichtern"
+        ],
+        "dont": [
+          "Die Erstellung einfach ist (new MeineKlasse())",
+          "Es keine Variationen des zu erstellenden Objekts gibt",
+          "Indirektion ohne klaren Nutzen hinzugefügt wird"
+        ]
+      },
+      {
+        "pattern": "Decorator",
+        "do": [
+          "Verhalten hinzugefügt werden muss ohne die Basisklasse zu ändern",
+          "Vererbung eine Unterklassen-Explosion erzeugen würde",
+          "Verhalten frei kombiniert werden müssen"
+        ],
+        "dont": [
+          "Die Reihenfolge der Dekoratoren schwer nachzuverfolgen ist",
+          "Sie die Klasse kontrollieren und einfach erweitern können",
+          "Komplexes Debugging inakzeptabel ist"
+        ]
+      },
+      {
+        "pattern": "Command",
+        "do": [
+          "Rückgängig/Wiederholen-Funktionalität benötigt wird",
+          "Operationen in Warteschlangen gestellt werden müssen",
+          "Ein Verlauf von Aktionen aufgezeichnet werden soll"
+        ],
+        "dont": [
+          "Operationen einfach sind und keinen Verlauf benötigen",
+          "Der Overhead von Command-Objekten nicht gerechtfertigt ist",
+          "Keine Umkehrung oder Warteschlange benötigt wird"
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "title": "In Ihrem Projekt anwenden",
+    "description": "Muster sind Werkzeuge, keine Regeln. Verwenden Sie sie, wenn sie das Design vereinfachen, nicht um zu beeindrucken.",
+    "button": "Mehr Leitfäden",
+    "github": "Auf GitHub ansehen"
+  }
+}

@@ -1,7 +1,6 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { MessageCircle, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import {
@@ -167,39 +166,6 @@ export function ChatWidget() {
 
   return (
     <>
-      {/* FAB button */}
-      <motion.button
-        onClick={() => setOpen((prev) => !prev)}
-        className={`fab-floating fixed bottom-4 right-4 z-50 hidden h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-md transition-colors hover:bg-primary/90 hover:opacity-100 md:bottom-6 md:right-6 md:flex md:h-14 md:w-14 md:shadow-lg md:shadow-primary/25 ${open ? "opacity-100" : "opacity-70"}`}
-        whileHover={{ scale: 1.05, opacity: 1 }}
-        whileTap={{ scale: 0.95 }}
-        aria-label={open ? t("close") : t("open")}
-      >
-        <AnimatePresence mode="wait" initial={false}>
-          {open ? (
-            <motion.div
-              key="close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
-            >
-              <X className="h-5 w-5 md:h-6 md:w-6" />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="open"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
-            >
-              <MessageCircle className="h-5 w-5 md:h-6 md:w-6" />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.button>
-
       {/* Chat panel */}
       <AnimatePresence>
         {open && (

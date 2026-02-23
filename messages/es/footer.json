@@ -2,5 +2,6 @@
   "built": "Construido con Next.js, next-intl & Framer Motion",
   "rights": "Todos los derechos reservados",
   "privacy": "Privacidad",
-  "online": "{count, plural, one {# persona en línea ahora} other {# personas en línea ahora}}"
+  "online": "{count, plural, one {# persona en línea ahora} other {# personas en línea ahora}}",
+  "emailLabel": "Correo"
 }

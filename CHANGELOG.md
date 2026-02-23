@@ -10,6 +10,41 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
 ---
 
+## [0.14.0] — 2026-02-23
+
+### 10 Novas Implementações — UX Global, Stats, Guias e Ferramentas IA
+
+Maior release da plataforma: 4 melhorias de UX globais, dashboard de métricas ao vivo, 3 novos guias técnicos e 2 novas ferramentas IA com APIs seguras no padrão da plataforma.
+
+#### Adicionado
+
+- **ReadingProgress** — barra de progresso de leitura fixada no topo de todas as páginas de conteúdo
+- **ReadingTime** — badge com tempo estimado de leitura; campo `readingMinutes?` adicionado ao `ContentItem`
+- **ShareButton** — Web Share API com fallback para clipboard e toast de confirmação
+- **FocusModeToggle** — modo foco oculta navbar/footer via CSS; persiste em localStorage
+- **RelatedContent** — seção com até 3 conteúdos da mesma categoria ao final de cada página
+- **Dashboard /stats** — página standalone: page views, visitantes únicos, top páginas, buscas populares e reações ao vivo via Redis
+- **Guia /dicas/api-security** — pipeline de segurança com 7 camadas, código real do projeto e checklist interativo
+- **Guia /dicas/design-patterns** — 5 padrões GoF (Observer, Strategy, Factory, Decorator, Command) com toggle antes/depois
+- **Guia /dicas/a11y-guide** — ARIA, focus trap, semântica HTML, contraste WCAG AA e checklist de 10 itens para PRs
+- **Ferramenta /ferramentas/pr-generator** — gerador de PR descriptions com IA (gpt-4.1-nano); rate limit 5/min Redis
+- **Ferramenta /ferramentas/github-analyzer** — análise de perfil GitHub + IA; rate limit 3/min Redis
+- **API /api/pr-generator** — POST com Zod, sanitização completa e suporte a 4 locales
+- **API /api/github-analyzer** — POST com validação de username, busca paralela GitHub API + OpenAI
+
+#### Melhorado
+
+- `content.ts` — campo `readingMinutes?` no tipo e 5 novos itens registrados
+- `dynamic-page-helper.tsx` — integra 5 novos componentes UX + 5 novos componentes no `COMPONENT_MAP`
+- `nav-data.ts` — 5 novos itens no menu + `/stats` no grupo contribua
+- `search-data.ts` + `search.json` — tags e traduções para 6 novos itens (4 locales)
+- `global.json` — 7 novas chaves de UX global (4 locales)
+- `globals.css` — regras CSS do focus mode
+- `types.d.ts` + `index.ts` — 7 novos namespaces (4 locales)
+- `sitemap.ts` — entrada `/stats` com `changeFrequency: daily`
+
+---
+
 ## [0.13.0] — 2026-02-23
 
 ### Badges Trending & Popular na Navbar e Listagens

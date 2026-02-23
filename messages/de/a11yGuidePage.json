@@ -1,0 +1,211 @@
+{
+  "meta": {
+    "title": "Barrierefreiheit in der Praxis — ARIA, Fokus & Semantik",
+    "description": "Praktischer a11y-Leitfaden mit echten Codebeispielen: ARIA-Rollen und -Labels, Focus Trap, Skip Links, semantisches HTML, WCAG-Kontrast und interaktive Checkliste."
+  },
+  "hero": {
+    "badge": "Barrierefreiheit",
+    "title": "Barrierefreiheit in der Praxis",
+    "subtitle": "WCAG 2.1 AA in der realen Welt",
+    "description": "Praktischer Leitfaden mit echten Codebeispielen aus diesem Projekt: ARIA, Fokus, HTML-Semantik, Kontrast und eine Checkliste für jeden PR.",
+    "warning": "Dieser Leitfaden konzentriert sich auf Best Practices der Entwicklung. Für professionelles Accessibility-Auditing wenden Sie sich an einen zertifizierten WCAG-Spezialisten."
+  },
+  "sectionNav": {
+    "aria": "ARIA",
+    "focus": "Fokus",
+    "semantics": "Semantik",
+    "contrast": "Kontrast",
+    "checklist": "Checkliste"
+  },
+  "aria": {
+    "badge": "ARIA",
+    "title": "ARIA-Rollen, Labels & Live-Regionen",
+    "description": "ARIA ergänzt HTML, wo native Semantik nicht ausreicht. Nur verwenden wenn nötig — semantisches HTML ist immer vorzuziehen.",
+    "rolesTitle": "Häufige Rollen",
+    "labelsTitle": "Labels und Beschreibungen",
+    "liveTitle": "Live-Regionen",
+    "liveDesc": "Für Inhalte, die sich dynamisch ohne Seitenneuladen aktualisieren:",
+    "roles": [
+      {
+        "role": "role=\"dialog\"",
+        "use": "Modals und Dialoge",
+        "note": "Mit aria-modal=\"true\" und Focus Trap kombinieren"
+      },
+      {
+        "role": "role=\"alert\"",
+        "use": "Dringende Fehlermeldungen",
+        "note": "Wird von Screen Readern automatisch gelesen"
+      },
+      {
+        "role": "role=\"status\"",
+        "use": "Nicht dringende Updates",
+        "note": "Weniger aufdringlich als alert"
+      },
+      {
+        "role": "role=\"progressbar\"",
+        "use": "Fortschrittsbalken",
+        "note": "aria-valuenow, aria-valuemin und aria-valuemax hinzufügen"
+      },
+      {
+        "role": "role=\"tablist\"",
+        "use": "Tab-Gruppen",
+        "note": "Mit role=\"tab\" und role=\"tabpanel\" kombinieren"
+      }
+    ],
+    "liveRegions": [
+      {
+        "attr": "aria-live=\"polite\"",
+        "desc": "Liest wenn der Benutzer aufhört zu tippen. Ideal für Benachrichtigungen."
+      },
+      {
+        "attr": "aria-live=\"assertive\"",
+        "desc": "Liest sofort. Nur für kritische Fehler."
+      },
+      {
+        "attr": "aria-live=\"off\"",
+        "desc": "Deaktiviert dynamische Updates (Standard)."
+      }
+    ]
+  },
+  "focus": {
+    "badge": "Fokus",
+    "title": "Fokusverwaltung",
+    "description": "Tastaturnutzer sind auf sichtbaren und vorhersehbaren Fokus angewiesen. Focus Traps, Skip Links und Rückkehr zum Ursprungselement sind essenziell.",
+    "skipLinkTitle": "Skip Link",
+    "skipLinkDesc": "Das erste fokussierbare Element der Seite — ermöglicht das Überspringen der Navigation zum Hauptinhalt.",
+    "trapTitle": "Focus Trap in Modals",
+    "trapDesc": "Solange ein Modal geöffnet ist, sollten Tab und Shift+Tab nur innerhalb des Modals zyklisch navigieren.",
+    "visibleTitle": "Sichtbarer Fokus",
+    "visibleDesc": "Entfernen Sie niemals den Fokus-Outline ohne einen sichtbaren Ersatz bereitzustellen. Dieses Projekt verwendet Tailwind focus-visible.",
+    "rules": [
+      "Beim Öffnen des Modals: Fokus auf das erste interaktive Element setzen",
+      "Beim Schließen des Modals: Fokus zum öffnenden Element zurückgeben",
+      "Tab sollte innerhalb des Modals zyklisch navigieren (Focus Trap)",
+      "Escape sollte schließen und Fokus zurückgeben",
+      "focus-visible statt focus verwenden, um Maus/Touch nicht zu beeinflussen"
+    ]
+  },
+  "semantics": {
+    "badge": "Semantik",
+    "title": "Semantisches HTML",
+    "description": "Korrektes semantisches HTML ist die Grundlage der Barrierefreiheit. Screen Reader nutzen Landmarks für schnelle Navigation.",
+    "landmarksTitle": "Landmarks und Hierarchie",
+    "landmarksDesc": "Jedes Landmark erstellt einen Navigationspunkt für Screen Reader.",
+    "headingsTitle": "Überschriften-Hierarchie",
+    "headingsDesc": "Ein h1 pro Seite, keine Ebenen überspringen. Screen Reader nutzen Überschriften zur Inhaltsnavigation.",
+    "badExample": "Schlecht — keine Semantik",
+    "goodExample": "Gut — semantisch",
+    "liveRegionTitle": "Live Region — Dynamische Ankündigungen",
+    "landmarks": [
+      {
+        "tag": "<header>",
+        "role": "banner",
+        "use": "Seitenkopf (Logo, Hauptnavigation)"
+      },
+      {
+        "tag": "<nav>",
+        "role": "navigation",
+        "use": "Haupt- oder Sekundärnavigation"
+      },
+      {
+        "tag": "<main>",
+        "role": "main",
+        "use": "Hauptinhalt — nur 1 pro Seite"
+      },
+      {
+        "tag": "<section>",
+        "role": "region",
+        "use": "Abschnitt mit aria-labelledby"
+      },
+      {
+        "tag": "<aside>",
+        "role": "complementary",
+        "use": "Verwandter, aber sekundärer Inhalt"
+      },
+      { "tag": "<footer>", "role": "contentinfo", "use": "Seitenfußzeile" }
+    ]
+  },
+  "contrast": {
+    "badge": "Kontrast",
+    "title": "Farbkontrast — WCAG AA",
+    "description": "WCAG 2.1 AA erfordert ein Mindestkontrastv erhältnis von 4.5:1 für normalen Text und 3:1 für großen Text (18pt oder 14pt fett).",
+    "requirementsTitle": "WCAG 2.1 AA Anforderungen",
+    "toolsTitle": "Prüfwerkzeuge",
+    "requirements": [
+      { "type": "Normaler Text (< 18pt)", "ratio": "4.5:1", "level": "AA" },
+      {
+        "type": "Großer Text (≥ 18pt oder 14pt fett)",
+        "ratio": "3:1",
+        "level": "AA"
+      },
+      { "type": "UI-Komponenten und Grafiken", "ratio": "3:1", "level": "AA" },
+      { "type": "Normaler Text", "ratio": "7:1", "level": "AAA" }
+    ],
+    "tools": [
+      {
+        "name": "WebAIM Contrast Checker",
+        "url": "https://webaim.org/resources/contrastchecker/",
+        "desc": "Einfacher und schneller Online-Checker"
+      },
+      {
+        "name": "axe DevTools",
+        "url": "https://www.deque.com/axe/devtools/",
+        "desc": "Browser-Erweiterung — automatisches Audit"
+      },
+      {
+        "name": "Lighthouse",
+        "url": "https://developers.google.com/web/tools/lighthouse",
+        "desc": "In Chrome DevTools integriertes Audit"
+      },
+      {
+        "name": "Color.review",
+        "url": "https://color.review/",
+        "desc": "Visuelle Vorschau mit Vorder-/Hintergrund"
+      }
+    ]
+  },
+  "checklist": {
+    "badge": "Checkliste",
+    "title": "Barrierefreiheits-Checkliste für PRs",
+    "description": "Prüfen Sie diese Punkte vor dem Öffnen eines Pull Requests mit UI-Änderungen.",
+    "items": [
+      {
+        "label": "Alle Schaltflächen haben beschreibenden Text oder aria-label",
+        "done": true
+      },
+      {
+        "label": "Bilder haben alt-Text (oder alt=\"\" wenn dekorativ)",
+        "done": true
+      },
+      { "label": "Textkontrast ≥ 4.5:1 (WCAG AA)", "done": true },
+      {
+        "label": "Sichtbarer Fokus auf allen interaktiven Elementen",
+        "done": true
+      },
+      {
+        "label": "Überschriften-Hierarchie ohne übersprungene Ebenen",
+        "done": true
+      },
+      { "label": "Tab-Navigation funktioniert ohne Maus", "done": true },
+      {
+        "label": "Modals haben Focus Trap und schließen mit Escape",
+        "done": true
+      },
+      {
+        "label": "Dynamischer Inhalt nutzt aria-live oder role=\"alert\"",
+        "done": true
+      },
+      { "label": "Skip Link beim Tab-Fokus sichtbar", "done": true },
+      {
+        "label": "Mit Screen Reader getestet (NVDA/VoiceOver/Orca)",
+        "done": false
+      }
+    ]
+  },
+  "cta": {
+    "title": "Barrierefreiheit ist für alle",
+    "description": "1 von 6 Menschen weltweit hat eine Behinderung. Barrierefreier Code ist nicht optional — es ist berufliche Verantwortung.",
+    "button": "Mehr Leitfäden",
+    "github": "Auf GitHub ansehen"
+  }
+}

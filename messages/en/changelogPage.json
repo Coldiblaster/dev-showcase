@@ -7,7 +7,10 @@
     "badge": "Changelog",
     "title": "What's New",
     "description": "Follow the project's evolution. Each version brings new guides, implementations, tools and technical improvements.",
-    "latestBadge": "Latest"
+    "latestBadge": "Latest",
+    "statCurrentVersion": "current version",
+    "statVersions": "versions",
+    "statChanges": "changes"
   },
   "types": {
     "feature": "New",

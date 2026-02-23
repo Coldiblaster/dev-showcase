@@ -1,6 +1,7 @@
 // --- i18n Types: Clean & Dynamic ---
 
 // Central type for all namespaces (auto-imported by Next.js)
+import type a11yGuidePage from "../../../messages/pt-BR/a11yGuidePage.json";
 import type about from "../../../messages/pt-BR/about.json";
 import type accessibilityPage from "../../../messages/pt-BR/accessibilityPage.json";
 import type ai from "../../../messages/pt-BR/ai.json";
@@ -8,6 +9,7 @@ import type aiChatbotPage from "../../../messages/pt-BR/aiChatbotPage.json";
 import type aiInnovation from "../../../messages/pt-BR/aiInnovation.json";
 import type analyticsPage from "../../../messages/pt-BR/analyticsPage.json";
 import type apiDocsPage from "../../../messages/pt-BR/apiDocsPage.json";
+import type apiSecurityPage from "../../../messages/pt-BR/apiSecurityPage.json";
 import type architecturePage from "../../../messages/pt-BR/architecturePage.json";
 import type archMapPage from "../../../messages/pt-BR/archMapPage.json";
 import type changelogPage from "../../../messages/pt-BR/changelogPage.json";
@@ -18,11 +20,13 @@ import type contact from "../../../messages/pt-BR/contact.json";
 import type contactFormPage from "../../../messages/pt-BR/contactFormPage.json";
 import type contributePage from "../../../messages/pt-BR/contributePage.json";
 import type cookieBanner from "../../../messages/pt-BR/cookieBanner.json";
+import type designPatternsPage from "../../../messages/pt-BR/designPatternsPage.json";
 import type designSystemPage from "../../../messages/pt-BR/designSystemPage.json";
 import type devResourcesData from "../../../messages/pt-BR/devResourcesData.json";
 import type devResourcesPage from "../../../messages/pt-BR/devResourcesPage.json";
 import type experience from "../../../messages/pt-BR/experience.json";
 import type footer from "../../../messages/pt-BR/footer.json";
+import type githubAnalyzerPage from "../../../messages/pt-BR/githubAnalyzerPage.json";
 import type githubStats from "../../../messages/pt-BR/githubStats.json";
 import type gitWorkflow from "../../../messages/pt-BR/gitWorkflow.json";
 import type global from "../../../messages/pt-BR/global.json";
@@ -37,6 +41,7 @@ import type nav from "../../../messages/pt-BR/nav.json";
 import type nextjsAppRouterPage from "../../../messages/pt-BR/nextjsAppRouterPage.json";
 import type notFound from "../../../messages/pt-BR/notFound.json";
 import type portfolio from "../../../messages/pt-BR/portfolio.json";
+import type prGeneratorPage from "../../../messages/pt-BR/prGeneratorPage.json";
 import type privacyPage from "../../../messages/pt-BR/privacyPage.json";
 import type privacyTipsPage from "../../../messages/pt-BR/privacyTipsPage.json";
 import type projects from "../../../messages/pt-BR/projects.json";
@@ -47,6 +52,7 @@ import type search from "../../../messages/pt-BR/search.json";
 import type securityPage from "../../../messages/pt-BR/securityPage.json";
 import type seoPage from "../../../messages/pt-BR/seoPage.json";
 import type stateManagementPage from "../../../messages/pt-BR/stateManagementPage.json";
+import type statsPage from "../../../messages/pt-BR/statsPage.json";
 import type tailwindTips from "../../../messages/pt-BR/tailwindTips.json";
 import type tailwindTipsPage from "../../../messages/pt-BR/tailwindTipsPage.json";
 import type techStackPage from "../../../messages/pt-BR/techStackPage.json";
@@ -60,7 +66,13 @@ import type viewSource from "../../../messages/pt-BR/viewSource.json";
 
 export type Messages = {
   global: typeof global;
+  a11yGuidePage: typeof a11yGuidePage;
   about: typeof about;
+  apiSecurityPage: typeof apiSecurityPage;
+  designPatternsPage: typeof designPatternsPage;
+  githubAnalyzerPage: typeof githubAnalyzerPage;
+  prGeneratorPage: typeof prGeneratorPage;
+  statsPage: typeof statsPage;
   archMapPage: typeof archMapPage;
   changelogPage: typeof changelogPage;
   codeEvolutionPage: typeof codeEvolutionPage;

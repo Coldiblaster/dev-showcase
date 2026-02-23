@@ -91,5 +91,17 @@
   "archMap": "Interactive Architecture",
   "archMapDesc": "E-commerce SaaS, real-time Dashboard and more",
   "badgeTrending": "Trending",
-  "badgePopular": "Popular"
+  "badgePopular": "Popular",
+  "apiSecurity": "API Security",
+  "apiSecurityDesc": "Rate limit, Zod, sanitization and headers",
+  "designPatterns": "TypeScript Design Patterns",
+  "designPatternsDesc": "Observer, Strategy, Factory, Decorator and Command",
+  "a11yGuide": "Accessibility in Practice",
+  "a11yGuideDesc": "ARIA, focus, semantics and WCAG checklist",
+  "prGenerator": "PR Description Generator",
+  "prGeneratorDesc": "Generate professional PR descriptions with AI",
+  "githubAnalyzer": "GitHub Profile Analyzer",
+  "githubAnalyzerDesc": "GitHub profile analysis with AI",
+  "stats": "Platform Metrics",
+  "statsDesc": "Live page views, visitors and reactions"
 }

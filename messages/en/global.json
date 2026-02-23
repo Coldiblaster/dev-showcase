@@ -27,6 +27,7 @@
   "mobileTop": "Top",
   "mobileChat": "Chat",
   "mobileTerminal": "Terminal",
+  "mobileFocus": "Focus",
   "mobileActions": "Quick actions",
   "sectionNavigation": "Section navigation",
   "skipToContent": "Skip to content",
@@ -44,5 +45,14 @@
     "bulb": "Learned something",
     "voted": "Thanks for the feedback! 🙌",
     "total": "{count, plural, one {# reaction} other {# reactions}}"
-  }
+  },
+  "readingTime": "{minutes} min read",
+  "share": "Share",
+  "linkCopied": "Link copied!",
+  "shareAriaLabel": "Share this content",
+  "focusMode": "Focus mode",
+  "exitFocusMode": "Exit focus mode",
+  "relatedContent": "Related content",
+  "quickActions": "Quick actions",
+  "readingProgress": "Reading progress"
 }

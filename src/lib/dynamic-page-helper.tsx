@@ -4,6 +4,10 @@ import { notFound } from "next/navigation";
 import { getLocale, getMessages } from "next-intl/server";
 
 import { ContentFooter } from "@/components/content-footer";
+import { ReadingProgress } from "@/components/reading-progress";
+import { ReadingTime } from "@/components/reading-time";
+import { RelatedContent } from "@/components/related-content";
+import { ShareButton } from "@/components/share-button";
 import {
   CONTENT_ITEMS,
   type ContentItem,
@@ -99,6 +103,27 @@ const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
   ContactFormShowcase: dynamic(() =>
     import("@/features/implementations/contact-showcase").then(
       (m) => m.ContactFormShowcase,
+    ),
+  ),
+  ApiSecurityGuide: dynamic(() =>
+    import("@/features/guides/api-security").then((m) => m.ApiSecurityGuide),
+  ),
+  DesignPatternsGuide: dynamic(() =>
+    import("@/features/guides/design-patterns").then(
+      (m) => m.DesignPatternsGuide,
+    ),
+  ),
+  A11yGuide: dynamic(() =>
+    import("@/features/guides/a11y-guide").then((m) => m.A11yGuide),
+  ),
+  PRGenerator: dynamic(() =>
+    import("@/features/implementations/pr-generator").then(
+      (m) => m.PRGenerator,
+    ),
+  ),
+  GithubAnalyzer: dynamic(() =>
+    import("@/features/implementations/github-analyzer").then(
+      (m) => m.GithubAnalyzer,
     ),
   ),
 };
@@ -204,10 +229,34 @@ export async function renderDynamicContent(
 
   return (
     <>
+      <ReadingProgress />
+
       <Component />
+
       <div className="container mx-auto max-w-4xl px-6 pb-16">
+        <div data-hide-focus>
+          <RelatedContent
+            currentSlug={content.slug}
+            currentCategory={content.category}
+          />
+        </div>
+
+        <div
+          data-hide-focus
+          className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4"
+        >
+          {content.readingMinutes ? (
+            <ReadingTime minutes={content.readingMinutes} />
+          ) : (
+            <span />
+          )}
+          <ShareButton title={content.title} />
+        </div>
+
         {/* key={path} força remount ao navegar entre páginas — evita state stale */}
-        <ContentFooter key={path} path={path} />
+        <div data-hide-focus>
+          <ContentFooter key={path} path={path} />
+        </div>
       </div>
     </>
   );

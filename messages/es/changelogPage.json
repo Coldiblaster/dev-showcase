@@ -7,7 +7,10 @@
     "badge": "Changelog",
     "title": "Novedades y Mejoras",
     "description": "Sigue la evolución del proyecto. Cada versión trae nuevas guías, implementaciones, herramientas y mejoras técnicas.",
-    "latestBadge": "Más reciente"
+    "latestBadge": "Más reciente",
+    "statCurrentVersion": "versión actual",
+    "statVersions": "versiones",
+    "statChanges": "cambios"
   },
   "types": {
     "feature": "Nuevo",

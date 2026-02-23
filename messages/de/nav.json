@@ -91,5 +91,17 @@
   "archMap": "Interaktive Architektur",
   "archMapDesc": "E-commerce SaaS, Echtzeit-Dashboard und mehr",
   "badgeTrending": "Im Trend",
-  "badgePopular": "Beliebt"
+  "badgePopular": "Beliebt",
+  "apiSecurity": "API-Sicherheit",
+  "apiSecurityDesc": "Rate-Limiting, Zod, Sanitization und Headers",
+  "designPatterns": "TypeScript Design Patterns",
+  "designPatternsDesc": "Observer, Strategy, Factory, Decorator und Command",
+  "a11yGuide": "Barrierefreiheit in der Praxis",
+  "a11yGuideDesc": "ARIA, Fokus, Semantik und WCAG-Checkliste",
+  "prGenerator": "PR Description Generator",
+  "prGeneratorDesc": "Professionelle PR-Beschreibungen mit KI",
+  "githubAnalyzer": "GitHub Profile Analyzer",
+  "githubAnalyzerDesc": "GitHub-Profilanalyse mit KI",
+  "stats": "Plattform-Metriken",
+  "statsDesc": "Live-Aufrufe, Besucher und Reaktionen"
 }

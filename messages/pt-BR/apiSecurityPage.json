@@ -1,0 +1,188 @@
+{
+  "meta": {
+    "title": "Segurança em APIs Next.js — Rate Limit, Zod e Anti-Injection",
+    "description": "Guia prático com o pipeline de segurança real deste projeto: rate limiting in-memory e Redis, validação Zod, sanitização de input, anti-XSS e secure headers."
+  },
+  "hero": {
+    "badge": "Guia de Segurança",
+    "title": "Segurança em APIs Next.js",
+    "subtitle": "Do rate limit ao anti-XSS",
+    "description": "O pipeline de segurança completo utilizado neste projeto: cada camada com código real, justificativa e exemplos para você replicar.",
+    "warning": "Os exemplos mostram código real de produção deste projeto. Adapte os limites de rate limit e regras de sanitização ao seu caso de uso."
+  },
+  "sectionNav": {
+    "overview": "Visão Geral",
+    "rateLimit": "Rate Limiting",
+    "validation": "Validação Zod",
+    "sanitization": "Sanitização",
+    "headers": "Headers",
+    "checklist": "Checklist"
+  },
+  "overview": {
+    "badge": "Pipeline",
+    "title": "Pipeline de Segurança",
+    "description": "Cada requisição passa por múltiplas camadas de defesa antes de chegar à lógica de negócio.",
+    "layers": [
+      {
+        "step": "1",
+        "title": "Body Size Check",
+        "desc": "Rejeita payloads acima do limite antes de fazer parse."
+      },
+      {
+        "step": "2",
+        "title": "Rate Limiting",
+        "desc": "Limita requisições por IP — in-memory ou Redis distribuído."
+      },
+      {
+        "step": "3",
+        "title": "API Key Check",
+        "desc": "Valida variáveis de ambiente antes de chamar serviços externos."
+      },
+      {
+        "step": "4",
+        "title": "Zod Schema",
+        "desc": "Valida estrutura, tipos e tamanhos de todos os campos do body."
+      },
+      {
+        "step": "5",
+        "title": "Input Sanitization",
+        "desc": "Remove padrões de prompt injection e código malicioso."
+      },
+      {
+        "step": "6",
+        "title": "Output Sanitization",
+        "desc": "Remove HTML/scripts da resposta — anti-XSS antes de enviar."
+      },
+      {
+        "step": "7",
+        "title": "Secure Headers",
+        "desc": "nosniff, no-store, CORS — respostas com headers de segurança."
+      }
+    ]
+  },
+  "rateLimit": {
+    "badge": "Rate Limiting",
+    "title": "Rate Limiting por IP",
+    "description": "Dois modos: in-memory (leve, sem Redis) ou Redis distribuído (consistente entre instâncias serverless). O projeto usa Redis para rotas críticas.",
+    "inMemoryTitle": "In-memory (rate-limit.ts)",
+    "inMemoryDesc": "Fixed-window simples. Funciona para MVPs e desenvolvimento local. Reseta em cold starts — não escala para múltiplas instâncias.",
+    "redisTitle": "Redis distribuído (redis-rate-limit.ts)",
+    "redisDesc": "INCR atômico + EXPIRE. Consistente entre todas as instâncias serverless da Vercel. Fallback automático para in-memory se Redis indisponível.",
+    "tableRoute": "Rota",
+    "tableLimit": "Limite",
+    "tableWindow": "Janela",
+    "tableBackend": "Backend",
+    "rows": [
+      {
+        "route": "/api/chat",
+        "limit": "30 req",
+        "window": "1 min",
+        "backend": "Redis"
+      },
+      {
+        "route": "/api/code-review",
+        "limit": "8 req",
+        "window": "5 min",
+        "backend": "Redis"
+      },
+      {
+        "route": "/api/reactions",
+        "limit": "15 req",
+        "window": "1 min",
+        "backend": "Redis"
+      },
+      {
+        "route": "/api/contact",
+        "limit": "3 req",
+        "window": "10 min",
+        "backend": "In-memory"
+      },
+      {
+        "route": "/api/stats/track",
+        "limit": "60 req",
+        "window": "1 min",
+        "backend": "In-memory"
+      }
+    ]
+  },
+  "validation": {
+    "badge": "Validação",
+    "title": "Validação com Zod",
+    "description": "Todo input é validado com schemas Zod antes de qualquer processamento. Tipos, tamanhos, formatos e regras customizadas.",
+    "inputSchemaTitle": "Schema de Input",
+    "outputSchemaTitle": "Schema de Output da IA",
+    "whyTitle": "Por que Zod?",
+    "whyPoints": [
+      "Inferência TypeScript automática do schema para o tipo",
+      "Mensagens de erro claras para o cliente",
+      "Zod v4: performance 14× melhor que v3",
+      "Validação de output da IA antes de retornar ao cliente"
+    ]
+  },
+  "sanitization": {
+    "badge": "Sanitização",
+    "title": "Sanitização de Input e Output",
+    "inputTitle": "Anti Prompt Injection",
+    "inputDesc": "Padrões detectados e substituídos por [filtered] antes de enviar à IA:",
+    "patterns": [
+      "ignore previous instructions",
+      "you are now / act as / pretend",
+      "system: / new instruction / override",
+      "reveal system prompt / show instructions"
+    ],
+    "outputTitle": "Anti XSS no Output",
+    "outputDesc": "Toda resposta da IA é sanitizada antes de enviar ao cliente:",
+    "outputPoints": [
+      "Remove tags HTML e scripts",
+      "Remove javascript: e data: URIs",
+      "Remove event handlers inline (onclick, onerror...)",
+      "Percorre recursivamente objetos JSON"
+    ]
+  },
+  "headers": {
+    "badge": "Headers",
+    "title": "Secure Headers",
+    "description": "Todas as respostas da API incluem headers de segurança para prevenir MIME sniffing, cache de dados sensíveis e outros vetores.",
+    "headers": [
+      {
+        "name": "X-Content-Type-Options",
+        "value": "nosniff",
+        "desc": "Previne MIME type sniffing"
+      },
+      {
+        "name": "Cache-Control",
+        "value": "no-store, no-cache",
+        "desc": "Não cacheia respostas sensíveis"
+      },
+      {
+        "name": "Content-Type",
+        "value": "application/json",
+        "desc": "Tipo explícito sempre declarado"
+      }
+    ]
+  },
+  "checklist": {
+    "badge": "Checklist",
+    "title": "Checklist para Novas Rotas",
+    "description": "Itens obrigatórios ao criar uma nova API route que envolva dados do usuário ou serviços externos.",
+    "items": [
+      { "label": "checkBodySize() com limite adequado", "done": true },
+      { "label": "Rate limiting com prefixo único", "done": true },
+      { "label": "checkApiKey() se usar IA ou serviço externo", "done": true },
+      { "label": "safeParseBody() para parse seguro", "done": true },
+      { "label": "Schema Zod para validação de input", "done": true },
+      { "label": "sanitizeUserInput() em textos do usuário", "done": true },
+      { "label": "sanitizeOutput() ou sanitizeStreamChunk()", "done": true },
+      { "label": "secureJsonHeaders() em todas as respostas", "done": true },
+      { "label": "Try/catch geral com jsonError(500)", "done": true },
+      { "label": "Nenhum console.log com dados sensíveis", "done": true }
+    ],
+    "templateTitle": "Template Completo"
+  },
+  "cta": {
+    "title": "Explore o Código Real",
+    "description": "Todo o módulo de segurança está em src/lib/api-security.ts. Leia o código, entenda as decisões e adapte ao seu projeto.",
+    "button": "Ver mais guias",
+    "github": "Ver no GitHub"
+  }
+}

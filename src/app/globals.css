@@ -107,6 +107,13 @@ body[data-mobile-menu-open] .fab-floating {
   visibility: hidden !important;
 }
 
+/* Focus mode — oculta navbar, footer e elementos opcionais */
+html.focus-mode header,
+html.focus-mode footer,
+html.focus-mode [data-hide-focus] {
+  display: none !important;
+}
+
 /* Giscus — estiliza o iframe da página pai (não depende do tema URL) */
 .giscus,
 .giscus-frame {

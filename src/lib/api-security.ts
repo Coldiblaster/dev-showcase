@@ -87,25 +87,73 @@ export async function safeParseBody(
 // ---------------------------------------------------------------------------
 
 /**
- * Remove padrões comuns de prompt injection do texto do usuário.
- * Não altera a semântica do conteúdo, apenas neutraliza tentativas de escape.
+ * Remove padrões de prompt injection / jailbreak do texto do usuário.
+ * Aplica múltiplas camadas de defesa sem alterar a semântica legítima do conteúdo.
+ *
+ * Cobre: instruction override, role switching, DAN-style, leak de system prompt,
+ * markdown role fences, Unicode lookalikes e caracteres de controle.
  */
 export function sanitizeUserInput(text: string): string {
-  return text
-    .replace(
-      /\b(ignore|disregard|forget)\b.*\b(previous|above|system|instructions?|prompt)\b/gi,
-      "[filtered]",
-    )
-    .replace(
-      /\b(you are now|act as|pretend|roleplay|new instruction|override|bypass)\b/gi,
-      "[filtered]",
-    )
-    .replace(/\bsystem\s*:\s*/gi, "[filtered]")
-    .replace(/```\s*(system|assistant|user)\b/gi, "``` [filtered]")
-    .replace(
-      /\b(reveal|show|print|output|repeat)\b.*\b(system\s*prompt|instructions?|configuration)\b/gi,
-      "[filtered]",
-    );
+  // 1. Normaliza Unicode para evitar variantes visuais (ÏGnore → Ignore)
+  const normalized = text.normalize("NFKC");
+
+  return (
+    normalized
+      // 2. Strip caracteres de controle (exceto \n, \r, \t) para evitar hidden payloads
+      .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "")
+
+      // 3. Instruction override clássico
+      .replace(
+        /\b(ignore|disregard|forget|override|bypass|circumvent)\b[\s\S]{0,40}\b(previous|above|all|prior|system|the|any)\b[\s\S]{0,40}\b(instructions?|rules?|prompt|constraints?|guidelines?)\b/gi,
+        "[filtered]",
+      )
+
+      // 4. Role switching / identity injection
+      .replace(
+        /\b(you are now|from now on|starting now|henceforth|act as|pretend (to be|you are)|roleplay as|your new (role|identity|task|instructions?))\b/gi,
+        "[filtered]",
+      )
+
+      // 5. DAN / jailbreak patterns
+      .replace(
+        /\b(do anything now|DAN mode|jailbreak|developer mode|god mode|unrestricted mode|no\s*filter mode)\b/gi,
+        "[filtered]",
+      )
+
+      // 6. System/Assistant/User role markers (markdown-style fences or raw)
+      .replace(/```\s*(system|assistant|user)\b/gi, "``` [filtered]")
+      .replace(/\[\s*(system|assistant|user)\s*\]/gi, "[filtered]")
+      .replace(/\bsystem\s*:\s*/gi, "[filtered]")
+      .replace(/\bassistant\s*:\s*/gi, "[filtered]")
+
+      // 7. Tentativa de extrair system prompt
+      .replace(
+        /\b(reveal|show|print|output|repeat|display|tell me|what (is|are)|expose)\b[\s\S]{0,40}\b(system\s*prompt|instructions?|configuration|context|rules?|guidelines?)\b/gi,
+        "[filtered]",
+      )
+
+      // 8. "New task/instruction" injection
+      .replace(
+        /\b(new (task|instruction|objective|goal|command)|stop (being|acting)|wait[,.]? actually|actually[,.]? (you|your))\b/gi,
+        "[filtered]",
+      )
+
+      // 9. Conversão de contexto (tentar mudar o escopo da IA)
+      .replace(
+        /\b(instead[,.]? (of|now)|forget (the|that|your|all)|from this (point|moment))\b/gi,
+        "[filtered]",
+      )
+
+      // 10. XML/HTML tag injection que poderia ser confundido com delimitadores do prompt
+      .replace(
+        /<\s*(system|assistant|user|prompt|instruction)\b[^>]*>/gi,
+        "[filtered]",
+      )
+      .replace(
+        /<\/\s*(system|assistant|user|prompt|instruction)\s*>/gi,
+        "[filtered]",
+      )
+  );
 }
 
 // ---------------------------------------------------------------------------

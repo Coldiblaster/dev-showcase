@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "title": "Design Patterns em TypeScript — Observer, Strategy, Factory e Mais",
+    "description": "Os 5 padrões GoF mais usados no dia a dia com TypeScript: exemplos reais, quando usar cada um e comparativo antes/depois da refatoração."
+  },
+  "hero": {
+    "badge": "Design Patterns",
+    "title": "Design Patterns em TypeScript",
+    "subtitle": "GoF aplicado ao mundo real",
+    "description": "Os 5 padrões de projeto mais usados no desenvolvimento moderno, com exemplos reais em TypeScript, comparativos antes/depois e guia de quando usar cada um."
+  },
+  "sectionNav": {
+    "overview": "Visão Geral",
+    "patterns": "Os Padrões",
+    "useCases": "Quando Usar"
+  },
+  "overview": {
+    "badge": "Introdução",
+    "title": "Por que Design Patterns?",
+    "description": "Padrões de projeto são soluções reutilizáveis para problemas recorrentes no desenvolvimento de software. Não são bibliotecas — são vocabulário e estrutura.",
+    "cards": [
+      {
+        "title": "Comunicação",
+        "desc": "Equipes que conhecem os padrões falam a mesma língua: 'use o Strategy aqui' é mais preciso do que 'crie uma abstração'."
+      },
+      {
+        "title": "Manutenibilidade",
+        "desc": "Código que segue padrões conhecidos é mais fácil de estender sem quebrar o que já existe."
+      },
+      {
+        "title": "Entrevistas",
+        "desc": "Conhecer os padrões GoF é esperado em entrevistas sênior. Saber quando NÃO usar também."
+      }
+    ]
+  },
+  "patterns": {
+    "badge": "Padrões",
+    "title": "Os 5 Padrões Essenciais",
+    "before": "Antes",
+    "after": "Depois",
+    "whenToUse": "Quando usar",
+    "realWorldLabel": "No mundo real:",
+    "items": [
+      {
+        "id": "observer",
+        "name": "Observer",
+        "category": "Comportamental",
+        "tagline": "Notifique múltiplos objetos quando um estado muda.",
+        "description": "Define uma dependência um-para-muitos entre objetos. Quando um objeto muda de estado, todos os seus dependentes são notificados automaticamente.",
+        "realWorld": "Event listeners do DOM, useState + useEffect no React, Redux, Zustand.",
+        "whenToUse": "Quando uma mudança em um objeto exige atualizar outros, sem conhecer quantos ou quais são."
+      },
+      {
+        "id": "strategy",
+        "name": "Strategy",
+        "category": "Comportamental",
+        "tagline": "Troque algoritmos em tempo de execução.",
+        "description": "Define uma família de algoritmos, encapsula cada um e os torna intercambiáveis. O cliente pode escolher qual algoritmo usar sem alterar o código que o utiliza.",
+        "realWorld": "Ordenação configurável, diferentes formas de pagamento, validadores intercambiáveis.",
+        "whenToUse": "Quando você tem múltiplas variações de um algoritmo e precisa trocar entre elas facilmente."
+      },
+      {
+        "id": "factory",
+        "name": "Factory Method",
+        "category": "Criacional",
+        "tagline": "Delegue a criação de objetos para subclasses.",
+        "description": "Define uma interface para criar objetos, mas deixa as subclasses decidirem qual classe instanciar. O Factory Method adia a instanciação para as subclasses.",
+        "realWorld": "React.createElement, document.createElement, criação de conexões de banco.",
+        "whenToUse": "Quando você não sabe antecipadamente qual classe precisa instanciar, ou quando quer que subclasses controlem a criação."
+      },
+      {
+        "id": "decorator",
+        "name": "Decorator",
+        "category": "Estrutural",
+        "tagline": "Adicione responsabilidades a objetos dinamicamente.",
+        "description": "Anexa responsabilidades adicionais a um objeto dinamicamente. Decoradores fornecem uma alternativa flexível à herança para estender funcionalidade.",
+        "realWorld": "HOCs no React, middleware no Express/Next.js, decorators do TypeScript.",
+        "whenToUse": "Quando você precisa adicionar comportamento a objetos individuais sem afetar outros do mesmo tipo."
+      },
+      {
+        "id": "command",
+        "name": "Command",
+        "category": "Comportamental",
+        "tagline": "Encapsule ações como objetos.",
+        "description": "Encapsula uma requisição como um objeto, permitindo parametrizar clientes com diferentes requisições, enfileirar ou registrar requisições, e implementar operações desfazíveis.",
+        "realWorld": "Undo/redo em editores, filas de tarefas, transações de banco de dados.",
+        "whenToUse": "Quando você precisa de histórico de ações, desfazer operações ou enfileirar tarefas."
+      }
+    ]
+  },
+  "useCases": {
+    "badge": "Guia de Uso",
+    "title": "Quando Usar Cada Padrão",
+    "description": "Um dos erros mais comuns é aplicar padrões desnecessariamente. Saiba identificar o momento certo.",
+    "doTitle": "Use quando...",
+    "dontTitle": "Não use quando...",
+    "items": [
+      {
+        "pattern": "Observer",
+        "do": [
+          "Múltiplos componentes precisam reagir ao mesmo evento",
+          "O emissor não sabe quantos ouvintes existem",
+          "Você precisa de acoplamento fraco entre remetente e receptor"
+        ],
+        "dont": [
+          "Há apenas 1-2 ouvintes fixos",
+          "A performance é crítica (muitas notificações)",
+          "A ordem de notificação importa muito"
+        ]
+      },
+      {
+        "pattern": "Strategy",
+        "do": [
+          "Várias variações de um algoritmo coexistem",
+          "Você precisa trocar o algoritmo em runtime",
+          "Quer eliminar condicionais if/else/switch em crescimento"
+        ],
+        "dont": [
+          "Você tem apenas 2 algoritmos simples",
+          "Os algoritmos raramente mudam",
+          "A abstração adicional complica mais do que simplifica"
+        ]
+      },
+      {
+        "pattern": "Factory",
+        "do": [
+          "A lógica de criação é complexa ou condicional",
+          "Você precisa desacoplar cliente da implementação concreta",
+          "Quer centralizar criação para facilitar testes"
+        ],
+        "dont": [
+          "A criação é simples (new MinhaClasse())",
+          "Não há variações do objeto a criar",
+          "Adiciona indireção sem benefício claro"
+        ]
+      },
+      {
+        "pattern": "Decorator",
+        "do": [
+          "Precisa adicionar comportamentos sem alterar a classe base",
+          "A herança criaria uma explosão de subclasses",
+          "Comportamentos precisam ser combinados livremente"
+        ],
+        "dont": [
+          "A ordem dos decoradores é difícil de rastrear",
+          "Você controla a classe e pode simplesmente estendê-la",
+          "Debug complexo é inaceitável"
+        ]
+      },
+      {
+        "pattern": "Command",
+        "do": [
+          "Funcionalidade de undo/redo é necessária",
+          "Operações precisam ser enfileiradas ou agendadas",
+          "Você quer registrar um histórico de ações"
+        ],
+        "dont": [
+          "Operações são simples e não precisam de histórico",
+          "Overhead de criar objetos Command é injustificado",
+          "Sem necessidade de reversão ou enfileiramento"
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "title": "Aplique no Seu Projeto",
+    "description": "Padrões são ferramentas, não regras. Use quando simplificam o design, não para impressionar.",
+    "button": "Ver mais guias",
+    "github": "Ver no GitHub"
+  }
+}

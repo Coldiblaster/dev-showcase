@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Accessibility,
+  Activity,
   BarChart3,
   Beaker,
   Blocks,
@@ -16,9 +17,11 @@ import {
   GitBranch,
   GitCommitHorizontal,
   Github,
+  GitPullRequest,
   Globe,
   Heart,
   Layers,
+  Lock,
   Mail,
   Network,
   Paintbrush,
@@ -99,6 +102,18 @@ export type NavKey =
   | "archMapDesc"
   | "stateManagement"
   | "stateManagementDesc"
+  | "apiSecurity"
+  | "apiSecurityDesc"
+  | "designPatterns"
+  | "designPatternsDesc"
+  | "a11yGuide"
+  | "a11yGuideDesc"
+  | "prGenerator"
+  | "prGeneratorDesc"
+  | "githubAnalyzer"
+  | "githubAnalyzerDesc"
+  | "stats"
+  | "statsDesc"
   | "contribute"
   | "contributeDesc"
   | "sectionProject"
@@ -310,6 +325,24 @@ export const contentGroup: NavGroup = {
           sublabelKey: "privacyTipsDesc",
           href: "/dicas/privacy-tips",
         },
+        {
+          icon: Lock,
+          labelKey: "apiSecurity",
+          sublabelKey: "apiSecurityDesc",
+          href: "/dicas/api-security",
+        },
+        {
+          icon: Blocks,
+          labelKey: "designPatterns",
+          sublabelKey: "designPatternsDesc",
+          href: "/dicas/design-patterns",
+        },
+        {
+          icon: Accessibility,
+          labelKey: "a11yGuide",
+          sublabelKey: "a11yGuideDesc",
+          href: "/dicas/a11y-guide",
+        },
       ],
     },
     {
@@ -336,6 +369,18 @@ export const contentGroup: NavGroup = {
           labelKey: "jsonTool",
           sublabelKey: "jsonToolDesc",
           href: "/ferramentas/json",
+        },
+        {
+          icon: GitPullRequest,
+          labelKey: "prGenerator",
+          sublabelKey: "prGeneratorDesc",
+          href: "/ferramentas/pr-generator",
+        },
+        {
+          icon: Github,
+          labelKey: "githubAnalyzer",
+          sublabelKey: "githubAnalyzerDesc",
+          href: "/ferramentas/github-analyzer",
         },
       ],
     },
@@ -392,6 +437,12 @@ export const contributeGroup: NavGroup = {
       labelKey: "a11y",
       sublabelKey: "a11yDesc",
       href: "/contribua/acessibilidade",
+    },
+    {
+      icon: Activity,
+      labelKey: "stats",
+      sublabelKey: "statsDesc",
+      href: "/stats",
     },
   ],
 };

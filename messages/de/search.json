@@ -178,6 +178,30 @@
     "arch-map": {
       "title": "Interaktive Architektur — Visuelles System Design",
       "description": "Erkunde E-commerce SaaS- und Echtzeit-Dashboard-Architekturen: interaktive Knoten, Tech-Stack und technische Entscheidungen pro Schicht."
+    },
+    "api-security": {
+      "title": "Next.js API-Sicherheit",
+      "description": "Vollständige Sicherheits-Pipeline: Rate-Limiting, Zod, Input/Output-Sanitization, Anti-XSS und Secure Headers."
+    },
+    "design-patterns": {
+      "title": "TypeScript Design Patterns",
+      "description": "Observer, Strategy, Factory, Decorator und Command mit echten Beispielen und Vorher/Nachher-Vergleichen."
+    },
+    "a11y-guide": {
+      "title": "Barrierefreiheit in der Praxis",
+      "description": "ARIA-Rollen, Focus Trap, Skip Links, semantisches HTML, WCAG AA Kontrast und interaktive Checkliste."
+    },
+    "pr-generator": {
+      "title": "PR Description Generator",
+      "description": "KI-Tool zum Generieren professioneller Pull-Request-Beschreibungen mit Typ, Änderungen und Tests."
+    },
+    "github-analyzer": {
+      "title": "GitHub Profile Analyzer",
+      "description": "KI-GitHub-Profilanalyse: dominante Sprachen, hervorgehobene Projekte und Verbesserungsvorschläge."
+    },
+    "stats": {
+      "title": "Plattform-Metriken",
+      "description": "Live-Seitenaufrufe, eindeutige Besucher, meistbesuchte Seiten, beliebte Suchanfragen und Reaktionen."
     }
   }
 }

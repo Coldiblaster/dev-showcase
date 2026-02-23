@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "title": "GitHub Profile Analyzer — AI-Powered Profile Analysis",
+    "description": "Enter any GitHub username and receive a detailed analysis: dominant languages, project types, commit patterns and an AI-generated summary."
+  },
+  "hero": {
+    "badge": "AI Tool",
+    "title": "GitHub Profile Analyzer",
+    "subtitle": "AI-generated profile analysis",
+    "description": "Enter a GitHub username and receive an analysis of dominant languages, highlighted projects, activity patterns and suggestions for profile improvement.",
+    "warning": "Limit of 3 analyses per minute per IP. Only public GitHub data is used."
+  },
+  "form": {
+    "label": "GitHub Username",
+    "placeholder": "E.g.: torvalds",
+    "submit": "Analyze Profile",
+    "loading": "Analyzing..."
+  },
+  "profile": {
+    "repos": "public repositories",
+    "followers": "followers",
+    "following": "following",
+    "memberSince": "Member since",
+    "viewProfile": "View full profile"
+  },
+  "repos": {
+    "title": "Top Repositories",
+    "stars": "stars",
+    "forks": "forks",
+    "viewRepo": "View repository"
+  },
+  "analysis": {
+    "title": "AI Analysis",
+    "summaryTitle": "Profile Summary",
+    "languagesTitle": "Dominant Languages",
+    "highlightsTitle": "Highlights",
+    "adviceTitle": "Improvement Suggestion"
+  },
+  "errors": {
+    "notFound": "User not found on GitHub.",
+    "rateLimit": "Rate limit reached. Wait 1 minute.",
+    "generic": "Error analyzing profile. Try again.",
+    "validation": "Enter a valid username (letters, numbers and hyphens, max 39 chars)."
+  }
+}

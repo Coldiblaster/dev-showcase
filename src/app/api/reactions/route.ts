@@ -56,16 +56,17 @@ function getIpHash(ip: string): string {
 async function getCounts(path: string): Promise<ReactionCounts> {
   if (!redis) return { heart: 0, fire: 0, bulb: 0 };
   try {
+    // Upstash hmget retorna Record<field, value | null>, não array
     const raw = (await redis.hmget(
       reactionsKey(path),
       "heart",
       "fire",
       "bulb",
-    )) as unknown as (string | null)[];
+    )) as Record<string, string | number | null> | null;
     return {
-      heart: Math.max(0, Number(raw?.[0]) || 0),
-      fire: Math.max(0, Number(raw?.[1]) || 0),
-      bulb: Math.max(0, Number(raw?.[2]) || 0),
+      heart: Math.max(0, Number(raw?.["heart"]) || 0),
+      fire: Math.max(0, Number(raw?.["fire"]) || 0),
+      bulb: Math.max(0, Number(raw?.["bulb"]) || 0),
     };
   } catch {
     return { heart: 0, fire: 0, bulb: 0 };

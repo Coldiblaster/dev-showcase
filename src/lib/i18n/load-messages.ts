@@ -4,9 +4,12 @@
  */
 const NAMESPACES = [
   "about",
+  "a11yGuidePage",
+  "apiSecurityPage",
   "archMapPage",
   "changelogPage",
   "codeEvolutionPage",
+  "designPatternsPage",
   "ai",
   "analyticsPage",
   "aiChatbotPage",
@@ -24,6 +27,7 @@ const NAMESPACES = [
   "devResourcesPage",
   "experience",
   "footer",
+  "githubAnalyzerPage",
   "githubStats",
   "gitWorkflow",
   "global",
@@ -40,12 +44,14 @@ const NAMESPACES = [
   "cookieBanner",
   "portfolio",
   "projects",
+  "prGeneratorPage",
   "privacyPage",
   "privacyTipsPage",
   "reactPatterns",
   "reactQueryTipsPage",
   "regexPage",
   "stateManagementPage",
+  "statsPage",
   "search",
   "securityPage",
   "seoPage",
@@ -57,6 +63,7 @@ const NAMESPACES = [
   "tips",
   "tipsPage",
   "tsPatterns",
+  "tutorialPage",
   "viewSource",
 ] as const;
 

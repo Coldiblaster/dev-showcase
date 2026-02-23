@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "title": "GitHub Profile Analyzer — Análise de Perfil com IA",
+    "description": "Insira qualquer username do GitHub e receba uma análise detalhada: linguagens dominantes, tipos de projetos, padrões de commit e resumo gerado por IA."
+  },
+  "hero": {
+    "badge": "Ferramenta IA",
+    "title": "GitHub Profile Analyzer",
+    "subtitle": "Análise de perfil gerada por IA",
+    "description": "Insira um username do GitHub e receba análise das linguagens dominantes, projetos em destaque, padrões de atividade e sugestões para melhorar o perfil.",
+    "warning": "Limite de 3 análises por minuto por IP. Apenas dados públicos do GitHub são utilizados."
+  },
+  "form": {
+    "label": "Username do GitHub",
+    "placeholder": "Ex: torvalds",
+    "submit": "Analisar Perfil",
+    "loading": "Analisando..."
+  },
+  "profile": {
+    "repos": "repositórios públicos",
+    "followers": "seguidores",
+    "following": "seguindo",
+    "memberSince": "Membro desde",
+    "viewProfile": "Ver perfil completo"
+  },
+  "repos": {
+    "title": "Top Repositórios",
+    "stars": "estrelas",
+    "forks": "forks",
+    "viewRepo": "Ver repositório"
+  },
+  "analysis": {
+    "title": "Análise por IA",
+    "summaryTitle": "Resumo do Perfil",
+    "languagesTitle": "Linguagens Dominantes",
+    "highlightsTitle": "Destaques",
+    "adviceTitle": "Sugestão de Melhoria"
+  },
+  "errors": {
+    "notFound": "Usuário não encontrado no GitHub.",
+    "rateLimit": "Limite atingido. Aguarde 1 minuto.",
+    "generic": "Erro ao analisar perfil. Tente novamente.",
+    "validation": "Insira um username válido (letras, números e hífen, máx 39 caracteres)."
+  }
+}

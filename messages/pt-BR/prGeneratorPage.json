@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "title": "PR Description Generator — Gere PRs Profissionais com IA",
+    "description": "Gere descrições de Pull Request claras e padronizadas com IA. Informe o tipo, contexto e arquivos alterados — a IA monta o template completo."
+  },
+  "hero": {
+    "badge": "Ferramenta IA",
+    "title": "PR Description Generator",
+    "subtitle": "Templates profissionais gerados por IA",
+    "description": "Preencha o contexto do seu PR e receba uma descrição profissional e padronizada em segundos. Tipos de PR, sumário, mudanças, testes e notas de breaking changes.",
+    "warning": "Limite de 5 gerações por minuto por IP. Revise sempre o resultado antes de publicar o PR."
+  },
+  "form": {
+    "title": "Contexto do PR",
+    "typeLabel": "Tipo de PR",
+    "typePlaceholder": "Selecione o tipo",
+    "titleLabel": "Título do PR",
+    "titlePlaceholder": "Ex: Adiciona autenticação com OAuth2",
+    "descriptionLabel": "O que foi feito?",
+    "descriptionPlaceholder": "Descreva as mudanças, a motivação e o impacto. Quanto mais contexto, melhor a geração.",
+    "filesLabel": "Arquivos alterados (opcional)",
+    "filesPlaceholder": "Ex: src/auth/oauth.ts, src/components/login-form.tsx",
+    "submitButton": "Gerar Descrição",
+    "loadingButton": "Gerando...",
+    "types": {
+      "feat": "feat — Nova funcionalidade",
+      "fix": "fix — Correção de bug",
+      "refactor": "refactor — Refatoração",
+      "docs": "docs — Documentação",
+      "test": "test — Testes",
+      "chore": "chore — Manutenção",
+      "style": "style — Estilo/formatação",
+      "perf": "perf — Performance"
+    }
+  },
+  "output": {
+    "title": "Descrição Gerada",
+    "summaryTitle": "Resumo",
+    "changesTitle": "Mudanças",
+    "testingTitle": "Como Testar",
+    "notesTitle": "Notas",
+    "copyButton": "Copiar",
+    "copiedButton": "Copiado!",
+    "copyMarkdown": "Copiar Markdown",
+    "regenerate": "Gerar novamente"
+  },
+  "errors": {
+    "rateLimit": "Limite atingido. Aguarde 1 minuto.",
+    "generic": "Erro ao gerar descrição. Tente novamente.",
+    "validation": "Preencha todos os campos obrigatórios."
+  },
+  "tips": {
+    "title": "Dicas para melhores resultados",
+    "items": [
+      "Seja específico na descrição — mencione o problema que resolve",
+      "Liste os arquivos principais alterados",
+      "Inclua contexto de produto quando relevante",
+      "Revise e adapte o resultado antes de publicar"
+    ]
+  },
+  "examples": {
+    "title": "Experimente um exemplo",
+    "items": [
+      {
+        "label": "Nova feature",
+        "type": "feat",
+        "title": "Adiciona autenticação com Google OAuth",
+        "description": "Implementei login via Google usando NextAuth.js. O provider OAuth2 foi configurado com callback em /api/auth/[...nextauth]. A sessão é persistida via JWT com refresh automático. Adicionei proteção de rotas via middleware e redirect para login quando necessário.",
+        "filesChanged": "src/lib/auth.ts, src/app/api/auth/[...nextauth]/route.ts, src/middleware.ts, src/components/login-button.tsx"
+      },
+      {
+        "label": "Correção de bug",
+        "type": "fix",
+        "title": "Corrige vazamento de memória no hook usePolling",
+        "description": "O hook usePolling não limpava o setInterval ao desmontar o componente, causando chamadas de setState em componentes desmontados e warnings no console. Adicionei o cleanup correto no retorno do useEffect.",
+        "filesChanged": "src/hooks/use-polling.ts"
+      },
+      {
+        "label": "Refatoração",
+        "type": "refactor",
+        "title": "Extrai lógica de filtros para hook customizado",
+        "description": "Movi toda a lógica de filtros, ordenação e paginação da página de listagem para o hook useFilters. O componente ficou ~60 linhas menor, facilitando manutenção e testes unitários.",
+        "filesChanged": "src/hooks/use-filters.ts, src/hooks/use-filters.test.ts, src/app/products/page.tsx"
+      }
+    ]
+  }
+}

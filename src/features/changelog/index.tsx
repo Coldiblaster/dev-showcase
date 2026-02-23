@@ -10,7 +10,7 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { AnimatedSection } from "@/components/animated-section";
 import { BackLink } from "@/components/back-link";
@@ -46,6 +46,7 @@ const TYPE_CONFIG: Record<
 export function ChangelogPage() {
   const t = useTranslations("changelogPage");
   const tGlobal = useTranslations("global.pageHero");
+  const locale = useLocale();
 
   return (
     <div className="min-h-screen">
@@ -97,11 +98,14 @@ export function ChangelogPage() {
           <AnimatedSection delay={0.25}>
             <div className="inline-flex flex-wrap justify-center gap-3">
               {[
-                { label: `v${CHANGELOG[0].version}`, sub: "versão atual" },
-                { label: `${CHANGELOG.length}`, sub: "versões" },
+                {
+                  label: `v${CHANGELOG[0].version}`,
+                  sub: t("hero.statCurrentVersion"),
+                },
+                { label: `${CHANGELOG.length}`, sub: t("hero.statVersions") },
                 {
                   label: `${CHANGELOG.reduce((acc, v) => acc + v.items.length, 0)}`,
-                  sub: "mudanças",
+                  sub: t("hero.statChanges"),
                 },
               ].map((stat) => (
                 <div
@@ -183,7 +187,7 @@ export function ChangelogPage() {
                           dateTime={version.date}
                           className="shrink-0 font-mono text-xs text-muted-foreground"
                         >
-                          {new Date(version.date).toLocaleDateString("pt-BR", {
+                          {new Date(version.date).toLocaleDateString(locale, {
                             day: "2-digit",
                             month: "short",
                             year: "numeric",

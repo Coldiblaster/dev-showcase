@@ -10,12 +10,12 @@ import { getMessages, getTranslations } from "next-intl/server";
 import { AnalyticsGate } from "@/components/cookie-banner";
 import { CookieBanner } from "@/components/cookie-banner";
 import { CopyFeedbackProvider } from "@/components/copy-feedback";
+import { FloatingActionMenu } from "@/components/floating-action-menu";
 import { Footer } from "@/components/footer";
 import { JsonLd } from "@/components/json-ld";
 import { MobileActionBar } from "@/components/mobile-action-bar";
 import { Navbar } from "@/components/navbar";
 import { RecaptchaProvider } from "@/components/recaptcha-provider";
-import { ScrollTopButton } from "@/components/scroll-top";
 import { SkipLink } from "@/components/skip-link";
 import { ViewTracker } from "@/components/view-tracker";
 import { PERSONAL } from "@/lib/constants";
@@ -121,7 +121,7 @@ export default async function RootLayout({
               <main id="main" tabIndex={-1} className="outline-none">
                 {children}
               </main>
-              <ScrollTopButton />
+              <FloatingActionMenu />
               <ChatWidget />
               <Footer />
               <MobileActionBar />

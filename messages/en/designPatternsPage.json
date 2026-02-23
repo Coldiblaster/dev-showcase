@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "title": "Design Patterns in TypeScript — Observer, Strategy, Factory & More",
+    "description": "The 5 most used GoF patterns in everyday development with TypeScript: real examples, when to use each one and before/after refactoring comparisons."
+  },
+  "hero": {
+    "badge": "Design Patterns",
+    "title": "Design Patterns in TypeScript",
+    "subtitle": "GoF applied to the real world",
+    "description": "The 5 most used design patterns in modern development, with real TypeScript examples, before/after comparisons and a guide on when to use each one."
+  },
+  "sectionNav": {
+    "overview": "Overview",
+    "patterns": "The Patterns",
+    "useCases": "When to Use"
+  },
+  "overview": {
+    "badge": "Introduction",
+    "title": "Why Design Patterns?",
+    "description": "Design patterns are reusable solutions for recurring problems in software development. They are not libraries — they are vocabulary and structure.",
+    "cards": [
+      {
+        "title": "Communication",
+        "desc": "Teams that know the patterns speak the same language: 'use Strategy here' is more precise than 'create an abstraction'."
+      },
+      {
+        "title": "Maintainability",
+        "desc": "Code that follows known patterns is easier to extend without breaking what already exists."
+      },
+      {
+        "title": "Interviews",
+        "desc": "Knowing GoF patterns is expected in senior interviews. Knowing when NOT to use them too."
+      }
+    ]
+  },
+  "patterns": {
+    "badge": "Patterns",
+    "title": "The 5 Essential Patterns",
+    "before": "Before",
+    "realWorldLabel": "Real world:",
+    "after": "After",
+    "whenToUse": "When to use",
+    "items": [
+      {
+        "id": "observer",
+        "name": "Observer",
+        "category": "Behavioral",
+        "tagline": "Notify multiple objects when state changes.",
+        "description": "Defines a one-to-many dependency between objects. When one object changes state, all its dependents are notified automatically.",
+        "realWorld": "DOM event listeners, useState + useEffect in React, Redux, Zustand.",
+        "whenToUse": "When a change in one object requires updating others, without knowing how many or which ones."
+      },
+      {
+        "id": "strategy",
+        "name": "Strategy",
+        "category": "Behavioral",
+        "tagline": "Swap algorithms at runtime.",
+        "description": "Defines a family of algorithms, encapsulates each one and makes them interchangeable. The client can choose which algorithm to use without changing the code that uses it.",
+        "realWorld": "Configurable sorting, different payment methods, interchangeable validators.",
+        "whenToUse": "When you have multiple variations of an algorithm and need to switch between them easily."
+      },
+      {
+        "id": "factory",
+        "name": "Factory Method",
+        "category": "Creational",
+        "tagline": "Delegate object creation to subclasses.",
+        "description": "Defines an interface for creating objects, but lets subclasses decide which class to instantiate. The Factory Method defers instantiation to subclasses.",
+        "realWorld": "React.createElement, document.createElement, creating database connections.",
+        "whenToUse": "When you don't know in advance which class you need to instantiate, or when you want subclasses to control creation."
+      },
+      {
+        "id": "decorator",
+        "name": "Decorator",
+        "category": "Structural",
+        "tagline": "Add responsibilities to objects dynamically.",
+        "description": "Attaches additional responsibilities to an object dynamically. Decorators provide a flexible alternative to inheritance for extending functionality.",
+        "realWorld": "HOCs in React, middleware in Express/Next.js, TypeScript decorators.",
+        "whenToUse": "When you need to add behavior to individual objects without affecting others of the same type."
+      },
+      {
+        "id": "command",
+        "name": "Command",
+        "category": "Behavioral",
+        "tagline": "Encapsulate actions as objects.",
+        "description": "Encapsulates a request as an object, allowing parameterizing clients with different requests, queuing or logging requests, and implementing undoable operations.",
+        "realWorld": "Undo/redo in editors, task queues, database transactions.",
+        "whenToUse": "When you need action history, undo operations or task queuing."
+      }
+    ]
+  },
+  "useCases": {
+    "badge": "Usage Guide",
+    "title": "When to Use Each Pattern",
+    "description": "One of the most common mistakes is applying patterns unnecessarily. Learn to identify the right moment.",
+    "doTitle": "Use when...",
+    "dontTitle": "Don't use when...",
+    "items": [
+      {
+        "pattern": "Observer",
+        "do": [
+          "Multiple components need to react to the same event",
+          "The emitter doesn't know how many listeners exist",
+          "You need loose coupling between sender and receiver"
+        ],
+        "dont": [
+          "There are only 1-2 fixed listeners",
+          "Performance is critical (many notifications)",
+          "Notification order matters a lot"
+        ]
+      },
+      {
+        "pattern": "Strategy",
+        "do": [
+          "Multiple algorithm variations coexist",
+          "You need to swap the algorithm at runtime",
+          "Want to eliminate growing if/else/switch conditionals"
+        ],
+        "dont": [
+          "You only have 2 simple algorithms",
+          "Algorithms rarely change",
+          "The extra abstraction complicates more than it simplifies"
+        ]
+      },
+      {
+        "pattern": "Factory",
+        "do": [
+          "Creation logic is complex or conditional",
+          "You need to decouple client from concrete implementation",
+          "Want to centralize creation to facilitate testing"
+        ],
+        "dont": [
+          "Creation is simple (new MyClass())",
+          "There are no variations of the object to create",
+          "Adds indirection without clear benefit"
+        ]
+      },
+      {
+        "pattern": "Decorator",
+        "do": [
+          "Need to add behaviors without modifying the base class",
+          "Inheritance would create a subclass explosion",
+          "Behaviors need to be freely combined"
+        ],
+        "dont": [
+          "The order of decorators is hard to track",
+          "You control the class and can simply extend it",
+          "Complex debugging is unacceptable"
+        ]
+      },
+      {
+        "pattern": "Command",
+        "do": [
+          "Undo/redo functionality is needed",
+          "Operations need to be queued or scheduled",
+          "You want to keep a history of actions"
+        ],
+        "dont": [
+          "Operations are simple and don't need history",
+          "The overhead of creating Command objects is unjustified",
+          "No need for reversal or queuing"
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "title": "Apply it in Your Project",
+    "description": "Patterns are tools, not rules. Use them when they simplify design, not to impress.",
+    "button": "See more guides",
+    "github": "View on GitHub"
+  }
+}

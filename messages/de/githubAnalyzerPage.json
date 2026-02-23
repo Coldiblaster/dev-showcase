@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "title": "GitHub Profile Analyzer — KI-gestützte Profilanalyse",
+    "description": "Gib einen GitHub-Benutzernamen ein und erhalte eine detaillierte Analyse: dominante Sprachen, Projekttypen, Commit-Muster und KI-generierte Zusammenfassung."
+  },
+  "hero": {
+    "badge": "KI-Tool",
+    "title": "GitHub Profile Analyzer",
+    "subtitle": "KI-generierte Profilanalyse",
+    "description": "Gib einen GitHub-Benutzernamen ein und erhalte eine Analyse der dominanten Sprachen, hervorgehobenen Projekte, Aktivitätsmuster und Verbesserungsvorschläge.",
+    "warning": "Limit von 3 Analysen pro Minute und IP. Es werden nur öffentliche GitHub-Daten verwendet."
+  },
+  "form": {
+    "label": "GitHub-Benutzername",
+    "placeholder": "Z.B.: torvalds",
+    "submit": "Profil analysieren",
+    "loading": "Analysiere..."
+  },
+  "profile": {
+    "repos": "öffentliche Repositories",
+    "followers": "Follower",
+    "following": "Folgt",
+    "memberSince": "Mitglied seit",
+    "viewProfile": "Vollständiges Profil anzeigen"
+  },
+  "repos": {
+    "title": "Top-Repositories",
+    "stars": "Sterne",
+    "forks": "Forks",
+    "viewRepo": "Repository anzeigen"
+  },
+  "analysis": {
+    "title": "KI-Analyse",
+    "summaryTitle": "Profilzusammenfassung",
+    "languagesTitle": "Dominante Sprachen",
+    "highlightsTitle": "Highlights",
+    "adviceTitle": "Verbesserungsvorschlag"
+  },
+  "errors": {
+    "notFound": "Benutzer auf GitHub nicht gefunden.",
+    "rateLimit": "Rate-Limit erreicht. 1 Minute warten.",
+    "generic": "Fehler beim Analysieren des Profils. Erneut versuchen.",
+    "validation": "Gültige Benutzernamen (Buchstaben, Zahlen und Bindestriche, max. 39 Zeichen) eingeben."
+  }
+}

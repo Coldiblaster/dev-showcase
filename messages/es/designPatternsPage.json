@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "title": "Design Patterns en TypeScript — Observer, Strategy, Factory y Más",
+    "description": "Los 5 patrones GoF más usados en el desarrollo diario con TypeScript: ejemplos reales, cuándo usar cada uno y comparativas antes/después de refactorización."
+  },
+  "hero": {
+    "badge": "Design Patterns",
+    "title": "Design Patterns en TypeScript",
+    "subtitle": "GoF aplicado al mundo real",
+    "description": "Los 5 patrones de diseño más usados en el desarrollo moderno, con ejemplos reales en TypeScript, comparativas antes/después y guía de cuándo usar cada uno."
+  },
+  "sectionNav": {
+    "overview": "Visión General",
+    "patterns": "Los Patrones",
+    "useCases": "Cuándo Usar"
+  },
+  "overview": {
+    "badge": "Introducción",
+    "title": "¿Por qué Design Patterns?",
+    "description": "Los patrones de diseño son soluciones reutilizables para problemas recurrentes en el desarrollo de software. No son bibliotecas — son vocabulario y estructura.",
+    "cards": [
+      {
+        "title": "Comunicación",
+        "desc": "Los equipos que conocen los patrones hablan el mismo idioma: 'usa Strategy aquí' es más preciso que 'crea una abstracción'."
+      },
+      {
+        "title": "Mantenibilidad",
+        "desc": "El código que sigue patrones conocidos es más fácil de extender sin romper lo que ya existe."
+      },
+      {
+        "title": "Entrevistas",
+        "desc": "Conocer los patrones GoF se espera en entrevistas senior. Saber cuándo NO usarlos también."
+      }
+    ]
+  },
+  "patterns": {
+    "badge": "Patrones",
+    "title": "Los 5 Patrones Esenciales",
+    "before": "Antes",
+    "realWorldLabel": "Caso real:",
+    "after": "Después",
+    "whenToUse": "Cuándo usar",
+    "items": [
+      {
+        "id": "observer",
+        "name": "Observer",
+        "category": "Comportamental",
+        "tagline": "Notifica múltiples objetos cuando un estado cambia.",
+        "description": "Define una dependencia uno-a-muchos entre objetos. Cuando un objeto cambia de estado, todos sus dependientes son notificados automáticamente.",
+        "realWorld": "Event listeners del DOM, useState + useEffect en React, Redux, Zustand.",
+        "whenToUse": "Cuando un cambio en un objeto requiere actualizar otros, sin saber cuántos o cuáles son."
+      },
+      {
+        "id": "strategy",
+        "name": "Strategy",
+        "category": "Comportamental",
+        "tagline": "Intercambia algoritmos en tiempo de ejecución.",
+        "description": "Define una familia de algoritmos, encapsula cada uno y los hace intercambiables. El cliente puede elegir qué algoritmo usar sin alterar el código que lo utiliza.",
+        "realWorld": "Ordenación configurable, diferentes métodos de pago, validadores intercambiables.",
+        "whenToUse": "Cuando tienes múltiples variaciones de un algoritmo y necesitas intercambiar entre ellos fácilmente."
+      },
+      {
+        "id": "factory",
+        "name": "Factory Method",
+        "category": "Creacional",
+        "tagline": "Delega la creación de objetos a subclases.",
+        "description": "Define una interfaz para crear objetos, pero deja que las subclases decidan qué clase instanciar.",
+        "realWorld": "React.createElement, document.createElement, creación de conexiones de base de datos.",
+        "whenToUse": "Cuando no sabes de antemano qué clase necesitas instanciar."
+      },
+      {
+        "id": "decorator",
+        "name": "Decorator",
+        "category": "Estructural",
+        "tagline": "Agrega responsabilidades a objetos dinámicamente.",
+        "description": "Adjunta responsabilidades adicionales a un objeto dinámicamente. Los Decoradores proporcionan una alternativa flexible a la herencia.",
+        "realWorld": "HOCs en React, middleware en Express/Next.js, decorators de TypeScript.",
+        "whenToUse": "Cuando necesitas agregar comportamiento a objetos individuales sin afectar a otros del mismo tipo."
+      },
+      {
+        "id": "command",
+        "name": "Command",
+        "category": "Comportamental",
+        "tagline": "Encapsula acciones como objetos.",
+        "description": "Encapsula una solicitud como un objeto, permitiendo parametrizar clientes con diferentes solicitudes e implementar operaciones deshechas.",
+        "realWorld": "Undo/redo en editores, colas de tareas, transacciones de base de datos.",
+        "whenToUse": "Cuando necesitas historial de acciones, deshacer operaciones o encolar tareas."
+      }
+    ]
+  },
+  "useCases": {
+    "badge": "Guía de Uso",
+    "title": "Cuándo Usar Cada Patrón",
+    "description": "Uno de los errores más comunes es aplicar patrones innecesariamente. Aprende a identificar el momento correcto.",
+    "doTitle": "Usa cuando...",
+    "dontTitle": "No uses cuando...",
+    "items": [
+      {
+        "pattern": "Observer",
+        "do": [
+          "Múltiples componentes necesitan reaccionar al mismo evento",
+          "El emisor no sabe cuántos oyentes existen",
+          "Necesitas acoplamiento débil entre emisor y receptor"
+        ],
+        "dont": [
+          "Solo hay 1-2 oyentes fijos",
+          "El rendimiento es crítico (muchas notificaciones)",
+          "El orden de notificación importa mucho"
+        ]
+      },
+      {
+        "pattern": "Strategy",
+        "do": [
+          "Múltiples variaciones de un algoritmo coexisten",
+          "Necesitas intercambiar el algoritmo en runtime",
+          "Quieres eliminar condicionales if/else/switch crecientes"
+        ],
+        "dont": [
+          "Solo tienes 2 algoritmos simples",
+          "Los algoritmos raramente cambian",
+          "La abstracción extra complica más de lo que simplifica"
+        ]
+      },
+      {
+        "pattern": "Factory",
+        "do": [
+          "La lógica de creación es compleja o condicional",
+          "Necesitas desacoplar cliente de la implementación concreta",
+          "Quieres centralizar la creación para facilitar pruebas"
+        ],
+        "dont": [
+          "La creación es simple (new MiClase())",
+          "No hay variaciones del objeto a crear",
+          "Agrega indirección sin beneficio claro"
+        ]
+      },
+      {
+        "pattern": "Decorator",
+        "do": [
+          "Necesitas agregar comportamientos sin modificar la clase base",
+          "La herencia crearía una explosión de subclases",
+          "Los comportamientos necesitan combinarse libremente"
+        ],
+        "dont": [
+          "El orden de los decoradores es difícil de rastrear",
+          "Controlas la clase y puedes simplemente extenderla",
+          "El debug complejo es inaceptable"
+        ]
+      },
+      {
+        "pattern": "Command",
+        "do": [
+          "Se necesita funcionalidad undo/redo",
+          "Las operaciones necesitan encolarse o programarse",
+          "Quieres mantener un historial de acciones"
+        ],
+        "dont": [
+          "Las operaciones son simples y no necesitan historial",
+          "El overhead de crear objetos Command no está justificado",
+          "Sin necesidad de reversión o encolado"
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "title": "Aplícalo en Tu Proyecto",
+    "description": "Los patrones son herramientas, no reglas. Úsalos cuando simplifiquen el diseño, no para impresionar.",
+    "button": "Ver más guías",
+    "github": "Ver en GitHub"
+  }
+}

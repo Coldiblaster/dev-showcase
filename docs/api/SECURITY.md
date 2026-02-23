@@ -57,20 +57,20 @@ Request do Client
 
 ### Funcoes disponiveis
 
-| Funcao                      | Descricao                                | Usada em                  |
-| --------------------------- | ---------------------------------------- | ------------------------- |
-| `secureJsonHeaders()`       | Headers seguros para respostas JSON      | code-review, chat (erros) |
-| `secureStreamHeaders()`     | Headers seguros para streaming           | chat                      |
-| `jsonError(msg, status)`    | Resposta JSON de erro padronizada        | todas                     |
-| `checkBodySize(req, max)`   | Valida Content-Length                    | code-review, chat         |
-| `safeParseBody(req)`        | Parse JSON sem crash                     | code-review, chat         |
-| `sanitizeUserInput(text)`   | Remove padroes de prompt injection       | code-review, chat         |
-| `sanitizeText(text)`        | Remove HTML/scripts de uma string        | code-review               |
-| `sanitizeOutput(obj)`       | Sanitiza recursivamente todas as strings | code-review               |
-| `sanitizeStreamChunk(text)` | Sanitiza chunks de streaming             | chat                      |
-| `safeLocale(locale)`        | Valida locale (fallback "en")            | code-review               |
-| `checkApiKey()`             | Verifica OPENAI_API_KEY                  | code-review, chat         |
-| `getApiKey()`               | Retorna a API key                        | code-review, chat         |
+| Funcao                      | Descricao                                | Usada em                                             |
+| --------------------------- | ---------------------------------------- | ---------------------------------------------------- |
+| `secureJsonHeaders()`       | Headers seguros para respostas JSON      | code-review, chat (erros), pr-generator, gh-analyzer |
+| `secureStreamHeaders()`     | Headers seguros para streaming           | chat                                                 |
+| `jsonError(msg, status)`    | Resposta JSON de erro padronizada        | todas                                                |
+| `checkBodySize(req, max)`   | Valida Content-Length                    | code-review, chat, pr-generator, gh-analyzer         |
+| `safeParseBody(req)`        | Parse JSON sem crash                     | code-review, chat, pr-generator, gh-analyzer         |
+| `sanitizeUserInput(text)`   | Remove padroes de prompt injection       | code-review, chat, pr-generator                      |
+| `sanitizeText(text)`        | Remove HTML/scripts de uma string        | code-review                                          |
+| `sanitizeOutput(obj)`       | Sanitiza recursivamente todas as strings | code-review, pr-generator, gh-analyzer               |
+| `sanitizeStreamChunk(text)` | Sanitiza chunks de streaming             | chat                                                 |
+| `safeLocale(locale)`        | Valida locale (fallback "en")            | code-review, pr-generator, gh-analyzer               |
+| `checkApiKey()`             | Verifica OPENAI_API_KEY                  | code-review, chat, pr-generator, gh-analyzer         |
+| `getApiKey()`               | Retorna a API key                        | code-review, chat, pr-generator, gh-analyzer         |
 
 ---
 
@@ -80,13 +80,15 @@ Request do Client
 
 Sistema in-memory por IP, configuravel por rota.
 
-| Rota               | Limite      | Janela    | Prefixo       | Backend         |
-| ------------------ | ----------- | --------- | ------------- | --------------- |
-| `/api/code-review` | 8 requests  | 5 minutos | `code-review` | In-memory       |
-| `/api/chat`        | 30 requests | 1 minuto  | `chat`        | In-memory       |
-| `/api/stats/track` | 60 requests | 1 minuto  | `stats-track` | In-memory       |
-| `/api/stats`       | 30 requests | 1 minuto  | `stats-read`  | In-memory       |
-| `/api/reactions`   | 15 requests | 1 minuto  | `reactions`   | Redis (Upstash) |
+| Rota                   | Limite      | Janela    | Prefixo        | Backend         |
+| ---------------------- | ----------- | --------- | -------------- | --------------- |
+| `/api/code-review`     | 8 requests  | 5 minutos | `code-review`  | In-memory       |
+| `/api/chat`            | 30 requests | 1 minuto  | `chat`         | In-memory       |
+| `/api/stats/track`     | 60 requests | 1 minuto  | `stats-track`  | In-memory       |
+| `/api/stats`           | 30 requests | 1 minuto  | `stats-read`   | In-memory       |
+| `/api/reactions`       | 15 requests | 1 minuto  | `reactions`    | Redis (Upstash) |
+| `/api/pr-generator`    | 5 requests  | 1 minuto  | `pr-generator` | Redis (Upstash) |
+| `/api/github-analyzer` | 3 requests  | 1 minuto  | `gh-analyzer`  | Redis (Upstash) |
 
 > `/api/online` não possui rate limit explícito — IPs são anonimizados com SHA-256 antes de serem armazenados no Redis Sorted Set.
 
@@ -109,10 +111,12 @@ Quando excedido, retorna HTTP 429 com header `Retry-After`.
 
 Rejeita requisicoes antes de fazer parse, evitando ataques de payload grande.
 
-| Rota               | Limite |
-| ------------------ | ------ |
-| `/api/code-review` | 12 KB  |
-| `/api/chat`        | 16 KB  |
+| Rota                   | Limite |
+| ---------------------- | ------ |
+| `/api/code-review`     | 12 KB  |
+| `/api/chat`            | 16 KB  |
+| `/api/pr-generator`    | 8 KB   |
+| `/api/github-analyzer` | 2 KB   |
 
 ---
 
@@ -161,6 +165,62 @@ const reviewResponseSchema = z.object({
 });
 ```
 
+**PR Generator:**
+
+```typescript
+const bodySchema = z.object({
+  title: z.string().min(5).max(200),
+  type: z.enum([
+    "feat",
+    "fix",
+    "refactor",
+    "docs",
+    "test",
+    "chore",
+    "style",
+    "perf",
+  ]),
+  description: z.string().min(10).max(2_000),
+  filesChanged: z.string().max(1_000).optional(),
+  locale: z
+    .string()
+    .max(10)
+    .regex(/^[a-zA-Z-]+$/)
+    .optional(),
+});
+
+const prResponseSchema = z.object({
+  summary: z.string().max(600),
+  changes: z.array(z.string().max(300)).max(15),
+  testing: z.array(z.string().max(300)).max(10),
+  notes: z.string().max(500).optional(),
+});
+```
+
+**GitHub Analyzer:**
+
+```typescript
+const bodySchema = z.object({
+  username: z
+    .string()
+    .min(1)
+    .max(39)
+    .regex(/^[a-zA-Z0-9-]{1,39}$/),
+  locale: z
+    .string()
+    .max(10)
+    .regex(/^[a-zA-Z-]+$/)
+    .optional(),
+});
+
+const analysisResponseSchema = z.object({
+  summary: z.string().max(800),
+  languages: z.array(z.string().max(50)).max(10),
+  highlights: z.array(z.string().max(300)).max(8),
+  advice: z.string().max(500),
+});
+```
+
 ---
 
 ### 4. Anti Prompt Injection
@@ -181,6 +241,7 @@ Todos os padroes sao substituidos por `[filtered]` antes de enviar a IA.
 
 - Codigo do usuario no code review
 - Mensagens do usuario no chat
+- Titulo, descricao e arquivos alterados no PR Generator
 
 ---
 

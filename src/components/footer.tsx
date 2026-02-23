@@ -10,23 +10,21 @@ import { OnlineCounter } from "@/components/online-counter";
 import { Separator } from "@/components/ui/separator";
 import { PERSONAL } from "@/lib/constants";
 
-const SOCIAL_LINKS = [
-  {
-    icon: Github,
-    href: PERSONAL.github,
-    label: "GitHub",
-  },
+const SOCIAL_LINKS_BASE = [
+  { icon: Github, href: PERSONAL.github, labelKey: null, label: "GitHub" },
   {
     icon: Linkedin,
     href: PERSONAL.linkedin,
+    labelKey: null,
     label: "LinkedIn",
   },
   {
     icon: Mail,
     href: `mailto:${PERSONAL.email}`,
-    label: "Email",
+    labelKey: "emailLabel" as const,
+    label: "",
   },
-] as const;
+];
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -55,20 +53,23 @@ export function Footer() {
           </a>
 
           <div className="flex items-center gap-4">
-            {SOCIAL_LINKS.map(({ icon: Icon, href, label }) => (
-              <motion.a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label={label}
-              >
-                <Icon className="h-4 w-4" />
-              </motion.a>
-            ))}
+            {SOCIAL_LINKS_BASE.map(({ icon: Icon, href, labelKey, label }) => {
+              const ariaLabel = labelKey ? t(labelKey) : label;
+              return (
+                <motion.a
+                  key={ariaLabel}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  aria-label={ariaLabel}
+                >
+                  <Icon className="h-4 w-4" />
+                </motion.a>
+              );
+            })}
           </div>
         </motion.div>
 

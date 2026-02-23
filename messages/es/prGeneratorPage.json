@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "title": "PR Description Generator — Genera PRs Profesionales con IA",
+    "description": "Genera descripciones de Pull Request claras y estandarizadas con IA. Proporciona el tipo, contexto y archivos cambiados — la IA construye la plantilla completa."
+  },
+  "hero": {
+    "badge": "Herramienta IA",
+    "title": "PR Description Generator",
+    "subtitle": "Plantillas profesionales generadas por IA",
+    "description": "Completa el contexto de tu PR y recibe una descripción profesional y estandarizada en segundos. Tipos de PR, resumen, cambios, pruebas y notas de breaking changes.",
+    "warning": "Límite de 5 generaciones por minuto por IP. Revisa siempre el resultado antes de publicar el PR."
+  },
+  "form": {
+    "title": "Contexto del PR",
+    "typeLabel": "Tipo de PR",
+    "typePlaceholder": "Selecciona el tipo",
+    "titleLabel": "Título del PR",
+    "titlePlaceholder": "Ej: Agrega autenticación con OAuth2",
+    "descriptionLabel": "¿Qué se hizo?",
+    "descriptionPlaceholder": "Describe los cambios, la motivación y el impacto. Más contexto = mejor generación.",
+    "filesLabel": "Archivos modificados (opcional)",
+    "filesPlaceholder": "Ej: src/auth/oauth.ts, src/components/login-form.tsx",
+    "submitButton": "Generar Descripción",
+    "loadingButton": "Generando...",
+    "types": {
+      "feat": "feat — Nueva funcionalidad",
+      "fix": "fix — Corrección de bug",
+      "refactor": "refactor — Refactorización",
+      "docs": "docs — Documentación",
+      "test": "test — Pruebas",
+      "chore": "chore — Mantenimiento",
+      "style": "style — Estilo/formato",
+      "perf": "perf — Rendimiento"
+    }
+  },
+  "output": {
+    "title": "Descripción Generada",
+    "summaryTitle": "Resumen",
+    "changesTitle": "Cambios",
+    "testingTitle": "Cómo Probar",
+    "notesTitle": "Notas",
+    "copyButton": "Copiar",
+    "copiedButton": "¡Copiado!",
+    "copyMarkdown": "Copiar Markdown",
+    "regenerate": "Generar de nuevo"
+  },
+  "errors": {
+    "rateLimit": "Límite alcanzado. Espera 1 minuto.",
+    "generic": "Error al generar descripción. Inténtalo de nuevo.",
+    "validation": "Por favor completa todos los campos requeridos."
+  },
+  "tips": {
+    "title": "Consejos para mejores resultados",
+    "items": [
+      "Sé específico en la descripción — menciona el problema que resuelve",
+      "Lista los principales archivos modificados",
+      "Incluye contexto de producto cuando sea relevante",
+      "Revisa y adapta el resultado antes de publicar"
+    ]
+  },
+  "examples": {
+    "title": "Prueba un ejemplo",
+    "items": [
+      {
+        "label": "Nueva función",
+        "type": "feat",
+        "title": "Agrega autenticación con Google OAuth",
+        "description": "Implementé el inicio de sesión con Google usando NextAuth.js. El proveedor OAuth2 fue configurado con callback en /api/auth/[...nextauth]. La sesión se persiste con JWT y refresh automático. Se añadió protección de rutas via middleware.",
+        "filesChanged": "src/lib/auth.ts, src/app/api/auth/[...nextauth]/route.ts, src/middleware.ts, src/components/login-button.tsx"
+      },
+      {
+        "label": "Corrección",
+        "type": "fix",
+        "title": "Corrige fuga de memoria en el hook usePolling",
+        "description": "El hook usePolling no limpiaba el setInterval al desmontar el componente, causando llamadas setState en componentes desmontados. Se añadió la limpieza correcta en el retorno del useEffect.",
+        "filesChanged": "src/hooks/use-polling.ts"
+      },
+      {
+        "label": "Refactorización",
+        "type": "refactor",
+        "title": "Extrae lógica de filtros a un hook personalizado",
+        "description": "Moví toda la lógica de filtros, orden y paginación de la página de listado al hook useFilters. El componente quedó ~60 líneas más corto, facilitando el mantenimiento y las pruebas unitarias.",
+        "filesChanged": "src/hooks/use-filters.ts, src/hooks/use-filters.test.ts, src/app/products/page.tsx"
+      }
+    ]
+  }
+}

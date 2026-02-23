@@ -16,6 +16,200 @@ export interface ChangelogVersion {
 
 export const CHANGELOG: ChangelogVersion[] = [
   {
+    version: "0.15.0",
+    date: "2026-02-23",
+    title: "FAB Unificado, Focus Mode Mobile, Segurança IA e Polimento Geral",
+    summary:
+      "FloatingActionMenu unifica scroll-to-top, modo foco e chat num único FAB expandível no desktop. Focus Mode integrado na MobileActionBar (só em conteúdos). Prompts de IA reescritos com delimitação XML, response_format json_object e 10 camadas de sanitização. Correção crítica nas reações e série de hardcoded strings traduzidas.",
+    items: [
+      {
+        type: "feature",
+        description:
+          "FloatingActionMenu — FAB unificado no desktop (bottom-right): botão principal expande 3 ações animadas (scroll ao topo, modo foco, chat). Substitui os 3 botões flutuantes independentes. Usa framer-motion + AnimatePresence, fecha ao clicar fora",
+      },
+      {
+        type: "feature",
+        description:
+          "Focus Mode no mobile — FocusModeToggle removido como botão flutuante e integrado na MobileActionBar como 6ª ação (grid-cols-6), exibido apenas em páginas de conteúdo (/dicas/*, /ferramentas/*, /implementacoes/*). Ícone destaca-se em cor primary quando ativo",
+      },
+      {
+        type: "feature",
+        description:
+          "Exemplos clicáveis no PR Generator — 3 cards de exemplo (feat, fix, refactor) preenchem automaticamente todos os campos do formulário. Tipo exibido em cor específica (emerald/rose/violet). Card ativo destacado. Traduzidos em pt-BR, en, es, de",
+        href: "/ferramentas/pr-generator",
+      },
+      {
+        type: "improvement",
+        description:
+          "sanitizeUserInput hardened — 10 camadas de defesa: normalização Unicode NFKC, strip de chars de controle, instruction override, role switching, DAN/jailbreak, role markers markdown, leak de prompt, new task injection, context switching e XML tag injection",
+      },
+      {
+        type: "improvement",
+        description:
+          "Prompts de IA reescritos (PR Generator e GitHub Analyzer) — identidade clara (PRBot/ProfileBot), delimitação XML (<pr_context>/<github_profile>) para separar dados de instruções, response_format: json_object garantindo JSON válido, temperature reduzida (0.3/0.4), guidelines de qualidade detalhados",
+      },
+      {
+        type: "improvement",
+        description:
+          "GitHub Analyzer — bio, location, company e descrições de repos sanitizados via sanitizeUserInput() antes de entrar no prompt (dados de terceiros podem conter injections)",
+      },
+      {
+        type: "fix",
+        description:
+          "Reações sempre zeradas — bug crítico: Upstash Redis hmget retorna Record<field, value> (objeto), não array. getCounts usava raw[0]/raw[1]/raw[2] que eram sempre undefined. Corrigido para raw['heart']/raw['fire']/raw['bulb']",
+      },
+      {
+        type: "fix",
+        description:
+          "Chat widget não abria pelo FloatingActionMenu — evento 'open-chat-widget' era despachado em document mas o ChatWidget escutava em window. Corrigido para window.dispatchEvent()",
+      },
+      {
+        type: "fix",
+        description:
+          "ReactionsSection buscava apenas os 10 primeiros CONTENT_ITEMS (slice(0,10)) — com 27 itens, páginas 11-27 nunca apareciam no dashboard /stats. Corrigido para usar todos os itens",
+      },
+      {
+        type: "improvement",
+        description:
+          "Chat API — currentPage validado com regex de path URL (/^/[a-zA-Z0-9\\-_/]*$/) antes de entrar no system prompt. Valores inválidos descartados silenciosamente via .catch(undefined)",
+      },
+      {
+        type: "improvement",
+        description:
+          "Hardcoded strings traduzidas: aria-label 'Progresso de leitura' em reading-progress.tsx, stat labels 'versão atual/versões/mudanças' no changelog (pt-BR fixo), data com toLocaleDateString('pt-BR') agora usa locale ativo, label 'Email' no footer.tsx",
+      },
+      {
+        type: "fix",
+        description:
+          "namespace 'tutorialPage' adicionado ao array NAMESPACES em load-messages.ts — estava sendo usado em /contribua/tutorial mas não registrado, potencialmente causando falha em testes de namespace",
+      },
+      {
+        type: "improvement",
+        description:
+          "Novas chaves de tradução adicionadas (pt-BR, en, es, de): global.readingProgress, changelogPage.hero.statCurrentVersion/statVersions/statChanges, footer.emailLabel, global.mobileFocus",
+      },
+    ],
+  },
+  {
+    version: "0.14.0",
+    date: "2026-02-23",
+    title: "10 Novas Implementações — UX Global, Stats, Guias e Ferramentas IA",
+    summary:
+      "Maior release da plataforma: 4 melhorias de UX globais (ReadingProgress, ShareButton, FocusMode, RelatedContent), dashboard de métricas ao vivo (/stats), 3 novos guias técnicos (API Security, Design Patterns, Acessibilidade) e 2 novas ferramentas IA (PR Generator e GitHub Profile Analyzer) com APIs seguras no padrão da plataforma.",
+    items: [
+      {
+        type: "feature",
+        description:
+          "ReadingProgress — barra de progresso de leitura fixada no topo (fixed top-0), calculada com scroll position / (documentHeight - viewportHeight). Exibida em todas as páginas de conteúdo via dynamic-page-helper",
+      },
+      {
+        type: "feature",
+        description:
+          "ReadingTime — badge com tempo estimado de leitura em minutos. Campo readingMinutes? adicionado ao ContentItem type; todos os 21 itens existentes receberam valores calibrados",
+      },
+      {
+        type: "feature",
+        description:
+          "ShareButton — botão de compartilhamento com Web Share API nativa (mobile/Chrome) e fallback automático para clipboard. Toast de 'Link copiado!' por 2s. Integrado ao rodapé de todas as páginas de conteúdo",
+      },
+      {
+        type: "feature",
+        description:
+          "FocusModeToggle — botão flutuante no canto inferior direito que oculta navbar, footer e elementos [data-hide-focus] via classe CSS focus-mode no <html>. Estado persiste em localStorage",
+      },
+      {
+        type: "feature",
+        description:
+          "RelatedContent — seção no final de cada conteúdo com até 3 itens da mesma categoria. Usa CONTENT_ITEMS filtrado por categoria, excluindo o item atual. Animado com AnimatedSection",
+      },
+      {
+        type: "feature",
+        description:
+          "Dashboard /stats — página standalone de métricas ao vivo: visão geral (page views + visitantes únicos), top páginas com barra de progresso relativa, termos mais buscados via /api/search e reações por conteúdo via /api/reactions",
+      },
+      {
+        type: "feature",
+        description:
+          "Guia /dicas/api-security — pipeline de segurança completo com 7 camadas: body size check, rate limiting in-memory e Redis, API key check, Zod schema, sanitização de input e output e secure headers. Com código real do projeto e checklist interativo",
+        href: "/dicas/api-security",
+      },
+      {
+        type: "feature",
+        description:
+          "Guia /dicas/design-patterns — 5 padrões GoF em TypeScript (Observer, Strategy, Factory, Decorator, Command) com toggle antes/depois de código, exemplos reais e guia de quando usar/não usar cada padrão",
+        href: "/dicas/design-patterns",
+      },
+      {
+        type: "feature",
+        description:
+          "Guia /dicas/a11y-guide — acessibilidade prática: ARIA roles e live regions, gerenciamento de foco (skip links, focus trap), HTML semântico e landmarks, contraste WCAG AA com ferramentas e checklist interativo de 10 itens para PRs",
+        href: "/dicas/a11y-guide",
+      },
+      {
+        type: "feature",
+        description:
+          "Ferramenta /ferramentas/pr-generator — gerador de PR descriptions com IA (gpt-4.1-nano). Suporta 8 tipos de PR (feat, fix, refactor...), gera sumário, lista de mudanças, passos de teste e notas de breaking changes. Copy para markdown. Rate limit 5 req/min via Redis",
+        href: "/ferramentas/pr-generator",
+      },
+      {
+        type: "feature",
+        description:
+          "Ferramenta /ferramentas/github-analyzer — análise de perfil GitHub com IA. Busca dados públicos da API do GitHub (perfil + top 10 repos) e gera análise com linguagens dominantes, destaques e sugestões de melhoria. Rate limit 3 req/min via Redis",
+        href: "/ferramentas/github-analyzer",
+      },
+      {
+        type: "feature",
+        description:
+          "API /api/pr-generator — POST com validação Zod, sanitização completa, rate limiting Redis (5/min), suporte a 4 locales e validação do output da IA antes de retornar ao cliente",
+      },
+      {
+        type: "feature",
+        description:
+          "API /api/github-analyzer — POST com username validado por regex, busca paralela de perfil e repos na API pública do GitHub, análise via OpenAI com cache de 5min via Next.js fetch revalidate",
+      },
+      {
+        type: "improvement",
+        description:
+          "content.ts — campo readingMinutes? adicionado ao tipo ContentItem e 5 novos itens registrados (api-security, design-patterns, a11y-guide, pr-generator, github-analyzer)",
+      },
+      {
+        type: "improvement",
+        description:
+          "dynamic-page-helper.tsx — integra ReadingProgress, ReadingTime, ShareButton, FocusModeToggle e RelatedContent em todas as páginas de conteúdo. Registro de 5 novos componentes no COMPONENT_MAP",
+      },
+      {
+        type: "improvement",
+        description:
+          "nav-data.ts — 5 novos itens no menu de navegação (api-security, design-patterns, a11y-guide, pr-generator, github-analyzer) e item /stats no grupo contribua",
+      },
+      {
+        type: "improvement",
+        description:
+          "search-data.ts + search.json — tags e traduções para os 6 novos itens (5 conteúdos + stats). Traduzido em 4 idiomas",
+      },
+      {
+        type: "improvement",
+        description:
+          "global.json — 7 novas chaves: readingTime, share, linkCopied, shareAriaLabel, focusMode, exitFocusMode, relatedContent. Traduzido em pt-BR, en, es, de",
+      },
+      {
+        type: "improvement",
+        description:
+          "globals.css — regras CSS do focus mode: .focus-mode header, footer e [data-hide-focus] com display: none",
+      },
+      {
+        type: "improvement",
+        description:
+          "types.d.ts + index.ts — 7 novos namespaces registrados: statsPage, apiSecurityPage, designPatternsPage, a11yGuidePage, prGeneratorPage, githubAnalyzerPage. Traduzidos em pt-BR, en, es, de",
+      },
+      {
+        type: "improvement",
+        description:
+          "sitemap.ts — entrada estática adicionada para /stats com changeFrequency: daily",
+      },
+    ],
+  },
+  {
     version: "0.13.0",
     date: "2026-02-23",
     title: "Badges Trending & Popular na Navbar e Listagens",

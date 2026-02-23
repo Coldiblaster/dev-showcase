@@ -178,6 +178,30 @@
     "arch-map": {
       "title": "Arquitectura Interactiva — System Design Visual",
       "description": "Explora arquitecturas de E-commerce SaaS y Dashboard en Tiempo Real: nodos interactivos, tech stack y decisiones técnicas por capa."
+    },
+    "api-security": {
+      "title": "Seguridad en APIs Next.js",
+      "description": "Pipeline de seguridad completo: rate limiting, Zod, sanitización de input/output, anti-XSS y secure headers."
+    },
+    "design-patterns": {
+      "title": "Design Patterns en TypeScript",
+      "description": "Observer, Strategy, Factory, Decorator y Command con ejemplos reales y comparativas antes/después."
+    },
+    "a11y-guide": {
+      "title": "Accesibilidad en la Práctica",
+      "description": "ARIA roles, focus trap, skip links, HTML semántico, contraste WCAG AA y checklist interactivo."
+    },
+    "pr-generator": {
+      "title": "PR Description Generator",
+      "description": "Herramienta IA para generar descripciones profesionales de Pull Request con tipo, cambios y pruebas."
+    },
+    "github-analyzer": {
+      "title": "GitHub Profile Analyzer",
+      "description": "Análisis de perfil GitHub con IA: lenguajes dominantes, proyectos destacados y sugerencias de mejora."
+    },
+    "stats": {
+      "title": "Métricas de la Plataforma",
+      "description": "Vistas de página, visitantes únicos, páginas más visitadas, búsquedas populares y reacciones en vivo."
     }
   }
 }

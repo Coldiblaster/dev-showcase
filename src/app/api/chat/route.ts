@@ -49,10 +49,18 @@ const assistantMessageSchema = z.object({
 
 const messageSchema = z.union([userMessageSchema, assistantMessageSchema]);
 
+/** Regex para paths de URL válidos — evita injection via currentPage. */
+const VALID_PATH_RE = /^\/[a-zA-Z0-9\-_/]*$/;
+
 /** Schema do body da requisição. */
 const bodySchema = z.object({
   messages: z.array(messageSchema).min(1).max(MAX_MESSAGES),
-  currentPage: z.string().max(200).optional(),
+  currentPage: z
+    .string()
+    .max(200)
+    .regex(VALID_PATH_RE, "Invalid page path")
+    .optional()
+    .catch(undefined),
 });
 
 // ---------------------------------------------------------------------------
@@ -95,6 +103,10 @@ export async function POST(request: Request) {
       return msg;
     });
 
+    // currentPage: validado pelo schema (regex de path URL), passa apenas caminhos limpos.
+    // Qualquer valor inválido foi descartado pelo .catch(undefined) no schema.
+    const safePage = parsed.data.currentPage;
+
     // 7. Chamar OpenAI com streaming
     const openai = new OpenAI({ apiKey: getApiKey() });
 
@@ -108,7 +120,7 @@ export async function POST(request: Request) {
       messages: [
         {
           role: "system",
-          content: buildSystemPrompt(parsed.data.currentPage),
+          content: buildSystemPrompt(safePage),
         },
         ...sanitizedMessages,
       ],

@@ -27,6 +27,7 @@
   "mobileTop": "Inicio",
   "mobileChat": "Chat",
   "mobileTerminal": "Terminal",
+  "mobileFocus": "Foco",
   "mobileActions": "Acciones rápidas",
   "sectionNavigation": "Navegación por secciones",
   "skipToContent": "Saltar al contenido",
@@ -44,5 +45,14 @@
     "bulb": "Aprendí algo",
     "voted": "¡Gracias por el feedback! 🙌",
     "total": "{count, plural, one {# reacción} other {# reacciones}}"
-  }
+  },
+  "readingTime": "{minutes} min de lectura",
+  "share": "Compartir",
+  "linkCopied": "¡Enlace copiado!",
+  "shareAriaLabel": "Compartir este contenido",
+  "focusMode": "Modo enfoque",
+  "exitFocusMode": "Salir del modo enfoque",
+  "relatedContent": "Contenido relacionado",
+  "quickActions": "Acciones rápidas",
+  "readingProgress": "Progreso de lectura"
 }

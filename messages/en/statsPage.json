@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "title": "Platform Metrics — Live Stats",
+    "description": "Real platform data: page views, unique visitors, most visited pages, popular searches and reactions — all live via Redis."
+  },
+  "hero": {
+    "badge": "Live stats",
+    "title": "Platform Metrics",
+    "description": "Real data collected via Upstash Redis. Page views, unique visitors, most accessed content and user interactions."
+  },
+  "sectionNav": {
+    "overview": "Overview",
+    "topPages": "Top Pages",
+    "searches": "Popular Searches",
+    "reactions": "Reactions"
+  },
+  "overview": {
+    "badge": "Totals",
+    "title": "Overview",
+    "views": "Page Views",
+    "viewsDesc": "Total page view count",
+    "visitors": "Unique Visitors",
+    "visitorsDesc": "Estimated via HyperLogLog",
+    "loading": "Loading metrics...",
+    "error": "Could not load data.",
+    "retry": "Try again"
+  },
+  "topPages": {
+    "badge": "Most visited",
+    "title": "Most Visited Pages",
+    "description": "Ranking based on cumulative page views since the platform launched.",
+    "empty": "No pages recorded yet.",
+    "views": "{count} views"
+  },
+  "searches": {
+    "badge": "Searches",
+    "title": "Most Searched Terms",
+    "description": "Top terms typed in the global search (Ctrl+K) by visitors.",
+    "empty": "No terms recorded yet.",
+    "loading": "Loading searches..."
+  },
+  "reactions": {
+    "badge": "Engagement",
+    "title": "Reactions by Content",
+    "description": "Which content generated the most reactions from visitors.",
+    "heart": "Helpful",
+    "fire": "Amazing",
+    "bulb": "Learned something",
+    "empty": "No reactions recorded yet.",
+    "loading": "Loading reactions..."
+  },
+  "poweredBy": "Real-time data via Upstash Redis"
+}

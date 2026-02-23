@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "title": "Plattform-Metriken — Live-Stats",
+    "description": "Echte Plattformdaten: Seitenaufrufe, eindeutige Besucher, meistbesuchte Seiten, beliebte Suchanfragen und Reaktionen — alles live via Redis."
+  },
+  "hero": {
+    "badge": "Live-Stats",
+    "title": "Plattform-Metriken",
+    "description": "Echte Daten via Upstash Redis. Seitenaufrufe, eindeutige Besucher, meistbesuchte Inhalte und Nutzerinteraktionen."
+  },
+  "sectionNav": {
+    "overview": "Übersicht",
+    "topPages": "Top-Seiten",
+    "searches": "Beliebte Suchanfragen",
+    "reactions": "Reaktionen"
+  },
+  "overview": {
+    "badge": "Gesamt",
+    "title": "Übersicht",
+    "views": "Seitenaufrufe",
+    "viewsDesc": "Gesamtanzahl der Seitenaufrufe",
+    "visitors": "Eindeutige Besucher",
+    "visitorsDesc": "Geschätzt via HyperLogLog",
+    "loading": "Metriken werden geladen...",
+    "error": "Daten konnten nicht geladen werden.",
+    "retry": "Erneut versuchen"
+  },
+  "topPages": {
+    "badge": "Meistbesucht",
+    "title": "Meistbesuchte Seiten",
+    "description": "Ranking basierend auf kumulierten Seitenaufrufen seit dem Start.",
+    "empty": "Noch keine Seiten erfasst.",
+    "views": "{count} Aufrufe"
+  },
+  "searches": {
+    "badge": "Suchanfragen",
+    "title": "Meist gesuchte Begriffe",
+    "description": "Die häufigsten Begriffe in der globalen Suche (Ctrl+K) der Besucher.",
+    "empty": "Noch keine Begriffe erfasst.",
+    "loading": "Suchanfragen werden geladen..."
+  },
+  "reactions": {
+    "badge": "Engagement",
+    "title": "Reaktionen nach Inhalt",
+    "description": "Welche Inhalte die meisten Reaktionen der Besucher erzeugt haben.",
+    "heart": "Hilfreich",
+    "fire": "Erstaunlich",
+    "bulb": "Gelernt",
+    "empty": "Noch keine Reaktionen erfasst.",
+    "loading": "Reaktionen werden geladen..."
+  },
+  "poweredBy": "Echtzeitdaten via Upstash Redis"
+}

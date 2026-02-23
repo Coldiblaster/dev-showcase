@@ -1,0 +1,202 @@
+{
+  "meta": {
+    "title": "Accessibility in Practice — ARIA, Focus & Semantics",
+    "description": "Practical a11y guide with real code examples: ARIA roles and labels, focus trap, skip links, semantic HTML, WCAG contrast and an interactive checklist."
+  },
+  "hero": {
+    "badge": "Accessibility",
+    "title": "Accessibility in Practice",
+    "subtitle": "WCAG 2.1 AA in the real world",
+    "description": "Practical guide with real code examples taken from this project: ARIA, focus, HTML semantics, contrast and a checklist for every PR.",
+    "warning": "This guide focuses on development best practices. For professional accessibility auditing, consult a certified WCAG specialist."
+  },
+  "sectionNav": {
+    "aria": "ARIA",
+    "focus": "Focus",
+    "semantics": "Semantics",
+    "contrast": "Contrast",
+    "checklist": "Checklist"
+  },
+  "aria": {
+    "badge": "ARIA",
+    "title": "ARIA Roles, Labels & Live Regions",
+    "description": "ARIA (Accessible Rich Internet Applications) complements HTML where native semantics are insufficient. Use only when necessary — semantic HTML is always preferred.",
+    "rolesTitle": "Common Roles",
+    "labelsTitle": "Labels and Descriptions",
+    "liveTitle": "Live Regions",
+    "liveDesc": "For content that updates dynamically without a page reload:",
+    "roles": [
+      {
+        "role": "role=\"dialog\"",
+        "use": "Modals and dialogs",
+        "note": "Combine with aria-modal=\"true\" and focus trap"
+      },
+      {
+        "role": "role=\"alert\"",
+        "use": "Urgent error messages",
+        "note": "Read automatically by screen readers"
+      },
+      {
+        "role": "role=\"status\"",
+        "use": "Non-urgent updates",
+        "note": "Less intrusive than alert"
+      },
+      {
+        "role": "role=\"progressbar\"",
+        "use": "Progress bars",
+        "note": "Add aria-valuenow, aria-valuemin and aria-valuemax"
+      },
+      {
+        "role": "role=\"tablist\"",
+        "use": "Tab groups",
+        "note": "Combine with role=\"tab\" and role=\"tabpanel\""
+      }
+    ],
+    "liveRegions": [
+      {
+        "attr": "aria-live=\"polite\"",
+        "desc": "Reads when user stops typing. Ideal for notifications."
+      },
+      {
+        "attr": "aria-live=\"assertive\"",
+        "desc": "Reads immediately. Only for critical errors."
+      },
+      {
+        "attr": "aria-live=\"off\"",
+        "desc": "Disables dynamic updates (default)."
+      }
+    ]
+  },
+  "focus": {
+    "badge": "Focus",
+    "title": "Focus Management",
+    "description": "Keyboard users depend on visible and predictable focus. Focus traps, skip links and return to origin element are essential.",
+    "skipLinkTitle": "Skip Link",
+    "skipLinkDesc": "The first focusable element on the page — allows jumping to the main content without navigating through the entire navigation.",
+    "trapTitle": "Focus Trap in Modals",
+    "trapDesc": "While a modal is open, Tab and Shift+Tab should cycle only within the modal.",
+    "visibleTitle": "Visible Focus",
+    "visibleDesc": "Never remove the focus outline without providing a visible substitute. This project uses Tailwind focus-visible.",
+    "rules": [
+      "On modal open: move focus to the first interactive element",
+      "On modal close: return focus to the element that opened it",
+      "Tab should cycle within the modal (focus trap)",
+      "Escape should close and return focus",
+      "Use focus-visible instead of focus to avoid affecting mouse/touch"
+    ]
+  },
+  "semantics": {
+    "badge": "Semantics",
+    "title": "Semantic HTML",
+    "description": "Correct semantic HTML is the foundation of accessibility. Screen readers use landmarks for quick navigation.",
+    "landmarksTitle": "Landmarks and Hierarchy",
+    "landmarksDesc": "Each landmark creates a navigation point for screen readers.",
+    "headingsTitle": "Heading Hierarchy",
+    "headingsDesc": "One h1 per page, don't skip levels. Screen readers use headings to navigate content.",
+    "badExample": "Bad — no semantics",
+    "goodExample": "Good — semantic",
+    "liveRegionTitle": "Live Region — Dynamic Announcements",
+    "landmarks": [
+      {
+        "tag": "<header>",
+        "role": "banner",
+        "use": "Page header (logo, main nav)"
+      },
+      {
+        "tag": "<nav>",
+        "role": "navigation",
+        "use": "Main or secondary navigation"
+      },
+      {
+        "tag": "<main>",
+        "role": "main",
+        "use": "Main content — only 1 per page"
+      },
+      {
+        "tag": "<section>",
+        "role": "region",
+        "use": "Section with aria-labelledby"
+      },
+      {
+        "tag": "<aside>",
+        "role": "complementary",
+        "use": "Related but secondary content"
+      },
+      { "tag": "<footer>", "role": "contentinfo", "use": "Page footer" }
+    ]
+  },
+  "contrast": {
+    "badge": "Contrast",
+    "title": "Color Contrast — WCAG AA",
+    "description": "WCAG 2.1 AA requires a minimum contrast ratio of 4.5:1 for normal text and 3:1 for large text (18pt or 14pt bold).",
+    "requirementsTitle": "WCAG 2.1 AA Requirements",
+    "toolsTitle": "Verification Tools",
+    "requirements": [
+      { "type": "Normal text (< 18pt)", "ratio": "4.5:1", "level": "AA" },
+      {
+        "type": "Large text (≥ 18pt or 14pt bold)",
+        "ratio": "3:1",
+        "level": "AA"
+      },
+      { "type": "UI components and graphics", "ratio": "3:1", "level": "AA" },
+      { "type": "Normal text", "ratio": "7:1", "level": "AAA" }
+    ],
+    "tools": [
+      {
+        "name": "WebAIM Contrast Checker",
+        "url": "https://webaim.org/resources/contrastchecker/",
+        "desc": "Simple and fast online checker"
+      },
+      {
+        "name": "axe DevTools",
+        "url": "https://www.deque.com/axe/devtools/",
+        "desc": "Browser extension — automatic audit"
+      },
+      {
+        "name": "Lighthouse",
+        "url": "https://developers.google.com/web/tools/lighthouse",
+        "desc": "Built-in audit in Chrome DevTools"
+      },
+      {
+        "name": "Color.review",
+        "url": "https://color.review/",
+        "desc": "Visual preview with foreground/background"
+      }
+    ]
+  },
+  "checklist": {
+    "badge": "Checklist",
+    "title": "Accessibility Checklist for PRs",
+    "description": "Review these items before opening a Pull Request with any UI change.",
+    "items": [
+      {
+        "label": "All buttons have descriptive text or aria-label",
+        "done": true
+      },
+      {
+        "label": "Images have alt text (or alt=\"\" if decorative)",
+        "done": true
+      },
+      { "label": "Text contrast ≥ 4.5:1 (WCAG AA)", "done": true },
+      { "label": "Visible focus on all interactive elements", "done": true },
+      { "label": "Heading hierarchy without skipping levels", "done": true },
+      { "label": "Tab navigation works without mouse", "done": true },
+      { "label": "Modals have focus trap and close with Escape", "done": true },
+      {
+        "label": "Dynamic content uses aria-live or role=\"alert\"",
+        "done": true
+      },
+      { "label": "Skip link visible when Tab-focused", "done": true },
+      {
+        "label": "Tested with screen reader (NVDA/VoiceOver/Orca)",
+        "done": false
+      }
+    ]
+  },
+  "cta": {
+    "title": "Accessibility is for Everyone",
+    "description": "1 in 6 people in the world has some form of disability. Accessible code is not optional — it's professional responsibility.",
+    "button": "See more guides",
+    "github": "View on GitHub"
+  }
+}

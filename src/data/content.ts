@@ -6,6 +6,8 @@ export type ContentItem = {
   description: string;
   component: string;
   category: ContentCategory;
+  /** Tempo estimado de leitura em minutos — exibido no topo da página. */
+  readingMinutes?: number;
 };
 
 export const CONTENT_ITEMS: ContentItem[] = [
@@ -16,6 +18,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Implementação real de internacionalização (i18n) com next-intl e DeepL. Demo ao vivo com 4 idiomas, traduções tipadas, formatação de datas e moedas.",
     component: "I18nShowcase",
     category: "implementation",
+    readingMinutes: 10,
   },
   {
     slug: "seo",
@@ -24,6 +27,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Guia completo de SEO com Next.js: Meta tags, Open Graph dinâmico, JSON-LD estruturado, Sitemap, Robots e comparativo Next.js vs React+Vite.",
     component: "SeoShowcase",
     category: "implementation",
+    readingMinutes: 12,
   },
   {
     slug: "ai-chatbot",
@@ -32,6 +36,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Como criar um chatbot IA com streaming usando OpenAI, Vercel AI SDK e Next.js App Router. System prompt, pricing e arquitetura completa.",
     component: "AiChatbotShowcase",
     category: "implementation",
+    readingMinutes: 10,
   },
   {
     slug: "analytics",
@@ -40,6 +45,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Como implementar contagem de page views e visitantes únicos com Upstash Redis, HyperLogLog, rate limiting e filtro de bots. Passo a passo para o dev.",
     component: "AnalyticsShowcase",
     category: "implementation",
+    readingMinutes: 12,
   },
   {
     slug: "testing",
@@ -48,6 +54,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Como este projeto estrutura testes: pastas, exemplos de componente e hook, mocks e checklist do que testar primeiro. Para devs que querem replicar no próprio projeto.",
     component: "TestingShowcase",
     category: "implementation",
+    readingMinutes: 10,
   },
   {
     slug: "code-review",
@@ -56,6 +63,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Cole seu código e receba análise profissional com GPT-4o Mini: bugs, performance, segurança, boas práticas e score de qualidade.",
     component: "CodeReviewShowcase",
     category: "tool",
+    readingMinutes: 3,
   },
   {
     slug: "regex",
@@ -64,6 +72,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Editor de expressões regulares com highlight em tempo real, biblioteca de patterns prontos e cheat sheet completo.",
     component: "RegexPlayground",
     category: "tool",
+    readingMinutes: 5,
   },
   {
     slug: "ai-tips",
@@ -72,6 +81,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Guia prático de ferramentas IA, uso consciente de tokens e modelos: v0, Copilot, prompt engineering, boas práticas e ferramentas para produtividade dev.",
     component: "AITips",
     category: "guide",
+    readingMinutes: 8,
   },
   {
     slug: "tailwind-tips",
@@ -80,6 +90,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Setup completo, componentes reutilizáveis, padrões de código e boas práticas com Tailwind CSS e shadcn/ui para projetos React e Next.js.",
     component: "TailwindTips",
     category: "guide",
+    readingMinutes: 10,
   },
   {
     slug: "react-query-tips",
@@ -88,6 +99,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Guia completo de TanStack Query (React Query): cache inteligente, mutations, invalidação, otimistic updates e boas práticas para apps React.",
     component: "ReactQueryTips",
     category: "guide",
+    readingMinutes: 10,
   },
   {
     slug: "dev-resources",
@@ -96,6 +108,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Snippets, comparações before/after, padrões de código e playground interativo filtrado por nível: junior, pleno e senior.",
     component: "DevResourcesPage",
     category: "guide",
+    readingMinutes: 12,
   },
   {
     slug: "security-tips",
@@ -104,6 +117,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Proteções reais em produção: Rate Limiting, reCAPTCHA v3, Honeypot, Zod Validation, Security Headers e variáveis de ambiente seguras.",
     component: "SecurityTips",
     category: "guide",
+    readingMinutes: 15,
   },
   {
     slug: "privacy-tips",
@@ -112,6 +126,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "LGPD, consentimento de cookies, banner no padrão mercado, política de privacidade e boas práticas para proteger o usuário e estar em conformidade.",
     component: "PrivacyTips",
     category: "guide",
+    readingMinutes: 8,
   },
   {
     slug: "typescript-patterns",
@@ -120,6 +135,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Referência prática com exemplos interativos de Utility Types, Generics, Type Narrowing e patterns avançados de TypeScript.",
     component: "TsPatterns",
     category: "guide",
+    readingMinutes: 12,
   },
   {
     slug: "git-workflow",
@@ -128,6 +144,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Guia completo de Git: estratégias de branching, conventional commits, comandos essenciais e fluxos de trabalho profissionais.",
     component: "GitWorkflow",
     category: "guide",
+    readingMinutes: 10,
   },
   {
     slug: "react-patterns",
@@ -136,6 +153,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Compound Components, Custom Hooks, Render Props, HOCs e patterns de performance com exemplos práticos.",
     component: "ReactPatterns",
     category: "guide",
+    readingMinutes: 12,
   },
   {
     slug: "nextjs-app-router",
@@ -144,6 +162,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Guia prático do App Router: pastas como rotas, layouts, Server vs Client Components, data fetching e loading/error boundaries. Exemplos replicáveis.",
     component: "NextjsAppRouter",
     category: "guide",
+    readingMinutes: 12,
   },
   {
     slug: "json",
@@ -152,6 +171,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Formate e valide JSON no navegador: pretty print, minify e mensagens de erro claras por linha. Útil para APIs e configs.",
     component: "JsonTool",
     category: "tool",
+    readingMinutes: 3,
   },
   {
     slug: "code-evolution",
@@ -160,6 +180,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Veja como um código evolui da versão inicial até a melhor prática atual, commit por commit. React Lifecycle, State Management e mais exemplos animados.",
     component: "CodeEvolution",
     category: "guide",
+    readingMinutes: 10,
   },
   {
     slug: "arch-map",
@@ -168,6 +189,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Explore arquiteturas de projetos reais de forma visual e interativa. E-commerce SaaS, Real-time Dashboard e mais — clique nos nodes para entender cada camada.",
     component: "ArchMap",
     category: "guide",
+    readingMinutes: 8,
   },
   {
     slug: "state-management",
@@ -176,6 +198,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Quando usar estado local, Context ou Zustand/Redux. Fluxo de dados, prop drilling e exemplos replicáveis para dev júnior e pleno.",
     component: "StateManagement",
     category: "guide",
+    readingMinutes: 10,
   },
   {
     slug: "contact-form",
@@ -184,6 +207,53 @@ export const CONTENT_ITEMS: ContentItem[] = [
       "Como este projeto implementa o formulário de contato: API route, validação com Zod, rate limit, reCAPTCHA e envio com Resend. Passo a passo para replicar.",
     component: "ContactFormShowcase",
     category: "implementation",
+    readingMinutes: 10,
+  },
+  // --- Novos conteúdos ---
+  {
+    slug: "api-security",
+    title: "Segurança em APIs Next.js — Rate Limit, Zod e Anti-Injection",
+    description:
+      "Guia prático com o pipeline de segurança real deste projeto: rate limiting in-memory e Redis, validação Zod, sanitização de input, anti-XSS e secure headers.",
+    component: "ApiSecurityGuide",
+    category: "guide",
+    readingMinutes: 15,
+  },
+  {
+    slug: "design-patterns",
+    title: "Design Patterns em TypeScript — Observer, Strategy, Factory e Mais",
+    description:
+      "Os 5 padrões GoF mais usados no dia a dia com TypeScript: exemplos reais, quando usar cada um e comparativo antes/depois da refatoração.",
+    component: "DesignPatternsGuide",
+    category: "guide",
+    readingMinutes: 15,
+  },
+  {
+    slug: "a11y-guide",
+    title: "Acessibilidade na Prática — ARIA, Foco e Semântica",
+    description:
+      "Guia prático de a11y com exemplos de código reais: ARIA roles e labels, focus trap, skip links, HTML semântico, contraste WCAG e checklist interativo.",
+    component: "A11yGuide",
+    category: "guide",
+    readingMinutes: 12,
+  },
+  {
+    slug: "pr-generator",
+    title: "PR Description Generator — Gere PRs Profissionais com IA",
+    description:
+      "Gere descrições de Pull Request claras e padronizadas com IA. Informe o tipo, contexto e arquivos alterados — a IA monta o template completo.",
+    component: "PRGenerator",
+    category: "tool",
+    readingMinutes: 3,
+  },
+  {
+    slug: "github-analyzer",
+    title: "GitHub Profile Analyzer — Análise de Perfil com IA",
+    description:
+      "Insira qualquer username do GitHub e receba uma análise detalhada: linguagens dominantes, tipos de projetos, padrões de commit e resumo gerado por IA.",
+    component: "GithubAnalyzer",
+    category: "tool",
+    readingMinutes: 3,
   },
 ];
 
