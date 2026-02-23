@@ -112,7 +112,7 @@ export function FloatingActionMenu() {
 
   return (
     <div
-      data-fab-menu
+      data-fab-menu="true"
       className="fixed bottom-6 right-6 z-50 hidden flex-col items-center gap-2.5 md:flex"
     >
       {/* Sub-ações */}
