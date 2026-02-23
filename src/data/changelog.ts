@@ -16,6 +16,55 @@ export interface ChangelogVersion {
 
 export const CHANGELOG: ChangelogVersion[] = [
   {
+    version: "0.13.0",
+    date: "2026-02-23",
+    title: "Badges Trending & Popular na Navbar e Listagens",
+    summary:
+      "Badges dinâmicos 'Em alta' e 'Popular' no menu de navegação desktop e mobile e nas páginas de listagem de conteúdo, calculados com dados reais do Redis. Algoritmo que distingue tendência semanal de popularidade histórica, com fallback inteligente quando não há dados semanais disponíveis.",
+    items: [
+      {
+        type: "feature",
+        description:
+          "Badges 'Em alta' (🔺 violeta) e 'Popular' (🔥 laranja) na navbar desktop e mobile — exibidos ao lado dos itens de submenu com base em dados reais de acesso, carregados no servidor via RSC",
+      },
+      {
+        type: "feature",
+        description:
+          "getBadgePaths — função server-side que agrega os badges de todas as categorias de conteúdo (/implementacoes, /dicas, /ferramentas) e retorna um Record plain object serializável para os componentes client",
+      },
+      {
+        type: "feature",
+        description:
+          "fetchWeeklyByCategory — busca os paths mais acessados na semana atual dentro de uma categoria, filtrando o sorted set semanal global por prefixo de path",
+      },
+      {
+        type: "feature",
+        description:
+          "Fallback inteligente de badges — quando não há dados semanais reais ainda, divide os populares da categoria: top metade recebe badge 'trending', o restante recebe 'popular', garantindo badges visíveis desde o primeiro acesso",
+      },
+      {
+        type: "improvement",
+        description:
+          "Badges nas páginas de listagem (content-listing-page) — 'Em alta' e 'Popular' também exibidos nos cards de conteúdo das listing pages, usando a mesma lógica do navbar para consistência visual",
+      },
+      {
+        type: "improvement",
+        description:
+          "Badges nas sugestões da busca global (search-empty) — label 'Popular' exibido junto aos chips de busca popular para reforçar a indicação de conteúdo relevante",
+      },
+      {
+        type: "improvement",
+        description:
+          "Traduções dos badges em 4 idiomas — badgeTrending e badgePopular adicionados nos arquivos nav.json de pt-BR, en, es e de",
+      },
+      {
+        type: "refactor",
+        description:
+          "Navbar refatorada para RSC com prop drilling de badgePaths — Navbar (RSC) busca os dados e injeta via props em NavbarClient → DesktopNav / MobileNav → SubmenuItem / MobileMenuItem, sem fetch client-side",
+      },
+    ],
+  },
+  {
     version: "0.12.0",
     date: "2026-02-23",
     title: "Busca Popular, Cache de Queries e Documentação de API",

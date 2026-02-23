@@ -10,6 +10,31 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
 ---
 
+## [0.13.0] — 2026-02-23
+
+### Badges Trending & Popular na Navbar e Listagens
+
+> Badges dinâmicos "Em alta" e "Popular" no menu de navegação desktop e mobile e nas páginas de listagem de conteúdo, calculados com dados reais do Redis. Algoritmo que distingue tendência semanal de popularidade histórica, com fallback inteligente quando não há dados semanais disponíveis.
+
+#### Adicionado
+
+- **Badges na navbar** — "Em alta" (violeta) e "Popular" (laranja) ao lado dos itens de submenu, carregados via RSC com dados reais do Redis
+- **getBadgePaths** — agrega badges de todas as categorias em um `Record` plain object serializável para componentes client
+- **fetchWeeklyByCategory** — busca os paths mais acessados na semana atual dentro de uma categoria via Redis Sorted Set semanal
+- **Fallback inteligente** — sem dados semanais, divide os populares da categoria: top metade → "trending", resto → "popular"
+
+#### Melhorado
+
+- **Badges nas listing pages** — "Em alta" e "Popular" nos cards de conteúdo, usando a mesma lógica do navbar
+- **Badges na busca global** — label "Popular" nos chips de sugestão do `search-empty`
+- **Traduções** — `badgeTrending` e `badgePopular` adicionados nos `nav.json` de pt-BR, en, es e de
+
+#### Refatorado
+
+- **Navbar para RSC com prop drilling** — Navbar (RSC) busca dados → injeta via props em NavbarClient → DesktopNav / MobileNav → SubmenuItem / MobileMenuItem, eliminando fetch client-side
+
+---
+
 ## [0.12.0] — 2026-02-23
 
 ### Busca Popular, Cache de Queries e Documentação de API
