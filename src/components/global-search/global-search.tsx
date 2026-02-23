@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { getTypeConfig } from "./search-config";
 import { SearchEmpty } from "./search-empty";
 import { SearchFooter } from "./search-footer";
+import { SearchLoading } from "./search-loading";
 import { SearchResults } from "./search-results";
 import { SearchTrigger } from "./search-trigger";
 import { useGlobalSearch } from "./use-global-search";
@@ -25,8 +26,12 @@ export function GlobalSearch() {
     query,
     setQuery,
     results,
+    isSearching,
     selectedIndex,
     handleSelect,
+    selectTerm,
+    popularTerms,
+    isPopularFallback,
     isMac,
     t,
   } = useGlobalSearch();
@@ -99,6 +104,8 @@ export function GlobalSearch() {
                 typeConfig={typeConfig}
                 onSelect={handleSelect}
               />
+            ) : isSearching ? (
+              <SearchLoading />
             ) : (
               <SearchEmpty
                 hasQuery={hasQuery}
@@ -106,6 +113,11 @@ export function GlobalSearch() {
                 hintText={t("hint")}
                 noResultsText={t("noResults")}
                 tryOtherTermsText={t("tryOtherTerms")}
+                popularTerms={popularTerms}
+                popularLabel={
+                  isPopularFallback ? t("suggestions") : t("popularSearches")
+                }
+                onTermSelect={selectTerm}
               />
             )}
           </div>

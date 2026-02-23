@@ -2,7 +2,7 @@
  * POST /api/stats/track — Registra page view no Upstash Redis.
  *
  * Incrementa: total de views (INCR), visitantes únicos (HyperLogLog),
- * e ranking de páginas (Sorted Set).
+ * ranking geral de páginas (Sorted Set) e ranking semanal (Sorted Set c/ TTL).
  * Filtra bots conhecidos via User-Agent.
  */
 
@@ -27,6 +27,21 @@ const bodySchema = z.object({
     .max(200)
     .refine((p) => SAFE_PATH_REGEX.test(p), { message: "Invalid path format" }),
 });
+
+/** Retorna a chave Redis para o ranking semanal ISO (ex: stats:pages:week:2025-W08) */
+function getWeekKey(): string {
+  const now = new Date();
+  const d = new Date(
+    Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()),
+  );
+  const day = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - day); // nearest Thursday (ISO standard)
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  const week = Math.ceil(
+    ((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7,
+  );
+  return `stats:pages:week:${d.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
+}
 
 function isBot(request: Request): boolean {
   const ua = request.headers.get("user-agent") ?? "";
@@ -72,10 +87,19 @@ export async function POST(request: Request) {
       .digest("hex")
       .slice(0, 16);
 
+    const weekKey = getWeekKey();
+    const pathParts = parsed.data.path.split("/").filter(Boolean);
     const pipeline = redis.pipeline();
     pipeline.incr("stats:views");
     pipeline.pfadd("stats:visitors", ipHash);
     pipeline.zincrby("stats:pages", 1, parsed.data.path);
+    pipeline.zincrby(weekKey, 1, parsed.data.path);
+    // TTL de 14 dias — NX: só define se ainda não tem TTL (evita reset a cada view)
+    pipeline.expire(weekKey, 14 * 24 * 3600, "NX");
+    // Ranking por categoria (ex: stats:pages:dicas) — apenas para conteúdo com depth ≥ 2
+    if (pathParts.length >= 2) {
+      pipeline.zincrby(`stats:pages:${pathParts[0]}`, 1, parsed.data.path);
+    }
     await pipeline.exec();
 
     return Response.json({ ok: true });

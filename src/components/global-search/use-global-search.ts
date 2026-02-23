@@ -10,18 +10,65 @@ import type { ResolvedSearchResult } from "./types";
 
 const DEBOUNCE_MS = 200;
 
+/** Termos exibidos quando o Redis ainda não tem dados de busca */
+const FALLBACK_TERMS = [
+  "Next.js",
+  "i18n",
+  "Redis",
+  "TypeScript",
+  "React",
+  "testes",
+  "API route",
+  "chatbot",
+  "design system",
+  "deploy",
+];
+
+function trackSearch(term: string) {
+  if (term.trim().length < 2) return;
+  fetch("/api/search", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ term }),
+  }).catch(() => {});
+}
+
 export function useGlobalSearch() {
   const t = useTranslations("search");
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<ResolvedSearchResult[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const debounceRef = useRef<NodeJS.Timeout | null>(null);
-
+  const [popularTerms, setPopularTerms] = useState<string[]>(FALLBACK_TERMS);
+  const [isPopularFallback, setIsPopularFallback] = useState(true);
   const [isMac, setIsMac] = useState(false);
+  const debounceRef = useRef<NodeJS.Timeout | null>(null);
+  /** Cache client-side: query normalizada → resultados já computados pelo Fuse */
+  const queryCache = useRef<Map<string, ResolvedSearchResult[]>>(new Map());
+
   useEffect(() => {
     setIsMac(/mac|iphone|ipad|ipod/i.test(navigator.userAgent));
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/search")
+      .then((r) => r.json())
+      .then((data: { terms: string[] }) => {
+        const terms = data.terms ?? [];
+        if (terms.length > 0) {
+          setPopularTerms(terms);
+          setIsPopularFallback(false);
+        } else {
+          setPopularTerms(FALLBACK_TERMS);
+          setIsPopularFallback(true);
+        }
+      })
+      .catch(() => {
+        setPopularTerms(FALLBACK_TERMS);
+        setIsPopularFallback(true);
+      });
   }, []);
 
   const resolvedItems = useMemo<ResolvedSearchResult[]>(
@@ -50,13 +97,29 @@ export function useGlobalSearch() {
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
 
-    if (!query.trim()) {
+    const trimmed = query.trim();
+    if (!trimmed) {
       setResults([]);
+      setIsSearching(false);
       return;
     }
 
+    // Cache hit: exibe imediatamente sem debounce nem loading
+    const cacheKey = trimmed.toLowerCase();
+    const cached = queryCache.current.get(cacheKey);
+    if (cached) {
+      setResults(cached);
+      setIsSearching(false);
+      return;
+    }
+
+    setIsSearching(true);
+
     debounceRef.current = setTimeout(() => {
-      setResults(fuse.search(query).map((r) => r.item));
+      const fresh = fuse.search(query).map((r) => r.item);
+      queryCache.current.set(cacheKey, fresh);
+      setResults(fresh);
+      setIsSearching(false);
     }, DEBOUNCE_MS);
 
     return () => {
@@ -68,8 +131,24 @@ export function useGlobalSearch() {
     setSelectedIndex(-1);
   }, [open, query]);
 
+  /** Clique em chip de sugestão — pula debounce e loading, popula o cache */
+  const selectTerm = useCallback(
+    (term: string) => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      const cacheKey = term.toLowerCase();
+      const cached = queryCache.current.get(cacheKey);
+      const fresh = cached ?? fuse.search(term).map((r) => r.item);
+      if (!cached) queryCache.current.set(cacheKey, fresh);
+      setQuery(term);
+      setResults(fresh);
+      setIsSearching(false);
+    },
+    [fuse],
+  );
+
   const handleSelect = useCallback(
     (result: ResolvedSearchResult) => {
+      trackSearch(query);
       setOpen(false);
       setQuery("");
 
@@ -83,7 +162,7 @@ export function useGlobalSearch() {
         router.push(result.url);
       }
     },
-    [router],
+    [router, query],
   );
 
   useEffect(() => {
@@ -144,8 +223,12 @@ export function useGlobalSearch() {
     query,
     setQuery,
     results,
+    isSearching,
     selectedIndex,
     handleSelect,
+    selectTerm,
+    popularTerms,
+    isPopularFallback,
     isMac,
     t,
   };
