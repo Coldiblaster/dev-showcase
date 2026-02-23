@@ -70,27 +70,9 @@ export const getPopularSlugs = unstable_cache(
  */
 export const getWeeklyTrending = unstable_cache(
   (limit = 10) => fetchWeeklyTrending(limit),
-  ["nav-trending-paths"],
+  ["nav-trending-paths-v2"],
   { revalidate: 1800 },
 );
-
-/**
- * Retorna um Map com o badge de cada path popular/trending (ranking global).
- * "trending" tem prioridade sobre "popular".
- * Usado pelas listing pages para exibir badges diferenciados.
- */
-export async function getBadgePaths(
-  limit = 10,
-): Promise<Map<string, BadgeType>> {
-  const [popular, trending] = await Promise.all([
-    getPopularSlugs(limit),
-    getWeeklyTrending(limit),
-  ]);
-  const result = new Map<string, BadgeType>();
-  for (const path of popular) result.set(path, "popular");
-  for (const path of trending) result.set(path, "trending"); // sobrescreve popular
-  return result;
-}
 
 async function fetchTopPathsByCategory(
   category: string,
@@ -133,24 +115,95 @@ export const getPopularByCategory = unstable_cache(
 );
 
 /**
+ * Retorna os paths mais em alta ESTA SEMANA dentro de uma categoria.
+ * Filtra o sorted set semanal global pelo prefixo da categoria.
+ * Falha silenciosamente retornando [] se Redis indisponível.
+ */
+async function fetchWeeklyByCategory(
+  basePath: string,
+  limit: number,
+): Promise<string[]> {
+  if (!redis) return [];
+  try {
+    // Busca bastante entradas do semanal global para encontrar N da categoria
+    const raw = await redis.zrange(getIsoWeekKey(), 0, limit * 10 - 1, {
+      rev: true,
+    });
+    return filterContentPaths(
+      (raw as string[]).filter((p) => p.startsWith(basePath + "/")),
+      limit,
+    );
+  } catch {
+    return [];
+  }
+}
+
+/**
  * Monta o Map de badges para uma listing page específica.
- * "trending" = Em alta esta semana (global, filtrado pela categoria).
- * "popular" = Mais visitado dentro desta categoria.
+ * "trending" = Em alta esta semana dentro desta categoria.
+ * "popular"  = Mais visitado geral dentro desta categoria.
+ *
+ * Quando não há dados semanais reais ainda (feature nova), divide os populares
+ * da categoria: top metade → "trending", resto → "popular" (garante badge visível).
  */
 export async function getCategoryBadgePaths(
   basePath: string,
   limit = 5,
 ): Promise<Map<string, BadgeType>> {
   const category = basePath.replace(/^\//, ""); // "/dicas" → "dicas"
-  const [categoryPopular, weeklyTrending] = await Promise.all([
+  const trendingCount = Math.ceil(limit / 2);
+
+  const [categoryPopular, weeklyCategory] = await Promise.all([
     getPopularByCategory(category, limit),
-    getWeeklyTrending(limit * 2),
+    fetchWeeklyByCategory(basePath, trendingCount),
   ]);
+
   const result = new Map<string, BadgeType>();
   for (const path of categoryPopular) result.set(path, "popular");
-  // trending sobrescreve popular, mas só para paths desta categoria
-  for (const path of weeklyTrending) {
-    if (path.startsWith(basePath + "/")) result.set(path, "trending");
+
+  if (weeklyCategory.length > 0) {
+    // Dados semanais reais disponíveis → sobrescreve com trending real
+    for (const path of weeklyCategory) result.set(path, "trending");
+  } else {
+    // Sem dados semanais ainda → top metade dos populares da categoria = "trending"
+    for (let i = 0; i < trendingCount && i < categoryPopular.length; i++) {
+      result.set(categoryPopular[i], "trending");
+    }
+  }
+
+  return result;
+}
+
+/**
+ * Retorna um Map com o badge de cada path popular/trending para o navbar.
+ *
+ * Delega para getCategoryBadgePaths em cada categoria de conteúdo — mesma
+ * lógica usada nas listing pages, garantindo badges consistentes entre
+ * navbar e listagens.
+ */
+export async function getBadgePaths(
+  limit = 10,
+): Promise<Map<string, BadgeType>> {
+  const CONTENT_CATEGORIES = [
+    "/implementacoes",
+    "/dicas",
+    "/ferramentas",
+    "/contribuir",
+  ];
+  // MAX_PREVIEW_ITEMS no navbar = 4; usa o mesmo valor para cada categoria
+  const perCategory = Math.max(4, Math.ceil(limit / CONTENT_CATEGORIES.length));
+
+  const maps = await Promise.all(
+    CONTENT_CATEGORIES.map((basePath) =>
+      getCategoryBadgePaths(basePath, perCategory),
+    ),
+  );
+
+  const result = new Map<string, BadgeType>();
+  for (const map of maps) {
+    for (const [path, badge] of map) {
+      result.set(path, badge);
+    }
   }
   return result;
 }

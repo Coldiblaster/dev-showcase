@@ -89,5 +89,7 @@
   "guideCount": "{count} guías",
   "toolCount": "{count} herramientas",
   "archMap": "Arquitectura Interactiva",
-  "archMapDesc": "E-commerce SaaS, Dashboard en tiempo real y más"
+  "archMapDesc": "E-commerce SaaS, Dashboard en tiempo real y más",
+  "badgeTrending": "En tendencia",
+  "badgePopular": "Popular"
 }

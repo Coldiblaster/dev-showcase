@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Flame } from "lucide-react";
+import { Flame, TrendingUp } from "lucide-react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 interface SubmenuItemProps {
   icon: React.ElementType;
@@ -11,7 +12,7 @@ interface SubmenuItemProps {
   onClick?: () => void;
   href?: string;
   isActive?: boolean;
-  isPopular?: boolean;
+  badge?: "popular" | "trending";
 }
 
 export function SubmenuItem({
@@ -21,8 +22,9 @@ export function SubmenuItem({
   onClick,
   href,
   isActive,
-  isPopular,
+  badge,
 }: SubmenuItemProps) {
+  const t = useTranslations("nav");
   const content = (
     <>
       <div
@@ -44,10 +46,16 @@ export function SubmenuItem({
           <p className="truncate text-xs text-muted-foreground">{sublabel}</p>
         )}
       </div>
-      {isPopular && (
-        <span className="ml-auto flex shrink-0 items-center gap-0.5 rounded-full bg-orange-500/10 px-1.5 py-0.5 text-[10px] font-medium text-orange-400">
+      {badge === "trending" && (
+        <span className="ml-auto flex shrink-0 items-center gap-1 rounded-full bg-violet-500/10 px-1.5 py-0.5 text-[10px] font-medium text-violet-400">
+          <TrendingUp className="h-2.5 w-2.5" />
+          {t("badgeTrending")}
+        </span>
+      )}
+      {badge === "popular" && (
+        <span className="ml-auto flex shrink-0 items-center gap-1 rounded-full bg-orange-500/10 px-1.5 py-0.5 text-[10px] font-medium text-orange-400">
           <Flame className="h-2.5 w-2.5" />
-          Popular
+          {t("badgePopular")}
         </span>
       )}
     </>

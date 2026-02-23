@@ -1,7 +1,8 @@
 "use client";
 
-import { Flame } from "lucide-react";
+import { Flame, TrendingUp } from "lucide-react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 interface MobileMenuItemProps {
   icon: React.ElementType;
@@ -10,7 +11,7 @@ interface MobileMenuItemProps {
   href: string;
   isActive: boolean;
   onClick: () => void;
-  isPopular?: boolean;
+  badge?: "popular" | "trending";
 }
 
 export function MobileMenuItem({
@@ -20,27 +21,34 @@ export function MobileMenuItem({
   href,
   isActive,
   onClick,
-  isPopular,
+  badge,
 }: MobileMenuItemProps) {
+  const t = useTranslations("nav");
   const isAnchor = href.startsWith("#");
 
   const className = `flex w-full items-center gap-2.5 rounded-lg px-3 py-2.5 text-left text-sm ${
     isActive ? "bg-primary/10 text-primary" : "text-muted-foreground"
   }`;
 
-  const popularBadge = isPopular && (
-    <span className="ml-auto flex shrink-0 items-center gap-0.5 rounded-full bg-orange-500/10 px-1.5 py-0.5 text-[10px] font-medium text-orange-400">
-      <Flame className="h-2.5 w-2.5" />
-      Popular
-    </span>
-  );
+  const badgeEl =
+    badge === "trending" ? (
+      <span className="ml-auto flex shrink-0 items-center gap-1 rounded-full bg-violet-500/10 px-1.5 py-0.5 text-[10px] font-medium text-violet-400">
+        <TrendingUp className="h-2.5 w-2.5" />
+        {t("badgeTrending")}
+      </span>
+    ) : badge === "popular" ? (
+      <span className="ml-auto flex shrink-0 items-center gap-1 rounded-full bg-orange-500/10 px-1.5 py-0.5 text-[10px] font-medium text-orange-400">
+        <Flame className="h-2.5 w-2.5" />
+        {t("badgePopular")}
+      </span>
+    ) : null;
 
   if (isAnchor) {
     return (
       <a href={href} onClick={onClick} className={className}>
         <Icon className="h-4 w-4 shrink-0" />
         {label}
-        {popularBadge}
+        {badgeEl}
       </a>
     );
   }
@@ -56,7 +64,7 @@ export function MobileMenuItem({
       ) : (
         <span className="flex-1">{label}</span>
       )}
-      {popularBadge}
+      {badgeEl}
     </Link>
   );
 }

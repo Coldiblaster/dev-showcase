@@ -23,14 +23,13 @@ const MAX_PREVIEW_ITEMS = 4;
 interface MobileNavProps {
   isOpen: boolean;
   onClose: () => void;
-  popularSlugs: string[];
+  badgePaths: Record<string, "popular" | "trending">;
 }
 
-export function MobileNav({ isOpen, onClose, popularSlugs }: MobileNavProps) {
+export function MobileNav({ isOpen, onClose, badgePaths }: MobileNavProps) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const popularPaths = new Set(popularSlugs);
 
   useScrollLock(isOpen);
 
@@ -122,7 +121,7 @@ export function MobileNav({ isOpen, onClose, popularSlugs }: MobileNavProps) {
                             href={item.href}
                             isActive={pathname === item.href}
                             onClick={onClose}
-                            isPopular={popularPaths.has(item.href)}
+                            badge={badgePaths[item.href]}
                           />
                         ))}
 
@@ -170,7 +169,7 @@ export function MobileNav({ isOpen, onClose, popularSlugs }: MobileNavProps) {
                                 href={item.href}
                                 isActive={pathname === item.href}
                                 onClick={onClose}
-                                isPopular={popularPaths.has(item.href)}
+                                badge={badgePaths[item.href]}
                               />
                             ))}
 

@@ -98,15 +98,15 @@ export async function ContentListingPage({
                         </span>
                         <div className="flex shrink-0 items-center gap-2">
                           {badge === "trending" && (
-                            <span className="flex items-center gap-0.5 rounded-full bg-violet-500/10 px-1.5 py-0.5 text-[10px] font-medium text-violet-400">
+                            <span className="flex items-center gap-1 rounded-full bg-violet-500/10 px-1.5 py-0.5 text-[10px] font-medium text-violet-400">
                               <TrendingUp className="h-2.5 w-2.5" />
-                              Em alta
+                              {tNav("badgeTrending")}
                             </span>
                           )}
                           {badge === "popular" && (
-                            <span className="flex items-center gap-0.5 rounded-full bg-orange-500/10 px-1.5 py-0.5 text-[10px] font-medium text-orange-400">
+                            <span className="flex items-center gap-1 rounded-full bg-orange-500/10 px-1.5 py-0.5 text-[10px] font-medium text-orange-400">
                               <Flame className="h-2.5 w-2.5" />
-                              Popular
+                              {tNav("badgePopular")}
                             </span>
                           )}
                           <ArrowRight className="h-4 w-4 text-muted-foreground transition-all duration-300 group-hover:translate-x-1 group-hover:text-primary" />

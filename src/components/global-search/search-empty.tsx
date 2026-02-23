@@ -18,7 +18,7 @@ export function SearchEmpty({
   noResultsText,
   tryOtherTermsText,
   popularTerms = [],
-  popularLabel = "Sugestões",
+  popularLabel,
   onTermSelect,
 }: SearchEmptyProps) {
   const hasTerms = popularTerms.length > 0;

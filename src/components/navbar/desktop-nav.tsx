@@ -17,12 +17,12 @@ function CategoryColumn({
   category,
   t,
   pathname,
-  popularPaths,
+  badgePaths,
 }: {
   category: NavCategory;
   t: ReturnType<typeof useTranslations<"nav">>;
   pathname: string;
-  popularPaths: Set<string>;
+  badgePaths: Record<string, "popular" | "trending">;
 }) {
   const Icon = category.icon;
   const visibleItems = category.featured.slice(0, MAX_PREVIEW_ITEMS);
@@ -45,7 +45,7 @@ function CategoryColumn({
             sublabel={item.sublabelKey ? t(item.sublabelKey) : undefined}
             href={item.href}
             isActive={pathname === item.href}
-            isPopular={popularPaths.has(item.href)}
+            badge={badgePaths[item.href]}
           />
         ))}
       </div>
@@ -64,14 +64,13 @@ function CategoryColumn({
 }
 
 interface DesktopNavProps {
-  popularSlugs: string[];
+  badgePaths: Record<string, "popular" | "trending">;
 }
 
-export function DesktopNav({ popularSlugs }: DesktopNavProps) {
+export function DesktopNav({ badgePaths }: DesktopNavProps) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const popularPaths = new Set(popularSlugs);
 
   return (
     <div className="hidden items-center gap-1 md:flex">
@@ -132,7 +131,7 @@ export function DesktopNav({ popularSlugs }: DesktopNavProps) {
                 sublabel={item.sublabelKey ? t(item.sublabelKey) : undefined}
                 href={item.href}
                 isActive={pathname === item.href}
-                isPopular={popularPaths.has(item.href)}
+                badge={badgePaths[item.href]}
               />
             ))}
 
@@ -157,7 +156,7 @@ export function DesktopNav({ popularSlugs }: DesktopNavProps) {
                     category={category}
                     t={t}
                     pathname={pathname}
-                    popularPaths={popularPaths}
+                    badgePaths={badgePaths}
                   />
                 ))}
               </div>
