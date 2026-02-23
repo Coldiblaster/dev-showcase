@@ -117,7 +117,7 @@ function UserList() {
     },
     {
       id: "e4",
-      commitMessage: "refactor: Suspense + ErrorBoundary declarativo",
+      commitMessage: "refactor: declarative Suspense + ErrorBoundary",
       branch: "main",
       level: "great",
       highlights: [1, 2, 3, 12, 27, 29],

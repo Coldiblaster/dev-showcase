@@ -46,7 +46,7 @@ export const FORM_VALIDATION: Evolution = {
       level: "better",
       highlights: [2, 3, 5, 22, 29],
       metrics: [
-        { before: "23", after: "36", improved: false },
+        { before: "23", after: "35", improved: false },
         { before: "1/10", after: "5/10", improved: true },
         { before: "0/10", after: "2/10", improved: true },
       ],
@@ -93,7 +93,7 @@ export const FORM_VALIDATION: Evolution = {
       level: "good",
       highlights: [1, 4, 8, 18, 29],
       metrics: [
-        { before: "36", after: "34", improved: true },
+        { before: "35", after: "34", improved: true },
         { before: "5/10", after: "8/10", improved: true },
         { before: "2/10", after: "5/10", improved: true },
       ],

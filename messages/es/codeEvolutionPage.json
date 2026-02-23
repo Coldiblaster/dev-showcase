@@ -7,7 +7,9 @@
   },
   "sectionNav": {
     "lifecycle": "React Lifecycle",
-    "stateManagement": "State Management"
+    "stateManagement": "State Management",
+    "formValidation": "Validación de Formularios",
+    "asyncErrors": "Manejo de Errores Async"
   },
   "ui": {
     "version": "Versión",

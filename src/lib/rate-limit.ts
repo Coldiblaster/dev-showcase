@@ -76,6 +76,19 @@ export function rateLimit(
 ): RateLimitResult {
   cleanup();
 
+  // IPs não identificáveis (proxies sem header) não são rate-limitados aqui:
+  // compartilhar um bucket causaria bloqueio cruzado entre usuários legítimos,
+  // e não compartilhar seria ineficaz. A proteção real nesses casos vem do
+  // bot filter, validação Zod e dos limites do próprio Redis/Vercel.
+  if (identifier === "unknown") {
+    return {
+      success: true,
+      limit: config.limit,
+      remaining: config.limit,
+      resetAt: Date.now() + config.windowSeconds * 1000,
+    };
+  }
+
   const key = `${config.prefix}:${identifier}`;
   const now = Date.now();
   const entry = store.get(key);

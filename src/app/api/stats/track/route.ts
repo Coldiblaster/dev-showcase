@@ -14,7 +14,7 @@ import { getClientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 import { redis } from "@/lib/redis";
 
 const BOT_PATTERN =
-  /bot|crawl|spider|slurp|facebookexternalhit|mediapartners|google|bing|yandex|baidu|duckduck|semrush|ahrefs|mj12bot|dotbot|petalbot|bytespider|gptbot|claude|headless|phantom|selenium|puppeteer|playwright|lighthouse|pagespeed|pingdom|uptimerobot/i;
+  /bot|crawl|spider|slurp|facebookexternalhit|mediapartners|google|bing|yandex|baidu|duckduck|semrush|ahrefs|mj12bot|dotbot|petalbot|bytespider|gptbot|claude|headless|phantom|selenium|puppeteer|playwright|lighthouse|pagespeed|pingdom|uptimerobot|curl|wget|python[\s/-]|python-requests|node-fetch|axios|java\/|go-http-client|okhttp|ruby|perl|php/i;
 
 /** Apenas paths relativos seguros para armazenar e exibir (evita XSS/redirect via javascript:, data:, //). */
 const SAFE_PATH_REGEX = /^\/[a-zA-Z0-9\-/_]*$/;
@@ -41,6 +41,11 @@ export async function POST(request: Request) {
   try {
     if (isBot(request)) {
       return Response.json({ ok: true });
+    }
+
+    const contentType = request.headers.get("content-type") ?? "";
+    if (!contentType.includes("application/json")) {
+      return Response.json({ error: "Invalid" }, { status: 400 });
     }
 
     const ip = getClientIp(request);

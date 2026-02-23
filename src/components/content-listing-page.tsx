@@ -81,7 +81,7 @@ export async function ContentListingPage({
         <div className="grid gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
           {items.map((item, index) => {
             const Icon = iconMap[item.slug] || DefaultIcon;
-            const isPopular = popularSet.has(item.slug);
+            const isPopular = popularSet.has(`${basePath}/${item.slug}`);
             return (
               <AnimatedSection key={item.slug} delay={0.1 + index * 0.08}>
                 <Link

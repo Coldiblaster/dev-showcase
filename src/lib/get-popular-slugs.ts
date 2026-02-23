@@ -2,7 +2,7 @@ import { unstable_cache } from "next/cache";
 
 import { redis } from "@/lib/redis";
 
-async function fetchTopSlugs(limit: number): Promise<string[]> {
+async function fetchTopPaths(limit: number): Promise<string[]> {
   if (!redis) return [];
   try {
     // Busca mais entradas para compensar o filtro de páginas de seção
@@ -10,26 +10,29 @@ async function fetchTopSlugs(limit: number): Promise<string[]> {
       rev: true,
     });
 
-    const slugs: string[] = [];
+    const paths: string[] = [];
     for (const path of raw as string[]) {
       const parts = path.split("/").filter(Boolean);
       // Ignora páginas de seção (/, /dicas, /contribua, etc.) — só conteúdo com depth ≥ 2
       if (parts.length < 2) continue;
-      slugs.push(parts[parts.length - 1]);
-      if (slugs.length >= limit) break;
+      paths.push(path);
+      if (paths.length >= limit) break;
     }
-    return slugs;
+    return paths;
   } catch {
     return [];
   }
 }
 
 /**
- * Retorna os slugs das páginas mais visitadas (top N), com cache de 1 hora.
- * Falha silenciosamente: se Redis não estiver disponível, retorna array vazio.
+ * Retorna os paths completos das páginas de conteúdo mais visitadas (top N),
+ * com cache de 1 hora. Falha silenciosamente se Redis não estiver disponível.
+ *
+ * Retorna paths completos (ex: "/dicas/ai-tips") para evitar colisão de slugs
+ * entre categorias diferentes.
  */
 export const getPopularSlugs = unstable_cache(
-  (limit = 10) => fetchTopSlugs(limit),
-  ["nav-popular-slugs"],
+  (limit = 10) => fetchTopPaths(limit),
+  ["nav-popular-paths"],
   { revalidate: 3600 },
 );

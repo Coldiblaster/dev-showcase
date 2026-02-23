@@ -30,7 +30,7 @@ export function MobileNav({ isOpen, onClose, popularSlugs }: MobileNavProps) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const popularSet = new Set(popularSlugs);
+  const popularPaths = new Set(popularSlugs);
 
   useScrollLock(isOpen);
 
@@ -111,25 +111,20 @@ export function MobileNav({ isOpen, onClose, popularSlugs }: MobileNavProps) {
                         <p className="mt-3 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground/50">
                           {t(group.labelKey)}
                         </p>
-                        {group.items.map((item) => {
-                          const slug = item.href.split("/").pop() ?? "";
-                          return (
-                            <MobileMenuItem
-                              key={item.href}
-                              icon={item.icon}
-                              label={t(item.labelKey)}
-                              sublabel={
-                                item.sublabelKey
-                                  ? t(item.sublabelKey)
-                                  : undefined
-                              }
-                              href={item.href}
-                              isActive={pathname === item.href}
-                              onClick={onClose}
-                              isPopular={popularSet.has(slug)}
-                            />
-                          );
-                        })}
+                        {group.items.map((item) => (
+                          <MobileMenuItem
+                            key={item.href}
+                            icon={item.icon}
+                            label={t(item.labelKey)}
+                            sublabel={
+                              item.sublabelKey ? t(item.sublabelKey) : undefined
+                            }
+                            href={item.href}
+                            isActive={pathname === item.href}
+                            onClick={onClose}
+                            isPopular={popularPaths.has(item.href)}
+                          />
+                        ))}
 
                         {group.viewAllHref && (
                           <Link
@@ -162,25 +157,22 @@ export function MobileNav({ isOpen, onClose, popularSlugs }: MobileNavProps) {
 
                           {category.featured
                             .slice(0, MAX_PREVIEW_ITEMS)
-                            .map((item) => {
-                              const slug = item.href.split("/").pop() ?? "";
-                              return (
-                                <MobileMenuItem
-                                  key={item.href}
-                                  icon={item.icon}
-                                  label={t(item.labelKey)}
-                                  sublabel={
-                                    item.sublabelKey
-                                      ? t(item.sublabelKey)
-                                      : undefined
-                                  }
-                                  href={item.href}
-                                  isActive={pathname === item.href}
-                                  onClick={onClose}
-                                  isPopular={popularSet.has(slug)}
-                                />
-                              );
-                            })}
+                            .map((item) => (
+                              <MobileMenuItem
+                                key={item.href}
+                                icon={item.icon}
+                                label={t(item.labelKey)}
+                                sublabel={
+                                  item.sublabelKey
+                                    ? t(item.sublabelKey)
+                                    : undefined
+                                }
+                                href={item.href}
+                                isActive={pathname === item.href}
+                                onClick={onClose}
+                                isPopular={popularPaths.has(item.href)}
+                              />
+                            ))}
 
                           <Link
                             href={category.href}
