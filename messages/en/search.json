@@ -172,6 +172,10 @@
     "tutorial": {
       "title": "Development Tutorial",
       "description": "Interactive step-by-step guide to contribute — from setup to Pull Request"
+    },
+    "arch-map": {
+      "title": "Interactive Architecture — Visual System Design",
+      "description": "Explore E-commerce SaaS and Real-time Dashboard architectures: interactive nodes, tech stack and technical decisions per layer."
     }
   }
 }

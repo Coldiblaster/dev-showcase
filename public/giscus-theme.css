@@ -1,0 +1,119 @@
+/*
+ * Giscus custom theme — dev-showcase design system
+ * Escopo: main { } — obrigatório para o Giscus carregar corretamente
+ */
+
+main {
+  /* ── Canvas (backgrounds) ───────────────────────────────────── */
+  --color-canvas-default:    hsl(222, 47%,  6%);   /* --background   */
+  --color-canvas-subtle:     hsl(220, 40%,  9%);   /* --card         */
+  --color-canvas-overlay:    hsl(220, 40%,  9%);   /* --popover      */
+  --color-canvas-inset:      hsl(222, 47%,  4%);   /* mais escuro    */
+
+  /* ── Foreground (texto) ─────────────────────────────────────── */
+  --color-fg-default:        hsl(210, 20%, 90%);   /* --foreground   */
+  --color-fg-muted:          hsl(215, 15%, 55%);   /* --muted-fg     */
+  --color-fg-subtle:         hsl(215, 15%, 38%);
+
+  /* ── Borders ────────────────────────────────────────────────── */
+  --color-border-default:    hsl(220, 20%, 16%);   /* --border       */
+  --color-border-muted:      hsl(220, 20%, 13%);
+
+  /* ── Neutral ────────────────────────────────────────────────── */
+  --color-neutral-muted:     hsl(220, 30%, 14%);   /* --secondary    */
+  --color-scale-gray-7:      hsl(220, 30%, 14%);
+
+  /* ── Accent (primary teal) ──────────────────────────────────── */
+  --color-accent-fg:         hsl(166, 76%, 58%);   /* --primary      */
+  --color-accent-emphasis:   hsl(166, 76%, 45%);
+  --color-accent-muted:      hsl(166, 76%, 20%);
+  --color-accent-subtle:     hsl(166, 76%, 10%);
+  --color-scale-blue-8:      hsl(166, 76%, 12%);   /* reacted hover  */
+
+  /* ── Botões secundários ─────────────────────────────────────── */
+  --color-btn-text:              hsl(210, 20%, 85%);
+  --color-btn-bg:                hsl(220, 30%, 14%);
+  --color-btn-border:            hsl(220, 20%, 20%);
+  --color-btn-shadow:            0 0 transparent;
+  --color-btn-inset-shadow:      0 0 transparent;
+  --color-btn-hover-bg:          hsl(220, 30%, 18%);
+  --color-btn-hover-border:      hsl(220, 20%, 24%);
+  --color-btn-active-bg:         hsl(220, 30%, 12%);
+  --color-btn-active-border:     hsl(220, 20%, 22%);
+  --color-btn-selected-bg:       hsl(220, 30%, 11%);
+
+  /* ── Botão primário (Entre com GitHub) ──────────────────────── */
+  --color-btn-primary-text:              hsl(222, 47%,  6%);
+  --color-btn-primary-bg:                hsl(166, 76%, 42%);
+  --color-btn-primary-border:            hsl(166, 76%, 35%);
+  --color-btn-primary-shadow:            0 0 transparent;
+  --color-btn-primary-inset-shadow:      0 0 transparent;
+  --color-btn-primary-hover-bg:          hsl(166, 76%, 36%);
+  --color-btn-primary-hover-border:      hsl(166, 76%, 30%);
+  --color-btn-primary-selected-bg:       hsl(166, 76%, 32%);
+  --color-btn-primary-selected-shadow:   0 0 transparent;
+  --color-btn-primary-disabled-text:     hsl(222, 47%,  6% / 50%);
+  --color-btn-primary-disabled-bg:       hsl(166, 76%, 42% / 60%);
+  --color-btn-primary-disabled-border:   hsl(166, 76%, 35% / 40%);
+
+  /* ── Segmented control / outros ─────────────────────────────── */
+  --color-segmented-control-bg:                    hsl(220, 30%, 10%);
+  --color-segmented-control-button-bg:             hsl(222, 47%,  6%);
+  --color-segmented-control-button-selected-border: hsl(220, 20%, 22%);
+  --color-action-list-item-default-hover-bg:        hsl(220, 20%, 16% / 60%);
+
+  /* ── Estados semânticos ─────────────────────────────────────── */
+  --color-success-fg:        hsl(166, 76%, 52%);
+  --color-attention-fg:      hsl(43,  74%, 60%);
+  --color-attention-muted:   hsl(43,  74%, 60% / 40%);
+  --color-attention-subtle:  hsl(43,  74%, 60% / 15%);
+  --color-danger-fg:         hsl(0,   84%, 60%);
+  --color-danger-muted:      hsl(0,   84%, 60% / 40%);
+  --color-danger-subtle:     hsl(0,   84%, 60% / 10%);
+
+  --color-primer-shadow-inset: 0 0 transparent;
+
+  /* ── Reactions ──────────────────────────────────────────────── */
+  --color-social-reaction-bg-hover:         var(--color-neutral-muted);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-8);
+
+  /* ── Syntax highlighting ─────────────────────────────────────── */
+  --color-prettylights-syntax-comment:                  hsl(215, 15%, 45%);
+  --color-prettylights-syntax-constant:                 hsl(166, 76%, 58%);
+  --color-prettylights-syntax-entity:                   hsl(265, 70%, 75%);
+  --color-prettylights-syntax-storage-modifier-import:  hsl(210, 20%, 85%);
+  --color-prettylights-syntax-entity-tag:               hsl(95,  50%, 65%);
+  --color-prettylights-syntax-keyword:                  hsl(330, 80%, 70%);
+  --color-prettylights-syntax-string:                   hsl(95,  50%, 70%);
+  --color-prettylights-syntax-variable:                 hsl(20,  90%, 65%);
+  --color-prettylights-syntax-brackethighlighter-unmatched: hsl(0, 84%, 60%);
+  --color-prettylights-syntax-invalid-illegal-text:     hsl(210, 20%, 85%);
+  --color-prettylights-syntax-invalid-illegal-bg:       hsl(0,   84%, 30%);
+  --color-prettylights-syntax-carriage-return-text:     hsl(210, 20%, 85%);
+  --color-prettylights-syntax-carriage-return-bg:       hsl(0,   84%, 28%);
+  --color-prettylights-syntax-string-regexp:            hsl(95,  50%, 65%);
+  --color-prettylights-syntax-markup-list:              hsl(43,  74%, 60%);
+  --color-prettylights-syntax-markup-heading:           hsl(166, 76%, 58%);
+  --color-prettylights-syntax-markup-italic:            hsl(210, 20%, 85%);
+  --color-prettylights-syntax-markup-bold:              hsl(210, 20%, 85%);
+  --color-prettylights-syntax-markup-deleted-text:      hsl(0,   84%, 80%);
+  --color-prettylights-syntax-markup-deleted-bg:        hsl(0,   84%, 20%);
+  --color-prettylights-syntax-markup-inserted-text:     hsl(166, 76%, 80%);
+  --color-prettylights-syntax-markup-inserted-bg:       hsl(166, 76%, 15%);
+  --color-prettylights-syntax-markup-changed-text:      hsl(43,  74%, 80%);
+  --color-prettylights-syntax-markup-changed-bg:        hsl(43,  74%, 18%);
+  --color-prettylights-syntax-markup-ignored-text:      hsl(210, 20%, 85%);
+  --color-prettylights-syntax-markup-ignored-bg:        hsl(220, 40%, 25%);
+  --color-prettylights-syntax-meta-diff-range:          hsl(265, 70%, 75%);
+  --color-prettylights-syntax-brackethighlighter-angle: hsl(215, 15%, 45%);
+  --color-prettylights-syntax-sublimelinter-gutter-mark: hsl(215, 15%, 35%);
+  --color-prettylights-syntax-constant-other-reference-link: hsl(166, 76%, 58%);
+}
+
+main .pagination-loader-container {
+  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line-dark.svg");
+}
+
+main .gsc-loading-image {
+  background-image: url("https://github.githubassets.com/images/mona-loading-dimmed.gif");
+}

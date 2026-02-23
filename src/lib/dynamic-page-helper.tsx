@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { getLocale, getMessages } from "next-intl/server";
 
+import { ContentFooter } from "@/components/content-footer";
 import {
   CONTENT_ITEMS,
   type ContentItem,
@@ -88,6 +89,9 @@ const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
   ),
   CodeEvolution: dynamic(() =>
     import("@/features/guides/code-evolution").then((m) => m.CodeEvolution),
+  ),
+  ArchMap: dynamic(() =>
+    import("@/features/guides/arch-map").then((m) => m.ArchMap),
   ),
   StateManagement: dynamic(() =>
     import("@/features/guides/state-management").then((m) => m.StateManagement),
@@ -196,5 +200,15 @@ export async function renderDynamicContent(
     notFound();
   }
 
-  return <Component />;
+  const path = `/${getCategoryPath(content.category)}/${content.slug}`;
+
+  return (
+    <>
+      <Component />
+      <div className="container mx-auto max-w-4xl px-6 pb-16">
+        {/* key={path} força remount ao navegar entre páginas — evita state stale */}
+        <ContentFooter key={path} path={path} />
+      </div>
+    </>
+  );
 }

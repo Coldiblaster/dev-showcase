@@ -27,17 +27,22 @@ export function ViewTracker() {
     }
 
     const body = JSON.stringify({ path });
+    const jsonBlob = (b: string) => new Blob([b], { type: "application/json" });
 
     if (navigator.sendBeacon) {
-      navigator.sendBeacon(
-        "/api/stats/track",
-        new Blob([body], { type: "application/json" }),
-      );
+      navigator.sendBeacon("/api/stats/track", jsonBlob(body));
+      navigator.sendBeacon("/api/online", jsonBlob("{}"));
     } else {
       fetch("/api/stats/track", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body,
+        keepalive: true,
+      }).catch(() => {});
+      fetch("/api/online", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: "{}",
         keepalive: true,
       }).catch(() => {});
     }

@@ -1,0 +1,245 @@
+{
+  "hero": {
+    "badge": "Software Architecture",
+    "title": "Interactive Architecture",
+    "subtitle": "// live system design",
+    "description": "Explore real project architectures visually and interactively. Click the nodes to understand how each piece connects and the technical decisions behind each layer."
+  },
+  "ui": {
+    "groups": {
+      "client": "Client",
+      "server": "Server",
+      "data": "Data",
+      "infra": "Infrastructure"
+    },
+    "connectedTo": "Connects to",
+    "close": "Close details"
+  },
+  "projects": {
+    "ecommerce-saas": {
+      "name": "E-commerce SaaS",
+      "description": "Scalable e-commerce architecture with Next.js",
+      "nodes": {
+        "browser": {
+          "label": "Browser",
+          "description": "Client-side rendering",
+          "details": "Single Page Application with React 19 and Server Components. Selective hydration for better performance. ISR for product pages revalidating every 60s."
+        },
+        "mobile": {
+          "label": "Mobile App",
+          "description": "Cross-platform",
+          "details": "Mobile app sharing business logic with the web. Expo for build and distribution. Push notifications via Firebase Cloud Messaging."
+        },
+        "nextjs": {
+          "label": "Next.js App",
+          "description": "Full-stack framework",
+          "details": "App Router with React Server Components for SSR and streaming. Server Actions for data mutations without extra API routes. Middleware for redirects and security headers."
+        },
+        "api": {
+          "label": "API Routes",
+          "description": "REST + tRPC endpoints",
+          "details": "End-to-end typed API with tRPC. Input validation with Zod. Rate limiting per IP. API versioning for backward compatibility. Webhooks for third-party integration."
+        },
+        "auth": {
+          "label": "Auth",
+          "description": "Authentication & authorization",
+          "details": "NextAuth.js with JWT strategy. OAuth providers (Google, GitHub). Role-based access control (RBAC). Refresh token rotation. Session management with HttpOnly cookies."
+        },
+        "db": {
+          "label": "Database",
+          "description": "Relational database",
+          "details": "PostgreSQL with Prisma ORM for type safety. Versioned migrations. Connection pooling with PgBouncer. Optimized indexes for frequent queries. Soft delete pattern."
+        },
+        "cache": {
+          "label": "Cache Layer",
+          "description": "Distributed cache",
+          "details": "Redis via Upstash for serverless cache. Session cache, rate limiting and queues. Configurable TTL per data type. Tag-based invalidation for granular updates."
+        },
+        "deploy": {
+          "label": "Deploy",
+          "description": "CI/CD & hosting",
+          "details": "Automatic deployment via Vercel with preview deployments per PR. GitHub Actions for tests and linting. Edge Functions for logic close to the user. Native Analytics and Web Vitals."
+        }
+      }
+    },
+    "realtime-dashboard": {
+      "name": "Real-time Dashboard",
+      "description": "Dashboard with real-time data via WebSockets",
+      "nodes": {
+        "dashboard": {
+          "label": "Dashboard UI",
+          "description": "Reactive interface",
+          "details": "Reactive dashboard with Recharts charts and TanStack Table. Virtual scrolling for large datasets. Optimistic updates for user actions."
+        },
+        "gateway": {
+          "label": "API Gateway",
+          "description": "Gateway & rate limiting",
+          "details": "Edge Middleware for auth, rate limiting and routing. Geolocation for nearest CDN. Security headers (CSP, CORS). Circuit breaker for dependent services."
+        },
+        "ws": {
+          "label": "WebSocket Server",
+          "description": "Real-time connections",
+          "details": "WebSocket server with Socket.io for bidirectional communication. Redis Pub/Sub for horizontal scaling. Rooms for tenant data segmentation. Heartbeat to detect dead connections."
+        },
+        "rest": {
+          "label": "REST API",
+          "description": "CRUD operations",
+          "details": "REST API for CRUD operations. Zod for validation. Cursor-based pagination for large lists. Gzip compression for responses. Conditional caching with ETags."
+        },
+        "events": {
+          "label": "Event Stream",
+          "description": "Event processing",
+          "details": "Apache Kafka for high-scale event streaming. Bull Queue for async jobs and automatic retries. Dead letter queue for failed events. Monitoring with Grafana."
+        },
+        "db": {
+          "label": "TimescaleDB",
+          "description": "Time-series database",
+          "details": "TimescaleDB (PostgreSQL extension) for time-series data. Automatic compression for old data. Continuous aggregates for pre-calculated metrics. Automatic retention policies."
+        }
+      }
+    },
+    "social-feed": {
+      "name": "Social Feed",
+      "description": "Feed architecture at Instagram/Meta scale",
+      "nodes": {
+        "mobile": {
+          "label": "Mobile App",
+          "description": "Client-side social app",
+          "details": "React Native app consuming GraphQL via Apollo Client. Optimistic UI for instant feedback on likes and comments. Offline support with persistent local cache. Tokens stored securely in Keychain (iOS) and KeyStore (Android)."
+        },
+        "gateway": {
+          "label": "GraphQL Gateway",
+          "description": "Query resolution layer",
+          "details": "GraphQL API Gateway resolving queries and mutations. DataLoader batches N+1 queries to downstream services. JWT authentication on every request. Persisted queries reduce payload size on mobile."
+        },
+        "feed": {
+          "label": "Feed Service",
+          "description": "Social feed engine",
+          "details": "Fan-out on write: when a user posts, the service pre-computes and inserts the post into each follower's feed in Redis as a sorted set. Hybrid strategy for celebrity accounts (fan-out on read) to avoid thundering herd."
+        },
+        "cache": {
+          "label": "Redis Cache",
+          "description": "User feed cache",
+          "details": "Redis Sorted Sets store each user's feed as a ranked list (score = timestamp). O(log n) reads for pagination. TTL of 7 days auto-expires inactive feeds. HyperLogLog for unique view counting without storing full sets."
+        },
+        "notif": {
+          "label": "Notification Service",
+          "description": "Push & real-time alerts",
+          "details": "Notification service consuming events from the queue. Firebase Cloud Messaging (FCM) for Android, APNs for iOS. WebSocket for in-app real-time notifications. Per-user notification preferences and quiet hours support."
+        },
+        "queue": {
+          "label": "Message Queue",
+          "description": "Async event processing",
+          "details": "RabbitMQ decouples notification producers from consumers. Dead letter queue for failed deliveries with exponential backoff retry. Priority queues separate real-time alerts from digest emails. At-least-once delivery with idempotency keys."
+        },
+        "media": {
+          "label": "Media Service",
+          "description": "Media upload & CDN delivery",
+          "details": "Direct upload to S3 via pre-signed URLs, bypassing the server. Sharp.js for image processing (resize, compress, WebP). CloudFront CDN caches assets globally at edge locations. Signed URLs for private content access."
+        },
+        "db": {
+          "label": "Cassandra DB",
+          "description": "Distributed write-heavy store",
+          "details": "Apache Cassandra for write-heavy workloads at scale. Wide-column model: rows partitioned by user_id, columns as posts ordered by timestamp. Replication factor 3 across availability zones. CQL queries optimized for read access patterns."
+        }
+      }
+    },
+    "video-streaming": {
+      "name": "Video Streaming",
+      "description": "Video platform at YouTube/Netflix scale",
+      "nodes": {
+        "browser": {
+          "label": "Web Player",
+          "description": "Adaptive video playback",
+          "details": "HLS.js player using Media Source Extensions API. Adaptive Bitrate Streaming (ABR) auto-switches quality by bandwidth. Buffer-ahead strategy prevents interruptions. Player telemetry tracks buffering events and quality changes."
+        },
+        "cdn": {
+          "label": "CDN",
+          "description": "Global content delivery",
+          "details": "CloudFront CDN caches HLS segments at edge locations near viewers. Reduces origin server load by over 95%. Signed cookies for premium content. Cache-Control headers tuned per segment type (media vs. manifest)."
+        },
+        "api": {
+          "label": "API Service",
+          "description": "REST + GraphQL backend",
+          "details": "REST API for CRUD (videos, users, channels). GraphQL for complex queries (feed, search). JWT + OAuth2 authentication. Rate limiting per user tier. Signed upload tokens issued for the upload service."
+        },
+        "recommend": {
+          "label": "Recommender",
+          "description": "ML recommendation engine",
+          "details": "TensorFlow Recommenders model trained on watch history, likes, and co-views. Two-tower architecture for candidate retrieval. Collaborative filtering for ranking. Served via TF Serving with sub-50ms P99. A/B testing framework for model experiments."
+        },
+        "upload": {
+          "label": "Upload Service",
+          "description": "Resumable video ingestion",
+          "details": "Chunked upload with tus protocol for resumable transfers. Each chunk stored independently, assembled after final chunk. Integrity verified with SHA-256. Upload events trigger the transcoding pipeline via SQS."
+        },
+        "transcode": {
+          "label": "Transcoder",
+          "description": "Video processing pipeline",
+          "details": "FFmpeg-based transcoder on GPU-accelerated worker fleet. Generates renditions: 360p, 480p, 720p, 1080p, 4K. Packages output as HLS and DASH manifests. Scene detection generates thumbnail candidates. Auto Scaling based on queue depth."
+        },
+        "storage": {
+          "label": "Object Storage",
+          "description": "Scalable video file store",
+          "details": "S3-compatible object storage for all transcoded segments and manifests. Lifecycle policies archive infrequently accessed content to Glacier. Multi-region replication for disaster recovery. Versioning allows re-transcoding without data loss."
+        },
+        "db": {
+          "label": "Metadata DB",
+          "description": "Video & user data",
+          "details": "MySQL for relational metadata (videos, users, channels, subscriptions). Bigtable for high-throughput time-series data (view counts, watch history). Read replicas for dashboard queries. Consistent hashing for query routing."
+        }
+      }
+    },
+    "ride-sharing": {
+      "name": "Ride Sharing",
+      "description": "Real-time ride matching at Uber scale",
+      "nodes": {
+        "mobile": {
+          "label": "Driver & Rider App",
+          "description": "Dual-role mobile client",
+          "details": "Single React Native app with role-based UX (rider vs. driver mode). Real-time map updates via WebSocket. Background location tracking via Maps SDK. Offline queue replays actions made without connectivity."
+        },
+        "gateway": {
+          "label": "API Gateway",
+          "description": "Auth & request routing",
+          "details": "Node.js gateway handling JWT auth, rate limiting, and routing to microservices. Token refresh with sliding sessions. Validates ride requests before forwarding. Full request logging for audit trail."
+        },
+        "matching": {
+          "label": "Matching Engine",
+          "description": "Driver-rider pairing",
+          "details": "Python service finding optimal drivers for each request. Geohash spatial search queries location service for nearby drivers. Dijkstra-inspired ETA considers real-time traffic. Scores drivers by rating, acceptance rate, and vehicle type."
+        },
+        "payments": {
+          "label": "Payments",
+          "description": "Secure payment processing",
+          "details": "Stripe integration for card charges, saved methods, and driver payouts. Idempotency keys prevent duplicate billing. Async bank payout. Fraud detection via Stripe Radar. Split payment logic for promotions."
+        },
+        "location": {
+          "label": "Location Service",
+          "description": "Real-time driver tracking",
+          "details": "Redis Geo commands store and query driver positions with sub-second latency. Drivers stream GPS updates via WebSocket every 3 seconds. Geohash grid enables efficient radius searches. Trip waypoints stored for route replay and ETA correction."
+        },
+        "pricing": {
+          "label": "Pricing Engine",
+          "description": "Surge pricing algorithm",
+          "details": "Python dynamic pricing service. Supply/demand ratio in a geohash cell triggers surge multipliers. ML model predicts surge zones 15 minutes ahead. Price lock guarantees fare after rider accepts. Pricing rules versioned for auditability."
+        },
+        "notif": {
+          "label": "Notification Service",
+          "description": "Push, SMS & in-app alerts",
+          "details": "Multi-channel notifications: FCM and APNs for push, Twilio for SMS (OTP, trip updates), WebSocket for in-app. Event-driven: receives match events, trip status changes, payment confirmations. Per-user channel preferences with delivery receipts."
+        },
+        "db": {
+          "label": "Database",
+          "description": "Core data persistence",
+          "details": "PostgreSQL with PostGIS for geospatial queries (polygon zone lookups). Stores trips, users, payments, audit logs. Partitioned trips table for time-based queries. Redis cache for frequent reads. Event sourcing for trip state machine."
+        }
+      }
+    }
+  },
+  "cta": {
+    "title": "See more guides",
+    "description": "Code Evolution, React Patterns, TypeScript and Next.js App Router: more practical guides in the Tips section.",
+    "button": "See all tips"
+  }
+}

@@ -172,6 +172,10 @@
     "tutorial": {
       "title": "Tutorial de Desenvolvimento",
       "description": "Guia interativo passo a passo para contribuir — do setup ao Pull Request"
+    },
+    "arch-map": {
+      "title": "Arquitetura Interativa — System Design Visual",
+      "description": "Explore arquiteturas de E-commerce SaaS e Real-time Dashboard: nodes interativos, tech stack e decisões técnicas por camada."
     }
   }
 }

@@ -32,7 +32,7 @@ function CategoryColumn({
       <div className="mb-2 flex items-center gap-2 px-2">
         <Icon className="h-3.5 w-3.5 text-primary" />
         <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60">
-          {t(category.labelKey)}
+          {t(category.labelKey as Parameters<typeof t>[0])}
         </p>
       </div>
 

@@ -19,7 +19,8 @@ import {
   secureStreamHeaders,
 } from "@/lib/api-security";
 import { buildSystemPrompt } from "@/lib/chat/system-prompt";
-import { getClientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
+import { getClientIp, rateLimitResponse } from "@/lib/rate-limit";
+import { rateLimitAsync } from "@/lib/redis-rate-limit";
 
 // ---------------------------------------------------------------------------
 // Constantes
@@ -67,7 +68,11 @@ export async function POST(request: Request) {
 
     // 2. Rate limit
     const ip = getClientIp(request);
-    const rl = rateLimit(ip, { prefix: "chat", limit: 30, windowSeconds: 60 });
+    const rl = await rateLimitAsync(ip, {
+      prefix: "chat",
+      limit: 30,
+      windowSeconds: 60,
+    });
     if (!rl.success) return rateLimitResponse(rl);
 
     // 3. API key

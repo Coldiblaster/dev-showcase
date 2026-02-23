@@ -33,5 +33,16 @@
   "close": "Fechar",
   "terminal": "Terminal",
   "closeTerminal": "Fechar terminal",
-  "terminalInput": "Entrada do terminal"
+  "terminalInput": "Entrada do terminal",
+  "comments": {
+    "title": "Deixe um comentário"
+  },
+  "reactions": {
+    "title": "Este conteúdo foi útil?",
+    "heart": "Útil",
+    "fire": "Incrível",
+    "bulb": "Aprendi algo",
+    "voted": "Obrigado pelo feedback! 🙌",
+    "total": "{count, plural, one {# reação} other {# reações}}"
+  }
 }

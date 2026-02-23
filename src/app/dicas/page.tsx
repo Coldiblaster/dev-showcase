@@ -6,6 +6,7 @@ import {
   GitBranch,
   GitCommitHorizontal,
   Layers,
+  Network,
   Palette,
   Route,
   Shield,
@@ -32,6 +33,7 @@ const iconMap = {
   "nextjs-app-router": Route,
   "state-management": Layers,
   "code-evolution": GitCommitHorizontal,
+  "arch-map": Network,
 };
 
 export async function generateMetadata(): Promise<Metadata> {

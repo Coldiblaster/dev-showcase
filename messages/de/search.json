@@ -172,6 +172,10 @@
     "tutorial": {
       "title": "Entwicklungs-Tutorial",
       "description": "Interaktive Schritt-für-Schritt-Anleitung zum Beitragen — vom Setup bis zum Pull Request"
+    },
+    "arch-map": {
+      "title": "Interaktive Architektur — Visuelles System Design",
+      "description": "Erkunde E-commerce SaaS- und Echtzeit-Dashboard-Architekturen: interaktive Knoten, Tech-Stack und technische Entscheidungen pro Schicht."
     }
   }
 }

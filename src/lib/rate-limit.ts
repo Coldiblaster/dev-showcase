@@ -29,7 +29,7 @@ function cleanup() {
   }
 }
 
-interface RateLimitConfig {
+export interface RateLimitConfig {
   /** Identificador do rate limiter (ex: "chat", "contact") */
   prefix: string;
   /** Máximo de requests permitidos na janela */
@@ -38,7 +38,7 @@ interface RateLimitConfig {
   windowSeconds: number;
 }
 
-interface RateLimitResult {
+export interface RateLimitResult {
   success: boolean;
   limit: number;
   remaining: number;

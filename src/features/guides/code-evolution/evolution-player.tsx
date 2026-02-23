@@ -65,13 +65,13 @@ function EvolutionSelector({
   const t = useTranslations("codeEvolutionPage");
 
   return (
-    <div className="mb-8 flex flex-wrap justify-center gap-3">
+    <div className="mb-6 flex gap-2 overflow-x-auto pb-2 md:mb-8 md:flex-wrap md:justify-center md:gap-3 md:pb-0">
       {EVOLUTIONS.map((evo, i) => (
         <button
           key={evo.id}
           onClick={() => onSelect(i)}
           aria-pressed={selectedIndex === i}
-          className={`rounded-xl border px-5 py-3 text-left transition-all ${
+          className={`shrink-0 rounded-xl border px-4 py-2.5 text-left transition-all md:shrink md:px-5 md:py-3 ${
             selectedIndex === i
               ? "border-primary bg-primary/10 text-foreground"
               : "border-border bg-card text-muted-foreground hover:border-primary/30 hover:text-foreground"
@@ -82,7 +82,7 @@ function EvolutionSelector({
               `evolutions.${evo.id}.title` as `evolutions.react-lifecycle.title`,
             )}
           </span>
-          <span className="block text-xs text-muted-foreground">
+          <span className="block max-w-[160px] truncate text-xs text-muted-foreground">
             {t(
               `evolutions.${evo.id}.description` as `evolutions.react-lifecycle.description`,
             )}
@@ -165,17 +165,19 @@ export function EvolutionPlayer() {
 
       <div className="overflow-hidden rounded-2xl border border-border bg-card">
         {/* Git-like top bar */}
-        <div className="flex items-center justify-between border-b border-border px-6 py-4">
-          <div className="flex items-center gap-3">
-            <GitBranch className="h-4 w-4 text-primary" aria-hidden />
-            <span className="font-mono text-sm text-primary">
+        <div className="flex items-center justify-between gap-2 border-b border-border px-4 py-3 md:px-6 md:py-4">
+          <div className="flex min-w-0 items-center gap-2 md:gap-3">
+            <GitBranch className="h-4 w-4 shrink-0 text-primary" aria-hidden />
+            <span className="truncate font-mono text-xs text-primary md:text-sm">
               {step.branch}
             </span>
           </div>
-          <div className="flex items-center gap-4">
-            <span className="text-xs text-muted-foreground">{timestamp}</span>
+          <div className="flex shrink-0 items-center gap-2">
+            <span className="hidden text-xs text-muted-foreground sm:block">
+              {timestamp}
+            </span>
             <div
-              className={`flex items-center gap-1.5 rounded-full border px-3 py-1 ${config.bg} ${config.border}`}
+              className={`flex items-center gap-1.5 rounded-full border px-2 py-1 md:px-3 ${config.bg} ${config.border}`}
             >
               <LevelIcon className={`h-3 w-3 ${config.color}`} aria-hidden />
               <span className={`text-xs font-medium ${config.color}`}>
@@ -186,9 +188,12 @@ export function EvolutionPlayer() {
         </div>
 
         {/* Commit message bar */}
-        <div className="flex items-center gap-3 border-b border-border bg-muted/30 px-6 py-3">
-          <GitCommit className="h-4 w-4 text-muted-foreground" aria-hidden />
-          <span className="font-mono text-sm text-foreground">
+        <div className="flex min-w-0 items-center gap-2 border-b border-border bg-muted/30 px-4 py-2.5 md:gap-3 md:px-6 md:py-3">
+          <GitCommit
+            className="h-4 w-4 shrink-0 text-muted-foreground"
+            aria-hidden
+          />
+          <span className="truncate font-mono text-xs text-foreground md:text-sm">
             {step.commitMessage}
           </span>
         </div>
@@ -206,8 +211,8 @@ export function EvolutionPlayer() {
           />
         </div>
 
-        {/* Content grid */}
-        <div className="grid lg:grid-cols-5">
+        {/* Content grid — stacks on mobile, side-by-side on lg+ */}
+        <div className="grid min-w-0 lg:grid-cols-5">
           <CodePanel
             step={step}
             stepCount={evolution.steps.length}

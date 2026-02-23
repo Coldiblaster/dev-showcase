@@ -87,5 +87,7 @@
   "viewAll": "View all ({count})",
   "implementationCount": "{count} implementations",
   "guideCount": "{count} guides",
-  "toolCount": "{count} tools"
+  "toolCount": "{count} tools",
+  "archMap": "Interactive Architecture",
+  "archMapDesc": "E-commerce SaaS, real-time Dashboard and more"
 }

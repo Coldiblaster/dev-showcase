@@ -1,0 +1,245 @@
+{
+  "hero": {
+    "badge": "Arquitetura de Software",
+    "title": "Arquitetura Interativa",
+    "subtitle": "// system design ao vivo",
+    "description": "Explore a arquitetura de projetos reais de forma visual e interativa. Clique nos nodes para entender como cada peça se conecta e as decisões técnicas por trás de cada camada."
+  },
+  "ui": {
+    "groups": {
+      "client": "Cliente",
+      "server": "Servidor",
+      "data": "Dados",
+      "infra": "Infraestrutura"
+    },
+    "connectedTo": "Conecta com",
+    "close": "Fechar detalhes"
+  },
+  "projects": {
+    "ecommerce-saas": {
+      "name": "E-commerce SaaS",
+      "description": "Arquitetura escalável de e-commerce com Next.js",
+      "nodes": {
+        "browser": {
+          "label": "Browser",
+          "description": "Client-side rendering",
+          "details": "Single Page Application com React 19 e Server Components. Hydration seletivo para melhor performance. ISR para páginas de produto com revalidação a cada 60s."
+        },
+        "mobile": {
+          "label": "App Mobile",
+          "description": "Cross-platform",
+          "details": "App mobile compartilhando lógica de negócios com o web. Expo para build e distribuição. Push notifications via Firebase Cloud Messaging."
+        },
+        "nextjs": {
+          "label": "Next.js App",
+          "description": "Full-stack framework",
+          "details": "App Router com React Server Components para SSR e streaming. Server Actions para mutações de dados sem API routes extras. Middleware para redirecionamentos e headers de segurança."
+        },
+        "api": {
+          "label": "API Routes",
+          "description": "REST + tRPC endpoints",
+          "details": "API tipada end-to-end com tRPC. Validação de input com Zod. Rate limiting por IP. Versionamento de API para backward compatibility. Webhooks para integração com terceiros."
+        },
+        "auth": {
+          "label": "Auth",
+          "description": "Autenticação e autorização",
+          "details": "NextAuth.js com strategy JWT. OAuth providers (Google, GitHub). Role-based access control (RBAC). Refresh token rotation. Session management com cookies HttpOnly."
+        },
+        "db": {
+          "label": "Database",
+          "description": "Banco relacional",
+          "details": "PostgreSQL com Prisma ORM para type safety. Migrations versionadas. Connection pooling com PgBouncer. Índices otimizados para queries frequentes. Soft delete pattern."
+        },
+        "cache": {
+          "label": "Cache Layer",
+          "description": "Cache distribuído",
+          "details": "Redis via Upstash para cache serverless. Cache de sessões, rate limiting e filas. TTL configurável por tipo de dado. Invalidação por tag para updates granulares."
+        },
+        "deploy": {
+          "label": "Deploy",
+          "description": "CI/CD e hosting",
+          "details": "Deploy automático via Vercel com preview deployments por PR. GitHub Actions para testes e linting. Edge Functions para lógica próxima ao usuário. Analytics e Web Vitals nativos."
+        }
+      }
+    },
+    "realtime-dashboard": {
+      "name": "Real-time Dashboard",
+      "description": "Dashboard com dados em tempo real via WebSockets",
+      "nodes": {
+        "dashboard": {
+          "label": "Dashboard UI",
+          "description": "Interface reativa",
+          "details": "Dashboard reativo com gráficos Recharts e tabelas TanStack Table. Virtual scrolling para datasets grandes. Optimistic updates para ações do usuário."
+        },
+        "gateway": {
+          "label": "API Gateway",
+          "description": "Gateway e rate limiting",
+          "details": "Middleware no Edge para autenticação, rate limiting e routing. Geolocalização para CDN mais próximo. Headers de segurança (CSP, CORS). Circuit breaker para serviços dependentes."
+        },
+        "ws": {
+          "label": "WebSocket Server",
+          "description": "Conexões real-time",
+          "details": "WebSocket server com Socket.io para comunicação bidirecional. Redis Pub/Sub para scaling horizontal. Rooms para segmentação de dados por tenant. Heartbeat para detectar conexões mortas."
+        },
+        "rest": {
+          "label": "REST API",
+          "description": "CRUD operations",
+          "details": "API REST para operações CRUD. Zod para validação. Paginação cursor-based para listas grandes. Compression gzip para respostas. Cache condicional com ETags."
+        },
+        "events": {
+          "label": "Event Stream",
+          "description": "Processamento de eventos",
+          "details": "Apache Kafka para stream de eventos em alta escala. Bull Queue para jobs assíncronos e retries automáticos. Dead letter queue para eventos falhos. Monitoramento com Grafana."
+        },
+        "db": {
+          "label": "TimescaleDB",
+          "description": "Time-series database",
+          "details": "TimescaleDB (extensão PostgreSQL) para dados time-series. Compressão automática para dados antigos. Continuous aggregates para métricas pré-calculadas. Retention policies automáticas."
+        }
+      }
+    },
+    "social-feed": {
+      "name": "Social Feed",
+      "description": "Arquitetura de feed na escala do Instagram/Meta",
+      "nodes": {
+        "mobile": {
+          "label": "App Mobile",
+          "description": "App social client",
+          "details": "App React Native consumindo GraphQL via Apollo Client. UI otimista para feedback instantâneo em curtidas e comentários. Suporte offline com cache local persistente. Tokens armazenados com segurança no Keychain (iOS) e KeyStore (Android)."
+        },
+        "gateway": {
+          "label": "GraphQL Gateway",
+          "description": "Camada de resolução de queries",
+          "details": "API Gateway GraphQL resolvendo queries e mutations. DataLoader agrupa requisições N+1 em batch. Autenticação JWT em cada request. Queries persistidas para reduzir o payload no mobile."
+        },
+        "feed": {
+          "label": "Feed Service",
+          "description": "Motor do feed social",
+          "details": "Fan-out na escrita: ao publicar, o serviço pré-computa e insere o post no feed de cada seguidor no Redis como sorted set. Estratégia híbrida para contas de celebridades (fan-out na leitura) para evitar thundering herd."
+        },
+        "cache": {
+          "label": "Redis Cache",
+          "description": "Cache do feed do usuário",
+          "details": "Redis Sorted Sets guardam o feed de cada usuário como lista ranqueada (score = timestamp). Leituras O(log n) para paginação. TTL de 7 dias expira feeds inativos automaticamente. HyperLogLog para contagem de visualizações únicas."
+        },
+        "notif": {
+          "label": "Serviço de Notificações",
+          "description": "Push e alertas em tempo real",
+          "details": "Serviço de notificações consumindo eventos da fila. Firebase Cloud Messaging (FCM) para Android, APNs para iOS. WebSocket para notificações in-app em tempo real. Preferências por usuário e suporte a horários silenciosos."
+        },
+        "queue": {
+          "label": "Fila de Mensagens",
+          "description": "Processamento assíncrono de eventos",
+          "details": "RabbitMQ desacopla produtores de notificações dos consumidores. Dead letter queue para reenvio com backoff exponencial. Filas com prioridade separam alertas em tempo real de e-mails de resumo. Entrega ao menos uma vez com chaves de idempotência."
+        },
+        "media": {
+          "label": "Serviço de Mídia",
+          "description": "Upload de mídia e entrega via CDN",
+          "details": "Upload direto para S3 via pre-signed URLs sem passar pelo servidor. Sharp.js para processamento de imagens (redimensionar, compressão, WebP). CloudFront CDN distribui assets globalmente. URLs assinadas para acesso a conteúdo privado."
+        },
+        "db": {
+          "label": "Cassandra DB",
+          "description": "Banco distribuído para escritas intensas",
+          "details": "Apache Cassandra para cargas write-heavy em escala massiva. Modelo wide-column: linhas particionadas por user_id, colunas como posts ordenados por timestamp. Fator de replicação 3 entre zonas de disponibilidade. CQL otimizado para padrões de leitura."
+        }
+      }
+    },
+    "video-streaming": {
+      "name": "Video Streaming",
+      "description": "Plataforma de vídeo na escala do YouTube/Netflix",
+      "nodes": {
+        "browser": {
+          "label": "Web Player",
+          "description": "Reprodução adaptativa de vídeo",
+          "details": "Player HLS.js usando a API Media Source Extensions. Adaptive Bitrate Streaming (ABR) troca qualidade automaticamente pela banda disponível. Buffer antecipado evita interrupções. Telemetria reporta eventos de buffering e mudanças de qualidade."
+        },
+        "cdn": {
+          "label": "CDN",
+          "description": "Entrega de conteúdo global",
+          "details": "CloudFront CDN distribui segmentos HLS nos edge locations mais próximos. Reduz carga no servidor de origem em mais de 95%. Cookies assinados para conteúdo premium. Headers Cache-Control ajustados por tipo de segmento (mídia vs. manifest)."
+        },
+        "api": {
+          "label": "API Service",
+          "description": "Backend REST + GraphQL",
+          "details": "REST API para CRUD (vídeos, usuários, canais). GraphQL para queries complexas (feed, busca). Autenticação JWT + OAuth2. Rate limiting por tier de usuário. Tokens de upload assinados emitidos para o serviço de upload."
+        },
+        "recommend": {
+          "label": "Recomendador",
+          "description": "Motor de recomendação com ML",
+          "details": "Modelo TensorFlow Recommenders treinado em histórico, curtidas e co-visualizações. Arquitetura two-tower para recuperação de candidatos. Filtragem colaborativa para ranqueamento. Servido via TF Serving com P99 abaixo de 50ms. Framework A/B para experimentos."
+        },
+        "upload": {
+          "label": "Serviço de Upload",
+          "description": "Ingestão de vídeo com retomada",
+          "details": "Upload em chunks com protocolo tus para transferências retomáveis. Cada chunk armazenado independentemente; reassemblado após o chunk final. Integridade verificada com SHA-256. Eventos de upload disparam o pipeline de transcodificação via SQS."
+        },
+        "transcode": {
+          "label": "Transcodificador",
+          "description": "Pipeline de processamento de vídeo",
+          "details": "Transcodificador FFmpeg em workers com GPU. Gera resoluções: 360p, 480p, 720p, 1080p, 4K. Empacota como manifests HLS e DASH. Detecção de cenas gera thumbnails candidatos. Auto Scaling baseado na profundidade da fila."
+        },
+        "storage": {
+          "label": "Object Storage",
+          "description": "Armazenamento escalável de arquivos",
+          "details": "Object storage compatível com S3 para todos os segmentos e manifests. Políticas de lifecycle arquivam conteúdo pouco acessado no Glacier. Replicação multi-região para recuperação de desastres. Versionamento permite re-transcodar sem perda de dados."
+        },
+        "db": {
+          "label": "Metadata DB",
+          "description": "Dados de vídeos e usuários",
+          "details": "MySQL para metadados relacionais (vídeos, usuários, canais, inscrições). Bigtable para dados time-series de alto throughput (contagens de views, histórico). Read replicas para dashboards. Consistent hashing para roteamento de queries."
+        }
+      }
+    },
+    "ride-sharing": {
+      "name": "Ride Sharing",
+      "description": "Matching de corridas em tempo real na escala do Uber",
+      "nodes": {
+        "mobile": {
+          "label": "App Motorista & Passageiro",
+          "description": "App mobile com duplo papel",
+          "details": "App React Native com UX por papel (modo passageiro vs. motorista). Atualização do mapa em tempo real via WebSocket. Rastreamento de localização em background via Maps SDK. Fila offline reproduz ações feitas sem conectividade."
+        },
+        "gateway": {
+          "label": "API Gateway",
+          "description": "Autenticação e roteamento",
+          "details": "Gateway Node.js com JWT, rate limiting e roteamento para microsserviços. Token refresh com sessões deslizantes. Valida requests de corrida antes de encaminhar. Log completo para trilha de auditoria."
+        },
+        "matching": {
+          "label": "Motor de Matching",
+          "description": "Pareamento motorista-passageiro",
+          "details": "Serviço Python que encontra o motorista ideal para cada solicitação. Busca espacial por Geohash consulta o serviço de localização para motoristas próximos. ETA inspirado em Dijkstra considera tráfego em tempo real. Pontuação por avaliação, taxa de aceitação e tipo de veículo."
+        },
+        "payments": {
+          "label": "Pagamentos",
+          "description": "Processamento seguro de pagamentos",
+          "details": "Integração Stripe para cobranças, métodos salvos e repasses a motoristas. Chaves de idempotência evitam cobranças duplicadas. Repasse assíncrono via TED. Detecção de fraude com Stripe Radar. Lógica de divisão de valores para promoções."
+        },
+        "location": {
+          "label": "Serviço de Localização",
+          "description": "Rastreamento de motoristas em tempo real",
+          "details": "Comandos Redis Geo armazenam e consultam posições de motoristas com latência sub-segundo. Motoristas enviam GPS via WebSocket a cada 3 segundos. Grid Geohash permite buscas eficientes por raio. Waypoints da viagem armazenados para replay de rota e correção de ETA."
+        },
+        "pricing": {
+          "label": "Motor de Preços",
+          "description": "Algoritmo de preço dinâmico",
+          "details": "Serviço Python de precificação dinâmica. Razão oferta/demanda numa célula Geohash dispara multiplicadores de surge. Modelo ML prevê zonas de surge 15 minutos antes. Price lock garante a tarifa após aceite do passageiro. Regras de preço versionadas para auditabilidade."
+        },
+        "notif": {
+          "label": "Serviço de Notificações",
+          "description": "Push, SMS e alertas in-app",
+          "details": "Notificações multi-canal: FCM e APNs para push, Twilio para SMS (OTP, atualizações de corrida), WebSocket para in-app. Event-driven: recebe eventos de match, mudanças de status da corrida e confirmações de pagamento. Preferências por canal com confirmações de entrega."
+        },
+        "db": {
+          "label": "Banco de Dados",
+          "description": "Persistência central",
+          "details": "PostgreSQL com PostGIS para queries geoespaciais (zonas por polígono). Armazena corridas, usuários, pagamentos e logs de auditoria. Tabela de corridas particionada por tempo. Cache Redis para leituras frequentes. Event sourcing para a máquina de estados da corrida."
+        }
+      }
+    }
+  },
+  "cta": {
+    "title": "Ver mais guias",
+    "description": "Evolução de Código, React Patterns, TypeScript e Next.js App Router: mais guias práticos na seção Dicas.",
+    "button": "Ver todas as dicas"
+  }
+}

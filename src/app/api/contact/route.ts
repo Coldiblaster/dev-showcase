@@ -10,7 +10,8 @@ import {
 } from "@/lib/api-security";
 import { PERSONAL } from "@/lib/constants";
 import { ContactEmailTemplate } from "@/lib/email/contact-template";
-import { getClientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
+import { getClientIp, rateLimitResponse } from "@/lib/rate-limit";
+import { rateLimitAsync } from "@/lib/redis-rate-limit";
 
 const contactSchema = z.object({
   name: z.string().min(2).max(100),
@@ -48,7 +49,7 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
 export async function POST(request: Request) {
   try {
     const ip = getClientIp(request);
-    const rl = rateLimit(ip, {
+    const rl = await rateLimitAsync(ip, {
       prefix: "contact",
       limit: 5,
       windowSeconds: 300,

@@ -4,6 +4,7 @@
  */
 const NAMESPACES = [
   "about",
+  "archMapPage",
   "changelogPage",
   "codeEvolutionPage",
   "ai",

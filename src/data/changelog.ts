@@ -16,6 +16,171 @@ export interface ChangelogVersion {
 
 export const CHANGELOG: ChangelogVersion[] = [
   {
+    version: "0.11.0",
+    date: "2026-02-22",
+    title: "Reações, Comentários e Responsividade Mobile",
+    summary:
+      "Sistema de reações por página (❤️🔥💡) com Redis, integração Giscus para comentários via GitHub Discussions, contador de usuários online em tempo real e correções completas de responsividade mobile no Code Evolution e no Mapa de Arquitetura.",
+    items: [
+      {
+        type: "feature",
+        description:
+          "Sistema de reações por página — ❤️ Curtir, 🔥 Incrível, 💡 Útil com toggle (adicionar, remover e trocar voto), armazenadas no Redis com deduplicação por IP + TTL de 24h",
+      },
+      {
+        type: "feature",
+        description:
+          "Integração Giscus — comentários via GitHub Discussions com tema CSS customizado que acompanha o tema escuro do site, carregamento lazy após primeira reação",
+      },
+      {
+        type: "feature",
+        description:
+          "ContentFooter — componente unificado que combina reações + comentários ao final de cada conteúdo; comentários aparecem automaticamente após o primeiro voto (via sessionStorage)",
+      },
+      {
+        type: "feature",
+        description:
+          "Online Counter — indicador de usuários online em tempo real no footer, atualizado a cada 30s via polling ao /api/online, usando Redis Sorted Set com TTL por sessão",
+      },
+      {
+        type: "feature",
+        description:
+          "API /api/reactions — endpoint com validação Zod, rate limiting distribuído via Redis, suporte a GET (leitura de contagens + voto do usuário) e POST (votar/desvota/trocar)",
+      },
+      {
+        type: "feature",
+        description:
+          "API /api/online — rastreamento de presença com Redis, registrado automaticamente pelo ViewTracker via sendBeacon em toda mudança de rota",
+      },
+      {
+        type: "feature",
+        description:
+          "Rate limiter distribuído via Upstash Redis — substitui o in-memory por fixed window atômica (INCR + EXPIRE) entre instâncias serverless; fallback silencioso para in-memory se Redis indisponível",
+      },
+      {
+        type: "fix",
+        description:
+          "Code Evolution mobile — scroll horizontal funcional no código com whitespace-pre + w-max min-w-full; step dots substituídos por contador compacto 'N / total' no mobile para evitar overflow",
+      },
+      {
+        type: "fix",
+        description:
+          "Code Evolution mobile — min-w-0 nos itens do grid para forçar criação de scroll em vez de expansão do container; padding e fonte reduzidos nas barras de git e commit",
+      },
+      {
+        type: "fix",
+        description:
+          "Seletores de evolução e projeto — scroll horizontal no mobile (overflow-x-auto) com shrink-0 nos botões, mantendo wrap centralizado no desktop",
+      },
+      {
+        type: "refactor",
+        description:
+          "ViewTracker — agora dispara beacon duplo (stats/track + online) em cada mudança de rota para registrar visualização e presença simultaneamente",
+      },
+    ],
+  },
+  {
+    version: "0.10.0",
+    date: "2026-02-22",
+    title: "Mapa de Arquitetura Interativo",
+    summary:
+      "Novo guia visual e interativo com 5 arquiteturas reais de referência (E-commerce SaaS, Dashboard Real-time, Social Feed, Video Streaming e Ride Sharing), layout dual responsivo e painel de detalhes animado com traduções estáveis via snapshot.",
+    items: [
+      {
+        type: "feature",
+        description:
+          "Guia: Mapa de Arquitetura — canvas interativo com nodes clicáveis, linhas de conexão animadas com SVG e painel de detalhes por node com tech stack e descrição técnica",
+        href: "/dicas/arch-map",
+      },
+      {
+        type: "feature",
+        description:
+          "5 arquiteturas de referência: E-commerce SaaS (Next.js + tRPC), Real-time Dashboard (WebSocket + Kafka), Social Feed (GraphQL + Cassandra), Video Streaming (HLS + FFmpeg) e Ride Sharing (Geohash + PostGIS)",
+      },
+      {
+        type: "feature",
+        description:
+          "3 novos projetos complexos — Social Feed (fan-out on write, Redis Sorted Sets, RabbitMQ), Video Streaming (tus upload, GPU transcoding, TF Recommenders) e Ride Sharing (matching Dijkstra, surge pricing ML, Redis Geo)",
+      },
+      {
+        type: "feature",
+        description:
+          "Layout dual responsivo — canvas absoluto com connection lines no desktop; grid 2 colunas sem SVG no mobile para garantir usabilidade em telas pequenas",
+      },
+      {
+        type: "refactor",
+        description:
+          "Estrutura modular projects/ — cada arquitetura em arquivo independente (ecommerce-saas.ts, realtime-dashboard.ts, social-feed.ts, video-streaming.ts, ride-sharing.ts) importados e re-exportados via index.ts; arch-data.ts virou re-export de uma linha",
+      },
+      {
+        type: "fix",
+        description:
+          "DetailPanel + AnimatePresence — padrão DetailSnapshot captura label, description e details traduzidos no momento do clique, eliminando MISSING_MESSAGE durante transições de projeto",
+      },
+      {
+        type: "fix",
+        description:
+          "React 19 key prop compliance — removido padrão sharedNodeProps que incluía key no spread; props passados explicitamente com key={node.id} diretamente no JSX em ambos os layouts",
+      },
+    ],
+  },
+  {
+    version: "0.9.0",
+    date: "2026-02-22",
+    title: "Novidades, Evolução de Código e Navbar Server Component",
+    summary:
+      "Página de novidades com timeline animada, novo guia interativo de evolução de código com 4 exemplos e refatoração do Navbar para Server Component com slugs populares via Redis.",
+    items: [
+      {
+        type: "feature",
+        description:
+          "Página Novidades — timeline animada do histórico de versões com badges por tipo (feature, fix, refactor, improvement)",
+        href: "/novidades",
+      },
+      {
+        type: "feature",
+        description:
+          "Guia: Evolução de Código — player interativo tipo git log animado com steps, métricas de qualidade e autoplay",
+        href: "/dicas/code-evolution",
+      },
+      {
+        type: "feature",
+        description:
+          "4 exemplos de evolução: React Lifecycle (class → SWR), State Management (prop drilling → Zustand), Form Validation (input não controlado → RHF + Zod) e Async Error Handling (fetch → Suspense + ErrorBoundary)",
+      },
+      {
+        type: "refactor",
+        description:
+          "Navbar refatorado para Server Component: `Navbar` vira async server, `NavbarClient` isola interatividade — slugs populares buscados server-side",
+      },
+      {
+        type: "feature",
+        description:
+          "`getPopularSlugs` — busca os conteúdos mais acessados no Redis com `unstable_cache` e filtra páginas de seção (depth < 2)",
+      },
+      {
+        type: "refactor",
+        description:
+          "Evoluções isoladas em arquivos individuais (`evolutions/*.ts`) — estrutura escalável e de fácil manutenção",
+      },
+      {
+        type: "fix",
+        description:
+          "`AbortError` filtrado no catch do custom hook `useUser` — eliminava falsos estados de erro no unmount",
+      },
+      {
+        type: "fix",
+        description:
+          "Rate limit corrigido para IPs desconhecidos — `getIp` retorna fallback seguro em vez de lançar exceção",
+      },
+      {
+        type: "improvement",
+        description:
+          "Novidades e Evolução de Código registradas na busca global, navegação e sitemap",
+      },
+    ],
+  },
+  {
     version: "0.8.0",
     date: "2026-02-22",
     title: "Refatoração Estrutural",

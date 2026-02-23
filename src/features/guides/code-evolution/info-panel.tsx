@@ -116,7 +116,7 @@ export function InfoPanel({
   const title = commitMessage.replace(/^(feat|refactor|fix):\s*/, "");
 
   return (
-    <div className="col-span-2">
+    <div className="col-span-2 min-w-0 border-t border-border lg:border-t-0">
       <AnimatePresence mode="wait">
         <motion.div
           key={stepId}
@@ -124,7 +124,7 @@ export function InfoPanel({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.3 }}
-          className="flex h-full flex-col p-6"
+          className="flex h-full flex-col p-4 md:p-6"
         >
           <div className="mb-6">
             <span className="font-mono text-xs text-muted-foreground">

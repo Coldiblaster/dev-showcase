@@ -10,6 +10,71 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
 ---
 
+## [0.11.0] — 2026-02-22
+
+### Adicionado
+
+- **Sistema de Reações** — ❤️ Curtir, 🔥 Incrível, 💡 Útil por página; toggle completo (adicionar, remover e trocar voto), contagens armazenadas no Redis com deduplicação por IP + TTL de 24h
+- **Giscus Comments** — Integração com GitHub Discussions para comentários; tema CSS customizado que acompanha o dark mode; carregamento lazy após a primeira reação do usuário
+- **ContentFooter** — Componente unificado ao final de cada conteúdo combinando reações + comentários; comentários abrem automaticamente após o primeiro voto via sessionStorage
+- **Online Counter** — Indicador de usuários online em tempo real no footer; polling a cada 30s ao `/api/online`; presença armazenada no Redis com Sorted Set e TTL por sessão
+- **API `/api/reactions`** — Validação Zod, rate limiting distribuído via Redis, suporte a GET (contagens + voto do usuário) e POST (votar/desvota/trocar)
+- **API `/api/online`** — Rastreamento de presença com Redis, registrado automaticamente pelo `ViewTracker` via `sendBeacon` em toda mudança de rota
+- **Rate limiter distribuído** — `redis-rate-limit.ts` via Upstash Redis com fixed window atômica (INCR + EXPIRE); fallback silencioso para in-memory se Redis indisponível
+
+### Corrigido
+
+- **Code Evolution mobile** — Scroll horizontal funcional no código com `whitespace-pre` + `w-max min-w-full`; `min-w-0` nos itens do grid para forçar scroll em vez de expansão do container
+- **Code Evolution mobile** — Step dots substituídos por contador compacto `N / total` no mobile, eliminando overflow na barra de controles
+- **Seletores de evolução e projeto** — Scroll horizontal (`overflow-x-auto`) com `shrink-0` nos botões no mobile; barras de git e commit com padding reduzido e truncate
+
+### Melhorado
+
+- `ViewTracker` agora dispara beacon duplo (`stats/track` + `online`) em cada mudança de rota para registrar visualização e presença simultaneamente
+
+---
+
+## [0.10.0] — 2026-02-22
+
+### Adicionado
+
+- **Guia: Mapa de Arquitetura Interativo** — Canvas visual com nodes clicáveis, linhas SVG animadas e painel de detalhes com tech stack por camada (`/dicas/arch-map`)
+- **5 arquiteturas de referência**: E-commerce SaaS (Next.js + tRPC + Prisma), Real-time Dashboard (WebSocket + Kafka + TimescaleDB), Social Feed (GraphQL + Cassandra + Fan-out), Video Streaming (HLS + FFmpeg GPU + TF Recommenders) e Ride Sharing (Geohash + PostGIS + Redis Geo)
+- **Layout dual responsivo** — Desktop com canvas absoluto e connection lines SVG; mobile com grid 2 colunas sem SVG, garantindo usabilidade em telas pequenas
+- **Estrutura modular `projects/`** — Cada arquitetura em arquivo independente (`ecommerce-saas.ts`, `realtime-dashboard.ts`, `social-feed.ts`, `video-streaming.ts`, `ride-sharing.ts`); `arch-data.ts` virou re-export de uma linha
+
+### Corrigido
+
+- **DetailPanel + AnimatePresence** — Padrão `DetailSnapshot` captura label, description e details já traduzidos no momento do clique, eliminando `MISSING_MESSAGE` durante transições de projeto
+- **React 19 key prop compliance** — Removido padrão `sharedNodeProps` que incluía `key` no spread; props passados explicitamente com `key={node.id}` diretamente no JSX
+
+---
+
+## [0.9.0] — 2026-02-22
+
+### Adicionado
+
+- **Página: Novidades** — Timeline animada do histórico de versões com badges por tipo (feature, fix, refactor, improvement) e links diretos para cada conteúdo (`/novidades`)
+- **Guia: Evolução de Código** — Player interativo tipo "git log animado" com steps, métricas de qualidade, melhorias explicadas e autoplay (`/dicas/code-evolution`)
+- 4 exemplos de evolução: React Lifecycle (class → SWR), State Management (prop drilling → Zustand), Form Validation (input não controlado → RHF + Zod), Async Error Handling (fetch → Suspense + ErrorBoundary)
+- `getPopularSlugs` — busca os conteúdos mais acessados do Redis com `unstable_cache`, filtrando páginas de seção (depth < 2)
+
+### Refatorado
+
+- **Navbar virou Server Component**: lógica de interatividade isolada em `NavbarClient`, slugs populares buscados server-side via `getPopularSlugs`
+- Cada evolução isolada em arquivo próprio (`evolutions/*.ts`) — estrutura escalável e de fácil manutenção
+
+### Corrigido
+
+- `AbortError` filtrado no catch do custom hook `useUser` — evitava falso estado de erro ao desmontar o componente
+- Rate limit corrigido para IPs desconhecidos — `getIp` retorna fallback seguro em vez de lançar exceção
+
+### Melhorado
+
+- Novidades e Evolução de Código registradas na busca global, navegação e sitemap
+
+---
+
 ## [0.8.0] — 2026-02-22
 
 ### Refactor

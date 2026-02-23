@@ -33,5 +33,16 @@
   "close": "Schließen",
   "terminal": "Terminal",
   "closeTerminal": "Terminal schließen",
-  "terminalInput": "Terminaleingabe"
+  "terminalInput": "Terminaleingabe",
+  "comments": {
+    "title": "Hinterlasse einen Kommentar"
+  },
+  "reactions": {
+    "title": "War dieser Inhalt hilfreich?",
+    "heart": "Hilfreich",
+    "fire": "Großartig",
+    "bulb": "Etwas gelernt",
+    "voted": "Danke für dein Feedback! 🙌",
+    "total": "{count, plural, one {# Reaktion} other {# Reaktionen}}"
+  }
 }

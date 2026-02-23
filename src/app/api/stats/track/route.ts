@@ -10,8 +10,9 @@ import { createHash } from "node:crypto";
 
 import { z } from "zod";
 
-import { getClientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
+import { getClientIp, rateLimitResponse } from "@/lib/rate-limit";
 import { redis } from "@/lib/redis";
+import { rateLimitAsync } from "@/lib/redis-rate-limit";
 
 const BOT_PATTERN =
   /bot|crawl|spider|slurp|facebookexternalhit|mediapartners|google|bing|yandex|baidu|duckduck|semrush|ahrefs|mj12bot|dotbot|petalbot|bytespider|gptbot|claude|headless|phantom|selenium|puppeteer|playwright|lighthouse|pagespeed|pingdom|uptimerobot|curl|wget|python[\s/-]|python-requests|node-fetch|axios|java\/|go-http-client|okhttp|ruby|perl|php/i;
@@ -49,7 +50,7 @@ export async function POST(request: Request) {
     }
 
     const ip = getClientIp(request);
-    const rl = rateLimit(ip, {
+    const rl = await rateLimitAsync(ip, {
       prefix: "stats-track",
       limit: 60,
       windowSeconds: 60,

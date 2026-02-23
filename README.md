@@ -24,7 +24,8 @@ Mais do que um portfolio, o **Dev Showcase** e uma plataforma open source que co
 - **Portfolio profissional** — hero, sobre, projetos, experiencia, estatisticas GitHub e contato
 - **IA integrada** — chat assistente (GPT-4.1 Nano) e revisor de codigo com IA (GPT-4o Mini)
 - **Implementacoes reais** — showcases tecnicos em producao (i18n, SEO, AI Chatbot, Analytics, Testing, Formulario de Contato)
-- **Guias para devs** — Estado no React, Next.js App Router, IA, Tailwind, React Query, seguranca, privacidade e recursos por nivel
+- **Guias para devs** — Estado no React, Next.js App Router, Evolucao de Codigo, Mapa de Arquitetura e muito mais
+- **Engajamento** — reacoes por pagina (❤️🔥💡), comentarios via Giscus (GitHub Discussions) e contador de usuarios online em tempo real
 - **Internacionalizacao completa** — 4 idiomas (pt-BR, en, es, de) com traducao automatizada
 - **SEO de producao** — OG images dinamicas, JSON-LD, sitemap, robots
 - **Busca global** — pesquisa fuzzy em todo o conteudo da plataforma
@@ -39,21 +40,22 @@ O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto c
 
 ## Tech Stack
 
-| Camada        | Tecnologias                                                          |
-| ------------- | -------------------------------------------------------------------- |
-| **Framework** | Next.js 16 (App Router)                                              |
-| **UI**        | React 19, Tailwind CSS 4, shadcn/ui (Radix UI)                       |
-| **Animacoes** | Framer Motion                                                        |
-| **i18n**      | next-intl (pt-BR, en, es, de) + traducao automatica (DeepL / Google) |
-| **SEO**       | Metadata API, Open Graph dinamico, JSON-LD, Sitemap, Robots          |
-| **IA**        | OpenAI (GPT-4o Mini para code review, GPT-4.1 Nano para chat)        |
-| **Validacao** | Zod (schema validation)                                              |
-| **Busca**     | Fuse.js (busca global fuzzy)                                         |
-| **Analytics** | Upstash Redis (page views, visitors via HyperLogLog, top pages)      |
-| **Email**     | Resend (formulario de contato)                                       |
-| **Seguranca** | Rate limiting, sanitizacao I/O, anti prompt injection, Zod schemas   |
-| **Testes**    | Vitest + Testing Library                                             |
-| **Deploy**    | Vercel + Analytics + Speed Insights                                  |
+| Camada          | Tecnologias                                                              |
+| --------------- | ------------------------------------------------------------------------ |
+| **Framework**   | Next.js 16 (App Router)                                                  |
+| **UI**          | React 19, Tailwind CSS 4, shadcn/ui (Radix UI)                           |
+| **Animacoes**   | Framer Motion                                                            |
+| **i18n**        | next-intl (pt-BR, en, es, de) + traducao automatica (DeepL / Google)     |
+| **SEO**         | Metadata API, Open Graph dinamico, JSON-LD, Sitemap, Robots              |
+| **IA**          | OpenAI (GPT-4o Mini para code review, GPT-4.1 Nano para chat)            |
+| **Validacao**   | Zod (schema validation)                                                  |
+| **Busca**       | Fuse.js (busca global fuzzy)                                             |
+| **Analytics**   | Upstash Redis (page views, visitors via HyperLogLog, top pages)          |
+| **Email**       | Resend (formulario de contato)                                           |
+| **Comentarios** | Giscus (GitHub Discussions, tema CSS customizado)                        |
+| **Seguranca**   | Rate limiting in-memory + Redis distribuido, Zod schemas, anti-injection |
+| **Testes**      | Vitest + Testing Library                                                 |
+| **Deploy**      | Vercel + Analytics + Speed Insights                                      |
 
 ---
 
@@ -93,19 +95,21 @@ O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto c
 
 ### Guias & Dicas
 
-| Rota                         | Descricao                                                         |
-| ---------------------------- | ----------------------------------------------------------------- |
-| `/dicas/ai-tips`             | Prompts e workflows com IA para devs                              |
-| `/dicas/tailwind-tips`       | Dicas de Tailwind CSS + shadcn/ui                                 |
-| `/dicas/react-query-tips`    | Patterns essenciais de React Query                                |
-| `/dicas/dev-resources`       | Snippets e recursos por nivel (Jr/Pleno/Sr)                       |
-| `/dicas/security-tips`       | Seguranca web — frontend, backend, headers, env vars              |
-| `/dicas/privacy-tips`        | Privacidade e cookies — LGPD, consentimento, politica             |
-| `/dicas/typescript-patterns` | Utility types, generics, narrowing e patterns avancados           |
-| `/dicas/git-workflow`        | Branching, commits, workflows e cheat sheet                       |
-| `/dicas/react-patterns`      | Composicao, hooks customizados, state e performance               |
-| `/dicas/nextjs-app-router`   | App Router — routing, Server/Client Components, data fetching     |
-| `/dicas/state-management`    | Estado no React — useState, Context, Zustand; comentarios em i18n |
+| Rota                         | Descricao                                                                                                    |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `/dicas/ai-tips`             | Prompts e workflows com IA para devs                                                                         |
+| `/dicas/tailwind-tips`       | Dicas de Tailwind CSS + shadcn/ui                                                                            |
+| `/dicas/react-query-tips`    | Patterns essenciais de React Query                                                                           |
+| `/dicas/dev-resources`       | Snippets e recursos por nivel (Jr/Pleno/Sr)                                                                  |
+| `/dicas/security-tips`       | Seguranca web — frontend, backend, headers, env vars                                                         |
+| `/dicas/privacy-tips`        | Privacidade e cookies — LGPD, consentimento, politica                                                        |
+| `/dicas/typescript-patterns` | Utility types, generics, narrowing e patterns avancados                                                      |
+| `/dicas/git-workflow`        | Branching, commits, workflows e cheat sheet                                                                  |
+| `/dicas/react-patterns`      | Composicao, hooks customizados, state e performance                                                          |
+| `/dicas/nextjs-app-router`   | App Router — routing, Server/Client Components, data fetching                                                |
+| `/dicas/state-management`    | Estado no React — useState, Context, Zustand; comentarios em i18n                                            |
+| `/dicas/code-evolution`      | Evolucao de Codigo — player interativo tipo git log com 4 exemplos (Lifecycle, State, Forms, Async)          |
+| `/dicas/arch-map`            | Mapa de Arquitetura — 5 projetos reais interativos (E-commerce, Dashboard, Social Feed, Video, Ride Sharing) |
 
 ### Projeto
 
@@ -122,14 +126,16 @@ O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto c
 
 ### API Routes
 
-| Rota               | Descricao                              |
-| ------------------ | -------------------------------------- |
-| `/api/chat`        | Chat IA com streaming (GPT-4.1 Nano)   |
-| `/api/code-review` | Revisao de codigo com IA (GPT-4o Mini) |
-| `/api/contact`     | Envio de email via Resend              |
-| `/api/github`      | Estatisticas do GitHub com cache       |
-| `/api/stats`       | Metricas da plataforma (Redis + cache) |
-| `/api/stats/track` | Tracking de page view (bot filter)     |
+| Rota               | Descricao                                                                               |
+| ------------------ | --------------------------------------------------------------------------------------- |
+| `/api/chat`        | Chat IA com streaming (GPT-4.1 Nano)                                                    |
+| `/api/code-review` | Revisao de codigo com IA (GPT-4o Mini)                                                  |
+| `/api/contact`     | Envio de email via Resend                                                               |
+| `/api/github`      | Estatisticas do GitHub com cache                                                        |
+| `/api/stats`       | Metricas da plataforma (Redis + cache)                                                  |
+| `/api/stats/track` | Tracking de page view (bot filter)                                                      |
+| `/api/reactions`   | Reacoes por pagina — GET contagens, POST votar/desvota/trocar (Redis + deduplicacao IP) |
+| `/api/online`      | Contador de usuarios online — registra presenca via sendBeacon, TTL por sessao no Redis |
 
 ---
 
@@ -143,11 +149,13 @@ src/
 │   │   ├── code-review/route.ts      #   Code Review IA
 │   │   ├── contact/route.ts          #   Envio de email
 │   │   ├── github/route.ts           #   GitHub stats
+│   │   ├── online/route.ts           #   Contador de usuarios online (Redis)
+│   │   ├── reactions/route.ts        #   Reacoes por pagina — ❤️🔥💡 (Redis)
 │   │   └── stats/                    #   Analytics proprio
 │   │       ├── route.ts              #     GET — metricas agregadas
 │   │       └── track/route.ts        #     POST — registra page view
 │   ├── novidades/                    # Changelog visual (/novidades)
-│   ├── dicas/[slug]/                 # Guias dinamicos (11 guias)
+│   ├── dicas/[slug]/                 # Guias dinamicos (13 guias)
 │   ├── ferramentas/[slug]/           # Ferramentas dinamicas (code-review, regex, json)
 │   ├── implementacoes/[slug]/        # Implementacoes (i18n, seo, ai-chatbot, analytics, testing, contact-form)
 │   ├── icon.tsx                      # Favicon dinamico (VB)
@@ -157,10 +165,14 @@ src/
 ├── components/
 │   ├── chat/                         # Widget de chat IA (dialog com a11y)
 │   ├── global-search/                # Busca global (Fuse.js)
-│   ├── navbar/                       # Navbar modular (9 componentes)
+│   ├── navbar/                       # Navbar Server Component + client interativo
 │   ├── terminal/                     # Terminal Easter Egg (focus trap)
 │   ├── ui/                           # Primitivos shadcn/ui
-│   ├── view-tracker.tsx              # Tracking de page view (sendBeacon)
+│   ├── reactions.tsx                 # Sistema de reacoes por pagina (❤️🔥💡)
+│   ├── giscus-comments.tsx           # Comentarios via GitHub Discussions (Giscus)
+│   ├── content-footer.tsx            # Footer de conteudo — reacoes + comentarios
+│   ├── online-counter.tsx            # Contador de usuarios online (polling 30s)
+│   ├── view-tracker.tsx              # Tracking de page view + presenca online
 │   ├── skip-link.tsx                 # Skip to content (acessibilidade)
 │   ├── page-skeleton.tsx             # Loading skeletons por tipo de pagina
 │   ├── section-nav.tsx               # Navegacao entre secoes
@@ -168,17 +180,21 @@ src/
 ├── features/
 │   ├── home/                         # Hero, About, Stack, GitHub Stats, Projects, etc.
 │   │   └── github-stats/             # GitHub Stats (hook + sub-componentes)
+│   ├── changelog/                    # Timeline animada de versoes (/novidades)
 │   ├── implementations/
 │   │   ├── ai-chatbot-showcase/      # Showcase AI Chatbot
-│   │   ├── analytics-showcase/      # Analytics com Upstash Redis
+│   │   ├── analytics-showcase/       # Analytics com Upstash Redis
 │   │   ├── code-review/              # Revisor de Codigo IA (ferramenta)
 │   │   ├── contact-showcase/         # Formulario de Contato (API, Resend, Bibliotecas)
 │   │   ├── i18n-showcase/            # Showcase i18n
 │   │   ├── json-tool/                # JSON Formatter & Validator (ferramenta)
-│   │   ├── regex-playground/        # Regex Playground (ferramenta)
+│   │   ├── regex-playground/         # Regex Playground (ferramenta)
 │   │   ├── seo-showcase/             # Showcase SEO
-│   │   └── testing-showcase/        # Testing Vitest + Testing Library
+│   │   └── testing-showcase/         # Testing Vitest + Testing Library
 │   ├── guides/
+│   │   ├── arch-map/                 # Mapa de Arquitetura — 5 projetos interativos
+│   │   │   └── projects/             #   Cada arquitetura em arquivo independente
+│   │   ├── code-evolution/           # Evolucao de Codigo — player tipo git log animado
 │   │   ├── ai-tips/                  # Dicas de IA
 │   │   ├── dev-resources/            # Recursos por nivel
 │   │   ├── git-workflow/             # Git Workflow & Cheat Sheet
@@ -187,7 +203,7 @@ src/
 │   │   ├── react-patterns/           # React Design Patterns
 │   │   ├── react-query-tips/         # React Query Essencial
 │   │   ├── security-tips/            # Seguranca Frontend & Backend
-│   │   ├── state-management/        # Estado no React (comentarios i18n)
+│   │   ├── state-management/         # Estado no React (comentarios i18n)
 │   │   ├── tailwind-tips/            # Tailwind CSS + shadcn/ui
 │   │   └── ts-patterns/              # TypeScript Patterns
 │   ├── contribute/
@@ -200,12 +216,14 @@ src/
 │   └── not-found/                    # Pagina 404
 ├── data/                             # Registros e dados estaticos
 │   ├── content.ts                    #   Registro de paginas dinamicas (guias, impl., ferramentas)
-│   └── changelog.ts                 #   Historico de versoes — alimenta /novidades
+│   └── changelog.ts                  #   Historico de versoes — alimenta /novidades
 ├── hooks/                            # Hooks customizados
 └── lib/
     ├── api-security.ts               # Seguranca compartilhada para APIs
-    ├── rate-limit.ts                 # Rate limiting in-memory
+    ├── rate-limit.ts                 # Rate limiting in-memory (fallback)
+    ├── redis-rate-limit.ts           # Rate limiting distribuido via Upstash Redis
     ├── redis.ts                      # Cliente Upstash Redis (graceful degradation)
+    ├── get-popular-slugs.ts          # Slugs mais acessados do Redis com unstable_cache
     ├── content-paths.ts              # Mapeamento canonico categoria → rota (fonte unica)
     ├── fill-code-placeholders.ts     # Util para i18n em snippets de codigo
     ├── dynamic-page-helper.tsx       # Mapa componente ↔ slug (COMPONENT_MAP)
@@ -250,16 +268,20 @@ pnpm dev
 
 Copie `.env.example` para `.env.local` e preencha:
 
-| Variavel                         |  Obrigatoria   | Descricao                     |
-| -------------------------------- | :------------: | ----------------------------- |
-| `OPENAI_API_KEY`                 |    Para IA     | Chat e Code Review            |
-| `RESEND_API_KEY`                 |   Para email   | Formulario de contato         |
-| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` |  Para contato  | reCAPTCHA v3 (client)         |
-| `RECAPTCHA_SECRET_KEY`           |  Para contato  | reCAPTCHA v3 (server)         |
-| `UPSTASH_REDIS_REST_URL`         | Para analytics | Metricas ao vivo (Upstash)    |
-| `UPSTASH_REDIS_REST_TOKEN`       | Para analytics | Token do Upstash Redis        |
-| `DEEPL_API_KEY`                  | Para traducao  | Traducao automatica (DeepL)   |
-| `GOOGLE_CLOUD_API_KEY`           | Para traducao  | Fallback de traducao (Google) |
+| Variavel                         |   Obrigatoria    | Descricao                                        |
+| -------------------------------- | :--------------: | ------------------------------------------------ |
+| `OPENAI_API_KEY`                 |     Para IA      | Chat e Code Review                               |
+| `RESEND_API_KEY`                 |    Para email    | Formulario de contato                            |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` |   Para contato   | reCAPTCHA v3 (client)                            |
+| `RECAPTCHA_SECRET_KEY`           |   Para contato   | reCAPTCHA v3 (server)                            |
+| `UPSTASH_REDIS_REST_URL`         |  Para analytics  | Metricas ao vivo, reacoes e online counter       |
+| `UPSTASH_REDIS_REST_TOKEN`       |  Para analytics  | Token do Upstash Redis                           |
+| `NEXT_PUBLIC_GISCUS_REPO`        | Para comentarios | Repositorio GitHub para Giscus (ex: `user/repo`) |
+| `NEXT_PUBLIC_GISCUS_REPO_ID`     | Para comentarios | ID do repositorio Giscus                         |
+| `NEXT_PUBLIC_GISCUS_CATEGORY`    | Para comentarios | Categoria do Giscus (ex: `General`)              |
+| `NEXT_PUBLIC_GISCUS_CATEGORY_ID` | Para comentarios | ID da categoria Giscus                           |
+| `DEEPL_API_KEY`                  |  Para traducao   | Traducao automatica (DeepL)                      |
+| `GOOGLE_CLOUD_API_KEY`           |  Para traducao   | Fallback de traducao (Google)                    |
 
 > A plataforma funciona sem essas chaves — os recursos que dependem delas ficam desabilitados graciosamente.
 

@@ -23,10 +23,10 @@ function CodeLine({ lineNumber, content, isHighlighted }: CodeLineProps) {
           : "text-muted-foreground"
       }`}
     >
-      <span className="inline-block w-10 select-none pr-4 text-right text-xs text-muted-foreground/40">
+      <span className="inline-block w-8 shrink-0 select-none pr-3 text-right text-xs text-muted-foreground/40">
         {lineNumber}
       </span>
-      <code className="flex-1 font-mono">{content || " "}</code>
+      <code className="whitespace-pre font-mono">{content || " "}</code>
     </div>
   );
 }
@@ -81,9 +81,10 @@ export function CodePanel({
   const t = useTranslations("codeEvolutionPage");
 
   return (
-    <div className="col-span-3 border-r border-border">
-      <div className="flex items-center justify-between border-b border-border px-4 py-3">
-        <div className="flex items-center gap-2">
+    <div className="col-span-3 min-w-0 lg:border-r lg:border-border">
+      {/* Controls bar */}
+      <div className="flex items-center justify-between border-b border-border px-3 py-2.5 md:px-4 md:py-3">
+        <div className="flex items-center gap-1.5">
           <Button
             variant="ghost"
             size="icon"
@@ -119,7 +120,13 @@ export function CodePanel({
           </Button>
         </div>
 
-        <div className="flex items-center gap-2">
+        {/* Mobile: compact "2 / 4" counter */}
+        <span className="font-mono text-xs text-muted-foreground md:hidden">
+          {currentStep + 1} / {stepCount}
+        </span>
+
+        {/* Desktop: clickable step dots */}
+        <div className="hidden items-center gap-2 md:flex">
           {Array.from({ length: stepCount }).map((_, i) => (
             <StepDot
               key={i}
@@ -133,6 +140,7 @@ export function CodePanel({
         </div>
       </div>
 
+      {/* Code area — horizontal scroll on overflow */}
       <AnimatePresence mode="wait">
         <motion.div
           key={step.id}
@@ -140,11 +148,11 @@ export function CodePanel({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="overflow-auto p-4"
-          style={{ maxHeight: "500px" }}
+          className="overflow-x-auto p-3 md:p-4"
+          style={{ maxHeight: "420px", overflowY: "auto" }}
           aria-label={t("ui.version") + " " + step.id}
         >
-          <pre className="text-sm leading-relaxed">
+          <pre className="w-max min-w-full text-xs leading-relaxed md:text-sm">
             {step.code.split("\n").map((line, i) => (
               <CodeLine
                 key={i}

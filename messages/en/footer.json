@@ -1,5 +1,6 @@
 {
   "built": "Built with Next.js, next-intl & Framer Motion",
   "rights": "All rights reserved",
-  "privacy": "Privacy"
+  "privacy": "Privacy",
+  "online": "{count, plural, one {# person online now} other {# people online now}}"
 }

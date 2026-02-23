@@ -20,6 +20,7 @@ import {
   Heart,
   Layers,
   Mail,
+  Network,
   Paintbrush,
   Regex,
   Route,
@@ -94,6 +95,8 @@ export type NavKey =
   | "nextjsAppRouterDesc"
   | "codeEvolution"
   | "codeEvolutionDesc"
+  | "archMap"
+  | "archMapDesc"
   | "stateManagement"
   | "stateManagementDesc"
   | "contribute"
@@ -258,6 +261,12 @@ export const contentGroup: NavGroup = {
           labelKey: "codeEvolution",
           sublabelKey: "codeEvolutionDesc",
           href: "/dicas/code-evolution",
+        },
+        {
+          icon: Network,
+          labelKey: "archMap",
+          sublabelKey: "archMapDesc",
+          href: "/dicas/arch-map",
         },
         {
           icon: Layers,

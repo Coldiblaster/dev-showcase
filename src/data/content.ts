@@ -162,6 +162,14 @@ export const CONTENT_ITEMS: ContentItem[] = [
     category: "guide",
   },
   {
+    slug: "arch-map",
+    title: "Arquitetura de Software — Mapas Interativos",
+    description:
+      "Explore arquiteturas de projetos reais de forma visual e interativa. E-commerce SaaS, Real-time Dashboard e mais — clique nos nodes para entender cada camada.",
+    component: "ArchMap",
+    category: "guide",
+  },
+  {
     slug: "state-management",
     title: "Estado no React — useState, Context e libs",
     description:

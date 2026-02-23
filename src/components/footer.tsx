@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
 
+import { OnlineCounter } from "@/components/online-counter";
 import { Separator } from "@/components/ui/separator";
 import { PERSONAL } from "@/lib/constants";
 
@@ -79,9 +80,12 @@ export function Footer() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex flex-col items-center gap-2 text-center sm:flex-row sm:justify-between"
         >
-          <p className="font-mono text-xs text-muted-foreground">
-            {t("built")}
-          </p>
+          <div className="flex flex-col items-center gap-2 sm:items-start">
+            <p className="font-mono text-xs text-muted-foreground">
+              {t("built")}
+            </p>
+            <OnlineCounter />
+          </div>
           <div className="flex items-center gap-4">
             <Link
               href="/privacidade"

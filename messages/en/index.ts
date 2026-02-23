@@ -6,6 +6,7 @@ import aiInnovation from "./aiInnovation.json";
 import analyticsPage from "./analyticsPage.json";
 import apiDocsPage from "./apiDocsPage.json";
 import architecturePage from "./architecturePage.json";
+import archMapPage from "./archMapPage.json";
 import changelogPage from "./changelogPage.json";
 import chat from "./chat.json";
 import codeEvolutionPage from "./codeEvolutionPage.json";
@@ -104,6 +105,7 @@ export default {
   tipsPage,
   tsPatterns,
   tutorialPage,
+  archMapPage,
   changelogPage,
   codeEvolutionPage,
   viewSource,

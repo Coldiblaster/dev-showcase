@@ -5,8 +5,9 @@
  * Cache: in-memory 60s + Cache-Control para CDN.
  */
 
-import { getClientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
+import { getClientIp, rateLimitResponse } from "@/lib/rate-limit";
 import { redis } from "@/lib/redis";
+import { rateLimitAsync } from "@/lib/redis-rate-limit";
 
 interface StatsResponse {
   views: number;
@@ -31,7 +32,7 @@ export async function GET(request: Request) {
 
   try {
     const ip = getClientIp(request);
-    const rl = rateLimit(ip, {
+    const rl = await rateLimitAsync(ip, {
       prefix: "stats-read",
       limit: 30,
       windowSeconds: 60,
