@@ -2,8 +2,16 @@
 
 import Giscus from "@giscus/react";
 import { MessageSquare } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
+
+// Mapeia os locales do site para os códigos suportados pelo Giscus
+const LOCALE_TO_GISCUS: Record<string, string> = {
+  "pt-BR": "pt",
+  en: "en",
+  es: "es",
+  de: "de",
+};
 
 // http://localhost não funciona: giscus.app é HTTPS e o browser bloqueia mixed content.
 // Em produção (HTTPS) o CSS customizado é carregado normalmente.
@@ -25,6 +33,8 @@ interface GiscusCommentsProps {
 
 export function GiscusComments({ path }: GiscusCommentsProps) {
   const t = useTranslations("global.comments");
+  const locale = useLocale();
+  const giscusLang = LOCALE_TO_GISCUS[locale] ?? "en";
   const [mounted, setMounted] = useState(false);
   const [themeUrl, setThemeUrl] = useState("dark_dimmed");
 
@@ -57,7 +67,7 @@ export function GiscusComments({ path }: GiscusCommentsProps) {
           emitMetadata="0"
           inputPosition="top"
           theme={themeUrl}
-          lang="pt"
+          lang={giscusLang}
           loading="lazy"
         />
       )}
