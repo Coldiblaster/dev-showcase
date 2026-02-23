@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Flame } from "lucide-react";
 import Link from "next/link";
 
 interface SubmenuItemProps {
@@ -10,6 +11,7 @@ interface SubmenuItemProps {
   onClick?: () => void;
   href?: string;
   isActive?: boolean;
+  isPopular?: boolean;
 }
 
 export function SubmenuItem({
@@ -19,6 +21,7 @@ export function SubmenuItem({
   onClick,
   href,
   isActive,
+  isPopular,
 }: SubmenuItemProps) {
   const content = (
     <>
@@ -31,7 +34,7 @@ export function SubmenuItem({
       >
         <Icon className="h-3.5 w-3.5" />
       </div>
-      <div className="min-w-0">
+      <div className="min-w-0 flex-1">
         <p
           className={`truncate text-sm ${isActive ? "font-medium text-primary" : "text-foreground"}`}
         >
@@ -41,6 +44,12 @@ export function SubmenuItem({
           <p className="truncate text-xs text-muted-foreground">{sublabel}</p>
         )}
       </div>
+      {isPopular && (
+        <span className="ml-auto flex shrink-0 items-center gap-0.5 rounded-full bg-orange-500/10 px-1.5 py-0.5 text-[10px] font-medium text-orange-400">
+          <Flame className="h-2.5 w-2.5" />
+          Popular
+        </span>
+      )}
     </>
   );
 

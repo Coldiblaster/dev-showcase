@@ -1,9 +1,10 @@
 /**
  * Rate limiter in-memory para API routes.
  *
- * Usa sliding window por IP. Funciona em serverless (Vercel Functions)
- * com a ressalva de que cada cold start reseta o contador.
- * Para produção com alto tráfego, considere usar Upstash Redis.
+ * Usa fixed window por IP (não sliding window — o contador reseta num ponto
+ * fixo no tempo, não em janela deslizante).
+ * Funciona em serverless (Vercel Functions) com a ressalva de que cada cold
+ * start reseta o contador. Para produção com alto tráfego, use Upstash Redis.
  */
 
 interface RateLimitEntry {

@@ -4,6 +4,7 @@ import {
   Database,
   FileCode,
   GitBranch,
+  GitCommitHorizontal,
   Layers,
   Palette,
   Route,
@@ -30,6 +31,7 @@ const iconMap = {
   "react-patterns": Component,
   "nextjs-app-router": Route,
   "state-management": Layers,
+  "code-evolution": GitCommitHorizontal,
 };
 
 export async function generateMetadata(): Promise<Metadata> {

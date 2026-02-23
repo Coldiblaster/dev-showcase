@@ -107,17 +107,18 @@ O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto c
 | `/dicas/nextjs-app-router`   | App Router — routing, Server/Client Components, data fetching     |
 | `/dicas/state-management`    | Estado no React — useState, Context, Zustand; comentarios em i18n |
 
-### Contribuicao (`/contribua`)
+### Projeto
 
-| Rota                        | Descricao                                                   |
-| --------------------------- | ----------------------------------------------------------- |
-| `/contribua`                | Hub de contribuicao com visao geral de todas as sub-paginas |
-| `/contribua/tutorial`       | Tutorial interativo passo a passo para novos contribuidores |
-| `/contribua/arquitetura`    | Visao geral da arquitetura tecnica do projeto               |
-| `/contribua/tech-stack`     | Stack de tecnologias com detalhes de cada ferramenta        |
-| `/contribua/design-system`  | Catalogo interativo de componentes (previews + codigo)      |
-| `/contribua/api`            | Documentacao das API Routes com exemplos de requests        |
-| `/contribua/acessibilidade` | Guia de acessibilidade — padrao do projeto                  |
+| Rota                        | Descricao                                                     |
+| --------------------------- | ------------------------------------------------------------- |
+| `/novidades`                | Changelog visual — historico de versoes, features e melhorias |
+| `/contribua`                | Hub de contribuicao com visao geral de todas as sub-paginas   |
+| `/contribua/tutorial`       | Tutorial interativo passo a passo para novos contribuidores   |
+| `/contribua/arquitetura`    | Visao geral da arquitetura tecnica do projeto                 |
+| `/contribua/tech-stack`     | Stack de tecnologias com detalhes de cada ferramenta          |
+| `/contribua/design-system`  | Catalogo interativo de componentes (previews + codigo)        |
+| `/contribua/api`            | Documentacao das API Routes com exemplos de requests          |
+| `/contribua/acessibilidade` | Guia de acessibilidade — padrao do projeto                    |
 
 ### API Routes
 
@@ -145,6 +146,7 @@ src/
 │   │   └── stats/                    #   Analytics proprio
 │   │       ├── route.ts              #     GET — metricas agregadas
 │   │       └── track/route.ts        #     POST — registra page view
+│   ├── novidades/                    # Changelog visual (/novidades)
 │   ├── dicas/[slug]/                 # Guias dinamicos (11 guias)
 │   ├── ferramentas/[slug]/           # Ferramentas dinamicas (code-review, regex, json)
 │   ├── implementacoes/[slug]/        # Implementacoes (i18n, seo, ai-chatbot, analytics, testing, contact-form)
@@ -196,12 +198,16 @@ src/
 │   │   ├── api/                      # Documentacao das APIs
 │   │   └── accessibility/            # Guia de acessibilidade
 │   └── not-found/                    # Pagina 404
-├── data/                             # Registro de conteudo (content.ts) e dados estaticos
+├── data/                             # Registros e dados estaticos
+│   ├── content.ts                    #   Registro de paginas dinamicas (guias, impl., ferramentas)
+│   └── changelog.ts                 #   Historico de versoes — alimenta /novidades
 ├── hooks/                            # Hooks customizados
 └── lib/
     ├── api-security.ts               # Seguranca compartilhada para APIs
     ├── rate-limit.ts                 # Rate limiting in-memory
     ├── redis.ts                      # Cliente Upstash Redis (graceful degradation)
+    ├── content-paths.ts              # Mapeamento canonico categoria → rota (fonte unica)
+    ├── fill-code-placeholders.ts     # Util para i18n em snippets de codigo
     ├── dynamic-page-helper.tsx       # Mapa componente ↔ slug (COMPONENT_MAP)
     ├── chat/                         # System prompt do chat IA
     ├── email/                        # Template de email (Resend)
@@ -311,6 +317,7 @@ O projeto esta configurado para deploy na **Vercel** com zero configuracao:
 | [docs/content-management/ADDING_PAGES.md](./docs/content-management/ADDING_PAGES.md) | Como criar novas paginas (guias, impl., tools)         |
 | [docs/i18n/INDEX.md](./docs/i18n/INDEX.md)                                           | Sistema de internacionalizacao                         |
 | [docs/revisao-dev-senior-novidades.md](./docs/revisao-dev-senior-novidades.md)       | Revisao das novidades (Estado no React, Form. Contato) |
+| [CHANGELOG.md](./CHANGELOG.md)                                                       | Historico de versoes — Keep a Changelog                |
 
 > **Tutorial interativo** para novos contribuidores: [`/contribua/tutorial`](https://viniciusbastazin.vercel.app/contribua/tutorial) — passo a passo com trilhas para "nova feature" e "melhorar existente".
 

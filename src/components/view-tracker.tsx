@@ -18,9 +18,13 @@ export function ViewTracker() {
     const path = pathname.replace(/^\/(pt-BR|en|es|de)/, "") || "/";
     const storageKey = `tracked:${path}`;
 
-    if (sessionStorage.getItem(storageKey)) return;
-
-    sessionStorage.setItem(storageKey, "1");
+    // sessionStorage pode lançar em Safari ITP / modo privado
+    try {
+      if (sessionStorage.getItem(storageKey)) return;
+      sessionStorage.setItem(storageKey, "1");
+    } catch {
+      return;
+    }
 
     const body = JSON.stringify({ path });
 

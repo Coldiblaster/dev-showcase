@@ -1,0 +1,243 @@
+{
+  "hero": {
+    "badge": "Code Evolution",
+    "title": "Code Evolution",
+    "subtitle": "// git log --pretty=improvements",
+    "description": "Watch how code evolves from the initial version to current best practices, commit by commit — like an animated git log with real-time quality metrics."
+  },
+  "sectionNav": {
+    "lifecycle": "React Lifecycle",
+    "stateManagement": "State Management"
+  },
+  "ui": {
+    "version": "Version",
+    "of": "of",
+    "whatChanged": "What changed",
+    "metrics": "Metrics",
+    "prevStep": "Previous step",
+    "nextStep": "Next step",
+    "play": "Play",
+    "pause": "Pause",
+    "stepLabel": "Step {number}"
+  },
+  "levels": {
+    "bad": "Problematic",
+    "better": "Improving",
+    "good": "Good",
+    "great": "Great"
+  },
+  "evolutions": {
+    "react-lifecycle": {
+      "title": "React Component Lifecycle",
+      "description": "From class components to modern hooks",
+      "v1": {
+        "timestamp": "2 years ago",
+        "improvements": {},
+        "metricLabels": {
+          "0": "Lines",
+          "1": "Readability",
+          "2": "Reusability"
+        }
+      },
+      "v2": {
+        "timestamp": "1 year ago",
+        "improvements": {
+          "0": "Class component migrated to functional",
+          "1": "useState replaces this.state",
+          "2": "useEffect replaces lifecycle methods"
+        },
+        "metricLabels": {
+          "0": "Lines",
+          "1": "Readability",
+          "2": "Reusability"
+        }
+      },
+      "v3": {
+        "timestamp": "6 months ago",
+        "improvements": {
+          "0": "Custom hook useUser extracted",
+          "1": "AbortController prevents race conditions and memory leaks",
+          "2": "AbortError filtered in catch — no false errors",
+          "3": "Component focused only on UI",
+          "4": "Hook reusable in any component"
+        },
+        "metricLabels": {
+          "0": "Lines",
+          "1": "Readability",
+          "2": "Reusability"
+        }
+      },
+      "v4": {
+        "timestamp": "Current",
+        "improvements": {
+          "0": "SWR handles cache, revalidation and dedup",
+          "1": "No useEffect, no manual state",
+          "2": "Automatic cache between components",
+          "3": "Smart revalidation",
+          "4": "Minimal and declarative code"
+        },
+        "metricLabels": {
+          "0": "Lines",
+          "1": "Readability",
+          "2": "Reusability"
+        }
+      }
+    },
+    "state-management": {
+      "title": "State Management",
+      "description": "From prop drilling to elegant global state",
+      "s1": {
+        "timestamp": "2 years ago",
+        "improvements": {},
+        "metricLabels": {
+          "0": "Props passed",
+          "1": "Maintainability",
+          "2": "Scalability"
+        }
+      },
+      "s2": {
+        "timestamp": "1 year ago",
+        "improvements": {
+          "0": "Context eliminates prop drilling",
+          "1": "useTheme hook for easy access",
+          "2": "Provider centralizes state"
+        },
+        "metricLabels": {
+          "0": "Props passed",
+          "1": "Maintainability",
+          "2": "Scalability"
+        }
+      },
+      "s3": {
+        "timestamp": "Current",
+        "improvements": {
+          "0": "Zero boilerplate, zero Provider",
+          "1": "Automatic persistence in localStorage",
+          "2": "Selectors prevent re-renders",
+          "3": "Works outside React components",
+          "4": "TypeScript first-class"
+        },
+        "metricLabels": {
+          "0": "Props passed",
+          "1": "Maintainability",
+          "2": "Scalability"
+        }
+      }
+    },
+    "form-validation": {
+      "title": "Form Validation",
+      "description": "From uncontrolled input to RHF + Zod",
+      "f1": {
+        "timestamp": "2 years ago",
+        "improvements": {},
+        "metricLabels": {
+          "0": "Lines",
+          "1": "Validation",
+          "2": "Type Safety"
+        }
+      },
+      "f2": {
+        "timestamp": "1 year ago",
+        "improvements": {
+          "0": "Controlled inputs with useState",
+          "1": "Custom validation extracted",
+          "2": "Inline errors — no more alert()"
+        },
+        "metricLabels": {
+          "0": "Lines",
+          "1": "Validation",
+          "2": "Type Safety"
+        }
+      },
+      "f3": {
+        "timestamp": "6 months ago",
+        "improvements": {
+          "0": "React Hook Form eliminates manual state",
+          "1": "Declarative validation in register rules",
+          "2": "Native isSubmitting — no extra state",
+          "3": "Minimal re-renders per field"
+        },
+        "metricLabels": {
+          "0": "Lines",
+          "1": "Validation",
+          "2": "Type Safety"
+        }
+      },
+      "f4": {
+        "timestamp": "Current",
+        "improvements": {
+          "0": "Zod schema — single source of truth",
+          "1": "TypeScript types inferred from schema",
+          "2": "Schema reused on backend (same schema)",
+          "3": "Clean register() — no inline rules",
+          "4": "Typed errors — type-safe message access"
+        },
+        "metricLabels": {
+          "0": "Lines",
+          "1": "Validation",
+          "2": "Type Safety"
+        }
+      }
+    },
+    "async-errors": {
+      "title": "Async Error Handling",
+      "description": "From bare fetch to Suspense + ErrorBoundary",
+      "e1": {
+        "timestamp": "2 years ago",
+        "improvements": {},
+        "metricLabels": {
+          "0": "Lines",
+          "1": "Error handling",
+          "2": "Readability"
+        }
+      },
+      "e2": {
+        "timestamp": "1 year ago",
+        "improvements": {
+          "0": "try/catch with loading and error states",
+          "1": "res.ok check — HTTP errors handled",
+          "2": "finally ensures loading always resets"
+        },
+        "metricLabels": {
+          "0": "Lines",
+          "1": "Error handling",
+          "2": "Readability"
+        }
+      },
+      "e3": {
+        "timestamp": "6 months ago",
+        "improvements": {
+          "0": "React Query manages loading, error and cache",
+          "1": "Automatic retry on failure",
+          "2": "No useEffect, no manual state",
+          "3": "Cache shared between components"
+        },
+        "metricLabels": {
+          "0": "Lines",
+          "1": "Error handling",
+          "2": "Readability"
+        }
+      },
+      "e4": {
+        "timestamp": "Current",
+        "improvements": {
+          "0": "useSuspenseQuery — data always available on render",
+          "1": "ErrorBoundary catches any error in the subtree",
+          "2": "Suspense separates loading from business component",
+          "3": "UserList only thinks about data — zero UI state",
+          "4": "Composition: error and loading declarative in page"
+        },
+        "metricLabels": {
+          "0": "Lines",
+          "1": "Error handling",
+          "2": "Readability"
+        }
+      }
+    }
+  },
+  "cta": {
+    "title": "See more guides",
+    "description": "Next.js App Router, React Patterns, TypeScript and Git: more practical guides in the Tips section.",
+    "button": "See all tips"
+  }
+}

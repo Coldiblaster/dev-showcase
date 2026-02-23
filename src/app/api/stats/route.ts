@@ -1,7 +1,7 @@
 /**
  * GET /api/stats — Retorna stats agregados da plataforma.
  *
- * Dados: total de views, visitantes únicos (HyperLogLog) e top 5 páginas.
+ * Dados: total de views, visitantes únicos (HyperLogLog) e top 10 páginas.
  * Cache: in-memory 60s + Cache-Control para CDN.
  */
 
@@ -51,7 +51,7 @@ export async function GET(request: Request) {
     const pipeline = redis.pipeline();
     pipeline.get("stats:views");
     pipeline.pfcount("stats:visitors");
-    pipeline.zrange("stats:pages", 0, 4, { rev: true, withScores: true });
+    pipeline.zrange("stats:pages", 0, 9, { rev: true, withScores: true });
 
     const results = await pipeline.exec();
 

@@ -86,6 +86,9 @@ const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
   JsonTool: dynamic(() =>
     import("@/features/implementations/json-tool").then((m) => m.JsonTool),
   ),
+  CodeEvolution: dynamic(() =>
+    import("@/features/guides/code-evolution").then((m) => m.CodeEvolution),
+  ),
   StateManagement: dynamic(() =>
     import("@/features/guides/state-management").then((m) => m.StateManagement),
   ),

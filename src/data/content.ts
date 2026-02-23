@@ -154,6 +154,14 @@ export const CONTENT_ITEMS: ContentItem[] = [
     category: "tool",
   },
   {
+    slug: "code-evolution",
+    title: "Evolução de Código — De Legado a Best Practice",
+    description:
+      "Veja como um código evolui da versão inicial até a melhor prática atual, commit por commit. React Lifecycle, State Management e mais exemplos animados.",
+    component: "CodeEvolution",
+    category: "guide",
+  },
+  {
     slug: "state-management",
     title: "Estado no React — useState, Context e libs",
     description:

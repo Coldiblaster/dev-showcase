@@ -57,8 +57,12 @@ export async function POST(request: Request) {
       return Response.json({ error: "Invalid" }, { status: 400 });
     }
 
+    // Usa salt dedicado para não depender do token do Redis.
+    // Se ANALYTICS_SALT não estiver definido, usa o token como fallback temporário.
+    const salt =
+      process.env.ANALYTICS_SALT ?? process.env.UPSTASH_REDIS_REST_TOKEN ?? "";
     const ipHash = createHash("sha256")
-      .update(ip + process.env.UPSTASH_REDIS_REST_TOKEN)
+      .update(ip + salt)
       .digest("hex")
       .slice(0, 16);
 

@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "title": "Changelog — Novedades y Mejoras",
+    "description": "Sigue la evolución del proyecto: nuevas guías, implementaciones, herramientas y mejoras técnicas añadidas en cada versión."
+  },
+  "hero": {
+    "badge": "Changelog",
+    "title": "Novedades y Mejoras",
+    "description": "Sigue la evolución del proyecto. Cada versión trae nuevas guías, implementaciones, herramientas y mejoras técnicas.",
+    "latestBadge": "Más reciente"
+  },
+  "types": {
+    "feature": "Nuevo",
+    "fix": "Corrección",
+    "refactor": "Refactorización",
+    "improvement": "Mejora"
+  },
+  "itemsCount": "{count} elementos"
+}

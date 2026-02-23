@@ -34,7 +34,7 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 │  /impl.      │  /api/contact    │   opengraph-image.tsx  │
 │  /ferramentas│  /api/github     │   icon.tsx             │
 │  /contribua  │  /api/stats      │                        │
-│              │  /api/stats/track│                        │
+│  /novidades  │  /api/stats/track│                        │
 ├──────────────┴──────────────────┴────────────────────────┤
 │                       Features                            │
 │  home/ ─── hero, about, stack, github-stats, projects,   │
@@ -44,6 +44,7 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 │  guides/ ─── ai-tips, tailwind, react-query, security,   │
 │     privacy-tips, dev-resources, ts-patterns, git-workflow│
 │     react-patterns, nextjs-app-router, state-management  │
+│  changelog/ ─── página /novidades (data/changelog.ts)    │
 │  contribute/ ─── tutorial, design-system, arquitetura,   │
 │     tech-stack, api, accessibility                        │
 ├──────────────────────────────────────────────────────────┤
@@ -69,7 +70,10 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 ├──────────────────────────────────────────────────────────┤
 │                       Dados                               │
 │  data/content.ts (registro de paginas dinamicas)         │
+│  data/changelog.ts (versoes e mudancas — /novidades)     │
 │  lib/dynamic-page-helper.tsx (COMPONENT_MAP)             │
+│  lib/content-paths.ts (mapeamento categoria → rota)      │
+│  lib/fill-code-placeholders.ts (util para snippets i18n) │
 │  data/demo-messages.ts (mensagens demo do chat)          │
 │  messages/ (pt-BR, en, es, de — namespaces por pagina)   │
 ├──────────────────────────────────────────────────────────┤
@@ -96,14 +100,23 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
         ↓
 5. Criar traducoes em messages/pt-BR/<namespace>.json
         ↓
-6. Registrar namespace em messages/pt-BR/index.ts + lib/i18n/types.d.ts
+6. Registrar namespace em:
+   - messages/pt-BR/index.ts (e nos outros 3 idiomas)
+   - src/lib/i18n/load-messages.ts (array NAMESPACES)
+   - src/lib/i18n/types.d.ts
         ↓
 7. Adicionar ao menu (navbar/nav-data.ts) e busca (search-data.ts + search.json)
         ↓
 8. Rodar pnpm translate && pnpm validate:i18n
         ↓
 9. Testar build: pnpm build
+        ↓
+10. Atualizar CHANGELOG.md e src/data/changelog.ts
 ```
+
+> **Pagina standalone** (sem content.ts): crie `src/app/<rota>/page.tsx` e `src/features/<nome>/index.tsx`.
+> Se tiver dados proprios, crie `src/data/<nome>.ts` (ex: `changelog.ts`).
+> Ainda precisa dos passos 5, 6, 7, 9 e 10.
 
 > Guia detalhado: [Adicionando Paginas](./content-management/ADDING_PAGES.md)
 > Tutorial interativo para contribuidores: `/contribua/tutorial`
@@ -181,7 +194,8 @@ chore: tarefas de build/config
 
 | Documento                                                                  | Descricao                                                                                                                      |
 | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| [Revisao dev senior (novidades)](./revisao-dev-senior-novidades.md)        | Revisao tecnica: comentarios i18n (Estado no React) e seção Bibliotecas (Form. Contato). Ver tambem PLANO (Status — Lancados). |
+| [CHANGELOG.md](../CHANGELOG.md)                                            | Historico de versoes do projeto (Keep a Changelog). Fonte de verdade para src/data/changelog.ts e a pagina /novidades.         |
+| [Revisao dev senior (novidades)](./revisao-dev-senior-novidades.md)        | Revisao tecnica: comentarios i18n (Estado no React) e secao Bibliotecas (Form. Contato). Ver tambem PLANO (Status — Lancados). |
 | [Post LinkedIn (lancamentos)](./linkedin-post-novidades-estado-contato.md) | Rascunhos de post para LinkedIn: 5 lancamentos (Next.js App Router, Testing, JSON Formatter, Estado no React, Form. Contato)   |
 
 ---

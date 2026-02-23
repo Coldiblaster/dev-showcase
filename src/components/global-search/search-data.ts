@@ -148,6 +148,22 @@ function buildTags(slug: string): string[] {
       "layout",
       "page",
     ],
+    "code-evolution": [
+      "evolução",
+      "evolution",
+      "refactor",
+      "refatoração",
+      "clean code",
+      "boas práticas",
+      "best practices",
+      "lifecycle",
+      "hooks",
+      "swr",
+      "zustand",
+      "legado",
+      "legacy",
+      "melhoria",
+    ],
     "state-management": [
       "estado",
       "react",
@@ -267,6 +283,25 @@ const STANDALONE_PAGES: SearchResult[] = [
       "fork",
       "pr",
       "pull request",
+    ],
+  },
+];
+
+const META_PAGES: SearchResult[] = [
+  {
+    id: "page-changelog",
+    titleKey: "items.changelog.title",
+    descriptionKey: "items.changelog.description",
+    type: "page",
+    url: "/novidades",
+    tags: [
+      "changelog",
+      "novidades",
+      "atualizações",
+      "versões",
+      "releases",
+      "what's new",
+      "melhorias",
     ],
   },
 ];
@@ -395,6 +430,7 @@ const HOME_SECTIONS: SearchResult[] = [
 ];
 
 export const SEARCH_ITEMS: SearchResult[] = [
+  ...META_PAGES,
   ...STANDALONE_PAGES,
   ...LISTING_PAGES,
   ...HOME_SECTIONS,

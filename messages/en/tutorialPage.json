@@ -65,7 +65,10 @@
         "contribute": "All /contribua pages live here",
         "lib": "Utilities, helpers, configurations",
         "hooks": "Custom React hooks",
-        "data": "Static data — content.ts registers all dynamic pages",
+        "data": "Static data and content registries for the project",
+        "contentTs": "Registry of all dynamic pages (guides, implementations, tools)",
+        "changelogTs": "Version history and changes — powers the /novidades page",
+        "novidades": "Changelog page — lists all versions and improvements",
         "dynamicHelper": "Dynamic page system — connects slugs to components",
         "messages": "Translation files by language (pt-BR, en, es, de)",
         "public": "Static assets (images, fonts, icons)"
@@ -208,7 +211,7 @@
       "workflowTitle": "Translation workflow",
       "workflow": {
         "w1": "Create keys in messages/pt-BR/yourNamespace.json",
-        "w2": "Register the namespace in messages/pt-BR/index.ts (and other languages)",
+        "w2": "Register the namespace in messages/pt-BR/index.ts (and other languages) and in src/lib/i18n/load-messages.ts (NAMESPACES array)",
         "w3": "Add the type in src/lib/i18n/types.d.ts",
         "w4": "Add title and description in messages/*/search.json (for global search)",
         "w5": "If added to nav, update messages/*/nav.json with label and description",

@@ -1,10 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 import { GlobalSearch } from "@/components/global-search";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { CHANGELOG } from "@/data/changelog";
+
+/** Data do lançamento mais recente para checar se é "novo" (< 14 dias). */
+const LATEST_DATE = new Date(CHANGELOG[0].date);
+const IS_RECENT =
+  (Date.now() - LATEST_DATE.getTime()) / (1000 * 60 * 60 * 24) < 14;
 
 interface NavActionsProps {
   isMobileOpen: boolean;
@@ -13,12 +22,36 @@ interface NavActionsProps {
 
 export function NavActions({ isMobileOpen, onMobileToggle }: NavActionsProps) {
   const t = useTranslations("nav");
+  const pathname = usePathname();
+  const isActive = pathname === "/novidades";
 
   return (
     <div className="flex items-center gap-3">
       <div className="hidden md:flex md:items-center md:gap-3">
         <GlobalSearch />
+
         <LanguageSwitcher />
+        <Link
+          href="/novidades"
+          aria-label={t("changelog")}
+          title={t("changelog")}
+          className={`relative flex h-9 w-9 items-center justify-center rounded-lg border bg-card transition-colors ${
+            isActive
+              ? "border-primary/50 text-primary"
+              : "border-border text-muted-foreground hover:border-primary/50 hover:text-primary"
+          }`}
+        >
+          <Sparkles className="h-4 w-4" />
+          {IS_RECENT && !isActive && (
+            <span
+              className="absolute -right-0.5 -top-0.5 flex h-2 w-2"
+              aria-hidden
+            >
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
+            </span>
+          )}
+        </Link>
       </div>
 
       <motion.button

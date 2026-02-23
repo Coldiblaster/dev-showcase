@@ -30,6 +30,7 @@ export function StructureStep({ nextStepId, nextStepLabel }: StepNavProps) {
             { name: "implementacoes/", description: "" },
             { name: "dicas/", description: "" },
             { name: "ferramentas/", description: "" },
+            { name: "novidades/", description: t("tree.novidades") },
             { name: "api/", description: "" },
             { name: "layout.tsx", description: "" },
             { name: "page.tsx", description: "" },
@@ -71,7 +72,10 @@ export function StructureStep({ nextStepId, nextStepLabel }: StepNavProps) {
         {
           name: "data/",
           description: t("tree.data"),
-          children: [{ name: "content.ts", description: "" }],
+          children: [
+            { name: "content.ts", description: t("tree.contentTs") },
+            { name: "changelog.ts", description: t("tree.changelogTs") },
+          ],
         },
       ],
     },

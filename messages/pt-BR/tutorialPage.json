@@ -65,7 +65,10 @@
         "contribute": "Todas as páginas de /contribua vivem aqui",
         "lib": "Utilitários, helpers, configurações",
         "hooks": "Custom React hooks",
-        "data": "Dados estáticos — content.ts registra todas as páginas dinâmicas",
+        "data": "Dados estáticos e registros de conteúdo do projeto",
+        "contentTs": "Registro de todas as páginas dinâmicas (guias, impl., ferramentas)",
+        "changelogTs": "Histórico de versões e mudanças — alimenta a página /novidades",
+        "novidades": "Página de changelog — lista todas as versões e melhorias",
         "dynamicHelper": "Sistema de páginas dinâmicas — conecta slugs aos componentes",
         "messages": "Arquivos de tradução por idioma (pt-BR, en, es, de)",
         "public": "Assets estáticos (imagens, fontes, ícones)"
@@ -208,7 +211,7 @@
       "workflowTitle": "Fluxo de tradução",
       "workflow": {
         "w1": "Crie as chaves em messages/pt-BR/seuNamespace.json",
-        "w2": "Registre o namespace em messages/pt-BR/index.ts (e nos outros idiomas)",
+        "w2": "Registre o namespace em messages/pt-BR/index.ts (e nos outros idiomas) e em src/lib/i18n/load-messages.ts (array NAMESPACES)",
         "w3": "Adicione o tipo em src/lib/i18n/types.d.ts",
         "w4": "Adicione título e descrição em messages/*/search.json (para a busca global)",
         "w5": "Se adicionou ao nav, atualize messages/*/nav.json com label e descrição",

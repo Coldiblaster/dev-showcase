@@ -14,6 +14,7 @@ import {
   FileCode,
   FolderKanban,
   GitBranch,
+  GitCommitHorizontal,
   Github,
   Globe,
   Heart,
@@ -91,6 +92,8 @@ export type NavKey =
   | "reactPatternsDesc"
   | "nextjsAppRouter"
   | "nextjsAppRouterDesc"
+  | "codeEvolution"
+  | "codeEvolutionDesc"
   | "stateManagement"
   | "stateManagementDesc"
   | "contribute"
@@ -249,6 +252,12 @@ export const contentGroup: NavGroup = {
           labelKey: "nextjsAppRouter",
           sublabelKey: "nextjsAppRouterDesc",
           href: "/dicas/nextjs-app-router",
+        },
+        {
+          icon: GitCommitHorizontal,
+          labelKey: "codeEvolution",
+          sublabelKey: "codeEvolutionDesc",
+          href: "/dicas/code-evolution",
         },
         {
           icon: Layers,

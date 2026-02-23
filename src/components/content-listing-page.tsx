@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Flame } from "lucide-react";
 import Link from "next/link";
 import { getMessages, getTranslations } from "next-intl/server";
 
@@ -7,6 +7,7 @@ import { AnimatedSection } from "@/components/animated-section";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { type ContentCategory, getContentByCategory } from "@/data/content";
+import { getPopularSlugs } from "@/lib/get-popular-slugs";
 
 interface ContentListingPageProps {
   category: ContentCategory;
@@ -29,16 +30,20 @@ export async function ContentListingPage({
   iconMap,
   defaultIcon: DefaultIcon,
 }: ContentListingPageProps) {
-  const tNav = await getTranslations("nav");
+  const [tNav, messages, popularSlugs] = await Promise.all([
+    getTranslations("nav"),
+    getMessages(),
+    getPopularSlugs(10),
+  ]);
   const t = tNav as unknown as {
     (key: string, values?: Record<string, unknown>): string;
   };
-  const messages = await getMessages();
   const searchItems = (
     messages.search as {
       items: Record<string, { title: string; description: string }>;
     }
   ).items;
+  const popularSet = new Set(popularSlugs);
   const items = getContentByCategory(category);
 
   return (
@@ -76,6 +81,7 @@ export async function ContentListingPage({
         <div className="grid gap-5 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
           {items.map((item, index) => {
             const Icon = iconMap[item.slug] || DefaultIcon;
+            const isPopular = popularSet.has(item.slug);
             return (
               <AnimatedSection key={item.slug} delay={0.1 + index * 0.08}>
                 <Link
@@ -87,11 +93,19 @@ export async function ContentListingPage({
                       <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-md group-hover:shadow-primary/10">
                         <Icon className="h-6 w-6 text-primary" />
                       </div>
-                      <CardTitle className="flex items-center justify-between">
+                      <CardTitle className="flex items-center justify-between gap-2">
                         <span className="transition-colors group-hover:text-primary">
                           {searchItems[item.slug]?.title ?? item.title}
                         </span>
-                        <ArrowRight className="h-4 w-4 text-muted-foreground transition-all duration-300 group-hover:translate-x-1 group-hover:text-primary" />
+                        <div className="flex shrink-0 items-center gap-2">
+                          {isPopular && (
+                            <span className="flex items-center gap-0.5 rounded-full bg-orange-500/10 px-1.5 py-0.5 text-[10px] font-medium text-orange-400">
+                              <Flame className="h-2.5 w-2.5" />
+                              Popular
+                            </span>
+                          )}
+                          <ArrowRight className="h-4 w-4 text-muted-foreground transition-all duration-300 group-hover:translate-x-1 group-hover:text-primary" />
+                        </div>
                       </CardTitle>
                     </CardHeader>
                     <CardContent>

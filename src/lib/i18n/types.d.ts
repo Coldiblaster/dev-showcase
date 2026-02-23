@@ -9,7 +9,9 @@ import type aiInnovation from "../../../messages/pt-BR/aiInnovation.json";
 import type analyticsPage from "../../../messages/pt-BR/analyticsPage.json";
 import type apiDocsPage from "../../../messages/pt-BR/apiDocsPage.json";
 import type architecturePage from "../../../messages/pt-BR/architecturePage.json";
+import type changelogPage from "../../../messages/pt-BR/changelogPage.json";
 import type chat from "../../../messages/pt-BR/chat.json";
+import type codeEvolutionPage from "../../../messages/pt-BR/codeEvolutionPage.json";
 import type codeReviewPage from "../../../messages/pt-BR/codeReviewPage.json";
 import type contact from "../../../messages/pt-BR/contact.json";
 import type contactFormPage from "../../../messages/pt-BR/contactFormPage.json";
@@ -58,6 +60,8 @@ import type viewSource from "../../../messages/pt-BR/viewSource.json";
 export type Messages = {
   global: typeof global;
   about: typeof about;
+  changelogPage: typeof changelogPage;
+  codeEvolutionPage: typeof codeEvolutionPage;
   accessibilityPage: typeof accessibilityPage;
   analyticsPage: typeof analyticsPage;
   aiChatbotPage: typeof aiChatbotPage;

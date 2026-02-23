@@ -133,9 +133,17 @@
       "title": "Next.js App Router",
       "description": "Routing, Server vs Client Components, data fetching and loading/error boundaries — guide with replicable examples"
     },
+    "code-evolution": {
+      "title": "Code Evolution — From Legacy to Best Practice",
+      "description": "Watch code evolve commit by commit: React Lifecycle, State Management and more animated examples"
+    },
     "state-management": {
       "title": "State in React — useState, Context and libs",
       "description": "When to use local state, Context or Zustand. Data flow and examples for junior and mid devs."
+    },
+    "changelog": {
+      "title": "Changelog — What's New",
+      "description": "Follow the project's evolution: new guides, implementations, tools and technical improvements."
     },
     "contribute": {
       "title": "Contribute",

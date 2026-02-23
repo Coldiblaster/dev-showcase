@@ -17,10 +17,12 @@ function CategoryColumn({
   category,
   t,
   pathname,
+  popularSlugs,
 }: {
   category: NavCategory;
   t: ReturnType<typeof useTranslations<"nav">>;
   pathname: string;
+  popularSlugs: Set<string>;
 }) {
   const Icon = category.icon;
   const visibleItems = category.featured.slice(0, MAX_PREVIEW_ITEMS);
@@ -35,16 +37,20 @@ function CategoryColumn({
       </div>
 
       <div className="flex-1 space-y-0.5">
-        {visibleItems.map((item) => (
-          <SubmenuItem
-            key={item.href}
-            icon={item.icon}
-            label={t(item.labelKey)}
-            sublabel={item.sublabelKey ? t(item.sublabelKey) : undefined}
-            href={item.href}
-            isActive={pathname === item.href}
-          />
-        ))}
+        {visibleItems.map((item) => {
+          const slug = item.href.split("/").pop() ?? "";
+          return (
+            <SubmenuItem
+              key={item.href}
+              icon={item.icon}
+              label={t(item.labelKey)}
+              sublabel={item.sublabelKey ? t(item.sublabelKey) : undefined}
+              href={item.href}
+              isActive={pathname === item.href}
+              isPopular={popularSlugs.has(slug)}
+            />
+          );
+        })}
       </div>
 
       <Link
@@ -60,10 +66,15 @@ function CategoryColumn({
   );
 }
 
-export function DesktopNav() {
+interface DesktopNavProps {
+  popularSlugs: string[];
+}
+
+export function DesktopNav({ popularSlugs }: DesktopNavProps) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const popularSet = new Set(popularSlugs);
 
   return (
     <div className="hidden items-center gap-1 md:flex">
@@ -116,16 +127,20 @@ export function DesktopNav() {
             wide={hasCategories}
           >
             {/* Flat items (portfolio, contribute) */}
-            {group.items?.map((item) => (
-              <SubmenuItem
-                key={item.href}
-                icon={item.icon}
-                label={t(item.labelKey)}
-                sublabel={item.sublabelKey ? t(item.sublabelKey) : undefined}
-                href={item.href}
-                isActive={pathname === item.href}
-              />
-            ))}
+            {group.items?.map((item) => {
+              const slug = item.href.split("/").pop() ?? "";
+              return (
+                <SubmenuItem
+                  key={item.href}
+                  icon={item.icon}
+                  label={t(item.labelKey)}
+                  sublabel={item.sublabelKey ? t(item.sublabelKey) : undefined}
+                  href={item.href}
+                  isActive={pathname === item.href}
+                  isPopular={popularSet.has(slug)}
+                />
+              );
+            })}
 
             {group.viewAllHref && (
               <Link
@@ -148,6 +163,7 @@ export function DesktopNav() {
                     category={category}
                     t={t}
                     pathname={pathname}
+                    popularSlugs={popularSet}
                   />
                 ))}
               </div>
