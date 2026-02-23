@@ -80,12 +80,15 @@ Request do Client
 
 Sistema in-memory por IP, configuravel por rota.
 
-| Rota               | Limite      | Janela    | Prefixo       |
-| ------------------ | ----------- | --------- | ------------- |
-| `/api/code-review` | 8 requests  | 5 minutos | `code-review` |
-| `/api/chat`        | 30 requests | 1 minuto  | `chat`        |
-| `/api/stats/track` | 60 requests | 1 minuto  | `stats-track` |
-| `/api/stats`       | 30 requests | 1 minuto  | `stats-read`  |
+| Rota               | Limite      | Janela    | Prefixo       | Backend         |
+| ------------------ | ----------- | --------- | ------------- | --------------- |
+| `/api/code-review` | 8 requests  | 5 minutos | `code-review` | In-memory       |
+| `/api/chat`        | 30 requests | 1 minuto  | `chat`        | In-memory       |
+| `/api/stats/track` | 60 requests | 1 minuto  | `stats-track` | In-memory       |
+| `/api/stats`       | 30 requests | 1 minuto  | `stats-read`  | In-memory       |
+| `/api/reactions`   | 15 requests | 1 minuto  | `reactions`   | Redis (Upstash) |
+
+> `/api/online` não possui rate limit explícito — IPs são anonimizados com SHA-256 antes de serem armazenados no Redis Sorted Set.
 
 **Implementacao:** `src/lib/rate-limit.ts`
 
@@ -259,6 +262,47 @@ Content-Type: application/json        ← ou text/plain para streaming
 7. OpenAI stream (gpt-4.1-nano, temp 0.9)
 8. sanitizeStreamChunk() em cada chunk
 9. Response + secureStreamHeaders()
+```
+
+### GET `/api/reactions`
+
+```
+1. Extrai ?path da query string
+2. Valida path com SAFE_PATH_REGEX
+3. redis.hgetall(reactionsKey) → counts
+4. redis.exists(lockKey) → userVote anterior
+5. Response JSON { heart, fire, bulb, userVote }
+```
+
+### POST `/api/reactions`
+
+```
+1. Valida Content-Type application/json
+2. rateLimitAsync(15 req / 1 min, Redis)  ← backend distribuído
+3. safeParseBody() + postSchema.safeParse({ path, type })
+4. Verifica voto anterior (lockKey no Redis)
+5. Pipeline: toggle/swap via HINCRBY + SETEX do lockKey (24h)
+6. Response JSON { ok, userVote }
+```
+
+### POST `/api/online` (registra presença)
+
+```
+1. Extrai e anonimiza IP (SHA-256 + salt)
+2. redis.pipeline():
+   a. ZADD online:sessions score=now member=ipHash
+   b. ZREMRANGEBYSCORE (remove expirados > 5 min)
+   c. ZCARD (total ativo)
+3. Response JSON { ok: true }
+```
+
+### GET `/api/online` (lê contagem)
+
+```
+1. redis.pipeline():
+   a. ZREMRANGEBYSCORE (remove expirados > 5 min)
+   b. ZCARD (total ativo)
+2. Response JSON { count: number }
 ```
 
 ---

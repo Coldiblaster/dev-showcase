@@ -13,6 +13,7 @@ import { z } from "zod";
 import { getClientIp, rateLimitResponse } from "@/lib/rate-limit";
 import { redis } from "@/lib/redis";
 import { rateLimitAsync } from "@/lib/redis-rate-limit";
+import { getIsoWeekKey } from "@/lib/week-key";
 
 const BOT_PATTERN =
   /bot|crawl|spider|slurp|facebookexternalhit|mediapartners|google|bing|yandex|baidu|duckduck|semrush|ahrefs|mj12bot|dotbot|petalbot|bytespider|gptbot|claude|headless|phantom|selenium|puppeteer|playwright|lighthouse|pagespeed|pingdom|uptimerobot|curl|wget|python[\s/-]|python-requests|node-fetch|axios|java\/|go-http-client|okhttp|ruby|perl|php/i;
@@ -27,21 +28,6 @@ const bodySchema = z.object({
     .max(200)
     .refine((p) => SAFE_PATH_REGEX.test(p), { message: "Invalid path format" }),
 });
-
-/** Retorna a chave Redis para o ranking semanal ISO (ex: stats:pages:week:2025-W08) */
-function getWeekKey(): string {
-  const now = new Date();
-  const d = new Date(
-    Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()),
-  );
-  const day = d.getUTCDay() || 7;
-  d.setUTCDate(d.getUTCDate() + 4 - day); // nearest Thursday (ISO standard)
-  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-  const week = Math.ceil(
-    ((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7,
-  );
-  return `stats:pages:week:${d.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
-}
 
 function isBot(request: Request): boolean {
   const ua = request.headers.get("user-agent") ?? "";
@@ -87,7 +73,7 @@ export async function POST(request: Request) {
       .digest("hex")
       .slice(0, 16);
 
-    const weekKey = getWeekKey();
+    const weekKey = getIsoWeekKey();
     const pathParts = parsed.data.path.split("/").filter(Boolean);
     const pipeline = redis.pipeline();
     pipeline.incr("stats:views");

@@ -91,6 +91,24 @@
         "rateLimit": "30 Anfragen/Minute pro IP",
         "params": "Keine",
         "response": "JSON-Array mit login, avatarUrl, profileUrl, contributions"
+      },
+      "reactions": {
+        "title": "Reactions",
+        "method": "GET / POST",
+        "path": "/api/reactions",
+        "description": "Seitenreaktionen (❤️ 🔥 💡). GET gibt Anzahl und die Abstimmung des Nutzers zurück; POST fügt hinzu, entfernt (Toggle) oder wechselt die Abstimmung mit IP+Pfad-Deduplizierung über 24h.",
+        "rateLimit": "15 Anfragen/Minute pro IP (POST)",
+        "params": "GET: ?path=/slug | POST: '{' path, type '}'",
+        "response": "JSON mit '{ heart, fire, bulb, userVote }'"
+      },
+      "online": {
+        "title": "Online Counter",
+        "method": "GET / POST",
+        "path": "/api/online",
+        "description": "Verfolgt und gibt aktive Besucher der letzten 5 Minuten zurück – über ein Redis Sorted Set mit Unix-Timestamp als Score.",
+        "rateLimit": "Kein explizites Limit (IPs anonymisiert)",
+        "params": "POST: leerer Body | GET: keine Parameter",
+        "response": "JSON mit '{ count: number }'"
       }
     }
   },

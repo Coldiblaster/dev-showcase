@@ -1,23 +1,9 @@
 import { unstable_cache } from "next/cache";
 
 import { redis } from "@/lib/redis";
+import { getIsoWeekKey } from "@/lib/week-key";
 
 export type BadgeType = "trending" | "popular";
-
-/** Retorna a chave Redis do ranking semanal ISO atual */
-function getCurrentWeekKey(): string {
-  const now = new Date();
-  const d = new Date(
-    Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()),
-  );
-  const day = d.getUTCDay() || 7;
-  d.setUTCDate(d.getUTCDate() + 4 - day);
-  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-  const week = Math.ceil(
-    ((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7,
-  );
-  return `stats:pages:week:${d.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
-}
 
 /** Filtra caminhos de seção — retorna só conteúdo com depth ≥ 2 */
 function filterContentPaths(raw: string[], limit: number): string[] {
@@ -45,7 +31,7 @@ async function fetchTopPaths(limit: number): Promise<string[]> {
 async function fetchWeeklyTrending(limit: number): Promise<string[]> {
   if (!redis) return [];
   try {
-    const raw = await redis.zrange(getCurrentWeekKey(), 0, limit * 3 - 1, {
+    const raw = await redis.zrange(getIsoWeekKey(), 0, limit * 3 - 1, {
       rev: true,
     });
     const paths = filterContentPaths(raw as string[], limit);
@@ -143,11 +129,7 @@ async function fetchTopPathsByCategory(
 export const getPopularByCategory = unstable_cache(
   (category: string, limit = 5) => fetchTopPathsByCategory(category, limit),
   ["popular-by-category"],
-  {
-    revalidate: 3600,
-    // tags individuais por categoria para evitar colisão de cache entre /dicas, /ferramentas, etc.
-    tags: [],
-  },
+  { revalidate: 3600 },
 );
 
 /**

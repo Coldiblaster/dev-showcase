@@ -16,6 +16,57 @@ export interface ChangelogVersion {
 
 export const CHANGELOG: ChangelogVersion[] = [
   {
+    version: "0.12.0",
+    date: "2026-02-23",
+    title: "Busca Popular, Cache de Queries e Documentação de API",
+    summary:
+      "Buscas populares em tempo real com rastreamento via Redis, cache client-side de queries no Fuse.js, invalidação automática por troca de idioma, refactor do cálculo de semana ISO em módulo compartilhado e documentação completa dos endpoints /api/reactions e /api/online na página contribua/api.",
+    items: [
+      {
+        type: "feature",
+        description:
+          "API /api/search — POST rastreia termos buscados em um Redis Sorted Set (stats:searches) com rate limit distribuído; GET retorna os top 8 termos mais pesquisados com cache de 60s",
+        href: "/contribua/api",
+      },
+      {
+        type: "feature",
+        description:
+          "Sugestões de busca popular — a busca global exibe chips clicáveis com os termos mais buscados (carregados do Redis); fallback automático para lista curada se Redis indisponível ou vazio",
+      },
+      {
+        type: "feature",
+        description:
+          "selectTerm — clique em chip de sugestão popula a query instantaneamente sem debounce nem loading, aproveitando o cache client-side do Fuse",
+      },
+      {
+        type: "improvement",
+        description:
+          "Cache client-side de queries — resultados do Fuse.js são armazenados em um Map por query normalizada; hits no cache são servidos imediatamente sem nova busca ou estado de loading",
+      },
+      {
+        type: "fix",
+        description:
+          "Invalidação de cache de busca por troca de idioma — o Map de queries é limpo sempre que o índice Fuse muda (useEffect no fuse), evitando resultados em idioma anterior após mudança de locale",
+      },
+      {
+        type: "refactor",
+        description:
+          "getIsoWeekKey extraída para src/lib/week-key.ts — função de cálculo de semana ISO 8601 centralizada e compartilhada entre /api/stats/track e get-popular-slugs, eliminando duplicação",
+      },
+      {
+        type: "improvement",
+        description:
+          "Documentação /contribua/api atualizada — endpoints /api/reactions e /api/online adicionados com método, path, rate limit, parâmetros e resposta em todos os 4 idiomas (pt-BR, en, es, de)",
+        href: "/contribua/api",
+      },
+      {
+        type: "improvement",
+        description:
+          "docs/api/SECURITY.md atualizado — tabela de rate limiting expandida com os novos endpoints e fluxos detalhados de GET/POST para /api/reactions e /api/online",
+      },
+    ],
+  },
+  {
     version: "0.11.0",
     date: "2026-02-22",
     title: "Reações, Comentários e Responsividade Mobile",

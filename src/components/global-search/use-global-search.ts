@@ -94,6 +94,11 @@ export function useGlobalSearch() {
     [resolvedItems],
   );
 
+  // Limpa o cache quando o fuse muda (ex: troca de idioma → resolvedItems atualizado)
+  useEffect(() => {
+    queryCache.current.clear();
+  }, [fuse]);
+
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
 

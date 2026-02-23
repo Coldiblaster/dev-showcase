@@ -35,6 +35,8 @@ const ENDPOINT_KEYS = [
   "contact",
   "github",
   "contributors",
+  "reactions",
+  "online",
 ] as const;
 
 const SECURITY_LAYERS = [

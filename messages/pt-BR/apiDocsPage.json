@@ -91,6 +91,24 @@
         "rateLimit": "30 requisições/minuto por IP",
         "params": "Nenhum",
         "response": "Array JSON com login, avatarUrl, profileUrl, contributions"
+      },
+      "reactions": {
+        "title": "Reactions",
+        "method": "GET / POST",
+        "path": "/api/reactions",
+        "description": "Reações por página (❤️ 🔥 💡). GET retorna contagens e voto do usuário; POST adiciona, remove (toggle) ou troca o voto com deduplicação por IP+path em 24h.",
+        "rateLimit": "15 requisições/minuto por IP (POST)",
+        "params": "GET: ?path=/slug | POST: '{' path, type '}'",
+        "response": "JSON com '{ heart, fire, bulb, userVote }'"
+      },
+      "online": {
+        "title": "Online Counter",
+        "method": "GET / POST",
+        "path": "/api/online",
+        "description": "Rastreia e retorna visitantes ativos nos últimos 5 minutos via Redis Sorted Set com score de timestamp.",
+        "rateLimit": "Sem limite explícito (IPs anonimizados)",
+        "params": "POST: corpo vazio | GET: sem parâmetros",
+        "response": "JSON com '{ count: number }'"
       }
     }
   },
