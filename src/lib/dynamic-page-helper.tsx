@@ -8,6 +8,7 @@ import {
   type ContentItem,
   getContentBySlug,
 } from "@/data/content";
+import { getCategoryPath } from "@/lib/content-paths";
 import { buildPageMetadata } from "@/lib/seo";
 
 /**
@@ -146,12 +147,7 @@ export async function generateMetadataForSlug(
       items: Record<string, { title: string; description: string }>;
     }
   ).items;
-  const CATEGORY_PATH_MAP: Record<string, string> = {
-    implementation: "implementacoes",
-    guide: "dicas",
-    tool: "ferramentas",
-  };
-  const prefix = CATEGORY_PATH_MAP[content.category] ?? "dicas";
+  const prefix = getCategoryPath(content.category);
 
   const locale = await getLocale();
   return buildPageMetadata({

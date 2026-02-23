@@ -14,7 +14,7 @@ import {
   HOOK_TEST_CODE,
   JEST_CONFIG_TEST_CODE,
   UTIL_TEST_CODE,
-} from "./examples-code";
+} from "./code-examples";
 
 const EXAMPLE_BLOCKS: Array<{
   titleKey:

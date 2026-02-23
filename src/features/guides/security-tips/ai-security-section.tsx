@@ -17,7 +17,7 @@ import {
   OUTPUT_VALIDATION_CODE,
   PROMPT_INJECTION_CODE,
   SYSTEM_PROMPT_HARDENING_CODE,
-} from "../examples/security-examples";
+} from "./code-examples";
 
 type Step = (typeof securityPage)["aiSecurity"]["steps"][number];
 type Tip =

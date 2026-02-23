@@ -7,9 +7,9 @@ import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { SectionHeader } from "@/components/section-header";
 import { CardBlur } from "@/components/ui/card-blur";
+import { fillCodeComments } from "@/lib/fill-code-placeholders";
 
 import { LOCAL_STATE_CODE, LOCAL_STATE_INPUT_CODE } from "./code-examples";
-import { fillCodeComments } from "./fill-code-comments";
 
 export function LocalStateSection() {
   const t = useTranslations("stateManagementPage.localState");

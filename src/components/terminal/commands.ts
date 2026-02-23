@@ -1,4 +1,5 @@
 import { CONTENT_ITEMS } from "@/data/content";
+import { getContentUrl } from "@/lib/content-paths";
 
 import {
   COMMAND_OUTPUT_MAP,
@@ -26,24 +27,14 @@ export interface CommandResult {
   action?: CommandAction;
 }
 
-/** Prefixos de rota por categoria de conteúdo. */
-const CATEGORY_PREFIX: Record<string, string> = {
-  implementation: "/implementacoes",
-  guide: "/dicas",
-  tool: "/ferramentas",
-};
-
 /** Monta as linhas do comando `projects` listando todos os itens de conteúdo. */
 function buildProjectLines(): TerminalLine[] {
   return [
     { type: "output", content: "" },
-    ...CONTENT_ITEMS.map((item) => {
-      const prefix = CATEGORY_PREFIX[item.category] ?? "/dicas";
-      return {
-        type: "output" as const,
-        content: `  ${item.slug.padEnd(20)} → ${prefix}/${item.slug}`,
-      };
-    }),
+    ...CONTENT_ITEMS.map((item) => ({
+      type: "output" as const,
+      content: `  ${item.slug.padEnd(20)} → ${getContentUrl(item.category, item.slug)}`,
+    })),
     { type: "output", content: "" },
   ];
 }

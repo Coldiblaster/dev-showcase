@@ -1,26 +1,15 @@
 import { CONTENT_ITEMS } from "@/data/content";
+import { getContentUrl } from "@/lib/content-paths";
 
 import type { SearchResult } from "./types";
-
-const CATEGORY_TO_TYPE = {
-  implementation: "implementation",
-  guide: "guide",
-  tool: "tool",
-} as const;
-
-const CATEGORY_TO_PATH = {
-  implementation: "/implementacoes",
-  guide: "/dicas",
-  tool: "/ferramentas",
-} as const;
 
 function buildContentSearchItems(): SearchResult[] {
   return CONTENT_ITEMS.map((item) => ({
     id: `content-${item.slug}`,
     titleKey: `items.${item.slug}.title`,
     descriptionKey: `items.${item.slug}.description`,
-    type: CATEGORY_TO_TYPE[item.category],
-    url: `${CATEGORY_TO_PATH[item.category]}/${item.slug}`,
+    type: item.category,
+    url: getContentUrl(item.category, item.slug),
     tags: buildTags(item.slug),
   }));
 }

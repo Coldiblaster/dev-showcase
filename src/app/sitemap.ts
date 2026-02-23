@@ -1,16 +1,11 @@
 import type { MetadataRoute } from "next";
 
 import { CONTENT_ITEMS } from "@/data/content";
+import { getCategoryPath } from "@/lib/content-paths";
 import { SITE_URL } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-
-  const CATEGORY_PATH_MAP: Record<string, string> = {
-    implementation: "implementacoes",
-    guide: "dicas",
-    tool: "ferramentas",
-  };
 
   const staticPages: MetadataRoute.Sitemap = [
     {
@@ -88,10 +83,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const dynamicPages: MetadataRoute.Sitemap = CONTENT_ITEMS.map((item) => {
-    const prefix = CATEGORY_PATH_MAP[item.category] ?? "dicas";
-
     return {
-      url: `${SITE_URL}/${prefix}/${item.slug}`,
+      url: `${SITE_URL}/${getCategoryPath(item.category)}/${item.slug}`,
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.7,

@@ -77,15 +77,3 @@ export default function Error({ error, reset }: {
 }`,
   },
 } as const;
-
-/** Substitui placeholders no código pelas traduções. */
-export function fillCodePlaceholders(
-  code: string,
-  replacements: Record<string, string>,
-): string {
-  let result = code;
-  for (const [key, value] of Object.entries(replacements)) {
-    result = result.split(key).join(value);
-  }
-  return result;
-}

@@ -5,10 +5,9 @@ import { useTranslations } from "next-intl";
 
 import type tsPatterns from "@/../messages/pt-BR/tsPatterns.json";
 import { AnimatedSection } from "@/components/animated-section";
+import { CodeBlock } from "@/components/code-block";
 import { Badge } from "@/components/ui/badge";
 import { CardBlur } from "@/components/ui/card-blur";
-
-import { CodeBlock } from "./code-block";
 
 type GenericItem = (typeof tsPatterns)["generics"]["items"][number];
 

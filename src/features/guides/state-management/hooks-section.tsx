@@ -7,6 +7,7 @@ import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { SectionHeader } from "@/components/section-header";
 import { CardBlur } from "@/components/ui/card-blur";
+import { fillCodeComments } from "@/lib/fill-code-placeholders";
 
 import {
   USECALLBACK_BASIC_CODE,
@@ -18,7 +19,6 @@ import {
   USEREF_INTERVAL_CODE,
   USEREF_PREVIOUS_CODE,
 } from "./code-examples";
-import { fillCodeComments } from "./fill-code-comments";
 
 export function HooksSection() {
   const t = useTranslations("stateManagementPage.hooks");

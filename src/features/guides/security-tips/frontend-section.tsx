@@ -10,10 +10,7 @@ import { SectionHeader } from "@/components/section-header";
 import { SectionWrapper } from "@/components/section-wrapper";
 import { TipItem } from "@/components/tip-item";
 
-import {
-  HONEYPOT_CODE,
-  RECAPTCHA_PROVIDER_CODE,
-} from "../examples/security-examples";
+import { HONEYPOT_CODE, RECAPTCHA_PROVIDER_CODE } from "./code-examples";
 
 type FrontendTip = (typeof securityPage)["frontend"]["tips"][number];
 

@@ -12,7 +12,7 @@ import {
   JSON_EXAMPLE_KEYS,
   JSON_EXAMPLES,
   type JsonExampleId,
-} from "./examples-data";
+} from "./json-examples";
 
 interface JsonExamplesSectionProps {
   onSelectExample: (json: string) => void;

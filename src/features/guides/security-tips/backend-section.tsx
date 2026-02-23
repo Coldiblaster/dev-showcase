@@ -12,7 +12,7 @@ import {
   RATE_LIMIT_CODE,
   RECAPTCHA_VERIFY_CODE,
   ZOD_VALIDATION_CODE,
-} from "../examples/security-examples";
+} from "./code-examples";
 
 /** Seção de segurança no backend (rate limit, Zod, reCAPTCHA). */
 export function BackendSection() {

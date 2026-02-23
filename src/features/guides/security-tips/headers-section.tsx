@@ -8,7 +8,7 @@ import { CodeBlock } from "@/components/code-block";
 import { SectionHeader } from "@/components/section-header";
 import { SectionWrapper } from "@/components/section-wrapper";
 
-import { SECURITY_HEADERS_CODE } from "../examples/security-examples";
+import { SECURITY_HEADERS_CODE } from "./code-examples";
 
 /** Seção sobre headers de segurança (HSTS, X-Frame, etc.). */
 export function HeadersSection() {

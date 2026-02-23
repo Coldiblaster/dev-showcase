@@ -8,7 +8,7 @@ import { CodeBlock } from "@/components/code-block";
 import { SectionHeader } from "@/components/section-header";
 import { SectionWrapper } from "@/components/section-wrapper";
 
-import { ENV_VARS_CODE } from "../examples/security-examples";
+import { ENV_VARS_CODE } from "./code-examples";
 
 /** Seção sobre variáveis de ambiente e boas práticas. */
 export function EnvVarsSection() {

@@ -7,13 +7,13 @@ import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { SectionHeader } from "@/components/section-header";
 import { CardBlur } from "@/components/ui/card-blur";
+import { fillCodeComments } from "@/lib/fill-code-placeholders";
 
 import {
   WHEN_USE_CONTEXT_CODE,
   WHEN_USE_STATE_CODE,
   WHEN_USE_ZUSTAND_CODE,
 } from "./code-examples";
-import { fillCodeComments } from "./fill-code-comments";
 
 export function WhenToUseSection() {
   const t = useTranslations("stateManagementPage.whenToUse");
