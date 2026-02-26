@@ -89,8 +89,10 @@ Sistema in-memory por IP, configuravel por rota.
 | `/api/reactions`       | 15 requests | 1 minuto  | `reactions`    | Redis (Upstash) |
 | `/api/pr-generator`    | 5 requests  | 1 minuto  | `pr-generator` | Redis (Upstash) |
 | `/api/github-analyzer` | 3 requests  | 1 minuto  | `gh-analyzer`  | Redis (Upstash) |
+| `/api/search` (POST)   | 30 requests | 1 minuto  | `search-track` | Redis (Upstash) |
+| `/api/newsletter`      | 3 requests  | 1 hora    | `newsletter`   | Redis (Upstash) |
 
-> `/api/online` não possui rate limit explícito — IPs são anonimizados com SHA-256 antes de serem armazenados no Redis Sorted Set.
+> `/api/online` e `/api/lighthouse` (GET) não possuem rate limit explícito (cache/anonimização). — IPs são anonimizados com SHA-256 antes de serem armazenados no Redis Sorted Set.
 
 **Implementacao:** `src/lib/rate-limit.ts`
 

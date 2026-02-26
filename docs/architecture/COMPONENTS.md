@@ -437,6 +437,22 @@ terminal/
 
 ---
 
+### `Performance Widget`
+
+**Diretorio:** `src/components/performance-widget/`
+
+Widget de metricas Lighthouse (scores + Web Vitals) por pagina. Acesso pelo **FAB** (desktop) ou menu **Mais** (mobile). Abre expandido; pode minimizar para barra compacta (duplo clique para expandir no desktop, um toque no mobile). Posicao arrastavel e persistida em `localStorage`. Consome `/api/lighthouse`.
+
+---
+
+### `Floating Action Menu` (FAB)
+
+**Arquivo:** `src/components/floating-action-menu.tsx`
+
+Botao de acoes rapidas (desktop, canto inferior direito): scroll to top, modo foco, chat, atalhos de teclado, **metricas de performance**. Expandido, exibe sub-botoes; dispara eventos (`open-chat-widget`, `open-performance-widget`, etc.) consumidos por `ClientOverlays`.
+
+---
+
 ### `Global Search`
 
 **Diretorio:** `src/components/global-search/`

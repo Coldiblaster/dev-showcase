@@ -37,6 +37,11 @@ const ENDPOINT_KEYS = [
   "contributors",
   "reactions",
   "online",
+  "search",
+  "lighthouse",
+  "newsletter",
+  "prGenerator",
+  "githubAnalyzer",
 ] as const;
 
 const SECURITY_LAYERS = [

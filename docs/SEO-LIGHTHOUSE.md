@@ -57,3 +57,4 @@ O score de SEO do Lighthouse (ex.: no widget de performance ou na página `/perf
 - [Next.js Metadata](https://nextjs.org/docs/app/api-reference/functions/generate-metadata)
 - `src/lib/seo.ts` — `buildPageMetadata`
 - `src/app/api/lighthouse/route.ts` — como a URL é montada e cacheada
+- **Lista completa de APIs:** página [Contribua → API](/contribua/api) no site (endpoints, rate limit, parâmetros)

@@ -109,6 +109,51 @@
         "rateLimit": "No explicit limit (IPs anonymised)",
         "params": "POST: empty body | GET: no params",
         "response": "JSON with '{ count: number }'"
+      },
+      "search": {
+        "title": "Popular search",
+        "method": "GET / POST",
+        "path": "/api/search",
+        "description": "POST records a search term in Redis (Sorted Set). GET returns the top 8 most searched terms (60s cache). Used by global search for suggestions.",
+        "rateLimit": "POST: 30/min per IP",
+        "params": "GET: none | POST: { term: string }",
+        "response": "GET: { terms: string[] } | POST: { ok: true }"
+      },
+      "lighthouse": {
+        "title": "Lighthouse",
+        "method": "GET",
+        "path": "/api/lighthouse",
+        "description": "PageSpeed Insights scores (performance, accessibility, best practices, SEO) and Web Vitals for a site URL. 24h cache (Redis or memory).",
+        "rateLimit": "No explicit limit (24h cache)",
+        "params": "?path=/route &strategy=desktop|mobile &refresh=1 (optional)",
+        "response": "JSON with scores, metrics (LCP, FCP, etc.), source, strategy"
+      },
+      "newsletter": {
+        "title": "Newsletter",
+        "method": "POST",
+        "path": "/api/newsletter",
+        "description": "\"Notify me of updates\" signup. Zod validation, honeypot (website), sends email to site owner via Resend.",
+        "rateLimit": "3 requests/hour per IP",
+        "params": "{ email: string } (website empty or absent)",
+        "response": "JSON with success or error status"
+      },
+      "prGenerator": {
+        "title": "PR Generator",
+        "method": "POST",
+        "path": "/api/pr-generator",
+        "description": "Generates PR description with AI (GPT-4.1-nano). Body with title, diff or context. Supports 4 locales.",
+        "rateLimit": "5 requests/minute per IP (Redis)",
+        "params": "{ title, diff?, context?, locale? }",
+        "response": "JSON with description (string) or stream"
+      },
+      "githubAnalyzer": {
+        "title": "GitHub Analyzer",
+        "method": "POST",
+        "path": "/api/github-analyzer",
+        "description": "Analyzes GitHub profile (repos, languages) and generates insights with AI. Username validation.",
+        "rateLimit": "3 requests/minute per IP (Redis)",
+        "params": "{ username: string }",
+        "response": "JSON with analysis and suggestions"
       }
     }
   },

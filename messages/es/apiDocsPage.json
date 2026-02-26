@@ -109,6 +109,51 @@
         "rateLimit": "Sin límite explícito (IPs anonimizadas)",
         "params": "POST: cuerpo vacío | GET: sin parámetros",
         "response": "JSON con '{ count: number }'"
+      },
+      "search": {
+        "title": "Búsqueda popular",
+        "method": "GET / POST",
+        "path": "/api/search",
+        "description": "POST registra un término de búsqueda en Redis (Sorted Set). GET devuelve los 8 términos más buscados (caché 60s). Usado en la búsqueda global para sugerencias.",
+        "rateLimit": "POST: 30/min por IP",
+        "params": "GET: ninguno | POST: { term: string }",
+        "response": "GET: { terms: string[] } | POST: { ok: true }"
+      },
+      "lighthouse": {
+        "title": "Lighthouse",
+        "method": "GET",
+        "path": "/api/lighthouse",
+        "description": "Puntuaciones de PageSpeed Insights (rendimiento, accesibilidad, buenas prácticas, SEO) y Web Vitals para una URL del sitio. Caché 24h (Redis o memoria).",
+        "rateLimit": "Sin límite explícito (caché 24h)",
+        "params": "?path=/ruta &strategy=desktop|mobile &refresh=1 (opcional)",
+        "response": "JSON con scores, metrics (LCP, FCP, etc.), source, strategy"
+      },
+      "newsletter": {
+        "title": "Newsletter",
+        "method": "POST",
+        "path": "/api/newsletter",
+        "description": "Inscripción a \"Avísame de novedades\". Validación Zod, honeypot (website), envío del email al dueño vía Resend.",
+        "rateLimit": "3 solicitudes/hora por IP",
+        "params": "{ email: string } (website vacío o ausente)",
+        "response": "JSON con estado de éxito o error"
+      },
+      "prGenerator": {
+        "title": "PR Generator",
+        "method": "POST",
+        "path": "/api/pr-generator",
+        "description": "Genera descripción de PR con IA (GPT-4.1-nano). Body con título, diff o contexto. Soporte a 4 locales.",
+        "rateLimit": "5 solicitudes/minuto por IP (Redis)",
+        "params": "{ title, diff?, context?, locale? }",
+        "response": "JSON con description (string) o stream"
+      },
+      "githubAnalyzer": {
+        "title": "GitHub Analyzer",
+        "method": "POST",
+        "path": "/api/github-analyzer",
+        "description": "Analiza perfil de GitHub (repos, lenguajes) y genera insights con IA. Validación de username.",
+        "rateLimit": "3 solicitudes/minuto por IP (Redis)",
+        "params": "{ username: string }",
+        "response": "JSON con análisis y sugerencias"
       }
     }
   },
