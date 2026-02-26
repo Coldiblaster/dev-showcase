@@ -22,7 +22,7 @@ export const CONTENT_ITEMS: ContentItem[] = [
   },
 ];`;
 
-const COMPONENT_MAP_SNIPPET = `// src/lib/dynamic-page-helper.tsx
+const COMPONENT_MAP_SNIPPET = `// src/lib/content/component-map.ts
 const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
   // ... componentes existentes ...
   GraphqlTips: dynamic(() =>
@@ -126,7 +126,7 @@ export function RegistrationStep({ nextStepId, nextStepLabel }: StepNavProps) {
               {t("componentMapDesc")}
             </p>
             <CodeBlock
-              title="src/lib/dynamic-page-helper.tsx"
+              title="src/lib/content/component-map.ts"
               code={COMPONENT_MAP_SNIPPET}
             />
           </div>

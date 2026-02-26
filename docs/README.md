@@ -73,7 +73,7 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 │                       Dados                               │
 │  data/content.ts (registro de paginas dinamicas)         │
 │  data/changelog.ts (versoes e mudancas — /novidades)     │
-│  lib/dynamic-page-helper.tsx (COMPONENT_MAP)             │
+│  lib/content/ (component-map, dynamic-page)             │
 │  lib/content-paths.ts (mapeamento categoria → rota)      │
 │  lib/fill-code-placeholders.ts (util para snippets i18n) │
 │  data/demo-messages.ts (mensagens demo do chat)          │
@@ -96,7 +96,7 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
         ↓
 2. Criar feature em src/features/<categoria>/<nome>/
         ↓
-3. Mapear componente em lib/dynamic-page-helper.tsx (COMPONENT_MAP)
+3. Mapear componente em lib/content/component-map.ts (COMPONENT_MAP)
         ↓
 4. Adicionar icone em src/app/<categoria>/page.tsx (iconMap)
         ↓

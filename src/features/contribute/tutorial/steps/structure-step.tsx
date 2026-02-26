@@ -63,8 +63,13 @@ export function StructureStep({ nextStepId, nextStepLabel }: StepNavProps) {
           description: t("tree.lib"),
           children: [
             {
-              name: "dynamic-page-helper.tsx",
+              name: "content/",
               description: t("tree.dynamicHelper"),
+              children: [
+                { name: "component-map.ts", description: "" },
+                { name: "dynamic-page.tsx", description: "" },
+                { name: "content-page-layout.tsx", description: "" },
+              ],
             },
           ],
         },

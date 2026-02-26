@@ -121,7 +121,7 @@ pnpm check:pt-leaks   # Detecta português vazando em outros idiomas
    - index.tsx com composição principal
    - subcomponentes se necessário
 
-3. **dynamic-page-helper.tsx** — Adicionar ao COMPONENT_MAP:
+3. **lib/content/component-map.ts** — Adicionar ao COMPONENT_MAP:
 
    ```ts
    MeuComponente: dynamic(() =>
@@ -129,7 +129,7 @@ pnpm check:pt-leaks   # Detecta português vazando em outros idiomas
    );
    ```
 
-   Componente = PascalCase. Caminho do import = kebab-case.
+   Arquivo: `src/lib/content/component-map.ts`. Componente = PascalCase. Caminho = kebab-case.
    Guias em features/guides/, implementações e ferramentas em features/implementations/
 
 4. **iconMap** em `src/app/dicas/page.tsx` (ou implementacoes/ferramentas):
@@ -163,7 +163,7 @@ pnpm check:pt-leaks   # Detecta português vazando em outros idiomas
 
 ### Ordem do fluxo (resumo)
 
-content.ts → feature → dynamic-page-helper → iconMap → traduções (pt-BR) → nav → **busca (search-data + search.json)** → **chatbot (system-prompt.ts)** → loading → changelog
+content.ts → feature → component-map.ts → iconMap → traduções (pt-BR) → nav → **busca (search-data + search.json)** → **chatbot (system-prompt.ts)** → loading → changelog
 
 ### URLs geradas
 

@@ -90,7 +90,8 @@ export async function POST(request: Request) {
     const resend = new Resend(apiKey);
 
     const fromAddress =
-      process.env.RESEND_FROM_EMAIL ?? "Portfolio VB <onboarding@resend.dev>";
+      process.env.RESEND_FROM_EMAIL ??
+      `${PERSONAL.projectName} <onboarding@resend.dev>`;
     const toAddress = process.env.RESEND_TO_EMAIL ?? PERSONAL.email;
 
     const { error } = await resend.emails.send({

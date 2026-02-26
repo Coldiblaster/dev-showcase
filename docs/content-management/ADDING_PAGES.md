@@ -103,7 +103,7 @@ export function ReactPatternsPage() {
 
 ### 3. Registrar no helper de paginas
 
-**Arquivo:** `src/lib/dynamic-page-helper.tsx`
+**Arquivo:** `src/lib/content/component-map.ts`
 
 Adicione ao `COMPONENT_MAP` com `dynamic()` (lazy loading). Nao use import estatico:
 
@@ -112,6 +112,8 @@ ReactPatternsPage: dynamic(() =>
   import("@/features/guides/react-patterns").then((m) => m.ReactPatternsPage),
 ),
 ```
+
+Arquivo: `src/lib/content/component-map.ts`
 
 Componente = PascalCase. Caminho do import = kebab-case (`react-patterns`).
 
@@ -314,7 +316,8 @@ src/
 ├── data/
 │   └── content.ts                  # 1. Registre aqui
 ├── lib/
-│   └── dynamic-page-helper.tsx     # 3. Mapeie aqui (COMPONENT_MAP)
+│   └── content/
+│       └── component-map.ts       # 3. Mapeie aqui (COMPONENT_MAP)
 ├── features/
 │   └── guides/
 │       └── react-patterns/         # 2. Crie aqui

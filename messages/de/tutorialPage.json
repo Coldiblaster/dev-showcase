@@ -80,8 +80,8 @@
         "a2": "Jede Geschäftsdomäne hat ihren Ordner. Z.B. contribute/, implementations/, guides/. Spezifische Komponenten, Hooks und Daten kommen dort hin.",
         "q3": "Wo sind die Styles?",
         "a3": "Wir verwenden Tailwind CSS direkt in Komponenten. Globale Styles sind in src/app/globals.css.",
-        "q4": "Was sind content.ts und dynamic-page-helper.tsx?",
-        "a4": "content.ts ist das zentrale Register aller Inhaltsseiten (Guides, Implementierungen, Tools). dynamic-page-helper.tsx verbindet jeden Slug via Lazy Loading mit der tatsächlichen Komponente. Zusammen sorgen sie dafür, dass die Seite automatisch unter der richtigen URL erscheint.",
+        "q4": "Was sind content.ts und lib/content/?",
+        "a4": "content.ts ist das zentrale Register aller Inhaltsseiten (Guides, Implementierungen, Tools). lib/content/ (component-map.ts, dynamic-page.tsx) verbindet jeden Slug via Lazy Loading mit der tatsächlichen Komponente. Zusammen sorgen sie dafür, dass die Seite automatisch unter der richtigen URL erscheint.",
         "q5": "Muss ich für jedes neue Feature einen Ordner erstellen?",
         "a5": "Ja! Folgen Sie dem Muster: src/features/guides/mein-feature/ für Guides, src/features/implementations/mein-feature/ für Implementierungen. Die Hauptdatei ist immer index.tsx."
       }

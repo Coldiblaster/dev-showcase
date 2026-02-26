@@ -80,8 +80,8 @@
         "a2": "Each business domain has its folder. E.g. contribute/, implementations/, guides/. Specific components, hooks and data go there.",
         "q3": "Where are the styles?",
         "a3": "We use Tailwind CSS directly in components. Global styles are in src/app/globals.css.",
-        "q4": "What are content.ts and dynamic-page-helper.tsx?",
-        "a4": "content.ts is the central registry of all content pages (guides, implementations, tools). dynamic-page-helper.tsx connects each slug to the actual component via lazy loading. Together, they make the page appear automatically at the right URL.",
+        "q4": "What are content.ts and lib/content/?",
+        "a4": "content.ts is the central registry of all content pages (guides, implementations, tools). lib/content/ (component-map.ts, dynamic-page.tsx) connects each slug to the actual component via lazy loading. Together, they make the page appear automatically at the right URL.",
         "q5": "Do I need to create a folder for each new feature?",
         "a5": "Yes! Follow the pattern: src/features/guides/my-feature/ for guides, src/features/implementations/my-feature/ for implementations. The main file is always index.tsx."
       }

@@ -16,6 +16,30 @@ export interface ChangelogVersion {
 
 export const CHANGELOG: ChangelogVersion[] = [
   {
+    version: "0.17.0",
+    date: "2026-02-22",
+    title: "Refatoração lib/content — estrutura modular",
+    summary:
+      "dynamic-page-helper.tsx substituído por lib/content/ com separação clara: component-map, content-page-layout e dynamic-page.",
+    items: [
+      {
+        type: "refactor",
+        description:
+          "lib/content/ — component-map.ts (registro lazy), content-page-layout.tsx (layout padrão), dynamic-page.tsx (generateMetadata, render). Rotas importam de @/lib/content",
+      },
+      {
+        type: "refactor",
+        description:
+          "ContentPageLayout extraído — ReadingProgress, RelatedContent, ShareButtons, ContentFooter em componente reutilizável",
+      },
+      {
+        type: "improvement",
+        description:
+          "Docs e tutorial atualizados — ADDING_PAGES, CONTRIBUTING, PROMPT-PROJETO, FAQ (pt-BR, en, es, de) com lib/content/component-map.ts",
+      },
+    ],
+  },
+  {
     version: "0.16.0",
     date: "2026-02-20",
     title: "Newsletter completo: Redis + broadcast via curl",

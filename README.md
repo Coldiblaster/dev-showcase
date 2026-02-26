@@ -226,7 +226,10 @@ src/
     ├── get-popular-slugs.ts          # Slugs mais acessados do Redis com unstable_cache
     ├── content-paths.ts              # Mapeamento canonico categoria → rota (fonte unica)
     ├── fill-code-placeholders.ts     # Util para i18n em snippets de codigo
-    ├── dynamic-page-helper.tsx       # Mapa componente ↔ slug (COMPONENT_MAP)
+    ├── content/
+    │   ├── component-map.ts         # Mapa componente ↔ slug (COMPONENT_MAP)
+    │   ├── content-page-layout.tsx  # Layout padrao (progress, related, share, footer)
+    │   └── dynamic-page.tsx         # generateMetadata, renderDynamicContent
     ├── chat/                         # System prompt do chat IA
     ├── email/                        # Template de email (Resend)
     ├── i18n/                         # Configuracao de internacionalizacao

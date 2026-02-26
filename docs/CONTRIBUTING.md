@@ -285,7 +285,7 @@ docs/             # Documentacao tecnica
 ### Se adicionou pagina
 
 - [ ] Registrada em `data/content.ts` (category: `"guide"`, `"implementation"` ou `"tool"`)
-- [ ] Mapeada em `lib/dynamic-page-helper.tsx` (COMPONENT_MAP)
+- [ ] Mapeada em `lib/content/component-map.ts` (COMPONENT_MAP)
 - [ ] Icone adicionado em `src/app/<categoria>/page.tsx` (iconMap)
 - [ ] Adicionada ao menu em `navbar/nav-data.ts` (+ `nav.json` com traducoes do item)
 - [ ] Adicionada a busca em `global-search/search-data.ts` (tagMap) + `messages/pt-BR/search.json` (items.[slug])

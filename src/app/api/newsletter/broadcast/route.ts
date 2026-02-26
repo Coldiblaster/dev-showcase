@@ -1,12 +1,35 @@
 import { Resend } from "resend";
 
-import { CHANGELOG } from "@/data/changelog";
+import { CHANGELOG, type ChangelogVersion } from "@/data/changelog";
 import { jsonError, secureJsonHeaders } from "@/lib/api-security";
 import { PERSONAL } from "@/lib/constants";
 import { NewsletterTemplate } from "@/lib/email/newsletter-template";
 import { redis } from "@/lib/redis";
 
 const NEWSLETTER_KEY = "newsletter:subscribers";
+
+const META_KEYWORDS = [
+  "newsletter",
+  "redis",
+  "broadcast",
+  "curl",
+  "refatoração",
+  "lib/",
+  "docs/",
+  "documentação",
+  "api route",
+  "api/",
+];
+
+function isMetaEntry(entry: ChangelogVersion): boolean {
+  const text = `${entry.title} ${entry.summary}`.toLowerCase();
+  return META_KEYWORDS.some((kw) => text.includes(kw));
+}
+
+function getNewsletterEntry(): ChangelogVersion {
+  const userFacing = CHANGELOG.find((e) => !isMetaEntry(e));
+  return userFacing ?? CHANGELOG[0];
+}
 
 function getAuthToken(request: Request): string | null {
   const auth = request.headers.get("authorization");
@@ -41,11 +64,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const entry = CHANGELOG[0];
+    const entry = getNewsletterEntry();
     const resend = new Resend(apiKey);
 
     const fromAddress =
-      process.env.RESEND_FROM_EMAIL ?? "Portfolio VB <onboarding@resend.dev>";
+      process.env.RESEND_FROM_EMAIL ??
+      `${PERSONAL.projectName} <onboarding@resend.dev>`;
 
     let sent = 0;
     const errors: string[] = [];
@@ -54,7 +78,7 @@ export async function POST(request: Request) {
       const { error } = await resend.emails.send({
         from: fromAddress,
         to: [email],
-        subject: `[${PERSONAL.siteName}] ${entry.title}`,
+        subject: `[${PERSONAL.projectName}] Novidades: ${entry.title}`,
         react: NewsletterTemplate({ entry }),
       });
 

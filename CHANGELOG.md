@@ -10,6 +10,25 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
 
 ---
 
+## [0.17.0] — 2026-02-22
+
+### Refatoração lib/content — estrutura modular
+
+Substituição de `dynamic-page-helper.tsx` por pasta `lib/content/` com responsabilidades separadas.
+
+#### Refatorado
+
+- **lib/content/** — `component-map.ts` (registro com lazy loading), `content-page-layout.tsx` (layout padrão), `dynamic-page.tsx` (generateMetadata, renderDynamicContent)
+- **ContentPageLayout** — componente extraído com ReadingProgress, RelatedContent, ShareButtons, ContentFooter
+- **Rotas** — dicas, implementacoes, ferramentas importam de `@/lib/content`
+
+#### Documentação
+
+- ADDING_PAGES, CONTRIBUTING, PROMPT-PROJETO atualizados com `lib/content/component-map.ts`
+- Tutorial (estrutura, snippets, FAQ) e traduções (pt-BR, en, es, de) atualizados
+
+---
+
 ## [0.14.0] — 2026-02-23
 
 ### 10 Novas Implementações — UX Global, Stats, Guias e Ferramentas IA

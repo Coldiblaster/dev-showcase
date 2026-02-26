@@ -2,7 +2,7 @@ import type { ContentCategory } from "@/data/content";
 
 /**
  * Mapeamento canônico de categoria → prefixo de rota.
- * Fonte única de verdade: usada em dynamic-page-helper, sitemap, search-data e terminal.
+ * Fonte única de verdade: usada em lib/content, sitemap, search-data e terminal.
  */
 export const CATEGORY_PATH_MAP: Record<ContentCategory, string> = {
   implementation: "implementacoes",

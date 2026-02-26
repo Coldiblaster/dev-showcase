@@ -18,6 +18,8 @@ export const PERSONAL = {
 
   siteUrl: "https://viniciusbastazin.vercel.app",
   siteName: "Vinicius Bastazin",
+  /** Nome da plataforma/projeto — usado em newsletter, emails, branding */
+  projectName: "Dev Showcase",
 
   avatar: "/avatar-desk.png",
   googleVerification: "OAX_26lblD3l_QOWRAmX4ujfVAflNwXTxo2Yf0iH7io",
