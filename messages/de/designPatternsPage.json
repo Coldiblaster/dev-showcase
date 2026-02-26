@@ -37,9 +37,9 @@
     "badge": "Muster",
     "title": "Die 5 wesentlichen Muster",
     "before": "Vorher",
-    "realWorldLabel": "Im echten Einsatz:",
     "after": "Nachher",
     "whenToUse": "Wann verwenden",
+    "realWorldLabel": "Im echten Einsatz:",
     "items": [
       {
         "id": "observer",

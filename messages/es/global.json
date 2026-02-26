@@ -15,6 +15,7 @@
   "copied": "¡Copiado!",
   "codeCopied": "Código copiado",
   "copyCode": "Copiar código",
+  "copyLinkToSection": "Copiar enlace a esta sección",
   "scrollToTop": "Volver al inicio",
   "changeLanguage": "Cambiar idioma",
   "goHome": "Ir a la página de inicio",
@@ -22,6 +23,7 @@
   "terminalPress": "Pulse",
   "terminalFor": "para terminal",
   "tip": "Consejo:",
+  "mobileMenu": "Menú",
   "mobileSearch": "Buscar",
   "mobileLanguage": "Idioma",
   "mobileTop": "Inicio",
@@ -48,11 +50,23 @@
   },
   "readingTime": "{minutes} min de lectura",
   "share": "Compartir",
+  "shareTwitter": "Twitter",
+  "shareLinkedIn": "LinkedIn",
   "linkCopied": "¡Enlace copiado!",
   "shareAriaLabel": "Compartir este contenido",
   "focusMode": "Modo enfoque",
   "exitFocusMode": "Salir del modo enfoque",
   "relatedContent": "Contenido relacionado",
   "quickActions": "Acciones rápidas",
-  "readingProgress": "Progreso de lectura"
+  "readingProgress": "Progreso de lectura",
+  "keyboardShortcuts": {
+    "title": "Atajos de teclado",
+    "description": "Usa estos atajos para navegar más rápido. En Ubuntu: Ctrl+Alt+K también abre este panel.",
+    "items": {
+      "search": "Búsqueda global",
+      "terminal": "Terminal interactivo",
+      "shortcuts": "Este panel",
+      "close": "Cerrar modales"
+    }
+  }
 }

@@ -36,10 +36,10 @@ Disponível: freelance, CLT, PJ | Remoto 100% | Inglês intermediário (leitura 
 Email: ${PERSONAL.email} | WhatsApp: +55 18 988111220
 GitHub: ${PERSONAL.github} | LinkedIn: ${PERSONAL.linkedin} | Site: ${PERSONAL.siteUrl.replace("https://", "")}
 
-SETORES: Seguros (Azul/Itaú), Fintech (Silicon Village, 100k+ users), Saúde (Oeste Saúde), SaaS (Ti Safer, Pixter), Consultoria enterprise (CI&T), Marketplace, Jogos/Apostas (Uchallenger), Energia solar (Safira)
+SETORES: Seguros (Azul/Itaú), Fintech (Silicon Village, 100k+ users), Saúde (Oeste Saúde), SaaS (Pixter), Consultoria enterprise (CI&T, FCamara), Marketplace, Jogos/Apostas (Uchallenger), Energia solar (Safira)
 
 CARREIRA:
-1. Ti Safer (PJ, período determinado) — Líder Técnico. Arquitetura do zero, liderou 3 devs, design system, SSR, React Query cache. React 18, Next.js 14+, TS, Tailwind.
+1. FCamara (Out/2025–atual) — Desenvolvedor Frontend Senior / Líder Técnico. React (Vite), Next.js, Tailwind CSS, componentes reutilizáveis (design system), layouts complexos, Server Components, SSR, React Query. Alinhamento com Tech Lead, code reviews, refinamentos técnicos e decisões de arquitetura. Mentoria e liderança técnica com o time.
 2. CI&T (Jan-Jul/2025) — Líder Técnico em consultoria enterprise. Arquitetura, reviews performance/segurança, mentoria júniors. React, Next.js, GraphQL, Jest.
 3. Silicon Village (Jul/2023-Nov/2024) — Senior Web+Mobile, fintech 100k+ users. Design system Web/Mobile compartilhado, +40% Lighthouse. React, React Native, Expo, Next.js.
 4. Pixter (Nov/2021-Jun/2023) — Pleno. Features complexas, WCAG, refatoração legado. React, Next.js, Jest.
@@ -73,7 +73,7 @@ Motivação: criar experiências visuais que impactam usuários. Liderança por 
 PERGUNTAS DE RECRUTADOR (respostas reais):
 
 Liderança & Soft Skills:
-- Maior time: 3 devs diretos (Ti Safer) + influência em squads maiores (CI&T)
+- Maior time: 3 devs diretos (FCamara) + influência em squads maiores (CI&T)
 - Conflitos técnicos: discussão aberta, decisão coletiva — debate > imposição
 - Prazos apertados: negocia escopo, MVP primeiro, refina depois
 - Maior erro: não comunicar decisão técnica. Aprendeu: documenta e alinha antes de implementar

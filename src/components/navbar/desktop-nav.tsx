@@ -73,7 +73,7 @@ export function DesktopNav({ badgePaths }: DesktopNavProps) {
   const isHome = pathname === "/";
 
   return (
-    <div className="hidden items-center gap-1 md:flex">
+    <div className="hidden items-center gap-1 lg:flex">
       <Link href="/">
         <motion.div
           className={`rounded-lg px-3 py-2 text-sm transition-colors ${

@@ -52,6 +52,8 @@ Adicione um novo objeto no array `CONTENT_ITEMS`:
 
 **Pasta:** `src/features/guides/react-patterns/` (ou `implementations/` se for implementacao)
 
+Nome da pasta em **kebab-case** (nao PascalCase): `meu-guia/`, `react-patterns/` — nao `MeuGuia/` nem `ReactPatterns/`.
+
 Crie a pasta com a estrutura recomendada:
 
 ```
@@ -101,16 +103,15 @@ export function ReactPatternsPage() {
 
 **Arquivo:** `src/lib/dynamic-page-helper.tsx`
 
-Importe e adicione seu componente no `COMPONENT_MAP`:
+Adicione ao `COMPONENT_MAP` com `dynamic()` (lazy loading). Nao use import estatico:
 
 ```tsx
-import { ReactPatternsPage } from "@/features/guides/react-patterns";
-
-const COMPONENT_MAP: Record<string, React.ComponentType> = {
-  // ... existentes
-  ReactPatternsPage, // Adicione aqui
-};
+ReactPatternsPage: dynamic(() =>
+  import("@/features/guides/react-patterns").then((m) => m.ReactPatternsPage),
+),
 ```
+
+Componente = PascalCase. Caminho do import = kebab-case (`react-patterns`).
 
 **Por que?** O helper conecta o slug (URL) ao componente React. Sem isso, acessar a URL resulta em 404.
 
@@ -168,10 +169,16 @@ export default {
 };
 ```
 
-2. Adicione em `src/lib/i18n/types.d.ts`:
+2. Adicione em `src/lib/i18n/load-messages.ts` (array NAMESPACES):
 
 ```typescript
-import type reactPatternsPage from "../../messages/pt-BR/reactPatternsPage.json";
+"reactPatternsPage",
+```
+
+3. Adicione em `src/lib/i18n/types.d.ts`:
+
+```typescript
+import type reactPatternsPage from "../../../messages/pt-BR/reactPatternsPage.json";
 
 type Messages = {
   // ... existentes
@@ -179,7 +186,7 @@ type Messages = {
 };
 ```
 
-3. Gere traducoes para outros idiomas:
+4. Gere traducoes para outros idiomas:
 
 ```bash
 pnpm translate
@@ -218,32 +225,42 @@ Adicione o item no submenu correspondente (guias ou implementacoes):
 
 A pagina precisa aparecer em dois lugares para a busca funcionar:
 
-**1. `src/components/global-search/search-data.ts`** — dados da busca com chaves i18n:
+**1. `src/components/global-search/search-data.ts`** — adicione o slug ao `tagMap` em `buildTags()`:
 
 ```typescript
-{
-  id: "page-react-patterns",
-  titleKey: "search.reactPatterns.title",
-  descriptionKey: "search.reactPatterns.description",
-  url: "/dicas/react-patterns",
-  tags: ["react", "patterns", "hooks"],
-}
+"react-patterns": ["react", "patterns", "hooks", "composição", "design"],
 ```
 
-**2. `messages/pt-BR/search.json`** — textos para a busca (traduzidos via `pnpm translate`):
+**2. `messages/pt-BR/search.json`** — adicione em `items` (a busca usa `items.[slug].title` e `items.[slug].description`):
 
 ```json
-{
-  "reactPatterns": {
+"items": {
+  "react-patterns": {
     "title": "React Patterns",
     "description": "Composicao, hooks customizados e boas praticas"
   }
 }
 ```
 
+Depois: `pnpm translate` para en, es, de.
+
 ---
 
-### 8. Criar loading skeleton
+### 8. Atualizar o chatbot (system-prompt)
+
+**Arquivo:** `src/lib/chat/system-prompt.ts`
+
+Adicione a nova pagina na secao PAGINAS correspondente (Implementacoes, Ferramentas ou Guias). O chatbot usa essa lista para recomendar paginas aos visitantes. Sem isso, a IA nao conhece o novo conteudo.
+
+Exemplo para guia:
+
+```
+- ${PERSONAL.siteUrl}/dicas/react-patterns — React Design Patterns (Composition, Hooks, performance)
+```
+
+---
+
+### 9. Criar loading skeleton
 
 **Arquivo:** `src/app/dicas/[slug]/loading.tsx` (ou `ferramentas/[slug]/` ou `implementacoes/[slug]/`)
 
@@ -261,7 +278,7 @@ Use a variant correspondente: `"guide"`, `"implementation"` ou `"tool"`.
 
 ---
 
-### 9. Testar
+### 10. Testar
 
 ```bash
 # 1. Dev server
@@ -274,6 +291,18 @@ http://localhost:3000/dicas/react-patterns
 pnpm build
 ```
 
+### Opcional: Analytics (nome na pagina de stats)
+
+Se quiser que a pagina apareca com nome traduzido em `/contribua` (Top paginas), adicione em `messages/pt-BR/contributePage.json` (e nos outros idiomas via `pnpm translate`):
+
+```json
+"platformStats": {
+  "pageNames": {
+    "/dicas/react-patterns": "React Patterns"
+  }
+}
+```
+
 ---
 
 ## Estrutura de arquivos (resumo)
@@ -283,7 +312,7 @@ src/
 ├── app/
 │   ├── dicas/page.tsx              # 4. iconMap (icone do card na listagem)
 │   └── dicas/[slug]/
-│       └── loading.tsx             # 8. Loading skeleton
+│       └── loading.tsx             # 9. Loading skeleton
 ├── data/
 │   └── content.ts                  # 1. Registre aqui
 ├── lib/
@@ -297,6 +326,9 @@ src/
     ├── navbar/nav-data.ts           # 6. Menu aqui
     └── global-search/search-data.ts # 7. Busca global
 
+src/lib/chat/
+└── system-prompt.ts                 # 8. Chatbot (IA conhece a pagina)
+
 messages/
 └── pt-BR/
     ├── reactPatternsPage.json       # 5. Traducoes da pagina
@@ -305,7 +337,7 @@ messages/
     └── index.ts                     # 5. Barrel export
 ```
 
-**Voce mexe nos arquivos marcados com numeros!**
+**Voce mexe nos arquivos marcados com numeros!** Incluindo system-prompt.ts para o chatbot conhecer a nova pagina.
 
 ---
 

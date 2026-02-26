@@ -130,7 +130,7 @@ export function ContactSection() {
                   className="absolute -left-[9999px] opacity-0"
                   aria-hidden="true"
                 >
-                  <label htmlFor="website">Website</label>
+                  <label htmlFor="website">{t("websiteLabel")}</label>
                   <input
                     id="website"
                     name="website"

@@ -141,7 +141,8 @@
       "searchChecklistTitle": "Checklist — depois de editar, confira:",
       "searchChecklist1": "search.json preenchido nos 4 idiomas (pt-BR, en, es, de) com items.'{slug'}'.title e .description",
       "searchChecklist2": "tagMap em search-data.ts com o slug e as tags (palavras que o usuário digitaria ao procurar)",
-      "searchChecklist3": "Testar: abra a busca (Ctrl+K) e digite o título ou uma tag da sua página",
+      "searchChecklist3": "system-prompt.ts: adicione a página na seção PÁGINAS para o chatbot poder recomendá-la",
+      "searchChecklist4": "Testar: abra a busca (Ctrl+K) e digite o título ou uma tag da sua página",
       "listingPage": "Adicione ícone à listagem",
       "listingPageDesc": "Cada página da listagem (/dicas, /implementacoes) usa um iconMap para exibir ícones. Adicione o slug e um ícone do Lucide.",
       "categoryTitle": "Categorias disponíveis",
@@ -165,7 +166,8 @@
         "r2": "Listagem da categoria exibe a página com ícone correto",
         "r3": "Metadata (título e descrição) renderiza corretamente",
         "r4": "Traduções do search.json estão atualizadas nos 4 idiomas",
-        "r5": "Build (pnpm build) passa sem erros de tipo"
+        "r5": "Chatbot conhece a página (system-prompt.ts, seção PÁGINAS)",
+        "r6": "Build (pnpm build) passa sem erros de tipo"
       },
       "faq": {
         "q1": "O que acontece se eu esquecer o COMPONENT_MAP?",

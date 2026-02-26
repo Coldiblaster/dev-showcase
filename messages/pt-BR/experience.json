@@ -3,25 +3,46 @@
   "subtitle": "Minha trajetoria profissional",
   "items": [
     {
-      "role": "Desenvolvedor Frontend Senior PJ / Lider Tecnico",
-      "company": "Ti Safer",
-      "period": "-",
-      "description": "Entrei como lider tecnico de um projeto do zero, montando a arquitetura frontend desde o dia um. No dia a dia, trabalho junto com o time de UI/UX, backend, PO e DevOps -- alinhamentos diarios, estruturacao de demandas na pre-planning e code reviews com os 3 devs que lidero. Defini os padroes de SSR, cache com React Query e construi o design system em parceria com o time de design.",
-      "techs": ["React 18", "Next.js 14+", "TypeScript", "Tailwind CSS", "React Query"]
+      "role": "Desenvolvedor Frontend Senior / Lider Tecnico",
+      "company": "FCamara",
+      "period": "Out/2025 - Atual",
+      "description": "Desenvolvimento de aplicacoes com React (Vite) e Next.js, aplicando boas praticas de arquitetura e organizacao por dominio. Implementacao de interfaces com Tailwind CSS, construcao de componentes reutilizaveis e padronizados (base para design system). Implementacao de layouts complexos e telas estrategicas, com foco em performance e UX. Integracao com APIs e gerenciamento de estado com React Query. Atuacao com Server Components e SSR no Next.js. Alinhamento continuo com Tech Lead para definicao de solucoes tecnicas e priorizacao. Participacao ativa em code reviews, refinamentos tecnicos e decisoes de arquitetura. Lideranca tecnica com mentoria e code reviews com o time.",
+      "techs": [
+        "React 18",
+        "Next.js 14+",
+        "Vite",
+        "TypeScript",
+        "Tailwind CSS",
+        "React Query"
+      ]
     },
     {
       "role": "Analista de Sistemas Pleno / Lider Tecnico Frontend",
       "company": "CI&T",
       "period": "Jan/2025 - Jul/2025",
       "description": "Atuei como referencia tecnica do frontend dentro de uma consultoria que atende grandes empresas. Meu papel ia alem de codar: participava das definicoes de arquitetura, fazia code reviews detalhados focando em performance e seguranca, e acompanhava de perto a evolucao dos devs mais junior com mentorias recorrentes. Colaboracao constante com squads multidisciplinares.",
-      "techs": ["React", "Next.js 14+", "TypeScript", "GraphQL", "Tailwind CSS", "Jest"]
+      "techs": [
+        "React",
+        "Next.js 14+",
+        "TypeScript",
+        "GraphQL",
+        "Tailwind CSS",
+        "Jest"
+      ]
     },
     {
       "role": "Desenvolvedor React Senior (Web e Mobile)",
       "company": "Silicon Village",
       "period": "Jul/2023 - Nov/2024",
       "description": "Trabalhei numa fintech que atendia mais de 100 mil usuarios, desenvolvendo tanto o app mobile quanto a plataforma web. Um dos trabalhos que mais me orgulho foi criar um design system compartilhado entre Web e Mobile, que trouxe consistencia visual e acelerou o delivery. Tambem fiz otimizacoes que melhoraram em cerca de 40% a nota no Lighthouse.",
-      "techs": ["React", "React Native", "Next.js", "Expo", "TypeScript", "Styled Components"]
+      "techs": [
+        "React",
+        "React Native",
+        "Next.js",
+        "Expo",
+        "TypeScript",
+        "Styled Components"
+      ]
     },
     {
       "role": "Desenvolvedor Frontend Pleno",
@@ -35,7 +56,13 @@
       "company": "ConsulTi",
       "period": "Dez/2020 - Nov/2021",
       "description": "Minha primeira experiencia mais completa trabalhando com front e back. Desenvolvi APIs REST, microsservicos e interfaces web com React e Next.js. Foi aqui que comecei a entender de verdade como o frontend se conecta com toda a engenharia por tras.",
-      "techs": ["React", "Next.js", "TypeScript", "Node.js", "Styled Components"]
+      "techs": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Node.js",
+        "Styled Components"
+      ]
     },
     {
       "role": "Desenvolvedor Full Stack / Suporte Tecnico",

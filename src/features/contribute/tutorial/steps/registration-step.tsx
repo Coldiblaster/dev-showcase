@@ -72,7 +72,7 @@ export function RegistrationStep({ nextStepId, nextStepLabel }: StepNavProps) {
 
   const isNew = track === "new";
 
-  const REG_KEYS = ["r1", "r2", "r3", "r4", "r5"] as const;
+  const REG_KEYS = ["r1", "r2", "r3", "r4", "r5", "r6"] as const;
 
   return (
     <TutorialStep
@@ -172,6 +172,7 @@ export function RegistrationStep({ nextStepId, nextStepLabel }: StepNavProps) {
                 <li>{t("searchChecklist1")}</li>
                 <li>{t("searchChecklist2")}</li>
                 <li>{t("searchChecklist3")}</li>
+                <li>{t("searchChecklist4")}</li>
               </ul>
             </div>
           </div>

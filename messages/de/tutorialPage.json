@@ -142,6 +142,7 @@
       "searchChecklist1": "search.json in allen 4 Sprachen (pt-BR, en, es, de) mit items.'{slug'}'.title und .description ausgefüllt",
       "searchChecklist2": "tagMap in search-data.ts mit dem Slug und den Tags (Begriffe, die Nutzer beim Suchen eingeben würden)",
       "searchChecklist3": "Testen: Suche öffnen (Strg+K) und Seitentitel oder eine Tag eingeben",
+      "searchChecklist4": "Testen: Öffnen Sie die Suche (Strg+K) und geben Sie den Titel oder einen Tag Ihrer Seite ein.",
       "listingPage": "Icon zur Auflistung hinzufügen",
       "listingPageDesc": "Jede Auflistungsseite (/dicas, /implementacoes) verwendet eine iconMap zur Anzeige von Icons. Fügen Sie den Slug und ein Lucide-Icon hinzu.",
       "categoryTitle": "Verfügbare Kategorien",
@@ -165,7 +166,8 @@
         "r2": "Kategorieauflistung zeigt die Seite mit korrektem Icon",
         "r3": "Metadata (Titel und Beschreibung) werden korrekt gerendert",
         "r4": "search.json-Übersetzungen sind in allen 4 Sprachen aktualisiert",
-        "r5": "Build (pnpm build) besteht ohne Typfehler"
+        "r5": "Build (pnpm build) besteht ohne Typfehler",
+        "r6": "Build (pnpm build) läuft ohne Typfehler durch"
       },
       "faq": {
         "q1": "Was passiert, wenn ich COMPONENT_MAP vergesse?",

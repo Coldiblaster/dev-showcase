@@ -8,6 +8,7 @@ import {
   Github,
   Linkedin,
   Mail,
+  Star,
   User,
   Users,
 } from "lucide-react";
@@ -16,7 +17,7 @@ import { useTranslations } from "next-intl";
 import { HeroSection } from "@/components/hero-section";
 import { Button } from "@/components/ui/button";
 import { useSiteStats } from "@/hooks/use-site-stats";
-import { PERSONAL } from "@/lib/constants";
+import { PERSONAL, REPOS } from "@/lib/constants";
 
 /** Hero da página inicial com nome, CTA e redes sociais. */
 export function HomeHeroSection() {
@@ -103,7 +104,7 @@ export function HomeHeroSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="mb-4 flex justify-center md:mb-8"
+            className="mb-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:mb-8 md:gap-x-6"
           >
             <a
               href="/curriculo_VINICIUS_BASTAZIN_ARAUJO.pdf"
@@ -112,6 +113,15 @@ export function HomeHeroSection() {
             >
               <Download className="h-3 w-3 md:h-3.5 md:w-3.5" />
               {t("downloadCv")}
+            </a>
+            <a
+              href={REPOS.devShowcase}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs text-muted-foreground/70 transition-colors hover:text-primary md:text-sm"
+            >
+              <Star className="h-3 w-3 md:h-3.5 md:w-3.5" />
+              {t("starOnGitHub")}
             </a>
           </motion.div>
         }
@@ -183,28 +193,28 @@ export function HomeHeroSection() {
               {
                 icon: Github,
                 href: PERSONAL.github,
-                label: "GitHub",
+                labelKey: "githubLabel" as const,
               },
               {
                 icon: Linkedin,
                 href: PERSONAL.linkedin,
-                label: "LinkedIn",
+                labelKey: "linkedinLabel" as const,
               },
               {
                 icon: Mail,
                 href: `mailto:${PERSONAL.email}`,
-                label: "Email",
+                labelKey: "emailLabel" as const,
               },
-            ].map(({ icon: Icon, href, label }) => (
+            ].map(({ icon: Icon, href, labelKey }) => (
               <motion.a
-                key={label}
+                key={labelKey}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary md:h-10 md:w-10"
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                aria-label={label}
+                aria-label={t(labelKey)}
               >
                 <Icon className="h-4 w-4" />
               </motion.a>

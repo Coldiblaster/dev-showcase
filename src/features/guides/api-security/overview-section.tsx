@@ -21,6 +21,7 @@ export function OverviewSection() {
           icon={Shield}
           title={t("overview.title")}
           subtitle={t("overview.description")}
+          sectionId="overview"
         />
       </AnimatedSection>
 

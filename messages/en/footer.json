@@ -3,5 +3,7 @@
   "rights": "All rights reserved",
   "privacy": "Privacy",
   "online": "{count, plural, one {# person online now} other {# people online now}}",
-  "emailLabel": "Email"
+  "emailLabel": "Email",
+  "githubLabel": "GitHub",
+  "linkedinLabel": "LinkedIn"
 }

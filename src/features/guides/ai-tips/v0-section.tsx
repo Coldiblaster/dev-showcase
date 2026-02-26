@@ -23,6 +23,7 @@ export function V0Section() {
             icon={Zap}
             title={t("v0.title")}
             subtitle={t("v0.subtitle")}
+            sectionId="v0"
           />
         </AnimatedSection>
 

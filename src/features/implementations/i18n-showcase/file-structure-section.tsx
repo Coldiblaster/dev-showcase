@@ -47,7 +47,7 @@ export function FileStructure() {
           <p className="mb-6 text-center leading-relaxed text-muted-foreground">
             {t("structure.description")}
           </p>
-          <CodeBlock code={FILE_STRUCTURE_TREE} title="Estrutura do projeto" />
+          <CodeBlock code={FILE_STRUCTURE_TREE} title={t("structure.title")} />
         </motion.div>
       </div>
     </section>

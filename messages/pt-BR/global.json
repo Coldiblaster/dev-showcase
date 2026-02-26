@@ -15,6 +15,7 @@
   "copied": "Copiado!",
   "codeCopied": "Código copiado",
   "copyCode": "Copiar código",
+  "copyLinkToSection": "Copiar link para esta seção",
   "scrollToTop": "Voltar ao topo",
   "changeLanguage": "Trocar idioma",
   "goHome": "Ir para a página inicial",
@@ -22,6 +23,7 @@
   "terminalPress": "Pressione",
   "terminalFor": "para terminal",
   "tip": "Dica:",
+  "mobileMenu": "Menu",
   "mobileSearch": "Busca",
   "mobileLanguage": "Idioma",
   "mobileTop": "Topo",
@@ -48,11 +50,23 @@
   },
   "readingTime": "{minutes} min de leitura",
   "share": "Compartilhar",
+  "shareTwitter": "Twitter",
+  "shareLinkedIn": "LinkedIn",
   "linkCopied": "Link copiado!",
   "shareAriaLabel": "Compartilhar este conteúdo",
   "focusMode": "Modo foco",
   "exitFocusMode": "Sair do modo foco",
   "relatedContent": "Conteúdo relacionado",
   "quickActions": "Ações rápidas",
-  "readingProgress": "Progresso de leitura"
+  "readingProgress": "Progresso de leitura",
+  "keyboardShortcuts": {
+    "title": "Atalhos de teclado",
+    "description": "Use estes atalhos para navegar mais rápido. No Ubuntu: Ctrl+Alt+K também abre este painel.",
+    "items": {
+      "search": "Busca global",
+      "terminal": "Terminal interativo",
+      "shortcuts": "Este painel",
+      "close": "Fechar modais"
+    }
+  }
 }

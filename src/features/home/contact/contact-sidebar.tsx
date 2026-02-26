@@ -9,8 +9,12 @@ import { CardBlur } from "@/components/ui/card-blur";
 import { buildWhatsAppLink, PERSONAL } from "@/lib/constants";
 
 const socials = [
-  { icon: Github, label: "GitHub", href: PERSONAL.github },
-  { icon: Linkedin, label: "LinkedIn", href: PERSONAL.linkedin },
+  { icon: Github, labelKey: "githubLabel" as const, href: PERSONAL.github },
+  {
+    icon: Linkedin,
+    labelKey: "linkedinLabel" as const,
+    href: PERSONAL.linkedin,
+  },
 ];
 
 /** Sidebar de contato com WhatsApp, email direto e redes sociais. */
@@ -27,7 +31,9 @@ export function ContactSidebar() {
             <MessageCircle className="h-5 w-5 text-[#25D366]" />
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-foreground">WhatsApp</h3>
+            <h3 className="text-sm font-semibold text-foreground">
+              {t("whatsapp")}
+            </h3>
             <p className="text-xs text-muted-foreground">{t("whatsappHint")}</p>
           </div>
         </div>
@@ -73,16 +79,16 @@ export function ContactSidebar() {
           {t("social")}
         </p>
         <div className="flex gap-3">
-          {socials.map(({ icon: Icon, label, href }) => (
+          {socials.map(({ icon: Icon, labelKey, href }) => (
             <motion.a
-              key={label}
+              key={labelKey}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-11 w-11 items-center justify-center rounded-xl border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              aria-label={label}
+              aria-label={t(labelKey)}
             >
               <Icon className="h-5 w-5" />
             </motion.a>

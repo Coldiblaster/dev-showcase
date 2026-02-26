@@ -17,6 +17,7 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 | [Componentes Reutilizaveis](./architecture/COMPONENTS.md)   | Catalogo de componentes compartilhados                        | Todos        |
 | [Adicionando Paginas](./content-management/ADDING_PAGES.md) | Como criar novas paginas (guias, implementacoes, ferramentas) | Todos        |
 | [Internacionalizacao (i18n)](./i18n/INDEX.md)               | Sistema de traducao, scripts, boas praticas                   | Todos        |
+| [Prompts IA](./prompts-ia/README.md)                        | Prompts para posts LinkedIn e para criar codigo no projeto    | Todos        |
 
 > **Novo no projeto?** Use o **Tutorial Interativo** em `/contribua/tutorial` — cobre o fluxo completo com duas trilhas: criar uma feature nova ou melhorar uma existente.
 
@@ -107,16 +108,20 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
         ↓
 7. Adicionar ao menu (navbar/nav-data.ts) e busca (search-data.ts + search.json)
         ↓
-8. Rodar pnpm translate && pnpm validate:i18n
+8. Adicionar ao chatbot (lib/chat/system-prompt.ts — secao PAGINAS)
         ↓
-9. Testar build: pnpm build
+9. Criar loading.tsx com PageSkeleton
         ↓
-10. Atualizar CHANGELOG.md e src/data/changelog.ts
+10. Rodar pnpm translate && pnpm validate:i18n
+        ↓
+11. Testar build: pnpm build
+        ↓
+12. Atualizar CHANGELOG.md e src/data/changelog.ts
 ```
 
 > **Pagina standalone** (sem content.ts): crie `src/app/<rota>/page.tsx` e `src/features/<nome>/index.tsx`.
 > Se tiver dados proprios, crie `src/data/<nome>.ts` (ex: `changelog.ts`).
-> Ainda precisa dos passos 5, 6, 7, 9 e 10.
+> Ainda precisa dos passos 5, 6, 7, 8, 10, 11 e 12.
 
 > Guia detalhado: [Adicionando Paginas](./content-management/ADDING_PAGES.md)
 > Tutorial interativo para contribuidores: `/contribua/tutorial`

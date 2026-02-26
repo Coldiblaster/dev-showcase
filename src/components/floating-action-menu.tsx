@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowUp,
+  Keyboard,
   LayoutGrid,
   Maximize2,
   MessageCircle,
@@ -76,6 +77,11 @@ export function FloatingActionMenu() {
     setOpen(false);
   }, []);
 
+  const openShortcuts = useCallback(() => {
+    window.dispatchEvent(new CustomEvent("open-keyboard-shortcuts"));
+    setOpen(false);
+  }, []);
+
   type Action = {
     id: string;
     icon: React.ElementType;
@@ -108,12 +114,18 @@ export function FloatingActionMenu() {
       label: tChat("open"),
       onClick: openChat,
     },
+    {
+      id: "shortcuts",
+      icon: Keyboard,
+      label: tGlobal("keyboardShortcuts.title"),
+      onClick: openShortcuts,
+    },
   ];
 
   return (
     <div
       data-fab-menu="true"
-      className="fixed bottom-6 right-6 z-50 hidden flex-col items-center gap-2.5 md:flex"
+      className="fixed bottom-6 right-6 z-50 hidden flex-col items-center gap-2.5 lg:flex"
     >
       {/* Sub-ações */}
       <AnimatePresence>

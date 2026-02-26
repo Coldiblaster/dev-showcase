@@ -10,7 +10,11 @@
   "cta": "Explore Implementations",
   "secondary": "Let's Talk",
   "downloadCv": "Download CV",
+  "starOnGitHub": "Star on GitHub",
   "scrollDown": "Scroll down",
+  "githubLabel": "GitHub",
+  "linkedinLabel": "LinkedIn",
+  "emailLabel": "Email",
   "stats": {
     "impact": "8+ years of experience",
     "implementations": "Real projects, not tutorials",

@@ -15,6 +15,7 @@
   "copied": "Copied!",
   "codeCopied": "Code copied",
   "copyCode": "Copy code",
+  "copyLinkToSection": "Copy link to this section",
   "scrollToTop": "Back to top",
   "changeLanguage": "Change language",
   "goHome": "Go to the home page",
@@ -22,6 +23,7 @@
   "terminalPress": "Press",
   "terminalFor": "for terminal",
   "tip": "Tip:",
+  "mobileMenu": "Menu",
   "mobileSearch": "Search",
   "mobileLanguage": "Language",
   "mobileTop": "Top",
@@ -48,11 +50,23 @@
   },
   "readingTime": "{minutes} min read",
   "share": "Share",
+  "shareTwitter": "Twitter",
+  "shareLinkedIn": "LinkedIn",
   "linkCopied": "Link copied!",
   "shareAriaLabel": "Share this content",
   "focusMode": "Focus mode",
   "exitFocusMode": "Exit focus mode",
   "relatedContent": "Related content",
   "quickActions": "Quick actions",
-  "readingProgress": "Reading progress"
+  "readingProgress": "Reading progress",
+  "keyboardShortcuts": {
+    "title": "Keyboard shortcuts",
+    "description": "Use these shortcuts to navigate faster. On Ubuntu: Ctrl+Alt+K also opens this panel.",
+    "items": {
+      "search": "Global search",
+      "terminal": "Interactive terminal",
+      "shortcuts": "This panel",
+      "close": "Close modals"
+    }
+  }
 }

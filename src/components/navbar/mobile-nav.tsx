@@ -47,7 +47,7 @@ export function MobileNav({ isOpen, onClose, badgePaths }: MobileNavProps) {
           }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="overflow-hidden border-t border-border/50 md:hidden"
+          className="overflow-hidden border-t border-border/50 lg:hidden"
         >
           <ScrollArea className="h-full">
             <div className="flex flex-col gap-1 p-4">

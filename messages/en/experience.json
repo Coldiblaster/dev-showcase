@@ -3,13 +3,14 @@
   "subtitle": "My professional career",
   "items": [
     {
-      "role": "Senior Frontend Developer PJ / Technical Leader",
-      "company": "Ti Safer",
-      "period": "-",
-      "description": "I joined as technical lead on a project from scratch, setting up the frontend architecture from day one. On a daily basis, I work closely with the UI/UX, backend, PO, and DevOps teams—daily alignments, structuring demands in pre-planning, and code reviews with the three developers I lead. I defined the SSR standards, caching with React Query, and built the design system in partnership with the design team.",
+      "role": "Senior Frontend Developer / Technical Leader",
+      "company": "FCamara",
+      "period": "Oct/2025 - Present",
+      "description": "Development of applications with React (Vite) and Next.js, applying architecture best practices and domain-driven organization. Interface implementation with Tailwind CSS, building reusable and standardized components (design system foundation). Implementation of complex layouts and strategic screens with focus on performance and UX. API integration and state management with React Query. Work with Server Components and SSR in Next.js. Continuous alignment with Tech Lead for technical solutions and prioritization. Active participation in code reviews, technical refinements, and architecture decisions. Technical leadership with mentoring and code reviews with the team.",
       "techs": [
         "React 18",
         "Next.js 14+",
+        "Vite",
         "TypeScript",
         "Tailwind CSS",
         "React Query"
@@ -48,13 +49,7 @@
       "company": "Pixter",
       "period": "Nov/2021 - Jun/2023",
       "description": "This is where I matured significantly as a developer. I built complex features always with scalability and user experience in mind. I implemented WCAG accessibility in the most critical components of the product and led a major refactoring of the legacy codebase, improving maintainability and reducing recurring bugs.",
-      "techs": [
-        "React",
-        "Term 2x0",
-        "TypeScript",
-        "Styled Components",
-        "It is"
-      ]
+      "techs": ["React", "Term 2x0", "TypeScript", "Styled Components", "It is"]
     },
     {
       "role": "Full Stack Developer",
@@ -74,12 +69,7 @@
       "company": "Oeste Saude",
       "period": "May 2019 - November 2020",
       "description": "I started in technical support and gradually moved into development on my own, studying TERM3x0 and TERM4x0 in my spare time. I ended up taking on the maintenance and development of the company's web system in the healthcare area. That's where it all started and where I built a solid foundation.",
-      "techs": [
-        "React",
-        "TypeScript",
-        "JavaScript",
-        "HTML/CSS"
-      ]
+      "techs": ["React", "TypeScript", "JavaScript", "HTML/CSS"]
     }
   ]
 }

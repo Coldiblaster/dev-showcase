@@ -7,7 +7,7 @@ import { ContentFooter } from "@/components/content-footer";
 import { ReadingProgress } from "@/components/reading-progress";
 import { ReadingTime } from "@/components/reading-time";
 import { RelatedContent } from "@/components/related-content";
-import { ShareButton } from "@/components/share-button";
+import { ShareButtons } from "@/components/share-buttons";
 import {
   CONTENT_ITEMS,
   type ContentItem,
@@ -250,7 +250,7 @@ export async function renderDynamicContent(
           ) : (
             <span />
           )}
-          <ShareButton title={content.title} />
+          <ShareButtons title={content.title} />
         </div>
 
         {/* key={path} força remount ao navegar entre páginas — evita state stale */}

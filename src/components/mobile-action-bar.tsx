@@ -5,6 +5,7 @@ import {
   ArrowUp,
   Check,
   Globe,
+  LayoutGrid,
   Maximize2,
   MessageCircle,
   Minimize2,
@@ -76,6 +77,10 @@ export function MobileActionBar() {
     window.dispatchEvent(new CustomEvent("open-search"));
   }, []);
 
+  const openMenu = useCallback(() => {
+    window.dispatchEvent(new CustomEvent("open-mobile-nav"));
+  }, []);
+
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
@@ -119,6 +124,14 @@ export function MobileActionBar() {
   const active = (clientLocale ?? locale) as Locale;
 
   const baseActions = [
+    {
+      key: "menu",
+      icon: LayoutGrid,
+      label: t("mobileMenu"),
+      onClick: openMenu,
+      disabled: false,
+      active: false,
+    },
     {
       key: "search",
       icon: Search,
@@ -182,7 +195,7 @@ export function MobileActionBar() {
         {langOpen && (
           <>
             <div
-              className="fixed inset-0 z-60 md:hidden"
+              className="fixed inset-0 z-60 lg:hidden"
               onClick={() => setLangOpen(false)}
               aria-hidden="true"
             />
@@ -191,7 +204,7 @@ export function MobileActionBar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.15, ease: "easeOut" }}
-              className="fixed inset-x-4 bottom-18 z-60 overflow-hidden rounded-xl border border-border bg-card shadow-2xl md:hidden"
+              className="fixed inset-x-4 bottom-18 z-60 overflow-hidden rounded-xl border border-border bg-card shadow-2xl lg:hidden"
               style={{
                 paddingBottom: "env(safe-area-inset-bottom, 0px)",
               }}
@@ -222,12 +235,12 @@ export function MobileActionBar() {
 
       {/* Bottom action bar */}
       <nav
-        className="fixed inset-x-0 bottom-0 z-50 border-t border-border/30 bg-background/90 backdrop-blur-xl md:hidden"
+        className="fixed inset-x-0 bottom-0 z-50 border-t border-border/30 bg-background/90 backdrop-blur-xl lg:hidden"
         style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
         aria-label={t("mobileActions")}
       >
         <div
-          className={`grid h-14 ${isContentPage ? "grid-cols-6" : "grid-cols-5"}`}
+          className={`grid h-14 ${isContentPage ? "grid-cols-7" : "grid-cols-6"}`}
         >
           {actions.map(
             ({ key, icon: Icon, label, onClick, disabled, active }) => (

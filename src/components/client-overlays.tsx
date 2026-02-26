@@ -31,6 +31,14 @@ const TerminalEasterEgg = dynamic(
   { ssr: false },
 );
 
+const KeyboardShortcutsModal = dynamic(
+  () =>
+    import("@/components/keyboard-shortcuts-modal").then(
+      (m) => m.KeyboardShortcutsModal,
+    ),
+  { ssr: false },
+);
+
 export function ClientOverlays() {
   return (
     <>
@@ -38,6 +46,7 @@ export function ClientOverlays() {
       <ChatWidget />
       <MobileActionBar />
       <TerminalEasterEgg />
+      <KeyboardShortcutsModal />
     </>
   );
 }

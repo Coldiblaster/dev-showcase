@@ -3,16 +3,17 @@
   "subtitle": "Mein beruflicher Werdegang",
   "items": [
     {
-      "role": "Senior Frontend-Entwickler PJ / Technischer Leiter",
-      "company": "Ti Safer",
-      "period": "-",
-      "description": "Ich bin als technischer Leiter eines Projekts von Grund auf eingestiegen und habe vom ersten Tag an die Frontend-Architektur aufgebaut. Im Alltag arbeite ich mit dem UI/UX-, Backend-, PO- und DevOps-Team zusammen – tägliche Abstimmungen, Strukturierung der Anforderungen in der Vorplanung und Code-Reviews mit den drei Entwicklern, die ich leite. Ich habe die SSR-Standards definiert, den Cache mit React Query eingerichtet und das Designsystem in Zusammenarbeit mit dem Designteam aufgebaut.",
+      "role": "Senior Frontend-Entwickler / Technischer Leiter",
+      "company": "FCamara",
+      "period": "Okt/2025 - Heute",
+      "description": "Entwicklung von Anwendungen mit React (Vite) und Next.js unter Anwendung von Architektur-Best-Practices und domänenorientierter Organisation. Implementierung von Oberflächen mit Tailwind CSS, Aufbau wiederverwendbarer und standardisierter Komponenten (Design-System-Grundlage). Implementierung komplexer Layouts und strategischer Screens mit Fokus auf Performance und UX. API-Integration und State-Management mit React Query. Arbeit mit Server Components und SSR in Next.js. Kontinuierliche Abstimmung mit Tech Lead für technische Lösungen und Priorisierung. Aktive Teilnahme an Code-Reviews, technischen Verfeinerungen und Architekturentscheidungen. Technische Führung mit Mentoring und Code-Reviews im Team.",
       "techs": [
         "React 18",
         "Next.js 14+",
+        "Vite",
         "TypeScript",
         "Tailwind CSS",
-        "React Abfrage"
+        "React Query"
       ]
     },
     {
@@ -74,12 +75,7 @@
       "company": "Oeste Saude",
       "period": "Mai 2019 – November 2020",
       "description": "Ich habe im technischen Support angefangen und bin dann auf eigene Faust in die Entwicklung gewechselt, wobei ich in meiner Freizeit React und TypeScript gelernt habe. Schließlich habe ich die Wartung und Weiterentwicklung des Websystems des Unternehmens im Gesundheitsbereich übernommen. Dort hat alles angefangen und dort habe ich mir eine solide Grundlage aufgebaut.",
-      "techs": [
-        "React",
-        "TypeScript",
-        "JavaScript",
-        "HTML/CSS"
-      ]
+      "techs": ["React", "TypeScript", "JavaScript", "HTML/CSS"]
     }
   ]
 }

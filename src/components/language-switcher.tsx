@@ -49,7 +49,7 @@ export function LanguageSwitcher() {
       <Button
         variant="outline"
         onClick={() => setIsOpen((s) => !s)}
-        className="gap-2 rounded-lg border-border bg-card hover:border-primary/50 hover:bg-card hover:text-primary"
+        className="gap-2 rounded-lg h-9"
         aria-label={t("changeLanguage")}
         aria-expanded={isOpen}
       >

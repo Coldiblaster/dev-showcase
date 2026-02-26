@@ -41,9 +41,9 @@ export function PricingSection() {
 
           <div className="grid gap-4 md:gap-6 md:grid-cols-3">
             {models.map((model) => (
-              <motion.div key={model.name} variants={fadeUp}>
+              <motion.div key={model.name} variants={fadeUp} className="pt-3">
                 <Card
-                  className={`relative h-full border-border/50 bg-card ${
+                  className={`relative h-full border-border/50 bg-card overflow-visible ${
                     model.recommended
                       ? "border-primary/40 shadow-lg shadow-primary/5"
                       : ""

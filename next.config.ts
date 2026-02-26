@@ -36,6 +36,9 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [{ source: "/feed.xml", destination: "/feed" }];
+  },
 };
 
 export default withNextIntl(nextConfig);

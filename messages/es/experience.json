@@ -3,16 +3,17 @@
   "subtitle": "Mi trayectoria profesional",
   "items": [
     {
-      "role": "Desarrollador Frontend Senior PJ / Líder Técnico",
-      "company": "Ti Safer",
-      "period": "-",
-      "description": "Entré como líder técnico de un proyecto desde cero, montando la arquitectura frontend desde el primer día. En el día a día, trabajo junto con el equipo de UI/UX, backend, PO y DevOps: alineaciones diarias, estructuración de demandas en la preplanificación y revisiones de código con los tres desarrolladores que dirijo. Definí los estándares de SSR, caché con React Query y construí el sistema de diseño en colaboración con el equipo de diseño.",
+      "role": "Desarrollador Frontend Senior / Líder Técnico",
+      "company": "FCamara",
+      "period": "Oct/2025 - Actual",
+      "description": "Desarrollo de aplicaciones con React (Vite) y Next.js, aplicando buenas prácticas de arquitectura y organización por dominio. Implementación de interfaces con Tailwind CSS, construcción de componentes reutilizables y estandarizados (base para design system). Implementación de layouts complejos y pantallas estratégicas con foco en performance y UX. Integración con APIs y gestión de estado con React Query. Trabajo con Server Components y SSR en Next.js. Alineación continua con Tech Lead para definición de soluciones técnicas y priorización. Participación activa en code reviews, refinamientos técnicos y decisiones de arquitectura. Liderazgo técnico con mentoría y code reviews con el equipo.",
       "techs": [
         "React 18",
         "Next.js 14+",
+        "Vite",
         "TypeScript",
         "Tailwind CSS",
-        "React Consulta"
+        "React Query"
       ]
     },
     {
@@ -74,12 +75,7 @@
       "company": "Oeste Saude",
       "period": "Mayo/2019 - Noviembre/2020",
       "description": "Empecé en el área de soporte técnico y fui migrando al desarrollo por mi cuenta, estudiando React y TypeScript en mi tiempo libre. Acabé asumiendo el mantenimiento y la evolución del sistema web de la empresa en el área de la salud. Ahí fue donde todo comenzó y donde construí una base sólida.",
-      "techs": [
-        "React",
-        "TypeScript",
-        "JavaScript",
-        "HTML/CSS"
-      ]
+      "techs": ["React", "TypeScript", "JavaScript", "HTML/CSS"]
     }
   ]
 }

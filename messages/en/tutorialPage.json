@@ -142,6 +142,7 @@
       "searchChecklist1": "search.json filled in all 4 locales (pt-BR, en, es, de) with items.'{slug'}'.title and .description",
       "searchChecklist2": "tagMap in search-data.ts with your slug and tags (words users would type when searching)",
       "searchChecklist3": "Test: open search (Ctrl+K) and type the page title or one of its tags",
+      "searchChecklist4": "Test: open the search (Ctrl+K) and enter the title or a tag from your page.",
       "listingPage": "Add icon to listing",
       "listingPageDesc": "Each listing page (/dicas, /implementacoes) uses an iconMap to display icons. Add the slug and a Lucide icon.",
       "categoryTitle": "Available categories",
@@ -165,7 +166,8 @@
         "r2": "Category listing displays the page with correct icon",
         "r3": "Metadata (title and description) renders correctly",
         "r4": "search.json translations are updated in all 4 languages",
-        "r5": "Build (pnpm build) passes without type errors"
+        "r5": "Build (pnpm build) passes without type errors",
+        "r6": "Build (pnpm build) passes without type errors"
       },
       "faq": {
         "q1": "What happens if I forget COMPONENT_MAP?",

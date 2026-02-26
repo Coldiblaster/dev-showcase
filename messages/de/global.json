@@ -15,6 +15,7 @@
   "copied": "Kopiert!",
   "codeCopied": "Code kopiert",
   "copyCode": "Code kopieren",
+  "copyLinkToSection": "Link zu diesem Abschnitt kopieren",
   "scrollToTop": "Zurück zum Anfang",
   "changeLanguage": "Sprache wechseln",
   "goHome": "Zur Startseite gehen",
@@ -22,6 +23,7 @@
   "terminalPress": "Drücken Sie",
   "terminalFor": "für Terminal",
   "tip": "Tipp:",
+  "mobileMenu": "Menü",
   "mobileSearch": "Suche",
   "mobileLanguage": "Sprache",
   "mobileTop": "Oben",
@@ -48,11 +50,23 @@
   },
   "readingTime": "{minutes} Min. Lesezeit",
   "share": "Teilen",
+  "shareTwitter": "Twitter",
+  "shareLinkedIn": "LinkedIn",
   "linkCopied": "Link kopiert!",
   "shareAriaLabel": "Diesen Inhalt teilen",
   "focusMode": "Fokus-Modus",
   "exitFocusMode": "Fokus-Modus beenden",
   "relatedContent": "Ähnliche Inhalte",
   "quickActions": "Schnellaktionen",
-  "readingProgress": "Lesefortschritt"
+  "readingProgress": "Lesefortschritt",
+  "keyboardShortcuts": {
+    "title": "Tastenkürzel",
+    "description": "Nutze diese Shortcuts für schnelleres Navigieren. Unter Ubuntu: Ctrl+Alt+K öffnet dieses Panel ebenfalls.",
+    "items": {
+      "search": "Globale Suche",
+      "terminal": "Interaktives Terminal",
+      "shortcuts": "Dieses Panel",
+      "close": "Modals schließen"
+    }
+  }
 }

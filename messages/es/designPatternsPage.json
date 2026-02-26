@@ -37,9 +37,9 @@
     "badge": "Patrones",
     "title": "Los 5 Patrones Esenciales",
     "before": "Antes",
-    "realWorldLabel": "Caso real:",
     "after": "Después",
     "whenToUse": "Cuándo usar",
+    "realWorldLabel": "Caso real:",
     "items": [
       {
         "id": "observer",

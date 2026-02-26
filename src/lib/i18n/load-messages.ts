@@ -26,6 +26,7 @@ const NAMESPACES = [
   "devResourcesData",
   "devResourcesPage",
   "experience",
+  "feed",
   "footer",
   "githubAnalyzerPage",
   "githubStats",

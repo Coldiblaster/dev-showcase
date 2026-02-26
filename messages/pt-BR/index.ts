@@ -22,6 +22,7 @@ import designSystemPage from "./designSystemPage.json";
 import devResourcesData from "./devResourcesData.json";
 import devResourcesPage from "./devResourcesPage.json";
 import experience from "./experience.json";
+import feed from "./feed.json";
 import footer from "./footer.json";
 import githubAnalyzerPage from "./githubAnalyzerPage.json";
 import githubStats from "./githubStats.json";
@@ -88,6 +89,7 @@ export default {
   devResourcesData,
   devResourcesPage,
   experience,
+  feed,
   footer,
   gitWorkflow,
   githubStats,

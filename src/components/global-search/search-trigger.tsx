@@ -21,7 +21,7 @@ export function SearchTrigger({
     <Button
       variant="outline"
       onClick={onClick}
-      className="gap-2 rounded-lg border-border bg-card hover:border-primary/50 hover:bg-card hover:text-primary xl:w-60 xl:justify-start"
+      className="gap-2 rounded-lg xl:w-56 xl:justify-start h-9 "
       aria-label={label}
       aria-haspopup="dialog"
       aria-expanded={open}

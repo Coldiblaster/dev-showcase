@@ -25,6 +25,7 @@ import type designSystemPage from "../../../messages/pt-BR/designSystemPage.json
 import type devResourcesData from "../../../messages/pt-BR/devResourcesData.json";
 import type devResourcesPage from "../../../messages/pt-BR/devResourcesPage.json";
 import type experience from "../../../messages/pt-BR/experience.json";
+import type feed from "../../../messages/pt-BR/feed.json";
 import type footer from "../../../messages/pt-BR/footer.json";
 import type githubAnalyzerPage from "../../../messages/pt-BR/githubAnalyzerPage.json";
 import type githubStats from "../../../messages/pt-BR/githubStats.json";
@@ -94,6 +95,7 @@ export type Messages = {
   devResourcesData: typeof devResourcesData;
   devResourcesPage: typeof devResourcesPage;
   experience: typeof experience;
+  feed: typeof feed;
   footer: typeof footer;
   gitWorkflow: typeof gitWorkflow;
   githubStats: typeof githubStats;

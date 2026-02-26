@@ -142,6 +142,7 @@
       "searchChecklist1": "search.json rellenado en los 4 idiomas (pt-BR, en, es, de) con items.'{slug'}'.title y .description",
       "searchChecklist2": "tagMap en search-data.ts con el slug y las tags (palabras que el usuario escribiría al buscar)",
       "searchChecklist3": "Probar: abre la búsqueda (Ctrl+K) y escribe el título de la página o una de sus tags",
+      "searchChecklist4": "Probar: abre la búsqueda (Ctrl+K) y escribe el título o una etiqueta de tu página.",
       "listingPage": "Agrega ícono al listado",
       "listingPageDesc": "Cada página de listado (/dicas, /implementacoes) usa un iconMap para mostrar íconos. Agrega el slug y un ícono de Lucide.",
       "categoryTitle": "Categorías disponibles",
@@ -165,7 +166,8 @@
         "r2": "El listado de la categoría muestra la página con ícono correcto",
         "r3": "Los metadata (título y descripción) se renderizan correctamente",
         "r4": "Las traducciones del search.json están actualizadas en los 4 idiomas",
-        "r5": "El build (pnpm build) pasa sin errores de tipo"
+        "r5": "El build (pnpm build) pasa sin errores de tipo",
+        "r6": "Build (pnpm build) se ejecuta sin errores de tipo."
       },
       "faq": {
         "q1": "¿Qué pasa si olvido el COMPONENT_MAP?",

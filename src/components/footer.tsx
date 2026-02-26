@@ -11,18 +11,16 @@ import { Separator } from "@/components/ui/separator";
 import { PERSONAL } from "@/lib/constants";
 
 const SOCIAL_LINKS_BASE = [
-  { icon: Github, href: PERSONAL.github, labelKey: null, label: "GitHub" },
+  { icon: Github, href: PERSONAL.github, labelKey: "githubLabel" as const },
   {
     icon: Linkedin,
     href: PERSONAL.linkedin,
-    labelKey: null,
-    label: "LinkedIn",
+    labelKey: "linkedinLabel" as const,
   },
   {
     icon: Mail,
     href: `mailto:${PERSONAL.email}`,
     labelKey: "emailLabel" as const,
-    label: "",
   },
 ];
 
@@ -53,8 +51,8 @@ export function Footer() {
           </a>
 
           <div className="flex items-center gap-4">
-            {SOCIAL_LINKS_BASE.map(({ icon: Icon, href, labelKey, label }) => {
-              const ariaLabel = labelKey ? t(labelKey) : label;
+            {SOCIAL_LINKS_BASE.map(({ icon: Icon, href, labelKey }) => {
+              const ariaLabel = t(labelKey);
               return (
                 <motion.a
                   key={ariaLabel}

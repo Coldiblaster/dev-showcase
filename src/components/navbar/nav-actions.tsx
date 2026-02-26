@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
+import { Keyboard, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -22,15 +22,29 @@ interface NavActionsProps {
 
 export function NavActions({ isMobileOpen, onMobileToggle }: NavActionsProps) {
   const t = useTranslations("nav");
+  const tGlobal = useTranslations("global.keyboardShortcuts");
+
+  const openShortcuts = () => {
+    window.dispatchEvent(new CustomEvent("open-keyboard-shortcuts"));
+  };
   const pathname = usePathname();
   const isActive = pathname === "/novidades";
 
   return (
     <div className="flex items-center gap-3">
-      <div className="hidden md:flex md:items-center md:gap-3">
+      <div className="hidden lg:flex lg:items-center lg:gap-3">
         <GlobalSearch />
 
         <LanguageSwitcher />
+        <motion.button
+          onClick={openShortcuts}
+          whileTap={{ scale: 0.95 }}
+          aria-label={tGlobal("title")}
+          title={tGlobal("title")}
+          className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+        >
+          <Keyboard className="h-4 w-4" />
+        </motion.button>
         <Link
           href="/novidades"
           aria-label={t("changelog")}
@@ -56,7 +70,7 @@ export function NavActions({ isMobileOpen, onMobileToggle }: NavActionsProps) {
 
       <motion.button
         onClick={onMobileToggle}
-        className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-foreground md:hidden"
+        className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-foreground lg:hidden"
         whileTap={{ scale: 0.95 }}
         aria-label={isMobileOpen ? t("closeMenu") : t("openMenu")}
         aria-expanded={isMobileOpen}

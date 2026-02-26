@@ -147,13 +147,13 @@ feature/* → PR → develop → auto-PR → main → Vercel deploy
 
 ### Componentes
 
-| Regra                     | Exemplo                                 |
-| ------------------------- | --------------------------------------- |
-| Nomes em PascalCase       | `ScoreGauge`, `StepCard`                |
-| Um componente por arquivo | `score-gauge.tsx`                       |
-| Arquivos em kebab-case    | `section-wrapper.tsx`                   |
-| JSDoc em portugues        | `/** Medidor circular de pontuacao. */` |
-| Props com interface       | `interface ScoreGaugeProps { ... }`     |
+| Regra                           | Exemplo                                            |
+| ------------------------------- | -------------------------------------------------- |
+| Nomes em PascalCase             | `ScoreGauge`, `StepCard`                           |
+| Um componente por arquivo       | `score-gauge.tsx`                                  |
+| Arquivos e pastas em kebab-case | `meu-componente.tsx`, `meu-guia/` — nao PascalCase |
+| JSDoc em portugues              | `/** Medidor circular de pontuacao. */`            |
+| Props com interface             | `interface ScoreGaugeProps { ... }`                |
 
 ### Estrutura de features
 
@@ -280,7 +280,8 @@ docs/             # Documentacao tecnica
 - [ ] Mapeada em `lib/dynamic-page-helper.tsx` (COMPONENT_MAP)
 - [ ] Icone adicionado em `src/app/<categoria>/page.tsx` (iconMap)
 - [ ] Adicionada ao menu em `navbar/nav-data.ts` (+ `nav.json` com traducoes do item)
-- [ ] Adicionada a busca em `global-search/search-data.ts` (+ `messages/*/search.json`)
+- [ ] Adicionada a busca em `global-search/search-data.ts` (tagMap) + `messages/pt-BR/search.json` (items.[slug])
+- [ ] Adicionada ao chatbot em `lib/chat/system-prompt.ts` (secao PAGINAS)
 - [ ] `loading.tsx` criado com `PageSkeleton` (variant: `guide`, `implementation` ou `tool`)
 - [ ] Traducoes criadas e `pnpm translate` executado
 
