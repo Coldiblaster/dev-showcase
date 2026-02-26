@@ -8,27 +8,9 @@ import { redis } from "@/lib/redis";
 
 const NEWSLETTER_KEY = "newsletter:subscribers";
 
-const META_KEYWORDS = [
-  "newsletter",
-  "redis",
-  "broadcast",
-  "curl",
-  "refatoração",
-  "lib/",
-  "docs/",
-  "documentação",
-  "api route",
-  "api/",
-];
-
-function isMetaEntry(entry: ChangelogVersion): boolean {
-  const text = `${entry.title} ${entry.summary}`.toLowerCase();
-  return META_KEYWORDS.some((kw) => text.includes(kw));
-}
-
+/** Retorna a entrada mais recente do changelog para o email de novidades (primeira da lista = última versão). */
 function getNewsletterEntry(): ChangelogVersion {
-  const userFacing = CHANGELOG.find((e) => !isMetaEntry(e));
-  return userFacing ?? CHANGELOG[0];
+  return CHANGELOG[0];
 }
 
 function getAuthToken(request: Request): string | null {

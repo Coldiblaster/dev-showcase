@@ -22,12 +22,18 @@ async function main() {
   const env = envAnswer.trim().toLowerCase();
   const baseUrl = env === "w" || env === "web" ? WEB_URL : LOCAL_URL;
 
-  const token = await rl.question("Token: ");
+  const tokenFromEnv = process.env.NEWSLETTER_BROADCAST_TOKEN;
+  const tokenPrompt = tokenFromEnv
+    ? "Token (Enter = usar NEWSLETTER_BROADCAST_TOKEN do .env): "
+    : "Token (NEWSLETTER_BROADCAST_TOKEN do .env): ";
+  const token = await rl.question(tokenPrompt);
   rl.close();
 
-  const trimmedToken = token.trim();
+  const trimmedToken = (token.trim() || tokenFromEnv || "").trim();
   if (!trimmedToken) {
-    console.error("❌ Token é obrigatório.");
+    console.error(
+      "❌ Token é obrigatório. Defina NEWSLETTER_BROADCAST_TOKEN no .env ou informe ao prompt.",
+    );
     process.exit(1);
   }
 
