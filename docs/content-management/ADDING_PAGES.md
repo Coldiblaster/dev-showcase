@@ -14,7 +14,7 @@ Criar uma nova pagina acessivel via URL, tipo:
 
 **Tempo estimado:** 20-30 minutos
 
-> **Dica:** O [Tutorial Interativo em `/contribua/tutorial`](/contribua/tutorial) cobre este fluxo passo a passo com exemplos de codigo e FAQs para cada etapa.
+> **Dica:** O [Tutorial Interativo em `/contribua/tutorial`](/contribua/tutorial) cobre este fluxo passo a passo com exemplos de codigo e FAQs. O tutorial menciona o guia completo ao final do passo Registro.
 
 ---
 

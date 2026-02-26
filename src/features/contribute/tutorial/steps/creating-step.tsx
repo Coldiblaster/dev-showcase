@@ -145,6 +145,9 @@ export function CreatingStep({ nextStepId, nextStepLabel }: StepNavProps) {
               <h4 className="mb-2 text-sm font-semibold">
                 {t("newFeature.dynamicStep1")}
               </h4>
+              <p className="mb-2 text-xs text-muted-foreground">
+                {t("newFeature.dynamicFolder")}
+              </p>
               <CodeBlock
                 title="src/features/guides/graphql-tips/index.tsx"
                 code={DYNAMIC_COMPONENT}

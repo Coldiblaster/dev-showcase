@@ -211,6 +211,8 @@ export function RegistrationStep({ nextStepId, nextStepLabel }: StepNavProps) {
               ))}
             </div>
           </div>
+
+          <p className="text-xs text-muted-foreground">{t("fullGuideLink")}</p>
         </div>
       ) : (
         <div className="space-y-6">

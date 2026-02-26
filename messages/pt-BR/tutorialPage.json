@@ -97,6 +97,7 @@
         "dynamicTitle": "Página dinâmica (guide, implementação ou ferramenta)",
         "dynamicDesc": "Páginas dinâmicas são roteadas automaticamente via slug. Você só precisa criar o componente — a rota já existe em /dicas/[slug], /implementacoes/[slug] ou /ferramentas/[slug].",
         "dynamicStep1": "1. Crie o componente (named export obrigatório)",
+        "dynamicFolder": "Pasta em kebab-case: graphql-tips/ (não GraphqlTips/)",
         "dynamicNote": "Páginas dinâmicas NÃO precisam de page.tsx ou loading.tsx próprios — a rota dinâmica [slug]/page.tsx já existe. O próximo passo (Registro) mostra como conectar seu componente ao sistema.",
         "standaloneTitle": "Página standalone (/contribua/...)",
         "standaloneDesc": "Para páginas fora do sistema dinâmico (ex: seções do /contribua), você precisa criar a rota manualmente:",
@@ -160,6 +161,7 @@
           "desc": "Ferramentas interativas → aparece em /ferramentas/[slug]"
         }
       },
+      "fullGuideLink": "Guia completo (loading, nav, changelog): docs/content-management/ADDING_PAGES.md",
       "improveIntro": "Ao melhorar código existente, verifique se estas integrações continuam funcionando:",
       "improveChecklist": {
         "r1": "Busca global (Ctrl+K) encontra a página normalmente",
@@ -194,7 +196,10 @@
         "p3": "Imports com alias @/ (ex: @/components/ui/button)",
         "p4": "Todo texto visível usa i18n (next-intl) — nunca hardcode",
         "p5": "Acessibilidade: aria-labels, roles semânticos, navegação por teclado",
-        "p6": "Framer Motion para animações de entrada (AnimatedSection)"
+        "p6": "Framer Motion para animações de entrada (AnimatedSection)",
+        "p7": "Código limpo — funções e componentes concisos, nada extenso demais",
+        "p8": "JSDoc em português em componentes, funções, hooks e tipos",
+        "p9": "Nomenclatura clara e autoexplicativa — fácil entendimento"
       },
       "componentsTitle": "Componentes disponíveis",
       "componentsDesc": "Reutilize os componentes do Design System. Consulte o catálogo completo em /contribua/design-system.",

@@ -97,6 +97,7 @@
         "dynamicTitle": "Página dinámica (guía, implementación o herramienta)",
         "dynamicDesc": "Las páginas dinámicas se enrutan automáticamente via slug. Solo necesitas crear el componente — la ruta ya existe en /dicas/[slug], /implementacoes/[slug] o /ferramentas/[slug].",
         "dynamicStep1": "1. Crea el componente (named export obligatorio)",
+        "dynamicFolder": "Carpeta en kebab-case: graphql-tips/ (no GraphqlTips/)",
         "dynamicNote": "Las páginas dinámicas NO necesitan su propio page.tsx o loading.tsx — la ruta dinámica [slug]/page.tsx ya existe. El siguiente paso (Registro) muestra cómo conectar tu componente al sistema.",
         "standaloneTitle": "Página standalone (/contribua/...)",
         "standaloneDesc": "Para páginas fuera del sistema dinámico (ej: secciones de /contribua), necesitas crear la ruta manualmente:",
@@ -160,6 +161,7 @@
           "desc": "Herramientas interactivas → aparece en /ferramentas/[slug]"
         }
       },
+      "fullGuideLink": "Guía completa (carga, navegación, registro de cambios): docs/content-management/ADDING_PAGES.md",
       "improveIntro": "Al mejorar código existente, verifica que estas integraciones sigan funcionando:",
       "improveChecklist": {
         "r1": "La búsqueda global (Ctrl+K) encuentra la página normalmente",
@@ -194,7 +196,10 @@
         "p3": "Imports con alias @/ (ej: @/components/ui/button)",
         "p4": "Todo texto visible usa i18n (next-intl) — nunca hardcode",
         "p5": "Accesibilidad: aria-labels, roles semánticos, navegación por teclado",
-        "p6": "Framer Motion para animaciones de entrada (AnimatedSection)"
+        "p6": "Framer Motion para animaciones de entrada (AnimatedSection)",
+        "p7": "Código limpio: funciones y componentes concisos, nada demasiado extenso.",
+        "p8": "JSDoc en portugués en componentes, funciones, hooks y tipos",
+        "p9": "Nomenclatura clara y autoexplicativa: fácil de entender."
       },
       "componentsTitle": "Componentes disponibles",
       "componentsDesc": "Reutiliza los componentes del Design System. Consulta el catálogo completo en /contribua/design-system.",

@@ -5,5 +5,10 @@
   "online": "{count, plural, one {# pessoa online agora} other {# pessoas online agora}}",
   "emailLabel": "Email",
   "githubLabel": "GitHub",
-  "linkedinLabel": "LinkedIn"
+  "linkedinLabel": "LinkedIn",
+  "newsletterTitle": "Avise-me de novidades",
+  "newsletterPlaceholder": "seu@email.com",
+  "newsletterButton": "Avise-me",
+  "newsletterSuccess": "Inscrito! Te aviso nas próximas novidades.",
+  "newsletterError": "Erro ao inscrever. Tente novamente."
 }

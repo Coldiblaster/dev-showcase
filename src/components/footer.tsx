@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
 
+import { NewsletterForm } from "@/components/newsletter-form";
 import { OnlineCounter } from "@/components/online-counter";
 import { Separator } from "@/components/ui/separator";
 import { PERSONAL } from "@/lib/constants";
@@ -72,6 +73,15 @@ export function Footer() {
         </motion.div>
 
         <Separator className="mb-8" />
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mb-8"
+        >
+          <NewsletterForm />
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}

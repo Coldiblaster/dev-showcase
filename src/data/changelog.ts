@@ -16,6 +16,25 @@ export interface ChangelogVersion {
 
 export const CHANGELOG: ChangelogVersion[] = [
   {
+    version: "0.16.0",
+    date: "2026-02-20",
+    title: "Newsletter no footer e Plano de Melhorias atualizado",
+    summary:
+      "Formulário 'Avise-me de novidades' no footer com API dedicada, rate limit e honeypot. Plano de Melhorias documenta todas as implementações recentes.",
+    items: [
+      {
+        type: "feature",
+        description:
+          "Newsletter no footer — formulário 'Avise-me de novidades' com input de email, validação Zod, rate limit (3/hora por IP), honeypot anti-spam. API /api/newsletter envia inscritos para RESEND_TO_EMAIL. Traduções pt-BR, en, es, de",
+      },
+      {
+        type: "improvement",
+        description:
+          "PLANO-MELHORIAS.md atualizado — tabela de implementados com itens 1–7 concluídos, Newsletter marcado como feito, Próximos passos apontando para Página de Performance",
+      },
+    ],
+  },
+  {
     version: "0.15.0",
     date: "2026-02-23",
     title: "FAB Unificado, Focus Mode Mobile, Segurança IA e Polimento Geral",

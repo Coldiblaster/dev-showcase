@@ -9,7 +9,17 @@ import { Button } from "@/components/ui/button";
 import { FaqSection } from "../faq-section";
 import { TutorialStep } from "../tutorial-step";
 
-const PATTERN_KEYS = ["p1", "p2", "p3", "p4", "p5", "p6"] as const;
+const PATTERN_KEYS = [
+  "p1",
+  "p2",
+  "p3",
+  "p4",
+  "p5",
+  "p6",
+  "p7",
+  "p8",
+  "p9",
+] as const;
 
 interface StepNavProps {
   nextStepId?: string;

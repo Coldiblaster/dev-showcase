@@ -97,6 +97,7 @@
         "dynamicTitle": "Dynamic page (guide, implementation or tool)",
         "dynamicDesc": "Dynamic pages are automatically routed via slug. You only need to create the component — the route already exists at /dicas/[slug], /implementacoes/[slug] or /ferramentas/[slug].",
         "dynamicStep1": "1. Create the component (named export required)",
+        "dynamicFolder": "Folder in kebab-case: graphql-tips/ (not GraphqlTips/)",
         "dynamicNote": "Dynamic pages do NOT need their own page.tsx or loading.tsx — the dynamic [slug]/page.tsx route already exists. The next step (Registration) shows how to connect your component to the system.",
         "standaloneTitle": "Standalone page (/contribua/...)",
         "standaloneDesc": "For pages outside the dynamic system (e.g. /contribua sections), you need to create the route manually:",
@@ -160,6 +161,7 @@
           "desc": "Interactive tools → appears at /ferramentas/[slug]"
         }
       },
+      "fullGuideLink": "Complete guide (loading, navigation, changelog): docs/content-management/ADDING_PAGES.md",
       "improveIntro": "When improving existing code, verify these integrations still work:",
       "improveChecklist": {
         "r1": "Global search (Ctrl+K) finds the page normally",
@@ -194,7 +196,10 @@
         "p3": "Imports with @/ alias (e.g. @/components/ui/button)",
         "p4": "All visible text uses i18n (next-intl) — never hardcode",
         "p5": "Accessibility: aria-labels, semantic roles, keyboard navigation",
-        "p6": "Framer Motion for entrance animations (AnimatedSection)"
+        "p6": "Framer Motion for entrance animations (AnimatedSection)",
+        "p7": "Clean code — concise functions and components, nothing too extensive",
+        "p8": "JSDoc in Portuguese on components, functions, hooks, and types",
+        "p9": "Clear and self-explanatory nomenclature — easy to understand"
       },
       "componentsTitle": "Available components",
       "componentsDesc": "Reuse Design System components. Check the full catalog at /contribua/design-system.",

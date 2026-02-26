@@ -97,6 +97,7 @@
         "dynamicTitle": "Dynamische Seite (Guide, Implementierung oder Tool)",
         "dynamicDesc": "Dynamische Seiten werden automatisch über Slug geroutet. Sie müssen nur die Komponente erstellen — die Route existiert bereits bei /dicas/[slug], /implementacoes/[slug] oder /ferramentas/[slug].",
         "dynamicStep1": "1. Komponente erstellen (Named Export erforderlich)",
+        "dynamicFolder": "Ordner im Kebab-Fall: graphql-tips/ (nicht GraphqlTips/)",
         "dynamicNote": "Dynamische Seiten brauchen KEINE eigene page.tsx oder loading.tsx — die dynamische [slug]/page.tsx-Route existiert bereits. Der nächste Schritt (Registrierung) zeigt, wie Sie Ihre Komponente mit dem System verbinden.",
         "standaloneTitle": "Standalone-Seite (/contribua/...)",
         "standaloneDesc": "Für Seiten außerhalb des dynamischen Systems (z.B. /contribua-Bereiche) müssen Sie die Route manuell erstellen:",
@@ -160,6 +161,7 @@
           "desc": "Interaktive Tools → erscheint unter /ferramentas/[slug]"
         }
       },
+      "fullGuideLink": "Vollständige Anleitung (Laden, Navigation, Änderungsprotokoll): docs/content-management/ADDING_PAGES.md",
       "improveIntro": "Beim Verbessern von bestehendem Code überprüfen Sie, ob diese Integrationen weiterhin funktionieren:",
       "improveChecklist": {
         "r1": "Globale Suche (Ctrl+K) findet die Seite normal",
@@ -194,7 +196,10 @@
         "p3": "Imports mit @/-Alias (z.B. @/components/ui/button)",
         "p4": "Jeder sichtbare Text verwendet i18n (next-intl) — nie Hardcode",
         "p5": "Barrierefreiheit: aria-labels, semantische Rollen, Tastaturnavigation",
-        "p6": "Framer Motion für Eingangsanimationen (AnimatedSection)"
+        "p6": "Framer Motion für Eingangsanimationen (AnimatedSection)",
+        "p7": "Sauberer Code – prägnante Funktionen und Komponenten, nichts ist überladen",
+        "p8": "JSDoc auf Portugiesisch zu Komponenten, Funktionen, Hooks und Typen",
+        "p9": "Klare und selbsterklärende Nomenklatur – leicht verständlich"
       },
       "componentsTitle": "Verfügbare Komponenten",
       "componentsDesc": "Verwenden Sie Design-System-Komponenten wieder. Den vollständigen Katalog finden Sie unter /contribua/design-system.",
