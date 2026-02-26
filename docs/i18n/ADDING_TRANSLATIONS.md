@@ -29,7 +29,7 @@ Passo a passo para adicionar novas traducoes, incluindo quando e como atualizar 
     "name": "Nome",
     "email": "E-mail",
     "message": "Mensagem",
-    "phone": "Telefone"    // ← NOVA CHAVE
+    "phone": "Telefone" // ← NOVA CHAVE
   }
 }
 ```
@@ -70,7 +70,7 @@ Pronto! Nenhuma configuracao de tipo necessaria.
 
 **Quando:** Voce quer criar um novo JSON (ex: `faqPage.json` para uma nova pagina).
 
-**Precisa mexer em tipagem?** SIM — 3 arquivos precisam ser atualizados.
+**Precisa mexer em tipagem?** SIM — 4 arquivos precisam ser atualizados.
 
 ### Passo a Passo
 
@@ -104,9 +104,19 @@ export default {
 };
 ```
 
-Repita esse passo em `messages/en/index.ts`, `messages/es/index.ts` e `messages/de/index.ts`.
+O script `pnpm translate` sincroniza o index.ts para en, es, de automaticamente.
 
-#### 3. Registre nos tipos TypeScript
+#### 3. Registre em load-messages.ts
+
+```typescript
+// src/lib/i18n/load-messages.ts
+const NAMESPACES = [
+  // ... existentes
+  "faqPage", // ← ADICIONAR
+] as const;
+```
+
+#### 4. Registre nos tipos TypeScript
 
 ```typescript
 // src/lib/i18n/types.d.ts
@@ -118,7 +128,7 @@ export type Messages = {
 };
 ```
 
-#### 4. Execute o script de traducao
+#### 5. Execute o script de traducao
 
 ```bash
 pnpm translate
@@ -126,13 +136,13 @@ pnpm translate
 
 Isso cria `messages/en/faqPage.json`, `messages/es/faqPage.json` e `messages/de/faqPage.json`.
 
-#### 5. Reinicie o TypeScript Server
+#### 6. Reinicie o TypeScript Server
 
 ```
 Ctrl+Shift+P → "TypeScript: Restart TS Server"
 ```
 
-#### 6. Use no codigo
+#### 7. Use no codigo
 
 ```tsx
 import { useTranslations } from "next-intl";
@@ -158,7 +168,7 @@ export function FAQPage() {
 }
 ```
 
-#### 7. Valide
+#### 8. Valide
 
 ```bash
 pnpm validate:i18n
@@ -223,11 +233,11 @@ pnpm translate
 
 ## Resumo: Quando Mexer em Tipagem?
 
-| Cenario                              | Tipagem? | Arquivos Afetados                                |
-| ------------------------------------ | -------- | ------------------------------------------------ |
-| Adicionar chaves em arquivo existente | NAO      | Nenhum                                           |
-| Criar novo namespace (JSON)          | SIM      | `*/index.ts`, `src/lib/i18n/types.d.ts`         |
-| Adicionar novo idioma                | SIM      | `src/lib/i18n/config.ts`                         |
+| Cenario                               | Tipagem? | Arquivos Afetados                              |
+| ------------------------------------- | -------- | ---------------------------------------------- |
+| Adicionar chaves em arquivo existente | NAO      | Nenhum                                         |
+| Criar novo namespace (JSON)           | SIM      | `*/index.ts`, `load-messages.ts`, `types.d.ts` |
+| Adicionar novo idioma                 | SIM      | `src/lib/i18n/config.ts`                       |
 
 ---
 

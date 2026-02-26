@@ -97,6 +97,8 @@ export function ReactPatternsPage() {
 
 **Dica:** Use os componentes reutilizaveis existentes. Veja o [catalogo completo](../architecture/COMPONENTS.md).
 
+**Qualidade:** Mantenha codigo limpo, nomenclatura clara e JSDoc em portugues em todos os componentes e funcoes.
+
 ---
 
 ### 3. Registrar no helper de paginas
@@ -293,14 +295,10 @@ pnpm build
 
 ### Opcional: Analytics (nome na pagina de stats)
 
-Se quiser que a pagina apareca com nome traduzido em `/contribua` (Top paginas), adicione em `messages/pt-BR/contributePage.json` (e nos outros idiomas via `pnpm translate`):
+Se quiser que a pagina apareca com nome traduzido em `/contribua` (Top paginas), adicione em `messages/pt-BR/contributePage.json` dentro de `platformStats.pageNames` (e nos outros idiomas via `pnpm translate`):
 
 ```json
-"platformStats": {
-  "pageNames": {
-    "/dicas/react-patterns": "React Patterns"
-  }
-}
+"/dicas/react-patterns": "React Patterns"
 ```
 
 ---

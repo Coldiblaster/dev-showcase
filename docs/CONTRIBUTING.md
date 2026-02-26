@@ -145,6 +145,13 @@ feature/* → PR → develop → auto-PR → main → Vercel deploy
 
 ## Convencoes de codigo
 
+### Qualidade e arquitetura
+
+- **Codigo limpo** — funcoes e componentes concisos, nada extenso demais
+- **Nomenclatura clara** — nomes autoexplicativos, facil entendimento
+- **JSDoc em tudo** — componentes, funcoes, hooks e tipos; descricao em portugues
+- **Padrao profissional** — SOLID, DRY, arquivos pequenos e coesos
+
 ### Componentes
 
 | Regra                           | Exemplo                                            |
@@ -262,8 +269,9 @@ docs/             # Documentacao tecnica
 
 ### Se criou componentes
 
-- [ ] JSDoc em portugues
+- [ ] JSDoc em portugues (componentes, funcoes, hooks, tipos)
 - [ ] Props tipadas com interface
+- [ ] Codigo limpo, nomenclatura clara, nada extenso demais
 - [ ] Verificou [catalogo existente](./architecture/COMPONENTS.md)
 - [ ] Componente reutilizavel em `src/components/`, especifico na feature
 

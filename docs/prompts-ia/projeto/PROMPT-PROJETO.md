@@ -32,11 +32,17 @@ docs/ # Documentação técnica
 
 ## 2. CONVENÇÕES DE CÓDIGO
 
+### Qualidade e arquitetura (obrigatório)
+- **Código limpo** — nada extenso demais; funções/componentes concisos e focados
+- **Nomenclatura clara** — nomes que explicam a função; fácil entendimento sem comentários
+- **JSDoc em tudo** — componentes, funções, hooks, tipos; descrição em português
+- **Padrão profissional** — siga SOLID, DRY, separação de responsabilidades; arquivos pequenos e coesos
+
 ### Componentes
 - Nomes em PascalCase: `ScoreGauge`, `StepCard`
 - Um componente por arquivo
 - **Arquivos e pastas em kebab-case** — não PascalCase: `meu-componente.tsx`, pasta `meu-guia/` (não `MeuComponente.tsx` nem `MeuGuia/`)
-- JSDoc em português: `/** Medidor circular de pontuação. */`
+- **JSDoc obrigatório** — componentes, funções, hooks, tipos; descrição em português
 - Props com interface tipada
 
 ### Features
@@ -238,6 +244,7 @@ chore: build, config, deps
 - [ ] Chatbot: nova página em system-prompt.ts (seção PÁGINAS)
 - [ ] Responsivo (mobile)
 - [ ] Acessibilidade: Tab, aria-label, focus trap em modais
+- [ ] Código limpo, nomenclatura clara, JSDoc em componentes/funções
 
 ---
 
