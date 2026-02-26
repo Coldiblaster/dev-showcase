@@ -32,7 +32,8 @@ export function buildPageMetadata(page: {
 
   return {
     title: page.title,
-    description: page.description,
+    description: page.description.trim() || undefined,
+    robots: { index: true, follow: true },
     alternates: { canonical: url },
     openGraph: {
       title: page.title,

@@ -51,17 +51,22 @@ export function MobileNav({ isOpen, onClose, badgePaths }: MobileNavProps) {
         >
           <ScrollArea className="h-full">
             <div className="flex flex-col gap-1 p-4">
-              <Link
-                href="/"
-                onClick={onClose}
-                className={`w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium ${
-                  isHome
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground"
-                }`}
-              >
-                {t("home")}
-              </Link>
+              {navGroups
+                .find((g) => g.id === "home")
+                ?.items?.map((item) => (
+                  <MobileMenuItem
+                    key={item.href}
+                    icon={item.icon}
+                    label={t(item.labelKey)}
+                    sublabel={
+                      item.sublabelKey ? t(item.sublabelKey) : undefined
+                    }
+                    href={item.href}
+                    isActive={pathname === "/" && item.href === "/"}
+                    onClick={onClose}
+                    badge={badgePaths[item.href]}
+                  />
+                ))}
 
               <Link
                 href="/novidades"
@@ -82,113 +87,117 @@ export function MobileNav({ isOpen, onClose, badgePaths }: MobileNavProps) {
                 )}
               </Link>
 
-              {navGroups.map((group) => {
-                if (group.showOnlyOn === "home" && !isHome) return null;
+              {navGroups
+                .filter((g) => g.id !== "home")
+                .map((group) => {
+                  if (group.showOnlyOn === "home" && !isHome) return null;
 
-                if (group.href) {
+                  if (group.href) {
+                    return (
+                      <Link
+                        key={group.id}
+                        href={group.href}
+                        onClick={onClose}
+                        className={`w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium ${
+                          group.activeCheck(pathname)
+                            ? "bg-primary/10 text-primary"
+                            : "text-muted-foreground"
+                        }`}
+                      >
+                        {t(group.labelKey)}
+                      </Link>
+                    );
+                  }
+
                   return (
-                    <Link
-                      key={group.id}
-                      href={group.href}
-                      onClick={onClose}
-                      className={`w-full rounded-lg px-3 py-2.5 text-left text-sm font-medium ${
-                        group.activeCheck(pathname)
-                          ? "bg-primary/10 text-primary"
-                          : "text-muted-foreground"
-                      }`}
-                    >
-                      {t(group.labelKey)}
-                    </Link>
-                  );
-                }
+                    <div key={group.id}>
+                      {/* Flat items (portfolio, contribute) */}
+                      {group.items && (
+                        <>
+                          <p className="mt-3 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground/50">
+                            {t(group.labelKey)}
+                          </p>
+                          {group.items.map((item) => (
+                            <MobileMenuItem
+                              key={item.href}
+                              icon={item.icon}
+                              label={t(item.labelKey)}
+                              sublabel={
+                                item.sublabelKey
+                                  ? t(item.sublabelKey)
+                                  : undefined
+                              }
+                              href={item.href}
+                              isActive={pathname === item.href}
+                              onClick={onClose}
+                              badge={badgePaths[item.href]}
+                            />
+                          ))}
 
-                return (
-                  <div key={group.id}>
-                    {/* Flat items (portfolio, contribute) */}
-                    {group.items && (
-                      <>
-                        <p className="mt-3 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground/50">
-                          {t(group.labelKey)}
-                        </p>
-                        {group.items.map((item) => (
-                          <MobileMenuItem
-                            key={item.href}
-                            icon={item.icon}
-                            label={t(item.labelKey)}
-                            sublabel={
-                              item.sublabelKey ? t(item.sublabelKey) : undefined
-                            }
-                            href={item.href}
-                            isActive={pathname === item.href}
-                            onClick={onClose}
-                            badge={badgePaths[item.href]}
-                          />
-                        ))}
+                          {group.viewAllHref && (
+                            <Link
+                              href={group.viewAllHref}
+                              onClick={onClose}
+                              className="mx-1 mt-1 flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-primary"
+                            >
+                              <span>
+                                {t("viewAll", {
+                                  count: group.viewAllCount ?? 0,
+                                })}
+                              </span>
+                              <ArrowRight className="h-3 w-3" />
+                            </Link>
+                          )}
+                        </>
+                      )}
 
-                        {group.viewAllHref && (
-                          <Link
-                            href={group.viewAllHref}
-                            onClick={onClose}
-                            className="mx-1 mt-1 flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-primary"
-                          >
-                            <span>
-                              {t("viewAll", {
-                                count: group.viewAllCount ?? 0,
-                              })}
-                            </span>
-                            <ArrowRight className="h-3 w-3" />
-                          </Link>
-                        )}
-                      </>
-                    )}
+                      {/* Category sections (content) */}
+                      {group.categories?.map((category) => {
+                        const CategoryIcon = category.icon;
+                        return (
+                          <div key={category.id}>
+                            <div className="mt-4 flex items-center gap-2 px-3 py-1">
+                              <CategoryIcon className="h-3.5 w-3.5 text-primary" />
+                              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/50">
+                                {t(category.labelKey)}
+                              </p>
+                            </div>
 
-                    {/* Category sections (content) */}
-                    {group.categories?.map((category) => {
-                      const CategoryIcon = category.icon;
-                      return (
-                        <div key={category.id}>
-                          <div className="mt-4 flex items-center gap-2 px-3 py-1">
-                            <CategoryIcon className="h-3.5 w-3.5 text-primary" />
-                            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/50">
-                              {t(category.labelKey)}
-                            </p>
+                            {category.featured
+                              .slice(0, MAX_PREVIEW_ITEMS)
+                              .map((item) => (
+                                <MobileMenuItem
+                                  key={item.href}
+                                  icon={item.icon}
+                                  label={t(item.labelKey)}
+                                  sublabel={
+                                    item.sublabelKey
+                                      ? t(item.sublabelKey)
+                                      : undefined
+                                  }
+                                  href={item.href}
+                                  isActive={pathname === item.href}
+                                  onClick={onClose}
+                                  badge={badgePaths[item.href]}
+                                />
+                              ))}
+
+                            <Link
+                              href={category.href}
+                              onClick={onClose}
+                              className="mx-1 mt-1 flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-primary"
+                            >
+                              <span>
+                                {t("viewAll", { count: category.totalItems })}
+                              </span>
+                              <ArrowRight className="h-3 w-3" />
+                            </Link>
                           </div>
-
-                          {category.featured
-                            .slice(0, MAX_PREVIEW_ITEMS)
-                            .map((item) => (
-                              <MobileMenuItem
-                                key={item.href}
-                                icon={item.icon}
-                                label={t(item.labelKey)}
-                                sublabel={
-                                  item.sublabelKey
-                                    ? t(item.sublabelKey)
-                                    : undefined
-                                }
-                                href={item.href}
-                                isActive={pathname === item.href}
-                                onClick={onClose}
-                                badge={badgePaths[item.href]}
-                              />
-                            ))}
-
-                          <Link
-                            href={category.href}
-                            onClick={onClose}
-                            className="mx-1 mt-1 flex items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-primary"
-                          >
-                            <span>
-                              {t("viewAll", { count: category.totalItems })}
-                            </span>
-                            <ArrowRight className="h-3 w-3" />
-                          </Link>
-                        </div>
-                      );
-                    })}
-                  </div>
-                );
-              })}
+                        );
+                      })}
+                    </div>
+                  );
+                })}
             </div>
           </ScrollArea>
         </motion.div>

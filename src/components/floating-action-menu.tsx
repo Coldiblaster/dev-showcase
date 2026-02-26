@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  Activity,
   ArrowUp,
   Keyboard,
   LayoutGrid,
@@ -82,6 +83,11 @@ export function FloatingActionMenu() {
     setOpen(false);
   }, []);
 
+  const openPerformance = useCallback(() => {
+    window.dispatchEvent(new CustomEvent("open-performance-widget"));
+    setOpen(false);
+  }, []);
+
   type Action = {
     id: string;
     icon: React.ElementType;
@@ -119,6 +125,12 @@ export function FloatingActionMenu() {
       icon: Keyboard,
       label: tGlobal("keyboardShortcuts.title"),
       onClick: openShortcuts,
+    },
+    {
+      id: "performance",
+      icon: Activity,
+      label: tGlobal("performanceMetrics"),
+      onClick: openPerformance,
     },
   ];
 

@@ -1,0 +1,46 @@
+{
+  "title": "RENDIMIENTO",
+  "pillLabel": "perf",
+  "panelAriaLabel": "Métricas de rendimiento de la página",
+  "openLabel": "Abrir widget de rendimiento",
+  "reloadLabel": "Recargar métricas",
+  "reloadHint": "Vuelve a cargar los datos del Lighthouse (misma API que la pantalla de rendimiento).",
+  "footerLighthouse": "Lighthouse",
+  "footerCache24h": "caché 24h",
+  "footerFallback": "fallback",
+  "minimizeLabel": "Minimizar",
+  "expandLabel": "Expandir widget",
+  "closeLabel": "Cerrar",
+  "loadingPrompt": "$",
+  "analyzing": "analizando métricas de la página...",
+  "analyzingMinimizeHint": "Puedes minimizar mientras carga.",
+  "scoresLabel": "PUNTUACIONES",
+  "webVitalsLabel": "WEB VITALS",
+  "footerCollected": "Recolectado vía Performance API",
+  "footerCurrentLoad": "carga actual de la página",
+  "viewportDesktop": "Escritorio",
+  "viewportMobile": "Móvil",
+  "footerSourceHint": "Mismos datos que la pantalla de rendimiento (Google PageSpeed Insights, caché 24h).",
+  "scores": {
+    "performance": "Rendimiento",
+    "accessibility": "Accesibilidad",
+    "bestPractices": "Buenas prácticas",
+    "seo": "SEO"
+  },
+  "vitals": {
+    "FCP": "FCP",
+    "TTFB": "TTFB",
+    "LCP": "LCP",
+    "CLS": "CLS",
+    "TBT": "TBT",
+    "DOM": "DOM"
+  },
+  "vitalsDescription": {
+    "LCP": "Mayor elemento de contenido visible. Bueno: ≤2,5s",
+    "FCP": "Primer contenido pintado. Bueno: ≤1,8s",
+    "TTFB": "Tiempo hasta el primer byte. Bueno: ≤800ms",
+    "CLS": "Estabilidad visual (sin saltos de layout). Bueno: ≤0,1",
+    "TBT": "Tiempo total de bloqueo. Menor es mejor. Bueno: ≤200ms",
+    "DOM": "Carga del DOM. Bueno: ≤1,5s"
+  }
+}

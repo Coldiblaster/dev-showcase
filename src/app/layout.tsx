@@ -15,6 +15,7 @@ import { JsonLd } from "@/components/json-ld";
 import { Navbar } from "@/components/navbar";
 import { RecaptchaProvider } from "@/components/recaptcha-provider";
 import { SkipLink } from "@/components/skip-link";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { ViewTracker } from "@/components/view-tracker";
 import { PERSONAL } from "@/lib/constants";
 import { resolveLocale } from "@/lib/i18n/request";
@@ -105,18 +106,20 @@ export default async function RootLayout({
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <RecaptchaProvider>
-            <CopyFeedbackProvider>
-              <SkipLink />
-              <Navbar />
-              <main id="main" tabIndex={-1} className="outline-none">
-                {children}
-              </main>
-              <ClientOverlays />
-              <Footer />
-              <CookieBanner />
-            </CopyFeedbackProvider>
-          </RecaptchaProvider>
+          <TooltipProvider delayDuration={300}>
+            <RecaptchaProvider>
+              <CopyFeedbackProvider>
+                <SkipLink />
+                <Navbar />
+                <main id="main" tabIndex={-1} className="outline-none">
+                  {children}
+                </main>
+                <ClientOverlays />
+                <Footer />
+                <CookieBanner />
+              </CopyFeedbackProvider>
+            </RecaptchaProvider>
+          </TooltipProvider>
         </NextIntlClientProvider>
         <ViewTracker />
         <AnalyticsGate />

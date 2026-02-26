@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import {
+  Activity,
   ArrowUp,
   Check,
   Globe,
@@ -9,10 +10,10 @@ import {
   Maximize2,
   MessageCircle,
   Minimize2,
+  MoreVertical,
   Search,
   Terminal,
 } from "lucide-react";
-import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
@@ -30,22 +31,17 @@ import { getLocaleCookie, setLocaleCookie } from "@/lib/i18n/cookie";
 const SCROLL_THRESHOLD = 200;
 const FOCUS_STORAGE_KEY = "focus-mode-enabled";
 const FOCUS_HTML_CLASS = "focus-mode";
-const CONTENT_PATH_RE =
-  /^\/(pt-BR|en|es|de)?\/?((dicas|ferramentas|implementacoes)\/.+)/;
-
 /** Barra de ações fixa no rodapé, visível apenas no mobile. */
 export function MobileActionBar() {
   const t = useTranslations("global");
   const locale = useLocale() as Locale;
   const router = useRouter();
-  const pathname = usePathname();
 
   const [scrolled, setScrolled] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const [clientLocale, setClientLocale] = useState<Locale | null>(null);
   const [focusActive, setFocusActive] = useState(false);
-
-  const isContentPage = CONTENT_PATH_RE.test(pathname);
 
   useEffect(() => {
     try {
@@ -93,6 +89,10 @@ export function MobileActionBar() {
     window.dispatchEvent(new CustomEvent("open-terminal"));
   }, []);
 
+  const openPerformance = useCallback(() => {
+    window.dispatchEvent(new CustomEvent("open-performance-widget"));
+  }, []);
+
   const toggleFocus = useCallback(() => {
     setFocusActive((prev) => {
       const next = !prev;
@@ -123,15 +123,7 @@ export function MobileActionBar() {
 
   const active = (clientLocale ?? locale) as Locale;
 
-  const baseActions = [
-    {
-      key: "menu",
-      icon: LayoutGrid,
-      label: t("mobileMenu"),
-      onClick: openMenu,
-      disabled: false,
-      active: false,
-    },
+  const barActions = [
     {
       key: "search",
       icon: Search,
@@ -144,7 +136,10 @@ export function MobileActionBar() {
       key: "language",
       icon: Globe,
       label: t("mobileLanguage"),
-      onClick: () => setLangOpen((s) => !s),
+      onClick: () => {
+        setLangOpen((s) => !s);
+        setMoreOpen(false);
+      },
       disabled: false,
       active: false,
     },
@@ -165,28 +160,50 @@ export function MobileActionBar() {
       active: false,
     },
     {
+      key: "more",
+      icon: MoreVertical,
+      label: t("mobileMore"),
+      onClick: () => setMoreOpen((s) => !s),
+      disabled: false,
+      active: moreOpen,
+    },
+  ];
+
+  const moreActions = [
+    {
+      key: "menu",
+      icon: LayoutGrid,
+      label: t("mobileMenu"),
+      onClick: openMenu,
+      active: false,
+    },
+    {
       key: "terminal",
       icon: Terminal,
       label: t("mobileTerminal"),
       onClick: openTerminal,
-      disabled: false,
       active: false,
+    },
+    {
+      key: "performance",
+      icon: Activity,
+      label: t("performanceMetrics"),
+      onClick: openPerformance,
+      active: false,
+    },
+    {
+      key: "focus",
+      icon: focusActive ? Maximize2 : Minimize2,
+      label: focusActive ? t("exitFocusMode") : t("mobileFocus"),
+      onClick: () => {
+        toggleFocus();
+        setMoreOpen(false);
+      },
+      active: focusActive,
     },
   ];
 
-  const actions = isContentPage
-    ? [
-        ...baseActions,
-        {
-          key: "focus",
-          icon: focusActive ? Maximize2 : Minimize2,
-          label: t("mobileFocus"),
-          onClick: toggleFocus,
-          disabled: false,
-          active: focusActive,
-        },
-      ]
-    : baseActions;
+  const actions = barActions;
 
   return (
     <>
@@ -233,15 +250,55 @@ export function MobileActionBar() {
         )}
       </AnimatePresence>
 
+      {/* Expandable "More" popover */}
+      <AnimatePresence>
+        {moreOpen && (
+          <>
+            <div
+              className="fixed inset-0 z-40 lg:hidden"
+              onClick={() => setMoreOpen(false)}
+              aria-hidden="true"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
+              className="fixed left-1/2 bottom-16 z-50 w-[min(280px,calc(100vw-2rem))] -translate-x-1/2 flex flex-col gap-0.5 rounded-xl border border-border bg-card py-1 shadow-xl lg:hidden"
+            >
+              {moreActions.map(
+                ({ key, icon: Icon, label, onClick, active }) => (
+                  <button
+                    key={key}
+                    onClick={() => {
+                      onClick();
+                      if (key !== "focus") setMoreOpen(false);
+                    }}
+                    className={`flex items-center gap-3 px-4 py-3 text-left text-sm active:bg-secondary ${
+                      active ? "text-primary bg-primary/10" : "text-foreground"
+                    }`}
+                    aria-label={label}
+                  >
+                    <Icon className="h-4 w-4 shrink-0 text-muted-foreground" />
+                    <span className="flex-1 font-medium">{label}</span>
+                    {active && (
+                      <Check className="h-4 w-4 shrink-0 text-primary" />
+                    )}
+                  </button>
+                ),
+              )}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
       {/* Bottom action bar */}
       <nav
         className="fixed inset-x-0 bottom-0 z-50 border-t border-border/30 bg-background/90 backdrop-blur-xl lg:hidden"
         style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
         aria-label={t("mobileActions")}
       >
-        <div
-          className={`grid h-14 ${isContentPage ? "grid-cols-7" : "grid-cols-6"}`}
-        >
+        <div className="grid h-14 grid-cols-5">
           {actions.map(
             ({ key, icon: Icon, label, onClick, disabled, active }) => (
               <button

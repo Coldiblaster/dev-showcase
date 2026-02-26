@@ -202,6 +202,10 @@
     "stats": {
       "title": "Métricas de la Plataforma",
       "description": "Vistas de página, visitantes únicos, páginas más visitadas, búsquedas populares y reacciones en vivo."
+    },
+    "performance": {
+      "title": "Rendimiento",
+      "description": "Core Web Vitals y Lighthouse en tiempo real — LCP, INP, CLS, FCP y TTFB."
     }
   }
 }

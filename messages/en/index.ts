@@ -38,6 +38,8 @@ import jsonPage from "./jsonPage.json";
 import nav from "./nav.json";
 import nextjsAppRouterPage from "./nextjsAppRouterPage.json";
 import notFound from "./notFound.json";
+import performancePage from "./performancePage.json";
+import performanceWidget from "./performanceWidget.json";
 import portfolio from "./portfolio.json";
 import prGeneratorPage from "./prGeneratorPage.json";
 import privacyPage from "./privacyPage.json";
@@ -102,6 +104,8 @@ export default {
   jsonPage,
   nextjsAppRouterPage,
   notFound,
+  performancePage,
+  performanceWidget,
   portfolio,
   privacyPage,
   privacyTipsPage,

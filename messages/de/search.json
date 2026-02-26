@@ -202,6 +202,10 @@
     "stats": {
       "title": "Plattform-Metriken",
       "description": "Live-Seitenaufrufe, eindeutige Besucher, meistbesuchte Seiten, beliebte Suchanfragen und Reaktionen."
+    },
+    "performance": {
+      "title": "Performance",
+      "description": "Core Web Vitals und Lighthouse in Echtzeit — LCP, INP, CLS, FCP und TTFB."
     }
   }
 }

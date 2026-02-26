@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "title": "Rendimiento — Core Web Vitals",
+    "description": "Métricas de rendimiento en tiempo real: LCP, INP, CLS, FCP y TTFB. Core Web Vitals medidos en tu visita."
+  },
+  "hero": {
+    "badge": "Core Web Vitals",
+    "title": "Rendimiento del sitio",
+    "description": "Web Vitals mide la página actual en tu navegador; Lighthouse analiza la home en los servidores de Google. Los mismos indicadores que Google usa para el ranking."
+  },
+  "sectionNav": {
+    "webVitals": "Web Vitals",
+    "lighthouse": "Lighthouse"
+  },
+  "webVitals": {
+    "title": "Métricas en tiempo real",
+    "description": "Métricas de la página actual, capturadas en tu navegador durante la visita. Algunas pueden tardar unos segundos en aparecer.",
+    "loading": "Esperando métricas...",
+    "lcp": "LCP — Largest Contentful Paint",
+    "lcpDesc": "Tiempo hasta que el elemento visible más grande cargue. Bueno: ≤ 2,5s",
+    "inp": "INP — Interaction to Next Paint",
+    "inpDesc": "Capacidad de respuesta a las interacciones. Bueno: ≤ 200ms",
+    "cls": "CLS — Cumulative Layout Shift",
+    "clsDesc": "Estabilidad visual (sin saltos de diseño). Bueno: ≤ 0,1",
+    "fcp": "FCP — First Contentful Paint",
+    "fcpDesc": "Tiempo hasta que aparezca el primer contenido. Bueno: ≤ 1,8s",
+    "ttfb": "TTFB — Time to First Byte",
+    "ttfbDesc": "Tiempo hasta el primer byte del servidor. Bueno: ≤ 800ms",
+    "rating": {
+      "good": "Bueno",
+      "needsImprovement": "Mejorar",
+      "poor": "Malo",
+      "needs-improvement": "Mejorar"
+    },
+    "ms": "ms",
+    "poweredBy": "Datos vía web-vitals + Vercel Speed Insights",
+    "tooltipLcp": "Tiempo hasta que cargue el elemento visible más grande. Afecta la percepción de velocidad.",
+    "tooltipInp": "Capacidad de respuesta a clics y toques. Cuanto menor, más fluido.",
+    "tooltipCls": "Estabilidad visual: evita que los elementos \"salten\" al cargar.",
+    "tooltipFcp": "Tiempo hasta que aparece el primer contenido. Primera impresión de carga.",
+    "tooltipTtfb": "Tiempo hasta que el servidor responde. Afecta al resto de métricas.",
+    "ariaInfo": "Más información sobre esta métrica"
+  },
+  "lighthouse": {
+    "title": "Lighthouse (última medición)",
+    "description": "Análisis de la página actual vía Google PageSpeed Insights. Usa el selector de abajo para móvil o escritorio. Caché 24h.",
+    "loading": "Cargando puntuaciones...",
+    "poweredBy": "Datos vía Google PageSpeed Insights API",
+    "poweredByFallback": "Puntuaciones de respaldo (API no configurada o no disponible)",
+    "performance": "Rendimiento",
+    "accessibility": "Accesibilidad",
+    "bestPractices": "Buenas prácticas",
+    "seo": "SEO",
+    "scoreSuffix": "/100",
+    "scores": "Puntuaciones",
+    "metricsLab": "Métricas (lab)",
+    "lcp": "LCP",
+    "fcp": "FCP",
+    "ttfb": "TTFB",
+    "cls": "CLS",
+    "tbt": "TBT",
+    "ms": "ms",
+    "refresh": "Actualizar análisis",
+    "metricsHint": "LCP, FCP, TTFB, CLS y TBT aparecen tras actualizar el análisis.",
+    "strategyLabel": "Modo:",
+    "strategyDesktop": "Escritorio",
+    "strategyMobile": "Móvil",
+    "tooltipPerformance": "Velocidad de carga y fluidez (60 FPS, etc.).",
+    "tooltipAccessibility": "Buenas prácticas para lectores de pantalla, contraste y teclado.",
+    "tooltipBestPractices": "HTTPS, imágenes, consola sin errores, entre otros.",
+    "tooltipSeo": "Meta tags, títulos y estructura que ayudan a los buscadores.",
+    "tooltipLcp": "Tiempo hasta que cargue el elemento más grande visible (lab).",
+    "tooltipFcp": "Tiempo hasta el primer contenido (lab).",
+    "tooltipTtfb": "Tiempo hasta la respuesta del servidor (lab).",
+    "tooltipCls": "Estabilidad visual, sin saltos de diseño (lab).",
+    "tooltipTbt": "Tiempo en que la página queda bloqueada y no responde.",
+    "ariaInfo": "Más información sobre este item"
+  }
+}

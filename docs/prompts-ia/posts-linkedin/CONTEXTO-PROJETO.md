@@ -79,3 +79,14 @@ Next.js 16, React 19, TypeScript, Tailwind CSS 4, Framer Motion, shadcn/ui, next
 - Modo foco, reading progress, share button
 - FAB unificado (scroll, focus, chat)
 - Changelog em /novidades
+
+---
+
+## Changelog (fonte para posts de lançamento)
+
+Para posts sobre "o que implementamos" ou "novidades", use como fonte:
+
+- **CHANGELOG.md** — formato Keep a Changelog, versões com título, summary e itens
+- **src/data/changelog.ts** — mesma estrutura em TypeScript (alimenta a página /novidades)
+
+Cada versão tem: `version`, `date`, `title`, `summary`, `items[]` (type: feature|fix|refactor|improvement, description, href?).

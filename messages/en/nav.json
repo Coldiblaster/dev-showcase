@@ -103,5 +103,10 @@
   "githubAnalyzer": "GitHub Profile Analyzer",
   "githubAnalyzerDesc": "GitHub profile analysis with AI",
   "stats": "Platform Metrics",
-  "statsDesc": "Live page views, visitors and reactions"
+  "statsDesc": "Live page views, visitors and reactions",
+  "metrics": "Metrics",
+  "metricsDesc": "Page views, visitors, reactions and Core Web Vitals",
+  "performance": "Performance",
+  "performanceDesc": "Core Web Vitals and Lighthouse in real time",
+  "homeInicio": "Home"
 }

@@ -42,6 +42,8 @@ const NAMESPACES = [
   "nav",
   "nextjsAppRouterPage",
   "notFound",
+  "performancePage",
+  "performanceWidget",
   "cookieBanner",
   "portfolio",
   "projects",

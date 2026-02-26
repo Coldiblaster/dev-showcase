@@ -31,6 +31,7 @@
   "mobileTerminal": "Terminal",
   "mobileFocus": "Fokus",
   "mobileActions": "Schnellaktionen",
+  "mobileMore": "Mehr",
   "sectionNavigation": "Abschnittsnavigation",
   "skipToContent": "Zum Inhalt springen",
   "close": "Schließen",
@@ -58,6 +59,7 @@
   "exitFocusMode": "Fokus-Modus beenden",
   "relatedContent": "Ähnliche Inhalte",
   "quickActions": "Schnellaktionen",
+  "performanceMetrics": "Performance-Metriken",
   "readingProgress": "Lesefortschritt",
   "keyboardShortcuts": {
     "title": "Tastenkürzel",

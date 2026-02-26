@@ -41,6 +41,8 @@ import type jsonPage from "../../../messages/pt-BR/jsonPage.json";
 import type nav from "../../../messages/pt-BR/nav.json";
 import type nextjsAppRouterPage from "../../../messages/pt-BR/nextjsAppRouterPage.json";
 import type notFound from "../../../messages/pt-BR/notFound.json";
+import type performancePage from "../../../messages/pt-BR/performancePage.json";
+import type performanceWidget from "../../../messages/pt-BR/performanceWidget.json";
 import type portfolio from "../../../messages/pt-BR/portfolio.json";
 import type prGeneratorPage from "../../../messages/pt-BR/prGeneratorPage.json";
 import type privacyPage from "../../../messages/pt-BR/privacyPage.json";
@@ -108,6 +110,8 @@ export type Messages = {
   jsonPage: typeof jsonPage;
   nextjsAppRouterPage: typeof nextjsAppRouterPage;
   notFound: typeof notFound;
+  performancePage: typeof performancePage;
+  performanceWidget: typeof performanceWidget;
   portfolio: typeof portfolio;
   privacyPage: typeof privacyPage;
   privacyTipsPage: typeof privacyTipsPage;

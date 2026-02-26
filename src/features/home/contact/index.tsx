@@ -139,6 +139,7 @@ export function ContactSection() {
                     autoComplete="off"
                     value={formState.website}
                     onChange={(e) => updateField("website", e.target.value)}
+                    suppressHydrationWarning
                   />
                 </div>
 

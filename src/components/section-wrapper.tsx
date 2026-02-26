@@ -21,7 +21,7 @@ export function SectionWrapper({
     <section
       id={id}
       className={cn(
-        "px-6 py-12 md:py-20",
+        "px-4 py-12 sm:px-6 md:py-20",
         variant === "alternate" && "bg-secondary/20",
         className,
       )}

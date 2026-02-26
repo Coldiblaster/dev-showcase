@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Keyboard, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -22,11 +22,7 @@ interface NavActionsProps {
 
 export function NavActions({ isMobileOpen, onMobileToggle }: NavActionsProps) {
   const t = useTranslations("nav");
-  const tGlobal = useTranslations("global.keyboardShortcuts");
 
-  const openShortcuts = () => {
-    window.dispatchEvent(new CustomEvent("open-keyboard-shortcuts"));
-  };
   const pathname = usePathname();
   const isActive = pathname === "/novidades";
 
@@ -36,15 +32,7 @@ export function NavActions({ isMobileOpen, onMobileToggle }: NavActionsProps) {
         <GlobalSearch />
 
         <LanguageSwitcher />
-        <motion.button
-          onClick={openShortcuts}
-          whileTap={{ scale: 0.95 }}
-          aria-label={tGlobal("title")}
-          title={tGlobal("title")}
-          className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
-        >
-          <Keyboard className="h-4 w-4" />
-        </motion.button>
+
         <Link
           href="/novidades"
           aria-label={t("changelog")}

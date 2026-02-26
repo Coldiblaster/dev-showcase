@@ -74,20 +74,6 @@ export function DesktopNav({ badgePaths }: DesktopNavProps) {
 
   return (
     <div className="hidden items-center gap-1 lg:flex">
-      <Link href="/">
-        <motion.div
-          className={`rounded-lg px-3 py-2 text-sm transition-colors ${
-            isHome
-              ? "text-primary"
-              : "text-muted-foreground hover:text-foreground"
-          }`}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          {t("home")}
-        </motion.div>
-      </Link>
-
       {navGroups.map((group) => {
         if (group.showOnlyOn === "home" && !isHome) return null;
 

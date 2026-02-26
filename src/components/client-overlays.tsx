@@ -39,11 +39,18 @@ const KeyboardShortcutsModal = dynamic(
   { ssr: false },
 );
 
+const PerformanceWidget = dynamic(
+  () =>
+    import("@/components/performance-widget").then((m) => m.PerformanceWidget),
+  { ssr: false },
+);
+
 export function ClientOverlays() {
   return (
     <>
       <FloatingActionMenu />
       <ChatWidget />
+      <PerformanceWidget />
       <MobileActionBar />
       <TerminalEasterEgg />
       <KeyboardShortcutsModal />

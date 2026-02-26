@@ -44,6 +44,20 @@ Conteúdo e URLs:
 
 ---
 
+POST DE LANÇAMENTO / NOVIDADES (usar changelog):
+
+Quando o usuário pedir post sobre "o que implementamos", "lançamentos", "novidades" ou uma versão específica (ex: "post sobre a 0.17"):
+
+1. Use como fonte: CHANGELOG.md ou src/data/changelog.ts
+2. Se não especificar versão, use a mais recente (ou últimas 2-3 se fizer sentido)
+3. Extraia: título da versão, summary, itens (feature, improvement, fix, refactor)
+4. Monte o post destacando o que for mais relevante para o objetivo (A ou B)
+5. Inclua link para /novidades: https://viniciusbastazin.vercel.app/novidades
+
+Exemplos de pedido: "Post sobre o que lançamos na 0.17", "Post de novidades do portfolio", "Post sobre as últimas implementações"
+
+---
+
 ESTRUTURA DO POST (aplicar conforme objetivo):
 
 OBJETIVO A (buscar vagas):
@@ -86,9 +100,13 @@ REGRAS DE ESCRITA:
 
 ---
 
-EXEMPLOS DE PEDIDOS: "Post sobre o GitHub Profile Analyzer", "Post sobre o guia de API Security", "Post de lançamento geral do portfolio", "Post sobre o bug do Redis hmget", "Post sobre o PR Generator"
+EXEMPLOS DE PEDIDOS:
+- Por feature: "Post sobre o GitHub Profile Analyzer", "Post sobre o guia de API Security", "Post sobre o PR Generator"
+- Por changelog: "Post sobre o que lançamos na 0.17", "Post de novidades do portfolio", "Post sobre as últimas implementações"
+- Outros: "Post de lançamento geral do portfolio", "Post sobre o bug do Redis hmget"
 
 Ao receber o pedido: se A ou B já estiver no pedido, gere direto. Senão, pergunte A ou B e só então gere.
+Para posts de lançamento: consulte CHANGELOG.md ou src/data/changelog.ts antes de gerar.
 ```
 
 ---

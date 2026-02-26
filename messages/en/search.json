@@ -202,6 +202,10 @@
     "stats": {
       "title": "Platform Metrics",
       "description": "Live page views, unique visitors, most visited pages, popular searches and reactions via Redis."
+    },
+    "performance": {
+      "title": "Performance",
+      "description": "Core Web Vitals and Lighthouse in real time — LCP, INP, CLS, FCP and TTFB."
     }
   }
 }

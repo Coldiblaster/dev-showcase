@@ -31,6 +31,7 @@
   "mobileTerminal": "Terminal",
   "mobileFocus": "Foco",
   "mobileActions": "Acciones rápidas",
+  "mobileMore": "Más",
   "sectionNavigation": "Navegación por secciones",
   "skipToContent": "Saltar al contenido",
   "close": "Cerrar",
@@ -58,6 +59,7 @@
   "exitFocusMode": "Salir del modo enfoque",
   "relatedContent": "Contenido relacionado",
   "quickActions": "Acciones rápidas",
+  "performanceMetrics": "Métricas de rendimiento",
   "readingProgress": "Progreso de lectura",
   "keyboardShortcuts": {
     "title": "Atajos de teclado",

@@ -1,0 +1,46 @@
+{
+  "title": "PERFORMANCE",
+  "pillLabel": "perf",
+  "panelAriaLabel": "Page performance metrics",
+  "openLabel": "Open performance widget",
+  "reloadLabel": "Reload metrics",
+  "reloadHint": "Fetches Lighthouse data again (same API as performance page).",
+  "footerLighthouse": "Lighthouse",
+  "footerCache24h": "cache 24h",
+  "footerFallback": "fallback",
+  "minimizeLabel": "Minimize",
+  "expandLabel": "Expand widget",
+  "closeLabel": "Close",
+  "loadingPrompt": "$",
+  "analyzing": "analyzing page metrics...",
+  "analyzingMinimizeHint": "You can minimize while it loads.",
+  "scoresLabel": "SCORES",
+  "webVitalsLabel": "WEB VITALS",
+  "footerCollected": "Collected via Performance API",
+  "footerCurrentLoad": "current page load",
+  "viewportDesktop": "Desktop",
+  "viewportMobile": "Mobile",
+  "footerSourceHint": "Same data as performance page (Google PageSpeed Insights, 24h cache).",
+  "scores": {
+    "performance": "Performance",
+    "accessibility": "Accessibility",
+    "bestPractices": "Best Practices",
+    "seo": "SEO"
+  },
+  "vitals": {
+    "FCP": "FCP",
+    "TTFB": "TTFB",
+    "LCP": "LCP",
+    "CLS": "CLS",
+    "TBT": "TBT",
+    "DOM": "DOM"
+  },
+  "vitalsDescription": {
+    "LCP": "Largest contentful paint. Good: ≤2.5s",
+    "FCP": "First contentful paint. Good: ≤1.8s",
+    "TTFB": "Time to first byte. Good: ≤800ms",
+    "CLS": "Cumulative layout shift. Good: ≤0.1",
+    "TBT": "Total blocking time. Lower is better. Good: ≤200ms",
+    "DOM": "DOM load. Good: ≤1.5s"
+  }
+}

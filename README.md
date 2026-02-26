@@ -113,16 +113,18 @@ O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto c
 
 ### Projeto
 
-| Rota                        | Descricao                                                     |
-| --------------------------- | ------------------------------------------------------------- |
-| `/novidades`                | Changelog visual — historico de versoes, features e melhorias |
-| `/contribua`                | Hub de contribuicao com visao geral de todas as sub-paginas   |
-| `/contribua/tutorial`       | Tutorial interativo passo a passo para novos contribuidores   |
-| `/contribua/arquitetura`    | Visao geral da arquitetura tecnica do projeto                 |
-| `/contribua/tech-stack`     | Stack de tecnologias com detalhes de cada ferramenta          |
-| `/contribua/design-system`  | Catalogo interativo de componentes (previews + codigo)        |
-| `/contribua/api`            | Documentacao das API Routes com exemplos de requests          |
-| `/contribua/acessibilidade` | Guia de acessibilidade — padrao do projeto                    |
+| Rota                        | Descricao                                                             |
+| --------------------------- | --------------------------------------------------------------------- |
+| `/novidades`                | Changelog visual — historico de versoes, features e melhorias         |
+| `/contribua`                | Hub de contribuicao com visao geral de todas as sub-paginas           |
+| `/contribua/tutorial`       | Tutorial interativo passo a passo para novos contribuidores           |
+| `/contribua/arquitetura`    | Visao geral da arquitetura tecnica do projeto                         |
+| `/contribua/tech-stack`     | Stack de tecnologias com detalhes de cada ferramenta                  |
+| `/contribua/design-system`  | Catalogo interativo de componentes (previews + codigo)                |
+| `/contribua/api`            | Documentacao das API Routes com exemplos de requests                  |
+| `/contribua/acessibilidade` | Guia de acessibilidade — padrao do projeto                            |
+| `/stats`                    | Metricas ao vivo — page views, visitantes, reacoes e buscas populares |
+| `/performance`              | Core Web Vitals e Lighthouse em tempo real                            |
 
 ### API Routes
 

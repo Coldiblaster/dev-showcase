@@ -31,6 +31,7 @@
   "mobileTerminal": "Terminal",
   "mobileFocus": "Focus",
   "mobileActions": "Quick actions",
+  "mobileMore": "More",
   "sectionNavigation": "Section navigation",
   "skipToContent": "Skip to content",
   "close": "Close",
@@ -58,6 +59,7 @@
   "exitFocusMode": "Exit focus mode",
   "relatedContent": "Related content",
   "quickActions": "Quick actions",
+  "performanceMetrics": "Performance metrics",
   "readingProgress": "Reading progress",
   "keyboardShortcuts": {
     "title": "Keyboard shortcuts",

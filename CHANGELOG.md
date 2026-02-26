@@ -1,12 +1,36 @@
 # Changelog
 
-Todas as mudanças notáveis deste projeto são documentadas aqui.
-
+Todas as mudanças notáveis deste projeto são documentadas aqui.  
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/).
+
+**Para envio por email:** use o título e o resumo de cada versão; os itens em lista servem como detalhamento opcional.
 
 ---
 
 ## [Unreleased]
+
+---
+
+## [0.18.0] — 2026-02-20
+
+### Performance Widget — mais compacto e fácil de usar
+
+O widget de métricas (Lighthouse) que fica na tela ganhou comportamento mais previsível e layout mais enxuto. No **desktop** você expande com **duplo clique** na barra minimizada (evita abrir ao arrastar); no **celular**, **um toque** já expande. A posição é lembrada e o widget não sai da área visível ao redimensionar a janela.
+
+**Resumo para email:** Widget de performance mais compacto; duplo clique para expandir no desktop e um toque no mobile; posição salva e sempre visível.
+
+#### Melhorado
+
+- **Barra minimizada:** só o botão fechar aparece; ícone de performance + "perf" (igual ao widget aberto); quase toda a barra serve para arrastar, exceto o X.
+- **Expandir:** no desktop, duplo clique na barra expande; no mobile/touch, um toque expande (sem precisar de duplo toque).
+- **Posição:** abre no canto superior direito por padrão; posição limitada ao viewport ao carregar, após arrastar e ao redimensionar; posição salva em `localStorage`.
+- **Layout:** header e barra minimizada mais compactos (menos padding e ícones menores); em mobile, largura máxima evita ultrapassar a tela.
+- **Idiomas:** texto "Expandir widget" (e equivalentes) nos 4 idiomas.
+
+#### Refatorado
+
+- Prompt tipo terminal ("$ \_") removido da barra minimizada; uso do ícone de performance em todo lugar.
+- Uso de `(pointer: coarse)` para decidir entre um toque (mobile) e duplo clique (desktop).
 
 ---
 
@@ -26,6 +50,38 @@ Substituição de `dynamic-page-helper.tsx` por pasta `lib/content/` com respons
 
 - ADDING_PAGES, CONTRIBUTING, PROMPT-PROJETO atualizados com `lib/content/component-map.ts`
 - Tutorial (estrutura, snippets, FAQ) e traduções (pt-BR, en, es, de) atualizados
+
+---
+
+## [0.16.0] — 2026-02-22
+
+### Melhorias gerais e correções
+
+Ajustes de UX, acessibilidade e estabilidade; refinamentos em botões, layout em telas lg e menu na barra inferior.
+
+---
+
+## [0.15.0] — 2026-02-23
+
+### Plano de melhorias (fase 1)
+
+Itens do [Plano de Melhorias](docs/PLANO-MELHORIAS.md): painel de atalhos (Ctrl+/), feed RSS (`/feed.xml`), copy link to section, share Twitter/LinkedIn, CTA Star no GitHub, newsletter "Avise-me de novidades" e página de Performance. Inclui botão outline refatorado, layout lg e menu inferior.
+
+**Resumo para email:** Novo painel de atalhos (Ctrl+/), feed RSS em `/feed.xml`, botão para copiar link da seção, compartilhar no Twitter/LinkedIn, CTA "Dê uma estrela" no hero, "Avise-me de novidades" no footer e página de Performance com Lighthouse.
+
+#### Adicionado
+
+- **Painel de atalhos** — Ctrl+/ (ou Cmd+/) abre modal com todos os atalhos (busca, terminal, fechar modais, etc.); ícone na navbar e no FAB.
+- **RSS feed** — `/feed.xml` em formato RSS 2.0; itens baseados no changelog.
+- **Copy link to section** — ícone ao lado de H2/H3 copia a URL com hash da seção; toast "Link copiado!".
+- **Share Twitter e LinkedIn** — botões para compartilhar a página nas redes.
+- **CTA Star no GitHub** — destaque no hero com link para o repositório.
+- **Newsletter** — "Avise-me de novidades" no footer (Resend, rate limit, confirmação).
+- **Página de Performance** — métricas Lighthouse (scores + Web Vitals); link em Contribua e na busca.
+
+#### Melhorado
+
+- Botão outline refatorado; layout responsivo em telas lg (1024px); menu na barra inferior (mobile).
 
 ---
 

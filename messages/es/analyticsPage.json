@@ -186,6 +186,7 @@
       "/ferramentas": "Herramientas",
       "/ferramentas/code-review": "AI Code Reviewer",
       "/ferramentas/regex": "Regex Playground",
+      "/ferramentas/github-analyzer": "GitHub Analyzer",
       "/contribua": "Contribuir",
       "/contribua/arquitetura": "Arquitectura",
       "/contribua/tech-stack": "Tech Stack",

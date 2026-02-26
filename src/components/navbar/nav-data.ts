@@ -14,12 +14,14 @@ import {
   Database,
   FileCode,
   FolderKanban,
+  Gauge,
   GitBranch,
   GitCommitHorizontal,
   Github,
   GitPullRequest,
   Globe,
   Heart,
+  Home,
   Layers,
   Lock,
   Mail,
@@ -114,6 +116,10 @@ export type NavKey =
   | "githubAnalyzerDesc"
   | "stats"
   | "statsDesc"
+  | "metrics"
+  | "metricsDesc"
+  | "performance"
+  | "performanceDesc"
   | "contribute"
   | "contributeDesc"
   | "sectionProject"
@@ -134,7 +140,9 @@ export type NavKey =
   | "tutorialDesc"
   | "openMenu"
   | "closeMenu"
-  | "viewAll";
+  | "viewAll"
+  | "home"
+  | "homeInicio";
 
 export interface NavItem {
   icon: LucideIcon;
@@ -168,20 +176,20 @@ export interface NavGroup {
   showOnlyOn?: "home";
 }
 
-export const portfolioGroup: NavGroup = {
-  id: "portfolio",
-  labelKey: "portfolio",
-  icon: FolderKanban,
-  showOnlyOn: "home",
-  activeCheck: () => false,
+export const homeGroup: NavGroup = {
+  id: "home",
+  labelKey: "home",
+  icon: Home,
+  activeCheck: (pathname) => pathname === "/",
   items: [
-    { icon: User, labelKey: "about", href: "#about" },
-    { icon: SquareStack, labelKey: "techStack", href: "#stack" },
-    { icon: Github, labelKey: "github", href: "#github" },
-    { icon: FolderKanban, labelKey: "projects", href: "#projects" },
-    { icon: Briefcase, labelKey: "experience", href: "#experience" },
-    { icon: Sparkles, labelKey: "aiInnovation", href: "#ai" },
-    { icon: Mail, labelKey: "contact", href: "#contact" },
+    { icon: Home, labelKey: "homeInicio", href: "/" },
+    { icon: User, labelKey: "about", href: "/#about" },
+    { icon: SquareStack, labelKey: "techStack", href: "/#stack" },
+    { icon: Github, labelKey: "github", href: "/#github" },
+    { icon: FolderKanban, labelKey: "projects", href: "/#projects" },
+    { icon: Briefcase, labelKey: "experience", href: "/#experience" },
+    { icon: Sparkles, labelKey: "aiInnovation", href: "/#ai" },
+    { icon: Mail, labelKey: "contact", href: "/#contact" },
   ],
 };
 
@@ -394,7 +402,7 @@ export const contributeGroup: NavGroup = {
   icon: Heart,
   activeCheck: (pathname) => pathname.startsWith("/contribua"),
   viewAllHref: "/contribua#explore",
-  viewAllCount: 7,
+  viewAllCount: 6,
   items: [
     {
       icon: Heart,
@@ -438,17 +446,35 @@ export const contributeGroup: NavGroup = {
       sublabelKey: "a11yDesc",
       href: "/contribua/acessibilidade",
     },
+  ],
+};
+
+export const metricsGroup: NavGroup = {
+  id: "metrics",
+  labelKey: "metrics",
+  descriptionKey: "metricsDesc",
+  icon: Activity,
+  activeCheck: (pathname) =>
+    pathname.startsWith("/stats") || pathname.startsWith("/performance"),
+  items: [
     {
       icon: Activity,
       labelKey: "stats",
       sublabelKey: "statsDesc",
       href: "/stats",
     },
+    {
+      icon: Gauge,
+      labelKey: "performance",
+      sublabelKey: "performanceDesc",
+      href: "/performance",
+    },
   ],
 };
 
 export const navGroups: NavGroup[] = [
-  portfolioGroup,
+  homeGroup,
   contentGroup,
+  metricsGroup,
   contributeGroup,
 ];
