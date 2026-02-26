@@ -47,6 +47,16 @@ Copie o resultado e coloque em `NEWSLETTER_BROADCAST_TOKEN`.
 
 Quando tiver atualizado o changelog e quiser avisar os inscritos:
 
+**Opção 1 — Script interativo (recomendado):**
+
+```bash
+npm run newsletter:broadcast
+```
+
+O script pergunta: local ou web? Depois pede o token e dispara.
+
+**Opção 2 — curl manual:**
+
 ```bash
 curl -X POST https://viniciusbastazin.vercel.app/api/newsletter/broadcast \
   -H "Authorization: Bearer SEU_TOKEN"

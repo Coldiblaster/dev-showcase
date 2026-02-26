@@ -126,16 +126,18 @@ O objetivo e alcancar desenvolvedores, recrutadores e empresas, servindo tanto c
 
 ### API Routes
 
-| Rota               | Descricao                                                                               |
-| ------------------ | --------------------------------------------------------------------------------------- |
-| `/api/chat`        | Chat IA com streaming (GPT-4.1 Nano)                                                    |
-| `/api/code-review` | Revisao de codigo com IA (GPT-4o Mini)                                                  |
-| `/api/contact`     | Envio de email via Resend                                                               |
-| `/api/github`      | Estatisticas do GitHub com cache                                                        |
-| `/api/stats`       | Metricas da plataforma (Redis + cache)                                                  |
-| `/api/stats/track` | Tracking de page view (bot filter)                                                      |
-| `/api/reactions`   | Reacoes por pagina — GET contagens, POST votar/desvota/trocar (Redis + deduplicacao IP) |
-| `/api/online`      | Contador de usuarios online — registra presenca via sendBeacon, TTL por sessao no Redis |
+| Rota                        | Descricao                                                                               |
+| --------------------------- | --------------------------------------------------------------------------------------- |
+| `/api/chat`                 | Chat IA com streaming (GPT-4.1 Nano)                                                    |
+| `/api/code-review`          | Revisao de codigo com IA (GPT-4o Mini)                                                  |
+| `/api/contact`              | Envio de email via Resend                                                               |
+| `/api/github`               | Estatisticas do GitHub com cache                                                        |
+| `/api/stats`                | Metricas da plataforma (Redis + cache)                                                  |
+| `/api/stats/track`          | Tracking de page view (bot filter)                                                      |
+| `/api/reactions`            | Reacoes por pagina — GET contagens, POST votar/desvota/trocar (Redis + deduplicacao IP) |
+| `/api/online`               | Contador de usuarios online — registra presenca via sendBeacon, TTL por sessao no Redis |
+| `/api/newsletter`           | Inscricao na newsletter (Redis)                                                         |
+| `/api/newsletter/broadcast` | Disparo da newsletter para inscritos (Bearer token)                                     |
 
 ---
 
@@ -271,20 +273,21 @@ pnpm dev
 
 Copie `.env.example` para `.env.local` e preencha:
 
-| Variavel                         |   Obrigatoria    | Descricao                                        |
-| -------------------------------- | :--------------: | ------------------------------------------------ |
-| `OPENAI_API_KEY`                 |     Para IA      | Chat e Code Review                               |
-| `RESEND_API_KEY`                 |    Para email    | Formulario de contato                            |
-| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` |   Para contato   | reCAPTCHA v3 (client)                            |
-| `RECAPTCHA_SECRET_KEY`           |   Para contato   | reCAPTCHA v3 (server)                            |
-| `UPSTASH_REDIS_REST_URL`         |  Para analytics  | Metricas ao vivo, reacoes e online counter       |
-| `UPSTASH_REDIS_REST_TOKEN`       |  Para analytics  | Token do Upstash Redis                           |
-| `NEXT_PUBLIC_GISCUS_REPO`        | Para comentarios | Repositorio GitHub para Giscus (ex: `user/repo`) |
-| `NEXT_PUBLIC_GISCUS_REPO_ID`     | Para comentarios | ID do repositorio Giscus                         |
-| `NEXT_PUBLIC_GISCUS_CATEGORY`    | Para comentarios | Categoria do Giscus (ex: `General`)              |
-| `NEXT_PUBLIC_GISCUS_CATEGORY_ID` | Para comentarios | ID da categoria Giscus                           |
-| `DEEPL_API_KEY`                  |  Para traducao   | Traducao automatica (DeepL)                      |
-| `GOOGLE_CLOUD_API_KEY`           |  Para traducao   | Fallback de traducao (Google)                    |
+| Variavel                         |   Obrigatoria    | Descricao                                                    |
+| -------------------------------- | :--------------: | ------------------------------------------------------------ |
+| `OPENAI_API_KEY`                 |     Para IA      | Chat e Code Review                                           |
+| `RESEND_API_KEY`                 |    Para email    | Formulario de contato e newsletter                           |
+| `NEWSLETTER_BROADCAST_TOKEN`     |  Para broadcast  | Token para disparar newsletter (`pnpm newsletter:broadcast`) |
+| `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` |   Para contato   | reCAPTCHA v3 (client)                                        |
+| `RECAPTCHA_SECRET_KEY`           |   Para contato   | reCAPTCHA v3 (server)                                        |
+| `UPSTASH_REDIS_REST_URL`         |  Para analytics  | Metricas ao vivo, reacoes e online counter                   |
+| `UPSTASH_REDIS_REST_TOKEN`       |  Para analytics  | Token do Upstash Redis                                       |
+| `NEXT_PUBLIC_GISCUS_REPO`        | Para comentarios | Repositorio GitHub para Giscus (ex: `user/repo`)             |
+| `NEXT_PUBLIC_GISCUS_REPO_ID`     | Para comentarios | ID do repositorio Giscus                                     |
+| `NEXT_PUBLIC_GISCUS_CATEGORY`    | Para comentarios | Categoria do Giscus (ex: `General`)                          |
+| `NEXT_PUBLIC_GISCUS_CATEGORY_ID` | Para comentarios | ID da categoria Giscus                                       |
+| `DEEPL_API_KEY`                  |  Para traducao   | Traducao automatica (DeepL)                                  |
+| `GOOGLE_CLOUD_API_KEY`           |  Para traducao   | Fallback de traducao (Google)                                |
 
 > A plataforma funciona sem essas chaves — os recursos que dependem delas ficam desabilitados graciosamente.
 
@@ -302,19 +305,20 @@ pnpm test:coverage     # Com cobertura
 
 ## Scripts
 
-| Comando                     | Descricao                                 |
-| --------------------------- | ----------------------------------------- |
-| `pnpm dev`                  | Servidor de desenvolvimento               |
-| `pnpm build`                | Build de producao                         |
-| `pnpm lint`                 | Linting com ESLint                        |
-| `pnpm translate`            | Traduz chaves novas para todos os idiomas |
-| `pnpm translate:force`      | Retraduz tudo                             |
-| `pnpm add-locale -- <code>` | Adiciona novo idioma                      |
-| `pnpm validate:i18n`        | Valida chaves entre idiomas               |
-| `pnpm check:pt-leaks`       | Detecta pt-BR vazando para outros idiomas |
-| `pnpm test`                 | Roda testes com Vitest                    |
+| Comando                     | Descricao                                       |
+| --------------------------- | ----------------------------------------------- |
+| `pnpm dev`                  | Servidor de desenvolvimento                     |
+| `pnpm build`                | Build de producao                               |
+| `pnpm lint`                 | Linting com ESLint                              |
+| `pnpm translate`            | Traduz chaves novas para todos os idiomas       |
+| `pnpm translate:force`      | Retraduz tudo                                   |
+| `pnpm add-locale -- <code>` | Adiciona novo idioma                            |
+| `pnpm validate:i18n`        | Valida chaves entre idiomas                     |
+| `pnpm check:pt-leaks`       | Detecta pt-BR vazando para outros idiomas       |
+| `pnpm newsletter:broadcast` | Dispara newsletter — pergunta local/web e token |
+| `pnpm test`                 | Roda testes com Vitest                          |
 
-> Detalhes dos scripts de i18n em [`docs/i18n/`](./docs/i18n/INDEX.md)
+> Detalhes dos scripts de i18n em [`docs/i18n/`](./docs/i18n/INDEX.md) · Newsletter em [`docs/NEWSLETTER.md`](./docs/NEWSLETTER.md)
 
 ---
 
@@ -341,6 +345,7 @@ O projeto esta configurado para deploy na **Vercel** com zero configuracao:
 | [docs/architecture/COMPONENTS.md](./docs/architecture/COMPONENTS.md)                 | Catalogo de componentes reutilizaveis                  |
 | [docs/content-management/ADDING_PAGES.md](./docs/content-management/ADDING_PAGES.md) | Como criar novas paginas (guias, impl., tools)         |
 | [docs/i18n/INDEX.md](./docs/i18n/INDEX.md)                                           | Sistema de internacionalizacao                         |
+| [docs/NEWSLETTER.md](./docs/NEWSLETTER.md)                                           | Newsletter — inscricao, broadcast e script de disparo  |
 | [docs/revisao-dev-senior-novidades.md](./docs/revisao-dev-senior-novidades.md)       | Revisao das novidades (Estado no React, Form. Contato) |
 | [CHANGELOG.md](./CHANGELOG.md)                                                       | Historico de versoes — Keep a Changelog                |
 

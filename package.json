@@ -19,6 +19,7 @@
     "add-locale": "tsx scripts/add-locale.ts",
     "validate:i18n": "tsx scripts/validate-i18n.ts",
     "check:pt-leaks": "tsx scripts/check-pt-leaks.ts",
+    "newsletter:broadcast": "tsx scripts/newsletter-broadcast.ts",
     "i18n:translate": "ts-node scripts/translate.ts",
     "test": "vitest run",
     "test:watch": "vitest",
