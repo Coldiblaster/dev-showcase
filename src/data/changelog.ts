@@ -18,19 +18,24 @@ export const CHANGELOG: ChangelogVersion[] = [
   {
     version: "0.16.0",
     date: "2026-02-20",
-    title: "Newsletter no footer e Plano de Melhorias atualizado",
+    title: "Newsletter completo: Redis + broadcast via curl",
     summary:
-      "Formulário 'Avise-me de novidades' no footer com API dedicada, rate limit e honeypot. Plano de Melhorias documenta todas as implementações recentes.",
+      "Inscritos salvos no Redis. Disparo manual com um clique via curl — conteúdo gerado do changelog. docs/NEWSLETTER.md com instruções.",
     items: [
       {
         type: "feature",
         description:
-          "Newsletter no footer — formulário 'Avise-me de novidades' com input de email, validação Zod, rate limit (3/hora por IP), honeypot anti-spam. API /api/newsletter envia inscritos para RESEND_TO_EMAIL. Traduções pt-BR, en, es, de",
+          "Newsletter no footer — formulário 'Avise-me de novidades' salva emails em Redis (newsletter:subscribers) + notifica o dono. Rate limit 3/hora por IP, honeypot anti-spam",
+      },
+      {
+        type: "feature",
+        description:
+          "API /api/newsletter/broadcast — disparo manual via curl com Authorization Bearer. Envia para todos os inscritos o último changelog. Template HTML com título, resumo, itens e link para /novidades",
       },
       {
         type: "improvement",
         description:
-          "PLANO-MELHORIAS.md atualizado — tabela de implementados com itens 1–7 concluídos, Newsletter marcado como feito, Próximos passos apontando para Página de Performance",
+          "docs/NEWSLETTER.md — documentação do fluxo, variáveis de ambiente (NEWSLETTER_BROADCAST_TOKEN, RESEND_FROM_EMAIL), exemplo de curl e configuração Resend",
       },
     ],
   },

@@ -10,7 +10,10 @@ import {
 } from "@/lib/api-security";
 import { PERSONAL } from "@/lib/constants";
 import { getClientIp, rateLimitResponse } from "@/lib/rate-limit";
+import { redis } from "@/lib/redis";
 import { rateLimitAsync } from "@/lib/redis-rate-limit";
+
+const NEWSLETTER_KEY = "newsletter:subscribers";
 
 const newsletterSchema = z.object({
   email: z.string().email(),
@@ -49,6 +52,11 @@ export async function POST(request: Request) {
     }
 
     const { email } = parsed.data;
+    const emailLower = email.toLowerCase().trim();
+
+    if (redis) {
+      await redis.sadd(NEWSLETTER_KEY, emailLower);
+    }
 
     const resend = new Resend(apiKey);
 
@@ -59,8 +67,8 @@ export async function POST(request: Request) {
     const { error } = await resend.emails.send({
       from: fromAddress,
       to: [toAddress],
-      subject: `[Newsletter] Novo inscrito: ${sanitizeUserInput(email)}`,
-      text: `Novo inscrito no newsletter:\n\nEmail: ${email}\nData: ${new Date().toISOString()}`,
+      subject: `[Newsletter] Novo inscrito: ${sanitizeUserInput(emailLower)}`,
+      text: `Novo inscrito no newsletter:\n\nEmail: ${emailLower}\nData: ${new Date().toISOString()}`,
     });
 
     if (error) {

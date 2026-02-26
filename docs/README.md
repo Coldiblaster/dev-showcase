@@ -17,6 +17,7 @@ Aqui voce encontra guias detalhados para contribuir, entender a arquitetura e tr
 | [Componentes Reutilizaveis](./architecture/COMPONENTS.md)   | Catalogo de componentes compartilhados                        | Todos        |
 | [Adicionando Paginas](./content-management/ADDING_PAGES.md) | Como criar novas paginas (guias, implementacoes, ferramentas) | Todos        |
 | [Internacionalizacao (i18n)](./i18n/INDEX.md)               | Sistema de traducao, scripts, boas praticas                   | Todos        |
+| [Newsletter](./NEWSLETTER.md)                               | Fluxo completo: inscricao, Redis, disparo via curl            | Todos        |
 | [Prompts IA](./prompts-ia/README.md)                        | Prompts para posts LinkedIn e para criar codigo no projeto    | Todos        |
 
 > **Novo no projeto?** Use o **Tutorial Interativo** em `/contribua/tutorial` — cobre o fluxo completo com duas trilhas: criar uma feature nova ou melhorar uma existente.
