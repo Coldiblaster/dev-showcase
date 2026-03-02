@@ -37,9 +37,9 @@
     "badge": "Patterns",
     "title": "The 5 Essential Patterns",
     "before": "Before",
-    "realWorldLabel": "Real world:",
     "after": "After",
     "whenToUse": "When to use",
+    "realWorldLabel": "Real world:",
     "items": [
       {
         "id": "observer",

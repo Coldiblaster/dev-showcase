@@ -1,0 +1,12 @@
+{
+  "hero": {
+    "title": "Perguntas Frequentes",
+    "description": "Respostas para as duvidas mais comuns."
+  },
+  "items": [
+    {
+      "question": "Como funciona o i18n?",
+      "answer": "Usamos next-intl com traducao automatica."
+    }
+  ]
+}

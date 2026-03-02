@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 import { ChevronRight, Lightbulb } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type tipsPage from "@/../messages/pt-BR/tipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { SectionHeader } from "@/components/section-header";
 import { CardBlur } from "@/components/ui/card-blur";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import type tipsPage from "../../../../messages/pt-BR/tipsPage.json";
 
 type PromptsCategory = (typeof tipsPage)["prompts"]["categories"][number];
 type PromptItem = { prompt: string; description: string };

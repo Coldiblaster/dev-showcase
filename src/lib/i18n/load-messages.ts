@@ -49,6 +49,8 @@ const NAMESPACES = [
   "privacyTipsPage",
   "reactPatterns",
   "reactQueryTipsPage",
+  "reactRouterTips",
+  "reactRouterTipsPage",
   "regexPage",
   "stateManagementPage",
   "statsPage",
@@ -85,7 +87,7 @@ export async function loadMessages(
     const messages = await import(`@/../messages/${locale}/index`);
     return messages.default;
   } catch {
-    const fallback = await import("@/../messages/pt-BR/index");
+    const fallback = await import("../../../messages/pt-BR/index");
     return fallback.default;
   }
 }

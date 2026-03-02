@@ -12,6 +12,7 @@ import {
   Shield,
   ShieldCheck,
   Sparkles,
+  Waypoints,
   Wrench,
 } from "lucide-react";
 import { Metadata } from "next";
@@ -24,6 +25,7 @@ const iconMap = {
   "ai-tips": Sparkles,
   "tailwind-tips": Palette,
   "react-query-tips": Database,
+  "react-router-tips": Waypoints,
   "dev-resources": Wrench,
   "security-tips": Shield,
   "privacy-tips": ShieldCheck,

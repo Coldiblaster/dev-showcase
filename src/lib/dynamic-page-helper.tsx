@@ -60,7 +60,7 @@ const COMPONENT_MAP: Record<string, React.ComponentType<unknown>> = {
   ReactQueryTips: dynamic(() =>
     import("@/features/guides/react-query-tips").then((m) => m.ReactQueryTips),
   ),
-  ReactRouting: dynamic(() =>
+  ReactRouterTips: dynamic(() =>
     import("@/features/guides/react-router-tips").then(
       (m) => m.ReactRouterTips,
     ),

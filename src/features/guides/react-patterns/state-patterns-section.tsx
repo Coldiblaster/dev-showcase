@@ -4,10 +4,11 @@ import { Database } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
-import type reactPatterns from "@/../messages/pt-BR/reactPatterns.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { CardBlur } from "@/components/ui/card-blur";
+
+import type reactPatterns from "../../../../messages/pt-BR/reactPatterns.json";
 
 type StateItem = (typeof reactPatterns)["statePatterns"]["items"][number];
 

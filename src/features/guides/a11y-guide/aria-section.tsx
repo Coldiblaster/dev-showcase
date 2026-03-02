@@ -3,12 +3,12 @@
 import { MessageSquare } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type a11yGuidePage from "@/../messages/pt-BR/a11yGuidePage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { SectionHeader } from "@/components/section-header";
 import { SectionWrapper } from "@/components/section-wrapper";
 
+import type a11yGuidePage from "../../../../messages/pt-BR/a11yGuidePage.json";
 import { ARIA_LABELS_BAD, ARIA_LABELS_GOOD } from "./a11y-data";
 
 type Role = (typeof a11yGuidePage)["aria"]["roles"][number];

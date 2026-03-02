@@ -103,5 +103,7 @@
   "githubAnalyzer": "GitHub Profile Analyzer",
   "githubAnalyzerDesc": "Análisis de perfil GitHub con IA",
   "stats": "Métricas de la Plataforma",
-  "statsDesc": "Vistas, visitantes y reacciones en vivo"
+  "statsDesc": "Vistas, visitantes y reacciones en vivo",
+  "reactRouterTips": "Navegação com React Router v6+",
+  "reactRouterTipsDesc": "Padrões, rotas dinâmicas, loaders, nested routes e outros."
 }

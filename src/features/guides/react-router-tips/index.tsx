@@ -7,7 +7,7 @@ import { HeroSection } from "@/components/hero-section";
 import { SectionWrapper } from "@/components/section-wrapper";
 
 export function ReactRouterTips() {
-  const t = useTranslations("reactRouterTipsPage");
+  const t = useTranslations("reactRouterTipsPage") as (key: string) => string;
 
   return (
     <div className="min-h-screen">

@@ -3,9 +3,10 @@
 import { BookOpen, Check, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type tailwindTipsPage from "@/../messages/pt-BR/tailwindTipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { CardBlur } from "@/components/ui/card-blur";
+
+import type tailwindTipsPage from "../../../../messages/pt-BR/tailwindTipsPage.json";
 
 type TipItem = (typeof tailwindTipsPage)["tips"]["items"][number];
 

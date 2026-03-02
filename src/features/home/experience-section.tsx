@@ -4,9 +4,10 @@ import { motion, useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
 
-import type experience from "@/../messages/pt-BR/experience.json";
 import { Badge } from "@/components/ui/badge";
 import { CardBlur } from "@/components/ui/card-blur";
+
+import type experience from "../../../messages/pt-BR/experience.json";
 
 type ExperienceItem = (typeof experience)["items"][number];
 

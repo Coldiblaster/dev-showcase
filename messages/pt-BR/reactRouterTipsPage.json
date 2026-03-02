@@ -1,0 +1,15 @@
+{
+  "hero": {
+    "badge": "Navegação com React",
+    "title": "React Router & Padrões",
+    "subtitle": "Funcionamento interno das rotas e navegação",
+    "description": "Padrões de composição, navegação dinâmica, loaders, navigation guards, nested routes e utilizações profissionais do React Router v6+.",
+    "warning": "Este guia utiliza recursos do React Router v6+ e pode não ser compatível com versões anteriores. Sempre consulte a documentação oficial e cheque sua versão."
+  },
+  "sections": {
+    "composition": {
+      "title": "Composição",
+      "description": "..."
+    }
+  }
+}

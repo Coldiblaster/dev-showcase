@@ -3,11 +3,12 @@
 import { Code2, MessageSquare } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type tipsPage from "@/../messages/pt-BR/tipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { FeatureCard } from "@/components/feature-card";
 import { PromptCard } from "@/components/prompt-card";
 import { SectionHeader } from "@/components/section-header";
+
+import type tipsPage from "../../../../messages/pt-BR/tipsPage.json";
 
 type CopilotFeature = (typeof tipsPage)["copilot"]["features"][number];
 type CopilotPrompt = (typeof tipsPage)["copilot"]["prompts"][number];

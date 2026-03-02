@@ -95,6 +95,10 @@
       "title": "React Query Grundlagen",
       "description": "Cache, Mutations, Optimierung und Best Practices mit TanStack Query"
     },
+    "react-router-tips": {
+      "title": "React Router & Navegação",
+      "description": "Guia completo de React Router v6+: rotas dinâmicas, nested routing, loaders, navigation guards e práticas para navegação em apps React."
+    },
     "dev-resources": {
       "title": "Entwickler-Ressourcen",
       "description": "Inhalte nach Niveau gefiltert (Jr/Mid/Sr) mit interaktivem Playground"

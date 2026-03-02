@@ -3,9 +3,10 @@
 import { AlertTriangle, Zap } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type tipsPage from "@/../messages/pt-BR/tipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { SectionHeader } from "@/components/section-header";
+
+import type tipsPage from "../../../../messages/pt-BR/tipsPage.json";
 
 type EfficientUseSections = keyof (typeof tipsPage)["efficientUse"]["sections"];
 type CommonErrorsExamples =

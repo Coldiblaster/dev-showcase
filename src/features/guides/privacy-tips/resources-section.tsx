@@ -4,11 +4,12 @@ import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
-import type privacyTipsPage from "@/../messages/pt-BR/privacyTipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { ResourceLink } from "@/components/resource-link";
 import { SectionHeader } from "@/components/section-header";
 import { SectionWrapper } from "@/components/section-wrapper";
+
+import type privacyTipsPage from "../../../../messages/pt-BR/privacyTipsPage.json";
 
 type ResourceLinkItem = (typeof privacyTipsPage)["resources"]["links"][number];
 

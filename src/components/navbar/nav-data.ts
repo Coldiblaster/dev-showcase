@@ -33,6 +33,7 @@ import {
   Sparkles,
   SquareStack,
   User,
+  Waypoints,
   Wrench,
 } from "lucide-react";
 
@@ -134,7 +135,9 @@ export type NavKey =
   | "tutorialDesc"
   | "openMenu"
   | "closeMenu"
-  | "viewAll";
+  | "viewAll"
+  | "reactRouterTips"
+  | "reactRouterTipsDesc";
 
 export interface NavItem {
   icon: LucideIcon;
@@ -342,6 +345,12 @@ export const contentGroup: NavGroup = {
           labelKey: "a11yGuide",
           sublabelKey: "a11yGuideDesc",
           href: "/dicas/a11y-guide",
+        },
+        {
+          icon: Waypoints,
+          labelKey: "reactRouterTips",
+          sublabelKey: "reactRouterTipsDesc",
+          href: "/dicas/react-router-tips",
         },
       ],
     },

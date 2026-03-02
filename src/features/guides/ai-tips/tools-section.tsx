@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 import { ExternalLink, Wrench } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type tipsPage from "@/../messages/pt-BR/tipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { SectionHeader } from "@/components/section-header";
 import { CardBlur } from "@/components/ui/card-blur";
+
+import type tipsPage from "../../../../messages/pt-BR/tipsPage.json";
 
 type ToolsCategory = (typeof tipsPage)["tools"]["categories"][number];
 

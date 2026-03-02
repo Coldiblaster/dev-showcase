@@ -2,9 +2,10 @@
 
 import { useLocale, useTranslations } from "next-intl";
 
-import type privacyPage from "@/../messages/pt-BR/privacyPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { BackLink } from "@/components/back-link";
+
+import type privacyPage from "../../../messages/pt-BR/privacyPage.json";
 
 type WhatWeCollectItem =
   (typeof privacyPage)["sections"]["whatWeCollect"]["items"][number];

@@ -3,11 +3,12 @@
 import { Boxes } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type tsPatterns from "@/../messages/pt-BR/tsPatterns.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { Badge } from "@/components/ui/badge";
 import { CardBlur } from "@/components/ui/card-blur";
+
+import type tsPatterns from "../../../../messages/pt-BR/tsPatterns.json";
 
 type GenericItem = (typeof tsPatterns)["generics"]["items"][number];
 

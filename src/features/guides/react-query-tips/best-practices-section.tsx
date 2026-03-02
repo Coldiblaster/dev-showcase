@@ -3,10 +3,11 @@
 import { Code2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type reactQueryTipsPage from "@/../messages/pt-BR/reactQueryTipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { SectionHeader } from "@/components/section-header";
 import { TipItem } from "@/components/tip-item";
+
+import type reactQueryTipsPage from "../../../../messages/pt-BR/reactQueryTipsPage.json";
 
 type Tip = (typeof reactQueryTipsPage)["bestPractices"]["tips"][number];
 

@@ -25,6 +25,7 @@ import type designSystemPage from "../../../messages/pt-BR/designSystemPage.json
 import type devResourcesData from "../../../messages/pt-BR/devResourcesData.json";
 import type devResourcesPage from "../../../messages/pt-BR/devResourcesPage.json";
 import type experience from "../../../messages/pt-BR/experience.json";
+import type faqPage from "../../../messages/pt-BR/faqPage.json";
 import type footer from "../../../messages/pt-BR/footer.json";
 import type githubAnalyzerPage from "../../../messages/pt-BR/githubAnalyzerPage.json";
 import type githubStats from "../../../messages/pt-BR/githubStats.json";
@@ -47,6 +48,8 @@ import type privacyTipsPage from "../../../messages/pt-BR/privacyTipsPage.json";
 import type projects from "../../../messages/pt-BR/projects.json";
 import type reactPatterns from "../../../messages/pt-BR/reactPatterns.json";
 import type reactQueryTipsPage from "../../../messages/pt-BR/reactQueryTipsPage.json";
+import type reactRouterTips from "../../../messages/pt-BR/reactRouterTips.json";
+import type reactRouterTipsPage from "../../../messages/pt-BR/reactRouterTipsPage.json";
 import type regexPage from "../../../messages/pt-BR/regexPage.json";
 import type search from "../../../messages/pt-BR/search.json";
 import type securityPage from "../../../messages/pt-BR/securityPage.json";
@@ -94,6 +97,7 @@ export type Messages = {
   devResourcesData: typeof devResourcesData;
   devResourcesPage: typeof devResourcesPage;
   experience: typeof experience;
+  faqPage: typeof faqPage;
   footer: typeof footer;
   gitWorkflow: typeof gitWorkflow;
   githubStats: typeof githubStats;
@@ -112,6 +116,7 @@ export type Messages = {
   projects: typeof projects;
   reactPatterns: typeof reactPatterns;
   reactQueryTipsPage: typeof reactQueryTipsPage;
+  reactRouterTips: typeof reactRouterTips;
   regexPage: typeof regexPage;
   stateManagementPage: typeof stateManagementPage;
   terminal: typeof terminal;
@@ -127,6 +132,7 @@ export type Messages = {
   search: typeof search;
   securityPage: typeof securityPage;
   seoPage: typeof seoPage;
+  reactRouterTipsPage: typeof reactRouterTipsPage;
 };
 
 // --- Utility Types ---

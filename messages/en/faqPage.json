@@ -1,0 +1,12 @@
+{
+  "hero": {
+    "title": "Frequently asked questions",
+    "description": "Answers to the most common questions"
+  },
+  "items": [
+    {
+      "question": "How does it work i18n?",
+      "answer": "We use next-intl with automatic translation."
+    }
+  ]
+}

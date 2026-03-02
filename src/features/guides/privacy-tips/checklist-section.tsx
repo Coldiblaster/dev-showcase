@@ -3,10 +3,11 @@
 import { Check } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type privacyTipsPage from "@/../messages/pt-BR/privacyTipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { SectionHeader } from "@/components/section-header";
 import { SectionWrapper } from "@/components/section-wrapper";
+
+import type privacyTipsPage from "../../../../messages/pt-BR/privacyTipsPage.json";
 
 type ChecklistItems = (typeof privacyTipsPage)["checklist"]["items"];
 

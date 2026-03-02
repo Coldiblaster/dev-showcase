@@ -3,10 +3,11 @@
 import { Check, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type a11yGuidePage from "@/../messages/pt-BR/a11yGuidePage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { SectionHeader } from "@/components/section-header";
 import { SectionWrapper } from "@/components/section-wrapper";
+
+import type a11yGuidePage from "../../../../messages/pt-BR/a11yGuidePage.json";
 
 type ChecklistItem = (typeof a11yGuidePage)["checklist"]["items"][number];
 

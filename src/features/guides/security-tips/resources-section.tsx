@@ -3,11 +3,12 @@
 import { ExternalLink } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type securityPage from "@/../messages/pt-BR/securityPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { ResourceLink } from "@/components/resource-link";
 import { SectionHeader } from "@/components/section-header";
 import { SectionWrapper } from "@/components/section-wrapper";
+
+import type securityPage from "../../../../messages/pt-BR/securityPage.json";
 
 type ResourceLinkItem = (typeof securityPage)["resources"]["links"][number];
 

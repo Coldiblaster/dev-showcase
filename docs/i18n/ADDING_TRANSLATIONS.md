@@ -29,7 +29,7 @@ Passo a passo para adicionar novas traducoes, incluindo quando e como atualizar 
     "name": "Nome",
     "email": "E-mail",
     "message": "Mensagem",
-    "phone": "Telefone"    // ← NOVA CHAVE
+    "phone": "Telefone" // ← NOVA CHAVE
   }
 }
 ```
@@ -223,11 +223,11 @@ pnpm translate
 
 ## Resumo: Quando Mexer em Tipagem?
 
-| Cenario                              | Tipagem? | Arquivos Afetados                                |
-| ------------------------------------ | -------- | ------------------------------------------------ |
-| Adicionar chaves em arquivo existente | NAO      | Nenhum                                           |
-| Criar novo namespace (JSON)          | SIM      | `*/index.ts`, `src/lib/i18n/types.d.ts`         |
-| Adicionar novo idioma                | SIM      | `src/lib/i18n/config.ts`                         |
+| Cenario                               | Tipagem? | Arquivos Afetados                       |
+| ------------------------------------- | -------- | --------------------------------------- |
+| Adicionar chaves em arquivo existente | NAO      | Nenhum                                  |
+| Criar novo namespace (JSON)           | SIM      | `*/index.ts`, `src/lib/i18n/types.d.ts` |
+| Adicionar novo idioma                 | SIM      | `src/lib/i18n/config.ts`                |
 
 ---
 

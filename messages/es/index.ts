@@ -22,6 +22,7 @@ import designSystemPage from "./designSystemPage.json";
 import devResourcesData from "./devResourcesData.json";
 import devResourcesPage from "./devResourcesPage.json";
 import experience from "./experience.json";
+import faqPage from "./faqPage.json";
 import footer from "./footer.json";
 import githubAnalyzerPage from "./githubAnalyzerPage.json";
 import githubStats from "./githubStats.json";
@@ -44,6 +45,8 @@ import privacyTipsPage from "./privacyTipsPage.json";
 import projects from "./projects.json";
 import reactPatterns from "./reactPatterns.json";
 import reactQueryTipsPage from "./reactQueryTipsPage.json";
+import reactRouterTips from "./reactRouterTips.json";
+import reactRouterTipsPage from "./reactRouterTipsPage.json";
 import regexPage from "./regexPage.json";
 import search from "./search.json";
 import securityPage from "./securityPage.json";
@@ -62,13 +65,13 @@ import tutorialPage from "./tutorialPage.json";
 import viewSource from "./viewSource.json";
 
 export default {
+  global,
   a11yGuidePage,
   apiSecurityPage,
   designPatternsPage,
   githubAnalyzerPage,
   prGeneratorPage,
   statsPage,
-  global,
   about,
   accessibilityPage,
   analyticsPage,
@@ -88,6 +91,7 @@ export default {
   devResourcesData,
   devResourcesPage,
   experience,
+  faqPage,
   footer,
   gitWorkflow,
   githubStats,
@@ -106,6 +110,8 @@ export default {
   projects,
   reactPatterns,
   reactQueryTipsPage,
+  reactRouterTips,
+  reactRouterTipsPage,
   regexPage,
   stateManagementPage,
   techStackPage,
