@@ -1,17 +1,202 @@
 {
-  "reactRouterTipsPage": {
-    "hero": {
-      "badge": "Navegação com React",
-      "title": "React Router & Padrões",
-      "subtitle": "Funcionamento interno das rotas e navegação",
-      "description": "Padrões de composição, navegação dinâmica, loaders, navigation guards, nested router e utilizações profissionais do React Router v6+.",
-      "warning": "Este guia utiliza recursos do React Router v6+ e pode não ser compatível com versões anteriores. Sempre consulte a documentação oficial e cheque sua versão."
-    },
-    "sections": {
-      "composition": {
-        "title": "Composição",
-        "description": "..."
+  "hero": {
+    "badge": "Navigation mit React",
+    "title": "React Router & Muster",
+    "subtitle": "Internes Verhalten von Routen und Navigation",
+    "description": "Kompositionsmuster, dynamische Navigation, Loader, Navigation Guards, verschachtelte Routen und professionelle Anwendungsfälle von React Router v6+.",
+    "warning": "Dieser Leitfaden verwendet Funktionen von React Router v6+ und ist möglicherweise nicht mit älteren Versionen kompatibel. Konsultiere immer die offizielle Dokumentation und prüfe deine Version."
+  },
+  "resources": {
+    "title": "Nützliche Links",
+    "subtitle": "Offizielle Dokumentation und Referenzen",
+    "items": [
+      {
+        "name": "React Router Docs",
+        "description": "Offizielle React-Router-Dokumentation mit Leitfäden, APIs, Beispielen und detaillierten Erklärungen.",
+        "url": "https://reactrouter.com/en/main"
+      },
+      {
+        "name": "React Router – useParams API",
+        "description": "Dokumentation zum useParams-Hook, der den Zugriff auf dynamische URL-Parameter ermöglicht.",
+        "url": "https://reactrouter.com/en/main/hooks/use-params"
+      },
+      {
+        "name": "React Router – Route",
+        "description": "Offizielle Referenz der Route-API mit Beispielen für statische und dynamische Routen.",
+        "url": "https://reactrouter.com/en/main/route/route"
+      },
+      {
+        "name": "React Router – BrowserRouter",
+        "description": "Dokumentation zum BrowserRouter, dem Haupt-Provider, der Routing in der App aktiviert.",
+        "url": "https://reactrouter.com/en/main/router-components/browser-router"
       }
-    }
+    ]
+  },
+  "fundamentals": {
+    "title": "Grundlagen des React Router",
+    "subtitle": "Wie man React Router von Grund auf einrichtet",
+    "description": "Die wesentlichen Schritte, um ein React-Projekt mit vorkonfiguriertem React Router zu starten – inklusive grundlegender Routen, dynamischen Routen und dem Einsatz des useParams-Hooks.",
+    "items": [
+      {
+        "name": "React-Projekt erstellen...",
+        "description": "Starte ein Projekt mit Vite (oder Create React App). Es dient als Basis für die Konfiguration des React Router.",
+        "code": "npm create vite@latest mein-projekt --template react\ncd mein-projekt\nnpm install"
+      },
+      {
+        "name": "React Router installieren",
+        "description": "React Router wird separat installiert. Die Bibliothek bietet alle Routing-Funktionen, dynamische Routen und Hooks wie useParams.",
+        "code": "npm install react-router-dom"
+      },
+      {
+        "name": "BrowserRouter und grundlegende Routen konfigurieren",
+        "description": "Der BrowserRouter aktiviert das Routingsystem. Hier erstellst du das grundlegende Routing mit <Routes> und <Route>.",
+        "code": "import { BrowserRouter, Routes, Route } from \"react-router-dom\";\n\nexport default function App() {\n  return (\n    <BrowserRouter>\n      <Routes>\n        <Route path=\"/\" element={<Home />} />\n        <Route path=\"/über\" element={<Über />} />\n      </Routes>\n    </BrowserRouter>\n  );\n}"
+      },
+      {
+        "name": "Dynamische Routen erstellen (Dynamic Routing)",
+        "description": "Dynamische Routen erlauben variable Teile in der URL, dargestellt durch Parameter wie :id, :slug oder :username. Diese Art von Route ist essenziell, wenn Inhalte abhängig von der URL angezeigt werden sollen – beispielsweise Benutzerdetails, einzelne Posts oder Produkte.",
+        "code": "<Route path=\"/users/:id\" element={<UserPage />} />"
+      },
+      {
+        "name": "useParams verwenden, um Parameter auszulesen",
+        "description": "useParams ermöglicht das Auslesen der Werte einer dynamischen Route, wie id, slug oder username.",
+        "code": "import { useParams } from \"react-router-dom\";\n\nexport default function UserPage() {\n  const { id } = useParams();\n\n  return <h1>Benutzerprofil: {id}</h1>;\n}"
+      }
+    ]
+  },
+  "structures": {
+    "title": "Struktur und Organisation von Routen",
+    "subtitle": "Nested Routing und Lazy Loading im React Router",
+    "description": "Wie man Routen skalierbar strukturiert, verschachtelte Routen nutzt und die Performance durch Lazy Loading verbessert. Diese Muster helfen, Anwendungen modular, sauber und effizient zu halten.",
+    "items": [
+      {
+        "name": "Routen mit Nested Routing organisieren",
+        "description": "Nested Routing erlaubt das Erstellen von Routen innerhalb anderer Routen. Dies erleichtert die Komposition von Layouts, Headern, Sidebars und internen Seiten.",
+        "code": "import { BrowserRouter, Routes, Route } from \"react-router-dom\";\n\nexport default function App() {\n  return (\n    <BrowserRouter>\n      <Routes>\n        <Route path=\"dashboard\" element={<DashboardLayout />}> \n          <Route index element={<DashboardHome />} />\n          <Route path=\"settings\" element={<Settings />} />\n          <Route path=\"users\" element={<Users />} />\n        </Route>\n      </Routes>\n    </BrowserRouter>\n  );\n}"
+      },
+      {
+        "name": "Gemeinsame Layouts erstellen",
+        "description": "Layouts sind Komponenten, die Gruppen verschachtelter Routen umschließen. Dadurch bleiben Teile der Oberfläche konstant, während der innere Inhalt je nach Navigation wechselt.",
+        "code": "import { Outlet } from \"react-router-dom\";\n\nexport function DashboardLayout() {\n  return (\n    <div>\n      <Sidebar />\n      <main>\n        <Outlet />\n      </main>\n    </div>\n  );\n}"
+      },
+      {
+        "name": "Lazy Loading auf Routen anwenden",
+        "description": "Lazy Loading teilt die Anwendung in kleinere Teile, die nur bei Bedarf geladen werden. Dies verkleinert das Initialbundle und beschleunigt das Laden.",
+        "code": "import { lazy, Suspense } from \"react\";\nimport { BrowserRouter, Routes, Route } from \"react-router-dom\";\n\nconst Dashboard = lazy(() => import(\"./pages/Dashboard\"));\nconst Settings = lazy(() => import(\"./pages/Settings\"));\n\nexport default function App() {\n  return (\n    <BrowserRouter>\n      <Suspense fallback={<p>Wird geladen...</p>}>\n        <Routes>\n          <Route path=\"dashboard\" element={<Dashboard />} />\n          <Route path=\"settings\" element={<Settings />} />\n        </Routes>\n      </Suspense>\n    </BrowserRouter>\n  );\n}"
+      },
+      {
+        "name": "Nested Routing + Lazy Loading kombinieren",
+        "description": "Lazy Loading kann auch in verschachtelten Routen verwendet werden, sodass nur die tatsächlich benötigte Route geladen wird.",
+        "code": "const DashboardLayout = lazy(() => import(\"./layouts/DashboardLayout\"));\nconst Users = lazy(() => import(\"./pages/Users\"));\nconst Reports = lazy(() => import(\"./pages/Reports\"));\n\n<Routes>\n  <Route path=\"dashboard\" element={<DashboardLayout />}> \n    <Route path=\"users\" element={<Users />} />\n    <Route path=\"reports\" element={<Reports />} />\n  </Route>\n</Routes>"
+      },
+      {
+        "name": "Ordner- und Dateistruktur für saubere Routen",
+        "description": "Eine gute Ordnerorganisation erleichtert die Nutzung verschachtelter Routen, trennt Layouts, Seiten und Routen und hält den Code modular und skalierbar.",
+        "code": "src/\n  pages/\n    dashboard/\n      index.jsx\n      users.jsx\n      reports.jsx\n    settings/\n      index.jsx\n  layouts/\n    DashboardLayout.jsx\n  App.jsx\n  main.jsx"
+      }
+    ]
+  },
+  "apidata": {
+    "title": "Intelligentes Datenladen",
+    "subtitle": "Loader, Vorladen und Datenverwaltung im React Router",
+    "description": "Ein vollständiger Leitfaden zum Verständnis, wie React Router Loader verwendet, um Daten vor der Darstellung zu laden — für schnellere, stabilere und vorhersehbare Seiten.",
+    "items": [
+      {
+        "name": "Was sind Loader? (Konzept)",
+        "description": "Loader sind Funktionen, die ausgeführt werden, bevor eine Route gerendert wird. Sie laden notwendige Daten im Voraus und vermeiden unnötige Spinner.",
+        "code": "export async function loader() {\n  const users = await fetch('/api/users').then(res => res.json());\n  return { users };\n}"
+      },
+      {
+        "name": "Loader mit Routen verbinden",
+        "description": "Loader werden direkt an einer Route definiert. React Router führt sie automatisch aus, bevor das Element angezeigt wird.",
+        "code": "const router = createBrowserRouter([\n  {\n    path: '/users',\n    element: <UsersPage />,\n    loader: usersLoader,\n  }\n]);"
+      },
+      {
+        "name": "Daten mit useLoaderData abrufen",
+        "description": "Komponenten können die von einem Loader zurückgegebenen Daten mit useLoaderData einlesen — ohne lokale States oder Effects.",
+        "code": "import { useLoaderData } from 'react-router-dom';\n\nexport default function UsersPage() {\n  const { users } = useLoaderData();\n  return <UserList items={users} />;\n}"
+      },
+      {
+        "name": "Loader mit Parametern (dynamisches Laden)",
+        "description": "Loader können auch dynamische Parameter aus der URL auslesen, etwa um einen Benutzer per ID abzurufen.",
+        "code": "export async function userLoader({ params }) {\n  const user = await fetch(`/api/users/${params.id}`).then(r => r.json());\n  return { user };\n}"
+      },
+      {
+        "name": "Fehlerbehandlung in Loadern",
+        "description": "Loader können Fehler auslösen. React Router fängt sie automatisch ab und rendert die passende ErrorBoundary.",
+        "code": "export async function loader() {\n  const res = await fetch('/api/data');\n  if (!res.ok) {\n    throw new Response('Fehler beim Laden der Daten', { status: res.status });\n  }\n  return res.json();\n}"
+      },
+      {
+        "name": "Automatische Revalidierung",
+        "description": "Wenn Aktionen Daten ändern, führt React Router Loader erneut aus, um die UI ohne Neuladen aktuell zu halten.",
+        "code": "export async function action() {\n  await updateUser();\n  return redirect('/users');\n}"
+      },
+      {
+        "name": "Loader als Vorladen (Prefetching)",
+        "description": "Loader können vor der eigentlichen Navigation ausgelöst werden, um Seiten praktisch sofort zu laden.",
+        "code": "<Link to=\"/products\" prefetch=\"intent\">Produkte</Link>"
+      },
+      {
+        "name": "Loader + Actions integrieren",
+        "description": "Loader holen Daten, Actions senden Daten. Zusammen bilden sie den vollständigen Lese-/Schreibzyklus.",
+        "code": "const router = createBrowserRouter([\n  {\n    path: '/users/:id',\n    loader: userLoader,\n    action: updateUserAction,\n    element: <UserPage />\n  }\n]);"
+      },
+      {
+        "name": "Fortgeschritten: Loader als API-Schicht",
+        "description": "In großen Anwendungen können Loader eine zentrale API-Schicht sein — einschließlich Fehlerbehandlung, Authentifizierung, Headern, Parsing und Caching.",
+        "code": "export async function loader() {\n  const res = await api('/posts');\n  return { posts: res.data };\n}"
+      }
+    ]
+  },
+  "security": {
+    "title": "Sicherheit und Navigationsfluss",
+    "subtitle": "Protected Routes und Navigation Guards im React Router",
+    "description": "Wichtige Techniken zur Zugriffskontrolle, zum Schutz von Bereichen der Anwendung und zur Abfangung von Navigationen mithilfe individueller Logik.",
+    "items": [
+      {
+        "name": "Protected Routes erstellen (Konzept)",
+        "description": "Protected Routes benötigen eine vorherige Prüfung — meist Authentifizierung. Wenn der Benutzer nicht autorisiert ist, wird er umgeleitet.",
+        "code": "function ProtectedRoute({ children }) {\n  const isAuth = useAuth();\n\n  if (!isAuth) {\n    return <Navigate to=\"/login\" replace />;\n  }\n\n  return children;\n}"
+      },
+      {
+        "name": "ProtectedRoute mit React Router verwenden",
+        "description": "Anstatt ein Element direkt zu rendern, wird es von einer Schutzkomponente umschlossen.",
+        "code": "<Routes>\n  <Route\n    path=\"/dashboard\"\n    element={\n      <ProtectedRoute>\n        <Dashboard />\n      </ProtectedRoute>\n    }\n  />\n</Routes>"
+      },
+      {
+        "name": "Sicheres Redirect nach dem Login",
+        "description": "Die ursprünglich aufgerufene Route kann gespeichert und nach erfolgreichem Login wiederhergestellt werden.",
+        "code": "const location = useLocation();\n\nif (!isAuth) {\n  return <Navigate to=\"/login\" state={{ from: location }} replace />;\n}"
+      },
+      {
+        "name": "Navigation Guards erstellen",
+        "description": "Navigation Guards führen Logik aus, bevor die Route gewechselt wird — für Validierungen, Berechtigungen oder Warnungen.",
+        "code": "import { useEffect } from \"react\";\nimport { useNavigate, useLocation } from \"react-router-dom\";\n\nfunction useNavigationGuard(condition) {\n  const navigate = useNavigate();\n  const location = useLocation();\n\n  useEffect(() => {\n    if (!condition()) {\n      navigate(\"/blockiert\", { replace: true, state: { from: location } });\n    }\n  }, [location]);\n}"
+      },
+      {
+        "name": "Guard für ungespeicherte Formulare",
+        "description": "Verhindert das Verlassen der Seite, wenn es ungespeicherte Daten gibt.",
+        "code": "useEffect(() => {\n  const handleBeforeUnload = (e) => {\n    if (isDirty) {\n      e.preventDefault();\n      e.returnValue = \"\";\n    }\n  };\n\n  window.addEventListener(\"beforeunload\", handleBeforeUnload);\n  return () => window.removeEventListener(\"beforeunload\", handleBeforeUnload);\n}, [isDirty]);"
+      },
+      {
+        "name": "Guard basierend auf Rollen und Berechtigungen",
+        "description": "Zusätzlich zur Authentifizierung können Routen basierend auf Benutzerrollen geschützt werden.",
+        "code": "function RoleGuard({ children, role }) {\n  const user = useUser();\n\n  if (user.role !== role) {\n    return <Navigate to=\"/keine-berechtigung\" replace />;\n  }\n\n  return children;\n}"
+      },
+      {
+        "name": "Navigation Guards + Protected Routes kombinieren",
+        "description": "In größeren Anwendungen werden mehrere Sicherheitsebenen kombiniert, um vollständige Kontrolle zu gewährleisten.",
+        "code": "<Route\n  path=\"/admin\"\n  element={\n    <ProtectedRoute>\n      <RoleGuard role=\"admin\">\n        <AdminPanel />\n      </RoleGuard>\n    </ProtectedRoute>\n  }\n/>"
+      }
+    ]
+  },
+  "cta": {
+    "title": "Bereit, deine Routen zu erstellen?",
+    "description": "Das Erstellen von Routen ist jetzt nicht mehr so kompliziert, oder?",
+    "button": "Zurück zu den Tipps"
+  },
+  "sectionNav": {
+    "structures": "Strukturen",
+    "resources": "Ressourcen"
   }
 }
