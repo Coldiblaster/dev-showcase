@@ -10,12 +10,36 @@
     "title": "Links Uteis",
     "subtitle": "Documentacao oficial e referencias",
     "items": [
-      { "name": "Tailwind CSS Docs", "description": "Documentacao oficial do Tailwind CSS com exemplos, referencias de classes e guias de configuracao.", "url": "https://tailwindcss.com/docs" },
-      { "name": "shadcn/ui", "description": "Biblioteca de componentes reutilizaveis construidos com Radix UI e Tailwind CSS. Codigo aberto e customizavel.", "url": "https://ui.shadcn.com" },
-      { "name": "Next.js Docs", "description": "Documentacao oficial do Next.js com App Router, Server Components e muito mais.", "url": "https://nextjs.org/docs" },
-      { "name": "Radix UI", "description": "Primitivos de UI acessiveis e sem estilo que formam a base dos componentes do shadcn/ui.", "url": "https://www.radix-ui.com" },
-      { "name": "Tailwind CSS IntelliSense", "description": "Extensao do VS Code com autocomplete, linting e preview de classes Tailwind.", "url": "https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss" },
-      { "name": "clsx + tailwind-merge", "description": "Combinacao que uso no helper cn() para merge seguro de classes Tailwind sem conflitos.", "url": "https://github.com/dcastil/tailwind-merge" }
+      {
+        "name": "Tailwind CSS Docs",
+        "description": "Documentacao oficial do Tailwind CSS com exemplos, referencias de classes e guias de configuracao.",
+        "url": "https://tailwindcss.com/docs"
+      },
+      {
+        "name": "shadcn/ui",
+        "description": "Biblioteca de componentes reutilizaveis construidos com Radix UI e Tailwind CSS. Codigo aberto e customizavel.",
+        "url": "https://ui.shadcn.com"
+      },
+      {
+        "name": "Next.js Docs",
+        "description": "Documentacao oficial do Next.js com App Router, Server Components e muito mais.",
+        "url": "https://nextjs.org/docs"
+      },
+      {
+        "name": "Radix UI",
+        "description": "Primitivos de UI acessiveis e sem estilo que formam a base dos componentes do shadcn/ui.",
+        "url": "https://www.radix-ui.com"
+      },
+      {
+        "name": "Tailwind CSS IntelliSense",
+        "description": "Extensao do VS Code com autocomplete, linting e preview de classes Tailwind.",
+        "url": "https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss"
+      },
+      {
+        "name": "clsx + tailwind-merge",
+        "description": "Combinacao que uso no helper cn() para merge seguro de classes Tailwind sem conflitos.",
+        "url": "https://github.com/dcastil/tailwind-merge"
+      }
     ]
   },
   "setup": {
