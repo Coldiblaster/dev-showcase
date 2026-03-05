@@ -3,10 +3,11 @@
 import { Terminal } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type tailwindTipsPage from "@/../messages/pt-BR/tailwindTipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { SectionHeader } from "@/components/section-header";
+
+import type tailwindTipsPage from "../../../../messages/pt-BR/tailwindTipsPage.json";
 
 type SetupStep = (typeof tailwindTipsPage)["setup"]["steps"][number];
 

@@ -239,8 +239,6 @@ pnpm translate
 | Criar novo namespace (JSON)           | SIM      | `*/index.ts`, `load-messages.ts`, `types.d.ts` |
 | Adicionar novo idioma                 | SIM      | `src/lib/i18n/config.ts`                       |
 
----
-
 ## Checklist Rapido
 
 ### Para Arquivo Existente

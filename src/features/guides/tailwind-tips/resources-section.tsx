@@ -3,10 +3,11 @@
 import { Link2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type tailwindTipsPage from "@/../messages/pt-BR/tailwindTipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { ResourceLink } from "@/components/resource-link";
 import { SectionHeader } from "@/components/section-header";
+
+import type tailwindTipsPage from "../../../../messages/pt-BR/tailwindTipsPage.json";
 
 type ResourceItem = (typeof tailwindTipsPage)["resources"]["items"][number];
 

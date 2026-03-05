@@ -3,12 +3,12 @@
 import { Database } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type reactQueryTipsPage from "@/../messages/pt-BR/reactQueryTipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { FeatureCard } from "@/components/feature-card";
 import { SectionHeader } from "@/components/section-header";
 
+import type reactQueryTipsPage from "../../../../messages/pt-BR/reactQueryTipsPage.json";
 import { USE_QUERY_CODE } from "./code-examples";
 
 type Feature = (typeof reactQueryTipsPage)["useQuery"]["features"][number];

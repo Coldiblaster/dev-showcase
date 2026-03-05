@@ -3,12 +3,12 @@
 import { Globe } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type apiSecurityPage from "@/../messages/pt-BR/apiSecurityPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { SectionHeader } from "@/components/section-header";
 import { SectionWrapper } from "@/components/section-wrapper";
 
+import type apiSecurityPage from "../../../../messages/pt-BR/apiSecurityPage.json";
 import { SECURE_HEADERS } from "./code-examples";
 
 type Header = (typeof apiSecurityPage)["headers"]["headers"][number];

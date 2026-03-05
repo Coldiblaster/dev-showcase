@@ -3,11 +3,12 @@
 import { Shield } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type securityPage from "@/../messages/pt-BR/securityPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { FeatureCard } from "@/components/feature-card";
 import { SectionHeader } from "@/components/section-header";
 import { SectionWrapper } from "@/components/section-wrapper";
+
+import type securityPage from "../../../../messages/pt-BR/securityPage.json";
 
 type OverviewItem = (typeof securityPage)["overview"]["items"][number];
 

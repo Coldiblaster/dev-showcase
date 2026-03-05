@@ -3,10 +3,11 @@
 import { Link2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type reactQueryTipsPage from "@/../messages/pt-BR/reactQueryTipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { ResourceLink } from "@/components/resource-link";
 import { SectionHeader } from "@/components/section-header";
+
+import type reactQueryTipsPage from "../../../../messages/pt-BR/reactQueryTipsPage.json";
 
 type ResourceLinkItem =
   (typeof reactQueryTipsPage)["resources"]["links"][number];

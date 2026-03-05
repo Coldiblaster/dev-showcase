@@ -3,10 +3,11 @@
 import { Sparkles } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type tsPatterns from "@/../messages/pt-BR/tsPatterns.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { CardBlur } from "@/components/ui/card-blur";
+
+import type tsPatterns from "../../../../messages/pt-BR/tsPatterns.json";
 
 type AdvancedItem = (typeof tsPatterns)["advanced"]["items"][number];
 

@@ -3,11 +3,12 @@
 import { Terminal, Zap } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type tipsPage from "@/../messages/pt-BR/tipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { FeatureCard } from "@/components/feature-card";
 import { SectionHeader } from "@/components/section-header";
+
+import type tipsPage from "../../../../messages/pt-BR/tipsPage.json";
 
 type V0Feature = (typeof tipsPage)["v0"]["features"][number];
 

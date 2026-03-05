@@ -3,12 +3,12 @@
 import { Gauge } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type apiSecurityPage from "@/../messages/pt-BR/apiSecurityPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { SectionHeader } from "@/components/section-header";
 import { SectionWrapper } from "@/components/section-wrapper";
 
+import type apiSecurityPage from "../../../../messages/pt-BR/apiSecurityPage.json";
 import { RATE_LIMIT_INMEMORY, RATE_LIMIT_REDIS } from "./code-examples";
 
 type Row = (typeof apiSecurityPage)["rateLimit"]["rows"][number];

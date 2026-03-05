@@ -3,10 +3,11 @@
 import { Shield } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type tipsPage from "@/../messages/pt-BR/tipsPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { SectionHeader } from "@/components/section-header";
 import { TipItem } from "@/components/tip-item";
+
+import type tipsPage from "../../../../messages/pt-BR/tipsPage.json";
 
 type MindsetPrinciple = (typeof tipsPage)["mindset"]["principles"][number];
 

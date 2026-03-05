@@ -6,10 +6,11 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
 
-import type projectsPage from "@/../messages/pt-BR/projects.json";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+
+import type projectsPage from "../../../messages/pt-BR/projects.json";
 
 type Project = (typeof projectsPage)["items"][number];
 

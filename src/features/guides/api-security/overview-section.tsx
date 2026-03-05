@@ -3,10 +3,11 @@
 import { Shield } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type apiSecurityPage from "@/../messages/pt-BR/apiSecurityPage.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { SectionHeader } from "@/components/section-header";
 import { SectionWrapper } from "@/components/section-wrapper";
+
+import type apiSecurityPage from "../../../../messages/pt-BR/apiSecurityPage.json";
 
 type Layer = (typeof apiSecurityPage)["overview"]["layers"][number];
 

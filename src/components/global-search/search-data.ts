@@ -36,6 +36,17 @@ function buildTags(slug: string): string[] {
       "mutations",
       "estado",
     ],
+    "react-router-tips": [
+      "react router",
+      "nested routing",
+      "loaders",
+      "navigation guards",
+      "routing",
+      "dynamic routing",
+      "use params",
+      "lazy loading",
+      "protected routes",
+    ],
     "dev-resources": [
       "recursos",
       "snippets",

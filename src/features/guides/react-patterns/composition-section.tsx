@@ -3,11 +3,12 @@
 import { Layers } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import type reactPatterns from "@/../messages/pt-BR/reactPatterns.json";
 import { AnimatedSection } from "@/components/animated-section";
 import { CodeBlock } from "@/components/code-block";
 import { Badge } from "@/components/ui/badge";
 import { CardBlur } from "@/components/ui/card-blur";
+
+import type reactPatterns from "../../../../messages/pt-BR/reactPatterns.json";
 
 type CompositionItem = (typeof reactPatterns)["composition"]["items"][number];
 

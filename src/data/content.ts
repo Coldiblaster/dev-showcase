@@ -102,6 +102,15 @@ export const CONTENT_ITEMS: ContentItem[] = [
     readingMinutes: 10,
   },
   {
+    slug: "react-router-tips",
+    title: "React Router & Navegação",
+    description:
+      "Guia completo de React Router v6+: rotas dinâmicas, nested routing, loaders, navigation guards e práticas para navegação em apps React.",
+    component: "ReactRouterTips",
+    category: "guide",
+    readingMinutes: 10,
+  },
+  {
     slug: "dev-resources",
     title: "Recursos para Desenvolvedores — Jr, Pleno e Senior",
     description:
